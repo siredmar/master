@@ -1,0 +1,160 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+Target (Target 1), 0x0004 // Tools: 'ARM-ADS'
+
+Group (csp)
+Group (bsp)
+Group (app)
+Group (lpc)
+
+File 1,1,<..\..\..\..\source\lpc3152_codec_driver.c><lpc3152_codec_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_adc10b_driver.c><lpc313x_adc10b_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_cgu_default.c><lpc313x_cgu_default.c>
+File 1,1,<..\..\..\..\source\lpc313x_cgu_driver.c><lpc313x_cgu_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_crc_driver.c><lpc313x_crc_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_dma_driver.c><lpc313x_dma_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_evt_driver.c><lpc313x_evt_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_i2c_driver.c><lpc313x_i2c_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_i2s_clock_driver.c><lpc313x_i2s_clock_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_i2s_driver.c><lpc313x_i2s_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_intc_driver.c><lpc313x_intc_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_ipint_driver.c><lpc313x_ipint_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_mci_driver.c><lpc313x_mci_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_mstr_i2c_driver.c><lpc313x_mstr_i2c_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_nand_driver.c><lpc313x_nand_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_pwm_driver.c><lpc313x_pwm_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_spi_driver.c><lpc313x_spi_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_timer_driver.c><lpc313x_timer_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_uart_driver.c><lpc313x_uart_driver.c>
+File 1,1,<..\..\..\..\source\lpc313x_usbdcd.c><lpc313x_usbdcd.c>
+File 1,1,<..\..\..\..\source\lpc313x_wdt_driver.c><lpc313x_wdt_driver.c>
+File 1,1,<..\..\..\..\source\lpc315x_otp_driver.c><lpc315x_otp_driver.c>
+File 1,1,<..\..\..\..\source\lpc315x_psu_driver.c><lpc315x_psu_driver.c>
+File 1,1,<..\..\..\..\source\lpc315x_rtc_driver.c><lpc315x_rtc_driver.c>
+File 1,2,<..\..\..\..\source\lpc313x_vectors.s><lpc313x_vectors.s>
+File 2,1,<..\..\source\ea3131_board.c><ea3131_board.c>
+File 2,1,<..\..\source\ea3131_spinor.c><ea3131_spinor.c>
+File 2,1,<..\..\source\lpc313x_pca9532_driver.c><lpc313x_pca9532_driver.c>
+File 2,1,<..\..\source\uda1380_codec_driver.c><uda1380_codec_driver.c>
+File 2,1,<..\..\startup\ea3131_startup.c><ea3131_startup.c>
+File 2,2,<..\..\startup\ea3131_startup_entry.s><ea3131_startup_entry.s>
+File 2,2,<..\..\startup\pad.s><pad.s>
+File 3,1,<.\usbdesc.c><usbdesc.c>
+File 3,1,<.\main.c><main.c>
+File 3,1,<..\..\..\..\..\..\ip\usbd\source\usbcore.c><usbcore.c>
+File 3,1,<..\..\..\..\..\..\ip\usbd\source\hiduser.c><hiduser.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_x6x13.c><lpc_x6x13.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_api.c><lpc_api.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_arm922t_cp15_driver.c><lpc_arm922t_cp15_driver.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_bmp.c><lpc_bmp.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_colors.c><lpc_colors.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_fat16.c><lpc_fat16.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_fat16_private.c><lpc_fat16_private.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_fonts.c><lpc_fonts.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_heap.c><lpc_heap.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_helvr10.c><lpc_helvr10.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_lbecc.c><lpc_lbecc.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_lcd_params.c><lpc_lcd_params.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_line_parser.c><lpc_line_parser.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_nandflash_params.c><lpc_nandflash_params.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_rom8x8.c><lpc_rom8x8.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_rom8x16.c><lpc_rom8x16.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_string.c><lpc_string.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_swim.c><lpc_swim.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_swim_font.c><lpc_swim_font.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_swim_image.c><lpc_swim_image.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_winfreesystem14x16.c><lpc_winfreesystem14x16.c>
+File 4,1,<..\..\..\..\..\..\lpc\source\lpc_x5x7.c><lpc_x5x7.c>
+
+
+Options 1,0,0  // Target 'Target 1'
+ Device (LPC3131)
+ Vendor (NXP (founded by Philips))
+ Cpu (IRAM(0x11028000-0x1103FFFF) IRAM2(0x11040000-0x11057FFF) IROM(0x12000000-0x1201FFFF) CLOCK(12000000) CPUTYPE(ARM926EJ-S))
+ FlashUt ()
+ StupF ("STARTUP\NXP\LPC313x.s" ("NXP LPC313x Startup Code"))
+ FlashDR ()
+ DevID (4694)
+ Rgf (LPC313x.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg (NXP\)
+ OrgReg (NXP\)
+ TgStat=16
+ OutDir (.\output\)
+ OutName (usbhid)
+ GenApp=1
+ GenLib=0
+ GenHex=0
+ Debug=1
+ Browse=1
+ LstDir (.\)
+ HexSel=1
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 1 <fromelf.exe --output "$P\usbhid.bin" --bin "$P/output/%L">
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ CrunUsr 0 0 <>
+ CrunUsr 1 0 <>
+ SVCSID <>
+ GLFLAGS=1790
+ ADSFLGA { 243,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ACPUTYP (ARM926EJ-S)
+ RVDEV ()
+ ADSTFLGA { 0,12,16,2,99,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSOCM { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCMADSIRAM { 0,0,128,2,17,0,128,1,0 }
+ OCMADSIROM { 1,0,0,0,18,0,0,2,0 }
+ OCMADSXRAM { 0,0,0,0,0,0,0,0,0 }
+ OCR_RVCT { 1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,18,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,128,2,17,0,128,1,0,0,0,0,4,17,0,128,1,0 }
+ RV_STAVEC ()
+ ADSCCFLG { 5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSCMISC ()
+ ADSCDEFN ()
+ ADSCUDEF ()
+ ADSCINCD (..\..\include;..\..\..\..\include;..\..\..\..\..\..\ip\usbd\include;..\..\..\..\..\..\lpc\include;..\usbhid)
+ ADSASFLG { 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSAMISC ()
+ ADSADEFN ()
+ ADSAUDEF ()
+ ADSAINCD ()
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ ADSLDFG { 16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ADSLDTA (0x12000000)
+ ADSLDDA (0x11028000)
+ ADSLDSC (..\common\ldscript_iram_ads.ld)
+ ADSLDIB ()
+ ADSLDIC ()
+ ADSLDMC ()
+ ADSLDIF ()
+ ADSLDDW ()
+  OPTDL (SARM.DLL)(-cLPC313x)(DARMP3.DLL)(-pLPC3131)(SARM.DLL)()(TARMP3.DLL)(-pLPC3131)
+  OPTDBG 48126,0,()()()()()()()()()(..\common\keil_init.ini) (BIN\UL2ARM.DLL)()()()
+ FLASH1 { 2,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,0,0,0,0 }
+ FLASH2 ()
+ FLASH3 ("" ())
+ FLASH4 (..\common\keil_init.ini)
+EndOpt
+

@@ -1,0 +1,11 @@
+--- arch/arm/mach-lpc31xx/wdt.c	2012-08-21 22:55:26.133612465 +0200
++++ arch/arm/mach-lpc31xx/wdt.c	2012-09-22 11:30:35.629275654 +0200
+@@ -27,7 +27,7 @@
+ static struct resource watchdog_resources[] = {
+ 	{
+ 		.start = WDT_PHYS,
+-		.end = WDT_PHYS + SZ_4K - 1,
++		.end = WDT_PHYS + SZ_1K - 1,
+ 		.flags = IORESOURCE_MEM,
+ 	},
+ };

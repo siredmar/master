@@ -1,0 +1,63 @@
+===========================
+     APEX Boot Loader
+       Variations
+===========================
+
+This README gives background and some guidance for implementing and
+using variations.
+
+  Overview
+  --------
+
+Variations were added to APEX to facilitate alternative booting
+methods.  It is common to want a secondary boot process that is
+activated by some sort of user action or system state.  The specifics
+of how these secondary processes is selected is specific to a target
+or build of APEX, but the mechanism should be the same in all cases.
+
+By defining an environment variable or alias of the name 'variation',
+APEX will select alternative versions of environment variables or
+aliases when available when expanding them on the command line or when
+variables are referenced by drivers.  When 'variation' is set to
+'_alt', APEX will first look for the startup command in 'startup_alt'
+and then in 'startup' if the variation is not present.  This is true
+for all variable references include the ones used to define the base
+regions for drivers.
+
+  Implementation
+  --------------
+
+Most targets will want to detect the variation from a runtime source,
+e.g. a button being pressed while power is applied.  The easiest
+method for performing this check is within a service.  Care must be
+taken to execute the variation service after critical system services
+are available such as timers.  Generally, it should be safe to
+implement the variation service last.
+
+  Environment Variables vs. Aliases
+  ---------------------------------
+
+Runtime selection of the variation requires that aliases be
+configured.  Remember, the difference between environment variables
+and aliases is that environment variables are immediately saved to
+non-volatile storage when set and aliases are only stored in RAM
+
+  _alt vs. -alt
+  -------------
+
+While both are perfectly valid and the environment variable expansion
+code supports both, it is important to be aware that variable and
+alias names will only expand with alphanumeric names with - and _
+added to aid readability.
+
+  ====================
+
+static void variation_init (void)
+{
+  if (is_reset_button_pressed ())
+    alias_set ("variation", "_alt"); 
+}
+
+static __service_9 struct service_d variation_service = {
+  .init = variation_init,
+};

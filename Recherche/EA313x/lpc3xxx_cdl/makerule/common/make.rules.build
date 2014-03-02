@@ -1,0 +1,130 @@
+######################################################################## 
+# $Id:: make.rules.build 4929 2010-09-15 22:17:33Z usb10131            $
+# 
+# Project: Standard compile makefile
+# 
+# Description: 
+#  default build rules used by all compiler chains
+# 
+######################################################################## 
+# Software that is described herein is for illustrative purposes only  
+# which provides customers with programming information regarding the  
+# products. This software is supplied "AS IS" without any warranties.  
+# NXP Semiconductors assumes no responsibility or liability for the 
+# use of the software, conveys no license or title under any patent, 
+# copyright, or mask work right to the product. NXP Semiconductors 
+# reserves the right to make changes in the software without 
+# notification. NXP Semiconductors also make no representation or 
+# warranty that such application will be suitable for the specified 
+# use without further testing or modification. 
+########################################################################
+
+objs: .depend $(OBJS)
+
+ifeq ($(TOOL), iar)
+%.o : %.c
+	@echo CC $<
+	$(CC) $(CFLAGS) $< -o $*.o
+
+%.o : %.cpp
+	@echo CCP $<
+	$(CCP) $(CFLAGS) $< -o $*.o
+
+else
+%.o : %.c
+	@echo CC $<
+	$(CC) -c $(CFLAGS) $< -o $*.o
+
+%.o : %.cpp
+	@echo CCP $<
+	$(CCP) -c $(CFLAGS) $< -o $*.o
+endif
+
+#########################################################################
+# .via rules are added to speed-up compilation under realview floating 
+# license environments.
+#########################################################################
+ifeq ($(TOOL), rvw)
+
+.viafile: $(SRC) $(SRCC)
+	@echo $? > $@
+	
+.vias: .viafile
+	$(CC) -c $(CFLAGS) --via .viafile
+	touch .vias	
+
+else
+.vias: ;
+endif
+
+
+%.o : %.$(ASM_EXT)
+	@echo AS $<
+	$(AS) $(AFLAGS) $< -o $*.o
+
+clean:
+	@$(RM) *.o 2>_null
+	@$(RM) *.elf 2>_null
+	@$(RM) *.exe 2>_null
+	@$(RM) *~ 2>_null
+	@$(RM) *.map 2>_null
+	@$(RM) *.lst 2>_null
+	@$(RM) *.axf 2>_null
+	@$(RM) *.bin 2>_null
+	@$(RM) *.dbo 2>_null
+	@$(RM) *.dla 2>_null
+	@$(RM) *.dnm 2>_null
+	@$(RM) *.srec 2>_null
+	@$(RM) *.wrn 2>_null
+	@$(RM) *.c.orig 2>_null
+	@$(RM) *.h.orig 2>_null
+	@$(RM) .viafile 2>_null
+	@$(RM) .vias 2>_null
+	@$(RM) _null
+	
+realclean: clean depclean
+	
+distclean: realclean lpc_clean
+	
+#########################################################################
+# Default target library rules
+#########################################################################
+lpc_libs: 
+	@$(MAKE) TOOL=$(TOOL) -C $(CSP_SRC_DIR) 
+	@$(MAKE) TOOL=$(TOOL) -C $(BSP_SRC_DIR) 
+	@$(MAKE) TOOL=$(TOOL) -C $(GEN_SRC_DIR) 
+
+lpc_clean: 
+	-@$(MAKE) TOOL=$(TOOL) -C $(CSP_SRC_DIR) realclean 
+	-@$(MAKE) TOOL=$(TOOL) -C $(BSP_SRC_DIR) realclean 
+	-@$(MAKE) TOOL=$(TOOL) -C $(GEN_SRC_DIR) realclean 
+
+#########################################################################
+# Auto-formater related rules
+#########################################################################
+AHDRS = $(wildcard *.h) $(wildcard ../include/*.h)
+asthis:
+	$(ASTYLE) $(SRC) $(SRCC) $(AHDRS)
+
+astyle: asthis
+	@$(MAKE) TOOL=$(TOOL) -C $(CSP_SRC_DIR) asthis 
+	@$(MAKE) TOOL=$(TOOL) -C $(BSP_SRC_DIR) asthis 
+	@$(MAKE) TOOL=$(TOOL) -C $(GEN_SRC_DIR) asthis 
+	
+#########################################################################
+# Dependency related rules
+#########################################################################
+dep: .depend
+depend: .depend
+
+depclean:
+	@$(RM) .depend
+
+.depend: $(SRC) $(SRCC)
+		$(MKDEPS) -o.o -f- -- $(CFLAGS) -- $(SRC) $(SRCC) > $@ 2>dep.wrn
+
+-include .depend
+
+.PHONY: objs depend dep lpc_lib lpc_clean clean realclean distclean
+#########################################################################
+	

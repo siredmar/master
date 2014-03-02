@@ -1,0 +1,7 @@
+NOTES
+-----
+
+o Booting the Linux Kernel with JTAG
+
+  Add jtag=on to the kernel command line to allow the kernel to run
+  while JTAG is attached.

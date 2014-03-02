@@ -1,0 +1,36 @@
+--- arch/arm/mach-lpc31xx/board-ea313x.c	2012-08-21 22:55:26.133612465 +0200
++++ arch/arm/mach-lpc31xx/board-ea313x.c	2012-10-31 12:58:45.087523085 +0100
+@@ -44,7 +44,7 @@
+ #include <asm/mach-types.h>
+ 
+ #include <asm/mach/arch.h>
+-#include <mach/gpio.h>
++#include <mach/gpio-lpc313x.h>
+ #include <mach/i2c.h>
+ #include <mach/board.h>
+ #include <mach/system.h>
+@@ -399,21 +399,21 @@
+ static void spi_set_cs0_state(int cs_num, int state)
+ {
+ 	(void) cs_num;
+-	lpc313x_gpio_set_value(GPIO_SPI_CS_OUT0, state);
++	gpio_set_value(GPIO_SPI_CS_OUT0, state);
+ }
+ 
+ static void spi_set_cs1_state(int cs_num, int state)
+ {
+ 	(void) cs_num;
+ printk("cs1 state %d\n", state);
+-	lpc313x_gpio_set_value(GPIO_MUART_CTS_N, state);
++	gpio_set_value(GPIO_MUART_CTS_N, state);
+ }
+ 
+ static void spi_set_cs2_state(int cs_num, int state)
+ {
+ printk("cs2 state %d\n", state);
+ 	(void) cs_num;
+-	lpc313x_gpio_set_value(GPIO_MUART_RTS_N, state);
++	gpio_set_value(GPIO_MUART_RTS_N, state);
+ }
+ 
+ struct lpc313x_spics_cfg lpc313x_stdspics_cfg[] =

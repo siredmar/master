@@ -1,0 +1,337 @@
+menu "Commands"
+
+config ALLHELP
+	bool "Include all online help"
+	default y
+	depends on SMALL=n
+	help
+	  Setting this option will include all help text for APEX commands.
+
+config NOHELP
+	bool "Suppress command descriptions"
+	default n
+	depends on SMALL && !ALLHELP
+	help
+	  When you are squeezing bytes from APEX, you may choose this
+	  option to eliminate the short command descriptions from the
+	  command help display.  This won't save much space, but it
+	  could be a of the few bytes you need to fix APEX into the
+	  small space available.  
+
+	  Note that you'll need to understand APEX quite well if
+	  you choose this option.
+
+config ALPHABETIZE_COMMANDS
+       bool "Sort commands alphabetically in help"
+       default y
+       depends on SMALL=n
+       help
+         Setting this option will sort alphabetically the commands
+         shown in the help listing.  This option makes it easier to
+         browse the help text.  It forces the inclusion of sort
+         function, so it is automatically disabled when the SMALL
+         configuration option is set.
+ 
+config PARTIAL_MATCHES
+	bool "Allow partial, case-insensitive matching for subcommands"
+	default y
+	depends on !SMALL
+	help
+	  Many commands have second arguments that select sub-commands.
+          For example, the ipconfig command takes as a second
+          argument the method of configuring the ip address.
+          With this option, the matching of this argument is
+          for relaxed.  If there is only one option that begins
+          with 's', then that single letter is sufficient to select
+          the option.  'ipconfig D' is sufficient for 'ipconfig dhcp'
+          given that there are no other options beginning with 'd'.
+
+	  This option is a nicety, but it adds a wee bit of code to
+          the program, so the SMALL option suppresses it.
+
+config DEL_IS_BS
+	bool "Use DEL as alias for Backspace"
+	depends on !SMALL
+	default y
+	help
+	  Some folks use a terminal program that insists that the
+	  Backspace key send a DEL character.  This option allows them
+	  to maintain this assumption.  It is best to leave this
+	  option 'N' and fix your terminal program. 
+
+config ANSI_KEYS
+	bool "Interpret ANSI key sequences"
+	depends on !SMALL
+	default y
+	help
+	  Enables interpretation of some ANSI key sequences.
+	 
+config COMMAND_HISTORY
+	bool "Command History"
+	depends on !SMALL
+	default y
+	help
+	  This option enables command history recall.  Use ^P and ^N
+	  or the up and down arrow keys, when ANSI_KEYS is enabled, to
+	  scroll through the previously entered commands.
+
+config COMMAND_EDITING
+	bool "Command Editing"
+	depends on !SMALL
+	default y
+	help
+	  This option enables in-place command editing using Emacs key
+	  bindings.  Arrow keys move among the characters of the
+	  command, typing inserts, and delete keys delete in the
+	  middle of the command string.  See the on-line help for a
+	  description of the available key sequences.
+
+config TIME_COMMANDS
+	bool "Report elapsed time for each command executed"
+	depends on !SMALL
+	default n
+	help
+	  When enabled, this option causes APEX to report the elapsed
+	  time for every command entered at the prompt.  It is
+	  useful for debugging and profiling.
+
+config CMD_ALIAS
+        bool "Define Alias Commands"
+	default y
+	select ALIASES
+	help
+	  Aliases are a lighter-weight form of environment-like variable.
+	  Aliases are not saved to flash and nor are they limited to
+	  pre-defined keys as environment variables are.
+
+config CMD_CHECKSUM
+	bool "Define Checksum Region Command"
+	default y
+	help
+	  Computes a CCITT CRC32 checksum over a region.
+
+config CMD_COPY
+	bool "Define Copy Regions Command"
+	default y
+	help
+	  Copies from one region to another.
+
+config CMD_COMPARE
+	bool "Define Compare Regions Command"
+	default y
+
+config CMD_DRVINFO
+	bool "Define Driver Info Command"
+	default y
+	help
+	  Informational command that reports the status of APEX
+	  drivers and services.  This is a good command to omit when
+	  trying to make APEX small.
+
+config CMD_DUMP
+	bool "Define Dump Region Command"
+	default y
+	help
+	  Shows the contents of a region on the console.
+
+config CMD_ENV
+	bool "Define Environment Commands"
+	depends on ENV
+	default y
+
+config CMD_ERASEENV
+	bool "Define Erase Environment Command"
+	depends on ENV && CMD_ENV=y && ENV_MUTABLE=y && EXPERIMENTAL && false
+	default n
+	help
+	  Experimental (unimplemented) feature that allows safe,
+	  complete erasure of the environment even when the erase
+	  block of the environment is shared with other data.
+
+config CMD_IMAGE
+       bool "Define Image Command"
+       default y
+       help
+         The image command allows APEX to manupulate image files
+	 that may contain executables and data, e.g. the Linux Kernel.
+	 Images have metadata that identifies the purpose of the data
+	 and usually CRCs to prevent data corruption.
+
+config CMD_IMAGE_APEX
+       bool "Support APEX Images"
+       default y
+       depends on CMD_IMAGE
+       help
+         Support loading of APEX images.  This is the preferred image
+         format as it is flexible and extensible.
+
+config CMD_IMAGE_UBOOT
+       bool "Support UBOOT Images"
+       default n
+       depends on CMD_IMAGE
+       select CRC32_LSB
+       help
+         Support loading of UBOOT images.
+
+config CMD_IMAGE_SHOW
+       bool "Define Image Show Command"
+       default y
+       depends on CMD_IMAGE
+       help
+         The image command can implement this sub-command to show the
+         contents of an image header.  Unless tight on code space,
+         this option should be left 'Y'.
+
+config CMD_SETENV
+       bool "Define Set/unset Environment Variable Commands"
+       depends on ENV && CMD_ENV=y && ENV_MUTABLE=y
+       default y
+
+config CMD_PRINTENV_ALPHABETIZE
+       bool "Sort environment variables alphabetically"
+       default y
+       depends on SMALL=n && false
+       help
+	 *** This option isn't yet available because it is a little
+	 trickier than I had time to implement.
+         Setting this option will sort alphabetically the environment
+	 variables when listing them.  This option makes it easier to
+         browse the variables.  It forces the inclusion of sort
+         function, so it is automatically disabled when the SMALL
+         configuration option is set.
+ 
+config CMD_ERASE
+	bool "Define Erase Region Command"
+	default y
+
+config CMD_FILL
+	bool "Define Fill Region Command"
+	default y
+
+config CMD_GO
+	bool "Define Go Command"
+	default y
+	help
+	  Allows transfer of execution to any memory address.
+
+config CMD_INFO
+	bool "Define Info Command"
+	default y
+	help
+	  Show information about a region descriptor.  Use this command
+	  to list the contents of a filesystem directory.
+
+config CMD_PARSE
+	bool "Define Parse Command"
+	default n
+	help
+	  Parse REGION strings and show the result. 
+	  This is used primarily for debugging.
+
+config CMD_PAUSE
+	bool "Define Pause Command"
+	default n
+
+config CMD_FLASHUSAGE
+	bool "Define Flash Usage Command"
+	default n
+	help
+	  Show the usage of erase blocks within a NOR flash device.
+
+config CMD_WAIT
+	bool "Define Wait Command"
+	default y
+	help
+	  Wait prints a message, delays the specified numnber of 10ths
+	  of a second, and then continues execution.  It is useful in
+	  startup commands.
+
+config CMD_XRECEIVE
+	bool "Define Xmodem Receive Command"
+	default y
+
+config CMD_EMAC_LH79524
+	bool "Define LH79524/5 Ethernet MAC Command" 
+	depends on DRIVER_EMAC_LH79524
+	default y
+	help
+	  Commands to configure the built-in MAC of the LH79524 and
+	  LH79525.  
+
+config CMD_EMAC_LH79524_DIAG
+	bool "Define LH79524 Ethernet MAC Diagnostics"
+	depends on CMD_EMAC_LH79524
+	default n
+	help
+	  Enable this option to add diagnostic sub-commands to the
+	  emac command.  It adds a lot of code to APEX, so leave it
+	  out unless you are sure you need it.
+
+config CMD_ETH_SMC91X
+	bool "Define SMC91x diagnostic commands"
+	depends on DRIVER_SMC91X
+	default n
+
+config CMD_ETH_DM9000
+	bool "Define DM9000 diagnostic commands"
+	depends on USES_DM9000
+	default n
+
+config CMD_MEMLIMIT
+	bool "Define Memlimit Command"
+	default n
+	help
+	  This command constrains amount of RAM available to Linux
+	  kernel.  It is useful for testing how the kernel
+	  responds to a limited memory resource.
+
+config CMD_MEMSCAN
+	bool "Define Memscan Command"
+	default n
+	help
+	  This command scans memory as APEX does when initializing.
+	  This is used primarily for debugging.
+
+config CMD_MEMTEST
+	bool "Define Memtest Command"
+	default n
+	help
+	  This command tests a region of RAM for errors.  It performs
+	  the simple test for crossed or disconnected lines as well as
+	  a (the unecessary) full test of the memory if
+	  CONFIG_BOOTSTRAP_MEMTEST_FULL is defined.
+
+config CMD_CLCDC_SPLASH
+	bool "Define CLCDC Splash sub-command"
+	depends on DRIVER_LH_CLCDC
+	default y
+	help
+	  This sub-command draws an image into the LCD frame buffer.
+
+config CMD_CLCDC_TEST
+	bool "Define CLCDC test sub-commands"
+	depends on DRIVER_LH_CLCDC
+	default n
+	help
+	  These sub-commands help with testing the CLCDC controller.
+
+config CMD_ARM920_TEST
+	bool "Define ARM920 CPU test sub-commands"
+	depends on CPU_ARM920T || CPU_ARM922T
+	default n
+	help
+	  These sub-commands allow for changes to the CP15 test
+	  registers.
+
+config CMD_NAND
+	bool "Define special NAND commands "
+	depends on DRIVER_NAND
+	default n
+	help
+	  Defines NAND commands for testing.
+
+endmenu
+
+config CRC32_LSB
+	bool
+	default n

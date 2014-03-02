@@ -1,0 +1,15 @@
+kernel/net/ieee802154/ieee802154.ko
+kernel/net/ieee802154/af_802154.ko
+kernel/net/ipv4/tunnel4.ko
+kernel/net/ipv4/tcp_cubic.ko
+kernel/net/ipv6/ipv6.ko
+kernel/net/ipv6/xfrm6_mode_transport.ko
+kernel/net/ipv6/xfrm6_mode_tunnel.ko
+kernel/net/ipv6/xfrm6_mode_beet.ko
+kernel/net/ipv6/sit.ko
+kernel/net/ipv6/inet6_hashtables.ko
+kernel/net/mac80211/mac80211.ko
+kernel/net/packet/af_packet.ko
+kernel/net/unix/unix.ko
+kernel/net/wireless/cfg80211.ko
+kernel/net/wireless/lib80211.ko

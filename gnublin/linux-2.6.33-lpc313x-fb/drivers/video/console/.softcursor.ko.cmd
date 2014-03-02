@@ -1,0 +1,1 @@
+cmd_drivers/video/console/softcursor.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/video/console/softcursor.ko drivers/video/console/softcursor.o drivers/video/console/softcursor.mod.o

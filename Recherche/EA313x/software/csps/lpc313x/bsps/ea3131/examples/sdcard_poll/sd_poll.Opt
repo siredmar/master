@@ -1,0 +1,88 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.s*; *.src; *.a*)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt; *.h; *.inc)
+ pExt (*.plm)
+ CppX (*.cpp)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (sd_poll), 0x0004 // Tools: 'ARM-ADS'
+GRPOPT 1,(csp),1,0,0
+GRPOPT 2,(bsp),1,0,0
+GRPOPT 3,(main),1,0,0
+GRPOPT 4,(lpc),0,0,0
+
+OPTFFF 1,1,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_wdt_driver.c><lpc313x_wdt_driver.c> 
+OPTFFF 1,2,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_cgu_default.c><lpc313x_cgu_default.c> 
+OPTFFF 1,3,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_cgu_driver.c><lpc313x_cgu_driver.c> 
+OPTFFF 1,4,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_dma_driver.c><lpc313x_dma_driver.c> 
+OPTFFF 1,5,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_intc_driver.c><lpc313x_intc_driver.c> 
+OPTFFF 1,6,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_spi_driver.c><lpc313x_spi_driver.c> 
+OPTFFF 1,7,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_timer_driver.c><lpc313x_timer_driver.c> 
+OPTFFF 1,8,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_uart_driver.c><lpc313x_uart_driver.c> 
+OPTFFF 1,9,2,0,0,0,0,0,<..\..\..\..\source\lpc313x_vectors.s><lpc313x_vectors.s> 
+OPTFFF 1,10,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_evt_driver.c><lpc313x_evt_driver.c> 
+OPTFFF 1,11,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_i2c_driver.c><lpc313x_i2c_driver.c> 
+OPTFFF 1,12,1,1275068419,0,271,305,0,<..\..\..\..\source\lpc313x_mci_driver.c><lpc313x_mci_driver.c> { 44,0,0,0,2,0,0,0,3,0,0,0,255,255,255,255,255,255,255,255,252,255,255,255,226,255,255,255,110,0,0,0,145,0,0,0,198,3,0,0,22,2,0,0 }
+OPTFFF 1,13,1,0,0,0,0,0,<..\..\..\..\source\lpc313x_nand_driver.c><lpc313x_nand_driver.c> 
+OPTFFF 2,14,2,1795162112,0,0,0,0,<..\..\startup\ea3131_startup_entry.s><ea3131_startup_entry.s> 
+OPTFFF 2,15,1,0,0,0,0,0,<..\..\startup\ea3131_startup.c><ea3131_startup.c> 
+OPTFFF 2,16,1,0,0,0,0,0,<..\..\source\ea3131_spinor.c><ea3131_spinor.c> 
+OPTFFF 2,17,1,83886080,0,0,0,0,<..\..\source\ea3131_board.c><ea3131_board.c> 
+OPTFFF 2,18,5,0,0,0,0,0,<..\..\include\ea3131_board.h><ea3131_board.h> 
+OPTFFF 2,19,2,0,0,0,0,0,<..\..\startup\pad.s><pad.s> 
+OPTFFF 3,20,1,0,0,0,0,0,<.\sd_main.c><sd_main.c> 
+OPTFFF 3,21,1,0,0,0,0,0,<.\fat.c><fat.c> 
+OPTFFF 4,22,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_x6x13.c><lpc_x6x13.c> 
+OPTFFF 4,23,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_api.c><lpc_api.c> 
+OPTFFF 4,24,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_arm922t_cp15_driver.c><lpc_arm922t_cp15_driver.c> 
+OPTFFF 4,25,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_bmp.c><lpc_bmp.c> 
+OPTFFF 4,26,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_colors.c><lpc_colors.c> 
+OPTFFF 4,27,1,989855744,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_fat16.c><lpc_fat16.c> 
+OPTFFF 4,28,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_fat16_private.c><lpc_fat16_private.c> 
+OPTFFF 4,29,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_fonts.c><lpc_fonts.c> 
+OPTFFF 4,30,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_heap.c><lpc_heap.c> 
+OPTFFF 4,31,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_helvr10.c><lpc_helvr10.c> 
+OPTFFF 4,32,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_lbecc.c><lpc_lbecc.c> 
+OPTFFF 4,33,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_lcd_params.c><lpc_lcd_params.c> 
+OPTFFF 4,34,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_line_parser.c><lpc_line_parser.c> 
+OPTFFF 4,35,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_nandflash_params.c><lpc_nandflash_params.c> 
+OPTFFF 4,36,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_rom8x8.c><lpc_rom8x8.c> 
+OPTFFF 4,37,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_rom8x16.c><lpc_rom8x16.c> 
+OPTFFF 4,38,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_string.c><lpc_string.c> 
+OPTFFF 4,39,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_swim.c><lpc_swim.c> 
+OPTFFF 4,40,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_swim_font.c><lpc_swim_font.c> 
+OPTFFF 4,41,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_swim_image.c><lpc_swim_image.c> 
+OPTFFF 4,42,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_winfreesystem14x16.c><lpc_winfreesystem14x16.c> 
+OPTFFF 4,43,1,0,0,0,0,0,<..\..\..\..\..\..\lpc\source\lpc_x5x7.c><lpc_x5x7.c> 
+
+ExtF <C:\dev\svn\nxpmcu\software\csps\lpc313x\include\lpc313x_mci.h> 52,73,0,{ 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,252,255,255,255,226,255,255,255,88,0,0,0,116,0,0,0,173,3,0,0,49,2,0,0 }
+
+TARGOPT 1, (sd_poll)
+ ADSCLK=13000000
+  OPTTT 1,1,1,0
+  OPTHX 1,65535,0,0,0
+  OPTLX 79,66,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTAX 8
+  OPTBL 0,(Data Sheet)<DATASHTS\PHILIPS\LPC3180_DS.PDF>
+  OPTBL 1,(User Manual)<DATASHTS\PHILIPS\LPC3180_UM.PDF>
+  OPTDL (SARM.DLL)(-cLPC3000)(DARMP3.DLL)(-pLPC3180)(SARM.DLL)()(TARMP3.DLL)()
+  OPTDBG 47602,0,()()()()()()()()()(..\common\keil_init.ini) (BIN\UL2ARM.DLL)()()()
+  OPTKEY 0,(DLGTARM)(ô)
+  OPTKEY 0,(ARMDBGFLAGS)()
+  OPTKEY 0,(UL2ARM)(-UM0208S9E -O38 -S0 -C0 -N00("ARM926EJ-S Core") -D00(07926F0F) -L00(4) -FO7 -FD8000000 -FC800 -FN0)
+  OPTMM 1,2,(0x11057be0)
+  OPTMM 2,2,(0x30000000)
+  OPTDF 0x86
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

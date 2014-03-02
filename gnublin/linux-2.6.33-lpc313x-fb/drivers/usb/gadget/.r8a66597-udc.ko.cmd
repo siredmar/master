@@ -1,0 +1,1 @@
+cmd_drivers/usb/gadget/r8a66597-udc.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/dev/gnublin/gnublin-lpc3131-2.6.33/linux-2.6.33-lpc313x/scripts/module-common.lds --build-id -o drivers/usb/gadget/r8a66597-udc.ko drivers/usb/gadget/r8a66597-udc.o drivers/usb/gadget/r8a66597-udc.mod.o

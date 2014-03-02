@@ -1,0 +1,1 @@
+cmd_drivers/rtc/rtc-mcp7940.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/rtc/rtc-mcp7940.ko drivers/rtc/rtc-mcp7940.o drivers/rtc/rtc-mcp7940.mod.o

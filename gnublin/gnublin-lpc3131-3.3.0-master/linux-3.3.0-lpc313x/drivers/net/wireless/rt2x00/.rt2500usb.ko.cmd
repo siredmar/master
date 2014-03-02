@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/rt2x00/rt2500usb.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/gnublin-lpc3131-3.3.0-master/linux-3.3.0-lpc313x/scripts/module-common.lds --build-id  -o drivers/net/wireless/rt2x00/rt2500usb.ko drivers/net/wireless/rt2x00/rt2500usb.o drivers/net/wireless/rt2x00/rt2500usb.mod.o

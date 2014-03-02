@@ -1,0 +1,140 @@
+===========================
+     APEX Boot Loader
+       Environment
+===========================
+
+There is support for an environment in APEX.  The environment stores
+key/value pairs as part of the configuration of the boot loader in
+non-volatile storage.  The only configuration option that can never be
+stored in the environment is the location of the environment itself.
+
+Aliases
+-------
+
+APEX also supports aliases which are key/value pairs, but there are
+several important differences.  Aliases are not stored in non-volatile
+memory.  Aliases resolve before environment variables, thus overriding
+the environment.  Aliases have no default value.  When unset, aliases
+are empty whereas undefined environment variables will have the
+default that is compiled into APEX.  Finally, aliases may be assigned
+to any key.  The environment can only store keys that are compiled
+into APEX.
+
+
+The Environment Region
+----------------------
+
+The region containing the environment is defined at compile time.  It
+is usually in NOR flash, but can be in any non-volatile storage
+medium.  If APEX cannot open the environment region, it will not allow
+run-time changes to the compiled in defaults.
+
+Typically, this region is assigned so that it doesn't occupy the same
+erase block as other valuable data.  For example, on a system where
+NOR flash has 128KiB erase blocks, the environment could occupy the
+upper 16KiB of the same block as APEX.  Trouble arises if this region
+fills erased values since erasing the region will erase the boot
+loader as well.
+
+The region can be stored in a small EEPROM.  Even 256 bytes may be
+enough to be useful.  The memory format was designed to be compact
+enough to fit into this sort of medium.
+
+The size of the region does not need to be large.  Setting it to 16KiB
+is probably sufficient for any common usage considering that most
+entries will be less than 40 characters.  As entries are erased and
+replaced, the environment will fill with erased entried which can take
+some time to scan if the medium is very slow.
+
+
+Environment Memory Format
+-------------------------
+
+The environment format has evolved such that it is self-contained for
+both reading and writing, and is reasonably compact.
+
+   +-------+-------+-------+------+
+   | MAGIC | Entry | ...   | 0xff |
+   +-------+-------+-------+------+
+
+The MAGIC number is two bytes, stored in the MSB or network order, 'A'
+followed by 'e'.  The same environment data may be read from either
+little or big endian CPU.  The environment is terminated with a single
+0xff byte.
+
+Entries are key/value pairs of two forms.
+
+   +------+-----+-------+
+   | Flag | Key | Value |
+   +------+-----+-------+
+
+In this form, the Key and Value are each NULL terminated ASCII
+strings.  The Flag field is a single byte where the high bit is 1 for
+an active entry, and 0 for a deleted entry.  The low seven bits are an
+id which is identifies the key.  Valid ids are zero through 0x7e since
+0x7f would mark the end of the environment if it were an active entry.
+
+   +------+-------+
+   | Flag | Value |
+   +------+-------+
+
+This is the second form that does not include the Key string.  It only
+exists when an environment variable is written more than once to the
+environment.  The first time a given Key is stored, an unused id is
+allocated for it.  The second time it is stored, that id is reused and
+the Key field is omitted.
+
+The ids are unique within a given environment instance, and are
+allocated as entries are written.  For example, if the user performs
+these commands on an empty environment:
+
+     apex> setenv cmdline console=ttyS0
+     apex> setenv bootaddr 0x8000
+     apex> setenv cmdline console=ttyS0,115200
+
+the environment will contain three entries, cmdline with a flag of 0x0
+(deleted id=0), bootaddr with a flag of 0x81 (active id=1), and
+cmdline with a flag of 0x80 (active id=0).
+
+
+Writing an Environment from User Space
+--------------------------------------
+
+There is a user-mode application in the usr/ directory called
+apex-env.  It works in concert with the CONFIG_ENV_LINK option to
+allow safe and reliable modifications to the APEX environment once the
+system is booted.  There further discussion of the environment format
+in the usr/link.cc file.
+
+More on the Environment in Flash
+--------------------------------
+
+It would be easiest to re-write the whole environment without
+including deleted entries.  apex-env doesn't do this because it is
+careful to properly manage the data structures.  
+
+IDs must be allocated consecutively as new variables are added the the
+flash environment.  If the flash environment contains three Keys they
+must have ids 0, 1 and 2.  A new key must have the id of 3.  Deleting
+values doesn't affect this ordering.  Unsetting a variable and then
+setting it again will reuse the id used the first time it was set.
+Only when the whole environment is erased can the id's be recycled.
+
+The magic number must be written to the first two bytes of the
+environment region.  The first bytes address must contain 'A' and the
+second mus contain 'e' regardless of the endian-ness of the CPU.
+
+If you write an entry with a Key that is not recognized by APEX, it
+will be harmlessly ignored.  This may be helpful if you want to
+construct an environment with all possible Keys that could be used by
+APEX, or if you need to upgrade APEX without modifying the
+environment.
+
+APEX interprets environment Keys without regard for case.  Thus,
+'cmdline' will be recognized as the same Key as 'cmdLine' and
+'CMDLINE'.  The APEX command line only stores Key names as they are
+defined in the code, so that when the user executes
+
+  apex> setenv CMDLINE console=ttyS0
+
+APEX stores 'cmdline'.

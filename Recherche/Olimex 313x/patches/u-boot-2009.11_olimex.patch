@@ -1,0 +1,301 @@
+diff -aurP u-boot-2009.11_orig/board/ea31xx/config.mk u-boot-2009.11_oli/board/ea31xx/config.mk
+--- u-boot-2009.11_orig/board/ea31xx/config.mk	2011-12-26 00:33:33.041313583 +0200
++++ u-boot-2009.11_oli/board/ea31xx/config.mk	2011-12-26 00:35:21.072339059 +0200
+@@ -1 +1 @@
+-TEXT_BASE = 0x33600000
++TEXT_BASE = 0x31600000
+diff -aurP u-boot-2009.11_orig/board/ea31xx/ea31xx.c u-boot-2009.11_oli/board/ea31xx/ea31xx.c
+--- u-boot-2009.11_orig/board/ea31xx/ea31xx.c	2011-12-26 00:33:33.041313583 +0200
++++ u-boot-2009.11_oli/board/ea31xx/ea31xx.c	2011-12-26 00:35:21.076447734 +0200
+@@ -65,6 +65,7 @@
+ 
+ int misc_init_r(void)
+ {
++#ifdef CONFIG_DRIVER_DM9000
+ 	unsigned char i = 0;
+ 	unsigned char oft = 0;
+ 	uchar env_enetaddr[6];
+@@ -107,7 +108,8 @@
+ 		*(volatile u8 *)DM9000_IO = oft;
+ 		*(volatile u8 *)DM9000_DATA = 0xff;
+ 	}
+-
++#endif
++	
+ 	return 0;
+ }
+ 
+diff -aurP u-boot-2009.11_orig/cpu/lpc313x/init.c u-boot-2009.11_oli/cpu/lpc313x/init.c
+--- u-boot-2009.11_orig/cpu/lpc313x/init.c	2011-12-26 00:33:24.148312744 +0200
++++ u-boot-2009.11_oli/cpu/lpc313x/init.c	2011-12-26 00:35:07.272349057 +0200
+@@ -62,7 +62,7 @@
+ 
+ /* Memory macros */
+ #define LPC313X_ISRAM_BASE_ADD		0x11029000
+-#define LPC313X_SDRAM_TEMP_DATA_ADDR	0x32000000
++#define LPC313X_SDRAM_TEMP_DATA_ADDR	0x31800000
+ 
+ /* SPI NOR flash macros */
+ #define LPC313X_SPI_NOR_UBOOT_SECTOR	0x0
+diff -aurP u-boot-2009.11_orig/cpu/lpc313x/nand_format.c u-boot-2009.11_oli/cpu/lpc313x/nand_format.c
+--- u-boot-2009.11_orig/cpu/lpc313x/nand_format.c	2011-12-26 00:33:24.148312744 +0200
++++ u-boot-2009.11_oli/cpu/lpc313x/nand_format.c	2011-12-26 00:35:07.272349057 +0200
+@@ -126,17 +126,20 @@
+         if(memcmp(wbuffer, rbuffer, (128 * 1024)) && (i != 0)) {
+           bad_blk_cnt++;
+           mem_based_bbt[bad_blk_cnt] = (i * blksize);
++          printf("\nFound bad block with index 0x%X\n", (i * blksize));
+         }
+       }
+       else {
+         bad_blk_cnt++;
+         mem_based_bbt[bad_blk_cnt] = (i * blksize);
++        printf("\nFound bad block with index 0x%X\n", (i * blksize));
+       }
+       printf("/\r");
+ 
+   }
+   mem_based_bbt[0] = bad_blk_cnt;
+-  printf("\n");
++  printf("\nDone Checking.");
++  printf("\nFound total of %d bad blocks!.\n", bad_blk_cnt);
+ 
+   /* Write NAND params and Bad Block Table in Block0 */
+   write_params_bbt(mem_based_bbt);
+diff -aurP u-boot-2009.11_orig/cpu/lpc313x/nand_params.c u-boot-2009.11_oli/cpu/lpc313x/nand_params.c
+--- u-boot-2009.11_orig/cpu/lpc313x/nand_params.c	2011-12-26 00:33:24.152387498 +0200
++++ u-boot-2009.11_oli/cpu/lpc313x/nand_params.c	2011-12-26 00:35:07.276342541 +0200
+@@ -39,14 +39,14 @@
+ 		.page_size_in_bytes = 2048,
+ 		.page_size_in_32bit_words = 512,
+ 		.pages_per_block = 64,
+-		.nbr_of_blocks = 2048,
++		.nbr_of_blocks = 4096,
+ 		.amount_of_address_bytes = 5,
+ 		.amount_of_erase_address_bytes = 3,
+ 		.support_read_terminate = 1,
+ 		.page_increment_byte_nr = 2,
+ 		/* first 4bytes to fill with readid response */
+-		.device_name = { 0x2C, 0xAA, 0xFF, 0x15, 0x20, 'M', 'T', '2',
+-				'9', 'F', '2', 'G', '0', '8',},
++		.device_name = { 0x2C, 0xAA, 0xFF, 0x15, 0x20, 'K', '9', 'F',
++				'4', 'G', '0', '8', 'U', 'O'},
+ 		/* assuming 90MHz clock (1clock = 11ns)to NAND block */
+ 		/* Note, timing macros tcopy naake clk +1 values. */
+ 		/* tsrd=3, tals=3, talh=1, tcls=3, tclh=1, */
+@@ -85,7 +85,7 @@
+ 		else {
+ 			magic_word_pos = curr_pos + nandbootparams->page_size_in_32bit_words - 2;
+ 		}
+-		// printf("curr_pos:%d, bad_blk_count:%d, magic_pos:%d\n", curr_pos, bad_blk_count, magic_word_pos);
++		printf("curr_pos:%d, bad_blk_count:%d, magic_pos:%d\n", curr_pos, bad_blk_count, magic_word_pos);
+ 
+ 		/* 
+ 		 * save last 2 words in current page to write with magic id & CRC.
+diff -aurP u-boot-2009.11_orig/cpu/lpc313x/start.S u-boot-2009.11_oli/cpu/lpc313x/start.S
+--- u-boot-2009.11_orig/cpu/lpc313x/start.S	2011-12-26 00:33:24.148312744 +0200
++++ u-boot-2009.11_oli/cpu/lpc313x/start.S	2011-12-26 00:35:07.272349057 +0200
+@@ -323,7 +323,7 @@
+ 	 * SDRAM 
+ 	 */
+ 	.word	0x17008100 /*MPMC_DYCONFIG:*/
+-	.word	0x880
++	.word	0x680
+ 	.word	0x17008104 /*MPMC_DYRASCAS:*/
+ 	.word	0x202
+ 	/* Minimum 20ns program 1 so that atleast 2 HCLKs are used */
+@@ -381,7 +381,7 @@
+ 	* Program the SDRAM internal mode registers with CAS latency.
+ 	******************************************************************/
+ 	.word DO_MEM_READ
+-	.word 0x30046000
++	.word 0x30023000
+ 
+ 	/* Select normal operating mode */
+ 	.word	0x17008020 /*MPMC_DYNCTL:*/
+@@ -389,7 +389,7 @@
+ 
+ 	/* Enable buffer */
+ 	.word	0x17008100 /*MPMC_DYCONFIG:*/
+-	.word	0x80880
++	.word	0x80680
+ 	.word	0x17008020 /*MPMC_DYNCTL: */
+ 	.word	0x0
+ 
+diff -aurP u-boot-2009.11_orig/drivers/mtd/nand/nand_base.c u-boot-2009.11_oli/drivers/mtd/nand/nand_base.c
+--- u-boot-2009.11_orig/drivers/mtd/nand/nand_base.c	2011-12-26 00:33:24.644495003 +0200
++++ u-boot-2009.11_oli/drivers/mtd/nand/nand_base.c	2011-12-26 00:35:09.368893395 +0200
+@@ -2280,13 +2280,15 @@
+ 		/*
+ 		 * heck if we have a bad block, we do not erase bad blocks !
+ 		 */
+-		if (nand_block_checkbad(mtd, ((loff_t) page) <<
++/* EDIT_HERE: the following interferred with hard format of the NAND!
++			if (nand_block_checkbad(mtd, ((loff_t) page) <<
+ 					chip->page_shift, 0, allowbbt)) {
+ 			printk(KERN_WARNING "nand_erase: attempt to erase a "
+ 			       "bad block at page 0x%08x\n", page);
+ 			instr->state = MTD_ERASE_FAILED;
+ 			goto erase_exit;
+ 		}
++*/
+ 
+ 		/*
+ 		 * Invalidate the page cache, if we erase the block which
+diff -aurP u-boot-2009.11_orig/drivers/mtd/spi/atmel.c u-boot-2009.11_oli/drivers/mtd/spi/atmel.c
+--- u-boot-2009.11_orig/drivers/mtd/spi/atmel.c	2011-12-26 00:33:24.598965492 +0200
++++ u-boot-2009.11_oli/drivers/mtd/spi/atmel.c	2011-12-26 00:35:09.244669103 +0200
+@@ -240,7 +240,7 @@
+ 			debug("SF: Loading AT45 buffer failed\n");
+ 			goto out;
+ 		}
+-
++		
+ 		cmd[0] = CMD_AT45_PROG_BUF1;
+ 		ret = spi_flash_cmd_write(flash->spi, cmd, 4, NULL, 0);
+ 		if (ret < 0) {
+@@ -312,6 +312,12 @@
+ 			debug("SF: Loading AT45 buffer failed\n");
+ 			goto out;
+ 		}
++		
++		ret = at45_wait_ready(flash, SPI_FLASH_PROG_TIMEOUT);
++		if (ret < 0) {
++			debug("SF: Loading AT45 buffer timed out\n");
++			goto out;
++		}
+ 
+ 		cmd[0] = CMD_AT45_PROG_BUF1;
+ 		ret = spi_flash_cmd_write(flash->spi, cmd, 4, NULL, 0);
+@@ -437,6 +443,9 @@
+ 	}
+ 
+ 	for (actual = 0; actual < len; actual += page_size) {
++
++/* EDIT_HERE 
++	This is the original
+ 		cmd[1] = page_addr >> (16 - page_shift);
+ 		cmd[2] = page_addr << (page_shift - 8);
+ 
+@@ -446,6 +455,24 @@
+ 			goto out;
+ 		}
+ 
++ * Erasing cause switch to 512 block page on next power cycle!
++ * dirty way of converting but working! */
++
++		cmd[0] = 0x3D;
++		cmd[1] = 0x2A;
++		cmd[2] = 0x80;
++		cmd[3] = 0xA6;
++
++		ret = spi_flash_cmd_write(flash->spi, cmd, 4, NULL, 0);
++		if (ret < 0) {
++			debug("SF: Failed to convert to 512 block size!!!\n");
++			goto out;
++		} else {
++			debug("SF: Converted to 512 block size!!!\n");
++		}
++
++/*	END of EDIT_HERE */
++		
+ 		ret = at45_wait_ready(flash, SPI_FLASH_PAGE_ERASE_TIMEOUT);
+ 		if (ret < 0) {
+ 			debug("SF: AT45 page erase timed out\n");
+diff -aurP u-boot-2009.11_orig/include/config_cmd_default.h u-boot-2009.11_oli/include/config_cmd_default.h
+--- u-boot-2009.11_orig/include/config_cmd_default.h	2011-12-26 00:33:25.804476962 +0200
++++ u-boot-2009.11_oli/include/config_cmd_default.h	2011-12-26 00:35:10.848324189 +0200
+@@ -32,7 +32,8 @@
+ #define CONFIG_CMD_LOADS	/* loads			*/
+ #define CONFIG_CMD_MEMORY	/* md mm nm mw cp cmp crc base loop mtest */
+ #define CONFIG_CMD_MISC		/* Misc functions like sleep etc*/
+-#define CONFIG_CMD_NET		/* bootp, tftpboot, rarpboot	*/
++/* EDIT_HERE: there is actually no NET support for the Olimex board
++#define CONFIG_CMD_NET		 bootp, tftpboot, rarpboot	*/
+ #define CONFIG_CMD_NFS		/* NFS support			*/
+ #define CONFIG_CMD_RUN		/* run command in env variable	*/
+ #define CONFIG_CMD_SAVEENV	/* saveenv			*/
+diff -aurP u-boot-2009.11_orig/include/configs/ea31xx.h u-boot-2009.11_oli/include/configs/ea31xx.h
+--- u-boot-2009.11_orig/include/configs/ea31xx.h	2011-12-26 00:33:26.955568941 +0200
++++ u-boot-2009.11_oli/include/configs/ea31xx.h	2011-12-29 00:20:30.658415000 +0200
+@@ -61,7 +61,7 @@
+  */
+ #define CONFIG_NR_DRAM_BANKS	1		/* we have 1 bank of DRAM */
+ #define PHYS_SDRAM		0x30000000	/* SDRAM Bank #1 */
+-#define PHYS_SDRAM_SIZE		0x04000000	/* 64 MB SDRAM */
++#define PHYS_SDRAM_SIZE		0x02000000	/* 32 MB SDRAM */
+ 
+ /*
+  * U-Boot memory configuration
+@@ -74,11 +74,12 @@
+ #define CONFIG_SYS_MALLOC_LEN		(1 * 1024 * 1024)		/* No need for any malloc space, we steal from the end of the DRAM */
+ #define CONFIG_SYS_GBL_DATA_SIZE	128		/* size in bytes reserved for initial data */
+ #define CONFIG_SYS_MEMTEST_START	0x30000000	/* memtest works on */
+-#define CONFIG_SYS_MEMTEST_END		0x33FFFFFF	/* 64MB of DRAM */
++#define CONFIG_SYS_MEMTEST_END		0x315FFFFF	/* 32MB of DRAM - the size of U-Boot*/
+ 
+ /* 
+  * Ethernet Driver 7 Network Configuratin.
+  * */
++ /* EDIT HERE: no NET support
+ #define CONFIG_CMD_NET
+ #define CONFIG_DRIVER_DM9000		1
+ #define CONFIG_DM9000_BASE		0x20020000
+@@ -88,6 +89,7 @@
+ #define CONFIG_CMD_DHCP			1
+ #define CONFIG_CMD_PING			1
+ #define CONFIG_NET_RETRY_COUNT		100
++*/
+ /*
+  * Uncomment this below line if you want static IP
+  * support. Don't forget to change "net_boot" command.
+@@ -101,7 +103,7 @@
+ #endif
+ 
+ /* Linux boot using network */
+-#define CONFIG_BOOTCOMMAND		"run net_boot"
++#define CONFIG_BOOTCOMMAND		"run nandram_boot"
+ 
+ /*
+  * Serial Driver Console
+@@ -115,26 +117,16 @@
+  */
+ #define CONFIG_BOOTFILE			uImage
+ #define CONFIG_BOOTDELAY		5
++
+ #define CONFIG_EXTRA_ENV_SETTINGS	\
+-"loadaddr=0x31000000\0" \
+-"rd_addr=0x32000000\0" \
++"loadaddr=0x30800000\0" \
++"rd_addr=0x31000000\0" \
+ "usbtty=cdc_acm\0" \
+-"ramargs=setenv bootargs console=ttyS0,115200n8 root=/dev/ram0 rw ip=dhcp loglevel=7\0" \
+-"serverip=192.168.1.48\0" \
+-"nfsargs=setenv bootargs console=ttyS0,115200n8 root=/dev/nfs rw nfsroot=${serverip}:${rootpath} ip=dhcp loglevel=7\0" \
+-"rootpath=/tftpboot/arm\0" \
++"ramargs=setenv bootargs console=ttyS0,115200n8 root=/dev/ram0 rw loglevel=7 ramdisk_size=15334\0" \
+ "bootfile=uImage\0" \
+ "ramfile=rootfs.ext2.gz.uboot\0" \
+-"net_boot=dhcp; run nfsargs; bootm $(loadaddr)\0" \
+-"spi_boot= sf probe 0 0 0; sf read $(loadaddr) 0x42000 0x200000; run nfsargs; bootm $(loadaddr)\0" \
+-"nand_boot= nand read $(loadaddr) 0x80000 0x200000; run nfsargs; bootm $(loadaddr)\0" \
+-"sdmmc_boot= mmc init; fatload mmc 0 $(loadaddr) $(bootfile); run nfsargs; bootm $(loadaddr)\0" \
+-"usbdfu_boot= usbpoll $(loadaddr); run nfsargs; bootm $(loadaddr)\0" \
+-"usb_boot= usb start; fatload usb 0 $(loadaddr) $(bootfile); run nfsargs; bootm $(loadaddr)\0" \
+-"uart_boot= loady; run nfsargs; bootm $(loadaddr)\0" \
+-"netram_boot=dhcp; tftp $(rd_addr) $(ramfile); run ramargs; bootm $(loadaddr) $(rd_addr)\0" \
+ "spiram_boot= sf probe 0 0 0; sf read $(loadaddr) 0x42000 0x200000; sf read $(rd_addr) 0x243000 0x400000; run ramargs; bootm $(loadaddr) $(rd_addr)\0" \
+-"nandram_boot= nand read $(loadaddr) 0x80000 0x200000; nand read $(rd_addr) 0x2a0000 0x400000; run ramargs; bootm $(loadaddr) $(rd_addr)\0" \
++"nandram_boot= nand read $(loadaddr) 0x80000 0x200000; nand read $(rd_addr) 0x2a0000 0x4a0000; run ramargs; bootm $(loadaddr) $(rd_addr)\0" \
+ "sdmmcram_boot= mmc init; fatload mmc 0 $(loadaddr) $(bootfile); fatload mmc 0 $(rd_addr) $(ramfile); run ramargs; bootm $(loadaddr) $(rd_addr)\0" \
+ "usbdfuram_boot= usbpoll $(loadaddr); usbpoll $(rd_addr); run ramargs; bootm $(loadaddr) $(rd_addr)\0" \
+ "usbram_boot= usb start; fatload usb 0 $(loadaddr) $(bootfile); fatload usb 0 $(rd_addr) $(ramfile); run ramargs; bootm $(loadaddr) $(rd_addr)\0" \
+@@ -155,7 +147,7 @@
+  */
+ #define CONFIG_SYS_LONGHELP				/* undef to save memory */
+ #ifndef CONFIG_EA3152
+-#define CONFIG_SYS_PROMPT		"EA3131-NXP # "	/* Monitor Command Prompt */
++#define CONFIG_SYS_PROMPT		"OLIMEX-LPCH3131 # "	/* Monitor Command Prompt */
+ #else
+ #define CONFIG_SYS_PROMPT		"EA3152-NXP # "	/* Monitor Command Prompt */
+ #endif

@@ -1,0 +1,156 @@
+######################################################################## 
+# $Id:: make.rules.environment 4929 2010-09-15 22:17:33Z usb10131      $
+# 
+# Project: Common makefile definitions
+# 
+# Description: 
+# 	root level makefile that is used by all the 
+# 	lowlevel makefiles to resolve architecture specific and path 
+# 	dependencies. 
+# 
+######################################################################## 
+# Software that is described herein is for illustrative purposes only  
+# which provides customers with programming information regarding the  
+# products. This software is supplied "AS IS" without any warranties.  
+# NXP Semiconductors assumes no responsibility or liability for the 
+# use of the software, conveys no license or title under any patent, 
+# copyright, or mask work right to the product. NXP Semiconductors 
+# reserves the right to make changes in the software without 
+# notification. NXP Semiconductors also make no representation or 
+# warranty that such application will be suitable for the specified 
+# use without further testing or modification. 
+########################################################################
+
+BUILD_ROOT =$(NXPMCU_WINBASE)
+
+ECHO            =@echo
+ifeq ($(LPC_SILENT), 1)
+	MAKE    =make -s
+else	
+	MAKE    =make
+endif
+MKDEPS          =makedepend
+MKDIR           =mkdir
+#RM             =rm -f
+#RMREC          =rm -rf
+#RMDIR          =rm -rf
+RM              =del /Q
+RMREC           =del /S /Q
+RMDIR           =rd /S /Q 
+ASTYLE          =astyle --options=$(BUILD_ROOT)/tools/astyle.cfg 
+
+
+########################################################################
+#
+# BSP AND CSP RELATED VARIABLES
+#
+########################################################################
+
+########################################################################
+#
+# ROOT LOCATION FOR CHIP SUPPORT PACKAGE (CSP) LIBRARIES
+#
+########################################################################
+  
+CSP_LIB_DIR  =$(BUILD_ROOT)\csps\$(CSP)\lib
+
+########################################################################
+#
+# ROOT LOCATION FOR BOARD SUPPORT PACKAGE (BSP) LIBRARIES
+#
+########################################################################
+
+BSP_LIB_DIR =$(BUILD_ROOT)\csps\$(CSP)\bsps\$(BSP)\lib
+
+########################################################################
+#
+# ROOT LOCATION FOR (GENERIC) LIBRARIES
+#
+########################################################################
+
+GEN_LIB_DIR =$(BUILD_ROOT)\$(GEN)\lib
+
+########################################################################
+# 
+# CSP SOURCE AND HEADERS LOCATIONS
+# 
+########################################################################
+
+CSP_DIR     =$(BUILD_ROOT)\csps\$(CSP)
+CSP_SRC_DIR =$(CSP_DIR)\source
+CSP_INC_DIR =$(CSP_DIR)\include
+
+########################################################################
+# 
+# BSP SOURCE AND HEADERS LOCATIONS
+# 
+########################################################################
+
+BSP_DIR     =$(BUILD_ROOT)\csps\$(CSP)\bsps\$(BSP)
+BSP_SRC_DIR =$(BSP_DIR)\source
+BSP_INC_DIR =$(BSP_DIR)\include
+
+########################################################################
+# 
+# SMA (GENERIC) SOURCE AND HEADERS LOCATIONS
+# 
+########################################################################
+
+GEN_DIR     =$(BUILD_ROOT)\$(GEN)
+GEN_SRC_DIR =$(GEN_DIR)\source
+GEN_INC_DIR =$(GEN_DIR)\include
+
+########################################################################
+#
+# TOOL SPECIFIC PREFIX AND POSTFIX
+# 
+########################################################################
+
+ifeq ($(TOOL), arm)
+  PREFIX =lib
+else
+  ifeq ($(LIB), true)
+    PREFIX =lib
+  else
+    ifeq ($(TOOL), gnu)
+      PREFIX = lib
+    else
+      PREFIX =
+    endif 
+  endif
+endif
+
+POSTFIX  =$(TOOL)
+
+########################################################################
+#
+# LIBRARY NAMES
+# 
+########################################################################
+
+CSP_ARCHIVE_NAME  =$(PREFIX)$(CSP)$(POSTFIX)
+BSP_ARCHIVE_NAME  =$(PREFIX)$(BSP)$(POSTFIX)
+GEN_ARCHIVE_NAME  =$(PREFIX)$(GEN)$(CPU)$(POSTFIX)
+CSP_ARCHIVE       =$(CSP_ARCHIVE_NAME).a
+BSP_ARCHIVE       =$(BSP_ARCHIVE_NAME).a
+GEN_ARCHIVE  	  =$(GEN_ARCHIVE_NAME).a
+
+ifeq ($(TOOL), ghs)
+CSP_ARCHIVE       =lib$(CSP_ARCHIVE_NAME).a
+BSP_ARCHIVE       =lib$(BSP_ARCHIVE_NAME).a
+GEN_ARCHIVE  	  =lib$(GEN_ARCHIVE_NAME).a
+else
+CSP_ARCHIVE       =$(CSP_ARCHIVE_NAME).a
+BSP_ARCHIVE       =$(BSP_ARCHIVE_NAME).a
+GEN_ARCHIVE  	  =$(GEN_ARCHIVE_NAME).a
+endif
+
+########################################################################
+#
+# LIBRARIES WITH COMPLETE LOCATION PATH
+# 
+########################################################################
+
+TARGET_CSP_LIB =$(CSP_LIB_DIR)\$(CSP_ARCHIVE)
+TARGET_BSP_LIB =$(BSP_LIB_DIR)\$(BSP_ARCHIVE)
+TARGET_GEN_LIB =$(GEN_LIB_DIR)\$(GEN_ARCHIVE)

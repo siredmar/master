@@ -1,0 +1,59 @@
+--- arch/arm/Kconfig	2012-03-19 00:15:34.000000000 +0100
++++ arch/arm/Kconfig	2012-10-05 21:14:50.411948130 +0200
+@@ -983,6 +983,20 @@
+ 	select USE_OF
+ 	help
+ 	  Support for Xilinx Zynq ARM Cortex A9 Platform
++
++config ARCH_LPC31XX
++	bool "NXP LPC31XX series"
++	select CPU_ARM926T
++	select GENERIC_GPIO
++	select CLKDEV_LOOKUP
++	select ARCH_REQUIRE_GPIOLIB
++	select ARCH_USES_GETTIMEOFFSET
++	help
++	  Say Y here for systems based on one of the NXP LPC313x & LPC315x
++	  System on a Chip processors.  These CPUs include an ARM926EJS
++	  core with a wide array of integrated devices for
++	  hand-held and low-power applications.
++
+ endchoice
+ 
+ #
+@@ -1103,6 +1117,8 @@
+ 
+ source "arch/arm/mach-w90x900/Kconfig"
+ 
++source "arch/arm/mach-lpc31xx/Kconfig"
++
+ # Definitions to make life easier
+ config ARCH_ACORN
+ 	bool
+@@ -1743,7 +1759,7 @@
+ 		   ARCH_LUBBOCK || MACH_MAINSTONE || ARCH_NETWINDER || \
+ 		   ARCH_OMAP || ARCH_P720T || ARCH_PXA_IDP || \
+ 		   ARCH_SA1100 || ARCH_SHARK || ARCH_VERSATILE || \
+-		   ARCH_AT91 || ARCH_DAVINCI || \
++		   ARCH_AT91 || ARCH_DAVINCI || ARCH_LPC31XX || \
+ 		   ARCH_KS8695 || MACH_RD88F5182 || ARCH_REALVIEW
+ 	help
+ 	  If you say Y here, the LEDs on your machine will be used
+@@ -1759,7 +1775,7 @@
+ config LEDS_TIMER
+ 	bool "Timer LED" if (!ARCH_CDB89712 && !ARCH_OMAP) || \
+ 			    OMAP_OSK_MISTRAL || MACH_OMAP_H2 \
+-			    || MACH_OMAP_PERSEUS2
++			    || MACH_OMAP_PERSEUS2 || ARCH_LPC31XX
+ 	depends on LEDS
+ 	depends on !GENERIC_CLOCKEVENTS
+ 	default y if ARCH_EBSA110
+@@ -1778,7 +1794,7 @@
+ 	bool "CPU usage LED" if (!ARCH_CDB89712 && !ARCH_EBSA110 && \
+ 			!ARCH_OMAP) \
+ 			|| OMAP_OSK_MISTRAL || MACH_OMAP_H2 \
+-			|| MACH_OMAP_PERSEUS2
++			|| MACH_OMAP_PERSEUS2 || ARCH_LPC31XX
+ 	depends on LEDS
+ 	help
+ 	  If you say Y here, the red LED will be used to give a good real

@@ -1,0 +1,53 @@
+Read Signal auf Logik Analyzer: > 65 ns && < 155 ns
+Write Signal auf Logik Analyzer: > 179 ns
+
+Fehler: 
+Nach dem Laden des Moduls, werden die Datenleitungen beim Lesen vom Bus auf GND gezogen. nCS, nWE, nRD und A15 arbeiten wie sie sollen. 
+Schreiben scheint den Datenbus wie gewollt zu fuettern. 
+
+Konfiguration
+Apex:
+#elif defined(CONFIG_MACH_EPLPC3131_V1)
+  /* LCD display, 16 bit */
+  MPMC_STCONFIG0  = 0x81;
+  MPMC_STWTWEN0   = 2;
+  MPMC_STWTOEN0   = 1;
+  MPMC_STWTRD0    = 15;
+  MPMC_STWTPG0    = 2;
+  MPMC_STWTWR0    = 4;
+  MPMC_STWTTURN0  = 2;
+  /* ethernet DM9000, 16 bit */
+  MPMC_STCONFIG1  = 0x81;
+  MPMC_STWTWEN1   = 1;
+  MPMC_STWTOEN1   = 1;
+  MPMC_STWTRD1    = 4;
+  MPMC_STWTPG1    = 1;
+  MPMC_STWTWR1    = 1;
+  MPMC_STWTTURN1  = 2;
+  /* enable oe toggle between consecutive reads */
+  SYS_MPMC_WTD_DEL0 = _BIT(5) | 15;
+  SYS_MPMC_WTD_DEL1 = _BIT(5) | 4;
+#endif
+
+Kernel:
+
+   MPMC_STCONFIG0  = 0x81;
+   MPMC_STWTWEN0   = 2;
+   MPMC_STWTOEN0   = 1;
+   MPMC_STWTRD0    = 15;
+   MPMC_STWTPG0    = 2;
+   MPMC_STWTWR0    = 4;
+   MPMC_STWTTURN0  = 2;
+
+Treiber:
+
+   MPMC_STCONFIG0  = 0x81;
+   MPMC_STWTWEN0   = 2;
+   MPMC_STWTOEN0   = 1;
+   MPMC_STWTRD0    = 15;
+   MPMC_STWTPG0    = 2;
+   MPMC_STWTWR0    = 4;
+   MPMC_STWTTURN0  = 2;
+
+   /* enable oe toggle between consecutive reads */
+   SYS_MPMC_WTD_DEL0 = _BIT(5) | 15;

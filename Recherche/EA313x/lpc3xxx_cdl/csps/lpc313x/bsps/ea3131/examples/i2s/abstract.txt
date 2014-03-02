@@ -1,0 +1,37 @@
+1. Information about i2s Example application:
+=============================================
+The I2S example application demonstrates the data transfer using I2S interface 
+in loopback mode. 
+ 
+****************************************
+I2S Test example using EA3131 board.
+*****************************************
+Connect the following lines in J46 connector:
+
+pin 1 (I2SRX_BCK1)  <-->  pin 7  (I2STX_BCK1)
+pin 3 (I2SRX_WS1)   <-->  pin 9  (I2STX_WS1)
+pin 5 (I2SRX_DATA1) <-->  pin 11 (I2STX_DATA1)
+
+The variable testdata should be inspected during debugging in order to verify 
+if the following patterns are transmitted using I2S_TX1 and 
+received via I2S_RX1.
+
+Patterns used:
+
+0x11118888
+0x22227777
+0x33336666
+0x44445555
+0x55554444
+0x66663333
+0x77772222
+0x88881111
+
+2. Supported Targets:
+=====================
+The following target builds are supported for this application.
+a. ISRAM 
+b. ISRAM with cache enabled
+c. SDRAM
+d. SDRAM with cache enabled
+

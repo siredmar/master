@@ -1,0 +1,4 @@
+kernel/drivers/media/video/gspca/gspca_main.ko
+kernel/drivers/media/video/gspca/gspca_pac7302.ko
+kernel/drivers/media/video/gspca/gspca_pac7311.ko
+kernel/drivers/media/video/uvc/uvcvideo.ko

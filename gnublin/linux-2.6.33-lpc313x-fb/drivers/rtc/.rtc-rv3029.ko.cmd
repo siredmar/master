@@ -1,0 +1,1 @@
+cmd_drivers/rtc/rtc-rv3029.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/rtc/rtc-rv3029.ko drivers/rtc/rtc-rv3029.o drivers/rtc/rtc-rv3029.mod.o

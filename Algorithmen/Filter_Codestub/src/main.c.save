@@ -1,0 +1,123 @@
+#include "../inc/std_types.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+
+
+#define SCREENWIDTH     1024
+#define SCREENHEIGHT    700
+#define SCREENDEPTH     16
+
+void
+paintSurface (SDL_Surface * screen, uint32 * PixelBuffer, uint32 * texture, 
+SDL_Surface *image)
+{
+int x, y;
+
+  for (y = 0; y < image->w; y++)
+    {
+      for (x = 0; x < image->w; x++)
+	{
+	  PixelBuffer[y * screen->w + x] = texture[x + y * image->w];
+	}
+    }
+}
+
+
+
+int
+main ()
+{
+
+
+  SDL_Event event;
+  int quit = 0;
+  int key_pressed = 0;
+  SDL_Surface *screen;
+  SDL_Surface *image;
+  uint32 *PixelBuffer;
+  uint32 x, y;
+//  uint8* texture;
+
+  if (SDL_Init (SDL_INIT_VIDEO) < 0)
+    {
+      fprintf (stderr, "Konnte SDL nicht initialisieren: %s\n",
+	       SDL_GetError ());
+      exit (-1);
+    }
+  screen = SDL_SetVideoMode (SCREENWIDTH, SCREENHEIGHT, SCREENDEPTH,
+			     SDL_SWSURFACE);
+
+  if (screen < 0)
+    {
+      fprintf (stderr, "Konnte video mode nicht setzen: %s\n",
+	       SDL_GetError ());
+    }
+  atexit (SDL_Quit);
+// Algorithm start
+  image = IMG_Load ("../gfx/testbild.png");
+  if(image == NULL){
+      fprintf (stderr, "Konnte SDL nicht initialisieren: %s\n",
+	       SDL_GetError ());
+      exit (-1);
+}
+
+  SDL_DisplayFormat(image);
+  printf ("Screen Information\nx: %d, y:%d\n", SCREENWIDTH, SCREENHEIGHT);
+  printf ("Image Information\nx: %d, y:%d\n", image->w, image->h);
+
+  uint32 *texture = (uint32 *) malloc (image->w * image->h);
+
+  if (SDL_MUSTLOCK (image))
+    SDL_LockSurface (image);
+
+
+PixelBuffer = (uint32 *) image->pixels;
+
+
+  for (y = 0; y < image->h; y++){
+    for (x = 0; x < image->w; x++){
+    texture[x + y * image->w] = PixelBuffer[y * image->w + x];
+//	printf("texture: %d\n",   texture[x + y * image->w]);
+}
+}
+   SDL_UnlockSurface(image);
+
+image->pixels= PixelBuffer;
+
+//paintSurface(&screen, &PixelBuffer, &texture, &image);
+
+  for (y = 0; y < image->w; y++)
+    {
+      for (x = 0; x < image->w; x++)
+        {
+          PixelBuffer[y * image->w + x] = texture[x + y * image->w];
+        }
+    }
+
+
+// Algorithm stop
+  while (quit == 0)
+    {
+      while (SDL_PollEvent (&event))
+	{
+	  switch (event.type)
+	    {
+	    case SDL_KEYDOWN:
+	      //      printf("Press: ");
+	      //      printf(" Name: %s\n",
+
+	      key_pressed = event.key.keysym.sym;
+	      if (key_pressed == SDLK_ESCAPE)
+		quit = 1;
+	      break;
+	    case SDL_QUIT:	// SDL_QUIT int ein schliessen des windows
+	      quit = 1;
+	      break;
+	    default:
+	      break;
+	    }
+	}
+
+    }
+  exit (0);
+}

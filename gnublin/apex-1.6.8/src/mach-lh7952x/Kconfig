@@ -1,0 +1,287 @@
+if ARCH_LH7952X
+
+choice
+	prompt "LH7952X Implementations"
+	default MACH_LPD79524
+
+config MACH_LNODE80
+	bool "LNode80 Arm Development System"
+	select ARCH_LH79520
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+	select DRIVERS_LH
+
+config MACH_LPD79520
+	bool "Logic Product Development LPD79520"
+	select ARCH_LH79520
+	select MACH_LPD7952X
+	select USES_NOR_CFI
+	select USES_COMPACTFLASH
+	select USES_NOR_BOOTFLASH
+	select USES_SMC91X
+	select DRIVERS_LH
+	select HAS_LH_CLCDC
+
+config MACH_LPD79524
+	bool "Logic Product Development LPD79524"
+	select ARCH_LH79524
+	select MACH_LPD7952X
+	select USES_NOR_CFI
+	select USES_COMPACTFLASH
+	select USES_NOR_BOOTFLASH
+	select USES_NAND
+	select USES_NAND_BOOTFLASH
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_CLCDC
+
+config MACH_KEV79524
+	bool "Sharp KEV79524"
+	select ARCH_LH79524
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+	select USES_NAND_BOOTFLASH
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_CLCDC
+
+config MACH_KEV79525
+	bool "Sharp KEV79525"
+	select ARCH_LH79525
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+	select USES_NAND_BOOTFLASH
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_CLCDC
+
+config MACH_MOTO_EDGE
+	bool "Edge Integration - LPD79524"
+	select ARCH_LH79524
+	select MACH_LPD7952X
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+	select USES_NAND_BOOTFLASH
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_CLCDC
+	select USES_NAND
+	select INLINE_PLATFORM_INITIALIZATION
+
+endchoice
+
+menu "Platform Setup"
+
+choice
+	prompt "CPU/Peripheral Clock"
+	default FREQ_52_52
+	depends on ARCH_LH79524 || ARCH_LH79525
+
+config FREQ_51_51
+	bool "FCLK 51 MHz - HCLK 51 MHz"
+	help
+	  This setting configures the PLL for 101.606MHz, HCLK and
+	  FCLK will be 50.8032 MHz.  This is the default setting and
+	  is known to work reliably on the LPD CardEngines.
+
+config FREQ_76_51
+	bool "FCLK 76 MHz - HCLK 51 MHz"
+	help
+	  This setting configures the PLL for 304.8192 MHz, HCLK will
+	  be 50.8032 MHz and FCLK will be 76.2048 MHz.  This setting
+	  may cause the system to run unreliably.
+
+endchoice 
+
+config ATAG_PHYS
+	hex "Physical address for ATAGs list"
+	default "0x20000100"
+	depends on ATAG
+	help
+	  This is the address where APEX will construct the ATAG list
+	  before starting the Linux kernel.  This address should be
+	  within the first 16KiB of physical RAM.  Don't change this
+	  value unless you know what you are doing. 
+
+config ARCH_NUMBER
+	int
+	default 537 if MACH_LNODE80
+	default 537 if MACH_LPD79520
+	default 609 if MACH_LPD79524
+	default 609 if MACH_KEV79524
+	default 610 if MACH_KEV79525
+
+config APEX_VMA
+	hex "APEX runtime address"
+	default "0x20200000"
+
+config KERNEL_LMA
+	hex "Kernel load address"
+	default "0x20008000"
+
+config USE_RAMDISK
+	bool "Enable ramdisk options"
+	depends on MACH_LNODE80
+	default y
+	help
+	  This option doesn't enable the ramdisk, per se.  It enables
+	  other configuration options that help setup a default
+	  ramdisk.  The kernel command line and the APEX startup
+	  commands may be overridden to perform the same steps.
+
+	  There is a separate option in the Environment section that
+	  controls whether or not APEX copies the ramdisk from flash
+	  into RAM at startup.  That is where the ramdisk region is
+	  defined.
+
+config RAMDISK_LMA
+	hex "Ramdisk load address"
+	default "0x20400000"
+	depends on USE_RAMDISK
+
+config SDRAM_BANK0
+	bool "Enable SDRAM bank 0"
+	default y
+
+config SDRAM_BANK1
+	bool "Enable SDRAM bank 1"
+	depends on SDRAM_BANK0
+	depends on !MACH_LNODE80
+	default y if MACH_KEV79524 
+
+config SDRAM_FORCE16BIT
+	bool "Force SDRAM bus width to 16 bits"
+	depends on ARCH_LH79524
+	help
+	  This option allow for performance testing of the SDRAM
+	  memory bus.  It configures the SDRAM controller to use only
+	  the lower 16 bits of the bus, emulating [sic] the LH79525.
+
+	  There is no good reason to use the option for production systems. 
+
+config NOR_BUSWIDTH
+	int "Width of NOR flash bus"
+	default "16"
+	
+config NOR_BANK0
+	bool "Enable NOR flash bank 0"
+	default y
+
+config NOR_BANK0_START
+	hex "Physical address of NOR flash bank 0"
+	default "0x40000000" if ARCH_LH79520
+	default "0x44000000" if ARCH_LH79524
+	default "0x44000000" if ARCH_LH79525
+	depends on NOR_BANK0
+
+config NOR_BANK0_LENGTH
+	hex "Size, in bytes, of NOR flash bank 0"
+	default "0x00400000" if MACH_LNODE80
+	default "0x00800000" if MACH_LPD7952X
+	default "0x00400000" if MACH_KEV79524
+	default "0x00400000" if MACH_KEV79525
+	depends on NOR_BANK0
+
+config NOR_BANK1
+	bool "Enable NOR flash bank 1"
+	depends on NOR_BANK0
+	depends on !MACH_LNODE80
+	default n if MACH_LPD79520
+	default y if MACH_LPD79524
+
+config NOR_BANK1_START
+	hex "Physical address of NOR flash bank 1"
+	default "0x45000000"
+	depends on NOR_BANK1
+
+config NOR_BANK1_LENGTH
+	hex "Size, in bytes, of NOR flash bank 1"
+	default "0x00800000"
+	depends on NOR_BANK1
+
+config NAND_LPD
+	bool "Enable LPD enhanced NAND flash access"
+	depends on MACH_LPD79524
+	default y if MACH_LPD79524
+	help
+	  This options enables a mode for accessing NAND flash that
+	  makes it possible to read NAND flash, NOR flash, and
+	  CompactFlash simultaneously.
+
+endmenu
+
+menu "Platform Drivers"
+
+config DRIVER_EMAC_LH79524
+	bool "LH79524/5 EMAC"
+	depends on ARCH_LH79524 || ARCH_LH79525
+	select DRIVER_CPLD_SPI if MACH_LPD79524
+	select USE_ETHERNET
+	default y
+	help
+	  This driver initializes the built-in Ethernet MAC of the
+	  Sharp lh79524/5. 
+
+config CODEC
+	bool "Audio Codec"
+	depends on MACH_LPD79524
+	default n
+	help
+	  This driver includes commands to initialize and test the
+	  TI audio codec as well as the CPUs SSP module.  
+
+	  You will not be able to use this code without first creating
+	  PCM test data.  It's best to leave this option disabled.
+
+config CODEC_LH79520
+	bool "Audio Codec"
+	depends on MACH_LPD79520
+	default n
+	help
+	  This driver includes commands to initialize and test the
+	  TI audio codec as well as the CPUs SSP module.
+
+config DRIVER_CPLD_SPI
+	bool "LPD7952x CPLD SPI devices"
+	depends on MACH_LPD79520 || MACH_LPD79524
+	default n
+	help
+	  This driver implemets EEPROM SPI driver for the LPD 7952x
+	  Card Engines.
+
+config ADS7843
+	bool "ADS7843 touchscreen test"
+	depends on MACH_LPD79520
+	default n
+	help
+	  This options implements a test routing for the ADS7843
+	  touchscreen controller. 
+
+endmenu
+
+config MACH
+	string
+	default "lh7952x"
+
+config ARCH_LH79520
+	bool
+	select CPU_ARMV4
+	select CPU_ARM7
+	select CPU_ARM720T
+
+config ARCH_LH79524
+	bool
+	select CPU_ARMV4
+	select CPU_ARM7
+	select CPU_ARM720T
+
+config ARCH_LH79525
+	bool
+	select CPU_ARMV4
+	select CPU_ARM7
+	select CPU_ARM720T
+
+config MACH_LPD7952X
+	bool
+
+endif

@@ -1,0 +1,1 @@
+cmd_drivers/hwmon/ads7828.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/hwmon/ads7828.ko drivers/hwmon/ads7828.o drivers/hwmon/ads7828.mod.o

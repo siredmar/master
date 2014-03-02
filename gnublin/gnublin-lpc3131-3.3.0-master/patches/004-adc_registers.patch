@@ -1,0 +1,18 @@
+diff -Nur ../linux-2.6.33-lpc313x_state_01_gnublinV1/arch/arm/mach-lpc313x/include/mach/registers.h ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/include/mach/registers.h
+--- ../linux-2.6.33-lpc313x_state_01_gnublinV1/arch/arm/mach-lpc313x/include/mach/registers.h	2012-09-24 16:57:28.363902836 +0200
++++ ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/include/mach/registers.h	2012-09-25 10:05:51.919001661 +0200
+@@ -276,6 +276,14 @@
+  * ADC_REG register definitions
+  **********************************************************************/
+ #define ADC_CON_REG            __REG (ADC_PHYS + 0x20)
++#define ADC_R0_REG             __REG (ADC_PHYS + 0x00)
++#define ADC_R1_REG             __REG (ADC_PHYS + 0x04)
++#define ADC_R2_REG             __REG (ADC_PHYS + 0x08)
++#define ADC_R3_REG             __REG (ADC_PHYS + 0x0C)
++#define ADC_CSEL_REG           __REG (ADC_PHYS + 0x24)
++#define ADC_INT_ENABLE_REG     __REG (ADC_PHYS + 0x28)
++#define ADC_INT_STATUS_REG     __REG (ADC_PHYS + 0x2C)
++#define ADC_INT_CLEAR_REG      __REG (ADC_PHYS + 0x30)
+ 
+ /***********************************************************************
+  * SYS_REG register definitions

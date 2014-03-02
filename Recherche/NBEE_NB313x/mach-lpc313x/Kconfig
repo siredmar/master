@@ -1,0 +1,46 @@
+menu "LPC313x Implementations"
+	depends on ARCH_LPC313X
+
+choice
+	prompt "LPC313x Platform type"
+	default MACH_EA313X
+
+config MACH_FHS3143
+  bool "fhs3143 board"
+  help
+     Say Y here if you are using the FHS3143
+
+config MACH_NB31
+  bool "nb31xx board"
+  help
+     Say Y here if you are using NBEE Embedded Systems's NB31XX board series.
+
+config MACH_EA313X
+	bool "ea313x board"
+	help
+	  Say Y here if you are using the Embedded Artist's EA313x board
+
+config MACH_VAL3153
+	bool "val3153 board"
+	help
+	  Say Y here if you are using the NXP val3153 board
+
+config MACH_VAL3154
+	bool "val3154 board"
+	select LPC3152_AD
+	help
+	  Say Y here if you are using the NXP val3154 board
+	  
+endchoice
+
+config NB31_ENABLETOUCH
+	bool "touch screen enabled"
+	help
+	Say Y here if you want to use the touchscreen controller on SPI CS1
+
+config LPC3152_AD
+	bool
+
+source "kernel/Kconfig.hz"
+
+endmenu

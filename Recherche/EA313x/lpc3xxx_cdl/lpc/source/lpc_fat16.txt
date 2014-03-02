@@ -1,0 +1,173 @@
+ $Id:: lpc_fat16.txt 6 2007-08-27 20:47:57Z kevinw                   $
+
+   Software that is described herein is for illustrative purposes only 
+   which provides customers with programming information regarding the 
+   products. This software is supplied "AS IS" without any warranties. 
+   NXP Semiconductors assumes no responsibility or liability for the 
+   use of the software, conveys no license or title under any patent, 
+   copyright, or mask work right to the product. NXP Semiconductors  
+   reserves the right to make changes in the software without 
+   notification. NXP Semiconductors also make no representation or 
+   warranty that such application will be suitable for the specified 
+   use without further testing or modification.  
+   
+       
+------------------------------------------------------------------------------
+
+File  : lpc_fat16.c
+
+Date     : 06/05/2002
+
+Purpose  : FAT support library
+
+Notes    : Library is portable. Only simple FAT16 functionality is provided.
+           An OS is not required. Operations are 100% blocking. Minimal error
+           checking is provided. (Support fot FAT12 can be added with a
+           little extra work.)
+
+Issues   : No major bugs observed, when working within the limitations of the
+           driver. See the caveats and limitations section at the end of the
+           file.
+
+Supporting packages:
+           lpc_fat16_private.c - Private FAT16 support functions
+
+
+How to use this driver:
+(Be sure to read the caveats and driver limitations of this driver below)
+
+******************************************************************************
+* MAIN DRIVER FUNCTIONS (located in fat16 module)
+******************************************************************************
+******************************************************************************
+* DRIVER INITIALIZATION AND SHUTDOWN
+******************************************************************************
+DRIVER INITIALIZATION: fat16_init_device
+Prior to any call to his driver, the initialization function should be
+called. This function binds a device driver to the FAT16 driver,
+allocates necessary memory for the device structures, and loads in the
+Master Boot Record (MBR) from the device. The driver is designed to be
+binded to a device with the functions listed in the fat16_init_device
+parameter list.
+
+DRIVER SHUTDOWN: fat16_shutdown
+The shutdown function is used to write cached FAT cluster and directory
+data back to the device prior to a shutdown. Device structures allocated
+for the driver/device will also be released in this function. If any
+write operations occured to the device, the cached FAT cluster table
+will be written back to the device. It is very important to call this
+function prior to shutdown or the device data may not be updated!
+
+******************************************************************************
+* PARTITION CONTROL
+******************************************************************************
+PARTITION STATUS: fat16_get_status
+This function can be used to query the states of the 4 partitions. Each
+partition can be checked to see the partition type and status. This function
+should be used to determine the partition types and statuses prior to
+mounting a new parition.
+
+PARTITION SELECTION: fat16_set_partition
+This function is used to set the active partition for the device. An active
+partition of type FAT16_ can be selected. This function will read in the boot
+sector, compute partition gemoetries, and cache the FAT cluster table for
+the partition.
+
+******************************************************************************
+* FILE MANAGEMENT
+******************************************************************************
+CREATION OF A FILE DESCRIPTOR: fat16_create_new_file_descriptor
+A file descriptor is needed for any file or directory based operations. This
+function allocates memory for file descriptor binded to a FAT16 device and
+partition. The descriptor is used for all file operations.
+
+DESTRUCTION OF A FILE DESCRIPTOR: fat16_destroy_file_descriptor
+A file descriptor is is de-allocated from memory. This function does not
+replace fat16_close_file. fat16_close_file does not de-allocate the file
+descriptor structure. (See the fat16_close_file function for more info).
+
+ACTIVE DIRECTORY SELECTION: fat16_cd
+This function sets the active directory for the file descriptor. All file
+read/write operations will occur in this active directory. Note that a file
+does not been to be open to use this command - the descriptor only needs to
+be available.
+
+CHECK A DIRECTORY ENTRY: fat16_get_dirname
+This functions returns the directory entry type, name, and usage flag for the
+next directory entry in the active directory. Each successive call to this
+function will return the next entry in the directory list, with wraparound
+occuring at the end of the list. The entry type is used to determine if the
+directory entry is a directory, hidden file, archive file, etc. The usage
+flag is used to determine if the directory entry is empty. This function can
+be used to compile a list of names in the active directory.
+
+RESET DIRECTORY ENTRY CHECK INDEX: fat16_set_dir_index
+This function can be used to reset the directory check index used for the
+fat16_get_dirname function.
+
+DELETING A FILE: fat16_delete
+This function is used to delete a file in the active directory. Directories
+cannot be deleted. Once a file is deleted, it cannot be restored.
+
+OPEN A FILE FOR READING OR WRITING: fat16_open_file
+This functions opens a new file for writing or an existing file for reading.
+Binary mode is only supported. If a file is opened for write and the files
+already exists, the file will be overwritten.
+
+READ DATA FROM A FILE: fat16_read
+This function is used to read data from a file. Read operations are
+character based operations. The number of bytes read is returned to the
+caller. When all the data has been read, the eof flag is set. The file must
+have been previously opened for reading with the fat16_open_file function.
+
+WRITE DATA TO A FILE: fat16_write
+This function is used to write data to a file. Write operations are
+character based operations. The number of bytes written is returned to the
+caller. When all the data has been written, a call to fat16_close_file
+should be made to make sure all buffered data is written to the device. The
+file must have been previously opened for writing with the fat16_open_file
+function.
+
+CLOSE AN OPEN FILE: fat16_close_file
+This function closes a previously opened file. For read operations, this
+just releases the descriptor for another operation. For write operations,
+the buffered write data (if any) will be flushed to the device before the
+descriptor is released. The descriptor itself is not de-allocated in this
+function and is available for another read/write operation as long as it
+has not been destroyed.
+
+******************************************************************************
+* MEMORY USAGE OF THE FAT16 DRIVER
+******************************************************************************
+Memory usage for the driver varies depending on the geometry of the device
+that has been binded to it. For a Compact FLASH card, the following dynamic
+memory allocations are close, but may be different for different devices:
+ Binding the driver to a new device         : uses approximately 1KByte (KB)
+ Setting an active partition                : uses approximately 16 ~ 130KB
+    (Memory required to cache FAT cluster table per device)
+ Creating a new file descriptor             : uses approximately 3KB+
+    (Memory required to cache active directory and data storage area)
+
+******************************************************************************
+* CAVEATS AND DRIVER LIMITATIONS
+******************************************************************************
+This driver is designed to be a simplistic FAT16 interface driver that does
+not require an OS to use. Care must be taken with applications when using
+this driver. Specifically, beware of the following:
+ - Be very careful when using file write operations, as the active directories
+   are cached images. Since each file descriptor has a cached image of the
+   active directory, one file descriptor may become 'out of date' with another
+   when using write operations. It is not recommended to open more than 1
+   file for write operations.
+ - When using the fat16_get_dirname function, all directory entry (valid and
+   invalid) indexes are returned. If the state of the empty flag is '1', avoid
+   use of the entry. Be sure to check the state of the entry type flag also,
+   as the only usable flag type is ATTB_ARCHIVE.
+ - Be sure to close file descriptors after use. If ANY write operations are
+   performed, be sure to call the file descriptor destroy function prior to
+   calling the fat16_shutdown function.
+ - Be sure to call fat16_shutdown prior to shutting down the filesystem. This
+   needs to be done if ANY write has occurred to update the FAT cluster
+   table on the device.
+
+

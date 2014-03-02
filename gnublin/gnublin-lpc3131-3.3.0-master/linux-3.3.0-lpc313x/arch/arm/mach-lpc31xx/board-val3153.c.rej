@@ -1,0 +1,20 @@
+--- arch/arm/mach-lpc31xx/board-val3153.c	2012-08-21 22:55:26.133612465 +0200
++++ arch/arm/mach-lpc31xx/board-val3153.c	2012-10-31 12:59:01.490678795 +0100
+@@ -40,7 +40,7 @@
+ #include <asm/mach-types.h>
+ 
+ #include <asm/mach/arch.h>
+-#include <mach/gpio.h>
++#include <mach/gpio-lpc313x.h>
+ #include <mach/board.h>
+ 
+ /* mci platform functions */
+@@ -203,7 +203,7 @@
+ 	(void) cs_num;
+ 
+ 	/* Set GPO state for CS0 */
+-	lpc313x_gpio_set_value(GPIO_SPI_CS_OUT0, state);
++	gpio_set_value(GPIO_SPI_CS_OUT0, state);
+ }
+ 
+ struct lpc313x_spics_cfg lpc313x_stdspics_cfg[] =

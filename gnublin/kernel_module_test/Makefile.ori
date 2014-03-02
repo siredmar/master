@@ -1,0 +1,16 @@
+TARGET = testmodule
+
+obj-m := $(TARGET).o
+
+#$(TARGET)-objs += testa.o
+
+KDIR := /usr/src/linux-3.2.2
+
+
+KBUILD_TARGETS  := clean help modules modules_install
+
+.PHONY: all $(KBUILD_TARGETS)
+all: modules
+
+$(KBUILD_TARGETS):
+	$(MAKE) -C $(KDIR) M=$(shell pwd) $@

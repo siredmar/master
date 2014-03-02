@@ -1,0 +1,12 @@
+--- arch/arm/mach-lpc31xx/Makefile	2012-08-21 22:55:26.133612465 +0200
++++ arch/arm/mach-lpc31xx/Makefile	2012-09-29 23:30:01.945871646 +0200
+@@ -4,8 +4,7 @@
+ 
+ # Object file lists.
+ 
+-obj-y			+= irq.o time.o generic.o i2c.o gpio.o dma.o usb.o wdt.o clock.o
+-obj-$(CONFIG_GPIOLIB) += gpiolib.o
++obj-y	+= irq.o time.o generic.o i2c.o gpio.o dma.o usb.o wdt.o clock.o
+ 
+ 
+ # Specific board support

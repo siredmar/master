@@ -1,0 +1,1 @@
+cmd_drivers/video/fb_sys_fops.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/gnublin-lpc3131-3.3.0-master/linux-3.3.0-lpc313x/scripts/module-common.lds --build-id  -o drivers/video/fb_sys_fops.ko drivers/video/fb_sys_fops.o drivers/video/fb_sys_fops.mod.o

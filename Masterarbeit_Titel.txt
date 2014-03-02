@@ -1,0 +1,1 @@
+Analyse, Entwicklung und Optimierung von LCD-Display-Schnittstellen fuer embedded Linux Boards

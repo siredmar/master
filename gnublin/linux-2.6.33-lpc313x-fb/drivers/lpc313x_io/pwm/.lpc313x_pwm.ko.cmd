@@ -1,0 +1,1 @@
+cmd_drivers/lpc313x_io/pwm/lpc313x_pwm.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/lpc313x_io/pwm/lpc313x_pwm.ko drivers/lpc313x_io/pwm/lpc313x_pwm.o drivers/lpc313x_io/pwm/lpc313x_pwm.mod.o

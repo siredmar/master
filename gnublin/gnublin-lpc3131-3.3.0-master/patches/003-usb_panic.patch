@@ -1,0 +1,28 @@
+diff -Nur ../linux-2.6.33-lpc313x_state_01_gnublinV1/arch/arm/mach-lpc313x/usb.c ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/usb.c
+--- ../linux-2.6.33-lpc313x_state_01_gnublinV1/arch/arm/mach-lpc313x/usb.c	2012-09-24 16:57:28.363902836 +0200
++++ ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/usb.c	2012-09-25 10:04:17.479006190 +0200
+@@ -257,20 +257,23 @@
+ 
+ #if defined(CONFIG_MACH_EA313X) || defined(CONFIG_MACH_EA3152)
+ 		/* set thw I2SRX_WS0 pin as GPIO_IN for vbus overcurrent flag */
++/*  --hh
+ 		gpio_direction_input(GPIO_I2SRX_WS0);
+ 		lpc313x_usb_brd.vbus_ovrc_irq = IRQ_EA_VBUS_OVRC;
+-
++*/
+ #else
+ 		lpc313x_usb_brd.vbus_ovrc_irq = IRQ_VBUS_OVRC;
+ #endif
+ 
+ 		/* request IRQ to handle VBUS power event */
++/* --hh
+ 		retval = request_irq( lpc313x_usb_brd.vbus_ovrc_irq, lpc313x_vbus_ovrc_irq, 
+ 			IRQF_DISABLED, "VBUSOVR", 
+ 			&lpc313x_usb_brd);
+ 
+ 		if ( 0 != retval )
+ 			printk(KERN_INFO "Unable to register IRQ_VBUS_OVRC handler\n");
++*/
+ 		
+ #else
+ 		printk(KERN_ERR "Unable to register USB host. Check USB_ID jumper!!!!!\n");

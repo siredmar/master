@@ -1,0 +1,99 @@
+diff -aurP linux-2.6.33/arch/arm/mach-lpc313x/ea313x.c linux-2.6.33_oli/arch/arm/mach-lpc313x/ea313x.c
+--- linux-2.6.33/arch/arm/mach-lpc313x/ea313x.c	2011-12-26 01:01:25.336423430 +0200
++++ linux-2.6.33_oli/arch/arm/mach-lpc313x/ea313x.c	2011-12-26 01:40:46.920139000 +0200
+@@ -51,7 +51,10 @@
+ 
+ static int mci_get_cd(u32 slot_id)
+ {
++/* EDIT_HERE: there is no CD pin
+ 	return gpio_get_value(GPIO_MI2STX_BCK0);
++*/
++	return 0;
+ }
+ 
+ static irqreturn_t ea313x_mci_detect_interrupt(int irq, void *data)
+@@ -80,6 +83,7 @@
+ 	/* select the opposite level senstivity */
+ 	level = mci_get_cd(0)?IRQ_TYPE_LEVEL_LOW:IRQ_TYPE_LEVEL_HIGH;
+ 	/* set card detect irq info */
++/* EDIT_HERE: crude way to not register any interrupt
+ 	irq_data.data = data;
+ 	irq_data.irq_hdlr = irqhdlr;
+ 	set_irq_type(irq_data.irq, level);
+@@ -89,7 +93,8 @@
+ 			"mmc-cd", 
+ 			&irq_data);
+ 	/****temporary for PM testing */
+-	enable_irq_wake(irq_data.irq);
++/*	enable_irq_wake(irq_data.irq);
++ EDIT_HERE end */
+ 
+ 	return irq_data.irq;
+ }
+diff -aurP linux-2.6.33/arch/arm/mach-lpc313x/leds.c linux-2.6.33_oli/arch/arm/mach-lpc313x/leds.c
+--- linux-2.6.33/arch/arm/mach-lpc313x/leds.c	2011-12-26 01:01:25.336423430 +0200
++++ linux-2.6.33_oli/arch/arm/mach-lpc313x/leds.c	2011-12-26 01:03:28.781429147 +0200
+@@ -60,26 +60,26 @@
+ 
+ 	switch(evt) {
+ 	case led_start:		/* System startup */
+-		val3153_led_on(GPIO_GPIO0);
++		val3153_led_on(GPIO_GPIO17);
+ 		break;
+ 
+ 	case led_stop:		/* System stop / suspend */
+-		val3153_led_off(GPIO_GPIO0);
++		val3153_led_off(GPIO_GPIO17);
+ 		break;
+ 
+ #ifdef CONFIG_LEDS_TIMER
+ 	case led_timer:		/* Every 50 timer ticks */
+-		val3153_led_toggle(GPIO_GPIO2);
++		val3153_led_toggle(GPIO_GPIO18);
+ 		break;
+ #endif
+ 
+ #ifdef CONFIG_LEDS_CPU
+ 	case led_idle_start:	/* Entering idle state */
+-		val3153_led_off(GPIO_GPIO0);
++		val3153_led_off(GPIO_GPIO17);
+ 		break;
+ 
+ 	case led_idle_end:	/* Exit idle state */
+-		val3153_led_on(GPIO_GPIO0);
++		val3153_led_on(GPIO_GPIO17);
+ 		break;
+ #endif
+ 
+diff -aurP linux-2.6.33/arch/arm/mach-lpc313x/leds-pca9532.c linux-2.6.33_oli/arch/arm/mach-lpc313x/leds-pca9532.c
+--- linux-2.6.33/arch/arm/mach-lpc313x/leds-pca9532.c	2011-12-26 01:01:25.350034809 +0200
++++ linux-2.6.33_oli/arch/arm/mach-lpc313x/leds-pca9532.c	2011-12-26 01:39:44.147929000 +0200
+@@ -127,14 +127,25 @@
+ #ifdef CONFIG_LEDS_TIMER
+ 	case led_timer:		/* Every 50 timer ticks */
+ 		{
+-			unsigned long is_off = gpio_get_value(GPIO_GPIO2);
++			unsigned long is_off = gpio_get_value(GPIO_GPIO18);
+ 			if (is_off)
+-				gpio_set_value(GPIO_GPIO2, 0);
++				gpio_set_value(GPIO_GPIO18, 0);
+ 			else
+-				gpio_set_value(GPIO_GPIO2, 1);
++				gpio_set_value(GPIO_GPIO18, 1);
+ 		}
+ 		break;
+ #endif
++
++#ifdef CONFIG_LEDS_CPU
++	case led_idle_start:	/* Entering idle state */
++		gpio_set_value(GPIO_GPIO17, 0);
++		break;
++
++	case led_idle_end:	/* Exit idle state */
++		gpio_set_value(GPIO_GPIO17, 1);
++		break;
++#endif
++
+ 	default:
+ 		break;
+ 	}

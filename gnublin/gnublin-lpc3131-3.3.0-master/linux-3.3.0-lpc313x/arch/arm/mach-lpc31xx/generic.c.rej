@@ -1,0 +1,15 @@
+--- arch/arm/mach-lpc31xx/generic.c	2012-08-21 22:55:26.133612465 +0200
++++ arch/arm/mach-lpc31xx/generic.c	2012-09-22 13:39:18.249979337 +0200
+@@ -31,9 +31,11 @@
+ #include <asm/errno.h>
+ #include <mach/hardware.h>
+ 
+-#include <mach/gpio.h>
++#include <mach/gpio-lpc313x.h>
+ #include <asm/mach/map.h>
+ 
++extern int __init lpc313x_gpio_dev_init(void);
++
+ /* local functions */
+ 
+ static void lpc313x_uart_pm(struct uart_port * port, unsigned int state,

@@ -1,0 +1,78 @@
+$Id:: ea3131_quickstart.txt 1659 2009-02-06 17:46:20Z pdurgesh         $
+
+Embedded Artist EA3131 BSP quickstart guide
+
+This quickstart guide will guide you step-by-step on how to install the
+BSP, get the free CodeSourcery tools, do your first build using the
+timer example, and then deploying and executing it using the LPC313x 
+UART boot mode. See "Chapter 6 LPC3130/31 Internal Static Memory Controller
+ISROM/Boot ROM" of LPC313x User manual for more details on UART boot mode.
+
+Step 1 : Install the BSP
+If you haven't installed the BSP yet, install it by simply unzipping
+the BSP zip file in the in the C:/NXPMCU directory. You will need to
+create the NXPMCU directory. After the BSP is unzipped. a directory
+called 'SOFTWARE' should exist in the NXPMCU directory.
+
+Step 2 : Download and install the free CodeCourcery tools
+Go to http://www.codesourcery.com and download the latest verion of
+the CodeSourcery Lite GNU toolchain for ARM processors. Download the
+EABI version for Windows (IA32 Windows installer version). After the
+tools are download, install them and restart your machine.
+
+Step 3 : Setup the tool environment
+Open a CMD shell (cmd.exe) by selecting the Run.. command from the
+Windows start menu. Type in cmd.exe and start the CMD shell. In the
+shell, switch to the C:/NXPMCU/SOFTWARE directory. Type the
+following at the prompt:
+	setenv ea3131 gnu
+The BSP is now configured for the LPC313X chip with the EA3131
+board and the CodeSourcery toolchain.
+
+Step 4 : Setup the EA3131 board and terminal
+Unpack the Embedded Artist LPC3131 board and connect a serial cable between a
+PC and the serial connector on the board. EA3131 board has on board 
+serial-to-USB chip to aid customers with new PCs which don't have RS232
+port. Start a terminal program (TeraTerm is recommend and it is free) 
+on the PC and set up the serial port for 115.2K-8-N-1.
+Note, the default installation of TeraTerm Pro allows only upto COM4 ports.
+The serial-to-USB bridge might enumerate as COM5 and above on some PCs.To 
+increse the number of COM ports accessible by TeraTerm change the following
+line in TERATERM.INI file present in the installation directory (
+C:\Program Files\TTERMPRO).
+
+   MaxComPort=4
+   to
+   MaxComPort=10
+
+Step 5 : Board power up
+Power up the board. Following message should appear on the terminal. 
+"LPC31xx READY FOR PLAIN IMAGE>".
+For setups using serial-to-USB bridge press reset botton on the board to 
+see the message. This is need since the PC won't recognize the COM port 
+until the board enumerates. By the time board enumerates the serial 
+mesage is already sent.
+
+Step 6 : Build the timer example
+Go to the following directory:
+	C:/NXPMCU/SOFTWARE/CSPS/lpc313x/bsps/ea3131/examples/timer_int
+Type make to build the timer example. The LPC, CSP, and BSP libraries
+and timer example executable will be built.
+
+Step 7 : Download the executable to the board.
+Using the terminal's send file function, send the
+timer_demo.bin file in the ../examples/timer_int directory to the board.
+Send the file as a binary file with no protocol support. After a
+few seconds, the transfer should finish and "Download finished" 
+message will appear.
+
+Step 8 : The timer example starts executing immediately after  
+download finishes. 
+The GPIO2_BOOT2 LED on the board will start blinking at 10HZ rate 
+(this is what the demo does). Also on terminal you could see the
+msec counter changing every one second.
+
+You have completed your first application on the EA3131 board.
+Try some of the other applications by doing a make in another
+example directory and repeating steps 7 and 8 for the example.
+Good luck!

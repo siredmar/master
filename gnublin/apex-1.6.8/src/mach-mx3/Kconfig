@@ -1,0 +1,213 @@
+if ARCH_MX3
+
+choice
+	prompt "Freescale MX3 Implementations"
+	default MACH_MX31ADS
+
+config MACH_MX31ADS
+	bool "Freescale MX31 Development Board"
+	select ARCH_MX31
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+	select USES_COMPACTFLASH
+	select USES_CS8900
+	select INLINE_PLATFORM_INITIALIZATION
+
+config MACH_EXBIBLIO_ROSENCRANTZ
+	bool "Exbiblio Rosencrantz Board"
+	select ARCH_MX31
+	select USES_DM9000
+	select USES_IPU_TEST
+	select INLINE_PLATFORM_INITIALIZATION
+
+config MACH_PHYTEC_PCM037
+	bool "PHYTEC PCM037 MX31 Development Board"
+	select ARCH_MX31
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+	select USES_SMC91X
+	select INLINE_PLATFORM_INITIALIZATION
+
+config MACH_KARMA5
+	bool "Panasonic KarmaV"
+	select ARCH_MX31
+	select USES_DM9000
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+	select USES_IPU_TEST
+	select INLINE_PLATFORM_INITIALIZATION
+
+endchoice
+
+menu "Platform Setup"
+
+choice
+	prompt "CPU/Peripheral Clock"
+	default FREQ_533_133_66
+
+config FREQ_533_133_66
+	bool "MPLL 533 MHz - HCLK 133 MHz - IPGCLK 66MHz"
+	help
+	  This setting configures the CPU frequency to 532 MHz.
+
+config FREQ_399_133_66
+	bool "MPLL 399 MHz - HCLK 133 MHz - IPGCLK 66MHz"
+	help
+	  This setting configures the CPU frequency to 399 MHz.
+
+config FREQ_208_104_52
+	bool "MPLL 208 MHz - HCLK 104 MHz - IPGCLK 52MHz"
+	help
+	  This setting configures the CPU frequency to 208 MHz.
+
+endchoice
+
+config ATAG_PHYS
+	hex "Physical address for ATAGs list"
+	default "0x80000100"
+	depends on ATAG
+	help
+	  This is the address where APEX will construct the ATAG list
+	  before starting the Linux kernel.  This address should be
+	  within the first 16KiB of physical RAM.  Don't change this
+	  value unless you know what you are doing. 
+
+config ARCH_NUMBER
+	int
+	default 447 if MACH_MX31ADS
+	default 1348 if MACH_EXBIBLIO_ROSENCRANTZ
+	default 1348 if MACH_KARMA5
+	default 447 if MACH_PHYTEC_PCM037
+
+config APEX_VMA
+	hex "APEX Runtime Address"
+	default "0x80200000"
+
+config KERNEL_LMA
+	hex "Kernel Load Address"
+	default "0x80008000"
+
+config USE_RAMDISK
+	bool "Enable ramdisk options"
+	default n
+	help
+	  This option doesn't enable the ramdisk, per se.  It enables
+	  other configuration options that help setup a default
+	  ramdisk.  The kernel command line and the APEX startup
+	  commands may be overridden to perform the same steps.
+
+	  There is a separate option in the Environment section that
+	  controls whether or not APEX copies the ramdisk from flash
+	  into RAM at startup.  That is where the ramdisk region is
+	  defined.
+
+config RAMDISK_LMA
+	hex "Ramdisk load address"
+	default "0x84000000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the physical load address for an initial
+	  ramdisk (a.k.a initrd).
+
+config RAMDISK_SIZE
+	hex "Ramdisk compressed size"
+	default "0x00300000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the size, in bytes, of the initial ramdisk
+	  (a.k.a. initrd).  This is the size of the compressed initrd
+	  image.
+
+config SDRAM_BANK0
+	bool "Enable SDRAM Bank 0"
+	default y
+
+config SDRAM_BANK1
+	bool "Enable SDRAM Bank 1"
+	depends on SDRAM_BANK0
+	default n 
+
+choice
+	prompt "Console UART"
+	default MX31_UART1
+
+config MX31_UART1
+	bool "MX31 internal UART1"
+
+config MX31ADS_UARTA
+	bool "MX31ADS external UARTA"
+	depends on MACH_MX31ADS
+
+endchoice
+
+config EXCEPTIONS
+       bool "Enable exception vectors"
+       depends on MMU
+       default y
+       help
+         Intalls exception vector handlers.  This option is required
+         for interrupts as well, though interrupts are not implemented
+         for this platform.  Set this option to Y to receive reports
+         on undefined instructions and data/instruction fetch aborts. 
+
+config IPU_TEST
+	bool "Enable IPU test commands"
+	depends on USES_IPU_TEST
+	default n
+	help
+	  The IPU handles communication between video sensors, the
+	  MPEG4 video encoder, and display technology.  It is a very
+	  complex portion of the CPU.  The code here is helpful for
+	  testing and debugging IPU problems.  This code depends on
+	  some platform specific hardware.
+
+config MX31_I2C_DRIVER
+       bool "Enable I2C driver"
+       default n
+       help
+         This I2C driver is for debugging.
+
+config CMD_WM8955
+       bool "Define WM8955L command"
+       default n
+       depends on MX31_I2C_DRIVER 
+
+config DRIVER_WM8955_I2C_DRIVER
+	string "Underlying I2C driver"
+	depends on CMD_WM8955
+	default "i2c:/0x1a"
+	help
+	  The I2C driver region used to communicate with the WM8955L
+	  codec.
+	
+config EXTENDED_CPUINFO
+	bool "Extended CPU into"
+	depends on n
+	default n
+	help
+	  For most targets, CPU info is a simple report of the
+	  ARM CPU registers available on most cores.  This option
+	  enables a report on many other registers.
+
+	  *** Currently unimplemented.
+
+endmenu
+
+menu "Platform Drivers"
+
+endmenu
+
+config MACH
+	string
+	default "mx3"
+
+config ARCH_MX31
+	bool
+	select CPU_ARMV6
+	select CPU_ARM11
+	select CPU_ARM1136
+
+endif
+
+config USES_IPU_TEST
+       bool

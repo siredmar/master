@@ -1,0 +1,1 @@
+cmd_fs/nfsd/nfsd.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/dev/gnublin/gnublin-lpc3131-2.6.33/linux-2.6.33-lpc313x/scripts/module-common.lds --build-id -o fs/nfsd/nfsd.ko fs/nfsd/nfsd.o fs/nfsd/nfsd.mod.o

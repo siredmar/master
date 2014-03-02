@@ -1,0 +1,11 @@
+NOTES on arch-ARM
+=================
+
+o ARM9TDMI, ARM920T, ARM922T
+
+  o the ARM9TDMI is the CPU core
+  o The ARM920T and ARM922T are implementations of the ARM9TDMI core
+    with an MMU (cp15) and buses
+  o The ARM922T has an AHB interface and smaller caches.
+
+

@@ -1,0 +1,72 @@
+Nr.  A15   HEX
+========================================
+1.   CMD   0xE2     
+2.   DAT   0x2D   fehler  fehler   fehler
+3.   DAT   0x02   
+4.   DAT   0x04   
+5.   CMD   0xE0   
+6.   DAT   0x01   
+7.   CMD   0xE0   
+8.   DAT   0x03   fehler
+9.   CMD   0x01            fehler
+10.  CMD   0xE6   
+11.  DAT   0x00   
+12.  DAT   0xFF            fehler
+13.  DAT   0xBE   fehler
+14.  CMD   0xB0   
+15.  DAT   0x20   
+16.  DAT   0x00   
+17.  DAT   0x01   
+18.  DAT   0xDF            fehler
+19.  DAT   0x01   
+20.  DAT   0x0F            fehler
+21.  DAT   0x00   
+22.  CMD   0xB4   
+23.  DAT   0x02   
+24.  DAT   0x13   
+25.  DAT   0x00            fehler
+26.  DAT   0x2B   
+27.  DAT   0x0A   
+28.  DAT   0x00   fehler
+29.  DAT   0x08            fehler
+30.  DAT   0x00   
+31.  CMD   0xB6   fehler
+32.  DAT   0x01   
+33.  DAT   0x20   
+34.  DAT   0x00   
+35.  DAT   0x0C   fehler
+36.  DAT   0x0A   
+37.  DAT   0x00   
+38.  DAT   0x04   
+39.  CMD   0x36   
+40.  DAT   0x00   
+41.  CMD   0xF0   
+42.  DAT   0x00   
+43.  CMD   0x29   
+44.  CMD   0xBE   fehler
+45.  DAT   0x06   
+46.  DAT   0xF0   
+47.  DAT   0x01            fehler
+48.  DAT   0xF0   fehler
+49.  DAT   0x00       
+50.  DAT   0x00            fehler
+51.  CMD   0xD0   
+52.  DAT   0x0D   
+53.  CMD   0xB8            fehler
+54.  DAT   0x00   
+55.  DAT   0x00   
+56.  CMD   0xBA   
+57.  DAT   0x00   
+58.  CMD   0x2A   fehler  fehler
+59.  DAT   0x00   
+60.  DAT   0x14   
+61.  DAT   0x00   fehler  fehler
+62.  DAT   0x15   
+63.  CMD   0x2B   
+64.  DAT   0x00   
+65.  DAT   0x0A   fehler  fehler   fehler
+66.  DAT   0x00   fehler  fehler   fehler
+67.  DAT   0x0B   
+68.  CMD   0x2C   fehler  fehler   fehler
+69.  DAT   0xF800 
+70.  

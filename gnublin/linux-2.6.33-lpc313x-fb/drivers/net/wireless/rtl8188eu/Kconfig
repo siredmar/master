@@ -1,0 +1,10 @@
+config RTL8188EU
+	tristate "Realtek 8188E USB WiFi"
+	depends on USB
+    select WIRELESS_EXT
+    select WEXT_PRIV
+	---help---
+	  This is a driver for RTL8188EU based cards.
+	  These are USB based chips found in devices such as:
+	  TP-LINK TL-WN725N
+

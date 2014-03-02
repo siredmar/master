@@ -1,0 +1,775 @@
+port of old 8250 code
+
+From: Jon Smirl <jonsmirl@terra.(none)>
+
+
+---
+ drivers/tty/serial/8250.c  |  566 ++++++++++++++++++++++++++++++++++++++++++++
+ drivers/tty/serial/Kconfig |    6 
+ 2 files changed, 570 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/tty/serial/8250.c b/drivers/tty/serial/8250.c
+index eeadf1b..ad1074c 100644
+--- a/drivers/tty/serial/8250.c
++++ b/drivers/tty/serial/8250.c
+@@ -16,6 +16,76 @@
+  *  membase is an 'ioremapped' cookie.
+  */
+ 
++/*
++ * NXP UART driver DMA modifications notification
++ *
++ * This driver has been modifed to use DMA for transfer of the
++ * serial buffers. These modifications are specific to the
++ * LPC31XX version of the 8250 UART.
++ *
++ * Specific driver modifications
++ *  General modifications
++ *   1) 8250 RX/RX timeout/TX interrupts are no longer used.
++ *   2) 8250 error status and break interrupts are still used,
++ *      but 'per character' status doesn't work with DMA, so
++ *      an error status is applied to the last DMA'd character
++ *      when the error occurs. This may not always be accurate,
++ *      but it's generally used for statistics only.
++ *   3) Breaks requires a flush of the RX FIFO and toss the
++ *      current DMA buffer. Because of the nature of breaks,
++ *      this is generally ok.
++ *   4) TX timeout logic (timer) no longer used.
++ *
++ *  RX side modifications
++ *   1) RX FIFO based mechanism replaced with DMA based circ
++ *      buffer logic.The DMA nevers stops servicing the FIFO
++ *      event when the DMA buffer is 
++ *
++ *
++ *  TX side modifications
++ *   1) TX FIFO based logic removed. DMA block transfer of up
++ *      to 64 bytes per transfer occur now.
++ *   2) DMA transfer resets on empty TX FIFO transfer again
++ *      transferring up to 64 bytes. A single DMA transfer
++ *      will never exceed 64 bytes in a single transfer.
++ *   3) DMA TX transfers need to start when the UART TX FIFO
++ *      is empty, so the start od the DMA TX transfer is based
++ *      on the UART TX holding register empty interrupt.
++
++ *
++ * The serial core does not support DMA transfer. Transmit buffers
++ * can be easily sent as a DMA buffer, but RX buffers require special
++ * handling and still need to be sent to the serial core a byte at a
++ * time. DMA transfer sizes vary per application. The size of the
++ * circular buffer in the serial core is fixed. Maximum DMA RX
++ * transfer size is limited to the serial core buffer sizes, while
++ * DMA TX size is limited to the TX FIFO size.
++ *
++ * For TX, a DMA transfer is complete when the entire DMA transfer
++ * has been sent to the UART FIFO via the DMA channel. However,
++ * the TX transfer cannot be restarted until the TX FIFO is again
++ * empty. Because of this, the DMA completion interrupt is ignored
++ * and the UART TX holding register interrupt is used instead.
++ *
++ * For RX, a DMA transfer is more complicated. To maintain the
++ * 'per byte' RX status, the circular buffer in the serial core
++ * cannot be used. Although DMA is used to process the transfer,
++ * each individual char received still needs to be individually
++ * processed and submitted to the serial core. The RX FIFO and
++ * RX timeout interrupts are no longer used. The RX error and
++ * break status interrupts are still used, but no longer apply to
++ * the currently received character. Because of this, the RX
++ * handler always applies the accumulated status to the last DMA
++ * character received. Since the RX timeout interrupt is no
++ * longer used, a timer is used to emulate the RX timeouot check.
++ * As the DMA will only generate an interrupt on a full RX buffer,
++ * this timers purpose is important to periodically check if the
++ * DMA has received characters.
++ *
++ * Early console support is unchanged. Non-DMA mode will be used
++ * for early console support until the driver is initialized.
++ */
++
+ #if defined(CONFIG_SERIAL_8250_CONSOLE) && defined(CONFIG_MAGIC_SYSRQ)
+ #define SUPPORT_SYSRQ
+ #endif
+@@ -38,9 +108,11 @@
+ #include <linux/nmi.h>
+ #include <linux/mutex.h>
+ #include <linux/slab.h>
++#include <linux/dma-mapping.h>
+ 
+ #include <asm/io.h>
+ #include <asm/irq.h>
++#include <mach/dma.h>
+ 
+ #include "8250.h"
+ 
+@@ -153,8 +225,37 @@ struct uart_8250_port {
+ 	unsigned char		lsr_saved_flags;
+ #define MSR_SAVE_FLAGS UART_MSR_ANY_DELTA
+ 	unsigned char		msr_saved_flags;
++
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	struct LPC31XX_DMA dma_rx;
++	struct LPC31XX_DMA dma_tx;
++	int buff_half_offs;
++#endif
++};
++
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++struct LPC31XX_DMA {
++	dma_addr_t		dma_buff_p;
++	void			*dma_buff_v;
++	int			dmach;
++	struct tasklet_struct	tasklet;
++	int			count;
++	struct timer_list	timer;		/* "no irq" timer */
++	int			active;
+ };
+ 
++static DEFINE_MUTEX(dma_mutex);
++#undef UART_FCR_ENABLE_FIFO
++#define UART_FCR_ENABLE_FIFO (0x9 | (1 << 6)) /* FIFO enable + DMA */
++#define UART_DMABUF_RX_SIZE (UART_XMIT_SIZE << 1)
++
++/*
++ * DMA RX character receive timeout in mS. 10mS is the best your
++ * going to get with a 100Hz tick clock.
++ */
++#define LPC31XX_UART_RX_TIMEOUT 10
++#endif
++
+ struct irq_info {
+ 	struct			hlist_node node;
+ 	int			irq;
+@@ -316,6 +417,13 @@ static const struct serial8250_config uart_config[] = {
+ 		.fcr		= UART_FCR_ENABLE_FIFO | UART_FCR_R_TRIG_10,
+ 		.flags		= UART_CAP_FIFO | UART_CAP_AFE | UART_CAP_EFR,
+ 	},
++	[PORT_NXP16750] = {
++		.name		= "NXP16750",
++		.fifo_size	= 64,
++		.tx_loadsz	= 64,
++		.fcr		= UART_FCR_ENABLE_FIFO | UART_FCR_R_TRIG_10,
++		.flags		= UART_CAP_FIFO,
++	},
+ };
+ 
+ #if defined(CONFIG_MIPS_ALCHEMY)
+@@ -1023,6 +1131,15 @@ static void autoconfig_16550a(struct uart_8250_port *up)
+ 		return;
+ 	}
+ 
++	/* Check if it is NXP IP 3106 UART */
++	serial_outp(up, UART_SCR, 0xDF);
++	status1 = serial_in(up, UART_SCR);
++	if(status1 == 0xDF) {
++		/*scratch register present */
++		up->port.type = PORT_NXP16750;
++		return;
++	}
++
+ 	/*
+ 	 * Try writing and reading the UART_IER_UUE bit (b6).
+ 	 * If it works, this is probably one of the Xscale platform's
+@@ -1302,6 +1419,283 @@ static void autoconfig_irq(struct uart_8250_port *up)
+ 	up->port.irq = (irq > 0) ? irq : 0;
+ }
+ 
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++static void lpc31xx_dma_lock(struct uart_8250_port *up)
++{
++	mutex_lock(&dma_mutex);
++}
++
++static void lpc31xx_dma_unlock(struct uart_8250_port *up)
++{
++	mutex_unlock(&dma_mutex);	
++}
++
++static void lpc31xx_uart_tx_dma_start(struct uart_8250_port *up);
++static void lpc31xx_dma_tx_tasklet_func(unsigned long data)
++{
++	struct uart_8250_port *up = (struct uart_8250_port *) data;
++	struct circ_buf *xmit = &up->port.state->xmit;
++
++	if (dma_channel_enabled(up->dma_tx.dmach))
++		return;
++
++	lpc31xx_dma_lock(up);
++
++	dma_stop_channel(up->dma_tx.dmach);
++
++	xmit->tail = (xmit->tail + up->dma_tx.count) & (UART_XMIT_SIZE - 1);
++	up->port.icount.tx += up->dma_tx.count;
++
++	lpc31xx_uart_tx_dma_start(up);
++
++	lpc31xx_dma_unlock(up);
++}
++
++static int lpc31xx_get_readl_rx_dma_count(struct uart_8250_port *up)
++{
++	int count;
++
++	/* The DMA hardware returns the number of bytes currently
++	   transferred by the hardware. It will return 0 when the
++	   channel has stopped (full DMA transfer) or when nothing
++	   has been transferred. To tell the difference between
++	   empty 0 and full 0, we need to examine the DMA enable
++	   status. */
++
++	/* A race condition can exist where the DMA TCNT returns a
++	   value right as the DMA is stopping. In this case, the
++	   DMA is enabled during the check with a non-0 count
++	   value. To get around this issue, the DMA count value
++	   need to be verified again after disabling the DMA
++	   channel. If it is 0, then the DMA completed and the
++	   count is different. */
++	dma_read_counter(up->dma_rx.dmach, &count);
++	if ((!count) && (!dma_channel_enabled(up->dma_rx.dmach)))
++		count = UART_XMIT_SIZE;
++
++	return count;
++}
++
++static void serial8250_dma_rx_timer_check(unsigned long data)
++{
++	struct uart_8250_port *up = (struct uart_8250_port *) data;
++
++	/* Emulate RX timeout when DMA buffer is not full */
++	if (lpc31xx_get_readl_rx_dma_count(up))
++		tasklet_schedule(&up->dma_rx.tasklet);
++	else
++		mod_timer(&up->dma_rx.timer, jiffies +
++			msecs_to_jiffies(LPC31XX_UART_RX_TIMEOUT));
++}
++
++void lcp31xx_dma_rx_setup(struct uart_8250_port *up)
++{
++	dma_setup_t dmarx;
++
++	up->buff_half_offs = UART_XMIT_SIZE - up->buff_half_offs;
++	dmarx.trans_length = UART_XMIT_SIZE - 1;
++	dmarx.src_address = (u32) up->port.mapbase;
++	dmarx.dest_address = (u32) up->dma_rx.dma_buff_p;
++	dmarx.dest_address += up->buff_half_offs;
++	dmarx.cfg = DMA_CFG_TX_BYTE | DMA_CFG_RD_SLV_NR(DMA_SLV_UART_RX) |
++		DMA_CFG_WR_SLV_NR(0);
++
++	dma_prog_channel(up->dma_rx.dmach, &dmarx);
++	dma_start_channel(up->dma_rx.dmach);
++}
++
++/*
++ * DMA RX tasklet
++ */
++static unsigned int check_modem_status(struct uart_8250_port *up);
++static void lpc31xx_dma_rx_tasklet_func(unsigned long data)
++{
++	unsigned int status, lsr;
++	int count, count2, i, maxcount = 64, breakflush = 0;
++	char ch, flag = TTY_NORMAL, *buf;
++	struct uart_8250_port *up = (struct uart_8250_port *) data;
++	int buffhalf = up->buff_half_offs;
++	u32 pbuf;
++
++	spin_lock(&up->port.lock);
++
++	/*
++	 * Per char stats don't work with DMA, so the status flags
++	 * don't apply to a specific character. We'll take a best
++	 * guess that the accumulated status only applies to the
++	 * last character in the DMA buffer.
++	 */
++	status = serial_inp(up, UART_LSR);
++	lsr = status | up->lsr_saved_flags;
++	up->lsr_saved_flags = 0;
++
++	if (unlikely(lsr & UART_LSR_BRK_ERROR_BITS)) {
++		/*
++		 * For statistics only
++		 */
++		if (lsr & UART_LSR_BI) {
++			lsr &= ~(UART_LSR_FE | UART_LSR_PE);
++			up->port.icount.brk++;
++			breakflush = 1;
++			/*
++			 * Breaks are trouble! Toss everything if
++			 * one occurs.
++			 */
++			uart_handle_break(&up->port);
++		} else if (lsr & UART_LSR_PE)
++			up->port.icount.parity++;
++		else if (lsr & UART_LSR_FE)
++			up->port.icount.frame++;
++		if (lsr & UART_LSR_OE)
++			up->port.icount.overrun++;
++
++		/*
++		 * Mask off conditions which should be ignored.
++		 */
++		lsr &= up->port.read_status_mask;
++
++		if (lsr & UART_LSR_BI) {
++			DEBUG_INTR("handling break....");
++			flag = TTY_BREAK;
++		} else if (lsr & UART_LSR_PE)
++			flag = TTY_PARITY;
++		else if (lsr & UART_LSR_FE)
++			flag = TTY_FRAME;
++	}
++
++	/* Disable DMA and get current DMA bytes transferred */
++	count = lpc31xx_get_readl_rx_dma_count(up);
++	dma_stop_channel(up->dma_rx.dmach);
++	count2 = lpc31xx_get_readl_rx_dma_count(up);
++	if (count != count2) {
++		if (count2 == 0)
++			count = UART_XMIT_SIZE;
++		else
++			count = count2;
++	}
++	dma_write_counter(up->dma_rx.dmach, 0);
++
++	/* Setup DMA again using unused buffer half */
++	lcp31xx_dma_rx_setup(up);
++	pbuf = (u32) up->dma_rx.dma_buff_p;
++	pbuf += buffhalf;
++	buf = (char *) up->dma_rx.dma_buff_v;
++	buf += buffhalf;
++
++	if (breakflush) {
++		/* Flush RX FIFO */
++		while ((serial_inp(up, UART_LSR) & UART_LSR_DR) &&
++			(maxcount-- > 0))
++			ch = serial_inp(up, UART_RX);
++	}
++	else {
++		dma_sync_single_for_device(up->port.dev, (u32) pbuf,
++			   count, DMA_FROM_DEVICE);
++
++		for (i = 0; i < (count - 1); i++) {
++			up->port.icount.rx++;
++			if (uart_handle_sysrq_char(&up->port, buf[i]))
++				continue;
++
++			uart_insert_char(&up->port, lsr, UART_LSR_OE, buf[i], TTY_NORMAL);
++		}
++
++		up->port.icount.rx++;
++		if (!uart_handle_sysrq_char(&up->port, buf[i]))
++			uart_insert_char(&up->port, lsr, UART_LSR_OE, buf[i], flag);
++	}
++
++	check_modem_status(up);
++
++	spin_unlock(&up->port.lock);
++	tty_flip_buffer_push(up->port.state->port.tty);
++	spin_lock(&up->port.lock);
++
++	mod_timer(&up->dma_rx.timer, jiffies +
++		msecs_to_jiffies(LPC31XX_UART_RX_TIMEOUT));
++
++	/* Clear any pending RX error status and re-enable TX status interrupt */
++	status = serial_inp(up, UART_LSR);
++	serial_outp(up, UART_IER, up->ier);
++
++	spin_unlock(&up->port.lock);
++}
++
++/*
++ * DMA UART TX completion interrupt - this interrupt is more of a spotholder
++ * as it is disabled and will never fire.
++ */
++static void lpc31xx_dma_tx_interrupt(int ch, dma_irq_type_t dtype, void *handle)
++{
++	struct uart_8250_port *up = handle;
++
++	printk(KERN_INFO "serial DMA TX interrupt unexpected\n");
++	tasklet_schedule(&up->dma_tx.tasklet);
++}
++
++/*
++ * DMA UART RX completion interrupt - fires when the DMA RX transfer
++ * is complete.
++ */
++static void lpc31xx_dma_rx_interrupt(int ch, dma_irq_type_t dtype, void *handle)
++{
++	struct uart_8250_port *up = handle;
++
++	tasklet_schedule(&up->dma_rx.tasklet);
++}
++
++static void lpc31xx_uart_tx_dma_start(struct uart_8250_port *up)
++{
++	struct circ_buf *xmit = &up->port.state->xmit;
++	dma_setup_t dmatx;
++
++	/* Start a DMA transfer, DMA is idle if this is called and
++	   TX is enabled. */
++	if (up->port.x_char) {
++		serial_outp(up, UART_TX, up->port.x_char);
++		up->port.icount.tx++;
++		up->port.x_char = 0;
++		return;
++	}
++
++	if (!uart_circ_empty(xmit) && !uart_tx_stopped(&up->port)) {
++		dma_sync_single_for_device(up->port.dev,
++					   up->dma_tx.dma_buff_p,
++					   UART_XMIT_SIZE,
++					   DMA_TO_DEVICE);
++
++		up->dma_tx.count = CIRC_CNT_TO_END(xmit->head, xmit->tail, UART_XMIT_SIZE);
++		if (up->dma_tx.count > 64)
++			up->dma_tx.count = 64;
++
++		/* Note TX buffer is loaned to the DMA so the TX bytes can't
++		   be released until the DMA transfer is complete. */
++		dmatx.trans_length = up->dma_tx.count - 1;
++		dmatx.src_address = (u32) up->dma_tx.dma_buff_p;
++		dmatx.src_address += xmit->tail;
++		dmatx.dest_address = (u32) up->port.mapbase;
++		dmatx.cfg = DMA_CFG_TX_BYTE | DMA_CFG_RD_SLV_NR(0) |
++			DMA_CFG_WR_SLV_NR(DMA_SLV_UART_TX);
++
++		dma_prog_channel(up->dma_tx.dmach, &dmatx);
++		up->dma_tx.active = 1;
++		dma_start_channel(up->dma_tx.dmach);
++
++		/* Enable TX interrupt on TX FIFO empty */
++		up->ier |= UART_IER_THRI;
++	}
++	else {
++		up->dma_tx.active = 0;
++		up->ier &= ~UART_IER_THRI;
++	}
++
++	serial_out(up, UART_IER, up->ier);
++
++	if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
++		uart_write_wakeup(&up->port);
++}
++#endif
++
+ static inline void __stop_tx(struct uart_8250_port *p)
+ {
+ 	if (p->ier & UART_IER_THRI) {
+@@ -1315,6 +1709,10 @@ static void serial8250_stop_tx(struct uart_port *port)
+ 	struct uart_8250_port *up =
+ 		container_of(port, struct uart_8250_port, port);
+ 
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	dma_stop_channel(up->dma_tx.dmach);
++#endif
++
+ 	__stop_tx(up);
+ 
+ 	/*
+@@ -1333,6 +1731,18 @@ static void serial8250_start_tx(struct uart_port *port)
+ 	struct uart_8250_port *up =
+ 		container_of(port, struct uart_8250_port, port);
+ 
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	lpc31xx_dma_lock(up);
++ 
++	/*
++	 * If a DMA TX transfer is currently in progress, then just
++	 * exit and let the TX DMA handler transfer it.
++	 */
++	if (!up->dma_tx.active)
++		lpc31xx_uart_tx_dma_start(up);
++
++	lpc31xx_dma_unlock(up);
++#else
+ 	if (!(up->ier & UART_IER_THRI)) {
+ 		up->ier |= UART_IER_THRI;
+ 		serial_out(up, UART_IER, up->ier);
+@@ -1355,6 +1765,7 @@ static void serial8250_start_tx(struct uart_port *port)
+ 		up->acr &= ~UART_ACR_TXDIS;
+ 		serial_icr_write(up, UART_ACR, up->acr);
+ 	}
++#endif
+ }
+ 
+ static void serial8250_stop_rx(struct uart_port *port)
+@@ -1372,12 +1783,17 @@ static void serial8250_enable_ms(struct uart_port *port)
+ 	struct uart_8250_port *up =
+ 		container_of(port, struct uart_8250_port, port);
+ 
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	dma_stop_channel(up->dma_rx.dmach);
++
++#else
+ 	/* no MSR capabilities */
+ 	if (up->bugs & UART_BUG_NOMSR)
+ 		return;
+ 
+ 	up->ier |= UART_IER_MSI;
+ 	serial_out(up, UART_IER, up->ier);
++#endif
+ }
+ 
+ /*
+@@ -1607,6 +2023,40 @@ static int serial8250_default_handle_irq(struct uart_port *port)
+  */
+ static irqreturn_t serial8250_interrupt(int irq, void *dev_id)
+ {
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	struct irq_info *i = dev_id;
++	struct uart_8250_port *up;
++	unsigned int iir, status;
++
++	/*
++	 * When using DMA, this interrupt only occurs on a RX status
++	 * condition (break, frame error, parity error). Unfortunately,
++	 * there is no way to clear the condition without popping the
++	 * FIFO, so the DMA handle needs to be notified that it needs
++	 * to wakeup and process the incoming data. Meanwhile, the
++	 * RX status interrupt is temporarily disabled so the interrupt
++	 * won't keep firing.
++	 */
++
++	up = list_entry(i->head, struct uart_8250_port, list);
++
++	iir = serial_in(up, UART_IIR) & 0xf;
++	if (!(iir & UART_IIR_NO_INT)) {
++		status = serial_inp(up, UART_LSR);
++		if (status & UART_LSR_THRE) {
++			up->ier &= ~UART_IER_THRI;
++			serial_out(up, UART_IER, up->ier);
++			tasklet_schedule(&up->dma_tx.tasklet);
++		} else {
++			up->ier &= ~UART_IER_RLSI;
++			serial_out(up, UART_IER, up->ier);
++			tasklet_schedule(&up->dma_rx.tasklet);
++		}
++	}
++
++	return IRQ_HANDLED;
++
++#else
+ 	struct irq_info *i = dev_id;
+ 	struct list_head *l, *end = NULL;
+ 	int pass_counter = 0, handled = 0;
+@@ -1644,6 +2094,7 @@ static irqreturn_t serial8250_interrupt(int irq, void *dev_id)
+ 	DEBUG_INTR("end.\n");
+ 
+ 	return IRQ_RETVAL(handled);
++#endif
+ }
+ 
+ /*
+@@ -1679,6 +2130,10 @@ static int serial_link_irq_chain(struct uart_8250_port *up)
+ 	struct hlist_node *n;
+ 	struct irq_info *i;
+ 	int ret, irq_flags = up->port.flags & UPF_SHARE_IRQ ? IRQF_SHARED : 0;
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	dma_addr_t dma_handle;
++	struct circ_buf *xmit = &up->port.state->xmit;
++#endif
+ 
+ 	mutex_lock(&hash_mutex);
+ 
+@@ -1713,6 +2168,59 @@ static int serial_link_irq_chain(struct uart_8250_port *up)
+ 		INIT_LIST_HEAD(&up->list);
+ 		i->head = &up->list;
+ 		spin_unlock_irq(&i->lock);
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++		/* NOTE: The 31XX has only 1 UART channel, so the list head will
++		   always point to that channel. This logic isn't quite right,
++		   but its ok for a single UART */
++
++		/* Setup DMA channels */
++		up->dma_tx.dmach = dma_request_channel("uart_tx",
++			lpc31xx_dma_tx_interrupt, up);
++		if (up->dma_tx.dmach < 0)
++		{
++			printk(KERN_ERR "serial: error getting TX DMA channel.\n");
++			return -EBUSY;
++		}
++		up->dma_rx.dmach = dma_request_channel("uart_rx",
++			lpc31xx_dma_rx_interrupt, up);
++		if (up->dma_rx.dmach < 0)
++		{
++			printk(KERN_ERR "serial: error getting RX DMA channel.\n");
++			return -EBUSY;
++		}
++
++		/* dma_map_single() can be used for the TX buffer, but the RX
++		  buffer needs it's own buffer */
++		up->dma_rx.dma_buff_v = dma_alloc_coherent(NULL, UART_DMABUF_RX_SIZE,
++			&dma_handle, GFP_DMA);
++		if (up->dma_rx.dma_buff_v == NULL)
++		{
++			printk(KERN_ERR "serial: error getting DMA region.\n");
++			return -ENOMEM;
++		}
++		up->dma_rx.dma_buff_p = dma_handle;
++		printk(KERN_INFO "serial: UART RX buffer: P0x%08x, V0x%08x, size:%ld.\n",
++			(u32) up->dma_rx.dma_buff_p, (u32) up->dma_rx.dma_buff_v,
++			UART_DMABUF_RX_SIZE);
++
++		tasklet_init(&up->dma_tx.tasklet, lpc31xx_dma_tx_tasklet_func,
++				(unsigned long) up);
++		tasklet_init(&up->dma_rx.tasklet, lpc31xx_dma_rx_tasklet_func,
++				(unsigned long) up);
++
++		mutex_init(&dma_mutex);
++		/* Map DMA buffer to UART circular buffer */
++		up->dma_tx.dma_buff_p = dma_map_single(up->port.dev,
++					       (void*)xmit->buf,
++					       UART_XMIT_SIZE,
++					       DMA_TO_DEVICE);
++
++		printk(KERN_INFO "serual: UART TX buffer: P0x%08x, V0x%08x, size:%ld.\n",
++			(u32) up->dma_tx.dma_buff_p, (u32) xmit->buf, UART_XMIT_SIZE);
++
++		dma_set_irq_mask(up->dma_tx.dmach, 1, 1);
++		dma_set_irq_mask(up->dma_rx.dmach, 1, 0);
++#endif
+ 		irq_flags |= up->port.irqflags;
+ 		ret = request_irq(up->port.irq, serial8250_interrupt,
+ 				  irq_flags, "serial", i);
+@@ -1725,7 +2233,7 @@ static int serial_link_irq_chain(struct uart_8250_port *up)
+ 
+ static void serial_unlink_irq_chain(struct uart_8250_port *up)
+ {
+-	struct irq_info *i;
++	struct irq_info *i = NULL;
+ 	struct hlist_node *n;
+ 	struct hlist_head *h;
+ 
+@@ -1739,6 +2247,27 @@ static void serial_unlink_irq_chain(struct uart_8250_port *up)
+ 			break;
+ 	}
+ 
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	/* NOTE: The 31XX has only 1 UART channel, so the list head will
++	   always point to that channel. This logic isn't quite right,
++	   but its ok for a single UART */
++
++	/* Disable DMA channels */
++	dma_set_irq_mask(up->dma_tx.dmach, 0, 0);
++	dma_set_irq_mask(up->dma_rx.dmach, 0, 0);
++	dma_stop_channel(up->dma_tx.dmach);
++	dma_stop_channel(up->dma_rx.dmach);
++	dma_release_channel(up->dma_tx.dmach);
++	dma_release_channel(up->dma_rx.dmach);
++
++	dma_unmap_single(up->port.dev, up->dma_tx.dma_buff_p, UART_XMIT_SIZE,
++		DMA_TO_DEVICE);
++
++	dma_free_coherent(up->port.dev, UART_XMIT_SIZE,
++		(void *) up->dma_rx.dma_buff_v,
++		up->dma_rx.dma_buff_p);
++#endif
++
+ 	BUG_ON(n == NULL);
+ 	BUG_ON(i->head == NULL);
+ 
+@@ -1766,6 +2295,7 @@ static void serial8250_timeout(unsigned long data)
+ 	mod_timer(&up->timer, jiffies + uart_poll_timeout(&up->port));
+ }
+ 
++#ifndef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+ static void serial8250_backup_timeout(unsigned long data)
+ {
+ 	struct uart_8250_port *up = (struct uart_8250_port *)data;
+@@ -1812,6 +2342,7 @@ static void serial8250_backup_timeout(unsigned long data)
+ 	mod_timer(&up->timer,
+ 		jiffies + uart_poll_timeout(&up->port) + HZ / 5);
+ }
++#endif
+ 
+ static unsigned int serial8250_tx_empty(struct uart_port *port)
+ {
+@@ -2099,12 +2630,19 @@ static int serial8250_startup(struct uart_port *port)
+ 	 * The above check will only give an accurate result the first time
+ 	 * the port is opened so this value needs to be preserved.
+ 	 */
++#ifndef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+ 	if (up->bugs & UART_BUG_THRE) {
+ 		up->timer.function = serial8250_backup_timeout;
+ 		up->timer.data = (unsigned long)up;
+ 		mod_timer(&up->timer, jiffies +
+ 			uart_poll_timeout(port) + HZ / 5);
+ 	}
++#else
++	init_timer(&up->dma_rx.timer);
++	up->dma_rx.timer.function = serial8250_dma_rx_timer_check;
++	up->dma_rx.timer.data = (unsigned long)up;
++	mod_timer(&up->dma_rx.timer, jiffies + 5);
++#endif
+ 
+ 	/*
+ 	 * If the "interrupt" for this port doesn't correspond with any
+@@ -2191,7 +2729,12 @@ dont_test_tx_en:
+ 	 * are set via set_termios(), which will be occurring imminently
+ 	 * anyway, so we don't enable them here.
+ 	 */
+-	up->ier = UART_IER_RLSI | UART_IER_RDI;
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	up->ier = UART_IER_RLSI;
++
++#else
++ 	up->ier = UART_IER_RLSI | UART_IER_RDI;
++#endif
+ 	serial_outp(up, UART_IER, up->ier);
+ 
+ 	if (up->port.flags & UPF_FOURPORT) {
+@@ -2285,6 +2828,12 @@ serial8250_do_set_termios(struct uart_port *port, struct ktermios *termios,
+ 	unsigned long flags;
+ 	unsigned int baud, quot;
+ 
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	dma_stop_channel(up->dma_rx.dmach);
++	dma_stop_channel(up->dma_tx.dmach);
++	up->dma_tx.active = 0;
++#endif
++
+ 	switch (termios->c_cflag & CSIZE) {
+ 	case CS5:
+ 		cval = UART_LCR_WLEN5;
+@@ -2454,6 +3003,12 @@ serial8250_do_set_termios(struct uart_port *port, struct ktermios *termios,
+ 		serial_outp(up, UART_FCR, fcr);		/* set fcr */
+ 	}
+ 	serial8250_set_mctrl(&up->port, up->port.mctrl);
++
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	dma_write_counter(up->dma_rx.dmach, 0);
++	lcp31xx_dma_rx_setup(up);
++#endif
++
+ 	spin_unlock_irqrestore(&up->port.lock, flags);
+ 	/* Don't rewrite B0 */
+ 	if (tty_termios_baud_rate(termios))
+@@ -2488,6 +3043,13 @@ void serial8250_do_pm(struct uart_port *port, unsigned int state,
+ 	struct uart_8250_port *p =
+ 		container_of(port, struct uart_8250_port, port);
+ 
++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++	if (state == 0) {
++		dma_write_counter(p->dma_rx.dmach, 0);
++		lcp31xx_dma_rx_setup(p);
++	} else
++		dma_stop_channel(p->dma_rx.dmach);
++#endif
+ 	serial8250_set_sleep(p, state != 0);
+ }
+ EXPORT_SYMBOL(serial8250_do_pm);
+diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
+index 925a1e5..fa6cead 100644
+--- a/drivers/tty/serial/Kconfig
++++ b/drivers/tty/serial/Kconfig
+@@ -70,6 +70,12 @@ config SERIAL_8250_CONSOLE
+ 
+ 	  If unsure, say N.
+ 
++config LPC31XX_SERIAL_DMA_SUPPORT
++	bool "DMA support for the LPC31XX RX/TX functions"
++	depends on SERIAL_8250=y
++	help
++	 Enables DMA support for the UART function
++
+ config FIX_EARLYCON_MEM
+ 	bool
+ 	depends on X86

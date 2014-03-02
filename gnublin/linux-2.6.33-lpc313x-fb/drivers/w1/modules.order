@@ -1,0 +1,3 @@
+kernel/drivers/w1/masters/ds2482.ko
+kernel/drivers/w1/slaves/w1_therm.ko
+kernel/drivers/w1/slaves/w1_smem.ko

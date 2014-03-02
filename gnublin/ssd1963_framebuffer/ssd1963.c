@@ -1,0 +1,1 @@
+../linux-2.6.33-lpc313x-fb/drivers/video/ssd1963.c

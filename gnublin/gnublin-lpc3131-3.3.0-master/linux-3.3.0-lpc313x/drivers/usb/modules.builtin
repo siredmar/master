@@ -1,0 +1,3 @@
+kernel/drivers/usb/usb-common.ko
+kernel/drivers/usb/core/usbcore.ko
+kernel/drivers/usb/host/ehci-hcd.ko

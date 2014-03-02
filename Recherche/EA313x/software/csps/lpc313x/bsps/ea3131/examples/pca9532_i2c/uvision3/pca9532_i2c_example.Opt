@@ -1,0 +1,86 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.s*; *.src; *.a*)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt; *.h; *.inc)
+ pExt (*.plm)
+ CppX (*.cpp)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (I2C_Debug), 0x0004 // Tools: 'ARM-ADS'
+Target (I2C_Release), 0x0004 // Tools: 'ARM-ADS'
+GRPOPT 1,(LPC),1,0,0
+GRPOPT 2,(CSP),1,0,0
+GRPOPT 3,(BSP),1,0,0
+GRPOPT 4,(app),1,0,0
+
+OPTFFF 1,1,1,0,0,0,0,0,<..\..\..\..\..\..\..\lpc\source\lpc_arm922t_cp15_driver.c><lpc_arm922t_cp15_driver.c> 
+OPTFFF 2,2,1,1308622848,0,0,0,0,<..\..\..\..\..\source\lpc313x_cgu_default.c><lpc313x_cgu_default.c> 
+OPTFFF 2,3,1,0,0,0,0,0,<..\..\..\..\..\source\lpc313x_cgu_driver.c><lpc313x_cgu_driver.c> 
+OPTFFF 2,4,1,1073741824,0,0,0,0,<..\..\..\..\..\source\lpc313x_i2c_driver.c><lpc313x_i2c_driver.c> 
+OPTFFF 2,5,1,0,0,0,0,0,<..\..\..\..\..\source\lpc313x_intc_driver.c><lpc313x_intc_driver.c> 
+OPTFFF 2,6,2,0,0,0,0,0,<..\..\..\..\..\source\lpc313x_vectors.s><lpc313x_vectors.s> 
+OPTFFF 2,7,1,1073741824,0,0,0,0,<..\..\..\..\..\source\lpc313x_timer_driver.c><lpc313x_timer_driver.c> 
+OPTFFF 2,8,1,0,0,0,0,0,<..\..\..\source\ea3131_board.c><ea3131_board.c> 
+OPTFFF 3,9,1,0,0,0,0,0,<..\..\..\startup\ea3131_startup.c><ea3131_startup.c> 
+OPTFFF 3,10,2,0,0,0,0,0,<..\..\..\startup\ea3131_startup_entry.s><ea3131_startup_entry.s> 
+OPTFFF 3,11,2,0,0,0,0,0,<..\..\..\startup\pad.s><pad.s> 
+OPTFFF 4,12,1,369098752,0,0,0,0,<..\pca9532_i2c_example.c><pca9532_i2c_example.c> 
+OPTFFF 4,13,1,0,0,0,0,0,<..\..\..\source\lpc313x_pca9532_driver.c><lpc313x_pca9532_driver.c> 
+
+
+TARGOPT 1, (I2C_Debug)
+ ADSCLK=13000000
+  OPTTT 1,1,1,0
+  OPTHX 1,65535,0,0,0
+  OPTLX 79,66,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTAX 8
+  OPTBL 0,(Data Sheet)<DATASHTS\PHILIPS\LPC3180_DS.PDF>
+  OPTBL 1,(User Manual)<DATASHTS\PHILIPS\LPC3180_UM.PDF>
+  OPTDL (SARM.DLL)(-cLPC3000)(DARMP3.DLL)(-pLPC3180)(SARM.DLL)()(TARMP3.DLL)(-pLPC3180)
+  OPTDBG 47614,0,()()()()()()()()()(..\..\common\keil_init.ini) (BIN\UL2ARM.DLL)()()()
+  OPTKEY 0,(DLGTARM)(Ù)
+  OPTKEY 0,(ARMDBGFLAGS)()
+  OPTKEY 0,(UL2ARM)(-UV0836N8E -O14 -S0 -C0 -N00("ARM926EJ-S Core") -D00(07926F0F) -L00(4) -FO7 -FD8000000 -FC800 -FN0)
+  OPTMM 1,2,(0x60000400)
+  OPTMM 2,2,(0x40048000)
+  OPTMM 3,2,(0X400040b0)
+  OPTMM 4,2,(0X40004060)
+  OPTDF 0x80
+  OPTLE <>
+  OPTLC <>
+EndOpt
+
+TARGOPT 2, (I2C_Release)
+ ADSCLK=13000000
+  OPTTT 1,1,1,0
+  OPTHX 1,65535,0,0,0
+  OPTLX 79,66,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,0
+  OPTAX 8
+  OPTBL 0,(Data Sheet)<DATASHTS\PHILIPS\LPC3180_DS.PDF>
+  OPTBL 1,(User Manual)<DATASHTS\PHILIPS\LPC3180_UM.PDF>
+  OPTDL (SARM.DLL)(-cLPC3000)(DARMP3.DLL)(-pLPC3180)(SARM.DLL)()(TARMP3.DLL)(-pLPC3180)
+  OPTDBG 47614,0,()()()()()()()()()(..\..\..\test\common\keil_init.ini) (BIN\UL2ARM.DLL)()()()
+  OPTKEY 0,(DLGTARM)(êÍ)
+  OPTKEY 0,(ARMDBGFLAGS)()
+  OPTKEY 0,(UL2ARM)(-UU0216F6E -O14 -S0 -C1 -N00("Unknown JTAG device") -D00(1B900F0F) -L00(4) -N01("ARM926EJ-S Core") -D01(17900F0F) -L01(4) -FO7 -FD8000000 -FC800 -FN0)
+  OPTMM 1,0,(0x400A0000)
+  OPTMM 2,2,(0x40048000)
+  OPTMM 3,2,(0X400040b0)
+  OPTMM 4,2,(0X40004060)
+  OPTDF 0x80
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

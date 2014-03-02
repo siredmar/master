@@ -1,0 +1,249 @@
+USB Gadget support for lpc31xx
+
+From: Jon Smirl <jonsmirl@terra.(none)>
+
+
+---
+ drivers/usb/gadget/Kconfig        |   12 +++++++--
+ drivers/usb/gadget/Makefile       |    1 +
+ drivers/usb/gadget/fsl_lpc_udc.c  |   40 ++++++++++++++++++++++++++++++
+ drivers/usb/gadget/fsl_udc_core.c |   49 +++++++++++++++++++++++++++----------
+ drivers/usb/gadget/gadget_chips.h |    3 ++
+ 5 files changed, 89 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/usb/gadget/fsl_lpc_udc.c
+
+diff --git a/drivers/usb/gadget/Kconfig b/drivers/usb/gadget/Kconfig
+index 23a4473..45cdefa 100644
+--- a/drivers/usb/gadget/Kconfig
++++ b/drivers/usb/gadget/Kconfig
+@@ -155,14 +155,20 @@ config USB_ATMEL_USBA
+ 	  USBA is the integrated high-speed USB Device controller on
+ 	  the AT32AP700x, some AT91SAM9 and AT91CAP9 processors from Atmel.
+ 
++config USB_ATMEL_USBA
++	tristate
++	depends on USB_GADGET_ATMEL_USBA
++	default USB_GADGET
++	select USB_GADGET_SELECTED
++
+ config USB_FSL_USB2
+ 	tristate "Freescale Highspeed USB DR Peripheral Controller"
+-	depends on FSL_SOC || ARCH_MXC
++	depends on FSL_SOC || ARCH_MXC || ARCH_LPC31XX
+ 	select USB_GADGET_DUALSPEED
+ 	select USB_FSL_MPH_DR_OF if OF
+ 	help
+-	   Some of Freescale PowerPC processors have a High Speed
+-	   Dual-Role(DR) USB controller, which supports device mode.
++	   Some of Freescale PowerPC processors and LPC313x have a High 
++	   Speed Dual-Role(DR) USB controller, which supports device mode.
+ 
+ 	   The number of programmable endpoints is different through
+ 	   SOC revisions.
+diff --git a/drivers/usb/gadget/Makefile b/drivers/usb/gadget/Makefile
+index b54ac61..7a49ac2 100644
+--- a/drivers/usb/gadget/Makefile
++++ b/drivers/usb/gadget/Makefile
+@@ -19,6 +19,7 @@ obj-$(CONFIG_USB_ATMEL_USBA)	+= atmel_usba_udc.o
+ obj-$(CONFIG_USB_FSL_USB2)	+= fsl_usb2_udc.o
+ fsl_usb2_udc-y			:= fsl_udc_core.o
+ fsl_usb2_udc-$(CONFIG_ARCH_MXC)	+= fsl_mxc_udc.o
++fsl_usb2_udc-$(CONFIG_ARCH_LPC31XX) += fsl_lpc_udc.o
+ obj-$(CONFIG_USB_M66592)	+= m66592-udc.o
+ obj-$(CONFIG_USB_R8A66597)	+= r8a66597-udc.o
+ obj-$(CONFIG_USB_FSL_QE)	+= fsl_qe_udc.o
+diff --git a/drivers/usb/gadget/fsl_lpc_udc.c b/drivers/usb/gadget/fsl_lpc_udc.c
+new file mode 100644
+index 0000000..68d862b
+--- /dev/null
++++ b/drivers/usb/gadget/fsl_lpc_udc.c
+@@ -0,0 +1,40 @@
++/*
++ *  Author:	Durgesh Pattamatta
++ *  Copyright (C) 2009 NXP semiconductors
++ *
++ * Description:
++ * Helper routines for LPC313x/4x/5x SoCs from NXP, needed by the fsl_udc_core.c
++ * driver to function correctly on these systems.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++ */
++#include <linux/clk.h>
++#include <linux/delay.h>
++#include <linux/err.h>
++#include <linux/fsl_devices.h>
++#include <linux/platform_device.h>
++
++int fsl_udc_clk_init(struct platform_device *pdev)
++{
++	return 0;
++}
++
++void fsl_udc_clk_finalize(struct platform_device *pdev)
++{
++}
++
++void fsl_udc_clk_release(void)
++{
++}
+diff --git a/drivers/usb/gadget/fsl_udc_core.c b/drivers/usb/gadget/fsl_udc_core.c
+index dd28ef3..0f092a6 100644
+--- a/drivers/usb/gadget/fsl_udc_core.c
++++ b/drivers/usb/gadget/fsl_udc_core.c
+@@ -17,7 +17,9 @@
+  * option) any later version.
+  */
+ 
+-#undef VERBOSE
++//#define VERBOSE
++//#define VERBOSE_DEBUG
++//#define DEBUG
+ 
+ #include <linux/module.h>
+ #include <linux/kernel.h>
+@@ -76,6 +78,8 @@ fsl_ep0_desc = {
+ };
+ 
+ static void fsl_ep_fifo_flush(struct usb_ep *_ep);
++static int fsl_udc_suspend(struct platform_device *pdev, pm_message_t state);
++static int fsl_udc_resume(struct platform_device *pdev);
+ 
+ #ifdef CONFIG_PPC32
+ /*
+@@ -517,9 +521,9 @@ static void ep0_setup(struct fsl_udc *udc)
+ 	/* the intialization of an ep includes: fields in QH, Regs,
+ 	 * fsl_ep struct */
+ 	struct_ep_qh_setup(udc, 0, USB_RECV, USB_ENDPOINT_XFER_CONTROL,
+-			USB_MAX_CTRL_PAYLOAD, 0, 0);
++			USB_MAX_CTRL_PAYLOAD, 1, 0);
+ 	struct_ep_qh_setup(udc, 0, USB_SEND, USB_ENDPOINT_XFER_CONTROL,
+-			USB_MAX_CTRL_PAYLOAD, 0, 0);
++			USB_MAX_CTRL_PAYLOAD, 1, 0);
+ 	dr_ep_setup(0, USB_RECV, USB_ENDPOINT_XFER_CONTROL);
+ 	dr_ep_setup(0, USB_SEND, USB_ENDPOINT_XFER_CONTROL);
+ 
+@@ -546,6 +550,7 @@ static int fsl_ep_enable(struct usb_ep *_ep,
+ 	unsigned char mult = 0, zlt;
+ 	int retval = -EINVAL;
+ 	unsigned long flags = 0;
++	unsigned char dir = 0;
+ 
+ 	ep = container_of(_ep, struct fsl_ep, ep);
+ 
+@@ -597,17 +602,20 @@ static int fsl_ep_enable(struct usb_ep *_ep,
+ 	/* Controller related setup */
+ 	/* Init EPx Queue Head (Ep Capabilites field in QH
+ 	 * according to max, zlt, mult) */
+-	struct_ep_qh_setup(udc, (unsigned char) ep_index(ep),
+-			(unsigned char) ((desc->bEndpointAddress & USB_DIR_IN)
+-					?  USB_SEND : USB_RECV),
++	dir = (unsigned char) ((desc->bEndpointAddress & USB_DIR_IN)
++			          ? USB_SEND : USB_RECV);
++	struct_ep_qh_setup(udc, (unsigned char) ep_index(ep), dir,
+ 			(unsigned char) (desc->bmAttributes
+ 					& USB_ENDPOINT_XFERTYPE_MASK),
+ 			max, zlt, mult);
+ 
++	/* Clear endpoint stall if set */
++	if(dr_ep_get_stall((unsigned char) ep_index(ep), dir)) {
++		dr_ep_change_stall((unsigned char) ep_index(ep), dir, 0);
++	}
++
+ 	/* Init endpoint ctrl register */
+-	dr_ep_setup((unsigned char) ep_index(ep),
+-			(unsigned char) ((desc->bEndpointAddress & USB_DIR_IN)
+-					? USB_SEND : USB_RECV),
++	dr_ep_setup((unsigned char) ep_index(ep), dir,
+ 			(unsigned char) (desc->bmAttributes
+ 					& USB_ENDPOINT_XFERTYPE_MASK));
+ 
+@@ -1429,15 +1437,20 @@ static void setup_received_irq(struct fsl_udc *udc,
+ 				== (USB_RECIP_ENDPOINT | USB_TYPE_STANDARD)) {
+ 			int pipe = get_pipe_by_windex(wIndex);
+ 			struct fsl_ep *ep;
++			unsigned long flags = 0;
+ 
+ 			if (wValue != 0 || wLength != 0 || pipe > udc->max_ep)
+ 				break;
+ 			ep = get_ep_by_pipe(udc, pipe);
+ 
+ 			spin_unlock(&udc->lock);
+-			rc = fsl_ep_set_halt(&ep->ep,
+-					(setup->bRequest == USB_REQ_SET_FEATURE)
+-						? 1 : 0);
++			spin_lock_irqsave(&ep->udc->lock, flags);
++			dr_ep_change_stall((unsigned char)(ep_index(ep)),
++					(ep_is_in(ep) ? USB_SEND : USB_RECV),
++					((setup->bRequest == USB_REQ_SET_FEATURE)
++					             ? 1 : 0));
++			rc = 0;
++			spin_unlock_irqrestore(&ep->udc->lock, flags);
+ 			spin_lock(&udc->lock);
+ 
+ 		} else if ((setup->bRequestType & (USB_RECIP_MASK
+@@ -2453,7 +2466,6 @@ static int __init fsl_udc_probe(struct platform_device *pdev)
+ 			goto err_kfree;
+ 		}
+ 	}
+-
+ 	dr_regs = ioremap(res->start, resource_size(res));
+ 	if (!dr_regs) {
+ 		ret = -ENOMEM;
+@@ -2494,6 +2506,11 @@ static int __init fsl_udc_probe(struct platform_device *pdev)
+ 	/* DEN is bidirectional ep number, max_ep doubles the number */
+ 	udc_controller->max_ep = (dccparams & DCCPARAMS_DEN_MASK) * 2;
+ 
++#ifdef CONFIG_USB_OTG
++	udc_controller->transceiver = otg_get_transceiver();
++	VDBG("udc: otg_get_transceiver returns 0x%p", udc_controller->transceiver);
++#endif
++
+ 	udc_controller->irq = platform_get_irq(pdev, 0);
+ 	if (!udc_controller->irq) {
+ 		ret = -ENODEV;
+@@ -2619,6 +2636,12 @@ static int __exit fsl_udc_remove(struct platform_device *pdev)
+ 
+ 	fsl_udc_clk_release();
+ 
++#ifdef CONFIG_USB_OTG
++	if (udc_controller->transceiver) {
++		otg_put_transceiver(udc_controller->transceiver);
++		udc_controller->transceiver = 0;
++	}
++#endif
+ 	/* DR has been stopped in usb_gadget_unregister_driver() */
+ 	remove_proc_file();
+ 
+diff --git a/drivers/usb/gadget/gadget_chips.h b/drivers/usb/gadget/gadget_chips.h
+index a8855d0..4652f5f 100644
+--- a/drivers/usb/gadget/gadget_chips.h
++++ b/drivers/usb/gadget/gadget_chips.h
+@@ -37,6 +37,7 @@
+ #define gadget_is_goku(g)		(!strcmp("goku_udc", (g)->name))
+ #define gadget_is_imx(g)		(!strcmp("imx_udc", (g)->name))
+ #define gadget_is_langwell(g)		(!strcmp("langwell_udc", (g)->name))
++#define gadget_is_lpc313x(g)		(!strcmp("lpc313x_udc", (g)->name))
+ #define gadget_is_m66592(g)		(!strcmp("m66592_udc", (g)->name))
+ #define gadget_is_musbhdrc(g)		(!strcmp("musb-hdrc", (g)->name))
+ #define gadget_is_net2272(g)		(!strcmp("net2272", (g)->name))
+@@ -118,6 +119,8 @@ static inline int usb_gadget_controller_number(struct usb_gadget *gadget)
+ 		return 0x31;
+ 	else if (gadget_is_dwc3(gadget))
+ 		return 0x32;
++	else if (gadget_is_lpc313x(gadget))
++		return 0x33;
+ 
+ 	return -ENOENT;
+ }

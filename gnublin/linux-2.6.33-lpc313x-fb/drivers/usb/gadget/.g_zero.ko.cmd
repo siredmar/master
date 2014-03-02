@@ -1,0 +1,1 @@
+cmd_drivers/usb/gadget/g_zero.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/usb/gadget/g_zero.ko drivers/usb/gadget/g_zero.o drivers/usb/gadget/g_zero.mod.o

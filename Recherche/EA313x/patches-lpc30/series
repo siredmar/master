@@ -1,0 +1,13 @@
+# This series applies on GIT commit ecb6bec1e2ebfb64a0657fefd23a203f5c20aeeb
+i2c-fix
+base
+defconfigs
+nand
+spi
+mmc
+watchdog
+sound
+usb
+gadget
+old8250
+video

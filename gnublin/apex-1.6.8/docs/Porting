@@ -1,0 +1,65 @@
+===========================
+     APEX Boot Loader
+	Porting 
+===========================
+
+This README gives a very coarse overview of the process for porting
+APEX to an unsupported machine.
+
+  Machine Directory
+  -----------------
+
+Machine/board specific code goes into a machine directory, src/mach-*.
+Generally, these are organized by the specific CPU implementation and
+not the board as there tends to be a lot of shared code among targets
+with the same CPU.
+
+Each build requires a configuation file, src/mach-*/*_config.  Refer
+to the README_config for details on the configuration parameters.
+
+  Target Initialization
+  ---------------------
+
+Assuming that the CPU architecture is already supported, src/arch-*,
+the first piece to implement is the initialization code.  When APEX is
+first executed, it executes initialize_bootstrap () to prepare SDRAM
+before copying APEX out of flash.  It is wise to do only what must be
+done before relocating APEX in this function.
+
+usleep(), necessary to pace SDRAM initialization, is required to
+support APEX.
+
+On returning from initialize_bootstrap (), APEX relocates to SDRAM and
+calls the service initializations.  Targets that need some
+initializatons that were not performed in initialize_bootstrap () and
+will not be performed by device drivers may implement a service_0.
+
+
+  Serial Driver
+  -------------
+
+All platforms should implement a console service.  This code is
+implemented in the machine directory because it tends to be small and,
+so far, none are similar enough to benefit from a generic serial
+driver.
+
+
+  Timer Driver
+  ------------
+
+There is a handful of places in the code that rely on a long-term
+delay to give the user a chance to perform an action, or to control
+timeouts (e.g. XMODEM).  The timer driver returns an opaque 32 bit
+value and must support a delta function to compute elapsed time in
+milliseconds.  The timer driver must support ranges of time of at
+least 15 seconds.
+
+
+  NOR Flash Driver
+  ----------------
+
+All platforms should implement a flash driver.  The LH7A40X NOR driver
+is nearly generic for CFI compliant devices.  Eventually, this code
+will be put into a library.
+
+

@@ -1,0 +1,108 @@
+--- arch/arm/mach-lpc31xx/board-gnublin.c	2012-08-26 13:21:22.477162728 +0200
++++ arch/arm/mach-lpc31xx/board-gnublin.c	2012-08-21 22:55:26.133612465 +0200
+@@ -607,6 +809,72 @@
+ 
+ #define PCA9532_GPIO_BASE 0x340
+ #define VBUS_PWR_EN	(6 + PCA9532_GPIO_BASE)
++#define START_STOP_LED	8  /*led5 */
++#define IDLE_LED	9  /*led6 */
++
++static struct pca9532_platform_data ea313x_leds = {
++	.gpio_base = PCA9532_GPIO_BASE,
++	.leds = {
++	{	.type = PCA9532_TYPE_GPIO }, /* key joy 1 */
++	{	.type = PCA9532_TYPE_GPIO }, /* key joy 2 */
++	{	.type = PCA9532_TYPE_GPIO }, /* key joy 3 */
++	{	.type = PCA9532_TYPE_GPIO }, /* key joy 4 */
++	{	.type = PCA9532_TYPE_GPIO }, /* key joy 5 */
++	{	.type = PCA9532_TYPE_GPIO }, /* OTP gpio */
++	{	.type = PCA9532_TYPE_GPIO }, /* V_BUS_EN gpio */
++	{	.type = PCA9532_TYPE_GPIO }, /* V_PWR_CTRL gpio */
++
++	{	.name = "ea313x:red:led5",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	{	.name = "ea313x:red:led6",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	{	.name = "ea313x:red:led7",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	{	.name = "ea313x:red:led8",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	{	.name = "ea313x:red:led9",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	{	.name = "ea313x:red:led10",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	{	.name = "ea313x:red:led11",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	{	.name = "ea313x:red:led12",
++		.state = PCA9532_OFF,
++		.type = PCA9532_TYPE_LED,
++	},
++	},
++	.psc = { 0, 0 },
++	.pwm = { 0, 0 },
++};
++
++static struct i2c_board_info ea313x_i2c_devices[] __initdata = {
++	{
++		I2C_BOARD_INFO("pca9532", 0x60),
++		.platform_data = &ea313x_leds,
++	},
++};
++
++#if defined(CONFIG_MACH_EA3152)
++static struct i2c_board_info ea3152_i2c1_devices[] __initdata = {
++	{
++		I2C_BOARD_INFO("lpc3152-psu", 0x0C),
++	},
++};
++#endif
+ 
+ void lpc313x_vbus_power(int enable)
+ {
+@@ -614,17 +882,28 @@
+ 	gpio_set_value(VBUS_PWR_EN, enable);
+ }
+ 
+-#if defined(CONFIG_MACH_GNUBLIN)
+-static void __init gnublin_init(void)
++static void __init ea313x_init(void)
+ {
+ 	lpc313x_init();
+-
+ 	/* register i2cdevices */
+ 	lpc313x_register_i2c_devices();
+ 	
++
+ 	platform_add_devices(devices, ARRAY_SIZE(devices));
++
++	/* add DM9000 device */
++	ea_add_device_dm9000();
++	
++	ea_add_device_ssd1289();
++
++	i2c_register_board_info(0, ea313x_i2c_devices,
++		ARRAY_SIZE(ea313x_i2c_devices));
++
++#if defined(CONFIG_MACH_EA3152)
++	i2c_register_board_info(1, ea3152_i2c1_devices,
++		ARRAY_SIZE(ea3152_i2c1_devices));
++#endif
+ }
+-#endif
+ 
+ #if defined(CONFIG_USB_EHCI_HCD)
+ static void __init ea_usb_power(void)

@@ -1,0 +1,1 @@
+cmd_apex := arm-linux-gnueabi-ld  -p --no-undefined -X -g -o apex -T src/arch-arm/entry/apex.lds   src/arch-arm/entry/built-in.o --start-group  src/mach-lpc313x/built-in.o  src/drivers/built-in.o  src/net/built-in.o  src/arch-arm/linux/built-in.o  src/apex/built-in.o  src/lib/lib.a  src/arch-arm/lib/lib.a  src/lib/built-in.o  src/arch-arm/lib/built-in.o   --end-group 

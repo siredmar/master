@@ -1,0 +1,76 @@
+*** Creating Trace Output File '.\output\usbdisp.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\output\lpc3152_codec_driver.o"'
+### List of Objects: adding '".\output\lpc313x_adc10b_driver.o"'
+### List of Objects: adding '".\output\lpc313x_cgu_default.o"'
+### List of Objects: adding '".\output\lpc313x_cgu_driver.o"'
+### List of Objects: adding '".\output\lpc313x_crc_driver.o"'
+### List of Objects: adding '".\output\lpc313x_dma_driver.o"'
+### List of Objects: adding '".\output\lpc313x_evt_driver.o"'
+### List of Objects: adding '".\output\lpc313x_i2c_driver.o"'
+### List of Objects: adding '".\output\lpc313x_i2s_clock_driver.o"'
+### List of Objects: adding '".\output\lpc313x_i2s_driver.o"'
+### List of Objects: adding '".\output\lpc313x_intc_driver.o"'
+### List of Objects: adding '".\output\lpc313x_ipint_driver.o"'
+### List of Objects: adding '".\output\lpc313x_mci_driver.o"'
+### List of Objects: adding '".\output\lpc313x_mstr_i2c_driver.o"'
+### List of Objects: adding '".\output\lpc313x_nand_driver.o"'
+### List of Objects: adding '".\output\lpc313x_pwm_driver.o"'
+### List of Objects: adding '".\output\lpc313x_spi_driver.o"'
+### List of Objects: adding '".\output\lpc313x_timer_driver.o"'
+### List of Objects: adding '".\output\lpc313x_uart_driver.o"'
+### List of Objects: adding '".\output\lpc313x_usbdcd.o"'
+### List of Objects: adding '".\output\lpc313x_wdt_driver.o"'
+### List of Objects: adding '".\output\lpc315x_otp_driver.o"'
+### List of Objects: adding '".\output\lpc315x_psu_driver.o"'
+### List of Objects: adding '".\output\lpc315x_rtc_driver.o"'
+### List of Objects: adding '".\output\lpc313x_vectors.o"'
+### List of Objects: adding '".\output\ea3131_board.o"'
+### List of Objects: adding '".\output\ea3131_spinor.o"'
+### List of Objects: adding '".\output\lpc313x_pca9532_driver.o"'
+### List of Objects: adding '".\output\uda1380_codec_driver.o"'
+### List of Objects: adding '".\output\ea3131_startup.o"'
+### List of Objects: adding '".\output\ea3131_startup_entry.o"'
+### List of Objects: adding '".\output\pad.o"'
+### List of Objects: adding '".\output\ea3131_lcd.o"'
+### List of Objects: adding '".\output\usbdesc.o"'
+### List of Objects: adding '".\output\main.o"'
+### List of Objects: adding '".\output\usbcore.o"'
+### List of Objects: adding '".\output\lpc_x6x13.o"'
+### List of Objects: adding '".\output\lpc_api.o"'
+### List of Objects: adding '".\output\lpc_arm922t_cp15_driver.o"'
+### List of Objects: adding '".\output\lpc_bmp.o"'
+### List of Objects: adding '".\output\lpc_colors.o"'
+### List of Objects: adding '".\output\lpc_fat16.o"'
+### List of Objects: adding '".\output\lpc_fat16_private.o"'
+### List of Objects: adding '".\output\lpc_fonts.o"'
+### List of Objects: adding '".\output\lpc_heap.o"'
+### List of Objects: adding '".\output\lpc_helvr10.o"'
+### List of Objects: adding '".\output\lpc_lbecc.o"'
+### List of Objects: adding '".\output\lpc_lcd_params.o"'
+### List of Objects: adding '".\output\lpc_line_parser.o"'
+### List of Objects: adding '".\output\lpc_nandflash_params.o"'
+### List of Objects: adding '".\output\lpc_rom8x8.o"'
+### List of Objects: adding '".\output\lpc_rom8x16.o"'
+### List of Objects: adding '".\output\lpc_string.o"'
+### List of Objects: adding '".\output\lpc_swim.o"'
+### List of Objects: adding '".\output\lpc_swim_font.o"'
+### List of Objects: adding '".\output\lpc_swim_image.o"'
+### List of Objects: adding '".\output\lpc_winfreesystem14x16.o"'
+### List of Objects: adding '".\output\lpc_x5x7.o"'
+### ADS-LD Command completed:
+--cpu ARM926EJ-S ".\output\lpc3152_codec_driver.o" ".\output\lpc313x_adc10b_driver.o" ".\output\lpc313x_cgu_default.o" ".\output\lpc313x_cgu_driver.o" ".\output\lpc313x_crc_driver.o" ".\output\lpc313x_dma_driver.o" ".\output\lpc313x_evt_driver.o" ".\output\lpc313x_i2c_driver.o" ".\output\lpc313x_i2s_clock_driver.o" ".\output\lpc313x_i2s_driver.o" ".\output\lpc313x_intc_driver.o" ".\output\lpc313x_ipint_driver.o" ".\output\lpc313x_mci_driver.o" ".\output\lpc313x_mstr_i2c_driver.o" ".\output\lpc313x_nand_driver.o" ".\output\lpc313x_pwm_driver.o" ".\output\lpc313x_spi_driver.o" ".\output\lpc313x_timer_driver.o" ".\output\lpc313x_uart_driver.o" ".\output\lpc313x_usbdcd.o" ".\output\lpc313x_wdt_driver.o" ".\output\lpc315x_otp_driver.o" ".\output\lpc315x_psu_driver.o" ".\output\lpc315x_rtc_driver.o" ".\output\lpc313x_vectors.o" ".\output\ea3131_board.o" ".\output\ea3131_spinor.o" ".\output\lpc313x_pca9532_driver.o" ".\output\uda1380_codec_driver.o" ".\output\ea3131_startup.o" ".\output\ea3131_startup_entry.o" ".\output\pad.o" ".\output\ea3131_lcd.o" ".\output\usbdesc.o" ".\output\main.o" ".\output\usbcore.o" ".\output\lpc_x6x13.o" ".\output\lpc_api.o" ".\output\lpc_arm922t_cp15_driver.o" ".\output\lpc_bmp.o" ".\output\lpc_colors.o" ".\output\lpc_fat16.o" ".\output\lpc_fat16_private.o" ".\output\lpc_fonts.o" ".\output\lpc_heap.o" ".\output\lpc_helvr10.o" ".\output\lpc_lbecc.o" ".\output\lpc_lcd_params.o" ".\output\lpc_line_parser.o" ".\output\lpc_nandflash_params.o" ".\output\lpc_rom8x8.o" ".\output\lpc_rom8x16.o" ".\output\lpc_string.o" ".\output\lpc_swim.o" ".\output\lpc_swim_font.o" ".\output\lpc_swim_image.o" ".\output\lpc_winfreesystem14x16.o" ".\output\lpc_x5x7.o" --strict --scatter "..\common\ldscript_iram_ads.ld" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\usbdisp.map" -o ".\output\usbdisp.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\output\usbdisp.axf'
+### ADS-LD Command File: '.\output\usbdisp.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\output\usbdisp.lnp', Handle=0x00000338
+### Writing '.lnp' file
+### ADS-LD Command file '.\output\usbdisp.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

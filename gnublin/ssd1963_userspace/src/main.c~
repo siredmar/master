@@ -1,0 +1,223 @@
+#include "../inc/std_types.h"
+
+#include "dio/dio.h"
+#include "tft/tft.h"
+
+/* LPC3131 UM chapter 15 */
+#define IOCONFIG    0x13003000
+#define CLK_REG		0x1300442C
+#define wh  160560
+
+
+
+#define w TFT_WIDTH_UI16
+#define h TFT_HEIGHT_UI16
+#define FBLO_GPIO   0x1C0	/* GPIO functional block */
+
+int memory_fd;
+char *memory;
+
+void
+open_memory (uint32 address)
+{
+
+
+
+  //atexit(byebye);
+
+  if ((memory_fd = open ("/dev/mem", O_RDWR)) < 0)
+    {
+      printf ("can't open /dev/mem \n");
+      exit (-1);
+    }
+
+  printf ("mem_fd = %d\n", memory_fd);
+  printf ("getpagesize() -> %d\n", getpagesize ());
+
+  memory = mmap (0, getpagesize (), PROT_READ | PROT_WRITE,
+		 //MAP_PRIVATE,
+		 MAP_SHARED, memory_fd, address);
+
+  if (memory == MAP_FAILED)
+    {
+      printf ("mmap error %d\n", errno);
+      exit (-1);
+    }
+  else
+    {
+      printf ("memory = 0x%x\n", (unsigned int) memory);
+    }
+  //return memory_fd;
+}
+
+
+
+int
+main ()
+{
+////////        unsigned int cnt = 0;
+////////
+////////
+////////        dio_init();
+////////                tft_init(&tft_initialConfigTft_s);
+//////////      while(1){
+//////////              tft_clearScreen((tft_stdColorsType)cnt);
+////////////            tft_drawRectangle(250, 0, 200, 200, (tft_stdColorsType)GREEN);
+////////////            tft_drawRectangle(50, 100, 300, 150, (tft_stdColorsType)BLUE);
+////////////            tft_drawRectangle(10, 10, 50, 75, (tft_stdColorsType)YELLOW);
+////////////            tft_drawRectangle(90, 200, 100, 5, (tft_stdColorsType)CYAN);
+////////////            tft_drawRectangle(280, 30, 5, 200, (tft_stdColorsType)RED);
+//////////              cnt = cnt + 100;
+//////////              usleep(40000L); // sleep for 40ms
+//////////      }
+//////////
+////////                FILE* fb=fopen("/root/fb/Xvfb_screen0","rb");
+////////                uint32 changed;
+////////                uint32  drawed;
+////////                  // allocate two buffers for tracking the source framebuffer changes
+////////                  uint16 buf_display [w*h*2]; // the current display content
+////////                  uint16 buf_source  [w*h*2]; // the source framebuffer content
+////////                  uint16 color [w*h*2];
+//////////                uint16 color;
+////////                  // uint32 i;
+////////                  boolean drawing;
+////////                  uint32 lastChange;
+////////
+////////                  int x, y, j, i;
+////////
+////////          while(1){
+////////           fseek(fb, 0, SEEK_SET);         // rewind source framebuffer
+////////           fread(buf_source, 1, w*h*2, fb);  // read complete source framebuffer
+////////
+////////           // statistics
+////////           changed=0; // how many pixels have changed since last refresh
+////////            drawed=0; // how many pixel actualy where transmitted since last refresh
+////////
+////////           // state for merging adjacent changes into one transmission
+////////
+////////           drawing=0;     // if pixels are currently transmitted
+////////           lastChange=0;  // index of first pixel of this transmission
+////////
+////////            //for all pixels on screen...
+////////           for(y=0; y<h; y++)
+////////           {
+////////            for(x=0; x<w; x++)
+////////            {
+////////              // // get this pixels source color
+////////             if(color[y*w+x] != buf_source[y*w+x])
+////////             {
+////////                 color[y*w+x]=buf_source[y*w+x];
+////////                 // the pixel has changed
+////////               changed++;
+////////
+////////               tft_drawPixel(x, y, color[y*w+x]);
+////////               drawed++;
+////////             }
+////////            }
+////////           }
+////////
+////////           if(changed>0) printf("Pixels changed: %i, drawed: %i\n",changed,drawed);
+////////           usleep(40000L); // sleep for 40ms
+////////          }
+////////
+////////          // actually we never get here
+////////          fclose(fb);
+////////          dio_uninit();
+////////
+////////                return 0;
+  unsigned int x, y;
+
+  // statistics
+  uint32 changed = 0;		// how many pixels have changed since last refresh
+  uint32 drawed = 0;		// how many pixel actualy where transmitted since last refresh
+
+  uint16 color;
+  // state for merging adjacent changes into one transmission
+  uint32 i = 0;
+  unsigned int j;			// current pixel index
+  uint8 drawing = 0;		// if pixels are currently transmitted
+  uint32 lastChange = 0;	// index of first pixel of this transmission
+  // allocate two buffers for tracking the source framebuffer changes
+  uint16 buf_display[w * h * 2];	// the current display content
+  uint16 buf_source[w * h * 2];	// the source framebuffer content
+
+  FILE *fb = fopen ("/root/fb/Xvfb_screen0", "rb");
+
+
+  dio_init ();
+  tft_init (&tft_initialConfigTft_s);
+  tft_clearScreen (0x0000);
+
+  // open the source framebuffer device
+
+
+
+
+  // run forever...
+  while (1)
+    {
+    fseek (fb, 0, SEEK_SET);	// rewind source framebuffer
+    fread (buf_source, 1, w * h * 2, fb);	// read complete source framebuffer
+
+      // for all pixels on screen...
+    for (y = 0; y < h; y++)
+	{
+	  for (x = 0; x < w; x++)
+	    {
+	      color = buf_source[i];	// get this pixels source color
+	      if (color != buf_display[i])
+	      {
+		  // the pixel has changed
+		  changed++;
+		  lastChange = i;	// store last change index
+		  if (!drawing)
+		    {
+		    // printf ("not drawing!\n");
+		     // whe are not drawing, so start a run here.
+		      // we only draw full rows:
+		      // set display area to the rest of the screen, including this row
+		      tft_setWindow (0, y, w - 1, h - 1);
+		      tft_drawStart ();
+		      // re-transmit the unchanged pixels of current row up to here
+		      for (j = 0; j < x; j++)
+		      {
+		    	  tft_sendPixelData (buf_display[y * w + j]);
+		      }
+		    drawing = 1;
+		    }
+	      }
+
+	      if (drawing)
+	      {
+		  // where in a transmission run.
+	         //printf ("drawing!\n");
+	         tft_sendPixelData (color);	// send pixel
+		  buf_display[i] = color;	// store change
+		  drawed++;
+		  // end transmission, if the was no change for some time
+		  if (i > lastChange + 400)
+		    {
+		      // stop drawing, lcd actually gets updated.
+		      //tft_drawStop ();
+		      drawing = 0;
+		    }
+	      }
+
+	      i++;
+	    }
+	}
+	   if (changed > 0)
+	   {
+	      printf ("Pixels changed: %i, drawed: %i\n", changed, drawed);
+	   }
+
+	   usleep (40000L);		// sleep for 40ms
+    }
+
+  // actually we never get here
+  fclose (fb);
+  return 0;
+
+
+
+}

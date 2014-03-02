@@ -1,0 +1,36 @@
+* NXP PNX I2C Controller
+
+Required properties:
+
+ - reg: Offset and length of the register set for the device
+ - compatible: should be "nxp,pnx-i2c"
+ - interrupts: <a b> where a is the interrupt number and b is a
+   field that represents an encoding of the sense and level
+   information for the interrupt
+ - interrupt-parent: the phandle for the interrupt controller that
+   services interrupts for this device.
+
+Optional properties:
+
+ - clock-frequency: desired I2C bus clock frequency in Hz, Default: 100000
+ - pnx,timeout: I2C bus timeout in milliseconds, Default: 10
+ - slave-addr: Address used by the controller, Hardware default: 110
+
+Examples:
+
+	i2c1: i2c@400A0000 {
+		compatible = "nxp,pnx-i2c";
+		reg = <0x400A0000 0x100>;
+		interrupt-parent = <&mic>;
+		interrupts = <51 0>;
+	};
+
+	i2c2: i2c@400A8000 {
+		compatible = "nxp,pnx-i2c";
+		reg = <0x400A8000 0x100>;
+		interrupt-parent = <&mic>;
+		interrupts = <50 0>;
+		clock-frequency = <100000>;
+		pnx,timeout = <100>;
+		slave-addr = <111>;
+	};

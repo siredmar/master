@@ -1,0 +1,37 @@
+                                                                        Cache Coherency
+																		*************
+
+1. Introduction
+=========
+This document will brief about taking care of cache coherency, in cache enabled code that uses DMA or any other hardware that could possibly modify memory locations holding data.
+
+The driver "lpc31xx_vmem_driver.c" will provide functions that will help the developers to take care of coherency issues that could occur in cached targets. See the description below for the function list
+
+2. Allocating buffers
+=============
+ARM926 (processor core of LPC31xx SoC), has D-Cache size of 16K, and each cache line is 32 bytes long. So, the buffers that are used for DMA transfers can be handled better if they are aligned to cache lines (i.e., 32-Byte aligned), and we could gain significant performance when the size of the buffer is in multiples of cache line size (32 bytes). To get an aligned dma buffer the driver provides "DMA_BUFFER" macro. Use this macro to declare cache line aligned buffers as shown below
+
+DMA_BUFFER UNS_32 my_dma_buffer[32]; /* Will start at cache line boundary and might occupy 4 cache lines */
+
+3. Address convertion functions
+====================
+The vmem driver provided functions that will convert a given virtual address to a physical address and vice versa.
+
+UNS_32 lpc31xx_va_to_pa(void * virtaddr);
+------------------------------------------------
+This function will return the physical address (as unsigned 32 bit integer) corresponding to the virtual address given in "virtaddr" parameter. If the given virtual address does not belong to any virtual memory region, then this function will return the address pointed by "virtaddr" (as unsigned 32 bit integer).
+
+void * lpc31xx_pa_to_va(UNS_32 phyaddr);
+------------------------------------------------
+This function will return the virtual address corresponding to the physical address (casted as unsigned 32 bit integer) given in "phyaddr" parameter. If the given physical address does not belong to any mapped memory region, then this function will return the address pointed by "phyaddr" (as void pointer).
+
+4. Cache coherency functions
+===================
+
+void lpc31xx_flush_dcache_range(void * start, void * end);
+----------------------------------------------------------------
+This function will flush the data region between virtual address region "start" to "end", on to the memory. This operation is used to flush out the dirty data available in the caches to the action memory, just before starting the dma write operation. It is recommended that the address provided by "start" and "end" be cache aligned (See section 2 of this document)
+
+void lpc31xx_invalidate_dcache_range(void * start, void * end);
+---------------------------------------------------------------------
+This function will invalidate the cache hence discarding the content the cache and reloading the values from memory for the specified virtual address region "start" to "end". This function should be used to get the valid data available at memory into the cache for CPU reading during DMA read operations. It is recommended that the address provided by "start" and "end" be cache aligned (See section 2 of this document)

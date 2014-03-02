@@ -1,0 +1,1 @@
+cmd_drivers/serial/sc16is7x2.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/serial/sc16is7x2.ko drivers/serial/sc16is7x2.o drivers/serial/sc16is7x2.mod.o

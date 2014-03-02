@@ -1,0 +1,20 @@
+--- arch/arm/mach-lpc313x/ea313x.c
++++ arch/arm/mach-lpc313x/ea313x.c
+@@ -173,15 +173,8 @@
+ 		.flags	= IORESOURCE_IRQ
+ 	}
+ };
+-/* Use the second static memory bank, with fast timings, as an IOBARRIER. ARM MPMC contoller
+-as part of low power design doesn't de-assert nCS and nOE for consecutive reads but 
+-just changes address. But DM9000 requires nCS and nOE change between address. So access
+-other chip select area (nCS0) to force de-assertion of nCS1 and nOE1. Or else wait for long time 
+-such as 80 usecs. */
+-
+-/* if EA_DISP_QVGA_LCD_V2 is used then use following macro else use udelay macro */
+-# define DM_IO_DELAY()	do { *((volatile unsigned char __force*) io_p2v(EXT_SRAM0_PHYS)) = 0;} while(0)
+-//# define DM_IO_DELAY	udelay(80)
++
++#define DM_IO_DELAY()	do {} while(0)
+ 
+ static void dm9000_dumpblk(void __iomem *reg, int count)
+ {

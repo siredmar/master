@@ -1,0 +1,12 @@
+a list of all TODOs for the adc and pwm driver for lpc313x:
+
+
+BOTH:
+	* find bugs, add capabilities
+
+ADC:
+	* figure out how to add our device to devtmpfs, so that we don't need to create the dev-node by hand
+	* it's slow, improve speed
+
+PWM:
+	* figure out how to add our device to devtmpfs

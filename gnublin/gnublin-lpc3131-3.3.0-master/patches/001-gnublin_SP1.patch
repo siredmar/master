@@ -1,0 +1,3515 @@
+diff -Nur ../linux-2.6.33-lpc313x_orig/arch/arm/Kconfig.rej ../linux-2.6.33-lpc313x/arch/arm/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/arch/arm/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/arch/arm/Kconfig.rej	2012-09-24 16:06:12.348030657 +0200
+@@ -0,0 +1,54 @@
++--- arch/arm/Kconfig
+++++ arch/arm/Kconfig
++@@ -728,6 +728,15 @@
++ 	help
++ 	  Support for ST-Ericsson's Ux500 architecture
++ 
+++config ARCH_LPC313X
+++	bool "NXP LPC313X series"
+++	select CPU_ARM926T
+++	help
+++	  Say Y here for systems based on one of the NXP LPC313x & LPC315x
+++	  System on a Chip processors.  These CPUs include an ARM926EJS
+++	  core with a wide array of integrated devices for
+++	  hand-held and low-power applications.
+++
++ endchoice
++ 
++ source "arch/arm/mach-aaec2000/Kconfig"
++@@ -836,6 +845,8 @@
++ 
++ source "arch/arm/mach-w90x900/Kconfig"
++ 
+++source "arch/arm/mach-lpc313x/Kconfig"
+++
++ # Definitions to make life easier
++ config ARCH_ACORN
++ 	bool
++@@ -1180,7 +1191,7 @@
++ 		   ARCH_LUBBOCK || MACH_MAINSTONE || ARCH_NETWINDER || \
++ 		   ARCH_OMAP || ARCH_P720T || ARCH_PXA_IDP || \
++ 		   ARCH_SA1100 || ARCH_SHARK || ARCH_VERSATILE || \
++-		   ARCH_AT91 || ARCH_DAVINCI || \
+++		   ARCH_AT91 || ARCH_DAVINCI || ARCH_LPC313X || \
++ 		   ARCH_KS8695 || MACH_RD88F5182 || ARCH_REALVIEW
++ 	help
++ 	  If you say Y here, the LEDs on your machine will be used
++@@ -1196,7 +1207,7 @@
++ config LEDS_TIMER
++ 	bool "Timer LED" if (!ARCH_CDB89712 && !ARCH_OMAP) || \
++ 			    OMAP_OSK_MISTRAL || MACH_OMAP_H2 \
++-			    || MACH_OMAP_PERSEUS2
+++			    || MACH_OMAP_PERSEUS2 || ARCH_LPC313X
++ 	depends on LEDS
++ 	depends on !GENERIC_CLOCKEVENTS
++ 	default y if ARCH_EBSA110
++@@ -1215,7 +1226,7 @@
++ 	bool "CPU usage LED" if (!ARCH_CDB89712 && !ARCH_EBSA110 && \
++ 			!ARCH_OMAP) \
++ 			|| OMAP_OSK_MISTRAL || MACH_OMAP_H2 \
++-			|| MACH_OMAP_PERSEUS2
+++			|| MACH_OMAP_PERSEUS2 || ARCH_LPC313X
++ 	depends on LEDS
++ 	help
++ 	  If you say Y here, the red LED will be used to give a good real
+diff -Nur ../linux-2.6.33-lpc313x_orig/arch/arm/mach-lpc313x/ea313x.c ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c
+--- ../linux-2.6.33-lpc313x_orig/arch/arm/mach-lpc313x/ea313x.c	2012-09-24 12:37:18.000000000 +0200
++++ ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c	2012-09-24 16:06:17.248031366 +0200
+@@ -51,7 +51,7 @@
+ 
+ static int mci_get_cd(u32 slot_id)
+ {
+-	return gpio_get_value(GPIO_MI2STX_BCK0);
++	return gpio_get_value(GPIO_MNAND_RYBN2);
+ }
+ 
+ static irqreturn_t ea313x_mci_detect_interrupt(int irq, void *data)
+@@ -74,8 +74,9 @@
+ 
+ 	/* enable power to the slot */
+ 	gpio_set_value(GPIO_MI2STX_DATA0, 0);
++
+ 	/* set cd pins as GPIO pins */
+-	gpio_direction_input(GPIO_MI2STX_BCK0);
++	gpio_direction_input(GPIO_MNAND_RYBN2);
+ 
+ 	/* select the opposite level senstivity */
+ 	level = mci_get_cd(0)?IRQ_TYPE_LEVEL_LOW:IRQ_TYPE_LEVEL_HIGH;
+diff -Nur ../linux-2.6.33-lpc313x_orig/arch/arm/mach-lpc313x/include/mach/irqs.h ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/include/mach/irqs.h
+--- ../linux-2.6.33-lpc313x_orig/arch/arm/mach-lpc313x/include/mach/irqs.h	2012-09-24 12:37:18.000000000 +0200
++++ ../linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/include/mach/irqs.h	2012-09-24 16:06:17.248031366 +0200
+@@ -143,9 +143,12 @@
+ #define BOARD_IRQ_EVENT_MAP	{ \
+ 	CHIP_IRQ_EVENT_MAP \
+ 	{IRQ_DM9000_ETH_INT, EVT_mNAND_RYBN3, EVT_ACTIVE_HIGH}, \
+-	{IRQ_SDMMC_CD, EVT_mI2STX_BCK0, EVT_ACTIVE_LOW}, \
++  {IRQ_SDMMC_CD, EVT_mNAND_RYBN2, EVT_ACTIVE_LOW}, \
+ 	{IRQ_EA_VBUS_OVRC, EVT_I2SRX_WS0, EVT_ACTIVE_LOW}, \
+ 	}
++  //{IRQ_SDMMC_CD, EVT_mI2STX_BCK0, EVT_ACTIVE_LOW}, --hh
++
++
+ /* Following defines group the board IRQs into 4 IRQ_EVNTR groups.
+    IRQ_EVT_ROUTERx IRQ is generated when event in the corresponding 
+    group triggers.
+diff -Nur ../linux-2.6.33-lpc313x_orig/arch/arm/Makefile.rej ../linux-2.6.33-lpc313x/arch/arm/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/arch/arm/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/arch/arm/Makefile.rej	2012-09-24 16:06:12.348030657 +0200
+@@ -0,0 +1,10 @@
++--- arch/arm/Makefile
+++++ arch/arm/Makefile
++@@ -172,6 +172,7 @@
++ machine-$(CONFIG_ARCH_VERSATILE)	:= versatile
++ machine-$(CONFIG_ARCH_W90X900)		:= w90x900
++ machine-$(CONFIG_FOOTBRIDGE)		:= footbridge
+++machine-$(CONFIG_ARCH_LPC313X)		:= lpc313x
++ 
++ # Platform directory name.  This list is sorted alphanumerically
++ # by CONFIG_* macro name.
+diff -Nur ../linux-2.6.33-lpc313x_orig/arch/arm/tools/mach-types.rej ../linux-2.6.33-lpc313x/arch/arm/tools/mach-types.rej
+--- ../linux-2.6.33-lpc313x_orig/arch/arm/tools/mach-types.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/arch/arm/tools/mach-types.rej	2012-09-24 16:06:12.376031580 +0200
+@@ -0,0 +1,18 @@
++--- arch/arm/tools/mach-types
+++++ arch/arm/tools/mach-types
++@@ -2426,7 +2426,7 @@
++ cmpd			MACH_CMPD		CMPD			2439
++ davinci_hase1		MACH_DAVINCI_HASE1	DAVINCI_HASE1		2440
++ lgeincitephone		MACH_LGEINCITEPHONE	LGEINCITEPHONE		2441
++-ea313x			MACH_EA313X		EA313X			2442
+++ea313x			MACH_EA313X		EA313X			9998
++ fwbd_39064		MACH_FWBD_39064		FWBD_39064		2443
++ fwbd_390128		MACH_FWBD_390128	FWBD_390128		2444
++ pelco_moe		MACH_PELCO_MOE		PELCO_MOE		2445
++@@ -2678,3 +2678,6 @@
++ mioa702			MACH_MIOA702		MIOA702			2691
++ hpmin			MACH_HPMIN		HPMIN			2692
++ ak880xak		MACH_AK880XAK		AK880XAK		2693
+++val3153			MACH_VAL3153		VAL3153			9999
+++val3154			MACH_VAL3154		VAL3154			9997
+++ea3152			MACH_EA3152		    EA3152			9996
+diff -Nur ../linux-2.6.33-lpc313x_orig/.config ../linux-2.6.33-lpc313x/.config
+--- ../linux-2.6.33-lpc313x_orig/.config	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/.config	2012-09-24 16:07:08.488029419 +0200
+@@ -0,0 +1,1627 @@
++#
++# Automatically generated make config: don't edit
++# Linux kernel version: 2.6.33
++# Wed Jan  4 13:56:05 2012
++#
++CONFIG_ARM=y
++CONFIG_SYS_SUPPORTS_APM_EMULATION=y
++CONFIG_GENERIC_GPIO=y
++CONFIG_GENERIC_HARDIRQS=y
++CONFIG_STACKTRACE_SUPPORT=y
++CONFIG_HAVE_LATENCYTOP_SUPPORT=y
++CONFIG_LOCKDEP_SUPPORT=y
++CONFIG_TRACE_IRQFLAGS_SUPPORT=y
++CONFIG_HARDIRQS_SW_RESEND=y
++CONFIG_GENERIC_IRQ_PROBE=y
++CONFIG_RWSEM_GENERIC_SPINLOCK=y
++CONFIG_GENERIC_HWEIGHT=y
++CONFIG_GENERIC_CALIBRATE_DELAY=y
++CONFIG_GENERIC_HARDIRQS_NO__DO_IRQ=y
++CONFIG_VECTORS_BASE=0xffff0000
++CONFIG_DEFCONFIG_LIST="/lib/modules/$UNAME_RELEASE/.config"
++CONFIG_CONSTRUCTORS=y
++
++#
++# General setup
++#
++CONFIG_EXPERIMENTAL=y
++CONFIG_BROKEN_ON_SMP=y
++CONFIG_INIT_ENV_ARG_LIMIT=32
++CONFIG_LOCALVERSION=""
++# CONFIG_LOCALVERSION_AUTO is not set
++CONFIG_HAVE_KERNEL_GZIP=y
++CONFIG_HAVE_KERNEL_LZO=y
++CONFIG_KERNEL_GZIP=y
++# CONFIG_KERNEL_BZIP2 is not set
++# CONFIG_KERNEL_LZMA is not set
++# CONFIG_KERNEL_LZO is not set
++CONFIG_SWAP=y
++CONFIG_SYSVIPC=y
++CONFIG_SYSVIPC_SYSCTL=y
++# CONFIG_POSIX_MQUEUE is not set
++# CONFIG_BSD_PROCESS_ACCT is not set
++# CONFIG_TASKSTATS is not set
++# CONFIG_AUDIT is not set
++
++#
++# RCU Subsystem
++#
++CONFIG_TREE_RCU=y
++# CONFIG_TREE_PREEMPT_RCU is not set
++# CONFIG_TINY_RCU is not set
++# CONFIG_RCU_TRACE is not set
++CONFIG_RCU_FANOUT=32
++# CONFIG_RCU_FANOUT_EXACT is not set
++# CONFIG_TREE_RCU_TRACE is not set
++# CONFIG_IKCONFIG is not set
++CONFIG_LOG_BUF_SHIFT=14
++# CONFIG_GROUP_SCHED is not set
++# CONFIG_CGROUPS is not set
++# CONFIG_SYSFS_DEPRECATED_V2 is not set
++# CONFIG_RELAY is not set
++CONFIG_NAMESPACES=y
++# CONFIG_UTS_NS is not set
++# CONFIG_IPC_NS is not set
++# CONFIG_USER_NS is not set
++# CONFIG_PID_NS is not set
++# CONFIG_NET_NS is not set
++CONFIG_BLK_DEV_INITRD=y
++CONFIG_INITRAMFS_SOURCE=""
++CONFIG_RD_GZIP=y
++CONFIG_RD_BZIP2=y
++CONFIG_RD_LZMA=y
++# CONFIG_RD_LZO is not set
++CONFIG_CC_OPTIMIZE_FOR_SIZE=y
++CONFIG_SYSCTL=y
++CONFIG_ANON_INODES=y
++CONFIG_EMBEDDED=y
++CONFIG_UID16=y
++CONFIG_SYSCTL_SYSCALL=y
++CONFIG_KALLSYMS=y
++# CONFIG_KALLSYMS_ALL is not set
++# CONFIG_KALLSYMS_EXTRA_PASS is not set
++CONFIG_HOTPLUG=y
++CONFIG_PRINTK=y
++CONFIG_BUG=y
++CONFIG_ELF_CORE=y
++CONFIG_BASE_FULL=y
++CONFIG_FUTEX=y
++CONFIG_EPOLL=y
++CONFIG_SIGNALFD=y
++CONFIG_TIMERFD=y
++CONFIG_EVENTFD=y
++CONFIG_SHMEM=y
++CONFIG_AIO=y
++
++#
++# Kernel Performance Events And Counters
++#
++CONFIG_VM_EVENT_COUNTERS=y
++CONFIG_COMPAT_BRK=y
++CONFIG_SLAB=y
++# CONFIG_SLUB is not set
++# CONFIG_SLOB is not set
++# CONFIG_PROFILING is not set
++CONFIG_HAVE_OPROFILE=y
++# CONFIG_KPROBES is not set
++CONFIG_HAVE_KPROBES=y
++CONFIG_HAVE_KRETPROBES=y
++
++#
++# GCOV-based kernel profiling
++#
++# CONFIG_GCOV_KERNEL is not set
++# CONFIG_SLOW_WORK is not set
++CONFIG_HAVE_GENERIC_DMA_COHERENT=y
++CONFIG_SLABINFO=y
++CONFIG_RT_MUTEXES=y
++CONFIG_BASE_SMALL=0
++CONFIG_MODULES=y
++# CONFIG_MODULE_FORCE_LOAD is not set
++CONFIG_MODULE_UNLOAD=y
++# CONFIG_MODULE_FORCE_UNLOAD is not set
++# CONFIG_MODVERSIONS is not set
++# CONFIG_MODULE_SRCVERSION_ALL is not set
++CONFIG_BLOCK=y
++CONFIG_LBDAF=y
++# CONFIG_BLK_DEV_BSG is not set
++# CONFIG_BLK_DEV_INTEGRITY is not set
++
++#
++# IO Schedulers
++#
++CONFIG_IOSCHED_NOOP=y
++# CONFIG_IOSCHED_DEADLINE is not set
++# CONFIG_IOSCHED_CFQ is not set
++# CONFIG_DEFAULT_DEADLINE is not set
++# CONFIG_DEFAULT_CFQ is not set
++CONFIG_DEFAULT_NOOP=y
++CONFIG_DEFAULT_IOSCHED="noop"
++# CONFIG_INLINE_SPIN_TRYLOCK is not set
++# CONFIG_INLINE_SPIN_TRYLOCK_BH is not set
++# CONFIG_INLINE_SPIN_LOCK is not set
++# CONFIG_INLINE_SPIN_LOCK_BH is not set
++# CONFIG_INLINE_SPIN_LOCK_IRQ is not set
++# CONFIG_INLINE_SPIN_LOCK_IRQSAVE is not set
++CONFIG_INLINE_SPIN_UNLOCK=y
++# CONFIG_INLINE_SPIN_UNLOCK_BH is not set
++CONFIG_INLINE_SPIN_UNLOCK_IRQ=y
++# CONFIG_INLINE_SPIN_UNLOCK_IRQRESTORE is not set
++# CONFIG_INLINE_READ_TRYLOCK is not set
++# CONFIG_INLINE_READ_LOCK is not set
++# CONFIG_INLINE_READ_LOCK_BH is not set
++# CONFIG_INLINE_READ_LOCK_IRQ is not set
++# CONFIG_INLINE_READ_LOCK_IRQSAVE is not set
++CONFIG_INLINE_READ_UNLOCK=y
++# CONFIG_INLINE_READ_UNLOCK_BH is not set
++CONFIG_INLINE_READ_UNLOCK_IRQ=y
++# CONFIG_INLINE_READ_UNLOCK_IRQRESTORE is not set
++# CONFIG_INLINE_WRITE_TRYLOCK is not set
++# CONFIG_INLINE_WRITE_LOCK is not set
++# CONFIG_INLINE_WRITE_LOCK_BH is not set
++# CONFIG_INLINE_WRITE_LOCK_IRQ is not set
++# CONFIG_INLINE_WRITE_LOCK_IRQSAVE is not set
++CONFIG_INLINE_WRITE_UNLOCK=y
++# CONFIG_INLINE_WRITE_UNLOCK_BH is not set
++CONFIG_INLINE_WRITE_UNLOCK_IRQ=y
++# CONFIG_INLINE_WRITE_UNLOCK_IRQRESTORE is not set
++# CONFIG_MUTEX_SPIN_ON_OWNER is not set
++CONFIG_FREEZER=y
++
++#
++# System Type
++#
++CONFIG_MMU=y
++# CONFIG_ARCH_AAEC2000 is not set
++# CONFIG_ARCH_INTEGRATOR is not set
++# CONFIG_ARCH_REALVIEW is not set
++# CONFIG_ARCH_VERSATILE is not set
++# CONFIG_ARCH_AT91 is not set
++# CONFIG_ARCH_CLPS711X is not set
++# CONFIG_ARCH_GEMINI is not set
++# CONFIG_ARCH_EBSA110 is not set
++# CONFIG_ARCH_EP93XX is not set
++# CONFIG_ARCH_FOOTBRIDGE is not set
++# CONFIG_ARCH_MXC is not set
++# CONFIG_ARCH_STMP3XXX is not set
++# CONFIG_ARCH_NETX is not set
++# CONFIG_ARCH_H720X is not set
++# CONFIG_ARCH_NOMADIK is not set
++# CONFIG_ARCH_IOP13XX is not set
++# CONFIG_ARCH_IOP32X is not set
++# CONFIG_ARCH_IOP33X is not set
++# CONFIG_ARCH_IXP23XX is not set
++# CONFIG_ARCH_IXP2000 is not set
++# CONFIG_ARCH_IXP4XX is not set
++# CONFIG_ARCH_L7200 is not set
++# CONFIG_ARCH_DOVE is not set
++# CONFIG_ARCH_KIRKWOOD is not set
++# CONFIG_ARCH_LOKI is not set
++# CONFIG_ARCH_MV78XX0 is not set
++# CONFIG_ARCH_ORION5X is not set
++# CONFIG_ARCH_MMP is not set
++# CONFIG_ARCH_KS8695 is not set
++# CONFIG_ARCH_NS9XXX is not set
++# CONFIG_ARCH_W90X900 is not set
++# CONFIG_ARCH_PNX4008 is not set
++# CONFIG_ARCH_PXA is not set
++# CONFIG_ARCH_MSM is not set
++# CONFIG_ARCH_RPC is not set
++# CONFIG_ARCH_SA1100 is not set
++# CONFIG_ARCH_S3C2410 is not set
++# CONFIG_ARCH_S3C64XX is not set
++# CONFIG_ARCH_S5PC1XX is not set
++# CONFIG_ARCH_SHARK is not set
++# CONFIG_ARCH_LH7A40X is not set
++# CONFIG_ARCH_U300 is not set
++# CONFIG_ARCH_DAVINCI is not set
++# CONFIG_ARCH_OMAP is not set
++# CONFIG_ARCH_BCMRING is not set
++# CONFIG_ARCH_U8500 is not set
++CONFIG_ARCH_LPC313X=y
++
++#
++# LPC313x Implementations
++#
++CONFIG_MACH_EA313X=y
++# CONFIG_MACH_EA3152 is not set
++# CONFIG_MACH_VAL3153 is not set
++# CONFIG_MACH_VAL3154 is not set
++CONFIG_HZ_100=y
++# CONFIG_HZ_250 is not set
++# CONFIG_HZ_300 is not set
++# CONFIG_HZ_1000 is not set
++CONFIG_HZ=100
++# CONFIG_SCHED_HRTICK is not set
++
++#
++# Processor Type
++#
++CONFIG_CPU_ARM926T=y
++CONFIG_CPU_32v5=y
++CONFIG_CPU_ABRT_EV5TJ=y
++CONFIG_CPU_PABRT_LEGACY=y
++CONFIG_CPU_CACHE_VIVT=y
++CONFIG_CPU_COPY_V4WB=y
++CONFIG_CPU_TLB_V4WBI=y
++CONFIG_CPU_CP15=y
++CONFIG_CPU_CP15_MMU=y
++
++#
++# Processor Features
++#
++CONFIG_ARM_THUMB=y
++# CONFIG_CPU_ICACHE_DISABLE is not set
++# CONFIG_CPU_DCACHE_DISABLE is not set
++# CONFIG_CPU_DCACHE_WRITETHROUGH is not set
++# CONFIG_CPU_CACHE_ROUND_ROBIN is not set
++CONFIG_ARM_L1_CACHE_SHIFT=5
++
++#
++# Bus support
++#
++# CONFIG_PCI_SYSCALL is not set
++# CONFIG_ARCH_SUPPORTS_MSI is not set
++# CONFIG_PCCARD is not set
++
++#
++# Kernel Features
++#
++CONFIG_VMSPLIT_3G=y
++# CONFIG_VMSPLIT_2G is not set
++# CONFIG_VMSPLIT_1G is not set
++CONFIG_PAGE_OFFSET=0xC0000000
++CONFIG_PREEMPT_NONE=y
++# CONFIG_PREEMPT_VOLUNTARY is not set
++# CONFIG_PREEMPT is not set
++CONFIG_AEABI=y
++CONFIG_OABI_COMPAT=y
++# CONFIG_ARCH_SPARSEMEM_DEFAULT is not set
++# CONFIG_ARCH_SELECT_MEMORY_MODEL is not set
++# CONFIG_HIGHMEM is not set
++CONFIG_SELECT_MEMORY_MODEL=y
++CONFIG_FLATMEM_MANUAL=y
++# CONFIG_DISCONTIGMEM_MANUAL is not set
++# CONFIG_SPARSEMEM_MANUAL is not set
++CONFIG_FLATMEM=y
++CONFIG_FLAT_NODE_MEM_MAP=y
++CONFIG_PAGEFLAGS_EXTENDED=y
++CONFIG_SPLIT_PTLOCK_CPUS=999999
++# CONFIG_PHYS_ADDR_T_64BIT is not set
++CONFIG_ZONE_DMA_FLAG=0
++CONFIG_VIRT_TO_BUS=y
++# CONFIG_KSM is not set
++CONFIG_DEFAULT_MMAP_MIN_ADDR=4096
++CONFIG_LEDS=y
++CONFIG_LEDS_TIMER=y
++CONFIG_LEDS_CPU=y
++CONFIG_ALIGNMENT_TRAP=y
++CONFIG_UACCESS_WITH_MEMCPY=y
++
++#
++# Boot options
++#
++CONFIG_ZBOOT_ROM_TEXT=0x0
++CONFIG_ZBOOT_ROM_BSS=0x0
++CONFIG_CMDLINE="console=ttyS0,115200n8 root=/dev/ram0 rw"
++# CONFIG_XIP_KERNEL is not set
++# CONFIG_KEXEC is not set
++
++#
++# CPU Power Management
++#
++CONFIG_CPU_IDLE=y
++CONFIG_CPU_IDLE_GOV_LADDER=y
++
++#
++# Floating point emulation
++#
++
++#
++# At least one emulation must be selected
++#
++CONFIG_FPE_NWFPE=y
++# CONFIG_FPE_NWFPE_XP is not set
++# CONFIG_FPE_FASTFPE is not set
++# CONFIG_VFP is not set
++
++#
++# Userspace binary formats
++#
++CONFIG_BINFMT_ELF=y
++# CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
++CONFIG_HAVE_AOUT=y
++# CONFIG_BINFMT_AOUT is not set
++# CONFIG_BINFMT_MISC is not set
++
++#
++# Power management options
++#
++CONFIG_PM=y
++CONFIG_PM_DEBUG=y
++CONFIG_PM_VERBOSE=y
++CONFIG_CAN_PM_TRACE=y
++CONFIG_PM_SLEEP=y
++CONFIG_SUSPEND=y
++CONFIG_SUSPEND_FREEZER=y
++# CONFIG_APM_EMULATION is not set
++# CONFIG_PM_RUNTIME is not set
++CONFIG_ARCH_SUSPEND_POSSIBLE=y
++CONFIG_NET=y
++
++#
++# Networking options
++#
++# CONFIG_PACKET is not set
++# CONFIG_UNIX is not set
++# CONFIG_NET_KEY is not set
++CONFIG_INET=y
++# CONFIG_IP_MULTICAST is not set
++# CONFIG_IP_ADVANCED_ROUTER is not set
++CONFIG_IP_FIB_HASH=y
++CONFIG_IP_PNP=y
++CONFIG_IP_PNP_DHCP=y
++# CONFIG_IP_PNP_BOOTP is not set
++CONFIG_IP_PNP_RARP=y
++# CONFIG_NET_IPIP is not set
++# CONFIG_NET_IPGRE is not set
++CONFIG_ARPD=y
++# CONFIG_SYN_COOKIES is not set
++# CONFIG_INET_AH is not set
++# CONFIG_INET_ESP is not set
++# CONFIG_INET_IPCOMP is not set
++# CONFIG_INET_XFRM_TUNNEL is not set
++# CONFIG_INET_TUNNEL is not set
++# CONFIG_INET_XFRM_MODE_TRANSPORT is not set
++# CONFIG_INET_XFRM_MODE_TUNNEL is not set
++# CONFIG_INET_XFRM_MODE_BEET is not set
++# CONFIG_INET_LRO is not set
++# CONFIG_INET_DIAG is not set
++# CONFIG_TCP_CONG_ADVANCED is not set
++CONFIG_TCP_CONG_CUBIC=y
++CONFIG_DEFAULT_TCP_CONG="cubic"
++# CONFIG_TCP_MD5SIG is not set
++# CONFIG_IPV6 is not set
++# CONFIG_NETWORK_SECMARK is not set
++# CONFIG_NETFILTER is not set
++# CONFIG_IP_DCCP is not set
++# CONFIG_IP_SCTP is not set
++# CONFIG_RDS is not set
++# CONFIG_TIPC is not set
++# CONFIG_ATM is not set
++# CONFIG_BRIDGE is not set
++# CONFIG_NET_DSA is not set
++# CONFIG_VLAN_8021Q is not set
++# CONFIG_DECNET is not set
++# CONFIG_LLC2 is not set
++# CONFIG_IPX is not set
++# CONFIG_ATALK is not set
++# CONFIG_X25 is not set
++# CONFIG_LAPB is not set
++# CONFIG_ECONET is not set
++# CONFIG_WAN_ROUTER is not set
++# CONFIG_PHONET is not set
++# CONFIG_IEEE802154 is not set
++# CONFIG_NET_SCHED is not set
++# CONFIG_DCB is not set
++
++#
++# Network testing
++#
++# CONFIG_NET_PKTGEN is not set
++# CONFIG_HAMRADIO is not set
++CONFIG_CAN=m
++CONFIG_CAN_RAW=m
++CONFIG_CAN_BCM=m
++
++#
++# CAN Device Drivers
++#
++CONFIG_CAN_VCAN=m
++CONFIG_CAN_DEV=m
++CONFIG_CAN_CALC_BITTIMING=y
++CONFIG_CAN_MCP251X=m
++# CONFIG_CAN_SJA1000 is not set
++
++#
++# CAN USB interfaces
++#
++# CONFIG_CAN_EMS_USB is not set
++# CONFIG_CAN_DEBUG_DEVICES is not set
++# CONFIG_IRDA is not set
++CONFIG_BT=m
++CONFIG_BT_L2CAP=m
++# CONFIG_BT_SCO is not set
++CONFIG_BT_RFCOMM=m
++CONFIG_BT_RFCOMM_TTY=y
++# CONFIG_BT_BNEP is not set
++# CONFIG_BT_HIDP is not set
++
++#
++# Bluetooth device drivers
++#
++CONFIG_BT_HCIBTUSB=m
++CONFIG_BT_HCIBTSDIO=m
++CONFIG_BT_HCIUART=m
++# CONFIG_BT_HCIUART_H4 is not set
++# CONFIG_BT_HCIUART_BCSP is not set
++# CONFIG_BT_HCIUART_LL is not set
++# CONFIG_BT_HCIBCM203X is not set
++# CONFIG_BT_HCIBPA10X is not set
++# CONFIG_BT_HCIBFUSB is not set
++# CONFIG_BT_HCIVHCI is not set
++# CONFIG_BT_MRVL is not set
++# CONFIG_BT_ATH3K is not set
++# CONFIG_AF_RXRPC is not set
++CONFIG_WIRELESS=y
++CONFIG_WEXT_CORE=y
++CONFIG_WEXT_PROC=y
++CONFIG_CFG80211=y
++# CONFIG_NL80211_TESTMODE is not set
++# CONFIG_CFG80211_DEVELOPER_WARNINGS is not set
++# CONFIG_CFG80211_REG_DEBUG is not set
++CONFIG_CFG80211_DEFAULT_PS=y
++# CONFIG_CFG80211_DEBUGFS is not set
++# CONFIG_WIRELESS_OLD_REGULATORY is not set
++CONFIG_CFG80211_WEXT=y
++CONFIG_WIRELESS_EXT_SYSFS=y
++# CONFIG_LIB80211 is not set
++CONFIG_MAC80211=y
++# CONFIG_MAC80211_RC_PID is not set
++CONFIG_MAC80211_RC_MINSTREL=y
++# CONFIG_MAC80211_RC_DEFAULT_PID is not set
++CONFIG_MAC80211_RC_DEFAULT_MINSTREL=y
++CONFIG_MAC80211_RC_DEFAULT="minstrel"
++# CONFIG_MAC80211_MESH is not set
++# CONFIG_MAC80211_LEDS is not set
++# CONFIG_MAC80211_DEBUGFS is not set
++# CONFIG_MAC80211_DEBUG_MENU is not set
++# CONFIG_WIMAX is not set
++# CONFIG_RFKILL is not set
++# CONFIG_NET_9P is not set
++
++#
++# Device Drivers
++#
++
++#
++# Generic Driver Options
++#
++CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
++# CONFIG_DEVTMPFS is not set
++CONFIG_STANDALONE=y
++CONFIG_PREVENT_FIRMWARE_BUILD=y
++CONFIG_FW_LOADER=y
++CONFIG_FIRMWARE_IN_KERNEL=y
++CONFIG_EXTRA_FIRMWARE=""
++CONFIG_DEBUG_DRIVER=y
++CONFIG_DEBUG_DEVRES=y
++# CONFIG_SYS_HYPERVISOR is not set
++# CONFIG_CONNECTOR is not set
++CONFIG_NEW_LPC313x_IO=y
++CONFIG_LPC313x_ADC=m
++CONFIG_LPC313x_PWM=m
++# CONFIG_MTD is not set
++# CONFIG_PARPORT is not set
++CONFIG_BLK_DEV=y
++# CONFIG_BLK_DEV_COW_COMMON is not set
++CONFIG_BLK_DEV_LOOP=y
++# CONFIG_BLK_DEV_CRYPTOLOOP is not set
++
++#
++# DRBD disabled because PROC_FS, INET or CONNECTOR not selected
++#
++# CONFIG_BLK_DEV_NBD is not set
++# CONFIG_BLK_DEV_UB is not set
++CONFIG_BLK_DEV_RAM=y
++CONFIG_BLK_DEV_RAM_COUNT=16
++CONFIG_BLK_DEV_RAM_SIZE=8192
++CONFIG_BLK_DEV_XIP=y
++# CONFIG_CDROM_PKTCDVD is not set
++# CONFIG_ATA_OVER_ETH is not set
++# CONFIG_MG_DISK is not set
++# CONFIG_MISC_DEVICES is not set
++CONFIG_HAVE_IDE=y
++# CONFIG_IDE is not set
++
++#
++# SCSI device support
++#
++# CONFIG_RAID_ATTRS is not set
++CONFIG_SCSI=y
++CONFIG_SCSI_DMA=y
++# CONFIG_SCSI_TGT is not set
++# CONFIG_SCSI_NETLINK is not set
++# CONFIG_SCSI_PROC_FS is not set
++
++#
++# SCSI support type (disk, tape, CD-ROM)
++#
++CONFIG_BLK_DEV_SD=y
++# CONFIG_CHR_DEV_ST is not set
++# CONFIG_CHR_DEV_OSST is not set
++# CONFIG_BLK_DEV_SR is not set
++CONFIG_CHR_DEV_SG=y
++# CONFIG_CHR_DEV_SCH is not set
++# CONFIG_SCSI_MULTI_LUN is not set
++# CONFIG_SCSI_CONSTANTS is not set
++# CONFIG_SCSI_LOGGING is not set
++# CONFIG_SCSI_SCAN_ASYNC is not set
++CONFIG_SCSI_WAIT_SCAN=m
++
++#
++# SCSI Transports
++#
++# CONFIG_SCSI_SPI_ATTRS is not set
++# CONFIG_SCSI_FC_ATTRS is not set
++# CONFIG_SCSI_ISCSI_ATTRS is not set
++# CONFIG_SCSI_SAS_LIBSAS is not set
++# CONFIG_SCSI_SRP_ATTRS is not set
++CONFIG_SCSI_LOWLEVEL=y
++# CONFIG_ISCSI_TCP is not set
++# CONFIG_LIBFC is not set
++# CONFIG_LIBFCOE is not set
++# CONFIG_SCSI_DEBUG is not set
++# CONFIG_SCSI_DH is not set
++# CONFIG_SCSI_OSD_INITIATOR is not set
++# CONFIG_ATA is not set
++# CONFIG_MD is not set
++CONFIG_NETDEVICES=y
++# CONFIG_DUMMY is not set
++# CONFIG_BONDING is not set
++# CONFIG_MACVLAN is not set
++# CONFIG_EQUALIZER is not set
++# CONFIG_TUN is not set
++# CONFIG_VETH is not set
++# CONFIG_PHYLIB is not set
++CONFIG_NET_ETHERNET=y
++CONFIG_MII=m
++# CONFIG_AX88796 is not set
++# CONFIG_SMC91X is not set
++# CONFIG_DM9000 is not set
++# CONFIG_ENC28J60 is not set
++# CONFIG_ETHOC is not set
++# CONFIG_SMC911X is not set
++# CONFIG_SMSC911X is not set
++# CONFIG_DNET is not set
++# CONFIG_IBM_NEW_EMAC_ZMII is not set
++# CONFIG_IBM_NEW_EMAC_RGMII is not set
++# CONFIG_IBM_NEW_EMAC_TAH is not set
++# CONFIG_IBM_NEW_EMAC_EMAC4 is not set
++# CONFIG_IBM_NEW_EMAC_NO_FLOW_CTRL is not set
++# CONFIG_IBM_NEW_EMAC_MAL_CLR_ICINTSTAT is not set
++# CONFIG_IBM_NEW_EMAC_MAL_COMMON_ERR is not set
++# CONFIG_B44 is not set
++# CONFIG_KS8842 is not set
++# CONFIG_KS8851 is not set
++# CONFIG_KS8851_MLL is not set
++# CONFIG_NETDEV_1000 is not set
++# CONFIG_NETDEV_10000 is not set
++CONFIG_WLAN=y
++# CONFIG_LIBERTAS_THINFIRM is not set
++# CONFIG_AT76C50X_USB is not set
++# CONFIG_USB_ZD1201 is not set
++# CONFIG_USB_NET_RNDIS_WLAN is not set
++# CONFIG_RTL8187 is not set
++# CONFIG_MAC80211_HWSIM is not set
++# CONFIG_ATH_COMMON is not set
++# CONFIG_B43 is not set
++# CONFIG_B43LEGACY is not set
++# CONFIG_HOSTAP is not set
++# CONFIG_IWM is not set
++# CONFIG_LIBERTAS is not set
++# CONFIG_P54_COMMON is not set
++CONFIG_RT2X00=m
++CONFIG_RT2500USB=m
++# CONFIG_RT73USB is not set
++# CONFIG_RT2800USB is not set
++CONFIG_RT2X00_LIB_USB=m
++CONFIG_RT2X00_LIB=m
++CONFIG_RT2X00_LIB_CRYPTO=y
++CONFIG_RT2X00_LIB_LEDS=y
++# CONFIG_RT2X00_DEBUG is not set
++# CONFIG_WL12XX is not set
++# CONFIG_ZD1211RW is not set
++
++#
++# Enable WiMAX (Networking options) to see the WiMAX drivers
++#
++
++#
++# USB Network Adapters
++#
++# CONFIG_USB_CATC is not set
++# CONFIG_USB_KAWETH is not set
++CONFIG_USB_PEGASUS=m
++# CONFIG_USB_RTL8150 is not set
++CONFIG_USB_USBNET=m
++CONFIG_USB_NET_AX8817X=m
++CONFIG_USB_NET_CDCETHER=m
++# CONFIG_USB_NET_CDC_EEM is not set
++# CONFIG_USB_NET_DM9601 is not set
++# CONFIG_USB_NET_SMSC95XX is not set
++# CONFIG_USB_NET_GL620A is not set
++CONFIG_USB_NET_NET1080=m
++# CONFIG_USB_NET_PLUSB is not set
++# CONFIG_USB_NET_MCS7830 is not set
++# CONFIG_USB_NET_RNDIS_HOST is not set
++CONFIG_USB_NET_CDC_SUBSET=m
++# CONFIG_USB_ALI_M5632 is not set
++# CONFIG_USB_AN2720 is not set
++CONFIG_USB_BELKIN=y
++CONFIG_USB_ARMLINUX=y
++# CONFIG_USB_EPSON2888 is not set
++# CONFIG_USB_KC2190 is not set
++CONFIG_USB_NET_ZAURUS=m
++# CONFIG_USB_NET_INT51X1 is not set
++# CONFIG_WAN is not set
++# CONFIG_PPP is not set
++# CONFIG_SLIP is not set
++# CONFIG_NETCONSOLE is not set
++# CONFIG_NETPOLL is not set
++# CONFIG_NET_POLL_CONTROLLER is not set
++# CONFIG_ISDN is not set
++# CONFIG_PHONE is not set
++
++#
++# Input device support
++#
++CONFIG_INPUT=y
++# CONFIG_INPUT_FF_MEMLESS is not set
++CONFIG_INPUT_POLLDEV=y
++# CONFIG_INPUT_SPARSEKMAP is not set
++
++#
++# Userland interfaces
++#
++CONFIG_INPUT_MOUSEDEV=y
++# CONFIG_INPUT_MOUSEDEV_PSAUX is not set
++CONFIG_INPUT_MOUSEDEV_SCREEN_X=1024
++CONFIG_INPUT_MOUSEDEV_SCREEN_Y=768
++# CONFIG_INPUT_JOYDEV is not set
++# CONFIG_INPUT_EVDEV is not set
++# CONFIG_INPUT_EVBUG is not set
++
++#
++# Input Device Drivers
++#
++CONFIG_INPUT_KEYBOARD=y
++# CONFIG_KEYBOARD_ADP5588 is not set
++CONFIG_KEYBOARD_ATKBD=y
++# CONFIG_QT2160 is not set
++# CONFIG_KEYBOARD_LKKBD is not set
++# CONFIG_KEYBOARD_GPIO is not set
++# CONFIG_KEYBOARD_MATRIX is not set
++# CONFIG_KEYBOARD_LM8323 is not set
++# CONFIG_KEYBOARD_MAX7359 is not set
++# CONFIG_KEYBOARD_NEWTON is not set
++# CONFIG_KEYBOARD_OPENCORES is not set
++# CONFIG_KEYBOARD_STOWAWAY is not set
++# CONFIG_KEYBOARD_SUNKBD is not set
++# CONFIG_KEYBOARD_XTKBD is not set
++# CONFIG_INPUT_MOUSE is not set
++# CONFIG_INPUT_JOYSTICK is not set
++# CONFIG_INPUT_TABLET is not set
++# CONFIG_INPUT_TOUCHSCREEN is not set
++# CONFIG_INPUT_MISC is not set
++
++#
++# Hardware I/O ports
++#
++CONFIG_SERIO=y
++CONFIG_SERIO_SERPORT=y
++CONFIG_SERIO_LIBPS2=y
++# CONFIG_SERIO_RAW is not set
++# CONFIG_SERIO_ALTERA_PS2 is not set
++# CONFIG_GAMEPORT is not set
++
++#
++# Character devices
++#
++CONFIG_VT=y
++CONFIG_CONSOLE_TRANSLATIONS=y
++CONFIG_VT_CONSOLE=y
++CONFIG_HW_CONSOLE=y
++# CONFIG_VT_HW_CONSOLE_BINDING is not set
++CONFIG_DEVKMEM=y
++# CONFIG_SERIAL_NONSTANDARD is not set
++
++#
++# Serial drivers
++#
++CONFIG_SERIAL_8250=y
++CONFIG_SERIAL_8250_CONSOLE=y
++# CONFIG_LPC31XX_SERIAL_DMA_SUPPORT is not set
++CONFIG_SERIAL_8250_NR_UARTS=1
++CONFIG_SERIAL_8250_RUNTIME_UARTS=1
++# CONFIG_SERIAL_8250_EXTENDED is not set
++
++#
++# Non-8250 serial port support
++#
++# CONFIG_SERIAL_MAX3100 is not set
++CONFIG_SERIAL_CORE=y
++CONFIG_SERIAL_CORE_CONSOLE=y
++CONFIG_UNIX98_PTYS=y
++# CONFIG_DEVPTS_MULTIPLE_INSTANCES is not set
++# CONFIG_LEGACY_PTYS is not set
++# CONFIG_IPMI_HANDLER is not set
++# CONFIG_HW_RANDOM is not set
++# CONFIG_R3964 is not set
++# CONFIG_RAW_DRIVER is not set
++# CONFIG_TCG_TPM is not set
++CONFIG_I2C=y
++CONFIG_I2C_BOARDINFO=y
++CONFIG_I2C_COMPAT=y
++CONFIG_I2C_CHARDEV=y
++CONFIG_I2C_HELPER_AUTO=y
++
++#
++# I2C Hardware Bus support
++#
++
++#
++# I2C system bus drivers (mostly embedded / system-on-chip)
++#
++# CONFIG_I2C_GPIO is not set
++# CONFIG_I2C_OCORES is not set
++CONFIG_I2C_PNX=y
++# CONFIG_I2C_SIMTEC is not set
++
++#
++# External I2C/SMBus adapter drivers
++#
++# CONFIG_I2C_PARPORT_LIGHT is not set
++# CONFIG_I2C_TAOS_EVM is not set
++# CONFIG_I2C_TINY_USB is not set
++
++#
++# Other I2C/SMBus bus drivers
++#
++# CONFIG_I2C_PCA_PLATFORM is not set
++# CONFIG_I2C_STUB is not set
++
++#
++# Miscellaneous I2C Chip support
++#
++# CONFIG_SENSORS_TSL2550 is not set
++# CONFIG_I2C_DEBUG_CORE is not set
++# CONFIG_I2C_DEBUG_ALGO is not set
++CONFIG_I2C_DEBUG_BUS=y
++# CONFIG_I2C_DEBUG_CHIP is not set
++CONFIG_SPI=y
++# CONFIG_SPI_DEBUG is not set
++CONFIG_SPI_MASTER=y
++
++#
++# SPI Master Controller Drivers
++#
++# CONFIG_SPI_BITBANG is not set
++# CONFIG_SPI_GPIO is not set
++# CONFIG_SPI_XILINX is not set
++CONFIG_SPI_LPC313X=y
++# CONFIG_SPI_DESIGNWARE is not set
++
++#
++# SPI Protocol Masters
++#
++CONFIG_SPI_SPIDEV=y
++# CONFIG_SPI_TLE62X0 is not set
++
++#
++# PPS support
++#
++# CONFIG_PPS is not set
++CONFIG_ARCH_WANT_OPTIONAL_GPIOLIB=y
++CONFIG_GPIOLIB=y
++# CONFIG_DEBUG_GPIO is not set
++CONFIG_GPIO_SYSFS=y
++
++#
++# Memory mapped GPIO expanders:
++#
++
++#
++# I2C GPIO expanders:
++#
++# CONFIG_GPIO_MAX732X is not set
++CONFIG_GPIO_PCA953X=m
++# CONFIG_GPIO_PCF857X is not set
++# CONFIG_GPIO_ADP5588 is not set
++
++#
++# PCI GPIO expanders:
++#
++
++#
++# SPI GPIO expanders:
++#
++# CONFIG_GPIO_MAX7301 is not set
++# CONFIG_GPIO_MCP23S08 is not set
++# CONFIG_GPIO_MC33880 is not set
++
++#
++# AC97 GPIO expanders:
++#
++# CONFIG_W1 is not set
++# CONFIG_POWER_SUPPLY is not set
++CONFIG_HWMON=y
++# CONFIG_HWMON_VID is not set
++# CONFIG_HWMON_DEBUG_CHIP is not set
++
++#
++# Native drivers
++#
++# CONFIG_SENSORS_AD7414 is not set
++# CONFIG_SENSORS_AD7418 is not set
++# CONFIG_SENSORS_ADCXX is not set
++# CONFIG_SENSORS_ADM1021 is not set
++# CONFIG_SENSORS_ADM1025 is not set
++# CONFIG_SENSORS_ADM1026 is not set
++# CONFIG_SENSORS_ADM1029 is not set
++# CONFIG_SENSORS_ADM1031 is not set
++# CONFIG_SENSORS_ADM9240 is not set
++# CONFIG_SENSORS_ADT7462 is not set
++# CONFIG_SENSORS_ADT7470 is not set
++# CONFIG_SENSORS_ADT7473 is not set
++# CONFIG_SENSORS_ADT7475 is not set
++# CONFIG_SENSORS_ATXP1 is not set
++# CONFIG_SENSORS_DS1621 is not set
++# CONFIG_SENSORS_F71805F is not set
++# CONFIG_SENSORS_F71882FG is not set
++# CONFIG_SENSORS_F75375S is not set
++# CONFIG_SENSORS_G760A is not set
++# CONFIG_SENSORS_GL518SM is not set
++# CONFIG_SENSORS_GL520SM is not set
++# CONFIG_SENSORS_IT87 is not set
++# CONFIG_SENSORS_LM63 is not set
++# CONFIG_SENSORS_LM70 is not set
++# CONFIG_SENSORS_LM73 is not set
++# CONFIG_SENSORS_LM75 is not set
++# CONFIG_SENSORS_LM77 is not set
++# CONFIG_SENSORS_LM78 is not set
++# CONFIG_SENSORS_LM80 is not set
++# CONFIG_SENSORS_LM83 is not set
++# CONFIG_SENSORS_LM85 is not set
++# CONFIG_SENSORS_LM87 is not set
++# CONFIG_SENSORS_LM90 is not set
++# CONFIG_SENSORS_LM92 is not set
++# CONFIG_SENSORS_LM93 is not set
++# CONFIG_SENSORS_LTC4215 is not set
++# CONFIG_SENSORS_LTC4245 is not set
++# CONFIG_SENSORS_LM95241 is not set
++# CONFIG_SENSORS_MAX1111 is not set
++# CONFIG_SENSORS_MAX1619 is not set
++# CONFIG_SENSORS_MAX6650 is not set
++# CONFIG_SENSORS_PC87360 is not set
++# CONFIG_SENSORS_PC87427 is not set
++# CONFIG_SENSORS_PCF8591 is not set
++# CONFIG_SENSORS_SHT15 is not set
++# CONFIG_SENSORS_DME1737 is not set
++# CONFIG_SENSORS_SMSC47M1 is not set
++# CONFIG_SENSORS_SMSC47M192 is not set
++# CONFIG_SENSORS_SMSC47B397 is not set
++# CONFIG_SENSORS_ADS7828 is not set
++# CONFIG_SENSORS_AMC6821 is not set
++# CONFIG_SENSORS_THMC50 is not set
++# CONFIG_SENSORS_TMP401 is not set
++# CONFIG_SENSORS_TMP421 is not set
++# CONFIG_SENSORS_VT1211 is not set
++# CONFIG_SENSORS_W83781D is not set
++# CONFIG_SENSORS_W83791D is not set
++# CONFIG_SENSORS_W83792D is not set
++# CONFIG_SENSORS_W83793 is not set
++# CONFIG_SENSORS_W83L785TS is not set
++# CONFIG_SENSORS_W83L786NG is not set
++# CONFIG_SENSORS_W83627HF is not set
++# CONFIG_SENSORS_W83627EHF is not set
++# CONFIG_SENSORS_LIS3_SPI is not set
++# CONFIG_SENSORS_LIS3_I2C is not set
++# CONFIG_THERMAL is not set
++CONFIG_WATCHDOG=y
++# CONFIG_WATCHDOG_NOWAYOUT is not set
++
++#
++# Watchdog Device Drivers
++#
++# CONFIG_SOFT_WATCHDOG is not set
++CONFIG_LPC313X_WATCHDOG=y
++
++#
++# USB-based Watchdog Cards
++#
++# CONFIG_USBPCWATCHDOG is not set
++CONFIG_SSB_POSSIBLE=y
++
++#
++# Sonics Silicon Backplane
++#
++# CONFIG_SSB is not set
++
++#
++# Multifunction device drivers
++#
++# CONFIG_MFD_CORE is not set
++# CONFIG_MFD_SM501 is not set
++# CONFIG_MFD_ASIC3 is not set
++# CONFIG_HTC_EGPIO is not set
++# CONFIG_HTC_PASIC3 is not set
++# CONFIG_TPS65010 is not set
++# CONFIG_TWL4030_CORE is not set
++# CONFIG_MFD_TMIO is not set
++# CONFIG_MFD_TC6393XB is not set
++# CONFIG_PMIC_DA903X is not set
++# CONFIG_PMIC_ADP5520 is not set
++# CONFIG_MFD_WM8400 is not set
++# CONFIG_MFD_WM831X is not set
++# CONFIG_MFD_WM8350_I2C is not set
++# CONFIG_MFD_PCF50633 is not set
++# CONFIG_MFD_MC13783 is not set
++# CONFIG_AB3100_CORE is not set
++# CONFIG_EZX_PCAP is not set
++# CONFIG_MFD_88PM8607 is not set
++# CONFIG_AB4500_CORE is not set
++# CONFIG_REGULATOR is not set
++# CONFIG_MEDIA_SUPPORT is not set
++
++#
++# Graphics support
++#
++# CONFIG_VGASTATE is not set
++# CONFIG_VIDEO_OUTPUT_CONTROL is not set
++# CONFIG_FB is not set
++# CONFIG_BACKLIGHT_LCD_SUPPORT is not set
++
++#
++# Display device support
++#
++# CONFIG_DISPLAY_SUPPORT is not set
++
++#
++# Console display driver support
++#
++# CONFIG_VGA_CONSOLE is not set
++CONFIG_DUMMY_CONSOLE=y
++# CONFIG_SOUND is not set
++CONFIG_HID_SUPPORT=y
++CONFIG_HID=m
++# CONFIG_HIDRAW is not set
++
++#
++# USB Input Devices
++#
++CONFIG_USB_HID=m
++# CONFIG_HID_PID is not set
++# CONFIG_USB_HIDDEV is not set
++
++#
++# USB HID Boot Protocol drivers
++#
++# CONFIG_USB_KBD is not set
++# CONFIG_USB_MOUSE is not set
++
++#
++# Special HID drivers
++#
++# CONFIG_HID_A4TECH is not set
++# CONFIG_HID_APPLE is not set
++# CONFIG_HID_BELKIN is not set
++# CONFIG_HID_CHERRY is not set
++# CONFIG_HID_CHICONY is not set
++# CONFIG_HID_CYPRESS is not set
++# CONFIG_HID_DRAGONRISE is not set
++# CONFIG_HID_EZKEY is not set
++# CONFIG_HID_KYE is not set
++# CONFIG_HID_GYRATION is not set
++# CONFIG_HID_TWINHAN is not set
++# CONFIG_HID_KENSINGTON is not set
++# CONFIG_HID_LOGITECH is not set
++# CONFIG_HID_MICROSOFT is not set
++# CONFIG_HID_MONTEREY is not set
++# CONFIG_HID_NTRIG is not set
++# CONFIG_HID_PANTHERLORD is not set
++# CONFIG_HID_PETALYNX is not set
++# CONFIG_HID_SAMSUNG is not set
++# CONFIG_HID_SONY is not set
++# CONFIG_HID_SUNPLUS is not set
++# CONFIG_HID_GREENASIA is not set
++# CONFIG_HID_SMARTJOYPLUS is not set
++# CONFIG_HID_TOPSEED is not set
++# CONFIG_HID_THRUSTMASTER is not set
++# CONFIG_HID_ZEROPLUS is not set
++CONFIG_USB_SUPPORT=y
++CONFIG_USB_ARCH_HAS_HCD=y
++# CONFIG_USB_ARCH_HAS_OHCI is not set
++CONFIG_USB_ARCH_HAS_EHCI=y
++CONFIG_USB=y
++CONFIG_USB_DEBUG=y
++CONFIG_USB_ANNOUNCE_NEW_DEVICES=y
++
++#
++# Miscellaneous USB options
++#
++CONFIG_USB_DEVICEFS=y
++# CONFIG_USB_DEVICE_CLASS is not set
++# CONFIG_USB_DYNAMIC_MINORS is not set
++CONFIG_USB_SUSPEND=y
++# CONFIG_USB_OTG is not set
++# CONFIG_USB_OTG_WHITELIST is not set
++# CONFIG_USB_OTG_BLACKLIST_HUB is not set
++CONFIG_USB_MON=y
++# CONFIG_USB_WUSB is not set
++# CONFIG_USB_WUSB_CBAF is not set
++
++#
++# USB Host Controller Drivers
++#
++# CONFIG_USB_C67X00_HCD is not set
++CONFIG_USB_EHCI_HCD=y
++# CONFIG_USB_EHCI_EHSET is not set
++CONFIG_USB_EHCI_ROOT_HUB_TT=y
++# CONFIG_USB_EHCI_TT_NEWSCHED is not set
++# CONFIG_USB_OXU210HP_HCD is not set
++CONFIG_USB_EHCI_LPC=y
++# CONFIG_USB_ISP116X_HCD is not set
++# CONFIG_USB_ISP1760_HCD is not set
++# CONFIG_USB_ISP1362_HCD is not set
++# CONFIG_USB_SL811_HCD is not set
++# CONFIG_USB_R8A66597_HCD is not set
++# CONFIG_USB_HWA_HCD is not set
++# CONFIG_USB_MUSB_HDRC is not set
++# CONFIG_USB_GADGET_MUSB_HDRC is not set
++
++#
++# USB Device Class drivers
++#
++# CONFIG_USB_ACM is not set
++# CONFIG_USB_PRINTER is not set
++# CONFIG_USB_WDM is not set
++# CONFIG_USB_TMC is not set
++
++#
++# NOTE: USB_STORAGE depends on SCSI but BLK_DEV_SD may
++#
++
++#
++# also be needed; see USB_STORAGE Help for more info
++#
++CONFIG_USB_STORAGE=y
++CONFIG_USB_STORAGE_DEBUG=y
++# CONFIG_USB_STORAGE_DATAFAB is not set
++# CONFIG_USB_STORAGE_FREECOM is not set
++# CONFIG_USB_STORAGE_ISD200 is not set
++# CONFIG_USB_STORAGE_USBAT is not set
++# CONFIG_USB_STORAGE_SDDR09 is not set
++# CONFIG_USB_STORAGE_SDDR55 is not set
++# CONFIG_USB_STORAGE_JUMPSHOT is not set
++# CONFIG_USB_STORAGE_ALAUDA is not set
++# CONFIG_USB_STORAGE_ONETOUCH is not set
++# CONFIG_USB_STORAGE_KARMA is not set
++# CONFIG_USB_STORAGE_CYPRESS_ATACB is not set
++# CONFIG_USB_LIBUSUAL is not set
++
++#
++# USB Imaging devices
++#
++# CONFIG_USB_MDC800 is not set
++# CONFIG_USB_MICROTEK is not set
++
++#
++# USB port drivers
++#
++CONFIG_USB_SERIAL=m
++# CONFIG_USB_EZUSB is not set
++# CONFIG_USB_SERIAL_GENERIC is not set
++# CONFIG_USB_SERIAL_AIRCABLE is not set
++# CONFIG_USB_SERIAL_ARK3116 is not set
++# CONFIG_USB_SERIAL_BELKIN is not set
++# CONFIG_USB_SERIAL_CH341 is not set
++# CONFIG_USB_SERIAL_WHITEHEAT is not set
++# CONFIG_USB_SERIAL_DIGI_ACCELEPORT is not set
++CONFIG_USB_SERIAL_CP210X=m
++# CONFIG_USB_SERIAL_CYPRESS_M8 is not set
++# CONFIG_USB_SERIAL_EMPEG is not set
++CONFIG_USB_SERIAL_FTDI_SIO=m
++# CONFIG_USB_SERIAL_FUNSOFT is not set
++# CONFIG_USB_SERIAL_VISOR is not set
++# CONFIG_USB_SERIAL_IPAQ is not set
++# CONFIG_USB_SERIAL_IR is not set
++# CONFIG_USB_SERIAL_EDGEPORT is not set
++# CONFIG_USB_SERIAL_EDGEPORT_TI is not set
++# CONFIG_USB_SERIAL_GARMIN is not set
++# CONFIG_USB_SERIAL_IPW is not set
++# CONFIG_USB_SERIAL_IUU is not set
++# CONFIG_USB_SERIAL_KEYSPAN_PDA is not set
++# CONFIG_USB_SERIAL_KEYSPAN is not set
++# CONFIG_USB_SERIAL_KLSI is not set
++# CONFIG_USB_SERIAL_KOBIL_SCT is not set
++# CONFIG_USB_SERIAL_MCT_U232 is not set
++# CONFIG_USB_SERIAL_MOS7720 is not set
++# CONFIG_USB_SERIAL_MOS7840 is not set
++# CONFIG_USB_SERIAL_MOTOROLA is not set
++# CONFIG_USB_SERIAL_NAVMAN is not set
++# CONFIG_USB_SERIAL_PL2303 is not set
++# CONFIG_USB_SERIAL_OTI6858 is not set
++# CONFIG_USB_SERIAL_QUALCOMM is not set
++# CONFIG_USB_SERIAL_SPCP8X5 is not set
++# CONFIG_USB_SERIAL_HP4X is not set
++# CONFIG_USB_SERIAL_SAFE is not set
++# CONFIG_USB_SERIAL_SIEMENS_MPI is not set
++# CONFIG_USB_SERIAL_SIERRAWIRELESS is not set
++# CONFIG_USB_SERIAL_SYMBOL is not set
++# CONFIG_USB_SERIAL_TI is not set
++# CONFIG_USB_SERIAL_CYBERJACK is not set
++# CONFIG_USB_SERIAL_XIRCOM is not set
++# CONFIG_USB_SERIAL_OPTION is not set
++# CONFIG_USB_SERIAL_OMNINET is not set
++# CONFIG_USB_SERIAL_OPTICON is not set
++# CONFIG_USB_SERIAL_DEBUG is not set
++
++#
++# USB Miscellaneous drivers
++#
++# CONFIG_USB_EMI62 is not set
++# CONFIG_USB_EMI26 is not set
++# CONFIG_USB_ADUTUX is not set
++# CONFIG_USB_SEVSEG is not set
++# CONFIG_USB_RIO500 is not set
++# CONFIG_USB_LEGOTOWER is not set
++# CONFIG_USB_LCD is not set
++# CONFIG_USB_BERRY_CHARGE is not set
++# CONFIG_USB_LED is not set
++# CONFIG_USB_CYPRESS_CY7C63 is not set
++# CONFIG_USB_CYTHERM is not set
++# CONFIG_USB_IDMOUSE is not set
++# CONFIG_USB_FTDI_ELAN is not set
++# CONFIG_USB_APPLEDISPLAY is not set
++# CONFIG_USB_SISUSBVGA is not set
++# CONFIG_USB_LD is not set
++# CONFIG_USB_TRANCEVIBRATOR is not set
++# CONFIG_USB_IOWARRIOR is not set
++# CONFIG_USB_TEST is not set
++# CONFIG_USB_ISIGHTFW is not set
++# CONFIG_USB_VST is not set
++CONFIG_USB_GADGET=y
++# CONFIG_USB_GADGET_DEBUG is not set
++# CONFIG_USB_GADGET_DEBUG_FILES is not set
++# CONFIG_USB_GADGET_DEBUG_FS is not set
++CONFIG_USB_GADGET_VBUS_DRAW=2
++CONFIG_USB_GADGET_SELECTED=y
++# CONFIG_USB_GADGET_AT91 is not set
++# CONFIG_USB_GADGET_ATMEL_USBA is not set
++CONFIG_USB_GADGET_FSL_USB2=y
++CONFIG_USB_FSL_USB2=y
++# CONFIG_USB_GADGET_LH7A40X is not set
++# CONFIG_USB_GADGET_OMAP is not set
++# CONFIG_USB_GADGET_PXA25X is not set
++# CONFIG_USB_GADGET_R8A66597 is not set
++# CONFIG_USB_GADGET_PXA27X is not set
++# CONFIG_USB_GADGET_S3C_HSOTG is not set
++# CONFIG_USB_GADGET_IMX is not set
++# CONFIG_USB_GADGET_S3C2410 is not set
++# CONFIG_USB_GADGET_M66592 is not set
++# CONFIG_USB_GADGET_AMD5536UDC is not set
++# CONFIG_USB_GADGET_FSL_QE is not set
++# CONFIG_USB_GADGET_CI13XXX is not set
++# CONFIG_USB_GADGET_NET2280 is not set
++# CONFIG_USB_GADGET_GOKU is not set
++# CONFIG_USB_GADGET_LANGWELL is not set
++# CONFIG_USB_GADGET_DUMMY_HCD is not set
++CONFIG_USB_GADGET_DUALSPEED=y
++CONFIG_USB_ZERO=m
++# CONFIG_USB_AUDIO is not set
++CONFIG_USB_ETH=m
++# CONFIG_USB_ETH_RNDIS is not set
++# CONFIG_USB_ETH_EEM is not set
++CONFIG_USB_GADGETFS=m
++CONFIG_USB_FILE_STORAGE=m
++# CONFIG_USB_FILE_STORAGE_TEST is not set
++CONFIG_USB_MASS_STORAGE=m
++CONFIG_USB_G_SERIAL=m
++# CONFIG_USB_MIDI_GADGET is not set
++CONFIG_USB_G_PRINTER=m
++CONFIG_USB_CDC_COMPOSITE=m
++# CONFIG_USB_G_MULTI is not set
++
++#
++# OTG and related infrastructure
++#
++# CONFIG_USB_GPIO_VBUS is not set
++# CONFIG_USB_ULPI is not set
++# CONFIG_NOP_USB_XCEIV is not set
++CONFIG_MMC=y
++# CONFIG_MMC_DEBUG is not set
++# CONFIG_MMC_UNSAFE_RESUME is not set
++
++#
++# MMC/SD/SDIO Card Drivers
++#
++CONFIG_MMC_BLOCK=y
++CONFIG_MMC_BLOCK_BOUNCE=y
++# CONFIG_SDIO_UART is not set
++# CONFIG_MMC_TEST is not set
++
++#
++# MMC/SD/SDIO Host Controller Drivers
++#
++CONFIG_MMC_LPC313x=y
++# CONFIG_MMC_SDHCI is not set
++# CONFIG_MMC_AT91 is not set
++# CONFIG_MMC_ATMELMCI is not set
++# CONFIG_MMC_SPI is not set
++# CONFIG_MEMSTICK is not set
++CONFIG_NEW_LEDS=y
++CONFIG_LEDS_CLASS=m
++
++#
++# LED drivers
++#
++# CONFIG_LEDS_PCA9532 is not set
++# CONFIG_LEDS_GPIO is not set
++# CONFIG_LEDS_LP3944 is not set
++# CONFIG_LEDS_PCA955X is not set
++# CONFIG_LEDS_DAC124S085 is not set
++# CONFIG_LEDS_BD2802 is not set
++# CONFIG_LEDS_LT3593 is not set
++
++#
++# LED Triggers
++#
++CONFIG_LEDS_TRIGGERS=y
++# CONFIG_LEDS_TRIGGER_TIMER is not set
++# CONFIG_LEDS_TRIGGER_HEARTBEAT is not set
++# CONFIG_LEDS_TRIGGER_BACKLIGHT is not set
++# CONFIG_LEDS_TRIGGER_GPIO is not set
++# CONFIG_LEDS_TRIGGER_DEFAULT_ON is not set
++
++#
++# iptables trigger is under Netfilter config (LED target)
++#
++# CONFIG_ACCESSIBILITY is not set
++CONFIG_RTC_LIB=y
++# CONFIG_RTC_CLASS is not set
++# CONFIG_DMADEVICES is not set
++# CONFIG_AUXDISPLAY is not set
++# CONFIG_UIO is not set
++
++#
++# TI VLYNQ
++#
++# CONFIG_STAGING is not set
++
++#
++# File systems
++#
++CONFIG_EXT2_FS=y
++# CONFIG_EXT2_FS_XATTR is not set
++# CONFIG_EXT2_FS_XIP is not set
++# CONFIG_EXT3_FS is not set
++# CONFIG_EXT4_FS is not set
++# CONFIG_REISERFS_FS is not set
++# CONFIG_JFS_FS is not set
++# CONFIG_FS_POSIX_ACL is not set
++# CONFIG_XFS_FS is not set
++# CONFIG_GFS2_FS is not set
++# CONFIG_OCFS2_FS is not set
++# CONFIG_BTRFS_FS is not set
++# CONFIG_NILFS2_FS is not set
++CONFIG_FILE_LOCKING=y
++CONFIG_FSNOTIFY=y
++CONFIG_DNOTIFY=y
++CONFIG_INOTIFY=y
++CONFIG_INOTIFY_USER=y
++# CONFIG_QUOTA is not set
++# CONFIG_AUTOFS_FS is not set
++# CONFIG_AUTOFS4_FS is not set
++# CONFIG_FUSE_FS is not set
++
++#
++# Caches
++#
++# CONFIG_FSCACHE is not set
++
++#
++# CD-ROM/DVD Filesystems
++#
++# CONFIG_ISO9660_FS is not set
++# CONFIG_UDF_FS is not set
++
++#
++# DOS/FAT/NT Filesystems
++#
++CONFIG_FAT_FS=y
++# CONFIG_MSDOS_FS is not set
++CONFIG_VFAT_FS=y
++CONFIG_FAT_DEFAULT_CODEPAGE=437
++CONFIG_FAT_DEFAULT_IOCHARSET="iso8859-1"
++# CONFIG_NTFS_FS is not set
++
++#
++# Pseudo filesystems
++#
++CONFIG_PROC_FS=y
++CONFIG_PROC_SYSCTL=y
++CONFIG_PROC_PAGE_MONITOR=y
++CONFIG_SYSFS=y
++CONFIG_TMPFS=y
++# CONFIG_TMPFS_POSIX_ACL is not set
++# CONFIG_HUGETLB_PAGE is not set
++# CONFIG_CONFIGFS_FS is not set
++CONFIG_MISC_FILESYSTEMS=y
++# CONFIG_ADFS_FS is not set
++# CONFIG_AFFS_FS is not set
++# CONFIG_HFS_FS is not set
++# CONFIG_HFSPLUS_FS is not set
++# CONFIG_BEFS_FS is not set
++# CONFIG_BFS_FS is not set
++# CONFIG_EFS_FS is not set
++# CONFIG_CRAMFS is not set
++# CONFIG_SQUASHFS is not set
++# CONFIG_VXFS_FS is not set
++# CONFIG_MINIX_FS is not set
++# CONFIG_OMFS_FS is not set
++# CONFIG_HPFS_FS is not set
++# CONFIG_QNX4FS_FS is not set
++# CONFIG_ROMFS_FS is not set
++# CONFIG_SYSV_FS is not set
++# CONFIG_UFS_FS is not set
++# CONFIG_NETWORK_FILESYSTEMS is not set
++
++#
++# Partition Types
++#
++# CONFIG_PARTITION_ADVANCED is not set
++CONFIG_MSDOS_PARTITION=y
++CONFIG_NLS=y
++CONFIG_NLS_DEFAULT="iso8859-1"
++CONFIG_NLS_CODEPAGE_437=y
++# CONFIG_NLS_CODEPAGE_737 is not set
++# CONFIG_NLS_CODEPAGE_775 is not set
++CONFIG_NLS_CODEPAGE_850=y
++# CONFIG_NLS_CODEPAGE_852 is not set
++# CONFIG_NLS_CODEPAGE_855 is not set
++# CONFIG_NLS_CODEPAGE_857 is not set
++# CONFIG_NLS_CODEPAGE_860 is not set
++# CONFIG_NLS_CODEPAGE_861 is not set
++# CONFIG_NLS_CODEPAGE_862 is not set
++# CONFIG_NLS_CODEPAGE_863 is not set
++# CONFIG_NLS_CODEPAGE_864 is not set
++# CONFIG_NLS_CODEPAGE_865 is not set
++# CONFIG_NLS_CODEPAGE_866 is not set
++# CONFIG_NLS_CODEPAGE_869 is not set
++# CONFIG_NLS_CODEPAGE_936 is not set
++# CONFIG_NLS_CODEPAGE_950 is not set
++# CONFIG_NLS_CODEPAGE_932 is not set
++# CONFIG_NLS_CODEPAGE_949 is not set
++# CONFIG_NLS_CODEPAGE_874 is not set
++# CONFIG_NLS_ISO8859_8 is not set
++# CONFIG_NLS_CODEPAGE_1250 is not set
++# CONFIG_NLS_CODEPAGE_1251 is not set
++# CONFIG_NLS_ASCII is not set
++CONFIG_NLS_ISO8859_1=y
++# CONFIG_NLS_ISO8859_2 is not set
++# CONFIG_NLS_ISO8859_3 is not set
++# CONFIG_NLS_ISO8859_4 is not set
++# CONFIG_NLS_ISO8859_5 is not set
++# CONFIG_NLS_ISO8859_6 is not set
++# CONFIG_NLS_ISO8859_7 is not set
++# CONFIG_NLS_ISO8859_9 is not set
++# CONFIG_NLS_ISO8859_13 is not set
++# CONFIG_NLS_ISO8859_14 is not set
++# CONFIG_NLS_ISO8859_15 is not set
++# CONFIG_NLS_KOI8_R is not set
++# CONFIG_NLS_KOI8_U is not set
++# CONFIG_NLS_UTF8 is not set
++# CONFIG_DLM is not set
++
++#
++# Kernel hacking
++#
++# CONFIG_PRINTK_TIME is not set
++CONFIG_ENABLE_WARN_DEPRECATED=y
++CONFIG_ENABLE_MUST_CHECK=y
++CONFIG_FRAME_WARN=1024
++# CONFIG_MAGIC_SYSRQ is not set
++# CONFIG_STRIP_ASM_SYMS is not set
++# CONFIG_UNUSED_SYMBOLS is not set
++CONFIG_DEBUG_FS=y
++# CONFIG_HEADERS_CHECK is not set
++CONFIG_DEBUG_KERNEL=y
++# CONFIG_DEBUG_SHIRQ is not set
++CONFIG_DETECT_SOFTLOCKUP=y
++# CONFIG_BOOTPARAM_SOFTLOCKUP_PANIC is not set
++CONFIG_BOOTPARAM_SOFTLOCKUP_PANIC_VALUE=0
++CONFIG_DETECT_HUNG_TASK=y
++# CONFIG_BOOTPARAM_HUNG_TASK_PANIC is not set
++CONFIG_BOOTPARAM_HUNG_TASK_PANIC_VALUE=0
++CONFIG_SCHED_DEBUG=y
++# CONFIG_SCHEDSTATS is not set
++# CONFIG_TIMER_STATS is not set
++# CONFIG_DEBUG_OBJECTS is not set
++# CONFIG_DEBUG_SLAB is not set
++# CONFIG_DEBUG_KMEMLEAK is not set
++# CONFIG_DEBUG_RT_MUTEXES is not set
++# CONFIG_RT_MUTEX_TESTER is not set
++# CONFIG_DEBUG_SPINLOCK is not set
++# CONFIG_DEBUG_MUTEXES is not set
++# CONFIG_DEBUG_LOCK_ALLOC is not set
++# CONFIG_PROVE_LOCKING is not set
++# CONFIG_LOCK_STAT is not set
++# CONFIG_DEBUG_SPINLOCK_SLEEP is not set
++# CONFIG_DEBUG_LOCKING_API_SELFTESTS is not set
++# CONFIG_DEBUG_KOBJECT is not set
++CONFIG_DEBUG_BUGVERBOSE=y
++# CONFIG_DEBUG_INFO is not set
++# CONFIG_DEBUG_VM is not set
++# CONFIG_DEBUG_WRITECOUNT is not set
++CONFIG_DEBUG_MEMORY_INIT=y
++# CONFIG_DEBUG_LIST is not set
++# CONFIG_DEBUG_SG is not set
++# CONFIG_DEBUG_NOTIFIERS is not set
++# CONFIG_DEBUG_CREDENTIALS is not set
++# CONFIG_BOOT_PRINTK_DELAY is not set
++# CONFIG_RCU_TORTURE_TEST is not set
++# CONFIG_RCU_CPU_STALL_DETECTOR is not set
++# CONFIG_BACKTRACE_SELF_TEST is not set
++# CONFIG_DEBUG_BLOCK_EXT_DEVT is not set
++# CONFIG_DEBUG_FORCE_WEAK_PER_CPU is not set
++# CONFIG_FAULT_INJECTION is not set
++# CONFIG_LATENCYTOP is not set
++# CONFIG_SYSCTL_SYSCALL_CHECK is not set
++# CONFIG_PAGE_POISONING is not set
++CONFIG_HAVE_FUNCTION_TRACER=y
++CONFIG_TRACING_SUPPORT=y
++CONFIG_FTRACE=y
++# CONFIG_FUNCTION_TRACER is not set
++# CONFIG_SCHED_TRACER is not set
++# CONFIG_ENABLE_DEFAULT_TRACERS is not set
++# CONFIG_BOOT_TRACER is not set
++CONFIG_BRANCH_PROFILE_NONE=y
++# CONFIG_PROFILE_ANNOTATED_BRANCHES is not set
++# CONFIG_PROFILE_ALL_BRANCHES is not set
++# CONFIG_STACK_TRACER is not set
++# CONFIG_KMEMTRACE is not set
++# CONFIG_WORKQUEUE_TRACER is not set
++# CONFIG_BLK_DEV_IO_TRACE is not set
++# CONFIG_DYNAMIC_DEBUG is not set
++# CONFIG_SAMPLES is not set
++CONFIG_HAVE_ARCH_KGDB=y
++# CONFIG_KGDB is not set
++CONFIG_ARM_UNWIND=y
++# CONFIG_DEBUG_USER is not set
++# CONFIG_DEBUG_ERRORS is not set
++# CONFIG_DEBUG_STACK_USAGE is not set
++# CONFIG_DEBUG_LL is not set
++# CONFIG_OC_ETM is not set
++
++#
++# Security options
++#
++# CONFIG_KEYS is not set
++# CONFIG_SECURITY is not set
++# CONFIG_SECURITYFS is not set
++# CONFIG_DEFAULT_SECURITY_SELINUX is not set
++# CONFIG_DEFAULT_SECURITY_SMACK is not set
++# CONFIG_DEFAULT_SECURITY_TOMOYO is not set
++CONFIG_DEFAULT_SECURITY_DAC=y
++CONFIG_DEFAULT_SECURITY=""
++CONFIG_CRYPTO=y
++
++#
++# Crypto core or helper
++#
++# CONFIG_CRYPTO_FIPS is not set
++CONFIG_CRYPTO_ALGAPI=y
++CONFIG_CRYPTO_ALGAPI2=y
++CONFIG_CRYPTO_AEAD2=y
++CONFIG_CRYPTO_BLKCIPHER=y
++CONFIG_CRYPTO_BLKCIPHER2=y
++CONFIG_CRYPTO_HASH2=y
++CONFIG_CRYPTO_RNG=m
++CONFIG_CRYPTO_RNG2=y
++CONFIG_CRYPTO_PCOMP=y
++CONFIG_CRYPTO_MANAGER=y
++CONFIG_CRYPTO_MANAGER2=y
++# CONFIG_CRYPTO_GF128MUL is not set
++# CONFIG_CRYPTO_NULL is not set
++CONFIG_CRYPTO_WORKQUEUE=y
++# CONFIG_CRYPTO_CRYPTD is not set
++# CONFIG_CRYPTO_AUTHENC is not set
++# CONFIG_CRYPTO_TEST is not set
++
++#
++# Authenticated Encryption with Associated Data
++#
++# CONFIG_CRYPTO_CCM is not set
++# CONFIG_CRYPTO_GCM is not set
++# CONFIG_CRYPTO_SEQIV is not set
++
++#
++# Block modes
++#
++# CONFIG_CRYPTO_CBC is not set
++# CONFIG_CRYPTO_CTR is not set
++# CONFIG_CRYPTO_CTS is not set
++CONFIG_CRYPTO_ECB=y
++# CONFIG_CRYPTO_LRW is not set
++# CONFIG_CRYPTO_PCBC is not set
++# CONFIG_CRYPTO_XTS is not set
++
++#
++# Hash modes
++#
++# CONFIG_CRYPTO_HMAC is not set
++# CONFIG_CRYPTO_XCBC is not set
++# CONFIG_CRYPTO_VMAC is not set
++
++#
++# Digest
++#
++# CONFIG_CRYPTO_CRC32C is not set
++# CONFIG_CRYPTO_GHASH is not set
++# CONFIG_CRYPTO_MD4 is not set
++# CONFIG_CRYPTO_MD5 is not set
++# CONFIG_CRYPTO_MICHAEL_MIC is not set
++# CONFIG_CRYPTO_RMD128 is not set
++# CONFIG_CRYPTO_RMD160 is not set
++# CONFIG_CRYPTO_RMD256 is not set
++# CONFIG_CRYPTO_RMD320 is not set
++# CONFIG_CRYPTO_SHA1 is not set
++# CONFIG_CRYPTO_SHA256 is not set
++# CONFIG_CRYPTO_SHA512 is not set
++# CONFIG_CRYPTO_TGR192 is not set
++# CONFIG_CRYPTO_WP512 is not set
++
++#
++# Ciphers
++#
++CONFIG_CRYPTO_AES=y
++# CONFIG_CRYPTO_ANUBIS is not set
++CONFIG_CRYPTO_ARC4=y
++# CONFIG_CRYPTO_BLOWFISH is not set
++# CONFIG_CRYPTO_CAMELLIA is not set
++# CONFIG_CRYPTO_CAST5 is not set
++# CONFIG_CRYPTO_CAST6 is not set
++# CONFIG_CRYPTO_DES is not set
++# CONFIG_CRYPTO_FCRYPT is not set
++# CONFIG_CRYPTO_KHAZAD is not set
++# CONFIG_CRYPTO_SALSA20 is not set
++# CONFIG_CRYPTO_SEED is not set
++# CONFIG_CRYPTO_SERPENT is not set
++# CONFIG_CRYPTO_TEA is not set
++# CONFIG_CRYPTO_TWOFISH is not set
++
++#
++# Compression
++#
++# CONFIG_CRYPTO_DEFLATE is not set
++# CONFIG_CRYPTO_ZLIB is not set
++# CONFIG_CRYPTO_LZO is not set
++
++#
++# Random Number Generation
++#
++CONFIG_CRYPTO_ANSI_CPRNG=m
++CONFIG_CRYPTO_HW=y
++# CONFIG_BINARY_PRINTF is not set
++
++#
++# Library routines
++#
++CONFIG_BITREVERSE=y
++CONFIG_GENERIC_FIND_LAST_BIT=y
++# CONFIG_CRC_CCITT is not set
++CONFIG_CRC16=m
++# CONFIG_CRC_T10DIF is not set
++# CONFIG_CRC_ITU_T is not set
++CONFIG_CRC32=y
++# CONFIG_CRC7 is not set
++# CONFIG_LIBCRC32C is not set
++CONFIG_ZLIB_INFLATE=y
++CONFIG_DECOMPRESS_GZIP=y
++CONFIG_DECOMPRESS_BZIP2=y
++CONFIG_DECOMPRESS_LZMA=y
++CONFIG_HAS_IOMEM=y
++CONFIG_HAS_IOPORT=y
++CONFIG_HAS_DMA=y
++CONFIG_NLATTR=y
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/i2c/busses/i2c-pnx.c.rej ../linux-2.6.33-lpc313x/drivers/i2c/busses/i2c-pnx.c.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/i2c/busses/i2c-pnx.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/i2c/busses/i2c-pnx.c.rej	2012-09-24 16:06:12.380031560 +0200
+@@ -0,0 +1,26 @@
++--- drivers/i2c/busses/i2c-pnx.c
+++++ drivers/i2c/busses/i2c-pnx.c
++@@ -175,11 +175,9 @@
++ 		/* We still have something to talk about... */
++ 		val = *alg_data->mif.buf++;
++ 
++-		if (alg_data->mif.len == 1) {
+++		/* last byte of a message */
+++		if ((alg_data->mif.len == 1) && alg_data->last)
++ 			val |= stop_bit;
++-			if (!alg_data->last)
++-				val |= start_bit;
++-		}
++ 
++ 		alg_data->mif.len--;
++ 		iowrite32(val, I2C_REG_TX(alg_data));
++@@ -254,9 +252,6 @@
++ 		if (alg_data->mif.len == 1) {
++ 			/* Last byte, do not acknowledge next rcv. */
++ 			val |= stop_bit;
++-			if (!alg_data->last)
++-				val |= start_bit;
++-
++ 			/*
++ 			 * Enable interrupt RFDAIE (data in Rx fifo),
++ 			 * and disable DRMIE (need data for Tx)
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/i2c/busses/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/i2c/busses/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/i2c/busses/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/i2c/busses/Kconfig.rej	2012-09-24 16:06:12.376031580 +0200
+@@ -0,0 +1,11 @@
++--- drivers/i2c/busses/Kconfig
+++++ drivers/i2c/busses/Kconfig
++@@ -468,7 +468,7 @@
++ 
++ config I2C_PNX
++ 	tristate "I2C bus support for Philips PNX targets"
++-	depends on ARCH_PNX4008
+++	depends on ARCH_PNX4008 || ARCH_LPC313X
++ 	help
++ 	  This driver supports the Philips IP3204 I2C IP block master and/or
++ 	  slave controller
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/mmc/host/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/mmc/host/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/mmc/host/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/mmc/host/Kconfig.rej	2012-09-24 16:06:12.380031560 +0200
+@@ -0,0 +1,15 @@
++--- drivers/mmc/host/Kconfig
+++++ drivers/mmc/host/Kconfig
++@@ -4,6 +4,12 @@
++ 
++ comment "MMC/SD/SDIO Host Controller Drivers"
++ 
+++config MMC_LPC313x
+++	tristate "NXP LPC313x SD/MMC Card Interface support"
+++	default M
+++	help
+++	  set default module sd/mmc installed for lpc313x
+++	  
++ config MMC_ARMMMCI
++ 	tristate "ARM AMBA Multimedia Card Interface support"
++ 	depends on ARM_AMBA
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/mmc/host/Makefile.rej ../linux-2.6.33-lpc313x/drivers/mmc/host/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/mmc/host/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/mmc/host/Makefile.rej	2012-09-24 16:06:12.380031560 +0200
+@@ -0,0 +1,8 @@
++--- drivers/mmc/host/Makefile
+++++ drivers/mmc/host/Makefile
++@@ -44,3 +44,5 @@
++ ifeq ($(CONFIG_CB710_DEBUG),y)
++ 	CFLAGS-cb710-mmc	+= -DDEBUG
++ endif
+++
+++obj-$(CONFIG_MMC_LPC313x)	+= lpc313x_mmc.o
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/mtd/nand/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/mtd/nand/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/mtd/nand/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/mtd/nand/Kconfig.rej	2012-09-24 16:06:12.384031520 +0200
+@@ -0,0 +1,15 @@
++--- drivers/mtd/nand/Kconfig
+++++ drivers/mtd/nand/Kconfig
++@@ -461,6 +461,12 @@
++ 	help
++ 	  Several Renesas SuperH CPU has FLCTL. This option enables support
++ 	  for NAND Flash using FLCTL. This driver support SH7723.
+++	  
+++config MTD_NAND_LPC313X
+++	tristate "Support for NAND Controller on NXP LPC313x"
+++	depends on ARCH_LPC313X
+++	help
+++	  This enables the NAND flash controller on the LPC313x
++ 
++ config MTD_NAND_DAVINCI
++         tristate "Support NAND on DaVinci SoC"
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/mtd/nand/Makefile.rej ../linux-2.6.33-lpc313x/drivers/mtd/nand/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/mtd/nand/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/mtd/nand/Makefile.rej	2012-09-24 16:06:12.384031520 +0200
+@@ -0,0 +1,9 @@
++--- drivers/mtd/nand/Makefile
+++++ drivers/mtd/nand/Makefile
++@@ -42,5 +42,6 @@
++ obj-$(CONFIG_MTD_NAND_W90P910)		+= w90p910_nand.o
++ obj-$(CONFIG_MTD_NAND_NOMADIK)		+= nomadik_nand.o
++ obj-$(CONFIG_MTD_NAND_BCM_UMI)		+= bcm_umi_nand.o nand_bcm_umi.o
+++obj-$(CONFIG_MTD_NAND_LPC313X)		+= lpc313x_nand.o
++ 
++ nand-objs := nand_base.o nand_bbt.o
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/net/cs89x0.c.rej ../linux-2.6.33-lpc313x/drivers/net/cs89x0.c.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/net/cs89x0.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/net/cs89x0.c.rej	2012-09-24 16:06:12.384031520 +0200
+@@ -0,0 +1,78 @@
++--- drivers/net/cs89x0.c
+++++ drivers/net/cs89x0.c
++@@ -186,6 +186,13 @@
++ #define CIRRUS_DEFAULT_IRQ	VH_INTC_INT_NUM_CASCADED_INTERRUPT_1 /* Event inputs bank 1 - ID 35/bit 3 */
++ static unsigned int netcard_portlist[] __used __initdata = {CIRRUS_DEFAULT_BASE, 0};
++ static unsigned int cs8900_irq_map[] = {CIRRUS_DEFAULT_IRQ, 0, 0, 0};
+++#elif defined(CONFIG_MACH_VAL3153)
+++#include <asm/irq.h>
+++#include <mach/hardware.h>
+++#define CS8900_IOBARRIER	(*(volatile u16 __force*) io_p2v(INTC_PHYS))
+++#define CIRRUS_DEFAULT_BASE	io_p2v(EXT_SRAM1_PHYS + 0x10000)	/* = Physical address 0x20030000 */
+++static unsigned int netcard_portlist[] __used __initdata = {CIRRUS_DEFAULT_BASE, 0};
+++static unsigned int cs8900_irq_map[] = {IRQ_CS8900_ETH_INT, 0, 0, 0};
++ #elif defined(CONFIG_MACH_MX31ADS)
++ #include <mach/board-mx31ads.h>
++ static unsigned int netcard_portlist[] __used __initdata = {
++@@ -325,6 +332,12 @@
++ 	if (net_debug)
++ 		printk("cs89x0:cs89x0_probe(0x%x)\n", io);
++ 
+++#ifdef CONFIG_MACH_VAL3153
+++	if(unit > 0) {
+++		err = -ENODEV;
+++		goto out;
+++	}
+++#endif
++ 	if (io > 0x1ff)	{	/* Check a single specified location. */
++ 		err = cs89x0_probe1(dev, io, 0);
++ 	} else if (io != 0) {	/* Don't probe at all. */
++@@ -384,6 +397,24 @@
++ {
++ 	outw(value, base_addr + (portno << 1));
++ }
+++#elif defined(CONFIG_MACH_VAL3153)
+++static u16
+++readword(unsigned long base_addr, int portno)
+++{
+++	u16 v;
+++	CS8900_IOBARRIER;
+++	v = inw(base_addr + portno);
+++	CS8900_IOBARRIER;
+++	return v;
+++}
+++
+++static void
+++writeword(unsigned long base_addr, int portno, u16 value)
+++{
+++	CS8900_IOBARRIER;
+++	outw(value, base_addr + portno);
+++	CS8900_IOBARRIER;
+++}
++ #else
++ static u16
++ readword(unsigned long base_addr, int portno)
++@@ -579,7 +610,7 @@
++ 		goto out1;
++ 	}
++ 
++-#ifdef CONFIG_SH_HICOSH4
+++#if defined(CONFIG_SH_HICOSH4) || defined(CONFIG_MACH_VAL3153)
++ 	/* truely reset the chip */
++ 	writeword(ioaddr, ADD_PORT, 0x0114);
++ 	writeword(ioaddr, DATA_PORT, 0x0040);
++@@ -681,9 +712,12 @@
++ 		}
++ 	} else
++ #endif
++-
+++/* quick hack for VAL3153 boards to reuse the mac address set by boot loader */
+++#if !defined(CONFIG_MACH_VAL3153)
++         if ((readreg(dev, PP_SelfST) & (EEPROM_OK | EEPROM_PRESENT)) ==
++-	      (EEPROM_OK|EEPROM_PRESENT)) {
+++	      (EEPROM_OK|EEPROM_PRESENT)) 
+++#endif
+++	{
++ 	        /* Load the MAC. */
++ 		for (i=0; i < ETH_ALEN/2; i++) {
++ 	                unsigned int Addr;
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/net/dm9000.c.rej ../linux-2.6.33-lpc313x/drivers/net/dm9000.c.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/net/dm9000.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/net/dm9000.c.rej	2012-09-24 16:06:12.388031489 +0200
+@@ -0,0 +1,10 @@
++--- drivers/net/dm9000.c
+++++ drivers/net/dm9000.c
++@@ -872,6 +872,7 @@
++ 
++ 	/* Issue TX polling command */
++ 	iow(dm, DM9000_TCR, TCR_TXREQ);	/* Cleared after TX complete */
+++	dev->trans_start = jiffies; /* save the time stamp */
++ }
++ 
++ /*
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/net/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/net/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/net/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/net/Kconfig.rej	2012-09-24 16:06:12.384031520 +0200
+@@ -0,0 +1,20 @@
++--- drivers/net/Kconfig
+++++ drivers/net/Kconfig
++@@ -1439,7 +1439,7 @@
++ config CS89x0
++ 	tristate "CS89x0 support"
++ 	depends on NET_ETHERNET && (ISA || EISA || MACH_IXDP2351 \
++-		|| ARCH_IXDP2X01 || ARCH_PNX010X || MACH_MX31ADS)
+++		|| ARCH_IXDP2X01 || ARCH_PNX010X || MACH_MX31ADS || MACH_VAL3153)
++ 	---help---
++ 	  Support for CS89x0 chipset based Ethernet cards. If you have a
++ 	  network (Ethernet) card of this type, say Y and read the
++@@ -1453,7 +1453,7 @@
++ config CS89x0_NONISA_IRQ
++ 	def_bool y
++ 	depends on CS89x0 != n
++-	depends on MACH_IXDP2351 || ARCH_IXDP2X01 || ARCH_PNX010X || MACH_MX31ADS
+++	depends on MACH_IXDP2351 || ARCH_IXDP2X01 || ARCH_PNX010X || MACH_MX31ADS || MACH_VAL3153
++ 
++ config TC35815
++ 	tristate "TOSHIBA TC35815 Ethernet support"
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/serial/8250.c.rej ../linux-2.6.33-lpc313x/drivers/serial/8250.c.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/serial/8250.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/serial/8250.c.rej	2012-09-24 16:06:12.388031489 +0200
+@@ -0,0 +1,776 @@
++--- drivers/serial/8250.c
+++++ drivers/serial/8250.c
++@@ -18,6 +18,76 @@
++  *  membase is an 'ioremapped' cookie.
++  */
++ 
+++/*
+++ * NXP UART driver DMA modifications notification
+++ *
+++ * This driver has been modifed to use DMA for transfer of the
+++ * serial buffers. These modifications are specific to the
+++ * LPC31XX version of the 8250 UART.
+++ *
+++ * Specific driver modifications
+++ *  General modifications
+++ *   1) 8250 RX/RX timeout/TX interrupts are no longer used.
+++ *   2) 8250 error status and break interrupts are still used,
+++ *      but 'per character' status doesn't work with DMA, so
+++ *      an error status is applied to the last DMA'd character
+++ *      when the error occurs. This may not always be accurate,
+++ *      but it's generally used for statistics only.
+++ *   3) Breaks requires a flush of the RX FIFO and toss the
+++ *      current DMA buffer. Because of the nature of breaks,
+++ *      this is generally ok.
+++ *   4) TX timeout logic (timer) no longer used.
+++ *
+++ *  RX side modifications
+++ *   1) RX FIFO based mechanism replaced with DMA based circ
+++ *      buffer logic.The DMA nevers stops servicing the FIFO
+++ *      event when the DMA buffer is 
+++ *
+++ *
+++ *  TX side modifications
+++ *   1) TX FIFO based logic removed. DMA block transfer of up
+++ *      to 64 bytes per transfer occur now.
+++ *   2) DMA transfer resets on empty TX FIFO transfer again
+++ *      transferring up to 64 bytes. A single DMA transfer
+++ *      will never exceed 64 bytes in a single transfer.
+++ *   3) DMA TX transfers need to start when the UART TX FIFO
+++ *      is empty, so the start od the DMA TX transfer is based
+++ *      on the UART TX holding register empty interrupt.
+++
+++ *
+++ * The serial core does not support DMA transfer. Transmit buffers
+++ * can be easily sent as a DMA buffer, but RX buffers require special
+++ * handling and still need to be sent to the serial core a byte at a
+++ * time. DMA transfer sizes vary per application. The size of the
+++ * circular buffer in the serial core is fixed. Maximum DMA RX
+++ * transfer size is limited to the serial core buffer sizes, while
+++ * DMA TX size is limited to the TX FIFO size.
+++ *
+++ * For TX, a DMA transfer is complete when the entire DMA transfer
+++ * has been sent to the UART FIFO via the DMA channel. However,
+++ * the TX transfer cannot be restarted until the TX FIFO is again
+++ * empty. Because of this, the DMA completion interrupt is ignored
+++ * and the UART TX holding register interrupt is used instead.
+++ *
+++ * For RX, a DMA transfer is more complicated. To maintain the
+++ * 'per byte' RX status, the circular buffer in the serial core
+++ * cannot be used. Although DMA is used to process the transfer,
+++ * each individual char received still needs to be individually
+++ * processed and submitted to the serial core. The RX FIFO and
+++ * RX timeout interrupts are no longer used. The RX error and
+++ * break status interrupts are still used, but no longer apply to
+++ * the currently received character. Because of this, the RX
+++ * handler always applies the accumulated status to the last DMA
+++ * character received. Since the RX timeout interrupt is no
+++ * longer used, a timer is used to emulate the RX timeouot check.
+++ * As the DMA will only generate an interrupt on a full RX buffer,
+++ * this timers purpose is important to periodically check if the
+++ * DMA has received characters.
+++ *
+++ * Early console support is unchanged. Non-DMA mode will be used
+++ * for early console support until the driver is initialized.
+++ */
+++
++ #if defined(CONFIG_SERIAL_8250_CONSOLE) && defined(CONFIG_MAGIC_SYSRQ)
++ #define SUPPORT_SYSRQ
++ #endif
++@@ -38,9 +108,11 @@
++ #include <linux/serial_8250.h>
++ #include <linux/nmi.h>
++ #include <linux/mutex.h>
+++#include <linux/dma-mapping.h>
++ 
++ #include <asm/io.h>
++ #include <asm/irq.h>
+++#include <mach/dma.h>
++ 
++ #include "8250.h"
++ 
++@@ -129,6 +201,29 @@
++ static unsigned int probe_rsa_count;
++ #endif /* CONFIG_SERIAL_8250_RSA  */
++ 
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++struct LPC31XX_DMA {
+++	dma_addr_t		dma_buff_p;
+++	void			*dma_buff_v;
+++	int			dmach;
+++	struct tasklet_struct	tasklet;
+++	int			count;
+++	struct timer_list	timer;		/* "no irq" timer */
+++	int			active;
+++};
+++
+++static DEFINE_MUTEX(dma_mutex);
+++#undef UART_FCR_ENABLE_FIFO
+++#define UART_FCR_ENABLE_FIFO (0x9 | (1 << 6)) /* FIFO enable + DMA */
+++#define UART_DMABUF_RX_SIZE (UART_XMIT_SIZE << 1)
+++
+++/*
+++ * DMA RX character receive timeout in mS. 10mS is the best your
+++ * going to get with a 100Hz tick clock.
+++ */
+++#define LPC31XX_UART_RX_TIMEOUT 10
+++#endif
+++
++ struct uart_8250_port {
++ 	struct uart_port	port;
++ 	struct timer_list	timer;		/* "no irq" timer */
++@@ -159,6 +254,12 @@
++ 	 */
++ 	void			(*pm)(struct uart_port *port,
++ 				      unsigned int state, unsigned int old);
+++
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	struct LPC31XX_DMA dma_rx;
+++	struct LPC31XX_DMA dma_tx;
+++	int buff_half_offs;
+++#endif
++ };
++ 
++ struct irq_info {
++@@ -299,6 +400,13 @@
++ 		.fcr		= UART_FCR_ENABLE_FIFO | UART_FCR_R_TRIG_00,
++ 		.flags		= UART_CAP_FIFO | UART_CAP_AFE,
++ 	},
+++	[PORT_NXP16750] = {
+++		.name		= "NXP16750",
+++		.fifo_size	= 64,
+++		.tx_loadsz	= 64,
+++		.fcr		= UART_FCR_ENABLE_FIFO | UART_FCR_R_TRIG_10,
+++		.flags		= UART_CAP_FIFO,
+++	},
++ };
++ 
++ #if defined (CONFIG_SERIAL_8250_AU1X00)
++@@ -1040,6 +1148,15 @@
++ 		return;
++ 	}
++ 
+++	/* Check if it is NXP IP 3106 UART */
+++	serial_outp(up, UART_SCR, 0xDF);
+++	status1 = serial_in(up, UART_SCR);
+++	if(status1 == 0xDF) {
+++		/*scratch register present */
+++		up->port.type = PORT_NXP16750;
+++		return;
+++	}
+++
++ 	/*
++ 	 * Try writing and reading the UART_IER_UUE bit (b6).
++ 	 * If it works, this is probably one of the Xscale platform's
++@@ -1316,10 +1433,291 @@
++ 	}
++ }
++ 
+++static void transmit_chars(struct uart_8250_port *up);
+++
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++static void lpc31xx_dma_lock(struct uart_8250_port *up)
+++{
+++	mutex_lock(&dma_mutex);
+++}
+++
+++static void lpc31xx_dma_unlock(struct uart_8250_port *up)
+++{
+++	mutex_unlock(&dma_mutex);	
+++}
+++
+++static void lpc31xx_uart_tx_dma_start(struct uart_8250_port *up);
+++static void lpc31xx_dma_tx_tasklet_func(unsigned long data)
+++{
+++	struct uart_8250_port *up = (struct uart_8250_port *) data;
+++	struct circ_buf *xmit = &up->port.state->xmit;
+++
+++	if (dma_channel_enabled(up->dma_tx.dmach))
+++		return;
+++
+++	lpc31xx_dma_lock(up);
+++
+++	dma_stop_channel(up->dma_tx.dmach);
+++
+++	xmit->tail = (xmit->tail + up->dma_tx.count) & (UART_XMIT_SIZE - 1);
+++	up->port.icount.tx += up->dma_tx.count;
+++
+++	lpc31xx_uart_tx_dma_start(up);
+++
+++	lpc31xx_dma_unlock(up);
+++}
+++
+++static int lpc31xx_get_readl_rx_dma_count(struct uart_8250_port *up)
+++{
+++	int count;
+++
+++	/* The DMA hardware returns the number of bytes currently
+++	   transferred by the hardware. It will return 0 when the
+++	   channel has stopped (full DMA transfer) or when nothing
+++	   has been transferred. To tell the difference between
+++	   empty 0 and full 0, we need to examine the DMA enable
+++	   status. */
+++
+++	/* A race condition can exist where the DMA TCNT returns a
+++	   value right as the DMA is stopping. In this case, the
+++	   DMA is enabled during the check with a non-0 count
+++	   value. To get around this issue, the DMA count value
+++	   need to be verified again after disabling the DMA
+++	   channel. If it is 0, then the DMA completed and the
+++	   count is different. */
+++	dma_read_counter(up->dma_rx.dmach, &count);
+++	if ((!count) && (!dma_channel_enabled(up->dma_rx.dmach)))
+++		count = UART_XMIT_SIZE;
+++
+++	return count;
+++}
+++
+++static void serial8250_dma_rx_timer_check(unsigned long data)
+++{
+++	struct uart_8250_port *up = (struct uart_8250_port *) data;
+++
+++	/* Emulate RX timeout when DMA buffer is not full */
+++	if (lpc31xx_get_readl_rx_dma_count(up))
+++		tasklet_schedule(&up->dma_rx.tasklet);
+++	else
+++		mod_timer(&up->dma_rx.timer, jiffies +
+++			msecs_to_jiffies(LPC31XX_UART_RX_TIMEOUT));
+++}
+++
+++void lcp31xx_dma_rx_setup(struct uart_8250_port *up)
+++{
+++	dma_setup_t dmarx;
+++
+++	up->buff_half_offs = UART_XMIT_SIZE - up->buff_half_offs;
+++	dmarx.trans_length = UART_XMIT_SIZE - 1;
+++	dmarx.src_address = (u32) up->port.mapbase;
+++	dmarx.dest_address = (u32) up->dma_rx.dma_buff_p;
+++	dmarx.dest_address += up->buff_half_offs;
+++	dmarx.cfg = DMA_CFG_TX_BYTE | DMA_CFG_RD_SLV_NR(DMA_SLV_UART_RX) |
+++		DMA_CFG_WR_SLV_NR(0);
+++
+++	dma_prog_channel(up->dma_rx.dmach, &dmarx);
+++	dma_start_channel(up->dma_rx.dmach);
+++}
+++
+++/*
+++ * DMA RX tasklet
+++ */
+++static unsigned int check_modem_status(struct uart_8250_port *up);
+++static void lpc31xx_dma_rx_tasklet_func(unsigned long data)
+++{
+++	unsigned int status, lsr;
+++	int count, count2, i, maxcount = 64, breakflush = 0;
+++	char ch, flag = TTY_NORMAL, *buf;
+++	struct uart_8250_port *up = (struct uart_8250_port *) data;
+++	int buffhalf = up->buff_half_offs;
+++	u32 pbuf;
+++
+++	spin_lock(&up->port.lock);
+++
+++	/*
+++	 * Per char stats don't work with DMA, so the status flags
+++	 * don't apply to a specific character. We'll take a best
+++	 * guess that the accumulated status only applies to the
+++	 * last character in the DMA buffer.
+++	 */
+++	status = serial_inp(up, UART_LSR);
+++	lsr = status | up->lsr_saved_flags;
+++	up->lsr_saved_flags = 0;
+++
+++	if (unlikely(lsr & UART_LSR_BRK_ERROR_BITS)) {
+++		/*
+++		 * For statistics only
+++		 */
+++		if (lsr & UART_LSR_BI) {
+++			lsr &= ~(UART_LSR_FE | UART_LSR_PE);
+++			up->port.icount.brk++;
+++			breakflush = 1;
+++			/*
+++			 * Breaks are trouble! Toss everything if
+++			 * one occurs.
+++			 */
+++			uart_handle_break(&up->port);
+++		} else if (lsr & UART_LSR_PE)
+++			up->port.icount.parity++;
+++		else if (lsr & UART_LSR_FE)
+++			up->port.icount.frame++;
+++		if (lsr & UART_LSR_OE)
+++			up->port.icount.overrun++;
+++
+++		/*
+++		 * Mask off conditions which should be ignored.
+++		 */
+++		lsr &= up->port.read_status_mask;
+++
+++		if (lsr & UART_LSR_BI) {
+++			DEBUG_INTR("handling break....");
+++			flag = TTY_BREAK;
+++		} else if (lsr & UART_LSR_PE)
+++			flag = TTY_PARITY;
+++		else if (lsr & UART_LSR_FE)
+++			flag = TTY_FRAME;
+++	}
+++
+++	/* Disable DMA and get current DMA bytes transferred */
+++	count = lpc31xx_get_readl_rx_dma_count(up);
+++	dma_stop_channel(up->dma_rx.dmach);
+++	count2 = lpc31xx_get_readl_rx_dma_count(up);
+++	if (count != count2) {
+++		if (count2 == 0)
+++			count = UART_XMIT_SIZE;
+++		else
+++			count = count2;
+++	}
+++	dma_write_counter(up->dma_rx.dmach, 0);
+++
+++	/* Setup DMA again using unused buffer half */
+++	lcp31xx_dma_rx_setup(up);
+++	pbuf = (u32) up->dma_rx.dma_buff_p;
+++	pbuf += buffhalf;
+++	buf = (char *) up->dma_rx.dma_buff_v;
+++	buf += buffhalf;
+++
+++	if (breakflush) {
+++		/* Flush RX FIFO */
+++		while ((serial_inp(up, UART_LSR) & UART_LSR_DR) &&
+++			(maxcount-- > 0))
+++			ch = serial_inp(up, UART_RX);
+++	}
+++	else {
+++		dma_sync_single_for_device(up->port.dev, (u32) pbuf,
+++			   count, DMA_FROM_DEVICE);
+++
+++		for (i = 0; i < (count - 1); i++) {
+++			up->port.icount.rx++;
+++			if (uart_handle_sysrq_char(&up->port, buf[i]))
+++				continue;
+++
+++			uart_insert_char(&up->port, lsr, UART_LSR_OE, buf[i], TTY_NORMAL);
+++		}
+++
+++		up->port.icount.rx++;
+++		if (!uart_handle_sysrq_char(&up->port, buf[i]))
+++			uart_insert_char(&up->port, lsr, UART_LSR_OE, buf[i], flag);
+++	}
+++
+++	check_modem_status(up);
+++
+++	spin_unlock(&up->port.lock);
+++	tty_flip_buffer_push(up->port.state->port.tty);
+++	spin_lock(&up->port.lock);
+++
+++	mod_timer(&up->dma_rx.timer, jiffies +
+++		msecs_to_jiffies(LPC31XX_UART_RX_TIMEOUT));
+++
+++	/* Clear any pending RX error status and re-enable TX status interrupt */
+++	status = serial_inp(up, UART_LSR);
+++	serial_outp(up, UART_IER, up->ier);
+++
+++	spin_unlock(&up->port.lock);
+++}
+++
+++/*
+++ * DMA UART TX completion interrupt - this interrupt is more of a spotholder
+++ * as it is disabled and will never fire.
+++ */
+++static void lpc31xx_dma_tx_interrupt(int ch, dma_irq_type_t dtype, void *handle)
+++{
+++	struct uart_8250_port *up = handle;
+++
+++	printk(KERN_INFO "serial DMA TX interrupt unexpected\n");
+++	tasklet_schedule(&up->dma_tx.tasklet);
+++}
+++
+++/*
+++ * DMA UART RX completion interrupt - fires when the DMA RX transfer
+++ * is complete.
+++ */
+++static void lpc31xx_dma_rx_interrupt(int ch, dma_irq_type_t dtype, void *handle)
+++{
+++	struct uart_8250_port *up = handle;
+++
+++	tasklet_schedule(&up->dma_rx.tasklet);
+++}
+++
+++static void lpc31xx_uart_tx_dma_start(struct uart_8250_port *up)
+++{
+++	struct circ_buf *xmit = &up->port.state->xmit;
+++	dma_setup_t dmatx;
+++
+++	/* Start a DMA transfer, DMA is idle if this is called and
+++	   TX is enabled. */
+++	if (up->port.x_char) {
+++		serial_outp(up, UART_TX, up->port.x_char);
+++		up->port.icount.tx++;
+++		up->port.x_char = 0;
+++		return;
+++	}
+++
+++	if (!uart_circ_empty(xmit) && !uart_tx_stopped(&up->port)) {
+++		dma_sync_single_for_device(up->port.dev,
+++					   up->dma_tx.dma_buff_p,
+++					   UART_XMIT_SIZE,
+++					   DMA_TO_DEVICE);
+++
+++		up->dma_tx.count = CIRC_CNT_TO_END(xmit->head, xmit->tail, UART_XMIT_SIZE);
+++		if (up->dma_tx.count > 64)
+++			up->dma_tx.count = 64;
+++
+++		/* Note TX buffer is loaned to the DMA so the TX bytes can't
+++		   be released until the DMA transfer is complete. */
+++		dmatx.trans_length = up->dma_tx.count - 1;
+++		dmatx.src_address = (u32) up->dma_tx.dma_buff_p;
+++		dmatx.src_address += xmit->tail;
+++		dmatx.dest_address = (u32) up->port.mapbase;
+++		dmatx.cfg = DMA_CFG_TX_BYTE | DMA_CFG_RD_SLV_NR(0) |
+++			DMA_CFG_WR_SLV_NR(DMA_SLV_UART_TX);
+++
+++		dma_prog_channel(up->dma_tx.dmach, &dmatx);
+++		up->dma_tx.active = 1;
+++		dma_start_channel(up->dma_tx.dmach);
+++
+++		/* Enable TX interrupt on TX FIFO empty */
+++		up->ier |= UART_IER_THRI;
+++	}
+++	else {
+++		up->dma_tx.active = 0;
+++		up->ier &= ~UART_IER_THRI;
+++	}
+++
+++	serial_out(up, UART_IER, up->ier);
+++
+++	if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
+++		uart_write_wakeup(&up->port);
+++}
+++#endif
+++
++ static void serial8250_stop_tx(struct uart_port *port)
++ {
++ 	struct uart_8250_port *up = (struct uart_8250_port *)port;
++-
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	dma_stop_channel(up->dma_tx.dmach);
+++#endif
++ 	__stop_tx(up);
++ 
++ 	/*
++@@ -1331,12 +1729,21 @@
++ 	}
++ }
++ 
++-static void transmit_chars(struct uart_8250_port *up);
++-
++ static void serial8250_start_tx(struct uart_port *port)
++ {
++ 	struct uart_8250_port *up = (struct uart_8250_port *)port;
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	lpc31xx_dma_lock(up);
++ 
+++	/*
+++	 * If a DMA TX transfer is currently in progress, then just
+++	 * exit and let the TX DMA handler transfer it.
+++	 */
+++	if (!up->dma_tx.active)
+++		lpc31xx_uart_tx_dma_start(up);
+++
+++	lpc31xx_dma_unlock(up);
+++#else
++ 	if (!(up->ier & UART_IER_THRI)) {
++ 		up->ier |= UART_IER_THRI;
++ 		serial_out(up, UART_IER, up->ier);
++@@ -1359,15 +1766,21 @@
++ 		up->acr &= ~UART_ACR_TXDIS;
++ 		serial_icr_write(up, UART_ACR, up->acr);
++ 	}
+++#endif
++ }
++ 
++ static void serial8250_stop_rx(struct uart_port *port)
++ {
++ 	struct uart_8250_port *up = (struct uart_8250_port *)port;
++ 
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	dma_stop_channel(up->dma_rx.dmach);
+++
+++#else
++ 	up->ier &= ~UART_IER_RLSI;
++ 	up->port.read_status_mask &= ~UART_LSR_DR;
++ 	serial_out(up, UART_IER, up->ier);
+++#endif
++ }
++ 
++ static void serial8250_enable_ms(struct uart_port *port)
++@@ -1558,6 +1971,40 @@
++  */
++ static irqreturn_t serial8250_interrupt(int irq, void *dev_id)
++ {
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	struct irq_info *i = dev_id;
+++	struct uart_8250_port *up;
+++	unsigned int iir, status;
+++
+++	/*
+++	 * When using DMA, this interrupt only occurs on a RX status
+++	 * condition (break, frame error, parity error). Unfortunately,
+++	 * there is no way to clear the condition without popping the
+++	 * FIFO, so the DMA handle needs to be notified that it needs
+++	 * to wakeup and process the incoming data. Meanwhile, the
+++	 * RX status interrupt is temporarily disabled so the interrupt
+++	 * won't keep firing.
+++	 */
+++
+++	up = list_entry(i->head, struct uart_8250_port, list);
+++
+++	iir = serial_in(up, UART_IIR) & 0xf;
+++	if (!(iir & UART_IIR_NO_INT)) {
+++		status = serial_inp(up, UART_LSR);
+++		if (status & UART_LSR_THRE) {
+++			up->ier &= ~UART_IER_THRI;
+++			serial_out(up, UART_IER, up->ier);
+++			tasklet_schedule(&up->dma_tx.tasklet);
+++		} else {
+++			up->ier &= ~UART_IER_RLSI;
+++			serial_out(up, UART_IER, up->ier);
+++			tasklet_schedule(&up->dma_rx.tasklet);
+++		}
+++	}
+++
+++	return IRQ_HANDLED;
+++
+++#else
++ 	struct irq_info *i = dev_id;
++ 	struct list_head *l, *end = NULL;
++ 	int pass_counter = 0, handled = 0;
++@@ -1611,6 +2058,7 @@
++ 	DEBUG_INTR("end.\n");
++ 
++ 	return IRQ_RETVAL(handled);
+++#endif
++ }
++ 
++ /*
++@@ -1646,6 +2094,10 @@
++ 	struct hlist_node *n;
++ 	struct irq_info *i;
++ 	int ret, irq_flags = up->port.flags & UPF_SHARE_IRQ ? IRQF_SHARED : 0;
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	dma_addr_t dma_handle;
+++	struct circ_buf *xmit = &up->port.state->xmit;
+++#endif
++ 
++ 	mutex_lock(&hash_mutex);
++ 
++@@ -1680,6 +2132,60 @@
++ 		INIT_LIST_HEAD(&up->list);
++ 		i->head = &up->list;
++ 		spin_unlock_irq(&i->lock);
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	/* NOTE: The 31XX has only 1 UART channel, so the list head will
+++	   always point to that channel. This logic isn't quite right,
+++	   but its ok for a single UART */
+++
+++	/* Setup DMA channels */
+++	up->dma_tx.dmach = dma_request_channel("uart_tx",
+++		lpc31xx_dma_tx_interrupt, up);
+++	if (up->dma_tx.dmach < 0)
+++	{
+++		printk(KERN_ERR "serial: error getting TX DMA channel.\n");
+++		return -EBUSY;
+++	}
+++	up->dma_rx.dmach = dma_request_channel("uart_rx",
+++		lpc31xx_dma_rx_interrupt, up);
+++	if (up->dma_rx.dmach < 0)
+++	{
+++		printk(KERN_ERR "serial: error getting RX DMA channel.\n");
+++		return -EBUSY;
+++	}
+++
+++	/* dma_map_single() can be used for the TX buffer, but the RX
+++	  buffer needs it's own buffer */
+++	up->dma_rx.dma_buff_v = dma_alloc_coherent(NULL, UART_DMABUF_RX_SIZE,
+++		&dma_handle, GFP_DMA);
+++	if (up->dma_rx.dma_buff_v == NULL)
+++	{
+++		printk(KERN_ERR "serial: error getting DMA region.\n");
+++		return -ENOMEM;
+++	}
+++	up->dma_rx.dma_buff_p = dma_handle;
+++	printk(KERN_INFO "serial: UART RX buffer: P0x%08x, V0x%08x, size:%ld.\n",
+++		(u32) up->dma_rx.dma_buff_p, (u32) up->dma_rx.dma_buff_v,
+++		UART_DMABUF_RX_SIZE);
+++
+++	tasklet_init(&up->dma_tx.tasklet, lpc31xx_dma_tx_tasklet_func,
+++			(unsigned long) up);
+++	tasklet_init(&up->dma_rx.tasklet, lpc31xx_dma_rx_tasklet_func,
+++			(unsigned long) up);
+++
+++	mutex_init(&dma_mutex);
+++
+++	/* Map DMA buffer to UART circular buffer */
+++	up->dma_tx.dma_buff_p = dma_map_single(up->port.dev,
+++				       (void*)xmit->buf,
+++				       UART_XMIT_SIZE,
+++				       DMA_TO_DEVICE);
+++
+++	printk(KERN_INFO "serual: UART TX buffer: P0x%08x, V0x%08x, size:%ld.\n",
+++		(u32) up->dma_tx.dma_buff_p, (u32) xmit->buf, UART_XMIT_SIZE);
+++
+++	dma_set_irq_mask(up->dma_tx.dmach, 1, 1);
+++	dma_set_irq_mask(up->dma_rx.dmach, 1, 0);
+++#endif
++ 		irq_flags |= up->port.irqflags;
++ 		ret = request_irq(up->port.irq, serial8250_interrupt,
++ 				  irq_flags, "serial", i);
++@@ -1692,7 +2198,7 @@
++ 
++ static void serial_unlink_irq_chain(struct uart_8250_port *up)
++ {
++-	struct irq_info *i;
+++	struct irq_info *i = NULL;
++ 	struct hlist_node *n;
++ 	struct hlist_head *h;
++ 
++@@ -1706,6 +2212,27 @@
++ 			break;
++ 	}
++ 
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	/* NOTE: The 31XX has only 1 UART channel, so the list head will
+++	   always point to that channel. This logic isn't quite right,
+++	   but its ok for a single UART */
+++
+++	/* Disable DMA channels */
+++	dma_set_irq_mask(up->dma_tx.dmach, 0, 0);
+++	dma_set_irq_mask(up->dma_rx.dmach, 0, 0);
+++	dma_stop_channel(up->dma_tx.dmach);
+++	dma_stop_channel(up->dma_rx.dmach);
+++	dma_release_channel(up->dma_tx.dmach);
+++	dma_release_channel(up->dma_rx.dmach);
+++
+++	dma_unmap_single(up->port.dev, up->dma_tx.dma_buff_p, UART_XMIT_SIZE,
+++		DMA_TO_DEVICE);
+++
+++	dma_free_coherent(up->port.dev, UART_XMIT_SIZE,
+++		(void *) up->dma_rx.dma_buff_v,
+++		up->dma_rx.dma_buff_p);
+++#endif
+++
++ 	BUG_ON(n == NULL);
++ 	BUG_ON(i->head == NULL);
++ 
++@@ -1738,7 +2265,7 @@
++ 		serial8250_handle_port(up);
++ 	mod_timer(&up->timer, jiffies + poll_timeout(up->port.timeout));
++ }
++-
+++#ifndef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++ static void serial8250_backup_timeout(unsigned long data)
++ {
++ 	struct uart_8250_port *up = (struct uart_8250_port *)data;
++@@ -1783,6 +2310,7 @@
++ 	mod_timer(&up->timer,
++ 		jiffies + poll_timeout(up->port.timeout) + HZ / 5);
++ }
+++#endif
++ 
++ static unsigned int serial8250_tx_empty(struct uart_port *port)
++ {
++@@ -2059,6 +2587,7 @@
++ 	 * The above check will only give an accurate result the first time
++ 	 * the port is opened so this value needs to be preserved.
++ 	 */
+++#ifndef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
++ 	if (up->bugs & UART_BUG_THRE) {
++ 		up->timer.function = serial8250_backup_timeout;
++ 		up->timer.data = (unsigned long)up;
++@@ -2066,6 +2595,13 @@
++ 			  poll_timeout(up->port.timeout) + HZ / 5);
++ 	}
++ 
+++#else
+++	init_timer(&up->dma_rx.timer);
+++	up->dma_rx.timer.function = serial8250_dma_rx_timer_check;
+++	up->dma_rx.timer.data = (unsigned long)up;
+++	mod_timer(&up->dma_rx.timer, jiffies + 5);
+++#endif
+++
++ 	/*
++ 	 * If the "interrupt" for this port doesn't correspond with any
++ 	 * hardware interrupt, we use a timer-based system.  The original
++@@ -2151,7 +2687,12 @@
++ 	 * are set via set_termios(), which will be occurring imminently
++ 	 * anyway, so we don't enable them here.
++ 	 */
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	up->ier = UART_IER_RLSI;
+++
+++#else
++ 	up->ier = UART_IER_RLSI | UART_IER_RDI;
+++#endif
++ 	serial_outp(up, UART_IER, up->ier);
++ 
++ 	if (up->port.flags & UPF_FOURPORT) {
++@@ -2243,6 +2784,12 @@
++ 	unsigned long flags;
++ 	unsigned int baud, quot;
++ 
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	dma_stop_channel(up->dma_rx.dmach);
+++	dma_stop_channel(up->dma_tx.dmach);
+++	up->dma_tx.active = 0;
+++#endif
+++
++ 	switch (termios->c_cflag & CSIZE) {
++ 	case CS5:
++ 		cval = UART_LCR_WLEN5;
++@@ -2407,6 +2954,12 @@
++ 		serial_outp(up, UART_FCR, fcr);		/* set fcr */
++ 	}
++ 	serial8250_set_mctrl(&up->port, up->port.mctrl);
+++
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	dma_write_counter(up->dma_rx.dmach, 0);
+++	lcp31xx_dma_rx_setup(up);
+++#endif
+++
++ 	spin_unlock_irqrestore(&up->port.lock, flags);
++ 	/* Don't rewrite B0 */
++ 	if (tty_termios_baud_rate(termios))
++@@ -2421,6 +2974,15 @@
++ 
++ 	serial8250_set_sleep(p, state != 0);
++ 
+++#ifdef CONFIG_LPC31XX_SERIAL_DMA_SUPPORT
+++	if (state == 0) {
+++		dma_write_counter(p->dma_rx.dmach, 0);
+++		lcp31xx_dma_rx_setup(p);
+++	} else
+++		dma_stop_channel(p->dma_rx.dmach);
+++	 
+++#endif
+++
++ 	if (p->pm)
++ 		p->pm(port, state, oldstate);
++ }
++@@ -2971,7 +3533,9 @@
++ 				"(IO%lx MEM%llx IRQ%d): %d\n", i,
++ 				p->iobase, (unsigned long long)p->mapbase,
++ 				p->irq, ret);
++-		}
+++		} else 
+++			serial8250_ports[ret].pm = p->pm;
+++
++ 	}
++ 	return 0;
++ }
++@@ -3161,7 +3725,8 @@
++ 		uart_add_one_port(&serial8250_reg, &uart->port);
++ 	} else {
++ 		uart->port.dev = NULL;
++-	}
+++	}	/* Setup DMA channels */
+++
++ 	mutex_unlock(&serial_mutex);
++ }
++ EXPORT_SYMBOL(serial8250_unregister_port);
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/serial/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/serial/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/serial/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/serial/Kconfig.rej	2012-09-24 16:06:12.388031489 +0200
+@@ -0,0 +1,15 @@
++--- drivers/serial/Kconfig
+++++ drivers/serial/Kconfig
++@@ -70,6 +70,12 @@
++ 
++ 	  If unsure, say N.
++ 
+++config LPC31XX_SERIAL_DMA_SUPPORT
+++	bool "DMA support for the LPC31XX RX/TX functions"
+++	depends on SERIAL_8250=y
+++	help
+++	 Enables DMA support for the UART function
+++
++ config FIX_EARLYCON_MEM
++ 	bool
++ 	depends on X86
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/spi/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/spi/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/spi/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/spi/Kconfig.rej	2012-09-24 16:06:12.388031489 +0200
+@@ -0,0 +1,15 @@
++--- drivers/spi/Kconfig
+++++ drivers/spi/Kconfig
++@@ -303,6 +303,12 @@
++ 	help
++ 	  SPI driver for Nuvoton NUC900 series ARM SoCs
++ 
+++config SPI_LPC313X
+++	tristate "LPC313X SPI controller"
+++	depends on SPI_MASTER && ARCH_LPC313X
+++	help
+++	  SPI controller for the LPC313X device with DMA support
+++
++ #
++ # Add new SPI master controllers in alphabetical order above this line
++ #
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/spi/Makefile.rej ../linux-2.6.33-lpc313x/drivers/spi/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/spi/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/spi/Makefile.rej	2012-09-24 16:06:12.388031489 +0200
+@@ -0,0 +1,10 @@
++--- drivers/spi/Makefile
+++++ drivers/spi/Makefile
++@@ -42,6 +42,7 @@
++ obj-$(CONFIG_SPI_SH_MSIOF)		+= spi_sh_msiof.o
++ obj-$(CONFIG_SPI_STMP3XXX)		+= spi_stmp.o
++ obj-$(CONFIG_SPI_NUC900)		+= spi_nuc900.o
+++obj-$(CONFIG_SPI_LPC313X)		+= spi_lpc313x.o
++ 
++ # special build for s3c24xx spi driver with fiq support
++ spi_s3c24xx_hw-y			:= spi_s3c24xx.o
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/core/hub.c.rej ../linux-2.6.33-lpc313x/drivers/usb/core/hub.c.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/core/hub.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/core/hub.c.rej	2012-09-24 16:06:12.392031460 +0200
+@@ -0,0 +1,38 @@
++--- drivers/usb/core/hub.c
+++++ drivers/usb/core/hub.c
++@@ -1232,7 +1232,7 @@
++ 
++ #ifdef	CONFIG_USB_OTG_BLACKLIST_HUB
++ 	if (hdev->parent) {
++-		dev_warn(&intf->dev, "ignoring external hub\n");
+++		dev_warn(&intf->dev, "External hub not Supported\n");
++ 		return -ENODEV;
++ 	}
++ #endif
++@@ -1653,7 +1653,7 @@
++ static inline void announce_device(struct usb_device *udev) { }
++ #endif
++ 
++-#ifdef	CONFIG_USB_OTG
+++#ifdef	CONFIG_USB_OTG_WHITELIST
++ #include "otg_whitelist.h"
++ #endif
++ 
++@@ -1727,8 +1727,16 @@
++ 		err = -ENOTSUPP;
++ 		goto fail;
++ 	}
++-fail:
+++#elif defined(CONFIG_USB_OTG_WHITELIST)
+++	if (!is_targeted(udev)) {
+++
+++		dev_warn(&udev->dev, "This device is not Supported\n");
+++		err = -ENOTSUPP;
+++		goto fail;
+++	}
+++
++ #endif
+++fail:
++ 	return err;
++ }
++ 
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/core/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/usb/core/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/core/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/core/Kconfig.rej	2012-09-24 16:06:12.392031460 +0200
+@@ -0,0 +1,11 @@
++--- drivers/usb/core/Kconfig
+++++ drivers/usb/core/Kconfig
++@@ -107,7 +107,7 @@
++ 	  If you are unsure about this, say N here.
++ 
++ config USB_OTG
++-	bool
+++	bool "OTG Support"
++ 	depends on USB && EXPERIMENTAL
++ 	select USB_SUSPEND
++ 	default n
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/core/otg_whitelist.h.rej ../linux-2.6.33-lpc313x/drivers/usb/core/otg_whitelist.h.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/core/otg_whitelist.h.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/core/otg_whitelist.h.rej	2012-09-24 16:06:12.392031460 +0200
+@@ -0,0 +1,44 @@
++--- drivers/usb/core/otg_whitelist.h
+++++ drivers/usb/core/otg_whitelist.h
++@@ -21,6 +21,7 @@
++ /* hubs are optional in OTG, but very handy ... */
++ { USB_DEVICE_INFO(USB_CLASS_HUB, 0, 0), },
++ { USB_DEVICE_INFO(USB_CLASS_HUB, 0, 1), },
+++{ USB_DEVICE_INFO(USB_CLASS_HUB, 0, 2), },
++ 
++ #ifdef	CONFIG_USB_PRINTER		/* ignoring nonstatic linkage! */
++ /* FIXME actually, printers are NOT supposed to use device classes;
++@@ -42,7 +43,6 @@
++ /* gadget zero, for testing */
++ { USB_DEVICE(0x0525, 0xa4a0), },
++ #endif
++-
++ { }	/* Terminating entry */
++ };
++ 
++@@ -50,14 +50,22 @@
++ {
++ 	struct usb_device_id	*id = whitelist_table;
++ 
++-	/* possible in developer configs only! */
+++#if defined(CONFIG_USB_OTG)
+++  /* possible in developer configs only! */
++ 	if (!dev->bus->otg_port)
++ 		return 1;
++-
++-	/* HNP test device is _never_ targeted (see OTG spec 6.6.6) */
+++	
+++  /* HNP test device is _never_ targeted (see OTG spec 6.6.6) */
++ 	if ((le16_to_cpu(dev->descriptor.idVendor) == 0x1a0a &&
++ 	     le16_to_cpu(dev->descriptor.idProduct) == 0xbadd))
++ 		return 0;
+++#endif
+++
+++#if defined(CONFIG_USB_EHCI_EHSET)
+++	if ((le16_to_cpu(dev->descriptor.idVendor) == 0x1a0a))
+++		return 1;
+++
+++#endif
++ 
++ 	/* NOTE: can't use usb_match_id() since interface caches
++ 	 * aren't set up yet. this is cut/paste from that code.
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/fsl_udc_core.c.rej ../linux-2.6.33-lpc313x/drivers/usb/gadget/fsl_udc_core.c.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/fsl_udc_core.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/gadget/fsl_udc_core.c.rej	2012-09-24 16:06:12.396031448 +0200
+@@ -0,0 +1,130 @@
++--- drivers/usb/gadget/fsl_udc_core.c
+++++ drivers/usb/gadget/fsl_udc_core.c
++@@ -16,7 +16,9 @@
++  * option) any later version.
++  */
++ 
++-#undef VERBOSE
+++//#define VERBOSE
+++//#define VERBOSE_DEBUG
+++//#define DEBUG
++ 
++ #include <linux/module.h>
++ #include <linux/kernel.h>
++@@ -75,6 +77,8 @@
++ };
++ 
++ static void fsl_ep_fifo_flush(struct usb_ep *_ep);
+++static int fsl_udc_suspend(struct platform_device *pdev, pm_message_t state);
+++static int fsl_udc_resume(struct platform_device *pdev);
++ 
++ #ifdef CONFIG_PPC32
++ #define fsl_readl(addr)		in_le32(addr)
++@@ -295,6 +299,17 @@
++ {
++ 	unsigned int tmp;
++ 
+++	/* if we're in OTG mode, and the Host is currently using the port,
+++	 * stop now and don't rip the controller out from under the
+++	 * ehci driver
+++	 */
+++	if (gadget_is_otg(&udc->gadget)) {
+++		if (!(dr_regs->otgsc & OTGSC_STS_USB_ID)) {
+++			VDBG("udc: Leaving early\n");
+++			return;
+++		}
+++	}
+++
++ 	/* disable all INTR */
++ 	fsl_writel(0, &dr_regs->usbintr);
++ 
++@@ -1800,11 +1815,29 @@
++ 		goto out;
++ 	}
++ 
++-	/* Enable DR IRQ reg and Set usbcmd reg  Run bit */
++-	dr_controller_run(udc_controller);
++-	udc_controller->usb_state = USB_STATE_ATTACHED;
++-	udc_controller->ep0_state = WAIT_FOR_SETUP;
++-	udc_controller->ep0_dir = 0;
+++	if (udc_controller->transceiver) {
+++		VDBG("udc: suspend udc for OTG auto detect \n");
+++		udc_controller->stopped = 0;
+++		/* Export udc suspend/resume call to OTG */
+++		udc_controller->gadget.dev.parent->driver->suspend = fsl_udc_suspend;
+++		udc_controller->gadget.dev.parent->driver->resume = fsl_udc_resume;
+++
+++		/* connect to bus through transceiver */
+++		retval = otg_set_peripheral(udc_controller->transceiver, &udc_controller->gadget);
+++		if (retval < 0) {
+++			VDBG("udc: can't bind to transceiver\n");
+++			driver->unbind(&udc_controller->gadget);
+++			udc_controller->gadget.dev.driver = 0;
+++			udc_controller->driver = 0;
+++			return retval;
+++		}
+++	} else {
+++		/* Enable DR IRQ reg and Set usbcmd reg  Run bit */
+++		dr_controller_run(udc_controller);
+++		udc_controller->usb_state = USB_STATE_ATTACHED;
+++		udc_controller->ep0_state = WAIT_FOR_SETUP;
+++		udc_controller->ep0_dir = 0;
+++	}
++ 	printk(KERN_INFO "%s: bind to driver %s\n",
++ 			udc_controller->gadget.name, driver->driver.name);
++ 
++@@ -2265,14 +2298,14 @@
++ 		ret = -ENXIO;
++ 		goto err_kfree;
++ 	}
++-
+++/*
++ 	if (!request_mem_region(res->start, res->end - res->start + 1,
++ 				driver_name)) {
++ 		ERR("request mem region for %s failed\n", pdev->name);
++ 		ret = -EBUSY;
++ 		goto err_kfree;
++ 	}
++-
+++*/
++ 	dr_regs = ioremap(res->start, resource_size(res));
++ 	if (!dr_regs) {
++ 		ret = -ENOMEM;
++@@ -2300,6 +2333,11 @@
++ 	/* DEN is bidirectional ep number, max_ep doubles the number */
++ 	udc_controller->max_ep = (dccparams & DCCPARAMS_DEN_MASK) * 2;
++ 
+++#ifdef CONFIG_USB_OTG
+++	udc_controller->transceiver = otg_get_transceiver();
+++	VDBG("udc: otg_get_transceiver returns 0x%p", udc_controller->transceiver);
+++#endif
+++
++ 	udc_controller->irq = platform_get_irq(pdev, 0);
++ 	if (!udc_controller->irq) {
++ 		ret = -ENODEV;
++@@ -2323,7 +2361,11 @@
++ 
++ 	/* initialize usb hw reg except for regs for EP,
++ 	 * leave usbintr reg untouched */
++-	dr_controller_setup(udc_controller);
+++	if (!udc_controller->transceiver) {
+++		dr_controller_setup(udc_controller);
+++	} else {
+++		udc_controller->gadget.is_otg = 1;
+++	}
++ 
++ 	fsl_udc_clk_finalize(pdev);
++ 
++@@ -2407,6 +2449,12 @@
++ 
++ 	fsl_udc_clk_release();
++ 
+++#ifdef CONFIG_USB_OTG
+++	if (udc_controller->transceiver) {
+++		otg_put_transceiver(udc_controller->transceiver);
+++		udc_controller->transceiver = 0;
+++	}
+++#endif
++ 	/* DR has been stopped in usb_gadget_unregister_driver() */
++ 	remove_proc_file();
++ 
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/gadget_chips.h.rej ../linux-2.6.33-lpc313x/drivers/usb/gadget/gadget_chips.h.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/gadget_chips.h.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/gadget/gadget_chips.h.rej	2012-09-24 16:06:12.396031448 +0200
+@@ -0,0 +1,15 @@
++--- drivers/usb/gadget/gadget_chips.h
+++++ drivers/usb/gadget/gadget_chips.h
++@@ -65,6 +65,12 @@
++ #define	gadget_is_lh7a40x(g)	0
++ #endif
++ 
+++#ifdef CONFIG_USB_GADGET_LPC313x
+++#define	gadget_is_lpc313x(g)	!strcmp("lpc313x_udc", (g)->name)
+++#else
+++#define	gadget_is_lpc313x(g)	0
+++#endif
+++
++ /* handhelds.org tree (?) */
++ #ifdef CONFIG_USB_GADGET_MQ11XX
++ #define	gadget_is_mq11xx(g)	!strcmp("mq11xx_udc", (g)->name)
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/usb/gadget/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/gadget/Kconfig.rej	2012-09-24 16:06:12.392031460 +0200
+@@ -0,0 +1,19 @@
++--- drivers/usb/gadget/Kconfig
+++++ drivers/usb/gadget/Kconfig
++@@ -155,12 +155,12 @@
++ 	select USB_GADGET_SELECTED
++ 
++ config USB_GADGET_FSL_USB2
++-	boolean "Freescale Highspeed USB DR Peripheral Controller"
++-	depends on FSL_SOC || ARCH_MXC
+++	boolean "Freescale/LPC313x Highspeed USB DR Peripheral Controller"
+++	depends on FSL_SOC || ARCH_MXC || ARCH_LPC313X
++ 	select USB_GADGET_DUALSPEED
++ 	help
++-	   Some of Freescale PowerPC processors have a High Speed
++-	   Dual-Role(DR) USB controller, which supports device mode.
+++	   Some of Freescale PowerPC processors and LPC313x have a High 
+++	   Speed Dual-Role(DR) USB controller, which supports device mode.
++ 
++ 	   The number of programmable endpoints is different through
++ 	   SOC revisions.
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/Makefile.rej ../linux-2.6.33-lpc313x/drivers/usb/gadget/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/gadget/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/gadget/Makefile.rej	2012-09-24 16:06:12.396031448 +0200
+@@ -0,0 +1,12 @@
++--- drivers/usb/gadget/Makefile
+++++ drivers/usb/gadget/Makefile
++@@ -22,6 +22,9 @@
++ ifeq ($(CONFIG_ARCH_MXC),y)
++ fsl_usb2_udc-objs		+= fsl_mx3_udc.o
++ endif
+++ifeq ($(ARCH_LPC313X),y)
+++fsl_usb2_udc-objs		+= fsl_lpc_udc.o
+++endif
++ obj-$(CONFIG_USB_M66592)	+= m66592-udc.o
++ obj-$(CONFIG_USB_R8A66597)	+= r8a66597-udc.o
++ obj-$(CONFIG_USB_FSL_QE)	+= fsl_qe_udc.o
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/host/ehci-hcd.c.rej ../linux-2.6.33-lpc313x/drivers/usb/host/ehci-hcd.c.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/host/ehci-hcd.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/host/ehci-hcd.c.rej	2012-09-24 16:06:12.396031448 +0200
+@@ -0,0 +1,15 @@
++--- drivers/usb/host/ehci-hcd.c
+++++ drivers/usb/host/ehci-hcd.c
++@@ -1158,6 +1158,12 @@
++ #define	PLATFORM_DRIVER		ehci_atmel_driver
++ #endif
++ 
+++#ifdef CONFIG_USB_EHCI_LPC
+++#include "ehci-lpc.c"
+++#define	PLATFORM_DRIVER		ehci_lpc_driver
+++#endif
+++
+++
++ #if !defined(PCI_DRIVER) && !defined(PLATFORM_DRIVER) && \
++     !defined(PS3_SYSTEM_BUS_DRIVER) && !defined(OF_PLATFORM_DRIVER)
++ #error "missing bus glue for ehci-hcd"
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/host/ehci.h.rej ../linux-2.6.33-lpc313x/drivers/usb/host/ehci.h.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/host/ehci.h.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/host/ehci.h.rej	2012-09-24 16:06:12.400031463 +0200
+@@ -0,0 +1,15 @@
++--- drivers/usb/host/ehci.h
+++++ drivers/usb/host/ehci.h
++@@ -142,6 +142,12 @@
++ 
++ 	u8			sbrn;		/* packed release number */
++ 
+++	/*
+++	 * OTG controllers and transceivers need software interaction;
+++	 * other external transceivers should be software-transparent 
+++	 */
+++	struct otg_transceiver   *transceiver;
+++
++ 	/* irq statistics */
++ #ifdef EHCI_STATS
++ 	struct ehci_stats	stats;
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/host/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/usb/host/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/host/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/host/Kconfig.rej	2012-09-24 16:06:12.396031448 +0200
+@@ -0,0 +1,38 @@
++--- drivers/usb/host/Kconfig
+++++ drivers/usb/host/Kconfig
++@@ -59,6 +59,21 @@
++ 	  To compile this driver as a module, choose M here: the
++ 	  module will be called ehci-hcd.
++ 
+++config USB_EHCI_EHSET
+++	bool "Embedded High-speed Host Electrical Test Support (EXPERIMENTAL)"
+++	depends on USB_EHCI_HCD && EXPERIMENTAL
+++	---help---
+++	  This option is only used if you are developing firmware for
+++	  an embedded device with a Hi-speed USB Host or OTG port.
+++
+++	  If you say Y here, software support for the Embedded High-speed
+++	  Host Electrical Tests will be added to the EHCI driver. This is
+++	  one of the tests performed during High-speed USB Host certification
+++	  testing.
+++
+++	  If you are at all unsure then say N here.
+++
+++
++ config USB_EHCI_ROOT_HUB_TT
++ 	bool "Root Hub Transaction Translators"
++ 	depends on USB_EHCI_HCD
++@@ -150,6 +165,13 @@
++ 	  To compile this driver as a module, choose M here: the
++ 	  module will be called oxu210hp-hcd.
++ 
+++config USB_EHCI_LPC
+++	bool "Support for NXP on-chip EHCI USB controller"
+++	depends on USB_EHCI_HCD && ARCH_LPC313X
+++	select USB_EHCI_ROOT_HUB_TT
+++	---help---
+++	  Variation of ARC USB block used in some NXP chips.
+++
++ config USB_ISP116X_HCD
++ 	tristate "ISP116X HCD support"
++ 	depends on USB
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/host/Makefile.rej ../linux-2.6.33-lpc313x/drivers/usb/host/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/host/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/host/Makefile.rej	2012-09-24 16:06:12.396031448 +0200
+@@ -0,0 +1,8 @@
++--- drivers/usb/host/Makefile
+++++ drivers/usb/host/Makefile
++@@ -32,3 +32,5 @@
++ obj-$(CONFIG_USB_R8A66597_HCD)	+= r8a66597-hcd.o
++ obj-$(CONFIG_USB_ISP1760_HCD)	+= isp1760.o
++ obj-$(CONFIG_USB_HWA_HCD)	+= hwa-hc.o
+++
+++obj-$(CONFIG_USB_EHCI_EHSET)	+= lpc-ehset.o
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/usb/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/usb/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/usb/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/usb/Kconfig.rej	2012-09-24 16:06:12.392031460 +0200
+@@ -0,0 +1,10 @@
++--- drivers/usb/Kconfig
+++++ drivers/usb/Kconfig
++@@ -62,6 +62,7 @@
++ 	default y if ARCH_AT91SAM9G45
++ 	default y if ARCH_MXC
++ 	default y if ARCH_OMAP34XX
+++	default y if ARCH_LPC313X
++ 	default PCI
++ 
++ # ARM SA1111 chips have a non-PCI based "OHCI-compatible" USB host interface.
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/watchdog/Kconfig.rej ../linux-2.6.33-lpc313x/drivers/watchdog/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/watchdog/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/watchdog/Kconfig.rej	2012-09-24 16:06:12.400031463 +0200
+@@ -0,0 +1,18 @@
++--- drivers/watchdog/Kconfig
+++++ drivers/watchdog/Kconfig
++@@ -289,6 +289,15 @@
++ 	  Say Y here if you want support for the watchdog timer on Avionic
++ 	  Design Xanthos boards.
++ 
+++config LPC313X_WATCHDOG
+++	tristate "NXP LPC313x watchdog"
+++	depends on ARCH_LPC313X
+++	help
+++	  Say Y here if to include support for the watchdog timer
+++	  for the NXP's LPC313x uC SoC.
+++	  To compile this driver as a module, choose M here: the
+++	  module will be called wdt_lpc313x.
+++
++ # AVR32 Architecture
++ 
++ config AT32AP700X_WDT
+diff -Nur ../linux-2.6.33-lpc313x_orig/drivers/watchdog/Makefile.rej ../linux-2.6.33-lpc313x/drivers/watchdog/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/drivers/watchdog/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/drivers/watchdog/Makefile.rej	2012-09-24 16:06:12.400031463 +0200
+@@ -0,0 +1,18 @@
++--- drivers/watchdog/Makefile
+++++ drivers/watchdog/Makefile
++@@ -25,6 +25,7 @@
++ # ALPHA Architecture
++ 
++ # ARM Architecture
+++EXTRA_CFLAGS=-DDEBUG -DVERBOSE_DEBUG
++ obj-$(CONFIG_AT91RM9200_WATCHDOG) += at91rm9200_wdt.o
++ obj-$(CONFIG_AT91SAM9X_WATCHDOG) += at91sam9_wdt.o
++ obj-$(CONFIG_OMAP_WATCHDOG) += omap_wdt.o
++@@ -46,6 +47,7 @@
++ obj-$(CONFIG_STMP3XXX_WATCHDOG) += stmp3xxx_wdt.o
++ obj-$(CONFIG_NUC900_WATCHDOG) += nuc900_wdt.o
++ obj-$(CONFIG_ADX_WATCHDOG) += adx_wdt.o
+++obj-$(CONFIG_LPC313X_WATCHDOG) += wdt_lpc313x.o
++ 
++ # AVR32 Architecture
++ obj-$(CONFIG_AT32AP700X_WDT) += at32ap700x_wdt.o
+diff -Nur ../linux-2.6.33-lpc313x_orig/include/linux/serial_8250.h.rej ../linux-2.6.33-lpc313x/include/linux/serial_8250.h.rej
+--- ../linux-2.6.33-lpc313x_orig/include/linux/serial_8250.h.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/include/linux/serial_8250.h.rej	2012-09-24 16:06:12.400031463 +0200
+@@ -0,0 +1,11 @@
++--- include/linux/serial_8250.h
+++++ include/linux/serial_8250.h
++@@ -32,6 +32,8 @@
++ 	unsigned int	type;		/* If UPF_FIXED_TYPE */
++ 	unsigned int	(*serial_in)(struct uart_port *, int);
++ 	void		(*serial_out)(struct uart_port *, int, int);
+++	void		(*pm)(struct uart_port *, unsigned int state,
+++			      unsigned int oldstate);
++ };
++ 
++ /*
+diff -Nur ../linux-2.6.33-lpc313x_orig/include/linux/serial_core.h.rej ../linux-2.6.33-lpc313x/include/linux/serial_core.h.rej
+--- ../linux-2.6.33-lpc313x_orig/include/linux/serial_core.h.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/include/linux/serial_core.h.rej	2012-09-24 16:06:12.400031463 +0200
+@@ -0,0 +1,12 @@
++--- include/linux/serial_core.h
+++++ include/linux/serial_core.h
++@@ -44,7 +44,8 @@
++ #define PORT_RM9000	16	/* PMC-Sierra RM9xxx internal UART */
++ #define PORT_OCTEON	17	/* Cavium OCTEON internal UART */
++ #define PORT_AR7	18	/* Texas Instruments AR7 internal UART */
++-#define PORT_MAX_8250	18	/* max port ID */
+++#define PORT_NXP16750	19	
+++#define PORT_MAX_8250	19	/* max port ID */
++ 
++ /*
++  * ARM specific type numbers.  These are not currently guaranteed
+diff -Nur ../linux-2.6.33-lpc313x_orig/sound/soc/codecs/Kconfig.rej ../linux-2.6.33-lpc313x/sound/soc/codecs/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/sound/soc/codecs/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/sound/soc/codecs/Kconfig.rej	2012-09-24 16:06:12.404031492 +0200
+@@ -0,0 +1,20 @@
++--- sound/soc/codecs/Kconfig
+++++ sound/soc/codecs/Kconfig
++@@ -35,6 +35,7 @@
++ 	select SND_SOC_TWL4030 if TWL4030_CORE
++ 	select SND_SOC_UDA134X
++ 	select SND_SOC_UDA1380 if I2C
+++	select SND_SOC_LPC315X_CODEC if I2C
++ 	select SND_SOC_WM8350 if MFD_WM8350
++ 	select SND_SOC_WM8400 if MFD_WM8400
++ 	select SND_SOC_WM8510 if SND_SOC_I2C_AND_SPI
++@@ -158,6 +159,9 @@
++ config SND_SOC_UDA134X
++        tristate
++ 
+++config SND_SOC_LPC315X_CODEC
+++       tristate
+++
++ config SND_SOC_UDA1380
++         tristate
++ 
+diff -Nur ../linux-2.6.33-lpc313x_orig/sound/soc/codecs/Makefile.rej ../linux-2.6.33-lpc313x/sound/soc/codecs/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/sound/soc/codecs/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/sound/soc/codecs/Makefile.rej	2012-09-24 16:06:12.404031492 +0200
+@@ -0,0 +1,25 @@
++--- sound/soc/codecs/Makefile
+++++ sound/soc/codecs/Makefile
++@@ -22,6 +22,7 @@
++ snd-soc-twl4030-objs := twl4030.o
++ snd-soc-uda134x-objs := uda134x.o
++ snd-soc-uda1380-objs := uda1380.o
+++snd-soc-lpc315x-codec-objs := lpc315x_codec.o
++ snd-soc-wm8350-objs := wm8350.o
++ snd-soc-wm8400-objs := wm8400.o
++ snd-soc-wm8510-objs := wm8510.o
++@@ -78,6 +79,7 @@
++ obj-$(CONFIG_SND_SOC_TWL4030)	+= snd-soc-twl4030.o
++ obj-$(CONFIG_SND_SOC_UDA134X)	+= snd-soc-uda134x.o
++ obj-$(CONFIG_SND_SOC_UDA1380)	+= snd-soc-uda1380.o
+++obj-$(CONFIG_SND_SOC_LPC315X_CODEC)	+= snd-soc-lpc315x-codec.o
++ obj-$(CONFIG_SND_SOC_WM8350)	+= snd-soc-wm8350.o
++ obj-$(CONFIG_SND_SOC_WM8400)	+= snd-soc-wm8400.o
++ obj-$(CONFIG_SND_SOC_WM8510)	+= snd-soc-wm8510.o
++@@ -109,3 +111,6 @@
++ # Amp
++ obj-$(CONFIG_SND_SOC_MAX9877)	+= snd-soc-max9877.o
++ obj-$(CONFIG_SND_SOC_TPA6130A2)	+= snd-soc-tpa6130a2.o
+++
+++CFLAGS_uda1380.o := -DDEBUG
+++
+diff -Nur ../linux-2.6.33-lpc313x_orig/sound/soc/codecs/uda1380.c.rej ../linux-2.6.33-lpc313x/sound/soc/codecs/uda1380.c.rej
+--- ../linux-2.6.33-lpc313x_orig/sound/soc/codecs/uda1380.c.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/sound/soc/codecs/uda1380.c.rej	2012-09-24 16:06:12.404031492 +0200
+@@ -0,0 +1,130 @@
++--- sound/soc/codecs/uda1380.c
+++++ sound/soc/codecs/uda1380.c
++@@ -281,6 +281,7 @@
++ 	SOC_SINGLE("DAC Polarity inverting Switch", UDA1380_MIXER, 15, 1, 0),	/* DA_POL_INV */
++ 	SOC_ENUM("Noise Shaper", uda1380_sel_ns_enum),				/* SEL_NS */
++ 	SOC_ENUM("Digital Mixer Signal Control", uda1380_mix_enum),		/* MIX_POS, MIX */
+++	SOC_SINGLE("Silence Switch", UDA1380_MIXER, 7, 1, 0),			/* SILENCE, force DAC output to silence */
++ 	SOC_SINGLE("Silence Detector Switch", UDA1380_MIXER, 6, 1, 0),		/* SDET_ON */
++ 	SOC_ENUM("Silence Detector Setting", uda1380_sdet_enum),		/* SD_VALUE */
++ 	SOC_ENUM("Oversampling Input", uda1380_os_enum),			/* OS */
++@@ -558,6 +559,24 @@
++ 	uda1380_write(codec, UDA1380_CLK, clk);
++ }
++ 
+++static int uda1380_mute(struct snd_soc_dai *codec_dai, int mute)
+++{
+++	struct snd_soc_codec *codec = codec_dai->codec;
+++	u16 mute_reg = uda1380_read_reg_cache(codec, UDA1380_DEEMP) & ~R13_MTM;
+++
+++	/* FIXME: mute(codec,0) is called when the magician clock is already
+++	 * set to WSPLL, but for some unknown reason writing to interpolator
+++	 * registers works only when clocked by SYSCLK */
+++	u16 clk = uda1380_read_reg_cache(codec, UDA1380_CLK);
+++	uda1380_write(codec, UDA1380_CLK, ~R00_DAC_CLK & clk);
+++	if (mute)
+++		uda1380_write(codec, UDA1380_DEEMP, mute_reg | R13_MTM);
+++	else
+++		uda1380_write(codec, UDA1380_DEEMP, mute_reg);
+++	uda1380_write(codec, UDA1380_CLK, clk);
+++	return 0;
+++}
+++
++ static int uda1380_set_bias_level(struct snd_soc_codec *codec,
++ 	enum snd_soc_bias_level level)
++ {
++@@ -587,6 +606,7 @@
++ 	.hw_params	= uda1380_pcm_hw_params,
++ 	.shutdown	= uda1380_pcm_shutdown,
++ 	.trigger	= uda1380_trigger,
+++	.digital_mute = uda1380_mute,
++ 	.set_fmt	= uda1380_set_dai_fmt_both,
++ };
++ 
++@@ -594,6 +614,7 @@
++ 	.hw_params	= uda1380_pcm_hw_params,
++ 	.shutdown	= uda1380_pcm_shutdown,
++ 	.trigger	= uda1380_trigger,
+++	.digital_mute = uda1380_mute,
++ 	.set_fmt	= uda1380_set_dai_fmt_playback,
++ };
++ 
++@@ -601,6 +622,7 @@
++ 	.hw_params	= uda1380_pcm_hw_params,
++ 	.shutdown	= uda1380_pcm_shutdown,
++ 	.trigger	= uda1380_trigger,
+++	.digital_mute = uda1380_mute,
++ 	.set_fmt	= uda1380_set_dai_fmt_capture,
++ };
++ 
++@@ -753,22 +775,26 @@
++ 		return -EINVAL;
++ 	}
++ 
++-	if (!pdata || !pdata->gpio_power || !pdata->gpio_reset)
+++	if (!pdata) {
+++		dev_err(codec->dev, "Bad platform data\n");
++ 		return -EINVAL;
+++	}
++ 
++-	ret = gpio_request(pdata->gpio_power, "uda1380 power");
++-	if (ret)
++-		goto err_out;
++-	ret = gpio_request(pdata->gpio_reset, "uda1380 reset");
++-	if (ret)
++-		goto err_gpio;
+++	if ( pdata->gpio_power && pdata->gpio_reset) {
+++		ret = gpio_request(pdata->gpio_power, "uda1380 power");
+++		if (ret)
+++			goto err_out;
+++		ret = gpio_request(pdata->gpio_reset, "uda1380 reset");
+++		if (ret)
+++			goto err_gpio;
++ 
++-	gpio_direction_output(pdata->gpio_power, 1);
+++		gpio_direction_output(pdata->gpio_power, 1);
++ 
++-	/* we may need to have the clock running here - pH5 */
++-	gpio_direction_output(pdata->gpio_reset, 1);
++-	udelay(5);
++-	gpio_set_value(pdata->gpio_reset, 0);
+++		/* we may need to have the clock running here - pH5 */
+++		gpio_direction_output(pdata->gpio_reset, 1);
+++		udelay(5);
+++		gpio_set_value(pdata->gpio_reset, 0);
+++	}
++ 
++ 	mutex_init(&codec->mutex);
++ 	INIT_LIST_HEAD(&codec->dapm_widgets);
++@@ -819,10 +845,13 @@
++ err_dai:
++ 	snd_soc_unregister_codec(codec);
++ err_reset:
++-	gpio_set_value(pdata->gpio_power, 0);
++-	gpio_free(pdata->gpio_reset);
+++	if ( pdata->gpio_power && pdata->gpio_reset) {
+++		gpio_set_value(pdata->gpio_power, 0);
+++		gpio_free(pdata->gpio_reset);
+++	}
++ err_gpio:
++-	gpio_free(pdata->gpio_power);
+++	if ( pdata->gpio_power)
+++		gpio_free(pdata->gpio_power);
++ err_out:
++ 	return ret;
++ }
++@@ -835,9 +864,11 @@
++ 	snd_soc_unregister_dais(uda1380_dai, ARRAY_SIZE(uda1380_dai));
++ 	snd_soc_unregister_codec(&uda1380->codec);
++ 
++-	gpio_set_value(pdata->gpio_power, 0);
++-	gpio_free(pdata->gpio_reset);
++-	gpio_free(pdata->gpio_power);
+++	if ( pdata->gpio_power || pdata->gpio_reset) {
+++		gpio_set_value(pdata->gpio_power, 0);
+++		gpio_free(pdata->gpio_reset);
+++		gpio_free(pdata->gpio_power);
+++	}
++ 
++ 	kfree(uda1380);
++ 	uda1380_codec = NULL;
+diff -Nur ../linux-2.6.33-lpc313x_orig/sound/soc/Kconfig.rej ../linux-2.6.33-lpc313x/sound/soc/Kconfig.rej
+--- ../linux-2.6.33-lpc313x_orig/sound/soc/Kconfig.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/sound/soc/Kconfig.rej	2012-09-24 16:06:12.400031463 +0200
+@@ -0,0 +1,10 @@
++--- sound/soc/Kconfig
+++++ sound/soc/Kconfig
++@@ -36,6 +36,7 @@
++ source "sound/soc/s6000/Kconfig"
++ source "sound/soc/sh/Kconfig"
++ source "sound/soc/txx9/Kconfig"
+++source "sound/soc/lpc313x/Kconfig"
++ 
++ # Supported codecs
++ source "sound/soc/codecs/Kconfig"
+diff -Nur ../linux-2.6.33-lpc313x_orig/sound/soc/Makefile.rej ../linux-2.6.33-lpc313x/sound/soc/Makefile.rej
+--- ../linux-2.6.33-lpc313x_orig/sound/soc/Makefile.rej	1970-01-01 01:00:00.000000000 +0100
++++ ../linux-2.6.33-lpc313x/sound/soc/Makefile.rej	2012-09-24 16:06:12.400031463 +0200
+@@ -0,0 +1,7 @@
++--- sound/soc/Makefile
+++++ sound/soc/Makefile
++@@ -14,3 +14,4 @@
++ obj-$(CONFIG_SND_SOC)	+= s6000/
++ obj-$(CONFIG_SND_SOC)	+= sh/
++ obj-$(CONFIG_SND_SOC)	+= txx9/
+++obj-$(CONFIG_SND_SOC)	+= lpc313x/

@@ -1,0 +1,1 @@
+cmd_drivers/media/video/uvc/uvcvideo.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/media/video/uvc/uvcvideo.ko drivers/media/video/uvc/uvcvideo.o drivers/media/video/uvc/uvcvideo.mod.o

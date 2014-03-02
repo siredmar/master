@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/rtlwifi/rtl8192cu/rtl8192cu.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/gnublin-lpc3131-3.3.0-master/linux-3.3.0-lpc313x/scripts/module-common.lds --build-id  -o drivers/net/wireless/rtlwifi/rtl8192cu/rtl8192cu.ko drivers/net/wireless/rtlwifi/rtl8192cu/rtl8192cu.o drivers/net/wireless/rtlwifi/rtl8192cu/rtl8192cu.mod.o

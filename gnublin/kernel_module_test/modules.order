@@ -1,0 +1,3 @@
+kernel//home/armin/Masterarbeit/gnublin/kernel_module_test/testmod.ko
+kernel//home/armin/Masterarbeit/gnublin/kernel_module_test/waitchange.ko
+kernel//home/armin/Masterarbeit/gnublin/kernel_module_test/testmod_ssd1963.ko
