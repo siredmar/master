@@ -132,6 +132,7 @@ static void fillRect(struct testmod *item, unsigned short xs, unsigned short xe,
    unsigned short x_width = xe - xs;
    unsigned short y_width = ye - ys;
    unsigned int area = x_width * y_width;
+
    writew(READ_DDB, item->ctrl_io);
      mdelay(1);
      id[0] = readw(item->data_io);
@@ -206,34 +207,41 @@ void ssd1963_init(struct testmod *item)
 
 
       writew(SET_PLL, item->ctrl_io); // PLL config - continued
+      msleep(1U);
       writew(0x0001, item->data_io);
+      msleep(1U);
 
       writew(SET_PLL_MN, item->ctrl_io); // PLL config - continued
-      writew(0x002D, item->data_io);
+      msleep(1U);
+      writew(0x001D, item->data_io);
+      msleep(1U);
       writew(0x0002, item->data_io);
-      writew(0x0004, item->data_io);
+      msleep(1U);
+      writew(0x0054, item->data_io);
+      msleep(1000U);
 
 
       writew(SET_PLL, item->ctrl_io); // PLL config - continued
+      msleep(1U);
       writew(0x0003, item->data_io);
-      msleep(100U);
+      msleep(200U);
 
 
       writew(SOFT_RESET, item->ctrl_io);
-      msleep(10U);
+      msleep(100U);
 
       writew(SET_LSHIFT_FREQ, item->ctrl_io);
-      writew(0x0000, item->data_io); // LSHIFT freq
-      writew(0x00FF, item->data_io);
-      writew(0x00BE, item->data_io);
+      writew(0x0001, item->data_io); // LSHIFT freq
+      writew(0x0070, item->data_io);
+      writew(0x00A2, item->data_io);
 
       writew(SET_LCD_MODE, item->ctrl_io);
-      writew(0x0020, item->data_io);  // set lcd mode
+      writew(0x0038, item->data_io);
       writew(0x0000, item->data_io);
-      writew(((479 >> 8U) & 0x00FF), item->data_io);
-      writew((479 & 0x00FF), item->data_io);
-      writew(((279 >> 8U) & 0x00FF), item->data_io);
-      writew((279 & 0x00FF), item->data_io);
+      writew(0x0001, item->data_io);
+      writew(0x00DF, item->data_io);
+      writew(0x0001, item->data_io);
+      writew(0x000F, item->data_io);
       writew(0x0000, item->data_io);
       msleep(5U);
 
@@ -335,9 +343,8 @@ static int __init testmod_probe(struct platform_device *dev)
     MPMC_STWTOEN0  = 0;
     MPMC_STWTRD0   = 31;
     MPMC_STWTPG0   = 0;
-    MPMC_STWTWR0   = 3;
+    MPMC_STWTWR0   = 15;
     MPMC_STWTTURN0 = 0;
-    SYS_MPMC_WTD_DEL0 = _BIT(5) | 31;
 
    dev_dbg(&dev->dev, "%s\n", __func__);
 

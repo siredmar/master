@@ -334,7 +334,7 @@ static void ssd1963_init (void)
 
    GPIO_OUT_HIGH(IOCONF_GPIO, _BIT(14)); //GPIO20 is LED_ENABLE
 
-   ssd1963_draw_rectangle(0,0,479,271, 0xF800);
+   ssd1963_draw_rectangle(0,0,480,272, 0xF800);
 
 }
 //#else
@@ -386,7 +386,7 @@ const CGU_HPLL_SETUP_T const g_pll_fast = CUR_PLL_SET;//CUR_PLL_SET;
 const CGU_HPLL_SETUP_T const g_pll_slow = PLL_24M;
 
 void __naked __section (.bootstrap.early) bootstrap_early (void)
-            {
+                                          {
    /* Initialize startup stack pointer at end of ISRAM0*/
    __asm volatile ("mov sp, %0" :: "r" (ISRAM1_PHYS));
 
@@ -394,11 +394,11 @@ void __naked __section (.bootstrap.early) bootstrap_early (void)
    SYS_REMAP_ADDR = ISRAM0_PHYS;
 
    __asm volatile ("b bootstrap_early_exit");
-            }
+                                          }
 
 void __naked __section (.bootstrap.early.exit) bootstrap_early_exit (void)
-            {
-            }
+                                          {
+                                          }
 
 /* usleep
 
@@ -421,7 +421,7 @@ void __naked __section (.bootstrap.early.exit) bootstrap_early_exit (void)
  */
 
 void __section (.bootstrap) usleep (unsigned long us)
-            {
+                                          {
    unsigned long end, current;
    end = (us << 2) + (us << 3);
    __REG (TIMER1_PHYS + TIMER_CONTROL) = TM_CTRL_ENABLE;
@@ -431,7 +431,7 @@ void __section (.bootstrap) usleep (unsigned long us)
       current = __REG (TIMER1_PHYS + TIMER_VALUE);
    } while( current <= end);
 
-            }
+                                          }
 
 
 /* initialize_bootstrap
@@ -454,7 +454,7 @@ void __section (.bootstrap) usleep (unsigned long us)
  */
 
 void __naked __section (.bootstrap) initialize_bootstrap (void)
-            {
+{
    unsigned long lr;
    __asm volatile ("mov %0, lr" : "=r" (lr));
 
@@ -544,8 +544,8 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    //#elif defined(CONFIG_MACH_EPLPC3131_V1)
    /* LCD display, 16 bit */
    MPMC_STCONFIG0 = 0x81;
-   MPMC_STWTWEN0  = 5;
-   MPMC_STWTOEN0  = 5;
+   MPMC_STWTWEN0  = 0;
+   MPMC_STWTOEN0  = 0;
    MPMC_STWTRD0   = 31;
    MPMC_STWTPG0   = 0;
    MPMC_STWTWR0   = 15;
@@ -567,7 +567,9 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
 
    /* Display init */
    ssd1963_init_pll();
-  // MPMC_CONFIG = MPMC_CFG_SDCCLK_1_1; // FIXME: was original MPMC_CFG_SDCCLK_1_1;
+   ssd1963_init();
+
+   // MPMC_CONFIG = MPMC_CFG_SDCCLK_1_1; // FIXME: was original MPMC_CFG_SDCCLK_1_1;
 
 
    /* init CGU block*/
@@ -600,6 +602,15 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    /* set MPMC delay gates appropriately based on trace lengths between
   SDRAM and the chip. Also based on the delay startergy used for SDRAM. */
    SYS_MPMC_DELAY = 0x824; //FIXME: original 0x826
+
+   MPMC_STCONFIG0 = 0x81;
+   MPMC_STWTWEN0  = 0;
+   MPMC_STWTOEN0  = 0;
+   MPMC_STWTRD0   = 31;
+   MPMC_STWTPG0   = 0;
+   MPMC_STWTWR0   = 15;
+   MPMC_STWTTURN0 = 0;
+
 
    /* SDRAM */
    MPMC_DYRDCFG    = MPMC_SDRAMC_RDCFG_CMDDELAY_STG;
@@ -674,12 +685,11 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    SYS_MPMC_TESTMODE1 = 0x24; //FIXME: original was (10 + NS_TO_MPMCCLK(20, HCLK) + NS_TO_MPMCCLK(66, HCLK)) * (PLLCLK/HCLK);
 #endif
 
-   ssd1963_init();
-
+   ssd1963_draw_rectangle(25, 25, 50, 50, 0x01F); // Blau
 
    __asm volatile ("mov r0, #-1\t\n"
          "mov pc, %0" : : "r" (lr));
-            }
+}
 
 
 /* target_init
@@ -692,6 +702,7 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
 
 static void target_init (void)
 {
+   ssd1963_draw_rectangle(75, 75, 50, 50, 0x07E0); // Gruen
    //ssd1963_init();
 }
 

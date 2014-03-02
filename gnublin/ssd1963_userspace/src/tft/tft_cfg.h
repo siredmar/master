@@ -132,13 +132,13 @@
 #define SRAM0_DATA       (0x18000U)
 
 #define MPMC_BASE        (0x17008000U)
-#define MPMC_STCONFIG0   (MPMC_BASE + 0x200U)
-#define MPMC_STWTWEN0    (MPMC_BASE + 0x204U)
-#define MPMC_STWTOEN0    (MPMC_BASE + 0x208U)
-#define MPMC_STWTRD0     (MPMC_BASE + 0x20CU)
-#define MPMC_STWTPG0     (MPMC_BASE + 0x210U)
-#define MPMC_STWTWR0     (MPMC_BASE + 0x214U)
-#define MPMC_STWTTURN0   (MPMC_BASE + 0x218U)
+#define MPMC_STCONFIG0   0x80//(0x200U)
+#define MPMC_STWTWEN0    0x81//(0x204U)
+#define MPMC_STWTOEN0    0x82//(0x208U)
+#define MPMC_STWTRD0     0x83//(0x20CU)
+#define MPMC_STWTPG0     0x84//(0x210U)
+#define MPMC_STWTWR0     0x85//(0x214U)
+#define MPMC_STWTTURN0   0x86//(0x218U)
 /* ***************************** enums ************************************** */
 
 #endif /* TFT_CFG_H */

@@ -157,7 +157,6 @@ void tft_setWindow
 */
 void tft_init
 (
-   const tft_configType *ConfigPtr,
    uint8 init
 );
 

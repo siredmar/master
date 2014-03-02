@@ -513,6 +513,18 @@ static struct map_desc ea313x_io_desc[] __initdata = {
 		.length		= SZ_4K,
 		.type		= MT_DEVICE
 	},
+   {
+      .virtual = io_p2v(EXT_SRAM0_PHYS + 0x10000),
+      .pfn     = __phys_to_pfn(EXT_SRAM0_PHYS + 0x10000),
+      .length     = SZ_4K,
+      .type    = MT_DEVICE
+   },
+   {
+      .virtual = io_p2v(IO_MPMC_CFG_PHYS),
+      .pfn     = __phys_to_pfn(IO_MPMC_CFG_PHYS),
+      .length     = SZ_4K,
+      .type    = MT_DEVICE
+   },
 	{
 		.virtual	= io_p2v(EXT_SRAM1_PHYS + 0x10000),
 		.pfn		= __phys_to_pfn(EXT_SRAM1_PHYS + 0x10000),

@@ -34,6 +34,10 @@ int main(int argc, const char *argv[])
 {
    unsigned short xs = 0, xe = 480, ys = 0, ye = 272;
 
+   //printf("MPMC_STCONF0:\t0x%.2X\n", (*((uint32 *)0xF0000F00)))
+
+
+
    if(argc < 2){
       printf("usage: \ngnublin_ssd1963 xs ys width height init|noinit 0|1|2\n");
       printf("xs: start of rect x\n");
@@ -67,11 +71,11 @@ int main(int argc, const char *argv[])
    dio_init();
    if(!strcmp(argv[5], "init")){
 
-      tft_init(&tft_initialConfigTft_s, 1);
+      tft_init(1);
    }
    else
    {
-      tft_init(&tft_initialConfigTft_s, 0);
+      tft_init(0);
    }
 
    //tft_clearScreen(YELLOW);

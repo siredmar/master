@@ -1,6 +1,6 @@
 
 #0ELDK-5.0
-SRC = src/dio/dio_lcfg.c src/dio/dio.c src/tft/tft.c src/tft/tft_lcfg.c src/main.c 
+SRC = src/dio/dio_lcfg.c src/dio/dio.c src/tft/tft.c src/main.c 
 
 CC = arm-linux-gnueabi-gcc
 #CC = arm-linux-gnueabihf-gcc
@@ -13,7 +13,7 @@ CCOPT = -Wall -g
 TARGET = gnublin_ssd1963
 
 gnublin_ssd1963: clean
-	$(CC) $(CCOPT) -I$(INCLDIR) -o $(TARGET) $(SRC) -O3
+	$(CC) $(CCOPT) -I$(INCLDIR) -o $(TARGET) $(SRC) 
 
 clean:
 		rm -f $(TARGET) *~
