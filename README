@@ -1,3 +1,13 @@
-02.03.2014 - This is the repository fot my masters thesis
+02.03.2014 - This is the repository for my masters thesis
 
 -- Armin Schlegel
+
+
+GIT instructions:
+
+* commit changed files:
+git commit -am 'message'
+
+* push commit to github
+git push origin master
+

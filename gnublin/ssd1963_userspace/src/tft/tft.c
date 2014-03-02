@@ -101,8 +101,6 @@ static Std_ReturnType tft_openSRAM0Memory()
          MPMC_BASE         //Offset to GPIO peripheral
    );
 
-   close(mem_fd); //No need to keep mem_fd open after mmap
-
    if (mpmc_memory_map == MAP_FAILED) {
       printf("mmap error %d\n", (int)mpmc_memory_map);//errno also set!
       exit(-1);
@@ -151,22 +149,26 @@ static void tft_initSRAM0Timings()
    unsigned int val;
    while(1)
    {
-      val = *(unsigned int*)(mpmc_memory + 0x00000001);
+      val = *(unsigned int*)(mpmc_memory + MPMC_STATUS);
       if(val & (1 << 0))
+      {
          *(mpmc_memory) = 0x05;
+         usleep(10);
+      }
       break;
 
    }
-   val = *(unsigned int*)(mpmc_memory + 0x00000001);
-   printf("MPMC_STATUS:\t 0x%.8X\n",val);
+   printf("MPMC_STATUS:\t 0x%.8X\n", *(unsigned int*)(mpmc_memory + MPMC_STATUS));
    *(mpmc_memory + MPMC_STCONFIG0) = 0x81;
    *(mpmc_memory + MPMC_STWTWEN0 ) = 0;
    *(mpmc_memory + MPMC_STWTOEN0 ) = 0;
    *(mpmc_memory + MPMC_STWTRD0  ) = 31;
    *(mpmc_memory + MPMC_STWTPG0  ) = 0;
-   *(mpmc_memory + MPMC_STWTWR0  ) = 31;
+   *(mpmc_memory + MPMC_STWTWR0  ) = 3;
    *(mpmc_memory + MPMC_STWTTURN0) = 0;
+   usleep(100);
    *(mpmc_memory) = 0x01;
+   usleep(100);
 }
 
 
@@ -308,10 +310,7 @@ void tft_sendData_slow
 
 uint16 tft_readData_slow(void)
 {
-   tft_waitXms(1);
-   uint16 val  = *(sram0_data);
-   printf("tft_readData_slow: 0x%.2X\n", val);
-   return val;
+   return *(sram0_data);
 }
 
 /*  \brief Set window with defined height and width window
@@ -362,6 +361,7 @@ void tft_init
 {
 
    uint8 get_pll_mn[3] = {0};
+   uint16 id[5] = {0};
 
    //   uint16 forCounter_ui16;
    //   tft_initSequenceType const *tmpInitSequence_ps;
@@ -385,30 +385,46 @@ void tft_init
    printf("tft_readSRAM0Timings() returned\n\n");
 
 
-   //   printf("tft_initSRAM0Timings() called\n");
-   //   tft_initSRAM0Timings();
-   //   printf("tft_initSRAM0Timings() returned\n");
-   /* Enable Backlight */
-   tft_selectBacklight();
-
    if(init == 1)
    {
 
       tft_deSelectReset();
       tft_waitXms(100);   /* Wait 100ms */
       tft_selectReset(); /* Reset Display done */
-
-
-
-      tft_waitXms(20);
+      tft_waitXms(100);   /* Wait 100ms */
 
       tft_sendCommand_slow(SSD1963_SOFT_RESET);
-      usleep(200);
+      usleep(200000);
+
+      tft_sendCommand_slowPLL(SSD1963_GET_PLL_MN);
+      usleep(1000);
+      get_pll_mn[0] = tft_readData_slow();
+      get_pll_mn[1] = tft_readData_slow();
+      get_pll_mn[2] = tft_readData_slow();
+
+      printf("GetPLLMN[0]: 0x%.2X\n", get_pll_mn[0]);
+      printf("GetPLLMN[1]: 0x%.2X\n", get_pll_mn[1]);
+      printf("GetPLLMN[2]: 0x%.2X\n", get_pll_mn[2]);
+
+
+      tft_sendCommand_slowPLL(SSD1963_READ_DDB);
+      usleep(1000);
+      id[0] = tft_readData_slow();
+      id[1] = tft_readData_slow();
+      id[2] = tft_readData_slow();
+      id[3] = tft_readData_slow();
+      id[4] = tft_readData_slow();
+
+      printf("Signature: 0x%.2X 0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", id[0], id[1], id[2], id[3], id[4]);
+
+
+
+
 
       tft_sendCommand_slow(SSD1963_SET_PLL); // PLL config - continued
       usleep(1000);
       tft_sendData_slow(0x0001);
-      usleep(5000);
+      usleep(10000);
 
       tft_sendCommand_slow(SSD1963_SET_PLL_MN); // PLL config - continued
       usleep(1000);
@@ -417,22 +433,18 @@ void tft_init
       tft_sendData_slow(0x0002);
       usleep(1000);
       tft_sendData_slow(0x0054);
-      usleep(1000);
+      usleep(10000);
 
       tft_sendCommand_slow(SSD1963_SET_PLL); // PLL config - continued
       usleep(1000);
       tft_sendData_slow(0x0003);
       usleep(1000);
-      usleep(500000);
+      usleep(100000);
 
-      tft_sendCommand_slowPLL(SSD1963_GET_PLL_MN);
-      get_pll_mn[0] = tft_readData_slow();
-      get_pll_mn[1] = tft_readData_slow();
-      get_pll_mn[2] = tft_readData_slow();
 
-      printf("GetPLLMN[0]: 0x%.2X\n", get_pll_mn[0]);
-      printf("GetPLLMN[1]: 0x%.2X\n", get_pll_mn[1]);
-      printf("GetPLLMN[2]: 0x%.2X\n", get_pll_mn[2]);
+
+
+
       /* Wait for PLL to lock */
 //      do
 //      {

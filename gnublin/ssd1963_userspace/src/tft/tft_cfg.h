@@ -132,6 +132,7 @@
 #define SRAM0_DATA       (0x18000U)
 
 #define MPMC_BASE        (0x17008000U)
+#define MPMC_STATUS      0x01
 #define MPMC_STCONFIG0   0x80//(0x200U)
 #define MPMC_STWTWEN0    0x81//(0x204U)
 #define MPMC_STWTOEN0    0x82//(0x208U)
