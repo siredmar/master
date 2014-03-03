@@ -13,3 +13,5 @@ git commit -am 'message'
 * push commit to github
 git push origin master
 
+* update local repo from github
+git pull
