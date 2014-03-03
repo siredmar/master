@@ -211,10 +211,14 @@ void ssd1963_draw_rectangle(u16 xs, u16 ys, u16 width, u16 height, u16 color)
    size = width * height;
    ssd1963_set_window(xs, xe, ys, ye);
    ssd1963_send_cmd(SSD1963_WRITE_MEMORY_START);
-   for(cnt = 0; cnt < size; cnt++)
+   for(cnt = 0; cnt < size/4; cnt++)
    {
       ssd1963_send_data(color);
    }
+   GPIO_OUT_LOW(IOCONF_GPIO, _BIT(13)); //GPIO19 is nRESET
+    udelay(1);
+    GPIO_OUT_HIGH(IOCONF_GPIO, _BIT(13)); //GPIO19 is nRESET
+   // udelay(1000);
 
 }
 
@@ -474,7 +478,7 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    //psu_set_voltage(ANALOG_3V3_RAIL, DCDC1_3_20);
 #endif
    /* set HPLL1 - main PLL to low speed 24 Mhz */
-   cgu_hpll_config (CGU_HPLL1_ID, &g_pll_slow);
+   cgu_hpll_config (CGU_HPLL1_ID, &g_pll_fast);
 
 
    /* configure the LCD pins in EBI memory mode. */
@@ -544,11 +548,11 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    //#elif defined(CONFIG_MACH_EPLPC3131_V1)
    /* LCD display, 16 bit */
    MPMC_STCONFIG0 = 0x81;
-   MPMC_STWTWEN0  = 0;
+   MPMC_STWTWEN0  = 10;
    MPMC_STWTOEN0  = 0;
    MPMC_STWTRD0   = 31;
    MPMC_STWTPG0   = 0;
-   MPMC_STWTWR0   = 15;
+   MPMC_STWTWR0   = 31;
    MPMC_STWTTURN0 = 0;
    /* ethernet DM9000, 16 bit */
    //  MPMC_STCONFIG1  = 0x81;
@@ -572,44 +576,44 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    // MPMC_CONFIG = MPMC_CFG_SDCCLK_1_1; // FIXME: was original MPMC_CFG_SDCCLK_1_1;
 
 
-   /* init CGU block*/
-   cgu_init();
-   /* reset all clocks to XTAL clock */
-   cgu_reset_all_clks();
-
-   /* set all clocks based on the default structure */
-   cgu_init_clks(DEFAULT_CFG);
-
-   /* set HPLL1 - main PLL to default speed */
-   cgu_hpll_config (CGU_HPLL1_ID, &g_pll_fast);
-
-   /* configure the LCD pins in EBI memory mode. */
-   SYS_MUX_LCD_EBI = 1;
-
-   cgu_clk_en_dis( CGU_SB_TIMER1_PCLK_ID, 1);
-   /* enable EBI clock */
-   cgu_clk_en_dis( CGU_SB_EBI_CLK_ID, 1);
-
-   /* enable MPMC controller clocks */
-   cgu_clk_en_dis( CGU_SB_MPMC_CFG_CLK_ID, 1);
-   cgu_clk_en_dis( CGU_SB_MPMC_CFG_CLK2_ID, 1);
-   cgu_clk_en_dis( CGU_SB_MPMC_CFG_CLK3_ID, 1);
-
-   /* enable External Memory controller */
-   MPMC_CTRL = MPMC_CTL_ENABLE;
-   /* Force HCLK to MPMC_CLK to 1:1 ratio */
-   MPMC_CONFIG = MPMC_CFG_SDCCLK_1_1; // FIXME: was original MPMC_CFG_SDCCLK_1_1;
-   /* set MPMC delay gates appropriately based on trace lengths between
-  SDRAM and the chip. Also based on the delay startergy used for SDRAM. */
-   SYS_MPMC_DELAY = 0x824; //FIXME: original 0x826
-
-   MPMC_STCONFIG0 = 0x81;
-   MPMC_STWTWEN0  = 0;
-   MPMC_STWTOEN0  = 0;
-   MPMC_STWTRD0   = 31;
-   MPMC_STWTPG0   = 0;
-   MPMC_STWTWR0   = 15;
-   MPMC_STWTTURN0 = 0;
+//   /* init CGU block*/
+//   cgu_init();
+//   /* reset all clocks to XTAL clock */
+//   cgu_reset_all_clks();
+//
+//   /* set all clocks based on the default structure */
+//   cgu_init_clks(DEFAULT_CFG);
+//
+//   /* set HPLL1 - main PLL to default speed */
+//   cgu_hpll_config (CGU_HPLL1_ID, &g_pll_fast);
+//
+//   /* configure the LCD pins in EBI memory mode. */
+//   SYS_MUX_LCD_EBI = 1;
+//
+//   cgu_clk_en_dis( CGU_SB_TIMER1_PCLK_ID, 1);
+//   /* enable EBI clock */
+//   cgu_clk_en_dis( CGU_SB_EBI_CLK_ID, 1);
+//
+//   /* enable MPMC controller clocks */
+//   cgu_clk_en_dis( CGU_SB_MPMC_CFG_CLK_ID, 1);
+//   cgu_clk_en_dis( CGU_SB_MPMC_CFG_CLK2_ID, 1);
+//   cgu_clk_en_dis( CGU_SB_MPMC_CFG_CLK3_ID, 1);
+//
+//   /* enable External Memory controller */
+//   MPMC_CTRL = MPMC_CTL_ENABLE;
+//   /* Force HCLK to MPMC_CLK to 1:1 ratio */
+//   MPMC_CONFIG = MPMC_CFG_SDCCLK_1_1; // FIXME: was original MPMC_CFG_SDCCLK_1_1;
+//   /* set MPMC delay gates appropriately based on trace lengths between
+//  SDRAM and the chip. Also based on the delay startergy used for SDRAM. */
+//   SYS_MPMC_DELAY = 0x824; //FIXME: original 0x826
+//
+//   MPMC_STCONFIG0 = 0x81;
+//   MPMC_STWTWEN0  = 0;
+//   MPMC_STWTOEN0  = 0;
+//   MPMC_STWTRD0   = 31;
+//   MPMC_STWTPG0   = 0;
+//   MPMC_STWTWR0   = 15;
+//   MPMC_STWTTURN0 = 0;
 
 
    /* SDRAM */
@@ -685,7 +689,7 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    SYS_MPMC_TESTMODE1 = 0x24; //FIXME: original was (10 + NS_TO_MPMCCLK(20, HCLK) + NS_TO_MPMCCLK(66, HCLK)) * (PLLCLK/HCLK);
 #endif
 
-   ssd1963_draw_rectangle(25, 25, 50, 50, 0x01F); // Blau
+  // ssd1963_draw_rectangle(25, 25, 50, 50, 0x001F); // Blau
 
    __asm volatile ("mov r0, #-1\t\n"
          "mov pc, %0" : : "r" (lr));
@@ -702,7 +706,7 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
 
 static void target_init (void)
 {
-   ssd1963_draw_rectangle(75, 75, 50, 50, 0x07E0); // Gruen
+   //ssd1963_draw_rectangle(75, 75, 50, 50, 0x07E0); // Gruen
    //ssd1963_init();
 }
 

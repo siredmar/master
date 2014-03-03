@@ -4,6 +4,8 @@
 
 
 GIT instructions:
+* adding new files
+git add *
 
 * commit changed files:
 git commit -am 'message'

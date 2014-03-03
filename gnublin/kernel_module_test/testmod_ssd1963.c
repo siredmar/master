@@ -124,54 +124,85 @@ struct timer_list timer1;
 int i = 0;
 int counter = 0;
 
-static void fillRect(struct testmod *item, unsigned short xs, unsigned short xe, unsigned short ys, unsigned short ye, unsigned short color)
+static void ssd1963_send_cmd_slow(struct testmod *item, unsigned short cmd)
 {
-
-   unsigned int i;
-   unsigned short id[5] = {0};
-   unsigned short x_width = xe - xs;
-   unsigned short y_width = ye - ys;
-   unsigned int area = x_width * y_width;
-
-   writew(READ_DDB, item->ctrl_io);
-     mdelay(1);
-     id[0] = readw(item->data_io);
-     id[1] = readw(item->data_io);
-     id[2] = readw(item->data_io);
-     id[3] = readw(item->data_io);
-     id[4] = readw(item->data_io);
+   writew(0x00FF & cmd, item->ctrl_io);
+   mdelay(1);
+}
+static void ssd1963_send_cmd(struct testmod *item, unsigned short cmd)
+{
+   writew(0x00FF & cmd, item->ctrl_io);
+}
 
 
-     //dev_dbg(&dev->dev, "%s: signature=%02X %02X %02X %02X %02X\n", __func__, id[0],id[1],id[2],id[3],id[4]);
-     printk(KERN_ALERT "SSD1963_fillRect: signature expected:\t01 57 61 01 FF\n");
-     printk(KERN_ALERT "SSD1963_fillRect: signature read:\t%02X %02X %02X %02X %02X\n", id[0],id[1],id[2],id[3],id[4]);
+static void ssd1963_send_data_slow(struct testmod *item, unsigned short data)
+{
+   writew(data, item->data_io);
+   mdelay(1);
+}
+static void ssd1963_send_data(struct testmod *item, unsigned short data)
+{
+   writew(data, item->data_io);
+}
 
-   writew(SET_COLUMN_ADDRESS, item->ctrl_io);
-   writew((xs >> 8) & 0x00FF , item->data_io);
-   writew((xs & 0x00FF), item->data_io);
-   writew((xe  >> 8 ) & 0x00FF, item->data_io);
-   writew((xe & 0x00FF), item->data_io);
+static inline unsigned short ssd1963_read_data_slow(struct testmod *item)
+{
+   mdelay(1);
+   return readw(item->data_io);
+}
 
-   writew(SET_PAGE_ADDRESS, item->ctrl_io);
-   writew((ys >> 8) & 0x00FF , item->data_io);
-   writew((ys & 0x00FF), item->data_io);
-   writew((ye  >> 8 ) & 0x00FF, item->data_io);
-   writew((ye & 0x00FF), item->data_io);
 
-   writew(WRITE_MEMORY_START, item->ctrl_io);
+static void ssd1963_set_window(struct testmod *item, unsigned short xs, unsigned short xe, unsigned short ys, unsigned short ye)
+{
+   ssd1963_send_cmd(item, SET_COLUMN_ADDRESS);
+   ssd1963_send_data(item, (xs >> 8) & 0x00FF);
+   ssd1963_send_data(item, xs & 0x00FF);
+   ssd1963_send_data(item, (xe  >> 8 ) & 0x00FF);
+   ssd1963_send_data(item, xe & 0x00FF);
 
-   for(i = 0; i < area; i++)
+   ssd1963_send_cmd(item, SET_PAGE_ADDRESS);
+   ssd1963_send_data(item, (ys >> 8) & 0x00FF);
+   ssd1963_send_data(item, ys & 0x00FF);
+   ssd1963_send_data(item, (ye  >> 8 ) & 0x00FF);
+   ssd1963_send_data(item, ye & 0x00FF);
+
+   ssd1963_send_cmd(item, WRITE_MEMORY_START);
+}
+
+void ssd1963_draw_rectangle(struct testmod *item, unsigned short xs, unsigned short ys, unsigned short width, unsigned short height, unsigned short color)
+{
+   unsigned int cnt;
+   unsigned short xe;
+   unsigned short ye;
+   unsigned int size;
+
+   xe = xs + width;
+   ye = ys + height;
+
+   if(xe > (SCREENWIDTH - 1))
    {
-      writew(color, item->data_io);
+      xe = SCREENWIDTH - 1;
+   }
+   if(ye > (SCREENHEIGHT - 1))
+   {
+      ye = SCREENHEIGHT - 1;
+   }
+   size = width * height;
+   ssd1963_set_window(item, xs, xe, ys, ye);
+
+   for(cnt = 0; cnt < size; cnt++)
+   {
+      ssd1963_send_data(item, color);
    }
 
 }
+
 void timer1_routine(unsigned long data)
 {
    static unsigned short color = 0;
    struct testmod *item = (struct testmod*) data;
-   fillRect(item, 100, 100, 200, 200, color);
-   color = color + 100;
+   ssd1963_draw_rectangle(item, 25, 25, 50, 50, color);
+   color = color + 1000;
    mod_timer(&timer1, jiffies + msecs_to_jiffies(1000));
 
 }
@@ -180,118 +211,121 @@ void ssd1963_init(struct testmod *item)
 {
    unsigned short int id[5] = {0};
 
- //  struct testmod *item = (struct testmod*) data;
+   gpio_direction_output(RESET_PIN, 0);
+   mdelay(1);
    gpio_direction_output(RESET_PIN, 1);
    mdelay(1);
-   gpio_direction_output(RESET_PIN, 0);
+
+   ssd1963_send_cmd_slow(item, SOFT_RESET);
    mdelay(200);
-   gpio_direction_output(RESET_PIN, 1);
-
-   writew(SOFT_RESET, item->ctrl_io);
-	mdelay(200);
-	writew(READ_DDB, item->ctrl_io);
-	mdelay(1);
-	id[0] = readw(item->data_io);
-	id[1] = readw(item->data_io);
-	id[2] = readw(item->data_io);
-	id[3] = readw(item->data_io);
-	id[4] = readw(item->data_io);
+   ssd1963_send_cmd_slow(item, READ_DDB);
+   mdelay(1);
+   id[0] = readw(item->data_io);
+   id[1] = readw(item->data_io);
+   id[2] = readw(item->data_io);
+   id[3] = readw(item->data_io);
+   id[4] = readw(item->data_io);
 
 
-	//dev_dbg(&dev->dev, "%s: signature=%02X %02X %02X %02X %02X\n", __func__, id[0],id[1],id[2],id[3],id[4]);
-	printk(KERN_ALERT "SSD1963: signature expected:\t01 57 61 01 FF\n");
+   //dev_dbg(&dev->dev, "%s: signature=%02X %02X %02X %02X %02X\n", __func__, id[0],id[1],id[2],id[3],id[4]);
+   printk(KERN_ALERT "SSD1963: signature expected:\t01 57 61 01 FF\n");
    printk(KERN_ALERT "SSD1963: signature read:\t%02X %02X %02X %02X %02X\n", id[0],id[1],id[2],id[3],id[4]);
 
 
-   gpio_direction_output(LED_ENABLE_PIN, 1);
+   //  gpio_direction_output(LED_ENABLE_PIN, 1);
+
+   ssd1963_send_cmd_slow(item, SOFT_RESET);
+   mdelay(200);
+
+   ssd1963_send_cmd_slow(item, SET_PLL); // PLL config - continued
+   //usleep(2000);
+   ssd1963_send_data_slow(item, 0x0001);
+   mdelay(9);
+
+   ssd1963_send_cmd_slow(item, SET_PLL_MN); // PLL config - continued
+   //usleep(2000);
+   ssd1963_send_data_slow(item, 0x001D);
+   //usleep(2000);
+   ssd1963_send_data_slow(item, 0x0002);
+   //usleep(2000);
+   ssd1963_send_data_slow(item, 0x0054);
+   mdelay(9);
+
+   ssd1963_send_cmd_slow(item, SET_PLL); // PLL config - continued
+   ssd1963_send_data_slow(item, 0x0003);
+   mdelay(50);
+   printk(KERN_ALERT "Wait for PLL to get locked\n");
+   do
+   {
+      ssd1963_send_cmd_slow(item, GET_PLL_STATUS);
+   } while (ssd1963_read_data_slow(item)!=0x04);
 
 
-      writew(SET_PLL, item->ctrl_io); // PLL config - continued
-      msleep(1U);
-      writew(0x0001, item->data_io);
-      msleep(1U);
+   printk(KERN_ALERT "PLL locked\n");
 
-      writew(SET_PLL_MN, item->ctrl_io); // PLL config - continued
-      msleep(1U);
-      writew(0x001D, item->data_io);
-      msleep(1U);
-      writew(0x0002, item->data_io);
-      msleep(1U);
-      writew(0x0054, item->data_io);
-      msleep(1000U);
+   ssd1963_send_cmd(item, SET_LSHIFT_FREQ);
+   ssd1963_send_data(item, 0x0001); // LSHIFT freq
+   ssd1963_send_data(item, 0x0070);
+   ssd1963_send_data(item, 0x00A2);
 
+   ssd1963_send_cmd(item, SET_LCD_MODE);
+   mdelay(1);
+   ssd1963_send_data(item, 0x0038);  // set lcd mode
+   ssd1963_send_data(item, 0x0000);
+   ssd1963_send_data(item, 0x0001);
+   ssd1963_send_data(item, 0x00DF);
+   ssd1963_send_data(item, 0x0001);
+   ssd1963_send_data(item, 0x000F);
+   ssd1963_send_data(item, 0x0000);
+   mdelay(5);
 
-      writew(SET_PLL, item->ctrl_io); // PLL config - continued
-      msleep(1U);
-      writew(0x0003, item->data_io);
-      msleep(200U);
+   ssd1963_send_cmd(item, SET_HORI_PERIOD);
+   ssd1963_send_data(item, ((HT >> 8U) & 0x00FF));  // horizontal period
+   ssd1963_send_data(item, (HT & 0x00FF));
+   ssd1963_send_data(item, ((HPS >> 8U) & 0x00FF));
+   ssd1963_send_data(item, (HPS & 0x00FF));
+   ssd1963_send_data(item, HPW);
+   ssd1963_send_data(item, ((LPS >> 8U) & 0x00FF));
+   ssd1963_send_data(item, (LPS & 0x00FF));
+   ssd1963_send_data(item, 0x0000);
 
+   ssd1963_send_cmd(item, SET_VERT_PERIOD);
+   ssd1963_send_data(item, ((VT >> 8U) & 0x00FF)); // vertical period
+   ssd1963_send_data(item, (VT & 0x00FF));
+   ssd1963_send_data(item, (VPS >> 8U) & 0x00FF);
+   ssd1963_send_data(item, (VPS & 0x00FF));
+   ssd1963_send_data(item, VPW);
+   ssd1963_send_data(item, ((FPS >> 8U) & 0x00FF));
+   ssd1963_send_data(item, (FPS & 0x00FF));
 
-      writew(SOFT_RESET, item->ctrl_io);
-      msleep(100U);
+   ssd1963_send_cmd(item, SET_ADDRESS_MODE);
+   ssd1963_send_data(item, 0x0000);  // rotation - landscape
 
-      writew(SET_LSHIFT_FREQ, item->ctrl_io);
-      writew(0x0001, item->data_io); // LSHIFT freq
-      writew(0x0070, item->data_io);
-      writew(0x00A2, item->data_io);
+   ssd1963_send_cmd(item, SET_PIXEL_DATA_INTERFACE);
+   ssd1963_send_data(item, 0x0003);  // pixel data interface 16 bit    0b011 is 16 Bit
+   mdelay(5);
 
-      writew(SET_LCD_MODE, item->ctrl_io);
-      writew(0x0038, item->data_io);
-      writew(0x0000, item->data_io);
-      writew(0x0001, item->data_io);
-      writew(0x00DF, item->data_io);
-      writew(0x0001, item->data_io);
-      writew(0x000F, item->data_io);
-      writew(0x0000, item->data_io);
-      msleep(5U);
+   ssd1963_send_cmd(item, SET_DISPLAY_ON); // set display on
 
-      writew(SET_HORI_PERIOD, item->ctrl_io);
-      writew(((HT >> 8U) & 0x00FF), item->data_io);  // horizontal period
-      writew((HT & 0x00FF), item->data_io);
-      writew(((HPS >> 8U) & 0x00FF), item->data_io);
-      writew((HPS & 0x00FF), item->data_io);
-      writew(HPW, item->data_io);
-      writew(((LPS >> 8U) & 0x00FF), item->data_io);
-      writew((LPS & 0x00FF), item->data_io);
-      writew(0x0000, item->data_io);
+   ssd1963_send_cmd(item, SET_PWM_CONF);
+   ssd1963_send_data(item, 0x0006);  // pwm config
+   ssd1963_send_data(item, 0x00F0);
+   ssd1963_send_data(item, 0x0001);
+   ssd1963_send_data(item, 0x00F0);
+   ssd1963_send_data(item, 0x0000);
+   ssd1963_send_data(item, 0x0000);
 
-      writew(SET_VERT_PERIOD, item->ctrl_io);
-      writew(((VT >> 8U) & 0x00FF), item->data_io); // vertical period
-      writew((VT & 0x00FF), item->data_io);
-      writew((VPS >> 8U) & 0x00FF, item->data_io);
-      writew((VPS & 0x00FF), item->data_io);
-      writew(VPW, item->data_io);
-      writew(((FPS >> 8U) & 0x00FF), item->data_io);
-      writew((FPS & 0x00FF), item->data_io);
+   ssd1963_send_cmd(item, SET_DBC_CONF);
+   ssd1963_send_data(item, 0x000D); // pwm coffig continued
 
-      writew(SET_ADDRESS_MODE, item->ctrl_io);
-      writew(0x0000, item->data_io);  // rotation - landscape
+   ssd1963_send_cmd(item, SET_GPIO_CONF);
+   ssd1963_send_data(item, 0x0000); // gpio config
+   ssd1963_send_data(item, 0x0000);
 
-      writew(SET_PIXEL_DATA_INTERFACE, item->ctrl_io);
-      writew(0x0003, item->data_io);  // pixel data interface 16 bit    0b011 is 16 Bit
-      msleep(5U);
+   ssd1963_send_cmd(item, SET_GPIO_VALUE);
+   ssd1963_send_data(item, 0x0000); // gpio to 0x00
 
-      writew(SET_DISPLAY_ON, item->ctrl_io); // set display on
-
-      writew(SET_PWM_CONF, item->ctrl_io);
-      writew(0x0006, item->data_io);  // pwm config
-      writew(0x00F0, item->data_io);
-      writew(0x0001, item->data_io);
-      writew(0x00F0, item->data_io);
-      writew(0x0000, item->data_io);
-      writew(0x0000, item->data_io);
-
-      writew(SET_DBC_CONF, item->ctrl_io);
-      writew(0x000D, item->data_io); // pwm coffig continued
-
-      writew(SET_GPIO_CONF, item->ctrl_io);
-      writew(0x0000, item->data_io); // gpio config
-      writew(0x0000, item->data_io);
-
-      writew(SET_GPIO_VALUE, item->ctrl_io);
-      writew(0x0000, item->data_io); // gpio to 0x00
-
-
+   ssd1963_draw_rectangle(item, 0,0,480,272, 0xF800);
 
 }
 
@@ -300,7 +334,7 @@ int testmod_main(struct testmod *item)
 
    printk(KERN_ALERT  "gpio test driver loading... please be patient\n");
 
-   //ssd1963_init(item);
+   ssd1963_init(item);
    init_timer(&timer1);
 
 
@@ -310,8 +344,8 @@ int testmod_main(struct testmod *item)
    timer1.expires = jiffies + HZ; /* 1 second */
    add_timer(&timer1); /* Starting the timer */
 
-	printk(KERN_ALERT "Timer Module loaded\n");
-	return 0;
+   printk(KERN_ALERT "Timer Module loaded\n");
+   return 0;
 }
 
 
@@ -327,90 +361,90 @@ static int __init testmod_probe(struct platform_device *dev)
    struct resource *ctrl_req;
    struct resource *data_req;
 
-//   MPMC_STCONFIG0  = 0x81;
-//   MPMC_STWTWEN0   = 15;    // (0 + 1) * (1/90 MHz) = 11 ns
-//   MPMC_STWTOEN0   = 15;    // 0 ns
-//   MPMC_STWTRD0    = 31;   // (3 + 1) * ... = 44 ns
-//   MPMC_STWTPG0    = 15;    // 0 ns
-//   MPMC_STWTWR0    = 15;    //
-//   MPMC_STWTTURN0  = 31;   //
+   //   MPMC_STCONFIG0  = 0x81;
+   //   MPMC_STWTWEN0   = 15;    // (0 + 1) * (1/90 MHz) = 11 ns
+   //   MPMC_STWTOEN0   = 15;    // 0 ns
+   //   MPMC_STWTRD0    = 31;   // (3 + 1) * ... = 44 ns
+   //   MPMC_STWTPG0    = 15;    // 0 ns
+   //   MPMC_STWTWR0    = 15;    //
+   //   MPMC_STWTTURN0  = 31;   //
 
    /* enable oe toggle between consecutive reads */
    //SYS_MPMC_WTD_DEL0 = _BIT(5) | 15;
 
-    MPMC_STCONFIG0 = 0x81;
-    MPMC_STWTWEN0  = 0;
-    MPMC_STWTOEN0  = 0;
-    MPMC_STWTRD0   = 31;
-    MPMC_STWTPG0   = 0;
-    MPMC_STWTWR0   = 15;
-    MPMC_STWTTURN0 = 0;
+   MPMC_STCONFIG0 = 0x81;
+   MPMC_STWTWEN0  = 10;
+   MPMC_STWTOEN0  = 0;
+   MPMC_STWTRD0   = 31;
+   MPMC_STWTPG0   = 0;
+   MPMC_STWTWR0   = 31;
+   MPMC_STWTTURN0 = 0;
 
    dev_dbg(&dev->dev, "%s\n", __func__);
 
-      item = kzalloc(sizeof(struct testmod), GFP_KERNEL);
-      if (!item) {
-         dev_err(&dev->dev, "%s: unable to kzalloc for testmod\n", __func__);
-         ret = -ENOMEM;
-         goto out;
-      }
-      item->dev = &dev->dev;
-      dev_set_drvdata(&dev->dev, item);
-
-      ctrl_res = platform_get_resource(dev, IORESOURCE_MEM, 0);
-      if (!ctrl_res) {
-         dev_err(&dev->dev, "%s: unable to platform_get_resource for ctrl_res\n",
-            __func__);
-         ret = -ENOENT;
-         goto out_item;
-      }
-      ctrl_res_size = ctrl_res->end - ctrl_res->start + 1;
-      ctrl_req = request_mem_region(ctrl_res->start, ctrl_res_size,
-                     dev->name);
-      if (!ctrl_req) {
-         dev_err(&dev->dev, "%s: unable to request_mem_region for ctrl_req\n", __func__);
-         ret = -EIO;
-         goto out_item;
-      }
-      item->ctrl_io = ioremap(ctrl_res->start, ctrl_res_size);
-      if (!item->ctrl_io) {
-         ret = -EINVAL;
-         dev_err(&dev->dev, "%s: unable to ioremap for ctrl_io\n", __func__);
-         goto out_item;
-      }
-
-      data_res = platform_get_resource(dev, IORESOURCE_MEM, 1);
-      if (!data_res) {
-         dev_err(&dev->dev, "%s: unable to platform_get_resource for data_res\n", __func__);
-         ret = -ENOENT;
-         goto out_item;
-      }
-      data_res_size = data_res->end - data_res->start + 1;
-      data_req = request_mem_region(data_res->start,
-                     data_res_size, dev->name);
-      if (!data_req) {
-         dev_err(&dev->dev, "%s: unable to request_mem_region for data_req\n", __func__);
-         ret = -EIO;
-         goto out_item;
-      }
-      item->data_io = ioremap(data_res->start, data_res_size);
-      if (!item->data_io) {
-         ret = -EINVAL;
-         dev_err(&dev->dev, "%s: unable to ioremap for data_io\n", __func__);
-         goto out_item;
-      }
-
-      item->name = "testmod_str";
-
-      dev_dbg(&dev->dev, "%s: ctrl_io=%p data_io=%p\n", __func__, item->ctrl_io, item->data_io);
+   item = kzalloc(sizeof(struct testmod), GFP_KERNEL);
+   if (!item) {
+      dev_err(&dev->dev, "%s: unable to kzalloc for testmod\n", __func__);
+      ret = -ENOMEM;
       goto out;
+   }
+   item->dev = &dev->dev;
+   dev_set_drvdata(&dev->dev, item);
 
-      out_item:
-      kfree(item);
+   ctrl_res = platform_get_resource(dev, IORESOURCE_MEM, 0);
+   if (!ctrl_res) {
+      dev_err(&dev->dev, "%s: unable to platform_get_resource for ctrl_res\n",
+            __func__);
+      ret = -ENOENT;
+      goto out_item;
+   }
+   ctrl_res_size = ctrl_res->end - ctrl_res->start + 1;
+   ctrl_req = request_mem_region(ctrl_res->start, ctrl_res_size,
+         dev->name);
+   if (!ctrl_req) {
+      dev_err(&dev->dev, "%s: unable to request_mem_region for ctrl_req\n", __func__);
+      ret = -EIO;
+      goto out_item;
+   }
+   item->ctrl_io = ioremap(ctrl_res->start, ctrl_res_size);
+   if (!item->ctrl_io) {
+      ret = -EINVAL;
+      dev_err(&dev->dev, "%s: unable to ioremap for ctrl_io\n", __func__);
+      goto out_item;
+   }
 
-      out:
+   data_res = platform_get_resource(dev, IORESOURCE_MEM, 1);
+   if (!data_res) {
+      dev_err(&dev->dev, "%s: unable to platform_get_resource for data_res\n", __func__);
+      ret = -ENOENT;
+      goto out_item;
+   }
+   data_res_size = data_res->end - data_res->start + 1;
+   data_req = request_mem_region(data_res->start,
+         data_res_size, dev->name);
+   if (!data_req) {
+      dev_err(&dev->dev, "%s: unable to request_mem_region for data_req\n", __func__);
+      ret = -EIO;
+      goto out_item;
+   }
+   item->data_io = ioremap(data_res->start, data_res_size);
+   if (!item->data_io) {
+      ret = -EINVAL;
+      dev_err(&dev->dev, "%s: unable to ioremap for data_io\n", __func__);
+      goto out_item;
+   }
 
-      return testmod_main(item);
+   item->name = "testmod_str";
+
+   dev_dbg(&dev->dev, "%s: ctrl_io=%p data_io=%p\n", __func__, item->ctrl_io, item->data_io);
+   goto out;
+
+   out_item:
+   kfree(item);
+
+   out:
+
+   return testmod_main(item);
 }
 
 
@@ -418,12 +452,12 @@ static int __init testmod_probe(struct platform_device *dev)
 static int __devexit testmod_exit(struct platform_device *dev);
 
 static struct platform_driver testmod_driver = {
-   .driver = {
-         .name = "testmod",
-         .owner   = THIS_MODULE,
-         },
-   .probe  = testmod_probe,
-   .remove = __devexit_p(testmod_exit),
+      .driver = {
+            .name = "testmod",
+            .owner   = THIS_MODULE,
+      },
+      .probe  = testmod_probe,
+      .remove = __devexit_p(testmod_exit),
 };
 
 static int __init testmod_init(void)

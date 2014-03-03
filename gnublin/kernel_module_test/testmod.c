@@ -117,12 +117,12 @@ static int __init testmod_probe(struct platform_device *dev)
 //   MPMC_STWTTURN0  = 31;   //
 //
    MPMC_STCONFIG0  = 0x81;
-   MPMC_STWTWEN0   = 2;
-   MPMC_STWTOEN0   = 1;
-   MPMC_STWTRD0    = 15;
-   MPMC_STWTPG0    = 2;
-   MPMC_STWTWR0    = 4;
-   MPMC_STWTTURN0  = 2;
+   MPMC_STWTWEN0   = 10;
+   MPMC_STWTOEN0   = 0;
+   MPMC_STWTRD0    = 31;
+   MPMC_STWTPG0    = 0;
+   MPMC_STWTWR0    = 31;
+   MPMC_STWTTURN0  = 0;
 
    /* enable oe toggle between consecutive reads */
 //   SYS_MPMC_WTD_DEL0 = _BIT(5) | 15;

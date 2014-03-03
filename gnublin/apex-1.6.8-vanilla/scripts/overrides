@@ -1,0 +1,11 @@
+#!/bin/sh
+# overrides
+#  processes the overrides for handling the 'every' target.  The only
+#  override at the moment is the CROSS_COMPILE variable which is
+#  necessary to build Debian packages since they cannot use the
+#  CROSS_COMPILE configuration option.
+#
+
+c=$1
+o=scripts/every-overrides
+cat $o | grep $1 | sed -e "s/$1[ \t]*/CROSS_COMPILE=/"

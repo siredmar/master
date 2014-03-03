@@ -26,15 +26,62 @@
 
 static int __init hello_init(void)
 {
+
+
+   unsigned int val;
    printk("Changing MPMCST0 wait cycles\n");
-    MPMC_STCONFIG0 = 0x81;
-    MPMC_STWTWEN0  = 0;
-    MPMC_STWTOEN0  = 0;
-    MPMC_STWTRD0   = 31;
-    MPMC_STWTPG0   = 0;
-    MPMC_STWTWR0   = 0;
-    MPMC_STWTTURN0 = 15;
-    SYS_MPMC_WTD_DEL0 = 0;
+
+   val = (MPMC_STCONFIG0);
+   printk(KERN_ALERT "MPMC_STCONFIG0:\t 0x%.2X\n", val);
+
+   val = (MPMC_STWTWEN0);
+   printk(KERN_ALERT "MPMC_STWTWEN0:\t %d\n", val);
+
+   val = (MPMC_STWTOEN0);
+   printk(KERN_ALERT "MPMC_STWTOEN0:\t %d\n", val);
+
+   val = (MPMC_STWTRD0);
+   printk(KERN_ALERT "MPMC_STWTRD0:\t %d\n",  val);
+
+   val = (MPMC_STWTPG0);
+   printk(KERN_ALERT "MPMC_STWTPG0:\t %d\n",  val);
+
+   val = (MPMC_STWTWR0);
+   printk(KERN_ALERT "MPMC_STWTWR0:\t %d\n",  val);
+
+   val = (MPMC_STWTTURN0);
+   printk(KERN_ALERT "MPMC_STWTTURN0:\t %d\n\n",val);
+
+   MPMC_STCONFIG0 = 0x81;
+   MPMC_STWTWEN0  = 15;
+   MPMC_STWTOEN0  = 0;
+   MPMC_STWTRD0   = 31;
+   MPMC_STWTPG0   = 0;
+   MPMC_STWTWR0   = 31;
+   MPMC_STWTTURN0 = 0;
+
+
+    val = (MPMC_STCONFIG0);
+    printk(KERN_ALERT "MPMC_STCONFIG0:\t 0x%.2X\n", val);
+
+    val = (MPMC_STWTWEN0);
+    printk(KERN_ALERT "MPMC_STWTWEN0:\t %d\n", val);
+
+    val = (MPMC_STWTOEN0);
+    printk(KERN_ALERT "MPMC_STWTOEN0:\t %d\n", val);
+
+    val = (MPMC_STWTRD0);
+    printk(KERN_ALERT "MPMC_STWTRD0:\t %d\n",  val);
+
+    val = (MPMC_STWTPG0);
+    printk(KERN_ALERT "MPMC_STWTPG0:\t %d\n",  val);
+
+    val = (MPMC_STWTWR0);
+    printk(KERN_ALERT "MPMC_STWTWR0:\t %d\n",  val);
+
+    val = (MPMC_STWTTURN0);
+    printk(KERN_ALERT "MPMC_STWTTURN0:\t %d\n",val);
+    //SYS_MPMC_WTD_DEL0 = 0;
     return 0;    // Non-zero return means that the module couldn't be loaded.
 }
 

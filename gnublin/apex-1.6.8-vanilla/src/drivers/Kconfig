@@ -1,0 +1,269 @@
+menu "Generic Drivers"
+
+config DRIVER_FAT
+	bool "FAT Filesystem"
+	select USES_PATHNAME_PARSER
+	default n
+	help
+	  This driver implements a FAT filesystem driver.
+
+config DRIVER_FAT_BLOCKDEVICE
+	string "Underlying driver region"
+	depends on DRIVER_FAT
+	default "cf"
+	help
+	  The filesystem driver is staticly links to an underlying
+	  driver/region for access to the media.  Set that region
+	  here.  A later update to the filesystem code will let the
+	  user specify this region dynamically. 
+	
+config DRIVER_EXT2
+	bool "EXT2 Filesystem"
+	select USES_PATHNAME_PARSER
+	default n
+	help
+	  This driver implements an Ext2 filesystem driver.
+
+config DRIVER_EXT2_BLOCKDEVICE
+	string "Underlying driver region"
+	depends on DRIVER_EXT2
+	default "cf"
+	help
+	  The filesystem driver is staticly links to an underlying
+	  driver/region for access to the media.  Set that region
+	  here.  A later update to the filesystem code will let the
+	  user specify this region dynamically. 
+	
+
+config DRIVER_JFFS2
+	bool "JFFS2 Filesystem"
+	select USES_PATHNAME_PARSER
+	default n
+	help
+	  This driver implements a JFFS2 filesystem driver.
+
+config DRIVER_JFFS2_BLOCKDEVICE
+	string "Underlying driver region"
+	depends on DRIVER_JFFS2
+	default ""
+	help
+	  The filesystem driver is staticly links to an underlying
+	  driver/region for access to the media.  Set that region
+	  here.  A later update to the filesystem code will let the
+	  user specify this region dynamically. 
+
+
+config DRIVER_FIS
+	bool "FIS Partition"
+	select USES_PATHNAME_PARSER
+	default n
+	help
+	  This driver implements a FIS partition driver.
+
+config DRIVER_FIS_BLOCKDEVICE
+	string "Underlying driver region"
+	depends on DRIVER_FIS
+	help
+	  Set this option to the default region holding the FIS
+	  partition.  The region may also be set at runtime as an
+	  alias or as an environment variable called 'fis-drv'.
+	
+config DRIVER_NOR_CFI
+	bool "CFI NOR Flash"
+	depends on USES_NOR_CFI=y
+	default y
+	help
+	  This driver implements a CFI compliant NOR flash driver
+	  which works with most contemporary NOR flash chips. 
+
+config DRIVER_NOR_CFI_NO_BUFFERED
+	bool "Inhibit Buffered Writes"
+	depends on DRIVER_NOR_CFI
+	default n
+	help
+	  This option disables the buffered write code in the CFI NOR
+	  flash driver.  APEX is built with only one CFI flash write
+	  routine.  If the target has flash without a write buffer,
+	  this option must be used to force the driver to include the
+	  slower, unbuffered write code.
+
+	  Leave this option set to 'N' unless your target is
+	  experiencing problems using the buffered write routine.
+
+config DRIVER_NOR_CFI_USE_CACHE
+	bool "Allow cache enable during reads"
+	depends on DRIVER_NOR_CFI && MMU && !SMALL
+	default n
+	help
+	  This option enables the use of the cache while reading from
+	  NOR flash.  On systems where this works, the read
+	  performance is significantly increased.  Beware, though,
+	  enabling this on systems where the cache purging doesn't
+	  work correctly may cause spurrious errors during write. 
+
+	  At the moment, we cannot use the cache for NOR flash on the
+	  ARM720T architecture because the cache entries cannot be
+	  selectively invalidated.  It may be possible to use the
+	  cache anyway, but the full cache purge after writing the
+	  ReadArray command will be a big performance killer.
+
+choice
+	prompt "NOR Flash Type"
+	depends on DRIVER_NOR_CFI
+	default DRIVER_NOR_CFI_TYPE_INTEL
+	help
+	  Select the NOR flash protocol.
+
+config DRIVER_NOR_CFI_TYPE_INTEL
+	bool "Intel-type NOR Flash"
+	help
+	  This is the NOR flash protocol use by Intel and many other
+	  CFI compliant devices. 
+
+config DRIVER_NOR_CFI_TYPE_SPANSION
+	bool "Spansion-type NOR Flash"
+	help
+	  This is the NOR flash protocol used by Spansion and some
+	  Sharp parts.
+
+endchoice	
+
+config DRIVER_NAND
+	bool "NAND Flash"
+	depends on USES_NAND=y
+	default y
+	help
+	  This driver supports the standard NAND flash interface based
+	  on a mach-specific header.
+
+choice
+	prompt "NAND Flash Type"
+	depends on DRIVER_NAND
+	default DRIVER_NAND_TYPE_TOSHIBA
+
+config DRIVER_NAND_TYPE_TOSHIBA
+	bool "Toshiba-type NAND Flash"
+	help
+	  Implements Toshiba compatible command set.
+
+config DRIVER_NAND_TYPE_ST
+	bool "ST-type NAND Flash"
+	help
+	  Implements ST compatible command set.
+
+config DRIVER_NAND_TYPE_MICRON
+	bool "Micron NAND Flash"
+	help
+	  Implements Micron compatible command set.
+
+endchoice	
+
+config DRIVER_NAND_ADDRESS_BYTES
+	int "Address bytes of underlying NAND device"
+	depends on DRIVER_NAND
+	default 2
+	help
+	  NAND chips vary in the number of address bytes each accepts.
+	  While we can detect the size of the NAND chip and the mach-
+	  customization can account for some platform specific access
+	  methods, this configuration option is neither detectable nor
+	  is it optional.
+
+config DRIVER_ONENAND
+	bool "OneNAND Flash"
+	default n
+	help
+	  This driver supports OneNAND using configuration options
+	  only.
+
+config DRIVER_ONENAND_BASE
+	hex "OneNAND Flash Base Address"
+	depends on DRIVER_ONENAND
+	default 0x0
+	help
+	  This is the base address for the OneNAND device.  Typically,
+	  OneNAND is mapped to the system address space like a static
+	  memory device.
+
+config DRIVER_ONENAND_MULTIPLIER
+	int "OneNAND Flash Multiplier"
+	depends on DRIVER_ONENAND
+	default 2
+	help
+	  This is the multiplier for the addresses used by the flash
+	  device.  Typical implementations use a multipler of 2
+	  because the data bus is 16 bits wide.
+
+config DRIVER_COMPACTFLASH
+	bool "CompactFlash"
+	depends on USES_COMPACTFLASH=y
+	default n
+	help
+	  This driver implements a CompactFlash driver for the target
+	  platform.
+
+config DRIVER_SMC91X
+	bool "SMC91X Integrated Ethernet"
+	depends on USES_SMC91X
+	select USE_ETHERNET
+	default y
+	help
+	  This driver initializes and activates the SMSC SMC91x
+	  Ethernet MAC/PHY controller.
+
+config DRIVER_DM9000
+	bool "DM9000 Integrated Ethernet"
+	depends on USES_DM9000
+	select USE_ETHERNET
+	default y
+	help
+	  This driver initializes and activates the Davicom DM9000
+	  Ethernet MAC/PHY controller.
+
+config DRIVER_CS8900
+	bool "CS8900 Integrated Ethernet"
+	depends on USES_CS8900
+	select USE_ETHERNET
+	default y
+	help
+	  This driver initializes and activates the CS8900
+	  Ethernet controller.
+
+config DRIVER_IXP4XX_NPE_ETH
+	bool "IXP4xx NPE Ethernet"
+	depends on USES_IXP4XX_NPE_ETH && EXPERIMENTAL
+	select USE_ETHERNET
+	select USES_IXP4XX_NPE
+	default n
+	help
+	  This driver initializes and activates the internal NPE
+	  Ethernet interface available on the Intel IXP4xx.
+
+endmenu
+
+config USES_NOR_CFI
+	bool
+
+config USES_NAND
+	bool
+
+config USES_COMPACTFLASH
+	bool
+
+config USES_PATHNAME_PARSER
+	bool
+
+config USES_SMC91X
+	bool
+
+config USES_DM9000
+	bool
+
+config USES_IXP4XX_NPE_ETH
+	bool
+
+config USES_IXP4XX_NPE
+	bool
+
+config USES_CS8900
+	bool

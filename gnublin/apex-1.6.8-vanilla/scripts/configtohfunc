@@ -1,0 +1,22 @@
+#!/bin/sh
+# converts a config file to a C header with appropriate definitions
+# for options that specify functions. 
+# This is a work-around-hack to cope with the fact that the Linux
+# configuration and dependency management doesn't know what to do with
+# function names in macros.  The normal behavior for strings puts
+# quotes around them which is uacceptable in this case.  Another
+# config item type would also solve the problem.
+#
+# usage: configtohfunc CONFIG
+
+echo "#if !defined (__CONFIGFUNC_H__)"
+echo "#    define   __CONFIGFUNC_H__"
+echo
+cat $1 | sed -e '/CONFIG_/!d' \
+	     -e '/FUNCTION/!d' \
+             -e 's/^[ \t]*#.*//' \
+             -e 's/"\([^ "]*\)"/\1/g' \
+             -e 's/\([^=]*\)=\(\.*\)/#undef  \1\n#define \1 \2/'
+echo
+echo
+echo "#endif /* __CONFIGFUNC_H__ */"

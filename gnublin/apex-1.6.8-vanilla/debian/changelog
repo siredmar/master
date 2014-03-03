@@ -1,0 +1,130 @@
+apex (1.5.14) unstable; urgency=low
+
+  * Added CONFIG_AEABI=y to armel. (closes: #481848)
+  * Added shlib dependencies for the sake of apex-env. (closes: #481846)
+  * Revised copyright messages, again, to remove all references to the FSF
+    address.
+  * debian/postinst: Fixed the postinst script to only run on the NSLU2.
+    (closes: #482000)
+  * The --force option to apex-env was fixed in a previous release.
+    (closes: #417757)
+  * Fixed the debian/copyright file to reflect the new wiki URL
+    syntax. (closes: #481736)
+  * Many upstream changes since last release, though most were not visible
+    to nslu2. There was a bug fixed in the envronment handling where a
+    broken environment region could cause unexpected boot-time problems.
+  * Included Kevin Price's patch for flash-apex.
+    o Added shlib dependencies for apex-env
+    o Updated FSF address in copyright
+    o Added manpage flash-apex(8)
+    o Removed boot option `rtc-x1205.probe=0,0x6f' from kernel command
+      line (closes: #471476)
+    o -- Kevin Price <kp@kevin-price.de>  Tue, 16 May 2008 17:52:00 +0200
+    o Bumped new upstream version
+    o Enabled CONFIG_AEABI=y
+    o [ Gordon Farquharson <gordonfarquharson@gmail.com> ]
+    o CONFIG_RAMDISK_SIZE=0x005FFFF0 (closes: #451882)
+    o Add flash-apex script. (closes: #421359)
+    o Add postinst script to run flash-apex on installation.
+  * Applied patches from rwhitby for Debian and slugos targets.
+  * Added overrides support to allow 'every' target really build every
+    configuration.
+
+ -- Marc Singer <elf@buici.com>  Tue, 27 May 2008 19:58:03 -0700
+
+apex (1.5.8) unstable; urgency=low
+
+  * Added 'release' comand to the apex-env.
+  * Defaults for debian configs will detect all memory.
+
+ -- Marc Singer <elf@buici.com>  Mon, 25 Jun 2007 15:53:22 -0700
+
+apex (1.5.7) unstable; urgency=low
+
+  * Since last official release, fixes to the memory detection, AEABI
+    support, OneNAND environment support with ENV_SAVEATONCE, lots of mx31
+    changes, completely restructured the reset vector to avoid function
+    calls, and lots of other stuff documented in the package ChangeLog.
+
+ -- Marc Singer <elf@buici.com>  Sun, 24 Jun 2007 18:41:27 -0700
+
+apex (1.4.15) unstable; urgency=low
+
+  * Modified the rules file to support cross-building.
+  * Closes bug#409189
+  * Fixed the output file name.  It was inadvertently changed to /boot/apex.bin
+    from /boot/apex.flash.
+  * Closes bug#409747
+ -- Marc Singer <elf@buici.com>  Mon,  5 Feb 2007 18:35:11 -0800
+
+apex (1.4.14) unstable; urgency=low
+
+  * Revised the libfuncs1.S file for arm so that armel can build.
+  * Closes bug#408443
+  * Changed the rules file to drop the executble bit on the apex.flash
+    file written to /boot.
+  * Closes bug#396447
+
+ -- Marc Singer <elf@buici.com>  Tue, 30 Jan 2007 19:19:55 -0800
+
+apex (1.4.13) unstable; urgency=low
+
+  * Fixed ext2 driver caching s.t. multiple partitions work correctly.
+  * New user-mode application for modifying the APEX environment.
+  * Revisions to Companion setup.
+  * Revision to the memory test based on advice about what is useful and
+    what is not.
+  * Fixes to the FIS driver for swapped-ness and end-of-table detection.
+  * Applied rwhitby's patches for a couple of ixp4xx devices as well as
+    some other minor patches.
+  * Added variation support for alternative boot modes.
+  * Enhanced NAND support and made it more generic.
+
+ -- Marc Singer <elf@cerise.buici.com>  Sat, 27 Jan 2007 17:38:49 -0800
+
+apex (1.4.7) unstable; urgency=low
+
+  * New command line starts RTC.
+  * Moved the environment to the same block as the loader.
+
+ --  Marc Singer <elf@debian.org>  Sun, 22 Oct 2006 14:20:13 -0700
+
+apex (1.4.5) unstable; urgency=low
+
+  * Fixed the sort comparison function in the fis driver so that the skips
+    are ordered by offset address. 
+  * Changed the default startup to copy from fis://kernel and
+    fis://ramdisk.  We no longer expect there to be SERCOMM headers on the
+    kernel or ramdisk images.  Freedom.
+
+ --  Marc Singer <elf@debian.org>  Fri, 18 Aug 2006 09:44:34 -0700
+
+apex (1.4.4) unstable; urgency=low
+
+  * Small changes to the configurations for debian builds: noirqdebug
+    added command line, removed root= from command line. 
+  * Revised copyright file to conform to approved practices.
+
+ -- Marc Singer <elf@debian.org>  Mon, 14 Aug 2006 17:06:58 -0700
+
+apex (1.4.3) unstable; urgency=low
+
+  * Added fis_skip_descriptor interpretation to the FIS driver.  This
+    allows for loading the kernel from FIS partitions that are broken-up
+    by SERCOMM headers to cope with RedBoot shortcomings.
+
+ -- Marc Singer <elf@debian.org>  Sun, 13 Aug 2006 17:28:55 -0700
+
+apex (1.4.0) unstable; urgency=low
+
+  * Revised several key systems for the sake of running APEX in LE mode on
+    a BE system.  APEX now functions as a second-stage boot loader on the
+    nslu2.
+
+ -- Marc Singer <elf@debian.org>  Wed, 26 Jul 2006 00:57:13 -0700
+
+apex (1.3.30) unstable; urgency=low
+
+  * Initial release for configuration debian-nslu2-arm_config (and armeb).
+
+ -- Marc Singer <elf@debian.org>  Thu, 20 Jul 2006 11:36:21 -0700

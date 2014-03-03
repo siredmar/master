@@ -1,0 +1,23 @@
+NOTES
+=====
+
+NPE/MAC Implementation
+
+  There is good code from the Christian Hohnstaedt in the form of a
+  kernel driver for 2.6.19.
+
+  o Do we need to use interrupts?  Can we probe for the interupt status?
+  o Firmware download/upload may be the place to start.
+  o It's 2500 lines, even in this form.  It may be a challenge to test.
+  o The smc91x driver is 1000 lines.
+  o We may be able to get a leg up by starting with FW and moving to
+    the PHY.  At that point, it may be reasonable to get the queue
+    manager working and then the mac and npe code.
+  o Need to look at the different kernel modules and the component
+    source files for guidance.
+  o Need to see how the initialization process runs so that we can
+    know which code is required in which order.  Documentation of this
+    will be helpful for getting the whole job done.
+  o ixmax_open has code to check for the presence of the firmware.
+    This will be helpful in determining when and where the firmware is
+    loaded.

@@ -1,0 +1,102 @@
+if ARCH_S3C2410
+
+choice
+	prompt "S3C2410 Implementations"
+	default MACH_M7200
+
+config MACH_M7200
+	bool "American Microsystems M7200"
+	select USES_NOR_CFI
+	select USES_NOR_BOOTFLASH
+
+endchoice
+
+menu "Platform Setup"
+
+config ATAG_PHYS
+	hex "Physical address for ATAGs list"
+	default "0x30000100"
+	depends on ATAG
+	help
+	  This is the address where APEX will construct the ATAG list
+	  before starting the Linux kernel.  This address should be
+	  within the first 16KiB of physical RAM.  Don't change this
+	  value unless you know what you are doing. 
+
+config ARCH_NUMBER
+	int
+	default 193
+
+config APEX_VMA
+	hex "APEX runtime address"
+	default "0x30200000"
+
+config KERNEL_LMA
+	hex "Kernel load address"
+	default "0x30008000"
+
+config USE_RAMDISK
+	bool "Enable ramdisk options"
+	default y
+	help
+	  This option doesn't enable the ramdisk, per se.  It enables
+	  other configuration options that help setup a default
+	  ramdisk.  The kernel command line and the APEX startup
+	  commands may be overridden to perform the same steps.
+
+	  There is a separate option in the Environment section that
+	  controls whether or not APEX copies the ramdisk from flash
+	  into RAM at startup.  That is where the ramdisk region is
+	  defined.
+
+config RAMDISK_LMA
+	hex "Ramdisk load address"
+	default "0x30800000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the physical load address for an initial
+	  ramdisk (a.k.a initrd).
+
+config RAMDISK_SIZE
+	hex "Ramdisk compressed size"
+	default "0x00100000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the size, in bytes, of the initial ramdisk
+	  (a.k.a. initrd).  This is the size of the compressed initrd
+	  image.
+
+config SDRAM_BANK0
+	bool "Enable SDRAM bank 0"
+	default y
+
+config NOR_BUSWIDTH
+	int "Width of NOR flash bus"
+	default "16"
+	
+config NOR_BANK0
+	bool "Enable NOR flash bank 0"
+	default y
+
+config NOR_BANK0_START
+	hex "Physical address of NOR flash bank 0"
+	default "0x00000000"
+	depends on NOR_BANK0
+
+config NOR_BANK0_LENGTH
+	hex "Size, in bytes, of NOR flash bank 0"
+	default "0x04000000"
+	depends on NOR_BANK0
+
+endmenu
+
+config MACH
+	string
+	default "s3c2410"
+
+config ARCH_S3C2410
+	bool
+	select CPU_ARMV4
+	select CPU_ARM920T
+	select DRIVER_NOR_CFI_NO_BUFFERED
+endif

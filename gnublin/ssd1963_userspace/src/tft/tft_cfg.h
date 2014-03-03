@@ -129,9 +129,10 @@
 /* Hardware stuff */
 #define SRAM0_BASE       (0x20000000U)
 #define SRAM0_CTRL       (0x00000U)
-#define SRAM0_DATA       (0x18000U)
+#define SRAM0_DATA       (0x10000U)
 
 #define MPMC_BASE        (0x17008000U)
+#define MPMC_CONTROL     0x00
 #define MPMC_STATUS      0x01
 #define MPMC_STCONFIG0   0x80//(0x200U)
 #define MPMC_STWTWEN0    0x81//(0x204U)

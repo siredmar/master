@@ -173,7 +173,7 @@ static struct resource ssd1963_resource[] = {
   },
   [1] = {
      .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
-     .end   = EXT_SRAM0_PHYS + 0x18000 + 0xffff,
+     .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
      .flags = IORESOURCE_MEM,
   },
 };
@@ -211,7 +211,7 @@ static struct resource testmod_resource[] = {
       },
       [1] = {
          .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
-         .end   = EXT_SRAM0_PHYS + 0x18000 + 0xffff,
+         .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
          .flags = IORESOURCE_MEM,
    },
 };
@@ -226,11 +226,11 @@ static struct platform_device testmod_device = {
 static void __init ea_add_device_testmod(void)
 {
    MPMC_STCONFIG0 = 0x81;
-   MPMC_STWTWEN0  = 0;
+   MPMC_STWTWEN0  = 10;
    MPMC_STWTOEN0  = 0;
    MPMC_STWTRD0   = 31;
    MPMC_STWTPG0   = 0;
-   MPMC_STWTWR0   = 15;
+   MPMC_STWTWR0   = 31;
    MPMC_STWTTURN0 = 0;
 
    platform_device_register(&testmod_device);
@@ -513,18 +513,18 @@ static struct map_desc ea313x_io_desc[] __initdata = {
 		.length		= SZ_4K,
 		.type		= MT_DEVICE
 	},
-   {
-      .virtual = io_p2v(EXT_SRAM0_PHYS + 0x10000),
-      .pfn     = __phys_to_pfn(EXT_SRAM0_PHYS + 0x10000),
-      .length     = SZ_4K,
-      .type    = MT_DEVICE
-   },
-   {
-      .virtual = io_p2v(IO_MPMC_CFG_PHYS),
-      .pfn     = __phys_to_pfn(IO_MPMC_CFG_PHYS),
-      .length     = SZ_4K,
-      .type    = MT_DEVICE
-   },
+//   {
+//      .virtual = io_p2v(EXT_SRAM0_PHYS + 0x10000),
+//      .pfn     = __phys_to_pfn(EXT_SRAM0_PHYS + 0x10000),
+//      .length     = SZ_4K,
+//      .type    = MT_DEVICE
+//   },
+//   {
+//      .virtual = io_p2v(IO_MPMC_CFG_PHYS),
+//      .pfn     = __phys_to_pfn(IO_MPMC_CFG_PHYS),
+//      .length     = SZ_4K,
+//      .type    = MT_DEVICE
+//   },
 	{
 		.virtual	= io_p2v(EXT_SRAM1_PHYS + 0x10000),
 		.pfn		= __phys_to_pfn(EXT_SRAM1_PHYS + 0x10000),
