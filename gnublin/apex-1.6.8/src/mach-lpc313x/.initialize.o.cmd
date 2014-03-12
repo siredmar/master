@@ -8,6 +8,7 @@ deps_src/mach-lpc313x/initialize.o := \
     $(wildcard include/config/pll/270.h) \
     $(wildcard include/config/has/analog/die.h) \
     $(wildcard include/config/ram/size/8mb.h) \
+    $(wildcard include/config/ram/size/64mb.h) \
     $(wildcard include/config/mach/val3153.h) \
     $(wildcard include/config/mach/ea313x/v1.h) \
     $(wildcard include/config/mach/ea313x/v2.h) \

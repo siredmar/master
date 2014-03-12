@@ -1,3 +1,6 @@
+12.03.2014: SYS_MPMC_MISC = 0x100; => A15 ansprechen mit 0x8000, da sonst zwei Schreibzyklen fuer Data verwendet werden!
+
+
 Read Signal auf Logik Analyzer: > 65 ns && < 155 ns
 Write Signal auf Logik Analyzer: > 179 ns
 
