@@ -55,11 +55,11 @@ static Std_ReturnType tft_openSRAM0Memory()
    /* mmap SRAM0 */
    sram0_ctrl_map = mmap(
          NULL,             //Any adddress in our space will do
-         0x100000,       //Map length
+         getpagesize(),       //Map length
          PROT_READ|PROT_WRITE,// Enable reading & writting to mapped memory
          MAP_SHARED,       //Shared with other processes
          mem_fd,           //File to map
-         SRAM0_BASE + SRAM0_CTRL        //Offset to GPIO peripheral
+         SRAM0_BASE + SRAM0_CTRL        //Offset to SRAM0_CTRL peripheral
    );
 
 
@@ -75,11 +75,11 @@ static Std_ReturnType tft_openSRAM0Memory()
    /* mmap SRAM0 */
    sram0_data_map = mmap(
          NULL,             //Any adddress in our space will do
-         0x10000,       //Map length
+         getpagesize(),      //Map length
          PROT_READ|PROT_WRITE,// Enable reading & writting to mapped memory
          MAP_SHARED,       //Shared with other processes
          mem_fd,           //File to map
-         SRAM0_BASE + SRAM0_DATA         //Offset to GPIO peripheral
+         SRAM0_BASE + SRAM0_DATA         //Offset to SRAM0_DATA peripheral
    );
 
 
@@ -226,12 +226,12 @@ void tft_sendData
    {
       printf("%d\ttft_sendData:\t\t 0x%.2X", send_counter++, data_ui16);
       waitForUserInput();
-      *(sram0_data) = (uint16)data_ui16;
+      *(sram0_data) = data_ui16;
    }
    if(debug_output == 2)
    {
       printf("%d\ttft_sendData:\t\t 0x%.2X", send_counter++, data_ui16);
-      *(sram0_data) = (uint16)data_ui16;
+      *(sram0_data) = data_ui16;
       tft_waitXms(1000);
    }
 
@@ -248,12 +248,12 @@ void tft_sendPixelData
    {
       printf("%d\ttft_sendPixelData:\t 0x%.2X",  send_counter++, data_ui16);
       waitForUserInput();
-      *(sram0_data) = (uint16)data_ui16;
+      *(sram0_data) = data_ui16;
    }
    if(debug_output == 2)
    {
       printf("%d\ttft_sendPixelData:\t 0x%.2X",  send_counter++, data_ui16);
-      *(sram0_data) = (uint16)data_ui16;
+      *(sram0_data) = data_ui16;
       tft_waitXms(1000);
    }
 }
@@ -281,17 +281,17 @@ void tft_sendCommand
       uint16 data_ui16
 )
 {
-   data_ui16 = data_ui16 & 0x00FF;
+   // data_ui16 = data_ui16 & 0xFF;
    if(debug_output == 1)
    {
       printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
       waitForUserInput();
-      *(sram0_ctrl) = (uint16)data_ui16;
+      *(sram0_ctrl) = (data_ui16 & 0xFF);
    }
    if(debug_output == 2)
    {
       printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
-      *(sram0_ctrl) = (uint16)data_ui16;
+      *(sram0_ctrl) = (data_ui16 & 0xFF);
       tft_waitXms(1000);
    }
 
@@ -302,9 +302,7 @@ void tft_sendCommand_slow
       uint16 ctrl_ui16
 )
 {
-   uint16 cnt;
-   ctrl_ui16 = ctrl_ui16 & 0x00FF;
-   *(sram0_ctrl) = (uint16)ctrl_ui16;
+   *(sram0_ctrl) = (uint8)(ctrl_ui16 & 0xFF);
    tft_waitXms(10);
 }
 
@@ -313,15 +311,22 @@ void tft_sendCommand_slowPLL
       uint16 ctrl_ui16
 )
 {
-   uint16 cnt;
-   ctrl_ui16 = ctrl_ui16 & 0x00FF;
-   *(sram0_ctrl) = (uint16)ctrl_ui16;
-   usleep(1000);
+   *(sram0_ctrl) = (ctrl_ui16 & 0xFF);
+   //usleep(1000);
+}
+
+void tft_sendData_slowPLL
+(
+      uint16 ctrl_ui16
+)
+{
+   *(sram0_data) = (ctrl_ui16 & 0xFF);
+   //usleep(1000);
 }
 
 uint16 tft_readData_slowPLL(void)
 {
-   usleep(1000);
+   //usleep(1000);
    return *(sram0_data);
 }
 
@@ -331,8 +336,7 @@ void tft_sendData_slow
       uint16 data_ui16
 )
 {
-   uint16 cnt;
-   *(sram0_data) = (uint16)data_ui16;
+   *(sram0_data) = data_ui16;
    tft_waitXms(10);
 }
 
@@ -419,6 +423,7 @@ void tft_init
    if(init == 1)
    {
 
+
       tft_deSelectReset();
       tft_waitXms(100);   /* Wait 100ms */
       tft_selectReset(); /* Reset Display done */
@@ -428,50 +433,62 @@ void tft_init
 
 
 
+    //  while(1){
+         tft_sendCommand_slowPLL(SSD1963_READ_DDB);
+         //tft_waitXms(1);
+         id[0] = tft_readData_slowPLL();
+         id[1] = tft_readData_slowPLL();
+         id[2] = tft_readData_slowPLL();
+         id[3] = tft_readData_slowPLL();
+         id[4] = tft_readData_slowPLL();
 
-      tft_sendCommand_slowPLL(SSD1963_READ_DDB);
-      id[0] = tft_readData_slow();
-      id[1] = tft_readData_slow();
-      id[2] = tft_readData_slow();
-      id[3] = tft_readData_slow();
-      id[4] = tft_readData_slow();
-
-      printf("Signature: 0x%.2X 0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", id[0], id[1], id[2], id[3], id[4]);
+         printf("Signature: 0x%.2X 0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", id[0], id[1], id[2], id[3], id[4]);
+         tft_waitXms(1000);
 
 
+         tft_sendCommand_slowPLL(SSD1963_GET_PLL_MN);
+         get_pll_mn[0] = tft_readData_slowPLL();
+         get_pll_mn[1] = tft_readData_slowPLL();
+         get_pll_mn[2] = tft_readData_slowPLL();
+
+         printf("GetPLLMN[0]: 0x%.2X\n", get_pll_mn[0]);
+         printf("GetPLLMN[1]: 0x%.2X\n", get_pll_mn[1]);
+         printf("GetPLLMN[2]: 0x%.2X\n", get_pll_mn[2]);
+         tft_waitXms(1000);
+      //}
+
+      tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
+     // tft_waitXms(1);
+      tft_sendData(0x01);
+      //tft_waitXms(1);
+
+      tft_sendCommand(SSD1963_SET_PLL_MN); // PLL config - continued
+      //tft_waitXms(1);
+      tft_sendData(0x1D);
+     // tft_waitXms(1);
+      tft_sendData(0x02);
+     // tft_waitXms(1);
+      tft_sendData(0x04);
+     // tft_waitXms(1);
+      tft_waitXms(100);
       tft_sendCommand_slowPLL(SSD1963_GET_PLL_MN);
-      usleep(1000);
-      get_pll_mn[0] = tft_readData_slow();
-      get_pll_mn[1] = tft_readData_slow();
-      get_pll_mn[2] = tft_readData_slow();
+      get_pll_mn[0] = tft_readData_slowPLL();
+      get_pll_mn[1] = tft_readData_slowPLL();
+      get_pll_mn[2] = tft_readData_slowPLL();
 
       printf("GetPLLMN[0]: 0x%.2X\n", get_pll_mn[0]);
       printf("GetPLLMN[1]: 0x%.2X\n", get_pll_mn[1]);
       printf("GetPLLMN[2]: 0x%.2X\n", get_pll_mn[2]);
+      tft_waitXms(1000);
 
-
-      tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
-      tft_waitXms(1);
-      tft_sendData(0x0001);
-      tft_waitXms(1);
-
-      tft_sendCommand(SSD1963_SET_PLL_MN); // PLL config - continued
-      tft_waitXms(1);
-      tft_sendData(0x001D);
-      tft_waitXms(1);
-      tft_sendData(0x0002);
-      tft_waitXms(1);
-      tft_sendData(0x0054);
-      tft_waitXms(1);
-
-      do
-      {
-         usleep(1000000);
-         tft_sendCommand_slowPLL(SSD1963_GET_PLL_STATUS);
-         get_pll_status = tft_readData_slowPLL();
-         printf("\tget_pll_status:\t\t 0x%.4X\n", get_pll_status);
-      }
-      while(get_pll_status != 0x04);
+      //      do
+      //      {
+      //         usleep(1000000);
+      //         tft_sendCommand_slowPLL(SSD1963_GET_PLL_STATUS);
+      //         get_pll_status = tft_readData_slowPLL();
+      //         printf("\tget_pll_status:\t\t 0x%.4X\n", get_pll_status);
+      //      }
+      //      while(get_pll_status != 0x04);
 
 
       tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
