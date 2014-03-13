@@ -53,6 +53,9 @@ choice
 	prompt "PLL frequency"
 	default PLL_180
 
+config PLL_90
+	bool "Set PLL/ARM frequency at 90MHz and AHB=45MHz"
+
 config PLL_180
 	bool "Set PLL/ARM frequency at 180MHz and AHB=90MHz"
 

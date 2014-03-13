@@ -1,0 +1,250 @@
+if ARCH_LH7A40X
+
+choice
+	prompt "LH7A40X Implementations"
+	default MACH_LPD7A404
+
+config MACH_LPD7A400
+	bool "Logic Product Development LPD7A400"
+	select ARCH_LH7A400
+	select MACH_LPD7A40X
+	select USES_NOR_CFI
+	select USES_COMPACTFLASH
+	select USES_NOR_BOOTFLASH
+	select USES_SMC91X
+	select DRIVERS_LH
+	select HAS_LH_CLCDC
+
+config MACH_LPD7A404
+	bool "Logic Product Development LPD7A404"
+	select ARCH_LH7A404
+	select MACH_LPD7A40X
+	select USES_NOR_CFI
+	select USES_COMPACTFLASH
+	select USES_NOR_BOOTFLASH
+	select USES_SMC91X
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_CLCDC
+	select HAS_LH_MMC
+
+config MACH_TROUNCER
+	bool "Interalia TROUNCER"
+	select ARCH_LH7A404
+	select USES_NOR_CFI
+	select USES_COMPACTFLASH
+	select USES_NOR_BOOTFLASH
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_MMC
+
+config MACH_COMPANION
+	bool "Comsonics Companion"
+	select ARCH_LH7A404
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_CLCDC
+	select HAS_LH_MMC
+	select HAS_LH_I2C
+	select USES_DM9000
+	select USES_COMPANION_EVT1_BOOT
+	select USES_COMPANION_EVT2_BOOT
+	select USES_NAND
+	select USES_NAND_BOOTFLASH
+
+config MACH_KARMA
+	bool "Panasonic Karma"
+	select ARCH_LH7A404
+	select USES_NOR_CFI
+	select DRIVERS_LH
+	select HAS_LH_ADC
+	select HAS_LH_CLCDC
+	select HAS_LH_MMC
+	select HAS_LH_I2C
+	select USES_DM9000
+	select USES_NOR_BOOTFLASH
+
+endchoice
+
+config MACH_LPD7A404_80000258
+	bool "Support USB device control of the 80000258"
+	depends on MACH_LPD7A404
+	default n
+	help
+	  A early release of the LPD7A404, the -10 board, inverts the
+	  output of the USB_PWR_EN control line from the CPU.  The
+	  only way to drive it properly is to code the driver to do
+	  so.  There is no way to detect this older hardware revision.
+	  The part number on this older CardEngine is 80000258.  If
+	  you want proper USB device operation for the -10 board,
+	  choose this option.
+
+menu "Platform Setup"
+
+choice
+	prompt "CPU/Peripheral Clock"
+	default FREQ_200_100_50 if !MACH_TROUNCER
+	default FREQ_200_66_33  if  MACH_TROUNCER
+
+config FREQ_200_100_50
+	bool "FCLK 200 MHz - HCLK 100 MHz - PCLK 50MHz"
+	help
+	  This setting configures the PLL GCLK frequency to 199.9872 MHz.
+	  FCLK is GCLK; HCLK is FCLK/2; PCLK is HCLK/2.  This is the
+	  default setting and is known to work reliably on the LPD
+	  CardEngines.
+
+config FREQ_200_66_33
+	bool "FCLK 200 MHz - HCLK  66 MHz - PCLK 33 MHz"
+	help
+	  This setting configures the PLL GCLK frequency to 199.9872 MHz.
+	  FCLK is GCLK; HCLK is FCLK/3; PCLK is HCLK/2.  This is the
+	  default setting for the Trouncer which requires a slow PCLK
+	  for the sake of peripherals.
+
+config FREQ_240_120_60
+	bool "FCLK 240 MHz - HCLK 120 MHz - PCLK 60 MHz"
+	help
+	  This setting configures the PLL GCLK frequency to 239.616 MHz.
+	  FCLK is GCLK; HCLK is FCLK/2; PCLK is HCLK/2.  This is an
+	  overclocking confguration that may be unstable with
+	  unqualified parts.
+
+config FREQ_250_125_63
+	bool "FCLK 250 MHz - HCLK 125 MHz - PCLK 63 MHz"
+	help
+	  This setting configures the PLL GCLK frequency to 249.8991 MHz.
+	  FCLK is GCLK; HCLK is FCLK/2; PCLK is HCLK/2.  This is an
+	  overclocking confguration that may be unstable with
+	  unqualified parts.
+
+config FREQ_266_133_66
+	bool "FCLK 266 MHz - HCLK 133 MHz - PCLK 66 MHz"
+	help
+	  This setting configures the PLL GCLK frequency to 265.4218 MHz.
+	  FCLK is GCLK; HCLK is FCLK/2; PCLK is HCLK/2.  This is an
+	  overclocking confguration that may be unstable with
+	  unqualified parts.
+
+config FREQ_100_100_50
+	bool "FCLK 100 MHz - HCLK 100 MHz - PCLK 50 MHz"
+	help
+	  This setting configures the PLL GCLK frequency to 99.9936 MHz.
+	  FCLK is GCLK; HCLK is FCLK; PCLK is HCLK/2.  With this
+	  setting, the CPU will run in FastBus mode instead of
+	  Synchronous mode.
+
+config FREQ_150_75_37
+	bool "FCLK 150 MHz - HCLK  75 MHz - PCLK 37 MHz"
+	help
+	  This setting configures the PLL GCLK frequency to 150.0891 MHz.
+	  FCLK is GCLK; HCLK is FCLK/2; PCLK is HCLK/2.
+
+endchoice 
+
+config ATAG_PHYS
+	hex "Physical address for ATAGs list"
+	default "0xc0000100"
+	depends on ATAG
+	help
+	  This is the address where APEX will construct the ATAG list
+	  before starting the Linux kernel.  This address should be
+	  within the first 16KiB of physical RAM.  Don't change this
+	  value unless you know what you are doing. 
+
+config APEX_VMA
+	hex "APEX Runtime Address"
+	default "0xc0200000"
+
+config KERNEL_LMA
+	hex "Kernel Load Address"
+	default "0xc0008000"
+
+config USE_RAMDISK
+	bool "Enable ramdisk options"
+	default n
+	help
+	  This option doesn't enable the ramdisk, per se.  It enables
+	  other configuration options that help setup a default
+	  ramdisk.  The kernel command line and the APEX startup
+	  commands may be overridden to perform the same steps.
+
+	  There is a separate option in the Environment section that
+	  controls whether or not APEX copies the ramdisk from flash
+	  into RAM at startup.  That is where the ramdisk region is
+	  defined.
+
+config RAMDISK_LMA
+	hex "Ramdisk load address"
+	default "0xc4000000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the physical load address for an initial
+	  ramdisk (a.k.a initrd).
+
+config RAMDISK_SIZE
+	hex "Ramdisk compressed size"
+	default "0x00300000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the size, in bytes, of the initial ramdisk
+	  (a.k.a. initrd).  This is the size of the compressed initrd
+	  image.
+
+config SDRAM_BANK0
+	bool "Enable SDRAM Bank 0"
+	default y
+
+config SDRAM_BANK1
+	bool "Enable SDRAM Bank 1"
+	depends on SDRAM_BANK0
+	default n 
+
+config SDRAM_CONTIGUOUS
+	bool "Initialize SDRAM to be contiguous"
+	depends on SDRAM_BANK0
+	default y
+	help
+	  This option initializes the SDRAM controller to map each
+	  SDRAM into a contiguous bank, SROMLL.  Normally, SDRAM is
+	  sparse in the address space.  Linux does not need this
+	  option, but Windows/CE does.  It should be safe to set
+	  this option. 
+
+endmenu
+
+menu "Platform Drivers"
+
+config CODEC
+	bool "Audio Codec"
+	default n
+	help
+	  This driver includes commands to initialize and test the
+	  AC97 link and associated codec.
+
+	  You will not be able to use this code without first creating
+	  PCM test data.  It's best to leave this option disabled.
+
+endmenu
+
+config MACH
+	string
+	default "lh7a40x"
+
+config ARCH_LH7A400
+	bool
+	select CPU_ARMV4
+	select CPU_ARM9
+	select CPU_ARM922T
+
+config ARCH_LH7A404
+	bool
+	select CPU_ARMV4
+	select CPU_ARM9
+	select CPU_ARM922T
+
+config MACH_LPD7A40X
+	bool
+
+endif
+

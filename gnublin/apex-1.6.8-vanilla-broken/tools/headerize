@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+#
+# Inserts a SERCOMM header at the start of a file.
+#
+# The header is a simple 16 byte structure.   The only field we define
+# is the first four bytes as a length for the rest of the object.
+# This number is in the same endian ordering as the maching on which
+# it is running.
+#
+# The script attempts to detect that there already a header on the file.
+# It could use an option to force a new header or to overwrite an
+# existing header.
+#
+
+sub usage {
+print <<EOF
+usage: headerize ENDIAN FILE
+  ENDIAN is either 'b' or 'l' for big or little endianness.
+  FILE is the input file which will be headerized.
+
+    e.g.  headerize b apex.bin
+EOF
+;
+    exit 1;
+}
+
+usage () if scalar ($#ARGV) != 1;
+
+my $endian = shift;
+my $file = shift;
+my $tmpfile = "${file}-headerize-$$";
+
+my $packendian;
+$packendian = "N" if $endian eq 'b' || $endian eq 'B';
+$packendian = "V" if $endian eq 'l' || $endian eq 'L';
+usage if !defined ($packendian);
+
+[ ! -f $file ] || die "file $file does not exist";
+open IN, "<$file" || die "unable to open $file";
+open OUT, ">$tmpfile" || die "unable to open temporary file";
+
+# Read start of file to determine if there is a header
+my $data;
+sysread (IN, $data, 16, 0);
+my ($v, $a, $b, $c) = unpack "${packendian}4", $data;
+if ($v != 0 && $a == 0 && $b == 0 && $c == 0) {
+    print "file '$file' already headerized\n";
+    exit 1;
+}
+
+# emit new file, including header
+my $size = (stat($file))[7];
+print (OUT pack "${packendian}4", $size, 0, 0, 0);
+system ("cat $file >> $tmpfile") == 0 || die "unable to cat";
+system ("mv $tmpfile $file")	 == 0 || die "unable to update";
+
+0;

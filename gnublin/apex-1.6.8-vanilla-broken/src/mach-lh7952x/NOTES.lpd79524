@@ -1,0 +1,18 @@
+==========
+  NOTES
+ LPD79524
+==========
+
+20.Feb.2005
+
+  o Need to document how the nor flash driver aggregates the two flash
+    banks into a contiguous device.  While this is a handy feature,
+    users may not expect it.  The info displayed by the driver helps.
+
+5.Feb.2005
+
+  o Cannot test NAND boot by copying a portion of the bootloader to
+    SRAM and jumping to it.  The relocation code doesn't (cannot)
+    perform any setup for NAND.  It must depend on the setups already
+    being in place.  This allows us to be flexible about how the
+    hardware was initalized.

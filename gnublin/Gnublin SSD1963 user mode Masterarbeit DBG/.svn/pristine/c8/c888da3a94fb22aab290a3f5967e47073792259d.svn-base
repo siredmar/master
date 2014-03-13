@@ -1,0 +1,25 @@
+#include "../inc/std_types.h"
+
+#include "dio/dio.h"
+#include "tft/tft.h"
+
+
+int main()
+{
+	unsigned int cnt = 0;
+	dio_init();
+	tft_init(&tft_initialConfigTft_s);
+
+	while(1)
+	{
+		printf("while-cycle %d\n", cnt++);
+		tft_drawRectangle(100, 100, 150, 150, (uint16)cnt);
+		usleep(1000);
+		//dio_writePortGroup(DIO_PORTGROUP0, (uint16)0x00AA);
+		//usleep(1000);
+		//dio_writePortGroup(DIO_PORTGROUP0, (uint16)0x0055);
+	}
+
+return 0;
+}
+

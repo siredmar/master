@@ -1,0 +1,34 @@
+#!/bin/sh
+# converts a config file to a C header with appropriate definitions 
+#
+# usage: configtoh CONFIG
+
+echo "#if !defined (__CONFIG_H__)"
+echo "#    define   __CONFIG_H__"
+echo
+cat $1 | sed -e '/CONFIG_/!d' \
+             -e 's/^[ \t]*#.*//' \
+             -e 's/"\([^ "]*\)"/\1/g' \
+             -e 's/\([^=]*\)=\(\.*\)/#define \1 \2/'
+echo
+echo
+echo "#endif /* __CONFIG_H__ */"
+
+
+# Below is the original perl code.  We've replaced it with sh/sed
+# because perl isn't always available.
+
+# #!/bin/perl
+# 
+# print "#if !defined (__CONFIG_H__)\n";
+# print "#define __CONFIG_H__\n";
+# 
+# while (<>) {
+# 
+#     next if m/^\s*#/;
+#     
+#     next if ! m/\s*([^=\s]+)\s*=\s*([^\s]+)/;
+#     print "#define $1 $2\n";
+# }
+# 
+# print "#endif /* __CONFIG_H__ */\n";

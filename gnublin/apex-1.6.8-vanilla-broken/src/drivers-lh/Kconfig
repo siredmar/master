@@ -1,0 +1,120 @@
+if DRIVERS_LH
+
+menu "Sharp-LH Drivers"
+
+config DRIVER_LH_ADC
+	bool "ADC"
+	depends on HAS_LH_ADC
+	default n
+	help
+	  This driver includes commands to initialize and test the
+	  ADC/touchscreen controller.
+
+config DRIVER_LH_MMC
+	bool "MMC"
+	depends on HAS_LH_MMC
+	default n
+	help
+	  This driver supports the MMC/SD
+	  (MultiMediaCard/SecureDigital) controller.
+
+config DRIVER_LH_I2C
+	bool "I2C"
+	depends on HAS_LH_I2C
+	default n
+	help
+	  This driver supports IO from the I2C (BMI in Single Wire mode) 
+	  interface.
+
+config DRIVER_LH_CLCDC
+	bool "Color LCD"
+	depends on HAS_LH_CLCDC
+	default n
+	help
+	  This driver initializes the CLCD controller.  It is
+	  necessary if you want to show a splash screen. 
+
+config LCD_BGR
+	bool "Use BGR pel encoding"
+	depends on DRIVER_LH_CLCDC
+	default n
+	help
+	  The AMBA framebuffer device drives red from bits 0-4 in the
+	  TFT color value, and blue from bits 10-14 (or 11-15).  Setting
+	  this option swaps these roles.  This may be important if the
+	  kernel requires that blue be in the least significant bits
+	  of each framebuffer pel.
+
+config LCD_565
+	bool "Use 565 pel encoding"
+	depends on DRIVER_LH_CLCDC
+	default n
+	help
+	  The AMBA framebuffer device drives green from bits 5-9 or 5-10
+	  depending on the state of this option.  In 565 mode, the
+	  green has one ore bit than the other components.
+
+config LCD_RETAIN_SPLASH
+	bool "Retain splash image through kernel boot"
+	depends on DRIVER_LH_CLCDC
+	default n
+	help
+	  This option moves the frame buffer allocation to the top of
+	  RAM, removes that memory from the pool passed to the kernel,
+	  and then passes that frame buffer address to the kernel so
+	  that it can maintain continuity of the display.  It also
+	  prevents the LCD driver from disabling the display when it
+	  passes control during boot or go commands.
+
+choice
+	prompt "LCD Panel"
+	depends on DRIVER_LH_CLCDC
+	default LCD_3_5_QVGA_20
+
+config LCD_3_5_QVGA_20
+	bool "LCD 3.5\" QVGA w/HRTFT IC"
+
+config LCD_5_7_QVGA_10
+	bool "LCD 5.7\" QVGA"
+
+config LCD_6_4_VGA_10
+	bool "LCD 6.4\" VGA"
+
+config LCD_12_1_SVGA_10
+	bool "LCD 12.1\" SVGA"
+
+config LCD_NL2432HC22_40A
+	bool "NEC 3.5\" Portrait QVGA"
+
+config LCD_LQ036Q1DA01
+	bool "Sharp 9.1cm (3.6\") Landscape QVGA"
+
+config LCD_LQ035Q7DH06
+	bool "Sharp 3.5\" Portrait QVGA"
+
+config LCD_TD035TTEA1
+	bool "One Stop Display 3.5\" Landscape QVGA"
+
+config LCD_NOKIA_WIDE
+	bool "Nokia Wide Landscape HVGA"
+
+endchoice
+
+endmenu
+
+endif
+
+config HAS_LH_ADC
+	bool
+
+config HAS_LH_MMC
+	bool
+
+config HAS_LH_I2C
+	bool
+
+config HAS_LH_CLCDC
+	bool
+
+config DRIVERS_LH
+	bool

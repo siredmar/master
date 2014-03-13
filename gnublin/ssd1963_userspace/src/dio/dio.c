@@ -120,4 +120,3 @@ void dio_writePortGroup(uint16 dio_data_ui16)
 	dio_writeChannel(DIO_CHANNEL_2,  (dio_data_ui16 >> 6) & 0x01);
 	dio_writeChannel(DIO_CHANNEL_3,  (dio_data_ui16 >> 7) & 0x01);
 }
-

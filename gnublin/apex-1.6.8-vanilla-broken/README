@@ -1,0 +1,140 @@
+===========================
+     APEX Boot Loader
+ Release Notes & Quickstart
+===========================
+
+The APEX boot loader has been designed to be small, efficient, and
+easy to extend.  It uses some code and the build system from the Linux
+kernel.  There are pieces of code taken from BLOB and UBoot as well.
+
+
+  Newer Versions of APEX
+  ----------------------
+
+There is an ftp archive of APEX releases.
+
+  <ftp://ftp.buici.com/pub/apex>
+
+There is also a wiki with information about APEX.
+
+  <http://wiki.buici.com/wiki/Apex_Bootloader>
+
+
+  Supported Targets
+  -----------------
+
+The loader is fully functional for the LPD79524, LPD7A400, LPD7A404,
+IXP42X.  It builds for the LPD79520, but there is presently no version
+of the Linux kernel that recognizes the correct architecture number.
+APEX also builds for the MX31 and the S3C2410.
+
+
+  Building APEX
+  -------------
+
+The config file has an option to define cross-compiler prefix.  It
+must be set unless you are building on an ARM host platform.  For
+example,
+
+  CROSS_COMPILE=/usr/arm-linux/gcc-3.4.1-glibc-2.3.3/bin/arm-linux-
+
+The cross compiler may also be set in the environment or on the make
+command line.  Doing so will override the value set in the
+configuration file.
+
+  make CROSS_COMPILE=/usr/arm-linux/gcc-3.4.1-glibc-2.3.3/bin/arm-linux-
+
+Development proceeds with the 3.x compilers.  GCC 2.95.3 does build
+APEX at a slight penalty in code size.
+
+Beware of GCC 2.95.3.   It does not properly honor the naked function 
+--------------------	attribute which means that it may improperly
+handle register allocation.  The relocate_apex() function is
+vulnerable to the problem and may cause APEX to fail.  If you must use
+GCC 2.95.3, make sure that there are no DEBUG_LL calls in
+relocate_apex(). 
+
+Like the Linux kernel, building APEX requires a configuration file
+called '.config'.  To build using the default configuration for the
+LPD79524:
+
+  # make lpd79524_config
+
+To change the default configuration, use one of the configuration
+programs.
+
+  # make xconfig
+
+APEX uses the Linux kernel build scripts so that rebuilding is as
+optimal as the kernel.  Changes to the configuration are automatically
+propagated such that only affected source files are rebuilt.
+
+  # make
+
+The ELF format binary, apex, as well as a link to the dumped apex.bin
+will be put into the root directory.
+
+
+  Running APEX
+  ------------
+
+APEX is designed to start from any address and to relocate itself when
+necessary.  If the binary is small enough (less than 16KiB), it may be
+copied to the internal SRAM of the LH79524 and executed from there.
+
+Once you see the apex> prompt, the loader may be copied to flash and
+the environment edited.  Below is the signon message.  It may be
+reprinted with the 'version' command.
+
+  apex> ver
+  APEX Boot Loader 1.0.6 -- Copyright (c) 2004 Marc Singer
+
+  APEX comes with ABSOLUTELY NO WARRANTY.  It is free software and you
+  are welcome to redistribute it under certain circumstances.
+  Refer to the source the COPYING for details.
+
+    apex => mem:0x20200000#0x4a94
+    env  => nor:128k#64k
+    CPLD revision 0x5
+
+The apex and env region specifications are important.  The apex spec
+describes where in RAM apex has been relocated as well as the exact
+length of the program.  The env spec describes where in flash the
+environment is stored.
+
+Assuming that APEX needs to be the first program in NOR flash, writing
+APEX to flash looks like this.
+
+  apex> erase nor:0
+  apex> copy mem:0x20200000#0x4a94 nor:0
+
+The source of the copy command is the descriptor from the signon
+message.  Preparing the environment area is even simpler.
+
+  apex> erase nor:128k#64k
+
+Again, using the information in the signon to erase the proper portion
+of flash.  The environment allows APEX to be customized at runtime.
+
+
+ o Bootstraping APEX with LOLO or a JTAG emulator
+ o Downloading the kernel using XMODEM
+ o Changing the startup command to copy the kernel to RAM
+ o Changing the kernel command line
+ o Changing the startup command to automatically boot the kernel
+
+
+  Checksum Compatibility
+  ----------------------
+
+The checksum command built into APEX conforms to the POSIX.2 standard
+algorithm which is also used by GNU cksum.  This is not compatible
+with the BSD sum command or with md5sum.
+
+
+  Getting Help
+  ------------
+
+Beyond what is here, you can send mail directly to me, the author.
+
+  Marc Singer <elf@buici.com>

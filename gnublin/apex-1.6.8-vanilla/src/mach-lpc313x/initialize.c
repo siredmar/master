@@ -35,6 +35,8 @@
 #define PLL_180M  {CGU_FIN_SELECT_FFAST, 514,  8191, 98, 0, 16,  8, 0, 180000000}
 #define PLL_270M  {CGU_FIN_SELECT_FFAST,   2, 19660, 98, 0, 48, 23, 0, 180000000}
 #else
+#define PLL_24M   {CGU_FIN_SELECT_FFAST, 770,  1023, 10, 0, 16,  7, 0, 24000000}
+#define PLL_60M   {CGU_FIN_SELECT_FFAST, 770,  8191,  1, 0, 16,  8, 0, 60000000}
 #define PLL_90M   {CGU_FIN_SELECT_FFAST, 770,  8191, 66, 0, 16,  8, 0, 90000000}
 #define PLL_180M  {CGU_FIN_SELECT_FFAST, 770,  8191, 98, 0, 16,  8, 0, 180000000}
 #define PLL_270M  {CGU_FIN_SELECT_FFAST, 514, 19660, 98, 0, 48, 23, 0, 270000000}
@@ -62,7 +64,17 @@ extern const CGU_CLKS_INIT_T g_cgu_default_clks_2;
 extern const CGU_CLKS_INIT_T g_cgu_default_clks_3;
 #define DEFAULT_CFG   &g_cgu_default_clks_3
 
+#elif defined(CONFIG_PLL_90)
+
+#define CUR_PLL_SET     PLL_60M
+#define HCLK          (30 * 1000000ull)
+#define PLLCLK        (60 * 1000000ull)
+
+extern const CGU_CLKS_INIT_T g_cgu_default_clks_1;
+#define DEFAULT_CFG   &g_cgu_default_clks_1
+
 #endif
+
 
 
 #if defined(CONFIG_RAM_SIZE_8MB)

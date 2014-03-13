@@ -488,6 +488,149 @@ const CGU_CLKS_INIT_T g_cgu_default_clks_2 =
   }
 };
 
+#elif defined(CONFIG_PLL_90)
+
+const CGU_CLKS_INIT_T g_cgu_default_clks_1 =
+{
+  /* domain0 [7] - SYS_BASE Domain*/
+  {
+    CGU_FIN_SELECT_HPPLL1,
+    {
+      {{1, 1, 2}, CGU_DEF_DOMAIN0_DIV0},  /*FracDiv0 */
+      {{0, 0, 0}, CGU_DEF_DOMAIN0_DIV1},  /*FracDiv1 */
+      {{1, 1, 2}, CGU_DEF_DOMAIN0_DIV2},  /*FracDiv2 */
+      {{1, 1, 4}, CGU_DEF_DOMAIN0_DIV3},  /*FracDiv3 */
+      {{1, 1, 4}, CGU_DEF_DOMAIN0_DIV4},  /*FracDiv4 */
+      {{1, 1, 2}, CGU_DEF_DOMAIN0_DIV5}, /*FracDiv5*/
+      {{1, 1, 2}, CGU_DEF_DOMAIN0_DIV6}   /*FracDiv6 */
+    }
+  },
+  /* domain1 [2] - AHB0_APB0 ClockDomain*/
+  {
+    CGU_FIN_SELECT_FFAST,
+    {
+      {{1, 1, 38}, CGU_DEF_DOMAIN1_DIV7}, /*FracDiv7 */
+      {{1, 1, 2}, CGU_DEF_DOMAIN1_DIV8}   /*FracDiv8 */
+    }
+  },
+  /* domain2 [2] - AHB0_APB1 ClockDomain*/
+  {
+    CGU_FIN_SELECT_FFAST,
+    {
+      {{1, 1, 2}, CGU_DEF_DOMAIN2_DIV9}, /*FracDiv9  */
+      {{1, 1, 2}, CGU_DEF_DOMAIN2_DIV10} /*FracDiv10 */
+    }
+  },
+  /* domain3 [3] - AHB0_APB2 ClockDomain*/
+  {
+    CGU_FIN_SELECT_HPPLL1,
+    {
+      {{1, 1, 2}, CGU_DEF_DOMAIN3_DIV11}, /*FracDiv11 */
+      {{1, 1, 40}, CGU_DEF_DOMAIN3_DIV12},/*FracDiv12 */
+      {{0, 0, 0}, CGU_DEF_DOMAIN3_DIV13}  /*FracDiv13 */
+    }
+  },
+  /* domain4 [1] - AHB0_APB3 ClockDomain*/
+  {
+    CGU_FIN_SELECT_FFAST,
+    {
+      {{1, 1, 2}, CGU_DEF_DOMAIN4_DIV14} /*FracDiv14 */
+    }
+  },
+  /* domain5 [1] - PCM ClockDomain*/
+  {
+    CGU_FIN_SELECT_HPPLL1,
+    {
+      {{1, 1, 2}, CGU_DEF_DOMAIN5_DIV15} /*FracDiv15 */
+    }
+  },
+  /* domain6 [1] - UART ClockDomain*/
+  {
+    CGU_FIN_SELECT_FFAST,
+    {
+      {{0, 0, 0}, CGU_DEF_DOMAIN6_DIV16} /*FracDiv16 */
+    }
+  },
+  /* domain7 [6] - CLK1024FS ClockDomain*/
+  {
+    CGU_FIN_SELECT_HPPLL0,
+    {
+      {{1, 1, 256}, CGU_DEF_DOMAIN7_DIV17},/*FracDiv17 */
+      {{1, 1, 4}, CGU_DEF_DOMAIN7_DIV18},  /*FracDiv18 */
+      {{0, 0, 0}, CGU_DEF_DOMAIN7_DIV19},  /*FracDiv19 */
+      {{1, 1, 4}, CGU_DEF_DOMAIN7_DIV20},  /*FracDiv20 */
+      {{1, 1, 32}, CGU_DEF_DOMAIN7_DIV21}, /*FracDiv21 */
+      {{1, 1, 2}, CGU_DEF_DOMAIN7_DIV22}   /*FracDiv22 */
+    }
+  },
+  /* domain8  - I2SRX_BCK0 ClockDomain*/
+  {
+    CGU_FIN_SELECT_XT_I2SRX_BCK0
+  },
+
+  /* domain9  - I2SRX_BCK1 ClockDomain*/
+  {
+    CGU_FIN_SELECT_XT_I2SRX_BCK1
+  },
+  /* domain10 [1] - SPI ClockDomain*/
+  {
+    CGU_FIN_SELECT_HPPLL1,
+    {
+      {{1, 1, 2}, CGU_DEF_DOMAIN10_DIV23} /*FracDiv23 */
+    }
+  },
+  /* domain11  - SYSCLK_O ClockDomain*/
+  {
+    CGU_FIN_SELECT_FFAST
+  },
+
+  /* dyn_fdiv_cfg[7]  */
+  {
+    /*For DYN_SEL, the bits below are all configured as 1.*/
+    /*
+       bit    Name                         Description:
+
+      0  simple_dma_trans            dma transfers can enable high-speed
+      1  simple_dma_ready            dma last transfers can enable high-speed
+      2  arm926_i_trans           arm926ejs_i transfers can enable high-speed
+      3  arm926_i_ready           arm926ejs_i_ready last transfers can enable high-speed
+      4  arm926_d_trans           arm926ejs_d transfers can enable high-speed
+      5  arm926_d_ready           arm926ejs_d transfers can enable high-speed
+      6  usb_otg_mst_trans        USB OTG transfers can enable high spee
+      7  usb_otg_mst_ready           USB OTG last transfers can enable high-speed
+      8  mpmc_refresh_hispeed_req External SDRAM refresh generator transfers can enable high speed
+    */
+    {
+      0x1FF,
+      {1, 1, 64} /*DynFD0*/
+    },
+    {
+      0x1FF,
+      {0, 0, 0}   /*DynFD1*/
+    },
+    {
+      0x1FF,
+      {1, 1, 2}   /*DynFD2*/
+    },
+    {
+      0x1FF,
+      {1, 1, 4}   /*DynFD3*/
+    },
+    {
+      0x1FF,
+      {0, 0, 0}   /*DynFD4 - SD_MMC clock doesn't like dynamic switching*/
+    },
+    {
+      0x1FF,
+      {1, 1, 4}   /*DynFD5*/
+    },
+    {
+      0x1FF,
+      {1, 1, 2}   /*DynFD6*/
+    }
+  }
+};
+
 #endif
 
 
