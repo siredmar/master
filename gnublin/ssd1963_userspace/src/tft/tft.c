@@ -386,6 +386,34 @@ void tft_setWindow
  *  \param [out] ---
  *  \return      ---
  */
+void tft_readSignature()
+{
+   uint16 id[5] = {0};
+   tft_sendCommand_slowPLL(SSD1963_READ_DDB);
+   id[0] = tft_readData_slowPLL();
+   id[1] = tft_readData_slowPLL();
+   id[2] = tft_readData_slowPLL();
+   id[3] = tft_readData_slowPLL();
+   id[4] = tft_readData_slowPLL();
+   printf("Signature: 0x%.2X 0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", id[0], id[1], id[2], id[3], id[4]);
+}
+
+void tft_readPLL()
+{
+   uint16 get_pll_mn[5] = {0};
+   tft_sendCommand_slowPLL(SSD1963_GET_PLL_MN);
+   get_pll_mn[0] = tft_readData_slowPLL();
+   get_pll_mn[1] = tft_readData_slowPLL();
+   get_pll_mn[2] = tft_readData_slowPLL();
+   get_pll_mn[3] = tft_readData_slowPLL();
+   get_pll_mn[4] = tft_readData_slowPLL();
+
+   printf("GetPLLMN[0]: 0x%.2X\n", get_pll_mn[0]);
+   printf("GetPLLMN[1]: 0x%.2X\n", get_pll_mn[1]);
+   printf("GetPLLMN[2]: 0x%.2X\n", get_pll_mn[2]);
+   printf("GetPLLMN[3]: 0x%.2X\n", get_pll_mn[3]);
+   printf("GetPLLMN[4]: 0x%.2X\n", get_pll_mn[4]);
+}
 
 void tft_init
 (
@@ -393,8 +421,8 @@ void tft_init
 )
 {
 
-   uint16 get_pll_mn[3] = {0};
-   uint16 id[5] = {0};
+
+
    uint16 get_pll_status = 0;
 
    //   uint16 forCounter_ui16;
@@ -422,44 +450,15 @@ void tft_init
 
    if(init == 1)
    {
-
-
       tft_deSelectReset();
       tft_waitXms(100);   /* Wait 100ms */
       tft_selectReset(); /* Reset Display done */
       usleep(100);
-      tft_sendCommand(SSD1963_SOFT_RESET);
+      //tft_sendCommand(SSD1963_SOFT_RESET);
       //      usleep(200000);
 
-
-
-      //  while(1){
-      tft_sendCommand_slowPLL(SSD1963_READ_DDB);
-      //tft_waitXms(1);
-      id[0] = tft_readData_slowPLL();
-      id[1] = tft_readData_slowPLL();
-      id[2] = tft_readData_slowPLL();
-      id[3] = tft_readData_slowPLL();
-      id[4] = tft_readData_slowPLL();
-
-      printf("Signature: 0x%.2X 0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", id[0], id[1], id[2], id[3], id[4]);
+      tft_readSignature();
       tft_waitXms(1000);
-
-
-      //      tft_sendCommand_slowPLL(SSD1963_GET_PLL_MN);
-      //      get_pll_mn[0] = tft_readData_slowPLL();
-      //      get_pll_mn[1] = tft_readData_slowPLL();
-      //      get_pll_mn[2] = tft_readData_slowPLL();
-      //
-      //      printf("GetPLLMN[0]: 0x%.2X\n", get_pll_mn[0]);
-      //      printf("GetPLLMN[1]: 0x%.2X\n", get_pll_mn[1]);
-      //      printf("GetPLLMN[2]: 0x%.2X\n", get_pll_mn[2]);
-      //      tft_waitXms(1000);
-      //}
-      //
-      //      get_pll_mn[0] = 0xFF;
-      //      get_pll_mn[0] = 0xFF;
-      //      get_pll_mn[0] = 0xFF;
 
       tft_sendCommand(SSD1963_SET_PLL_MN); // PLL config - continued
       tft_sendData(0x1D);
@@ -467,15 +466,8 @@ void tft_init
       tft_sendData(0x04);
       tft_waitXms(100);
 
-      //      tft_sendCommand_slowPLL(SSD1963_GET_PLL_MN);
-      //      get_pll_mn[0] = tft_readData_slowPLL();
-      //      get_pll_mn[1] = tft_readData_slowPLL();
-      //      get_pll_mn[2] = tft_readData_slowPLL();
-      //
-      //      printf("GetPLLMN[0]: 0x%.2X\n", get_pll_mn[0]);
-      //      printf("GetPLLMN[1]: 0x%.2X\n", get_pll_mn[1]);
-      //      printf("GetPLLMN[2]: 0x%.2X\n", get_pll_mn[2]);
-      //      tft_waitXms(1000);
+      tft_readPLL();
+      tft_waitXms(1000);
 
       tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
       tft_sendData(0x01);
@@ -488,18 +480,10 @@ void tft_init
       tft_waitXms(100);
 
 
-      tft_sendCommand_slowPLL(SSD1963_READ_DDB);
-      //tft_waitXms(1);
-      id[0] = tft_readData_slowPLL();
-      id[1] = tft_readData_slowPLL();
-      id[2] = tft_readData_slowPLL();
-      id[3] = tft_readData_slowPLL();
-      id[4] = tft_readData_slowPLL();
-
-      printf("Signature: 0x%.2X 0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", id[0], id[1], id[2], id[3], id[4]);
+      tft_readSignature();
       tft_waitXms(1000);
 
-
+      tft_sendCommand(SSD1963_SOFT_RESET);
       /* Wait for PLL to lock */
       //      do
       //      {

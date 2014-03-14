@@ -85,10 +85,16 @@ int main(int argc, const char *argv[])
 //#if BENCHMARK == 1
 
    //tft_drawPixel(xs, ys, BLUE);
-   tft_drawRectangle(xs, ys, xe, ye, BLUE);
-   tft_sendPixelData(BLUE);
-   tft_sendPixelData(BLUE);
-   tft_sendPixelData(BLUE);
+   tft_drawRectangle(xs, ys, xe, ye, YELLOW);
+//   tft_sendPixelData(BLUE);
+//   tft_sendPixelData(BLUE);
+//   tft_sendPixelData(BLUE);
+   usleep(10000000);
+   tft_selectReset();
+   usleep(1000);
+   tft_deSelectReset();
+   usleep(1000);
+   tft_drawRectangle(0, 0, 222, 222, BLUE);
    // }
 
    return 0;
