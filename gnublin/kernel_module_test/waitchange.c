@@ -53,11 +53,11 @@ static int __init hello_init(void)
    printk(KERN_ALERT "MPMC_STWTTURN0:\t %d\n\n",val);
 
    MPMC_STCONFIG0 = 0x81;
-   MPMC_STWTWEN0  = 15;
+   MPMC_STWTWEN0  = 0;
    MPMC_STWTOEN0  = 0;
    MPMC_STWTRD0   = 31;
    MPMC_STWTPG0   = 0;
-   MPMC_STWTWR0   = 31;
+   MPMC_STWTWR0   = 4;
    MPMC_STWTTURN0 = 0;
 
 
