@@ -20,7 +20,7 @@ uint8 debug_output;
 
 uint16 getRGB565Rainbow()
 {
-   uint8 states[6][3] = { { 0, +1,  0}, // rot auf gelb: init R=255,G=0,B=0
+   int8 states[6][3] = { { 0, +1,  0}, // rot auf gelb: init R=255,G=0,B=0
          {-1,  0,  0},
          { 0,  0,  1},
          { 0, -1,  0},
