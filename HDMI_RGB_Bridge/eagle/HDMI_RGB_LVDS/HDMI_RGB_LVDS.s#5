@@ -351,6 +351,10 @@
 </symbols>
 <devicesets>
 <deviceset name="FRAME_A3_LANDSCAPE">
+<description>&lt;b&gt;
+A3 Frame querformat
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 20.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="FRAME_A3_LANDSCAPE" x="0" y="0"/>
 </gates>
@@ -553,18 +557,256 @@ http://www.ti.com/litv/slvs561k</description>
 <part name="U$11" library="SchlegelAr_Master" deviceset="GND_EXT" device=""/>
 <part name="IC2" library="SchlegelAr_Master" deviceset="TLV1117-33CDCYR" device=""/>
 <part name="U$12" library="SchlegelAr_Master" deviceset="GND" device=""/>
-<part name="C2" library="SchlegelAr_Master" deviceset="C_POL" device="10X10MM" value="100u"/>
+<part name="C2" library="SchlegelAr_Master" deviceset="C_POL" device="6X6MM" value="100u"/>
 <part name="U$13" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$14" library="SchlegelAr_Master" deviceset="+3V3" device=""/>
+<part name="U$15" library="SchlegelAr_Master" deviceset="FRAME_A3_LANDSCAPE" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
+<text x="35.56" y="210.82" size="2.54" layer="94">Erstellung des Projekts, S3: Spannungsversorgung +3.3V hinzugefuegt</text>
+<text x="10.16" y="246.38" size="5.08" layer="94">HDMI_RGB_LVDS</text>
+<text x="83.82" y="246.38" size="5.08" layer="94">Masterarbeit Armin Schlegel SS14</text>
+<text x="83.82" y="238.76" size="5.08" layer="94">www.armin-schlegel.de</text>
+<text x="10.16" y="226.06" size="5.08" layer="94">Changelog</text>
+<wire x1="7.62" y1="223.52" x2="33.02" y2="223.52" width="0.6096" layer="94"/>
+<wire x1="33.02" y1="223.52" x2="355.6" y2="223.52" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="223.52" x2="7.62" y2="215.9" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="215.9" x2="7.62" y2="208.28" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="208.28" x2="7.62" y2="200.66" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="200.66" x2="7.62" y2="193.04" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="193.04" x2="7.62" y2="185.42" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="185.42" x2="7.62" y2="177.8" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="177.8" x2="7.62" y2="170.18" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="170.18" x2="7.62" y2="162.56" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="162.56" x2="7.62" y2="154.94" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="154.94" x2="7.62" y2="147.32" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="147.32" x2="7.62" y2="139.7" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="139.7" x2="7.62" y2="132.08" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="132.08" x2="7.62" y2="124.46" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="124.46" x2="7.62" y2="116.84" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="116.84" x2="7.62" y2="109.22" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="109.22" x2="7.62" y2="101.6" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="101.6" x2="7.62" y2="93.98" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="93.98" x2="7.62" y2="86.36" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="86.36" x2="7.62" y2="78.74" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="78.74" x2="7.62" y2="71.12" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="71.12" x2="7.62" y2="63.5" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="63.5" x2="7.62" y2="55.88" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="55.88" x2="7.62" y2="48.26" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="48.26" x2="7.62" y2="40.64" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="40.64" x2="7.62" y2="33.02" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="33.02" x2="33.02" y2="33.02" width="0.6096" layer="94"/>
+<wire x1="33.02" y1="33.02" x2="355.6" y2="33.02" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="33.02" x2="355.6" y2="40.64" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="40.64" x2="355.6" y2="48.26" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="48.26" x2="355.6" y2="55.88" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="55.88" x2="355.6" y2="63.5" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="63.5" x2="355.6" y2="71.12" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="71.12" x2="355.6" y2="78.74" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="78.74" x2="355.6" y2="86.36" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="86.36" x2="355.6" y2="93.98" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="93.98" x2="355.6" y2="101.6" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="101.6" x2="355.6" y2="109.22" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="109.22" x2="355.6" y2="116.84" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="116.84" x2="355.6" y2="124.46" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="124.46" x2="355.6" y2="132.08" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="132.08" x2="355.6" y2="139.7" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="139.7" x2="355.6" y2="147.32" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="147.32" x2="355.6" y2="154.94" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="154.94" x2="355.6" y2="162.56" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="162.56" x2="355.6" y2="170.18" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="170.18" x2="355.6" y2="177.8" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="177.8" x2="355.6" y2="185.42" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="185.42" x2="355.6" y2="193.04" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="193.04" x2="355.6" y2="200.66" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="200.66" x2="355.6" y2="208.28" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="208.28" x2="355.6" y2="215.9" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="215.9" x2="355.6" y2="223.52" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="215.9" x2="355.6" y2="215.9" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="208.28" x2="355.6" y2="208.28" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="200.66" x2="355.6" y2="200.66" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="193.04" x2="355.6" y2="193.04" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="185.42" x2="355.6" y2="185.42" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="177.8" x2="355.6" y2="177.8" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="170.18" x2="355.6" y2="170.18" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="162.56" x2="355.6" y2="162.56" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="154.94" x2="355.6" y2="154.94" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="147.32" x2="355.6" y2="147.32" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="139.7" x2="355.6" y2="139.7" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="132.08" x2="355.6" y2="132.08" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="124.46" x2="355.6" y2="124.46" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="116.84" x2="355.6" y2="116.84" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="109.22" x2="355.6" y2="109.22" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="101.6" x2="355.6" y2="101.6" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="93.98" x2="355.6" y2="93.98" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="86.36" x2="355.6" y2="86.36" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="78.74" x2="355.6" y2="78.74" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="71.12" x2="355.6" y2="71.12" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="63.5" x2="355.6" y2="63.5" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="55.88" x2="355.6" y2="55.88" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="48.26" x2="355.6" y2="48.26" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="40.64" x2="355.6" y2="40.64" width="0.6096" layer="94"/>
+<text x="10.16" y="210.82" size="2.54" layer="94">20.03.2014</text>
+<wire x1="33.02" y1="223.52" x2="33.02" y2="33.02" width="0.6096" layer="94"/>
+<text x="10.16" y="218.44" size="2.54" layer="94">Datum</text>
+<text x="35.56" y="218.44" size="2.54" layer="94">Aenderung</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="0" y="0"/>
 </instances>
 <busses>
+</busses>
+<nets>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<wire x1="17.78" y1="238.76" x2="17.78" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="218.44" x2="66.04" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="66.04" y1="218.44" x2="66.04" y2="238.76" width="0.6096" layer="94"/>
+<wire x1="66.04" y1="238.76" x2="17.78" y2="238.76" width="0.6096" layer="94"/>
+<text x="20.32" y="223.52" size="2.54" layer="94">HDMI Connector
+
+FCI 10029449-111RLF</text>
+<wire x1="274.32" y1="238.76" x2="274.32" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="274.32" y1="218.44" x2="322.58" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="322.58" y1="218.44" x2="322.58" y2="238.76" width="0.6096" layer="94"/>
+<wire x1="322.58" y1="238.76" x2="274.32" y2="238.76" width="0.6096" layer="94"/>
+<text x="276.86" y="223.52" size="2.54" layer="94">LVDS Display
+
+LG LB070WV8-SL01</text>
+<wire x1="274.32" y1="210.82" x2="274.32" y2="190.5" width="0.6096" layer="94"/>
+<wire x1="274.32" y1="190.5" x2="322.58" y2="190.5" width="0.6096" layer="94"/>
+<wire x1="322.58" y1="190.5" x2="322.58" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="322.58" y1="210.82" x2="274.32" y2="210.82" width="0.6096" layer="94"/>
+<text x="279.4" y="200.66" size="2.54" layer="94">RGB Display</text>
+<wire x1="124.46" y1="238.76" x2="124.46" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="124.46" y1="218.44" x2="83.82" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="83.82" y1="218.44" x2="83.82" y2="238.76" width="0.6096" layer="94"/>
+<wire x1="83.82" y1="238.76" x2="124.46" y2="238.76" width="0.6096" layer="94"/>
+<wire x1="193.04" y1="238.76" x2="193.04" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="193.04" y1="218.44" x2="152.4" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="152.4" y1="218.44" x2="152.4" y2="238.76" width="0.6096" layer="94"/>
+<wire x1="152.4" y1="238.76" x2="193.04" y2="238.76" width="0.6096" layer="94"/>
+<wire x1="58.42" y1="198.12" x2="58.42" y2="175.26" width="0.6096" layer="94"/>
+<wire x1="58.42" y1="175.26" x2="17.78" y2="175.26" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="175.26" x2="17.78" y2="198.12" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="198.12" x2="58.42" y2="198.12" width="0.6096" layer="94"/>
+<wire x1="58.42" y1="170.18" x2="58.42" y2="147.32" width="0.6096" layer="94"/>
+<wire x1="58.42" y1="147.32" x2="17.78" y2="147.32" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="147.32" x2="17.78" y2="170.18" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="170.18" x2="58.42" y2="170.18" width="0.6096" layer="94"/>
+<wire x1="58.42" y1="142.24" x2="58.42" y2="119.38" width="0.6096" layer="94"/>
+<wire x1="58.42" y1="119.38" x2="17.78" y2="119.38" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="119.38" x2="17.78" y2="142.24" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="142.24" x2="58.42" y2="142.24" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="111.76" x2="17.78" y2="88.9" width="0.6096" layer="94"/>
+<wire x1="17.78" y1="88.9" x2="68.58" y2="88.9" width="0.6096" layer="94"/>
+<wire x1="68.58" y1="88.9" x2="68.58" y2="111.76" width="0.6096" layer="94"/>
+<wire x1="68.58" y1="111.76" x2="17.78" y2="111.76" width="0.6096" layer="94"/>
+<text x="20.32" y="93.98" size="2.54" layer="94">Mini USB
+Connector
+
+FCI 10033526-N3212LF</text>
+<wire x1="76.2" y1="111.76" x2="76.2" y2="88.9" width="0.6096" layer="94"/>
+<wire x1="76.2" y1="88.9" x2="134.62" y2="88.9" width="0.6096" layer="94"/>
+<wire x1="134.62" y1="88.9" x2="134.62" y2="111.76" width="0.6096" layer="94"/>
+<wire x1="134.62" y1="111.76" x2="76.2" y2="111.76" width="0.6096" layer="94"/>
+<text x="78.74" y="93.98" size="2.54" layer="94">AVR ISP
+Connector
+
+Molex 53261-0671</text>
+<wire x1="213.36" y1="238.76" x2="213.36" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="213.36" y1="218.44" x2="259.08" y2="218.44" width="0.6096" layer="94"/>
+<wire x1="259.08" y1="218.44" x2="259.08" y2="238.76" width="0.6096" layer="94"/>
+<wire x1="259.08" y1="238.76" x2="213.36" y2="238.76" width="0.6096" layer="94"/>
+<text x="215.9" y="223.52" size="2.54" layer="94">LVDS Connector
+
+JAE FI-X30SSLA-HF</text>
+<wire x1="213.36" y1="210.82" x2="213.36" y2="190.5" width="0.6096" layer="94"/>
+<wire x1="213.36" y1="190.5" x2="259.08" y2="190.5" width="0.6096" layer="94"/>
+<wire x1="259.08" y1="190.5" x2="259.08" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="259.08" y1="210.82" x2="213.36" y2="210.82" width="0.6096" layer="94"/>
+<text x="215.9" y="195.58" size="2.54" layer="94">RGB Connector
+
+OMRON XF2M-4015-1A</text>
+<text x="86.36" y="223.52" size="2.54" layer="94">HDMI RGB Bridge
+
+TI TFP401A</text>
+<text x="154.94" y="223.52" size="2.54" layer="94">RGB LVDS Bridge
+
+TI SN75LVDS83B</text>
+<text x="20.32" y="182.88" size="2.54" layer="94">I2C EEPROM
+
+Atmel AT2401C</text>
+<text x="20.32" y="157.48" size="2.54" layer="94">Atmel ATmega48</text>
+<text x="20.32" y="124.46" size="2.54" layer="94">RS232-USB-Bridge
+
+FTDI FT232RL</text>
+</plain>
+<instances>
+<instance part="U$15" gate="G$1" x="0" y="0"/>
+</instances>
+<busses>
+<bus name="B$1">
+<segment>
+<wire x1="66.04" y1="228.6" x2="83.82" y2="228.6" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$2">
+<segment>
+<wire x1="124.46" y1="228.6" x2="152.4" y2="228.6" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$3">
+<segment>
+<wire x1="193.04" y1="228.6" x2="213.36" y2="228.6" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$4">
+<segment>
+<wire x1="259.08" y1="228.6" x2="274.32" y2="228.6" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$5">
+<segment>
+<wire x1="259.08" y1="200.66" x2="274.32" y2="200.66" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$6">
+<segment>
+<wire x1="213.36" y1="200.66" x2="139.7" y2="200.66" width="1.6764" layer="92"/>
+<wire x1="139.7" y1="200.66" x2="139.7" y2="228.6" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$7">
+<segment>
+<wire x1="35.56" y1="198.12" x2="35.56" y2="218.44" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$8">
+<segment>
+<wire x1="35.56" y1="170.18" x2="35.56" y2="175.26" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$9">
+<segment>
+<wire x1="35.56" y1="142.24" x2="35.56" y2="147.32" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$10">
+<segment>
+<wire x1="35.56" y1="111.76" x2="35.56" y2="119.38" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$11">
+<segment>
+<wire x1="104.14" y1="111.76" x2="104.14" y2="157.48" width="1.6764" layer="92"/>
+<wire x1="104.14" y1="157.48" x2="58.42" y2="157.48" width="1.6764" layer="92"/>
+</segment>
+</bus>
 </busses>
 <nets>
 </nets>
@@ -713,4 +955,10 @@ http://www.ti.com/litv/slvs561k</description>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>

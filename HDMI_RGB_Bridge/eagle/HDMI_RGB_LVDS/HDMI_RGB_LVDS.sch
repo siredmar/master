@@ -565,7 +565,7 @@ http://www.ti.com/litv/slvs561k</description>
 <sheets>
 <sheet>
 <plain>
-<text x="35.56" y="210.82" size="2.54" layer="94">Erstellung des Projekts, S3: Spannungsversorgung +3.3V hinzugefuegt</text>
+<text x="35.56" y="210.82" size="2.54" layer="94">Erstellung des Projekts, S2: Blockschaltbild, S3: Spannungsversorgung +3.3V hinzugefuegt</text>
 <text x="10.16" y="246.38" size="5.08" layer="94">HDMI_RGB_LVDS</text>
 <text x="83.82" y="246.38" size="5.08" layer="94">Masterarbeit Armin Schlegel SS14</text>
 <text x="83.82" y="238.76" size="5.08" layer="94">www.armin-schlegel.de</text>
@@ -663,11 +663,160 @@ http://www.ti.com/litv/slvs561k</description>
 </sheet>
 <sheet>
 <plain>
+<wire x1="20.32" y1="231.14" x2="20.32" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="210.82" x2="68.58" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="68.58" y1="210.82" x2="68.58" y2="231.14" width="0.6096" layer="94"/>
+<wire x1="68.58" y1="231.14" x2="20.32" y2="231.14" width="0.6096" layer="94"/>
+<text x="22.86" y="215.9" size="2.54" layer="94">HDMI Connector
+
+FCI 10029449-111RLF</text>
+<wire x1="276.86" y1="231.14" x2="276.86" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="276.86" y1="210.82" x2="325.12" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="325.12" y1="210.82" x2="325.12" y2="231.14" width="0.6096" layer="94"/>
+<wire x1="325.12" y1="231.14" x2="276.86" y2="231.14" width="0.6096" layer="94"/>
+<text x="279.4" y="215.9" size="2.54" layer="94">LVDS Display
+
+LG LB070WV8-SL01</text>
+<wire x1="276.86" y1="203.2" x2="276.86" y2="182.88" width="0.6096" layer="94"/>
+<wire x1="276.86" y1="182.88" x2="325.12" y2="182.88" width="0.6096" layer="94"/>
+<wire x1="325.12" y1="182.88" x2="325.12" y2="203.2" width="0.6096" layer="94"/>
+<wire x1="325.12" y1="203.2" x2="276.86" y2="203.2" width="0.6096" layer="94"/>
+<text x="281.94" y="193.04" size="2.54" layer="94">RGB Display</text>
+<wire x1="127" y1="231.14" x2="127" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="127" y1="210.82" x2="86.36" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="86.36" y1="210.82" x2="86.36" y2="231.14" width="0.6096" layer="94"/>
+<wire x1="86.36" y1="231.14" x2="127" y2="231.14" width="0.6096" layer="94"/>
+<wire x1="195.58" y1="231.14" x2="195.58" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="195.58" y1="210.82" x2="154.94" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="154.94" y1="210.82" x2="154.94" y2="231.14" width="0.6096" layer="94"/>
+<wire x1="154.94" y1="231.14" x2="195.58" y2="231.14" width="0.6096" layer="94"/>
+<wire x1="60.96" y1="190.5" x2="60.96" y2="167.64" width="0.6096" layer="94"/>
+<wire x1="60.96" y1="167.64" x2="20.32" y2="167.64" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="167.64" x2="20.32" y2="190.5" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="190.5" x2="60.96" y2="190.5" width="0.6096" layer="94"/>
+<wire x1="60.96" y1="157.48" x2="60.96" y2="134.62" width="0.6096" layer="94"/>
+<wire x1="60.96" y1="134.62" x2="20.32" y2="134.62" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="134.62" x2="20.32" y2="157.48" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="157.48" x2="60.96" y2="157.48" width="0.6096" layer="94"/>
+<wire x1="60.96" y1="124.46" x2="60.96" y2="101.6" width="0.6096" layer="94"/>
+<wire x1="60.96" y1="101.6" x2="20.32" y2="101.6" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="101.6" x2="20.32" y2="124.46" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="124.46" x2="60.96" y2="124.46" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="88.9" x2="20.32" y2="66.04" width="0.6096" layer="94"/>
+<wire x1="20.32" y1="66.04" x2="71.12" y2="66.04" width="0.6096" layer="94"/>
+<wire x1="71.12" y1="66.04" x2="71.12" y2="88.9" width="0.6096" layer="94"/>
+<wire x1="71.12" y1="88.9" x2="20.32" y2="88.9" width="0.6096" layer="94"/>
+<text x="22.86" y="71.12" size="2.54" layer="94">Mini USB
+Connector
+
+FCI 10033526-N3212LF</text>
+<wire x1="78.74" y1="88.9" x2="78.74" y2="66.04" width="0.6096" layer="94"/>
+<wire x1="78.74" y1="66.04" x2="137.16" y2="66.04" width="0.6096" layer="94"/>
+<wire x1="137.16" y1="66.04" x2="137.16" y2="88.9" width="0.6096" layer="94"/>
+<wire x1="137.16" y1="88.9" x2="78.74" y2="88.9" width="0.6096" layer="94"/>
+<text x="81.28" y="71.12" size="2.54" layer="94">AVR ISP
+Connector
+
+Molex 53261-0671</text>
+<wire x1="215.9" y1="231.14" x2="215.9" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="215.9" y1="210.82" x2="261.62" y2="210.82" width="0.6096" layer="94"/>
+<wire x1="261.62" y1="210.82" x2="261.62" y2="231.14" width="0.6096" layer="94"/>
+<wire x1="261.62" y1="231.14" x2="215.9" y2="231.14" width="0.6096" layer="94"/>
+<text x="218.44" y="215.9" size="2.54" layer="94">LVDS Connector
+
+JAE FI-X30SSLA-HF</text>
+<wire x1="215.9" y1="203.2" x2="215.9" y2="182.88" width="0.6096" layer="94"/>
+<wire x1="215.9" y1="182.88" x2="261.62" y2="182.88" width="0.6096" layer="94"/>
+<wire x1="261.62" y1="182.88" x2="261.62" y2="203.2" width="0.6096" layer="94"/>
+<wire x1="261.62" y1="203.2" x2="215.9" y2="203.2" width="0.6096" layer="94"/>
+<text x="218.44" y="187.96" size="2.54" layer="94">RGB Connector
+
+OMRON XF2M-4015-1A</text>
+<text x="88.9" y="215.9" size="2.54" layer="94">HDMI RGB Bridge
+
+TI TFP401A</text>
+<text x="157.48" y="215.9" size="2.54" layer="94">RGB LVDS Bridge
+
+TI SN75LVDS83B</text>
+<text x="22.86" y="175.26" size="2.54" layer="94">I2C EEPROM
+
+Atmel AT2401C</text>
+<text x="22.86" y="144.78" size="2.54" layer="94">Atmel ATmega48</text>
+<text x="22.86" y="106.68" size="2.54" layer="94">RS232-USB-Bridge
+
+FTDI FT232RL</text>
+<text x="40.64" y="195.58" size="2.54" layer="97">Edid data</text>
+<text x="134.62" y="223.52" size="2.54" layer="97">RGB Bus</text>
+<text x="200.66" y="223.52" size="2.54" layer="97">LVDS</text>
+<text x="40.64" y="203.2" size="2.54" layer="97">I2C</text>
+<text x="40.64" y="162.56" size="2.54" layer="97">I2C</text>
+<text x="40.64" y="129.54" size="2.54" layer="97">UART</text>
+<text x="40.64" y="93.98" size="2.54" layer="97">USB</text>
+<text x="68.58" y="147.32" size="2.54" layer="97">AVR ISP</text>
+<text x="73.66" y="223.52" size="2.54" layer="97">HDMI</text>
+<text x="20.32" y="236.22" size="6.4516" layer="97">Blockschaltbild</text>
 </plain>
 <instances>
 <instance part="U$15" gate="G$1" x="0" y="0"/>
 </instances>
 <busses>
+<bus name="B$1">
+<segment>
+<wire x1="68.58" y1="220.98" x2="86.36" y2="220.98" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$2">
+<segment>
+<wire x1="127" y1="220.98" x2="154.94" y2="220.98" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$3">
+<segment>
+<wire x1="195.58" y1="220.98" x2="215.9" y2="220.98" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$4">
+<segment>
+<wire x1="261.62" y1="220.98" x2="276.86" y2="220.98" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$5">
+<segment>
+<wire x1="261.62" y1="193.04" x2="276.86" y2="193.04" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$6">
+<segment>
+<wire x1="215.9" y1="193.04" x2="142.24" y2="193.04" width="1.6764" layer="92"/>
+<wire x1="142.24" y1="193.04" x2="142.24" y2="220.98" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$7">
+<segment>
+<wire x1="38.1" y1="190.5" x2="38.1" y2="210.82" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$8">
+<segment>
+<wire x1="38.1" y1="157.48" x2="38.1" y2="167.64" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$9">
+<segment>
+<wire x1="38.1" y1="124.46" x2="38.1" y2="134.62" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$10">
+<segment>
+<wire x1="38.1" y1="88.9" x2="38.1" y2="101.6" width="1.6764" layer="92"/>
+</segment>
+</bus>
+<bus name="B$11">
+<segment>
+<wire x1="106.68" y1="88.9" x2="106.68" y2="144.78" width="1.6764" layer="92"/>
+<wire x1="106.68" y1="144.78" x2="60.96" y2="144.78" width="1.6764" layer="92"/>
+</segment>
+</bus>
 </busses>
 <nets>
 </nets>
@@ -816,4 +965,10 @@ http://www.ti.com/litv/slvs561k</description>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
