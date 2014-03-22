@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
@@ -1598,8 +1598,8 @@
 <pin name="PC1(ADC1/PCINT9)" x="-33.02" y="20.32" length="short"/>
 <pin name="PC2(ADC2/PCINT10)" x="-33.02" y="22.86" length="short"/>
 <pin name="PC3(ADC3/PCINT11)" x="-33.02" y="25.4" length="short"/>
-<pin name="PC4(ADC4/PCINT12)" x="-33.02" y="27.94" length="short"/>
-<pin name="PC5(ADC5/PCINT13)" x="-33.02" y="30.48" length="short"/>
+<pin name="PC4(SDA/ADC4/PCINT12)" x="-33.02" y="27.94" length="short"/>
+<pin name="PC5(SCL/ADC5/PCINT13)" x="-33.02" y="30.48" length="short"/>
 <wire x1="-30.48" y1="35.56" x2="-30.48" y2="-35.56" width="0.254" layer="94"/>
 <wire x1="-30.48" y1="-35.56" x2="33.02" y2="-35.56" width="0.254" layer="94"/>
 <wire x1="33.02" y1="-35.56" x2="33.02" y2="35.56" width="0.254" layer="94"/>
@@ -1612,12 +1612,12 @@
 <pin name="ADC7" x="35.56" y="10.16" length="short" rot="R180"/>
 </symbol>
 <symbol name="MOLEX-53261-0671">
-<pin name="1" x="-7.62" y="10.16" length="short"/>
-<pin name="2" x="-7.62" y="7.62" length="short"/>
-<pin name="3" x="-7.62" y="5.08" length="short"/>
-<pin name="4" x="-7.62" y="2.54" length="short"/>
-<pin name="5" x="-7.62" y="0" length="short"/>
-<pin name="6" x="-7.62" y="-2.54" length="short"/>
+<pin name="MOSI" x="-7.62" y="10.16" visible="pin" length="short"/>
+<pin name="MISO" x="-7.62" y="7.62" visible="pin" length="short"/>
+<pin name="RESET" x="-7.62" y="5.08" visible="pin" length="short"/>
+<pin name="SCK" x="-7.62" y="2.54" visible="pin" length="short"/>
+<pin name="VCC" x="-7.62" y="0" visible="pin" length="short"/>
+<pin name="GND" x="-7.62" y="-2.54" visible="pin" length="short"/>
 <wire x1="-5.08" y1="12.7" x2="-5.08" y2="-12.7" width="0.254" layer="94"/>
 <wire x1="-5.08" y1="-12.7" x2="5.08" y2="-12.7" width="0.254" layer="94"/>
 <wire x1="5.08" y1="-12.7" x2="5.08" y2="12.7" width="0.254" layer="94"/>
@@ -1662,11 +1662,11 @@
 <pin name="GND@2" x="15.24" y="-25.4" length="short" direction="pwr" rot="R180"/>
 </symbol>
 <symbol name="FCI-10033526-N3212LF">
-<pin name="1" x="-10.16" y="12.7" visible="pin" length="short"/>
-<pin name="2" x="-10.16" y="10.16" visible="pin" length="short"/>
-<pin name="3" x="-10.16" y="7.62" visible="pin" length="short"/>
-<pin name="4" x="-10.16" y="5.08" visible="pin" length="short"/>
-<pin name="5" x="-10.16" y="2.54" visible="pin" length="short"/>
+<pin name="VBUS" x="-10.16" y="12.7" visible="pin" length="short"/>
+<pin name="D-" x="-10.16" y="10.16" visible="pin" length="short"/>
+<pin name="D+" x="-10.16" y="7.62" visible="pin" length="short"/>
+<pin name="ID" x="-10.16" y="5.08" visible="pin" length="short"/>
+<pin name="GND@5" x="-10.16" y="2.54" visible="pin" length="short"/>
 <pin name="GND@1" x="-10.16" y="-2.54" visible="pin" length="short" direction="pwr"/>
 <pin name="GND@2" x="-10.16" y="-5.08" visible="pin" length="short" direction="pwr"/>
 <pin name="GND@3" x="-10.16" y="-7.62" visible="pin" length="short" direction="pwr"/>
@@ -2550,8 +2550,8 @@ http://www.mouser.com/ds/2/36/doc8271-50296.pdf</description>
 <connect gate="G$1" pin="PC1(ADC1/PCINT9)" pad="24"/>
 <connect gate="G$1" pin="PC2(ADC2/PCINT10)" pad="25"/>
 <connect gate="G$1" pin="PC3(ADC3/PCINT11)" pad="26"/>
-<connect gate="G$1" pin="PC4(ADC4/PCINT12)" pad="27"/>
-<connect gate="G$1" pin="PC5(ADC5/PCINT13)" pad="28"/>
+<connect gate="G$1" pin="PC4(SDA/ADC4/PCINT12)" pad="27"/>
+<connect gate="G$1" pin="PC5(SCL/ADC5/PCINT13)" pad="28"/>
 <connect gate="G$1" pin="PC6(PCINT14/RESET)" pad="29"/>
 <connect gate="G$1" pin="VCC@1" pad="4"/>
 <connect gate="G$1" pin="VCC@2" pad="6"/>
@@ -2577,14 +2577,14 @@ http://www.mouser.com/ds/2/276/0532610671_PCB_HEADERS-170915.pdf</description>
 <devices>
 <device name="" package="MOLEX-53261-0671">
 <connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-<connect gate="G$1" pin="4" pad="4"/>
-<connect gate="G$1" pin="5" pad="5"/>
-<connect gate="G$1" pin="6" pad="6"/>
+<connect gate="G$1" pin="GND" pad="6"/>
 <connect gate="G$1" pin="GND@1" pad="GND@1"/>
 <connect gate="G$1" pin="GND@2" pad="GND@2"/>
+<connect gate="G$1" pin="MISO" pad="2"/>
+<connect gate="G$1" pin="MOSI" pad="1"/>
+<connect gate="G$1" pin="RESET" pad="3"/>
+<connect gate="G$1" pin="SCK" pad="4"/>
+<connect gate="G$1" pin="VCC" pad="5"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2655,15 +2655,15 @@ http://portal.fciconnect.com/Comergent//fci/drawing/10033526.pdf</description>
 <devices>
 <device name="" package="FCI-10033526-N3212LF">
 <connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-<connect gate="G$1" pin="4" pad="4"/>
-<connect gate="G$1" pin="5" pad="5"/>
+<connect gate="G$1" pin="D+" pad="3"/>
+<connect gate="G$1" pin="D-" pad="2"/>
 <connect gate="G$1" pin="GND@1" pad="GND@1"/>
 <connect gate="G$1" pin="GND@2" pad="GND@2"/>
 <connect gate="G$1" pin="GND@3" pad="GND@3"/>
 <connect gate="G$1" pin="GND@4" pad="GND@4"/>
+<connect gate="G$1" pin="GND@5" pad="5"/>
+<connect gate="G$1" pin="ID" pad="4"/>
+<connect gate="G$1" pin="VBUS" pad="1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3377,6 +3377,14 @@ http://www.mouser.com/ds/2/96/008-0309-0-32667.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="ATMEGA32U4-AU" prefix="IC">
+<description>&lt;b&gt;
+ATMEGA32U4-AU
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 21.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/Atmel/ATMEGA32U4-AU/?qs=sGAEpiMZZMvAvBNgSS9Lqh1wBIpnYT9c
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/36/doc7766-31808.pdf</description>
 <gates>
 <gate name="G$1" symbol="ATMEGA32A4" x="0" y="0"/>
 </gates>

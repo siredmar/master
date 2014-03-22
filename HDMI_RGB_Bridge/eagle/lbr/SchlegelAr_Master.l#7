@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
@@ -1612,12 +1612,12 @@
 <pin name="ADC7" x="35.56" y="10.16" length="short" rot="R180"/>
 </symbol>
 <symbol name="MOLEX-53261-0671">
-<pin name="1" x="-7.62" y="10.16" length="short"/>
-<pin name="2" x="-7.62" y="7.62" length="short"/>
-<pin name="3" x="-7.62" y="5.08" length="short"/>
-<pin name="4" x="-7.62" y="2.54" length="short"/>
-<pin name="5" x="-7.62" y="0" length="short"/>
-<pin name="6" x="-7.62" y="-2.54" length="short"/>
+<pin name="1" x="-7.62" y="10.16" visible="pin" length="short"/>
+<pin name="2" x="-7.62" y="7.62" visible="pin" length="short"/>
+<pin name="3" x="-7.62" y="5.08" visible="pin" length="short"/>
+<pin name="4" x="-7.62" y="2.54" visible="pin" length="short"/>
+<pin name="5" x="-7.62" y="0" visible="pin" length="short"/>
+<pin name="6" x="-7.62" y="-2.54" visible="pin" length="short"/>
 <wire x1="-5.08" y1="12.7" x2="-5.08" y2="-12.7" width="0.254" layer="94"/>
 <wire x1="-5.08" y1="-12.7" x2="5.08" y2="-12.7" width="0.254" layer="94"/>
 <wire x1="5.08" y1="-12.7" x2="5.08" y2="12.7" width="0.254" layer="94"/>
@@ -1662,11 +1662,11 @@
 <pin name="GND@2" x="15.24" y="-25.4" length="short" direction="pwr" rot="R180"/>
 </symbol>
 <symbol name="FCI-10033526-N3212LF">
-<pin name="1" x="-10.16" y="12.7" visible="pin" length="short"/>
-<pin name="2" x="-10.16" y="10.16" visible="pin" length="short"/>
-<pin name="3" x="-10.16" y="7.62" visible="pin" length="short"/>
-<pin name="4" x="-10.16" y="5.08" visible="pin" length="short"/>
-<pin name="5" x="-10.16" y="2.54" visible="pin" length="short"/>
+<pin name="VBUS" x="-10.16" y="12.7" visible="pin" length="short"/>
+<pin name="D-" x="-10.16" y="10.16" visible="pin" length="short"/>
+<pin name="D+" x="-10.16" y="7.62" visible="pin" length="short"/>
+<pin name="ID" x="-10.16" y="5.08" visible="pin" length="short"/>
+<pin name="GND@5" x="-10.16" y="2.54" visible="pin" length="short"/>
 <pin name="GND@1" x="-10.16" y="-2.54" visible="pin" length="short" direction="pwr"/>
 <pin name="GND@2" x="-10.16" y="-5.08" visible="pin" length="short" direction="pwr"/>
 <pin name="GND@3" x="-10.16" y="-7.62" visible="pin" length="short" direction="pwr"/>
@@ -2142,16 +2142,16 @@
 <wire x1="17.78" y1="40.64" x2="17.78" y2="-38.1" width="0.254" layer="94"/>
 <wire x1="17.78" y1="-38.1" x2="-20.32" y2="-38.1" width="0.254" layer="94"/>
 <wire x1="-20.32" y1="-38.1" x2="-20.32" y2="40.64" width="0.254" layer="94"/>
-<text x="-20.32" y="-43.18" size="1.778" layer="95">&gt;NAME</text>
-<text x="-7.62" y="40.64" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-20.32" y="41.91" size="1.778" layer="95">&gt;NAME</text>
+<text x="-20.32" y="-40.64" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="XTAL2" x="-25.4" y="-15.24" length="middle"/>
 <pin name="XTAL1" x="-25.4" y="-7.62" length="middle"/>
-<pin name="GND" x="-25.4" y="-27.94" length="middle" direction="pwr"/>
-<pin name="VCC" x="-25.4" y="25.4" length="middle" direction="pwr"/>
+<pin name="GND@1" x="-25.4" y="-27.94" length="middle" direction="pwr"/>
+<pin name="VCC@1" x="-25.4" y="25.4" length="middle" direction="pwr"/>
 <pin name="UVCC" x="-25.4" y="20.32" length="middle" direction="pwr"/>
 <pin name="UGND" x="-25.4" y="-22.86" length="middle" direction="pwr"/>
 <pin name="D-" x="-25.4" y="10.16" length="middle"/>
-<pin name="AVCC" x="-25.4" y="17.78" length="middle" direction="pwr"/>
+<pin name="AVCC@1" x="-25.4" y="17.78" length="middle" direction="pwr"/>
 <pin name="PB3(PDO/MISO)" x="22.86" y="-5.08" length="middle" rot="R180"/>
 <pin name="PB2(PDI/MOSI)" x="22.86" y="-7.62" length="middle" rot="R180"/>
 <pin name="PB1(SCK)" x="22.86" y="-10.16" length="middle" rot="R180"/>
@@ -2182,12 +2182,12 @@
 <pin name="PF7(ADC7(TDI)" x="22.86" y="25.4" length="middle" rot="R180"/>
 <pin name="PE6(INT.6/AIN0)" x="22.86" y="17.78" length="middle" rot="R180"/>
 <pin name="VBUS" x="-25.4" y="33.02" length="middle" direction="pwr"/>
-<pin name="GND1" x="-25.4" y="-30.48" length="middle" direction="pwr"/>
-<pin name="AVCC1" x="-25.4" y="15.24" length="middle" direction="pwr"/>
-<pin name="VCC1" x="-25.4" y="22.86" length="middle" direction="pwr"/>
+<pin name="GND@2" x="-25.4" y="-30.48" length="middle" direction="pwr"/>
+<pin name="AVCC@2" x="-25.4" y="15.24" length="middle" direction="pwr"/>
+<pin name="VCC@2" x="-25.4" y="22.86" length="middle" direction="pwr"/>
 <pin name="AREF" x="-25.4" y="-2.54" length="middle" direction="pwr"/>
-<pin name="GND2" x="-25.4" y="-33.02" length="middle" direction="pwr"/>
-<pin name="GND3" x="-25.4" y="-35.56" length="middle" direction="pwr"/>
+<pin name="GND@3" x="-25.4" y="-33.02" length="middle" direction="pwr"/>
+<pin name="GND@4" x="-25.4" y="-35.56" length="middle" direction="pwr"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -2655,15 +2655,15 @@ http://portal.fciconnect.com/Comergent//fci/drawing/10033526.pdf</description>
 <devices>
 <device name="" package="FCI-10033526-N3212LF">
 <connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-<connect gate="G$1" pin="4" pad="4"/>
-<connect gate="G$1" pin="5" pad="5"/>
+<connect gate="G$1" pin="D+" pad="3"/>
+<connect gate="G$1" pin="D-" pad="2"/>
 <connect gate="G$1" pin="GND@1" pad="GND@1"/>
 <connect gate="G$1" pin="GND@2" pad="GND@2"/>
 <connect gate="G$1" pin="GND@3" pad="GND@3"/>
 <connect gate="G$1" pin="GND@4" pad="GND@4"/>
+<connect gate="G$1" pin="GND@5" pad="5"/>
+<connect gate="G$1" pin="ID" pad="4"/>
+<connect gate="G$1" pin="VBUS" pad="1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3369,6 +3369,72 @@ http://www.mouser.com/ds/2/96/008-0309-0-32667.pdf</description>
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="ATMEGA32U4-AU" prefix="IC">
+<description>&lt;b&gt;
+ATMEGA32U4-AU
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 21.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/Atmel/ATMEGA32U4-AU/?qs=sGAEpiMZZMvAvBNgSS9Lqh1wBIpnYT9c
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/36/doc7766-31808.pdf</description>
+<gates>
+<gate name="G$1" symbol="ATMEGA32A4" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TQFP44">
+<connects>
+<connect gate="G$1" pin="!RESET" pad="13"/>
+<connect gate="G$1" pin="AREF" pad="42"/>
+<connect gate="G$1" pin="AVCC@1" pad="24"/>
+<connect gate="G$1" pin="AVCC@2" pad="44"/>
+<connect gate="G$1" pin="D+" pad="4"/>
+<connect gate="G$1" pin="D-" pad="3"/>
+<connect gate="G$1" pin="GND@1" pad="15"/>
+<connect gate="G$1" pin="GND@2" pad="23"/>
+<connect gate="G$1" pin="GND@3" pad="35"/>
+<connect gate="G$1" pin="GND@4" pad="43"/>
+<connect gate="G$1" pin="PB0(SS)" pad="8"/>
+<connect gate="G$1" pin="PB1(SCK)" pad="9"/>
+<connect gate="G$1" pin="PB2(PDI/MOSI)" pad="10"/>
+<connect gate="G$1" pin="PB3(PDO/MISO)" pad="11"/>
+<connect gate="G$1" pin="PB4(ADC11)" pad="28"/>
+<connect gate="G$1" pin="PB5(OC1A/ADC12/!OC4B)" pad="29"/>
+<connect gate="G$1" pin="PB6(OC1B/OC4B/ADC13)" pad="30"/>
+<connect gate="G$1" pin="PB7(OC0A/OC1C/RTS)" pad="12"/>
+<connect gate="G$1" pin="PC6(OC3A/!OC4A)" pad="31"/>
+<connect gate="G$1" pin="PC7(ICP3/CLK0/OC4A)" pad="32"/>
+<connect gate="G$1" pin="PD0(INT0/OC0B/SCL)" pad="18"/>
+<connect gate="G$1" pin="PD1(INT1/SDA)" pad="19"/>
+<connect gate="G$1" pin="PD2(INT2/RXD1)" pad="20"/>
+<connect gate="G$1" pin="PD3(INT3/TXD1)" pad="21"/>
+<connect gate="G$1" pin="PD4(ICP1/ADC8)" pad="25"/>
+<connect gate="G$1" pin="PD5(XCK/CTS)" pad="22"/>
+<connect gate="G$1" pin="PD6(T1/ADC9/!OC4D)" pad="26"/>
+<connect gate="G$1" pin="PD7(OC4D/ADC10/T0)" pad="27"/>
+<connect gate="G$1" pin="PE2(!HWB)" pad="33"/>
+<connect gate="G$1" pin="PE6(INT.6/AIN0)" pad="1"/>
+<connect gate="G$1" pin="PF0(ADC0)" pad="41"/>
+<connect gate="G$1" pin="PF1(ADC1)" pad="40"/>
+<connect gate="G$1" pin="PF4(ADC4/TCK)" pad="39"/>
+<connect gate="G$1" pin="PF5(ADC5/TMS)" pad="38"/>
+<connect gate="G$1" pin="PF6(ADC6/TDO)" pad="37"/>
+<connect gate="G$1" pin="PF7(ADC7(TDI)" pad="36"/>
+<connect gate="G$1" pin="UCAP" pad="6"/>
+<connect gate="G$1" pin="UGND" pad="5"/>
+<connect gate="G$1" pin="UVCC" pad="2"/>
+<connect gate="G$1" pin="VBUS" pad="7"/>
+<connect gate="G$1" pin="VCC@1" pad="14"/>
+<connect gate="G$1" pin="VCC@2" pad="34"/>
+<connect gate="G$1" pin="XTAL1" pad="17"/>
+<connect gate="G$1" pin="XTAL2" pad="16"/>
 </connects>
 <technologies>
 <technology name=""/>
