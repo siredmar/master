@@ -5562,7 +5562,6 @@ JP 2-3: LVDS Display</text>
 </sheet>
 <sheet>
 <plain>
-<text x="231.14" y="170.18" size="1.27" layer="91">TODO: LED_EN signal connect to AVR or Jumper</text>
 <text x="223.52" y="121.92" size="1.778" layer="91">JP7</text>
 <text x="223.52" y="127" size="1.778" layer="91">Jumper</text>
 <text x="261.62" y="127" size="1.778" layer="91">Description</text>

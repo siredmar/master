@@ -3218,6 +3218,8 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <part name="SP17" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="SP18" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="U$35" library="SchlegelAr_Master" deviceset="+5V" device=""/>
+<part name="R22" library="SchlegelAr_Master" deviceset="R" device="0402" value="0R"/>
+<part name="R23" library="SchlegelAr_Master" deviceset="R" device="0402" value="0R"/>
 </parts>
 <sheets>
 <sheet>
@@ -5040,6 +5042,8 @@ JP 2-3: LVDS Display</text>
 <instance part="SP12" gate="G$1" x="152.4" y="185.42"/>
 <instance part="SP13" gate="G$1" x="152.4" y="182.88"/>
 <instance part="U$35" gate="G$1" x="142.24" y="195.58"/>
+<instance part="R22" gate="G$1" x="76.2" y="200.66"/>
+<instance part="R23" gate="G$1" x="86.36" y="198.12"/>
 </instances>
 <busses>
 </busses>
@@ -5248,9 +5252,9 @@ JP 2-3: LVDS Display</text>
 <label x="27.94" y="231.14" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="99.06" y1="200.66" x2="86.36" y2="200.66" width="0.1524" layer="91"/>
-<label x="86.36" y="200.66" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC7" gate="G$1" pin="USBDP"/>
+<label x="68.58" y="200.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="71.12" y1="200.66" x2="68.58" y2="200.66" width="0.1524" layer="91"/>
+<pinref part="R22" gate="G$1" pin="P$1"/>
 </segment>
 </net>
 <net name="USB_D+" class="0">
@@ -5260,9 +5264,9 @@ JP 2-3: LVDS Display</text>
 <label x="27.94" y="228.6" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="99.06" y1="198.12" x2="86.36" y2="198.12" width="0.1524" layer="91"/>
-<label x="86.36" y="198.12" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC7" gate="G$1" pin="USBDM"/>
+<label x="68.58" y="198.12" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="81.28" y1="198.12" x2="68.58" y2="198.12" width="0.1524" layer="91"/>
+<pinref part="R23" gate="G$1" pin="P$1"/>
 </segment>
 </net>
 <net name="AVR_XTAL2" class="0">
@@ -5557,6 +5561,20 @@ JP 2-3: LVDS Display</text>
 <wire x1="381" y1="137.16" x2="347.98" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="381" y1="127" x2="347.98" y2="127" width="0.1524" layer="91"/>
 <wire x1="347.98" y1="116.84" x2="381" y2="116.84" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="R22" gate="G$1" pin="P$2"/>
+<pinref part="IC7" gate="G$1" pin="USBDP"/>
+<wire x1="81.28" y1="200.66" x2="99.06" y2="200.66" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$10" class="0">
+<segment>
+<pinref part="IC7" gate="G$1" pin="USBDM"/>
+<pinref part="R23" gate="G$1" pin="P$2"/>
+<wire x1="99.06" y1="198.12" x2="91.44" y2="198.12" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

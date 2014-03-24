@@ -4906,8 +4906,8 @@ JP 2-3: Backlight controlled via PWM
 </net>
 <net name="RGB_PWM" class="0">
 <segment>
-<label x="142.24" y="27.94" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<wire x1="142.24" y1="27.94" x2="137.16" y2="27.94" width="0.1524" layer="91"/>
+<label x="139.7" y="27.94" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="139.7" y1="27.94" x2="137.16" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="JP4" gate="G$1" pin="3"/>
 </segment>
 </net>
@@ -4962,8 +4962,8 @@ JP 2-3: Backlight controlled via PWM
 </segment>
 <segment>
 <pinref part="JP4" gate="G$1" pin="2"/>
-<wire x1="137.16" y1="30.48" x2="142.24" y2="30.48" width="0.1524" layer="91"/>
-<label x="142.24" y="30.48" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="137.16" y1="30.48" x2="139.7" y2="30.48" width="0.1524" layer="91"/>
+<label x="139.7" y="30.48" size="1.27" layer="95" rot="MR180" xref="yes"/>
 </segment>
 </net>
 </nets>

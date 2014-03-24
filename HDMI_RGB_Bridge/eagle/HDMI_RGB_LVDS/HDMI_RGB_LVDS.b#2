@@ -12,7 +12,7 @@
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
 <layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
 <layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="yes"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="no" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
@@ -1375,7 +1375,7 @@ Covered vias can be set in Masks (Limit).
 <element name="R4" library="SchlegelAr_Master" package="R0402" value="10k" x="11.375" y="21.375" rot="R270"/>
 <element name="JP7" library="SchlegelAr_Master" package="JUMPER2_THROUGHHOLE" value="" x="14.625" y="17.625" rot="R90"/>
 <element name="SP1" library="SchlegelAr_Master" package="SP2" value="SP2" x="68.125" y="26.375"/>
-<element name="SP2" library="SchlegelAr_Master" package="SP2" value="SP2" x="51.375" y="20.625" rot="MR0"/>
+<element name="SP2" library="SchlegelAr_Master" package="SP2" value="SP2" x="51.5" y="20.375" rot="MR0"/>
 <element name="SP3" library="SchlegelAr_Master" package="SP2" value="SP2" x="40.5" y="15.5" rot="MR0"/>
 <element name="SP4" library="SchlegelAr_Master" package="SP2" value="SP2" x="44.875" y="13.5" rot="MR0"/>
 <element name="SP5" library="SchlegelAr_Master" package="SP2" value="SP2" x="47.125" y="15.5" rot="MR0"/>
@@ -1389,6 +1389,8 @@ Covered vias can be set in Masks (Limit).
 <element name="SP16" library="SchlegelAr_Master" package="SP2" value="SP2" x="22.5" y="35.25"/>
 <element name="SP17" library="SchlegelAr_Master" package="SP2" value="SP2" x="17.25" y="41.75"/>
 <element name="SP18" library="SchlegelAr_Master" package="SP2" value="SP2" x="17.375" y="36.75"/>
+<element name="R22" library="SchlegelAr_Master" package="R0402" value="0R" x="-1.375" y="-8.375"/>
+<element name="R23" library="SchlegelAr_Master" package="R0402" value="0R" x="-1.375" y="-11.75"/>
 </elements>
 <signals>
 <signal name="GND" airwireshidden="yes">
@@ -1674,8 +1676,8 @@ Covered vias can be set in Masks (Limit).
 <wire x1="61.15" y1="19.25" x2="64.275" y2="19.25" width="0" layer="19" extent="1-1"/>
 <wire x1="56.6" y1="19.25" x2="61.15" y2="19.25" width="0" layer="19" extent="1-1"/>
 <wire x1="53.295940625" y1="19.73223125" x2="56.6" y2="19.25" width="0" layer="19" extent="1-1"/>
-<wire x1="51.45" y1="20.625" x2="53.295940625" y2="19.73223125" width="0" layer="19" extent="1-16"/>
-<wire x1="47.2" y1="15.5" x2="51.45" y2="20.625" width="0" layer="19" extent="16-16"/>
+<wire x1="51.575" y1="20.375" x2="53.295940625" y2="19.73223125" width="0" layer="19" extent="1-16"/>
+<wire x1="47.2" y1="15.5" x2="51.575" y2="20.375" width="0" layer="19" extent="16-16"/>
 <wire x1="44.95" y1="13.5" x2="47.2" y2="15.5" width="0" layer="19" extent="16-16"/>
 <wire x1="40.575" y1="15.5" x2="44.95" y2="13.5" width="0" layer="19" extent="16-16"/>
 <wire x1="53.125" y1="47" x2="67.075" y2="35.75" width="0" layer="19" extent="1-16"/>
@@ -2038,13 +2040,13 @@ Covered vias can be set in Masks (Limit).
 </signal>
 <signal name="USB_D-">
 <contactref element="CON4" pad="2"/>
-<contactref element="IC7" pad="15"/>
-<wire x1="3.525" y1="9.375" x2="6.7" y2="7.05" width="0" layer="19" extent="1-16"/>
+<contactref element="R22" pad="1"/>
+<wire x1="-2.025" y1="-8.375" x2="6.7" y2="7.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="USB_D+">
 <contactref element="CON4" pad="3"/>
-<contactref element="IC7" pad="16"/>
-<wire x1="4.175" y1="9.375" x2="7.5" y2="7.05" width="0" layer="19" extent="1-16"/>
+<contactref element="R23" pad="1"/>
+<wire x1="-2.025" y1="-11.75" x2="7.5" y2="7.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="AVR_XTAL2">
 <contactref element="C8" pad="2"/>
@@ -2440,8 +2442,8 @@ Covered vias can be set in Masks (Limit).
 <contactref element="IC5" pad="97"/>
 <contactref element="C13" pad="2"/>
 <contactref element="SP2" pad="P$1"/>
-<wire x1="51.3" y1="20.625" x2="50.959621875" y2="21.040378125" width="0" layer="19" extent="16-16"/>
-<wire x1="52.588834375" y1="19.025125" x2="51.3" y2="20.625" width="0" layer="19" extent="1-16"/>
+<wire x1="51.425" y1="20.375" x2="50.959621875" y2="21.040378125" width="0" layer="19" extent="16-16"/>
+<wire x1="52.588834375" y1="19.025125" x2="51.425" y2="20.375" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="N$54">
 <contactref element="C14" pad="2"/>
@@ -2506,6 +2508,16 @@ Covered vias can be set in Masks (Limit).
 <signal name="N$60">
 </signal>
 <signal name="N$61">
+</signal>
+<signal name="N$5">
+<contactref element="R22" pad="2"/>
+<contactref element="IC7" pad="15"/>
+<wire x1="-0.725" y1="-8.375" x2="3.525" y2="9.375" width="0" layer="19" extent="1-16"/>
+</signal>
+<signal name="N$10">
+<contactref element="IC7" pad="16"/>
+<contactref element="R23" pad="2"/>
+<wire x1="-0.725" y1="-11.75" x2="4.175" y2="9.375" width="0" layer="19" extent="1-16"/>
 </signal>
 </signals>
 </board>

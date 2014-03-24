@@ -1125,8 +1125,8 @@
 <circle x="0" y="0" radius="1.5" width="0.127" layer="51"/>
 </package>
 <package name="SP2">
-<smd name="P$1" x="0.05" y="0" dx="0.1" dy="0.1" layer="1" stop="no" thermals="no" cream="no"/>
-<smd name="P$2" x="-0.05" y="0" dx="0.1" dy="0.1" layer="1" stop="no" thermals="no" cream="no"/>
+<smd name="P$1" x="0.075" y="0" dx="0.15" dy="0.15" layer="1" stop="no" thermals="no" cream="no"/>
+<smd name="P$2" x="-0.075" y="0" dx="0.15" dy="0.15" layer="1" stop="no" thermals="no" cream="no"/>
 </package>
 <package name="C0402">
 <wire x1="-0.245" y1="0.224" x2="0.245" y2="0.224" width="0.1524" layer="51"/>

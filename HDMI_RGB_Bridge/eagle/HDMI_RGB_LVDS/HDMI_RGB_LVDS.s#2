@@ -3285,8 +3285,6 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <wire x1="7.62" y1="208.28" x2="355.6" y2="208.28" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="200.66" x2="355.6" y2="200.66" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="193.04" x2="355.6" y2="193.04" width="0.6096" layer="94"/>
-<wire x1="7.62" y1="185.42" x2="355.6" y2="185.42" width="0.6096" layer="94"/>
-<wire x1="7.62" y1="177.8" x2="355.6" y2="177.8" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="170.18" x2="355.6" y2="170.18" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="162.56" x2="355.6" y2="162.56" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="154.94" x2="355.6" y2="154.94" width="0.6096" layer="94"/>
@@ -3313,6 +3311,11 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <text x="35.56" y="203.2" size="2.54" layer="94">S3: Spannungsversorgung +3.3V angepasst, Versorgungen hinzugefuegt (+5V, +9.6V, +12V), S4: HDMI Stecker, TFP401 und RGB Stecker hinzugefuegt</text>
 <text x="10.16" y="195.58" size="2.54" layer="94">22.03.2014</text>
 <text x="35.56" y="195.58" size="2.54" layer="94">S5: EEPROM, ATMega48, FT232RL, USB und AVR_ISP Stecker hinzugefuegt, S6: SN75LVDS83 und LVDS Stecker hinzugefuegt</text>
+<text x="10.16" y="187.96" size="2.54" layer="94">24.03.2014</text>
+<text x="35.56" y="177.8" size="2.54" layer="94">S4: PWM Ansteuerung fuer RGB Display Hintergrundbeleuchtung hinzugefuegt, Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt
+S5: Potentiometer und ADC-Messung hinzugefuegt, Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt
+S6: Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt
+alle: Sternpunkte eingebaut</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="0" y="0"/>

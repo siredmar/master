@@ -3206,9 +3206,6 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <part name="SP3" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="SP4" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="SP5" library="SchlegelAr_Master" deviceset="SP2" device=""/>
-<part name="SP6" library="SchlegelAr_Master" deviceset="SP2" device=""/>
-<part name="SP7" library="SchlegelAr_Master" deviceset="SP2" device=""/>
-<part name="SP8" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="SP9" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="SP10" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="SP11" library="SchlegelAr_Master" deviceset="SP2" device=""/>
@@ -3852,9 +3849,6 @@ JP 2-3: Backlight controlled via PWM
 <instance part="SP3" gate="G$1" x="83.82" y="147.32" rot="R90"/>
 <instance part="SP4" gate="G$1" x="91.44" y="139.7" rot="R90"/>
 <instance part="SP5" gate="G$1" x="99.06" y="124.46" rot="R90"/>
-<instance part="SP6" gate="G$1" x="25.4" y="33.02"/>
-<instance part="SP7" gate="G$1" x="63.5" y="33.02"/>
-<instance part="SP8" gate="G$1" x="104.14" y="33.02"/>
 </instances>
 <busses>
 </busses>
@@ -4205,26 +4199,6 @@ JP 2-3: Backlight controlled via PWM
 <pinref part="SP2" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="N$5" class="0">
-<segment>
-<pinref part="R5" gate="G$1" pin="P$1"/>
-<wire x1="63.5" y1="33.02" x2="63.5" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="58.42" y1="33.02" x2="63.5" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="JP2" gate="G$1" pin="2"/>
-<pinref part="SP7" gate="G$1" pin="1"/>
-<junction x="63.5" y="33.02"/>
-</segment>
-</net>
-<net name="N$10" class="0">
-<segment>
-<pinref part="R6" gate="G$1" pin="P$1"/>
-<wire x1="22.86" y1="33.02" x2="25.4" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="33.02" x2="25.4" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="JP1" gate="G$1" pin="2"/>
-<pinref part="SP6" gate="G$1" pin="1"/>
-<junction x="25.4" y="33.02"/>
-</segment>
-</net>
 <net name="HDMI_OCK_INV" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="OCK_INV"/>
@@ -4232,16 +4206,24 @@ JP 2-3: Backlight controlled via PWM
 <label x="101.6" y="187.96" size="1.4224" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="30.48" y1="33.02" x2="33.02" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="33.02" x2="33.02" y2="33.02" width="0.1524" layer="91"/>
 <label x="33.02" y="33.02" size="1.4224" layer="95" xref="yes"/>
-<pinref part="SP6" gate="G$1" pin="2"/>
+<pinref part="R6" gate="G$1" pin="P$1"/>
+<wire x1="22.86" y1="33.02" x2="25.4" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="33.02" x2="25.4" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="JP1" gate="G$1" pin="2"/>
+<junction x="25.4" y="33.02"/>
 </segment>
 </net>
 <net name="HDMI_PIXS" class="0">
 <segment>
-<wire x1="68.58" y1="33.02" x2="71.12" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="33.02" x2="71.12" y2="33.02" width="0.1524" layer="91"/>
 <label x="71.12" y="33.02" size="1.4224" layer="95" xref="yes"/>
-<pinref part="SP7" gate="G$1" pin="2"/>
+<pinref part="R5" gate="G$1" pin="P$1"/>
+<wire x1="63.5" y1="33.02" x2="63.5" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="33.02" x2="63.5" y2="33.02" width="0.1524" layer="91"/>
+<pinref part="JP2" gate="G$1" pin="2"/>
+<junction x="63.5" y="33.02"/>
 </segment>
 <segment>
 <pinref part="IC5" gate="G$1" pin="PIXS"/>
@@ -4519,16 +4501,6 @@ JP 2-3: Backlight controlled via PWM
 <junction x="236.22" y="248.92"/>
 </segment>
 </net>
-<net name="N$36" class="0">
-<segment>
-<pinref part="R15" gate="G$1" pin="P$1"/>
-<wire x1="99.06" y1="33.02" x2="104.14" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="104.14" y1="33.02" x2="104.14" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="JP3" gate="G$1" pin="2"/>
-<pinref part="SP8" gate="G$1" pin="1"/>
-<junction x="104.14" y="33.02"/>
-</segment>
-</net>
 <net name="RGB_DISP" class="0">
 <segment>
 <pinref part="CON3" gate="G$1" pin="DISP"/>
@@ -4536,9 +4508,13 @@ JP 2-3: Backlight controlled via PWM
 <label x="231.14" y="139.7" size="1.4224" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="109.22" y1="33.02" x2="111.76" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="33.02" x2="111.76" y2="33.02" width="0.1524" layer="91"/>
 <label x="111.76" y="33.02" size="1.4224" layer="95" xref="yes"/>
-<pinref part="SP8" gate="G$1" pin="2"/>
+<pinref part="R15" gate="G$1" pin="P$1"/>
+<wire x1="99.06" y1="33.02" x2="104.14" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="33.02" x2="104.14" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="JP3" gate="G$1" pin="2"/>
+<junction x="104.14" y="33.02"/>
 </segment>
 </net>
 <net name="N$37" class="0">
