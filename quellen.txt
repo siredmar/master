@@ -4,7 +4,8 @@ Hardware:
 * HDMI Stecker +5V-Versorgung liefert min. 55 mA: http://www.hdmi.org/learningcenter/kb.aspx?c=6#42
 * Verpolschutz: http://www.lothar-miller.de/s9y/categories/39-Verpolschutz
 * 9.6V LED Versorgung: S11 http://www.ti.com/litv/slvs561k, Vout = Vref*(1+R2/R1) = 1.25*(1+31k/4.7k) = 9.5V
-
+* Routing HDMI Lines: http://e2e.ti.com/cfs-file.ashx/__key/telligent-evolution-components-attachments/00-138-01-00-00-10-65-80/Texas-Instruments-HDMI-Design-Guide.pdf
+* Routing LVDS Lines: http://docs.toradex.com/101123-apalis-arm-carrier-board-design-guide.pdf
 Software:
 PC:
 * EDID Datenformat: http://www.extron.com/download/files/extronews/understandingedid.pdf
