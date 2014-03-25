@@ -3186,8 +3186,6 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <part name="U$92" library="SchlegelAr_Master" deviceset="+3V3" device=""/>
 <part name="U$93" library="SchlegelAr_Master" deviceset="+3V3" device=""/>
 <part name="U$94" library="SchlegelAr_Master" deviceset="+3V3" device=""/>
-<part name="U$95" library="SchlegelAr_Master" deviceset="SP2" device=""/>
-<part name="U$96" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="U$97" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="T2" library="SchlegelAr_Master" deviceset="IRLML2502TRPBF" device=""/>
 <part name="R20" library="SchlegelAr_Master" deviceset="R" device="2512" value="140R"/>
@@ -3218,11 +3216,13 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <part name="SP17" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="SP18" library="SchlegelAr_Master" deviceset="SP2" device=""/>
 <part name="U$35" library="SchlegelAr_Master" deviceset="+5V" device=""/>
+<part name="R22" library="SchlegelAr_Master" deviceset="R" device="0402" value="0R"/>
+<part name="R23" library="SchlegelAr_Master" deviceset="R" device="0402" value="0R"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="35.56" y="210.82" size="2.54" layer="94">Erstellung des Projekts, S2: Blockschaltbild, S3: Spannungsversorgung +3.3V hinzugefuegt</text>
+<text x="35.56" y="210.82" size="2.54" layer="94">Erstellung des Projekts, S1: Blockschaltbild, Versorgungsgraph hinzugefuegt, S2: Blockschaltbild, S3: Spannungsversorgung +3.3V hinzugefuegt</text>
 <text x="10.16" y="246.38" size="5.08" layer="94">HDMI_RGB_LVDS</text>
 <text x="83.82" y="246.38" size="5.08" layer="94">Masterarbeit Armin Schlegel SS14</text>
 <text x="83.82" y="238.76" size="5.08" layer="94">www.armin-schlegel.de</text>
@@ -3233,8 +3233,7 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <wire x1="7.62" y1="215.9" x2="7.62" y2="208.28" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="208.28" x2="7.62" y2="200.66" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="200.66" x2="7.62" y2="193.04" width="0.6096" layer="94"/>
-<wire x1="7.62" y1="193.04" x2="7.62" y2="185.42" width="0.6096" layer="94"/>
-<wire x1="7.62" y1="185.42" x2="7.62" y2="177.8" width="0.6096" layer="94"/>
+<wire x1="7.62" y1="193.04" x2="7.62" y2="177.8" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="177.8" x2="7.62" y2="170.18" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="170.18" x2="7.62" y2="162.56" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="162.56" x2="7.62" y2="154.94" width="0.6096" layer="94"/>
@@ -3275,8 +3274,7 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <wire x1="355.6" y1="154.94" x2="355.6" y2="162.56" width="0.6096" layer="94"/>
 <wire x1="355.6" y1="162.56" x2="355.6" y2="170.18" width="0.6096" layer="94"/>
 <wire x1="355.6" y1="170.18" x2="355.6" y2="177.8" width="0.6096" layer="94"/>
-<wire x1="355.6" y1="177.8" x2="355.6" y2="185.42" width="0.6096" layer="94"/>
-<wire x1="355.6" y1="185.42" x2="355.6" y2="193.04" width="0.6096" layer="94"/>
+<wire x1="355.6" y1="177.8" x2="355.6" y2="193.04" width="0.6096" layer="94"/>
 <wire x1="355.6" y1="193.04" x2="355.6" y2="200.66" width="0.6096" layer="94"/>
 <wire x1="355.6" y1="200.66" x2="355.6" y2="208.28" width="0.6096" layer="94"/>
 <wire x1="355.6" y1="208.28" x2="355.6" y2="215.9" width="0.6096" layer="94"/>
@@ -3285,8 +3283,6 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <wire x1="7.62" y1="208.28" x2="355.6" y2="208.28" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="200.66" x2="355.6" y2="200.66" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="193.04" x2="355.6" y2="193.04" width="0.6096" layer="94"/>
-<wire x1="7.62" y1="185.42" x2="355.6" y2="185.42" width="0.6096" layer="94"/>
-<wire x1="7.62" y1="177.8" x2="355.6" y2="177.8" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="170.18" x2="355.6" y2="170.18" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="162.56" x2="355.6" y2="162.56" width="0.6096" layer="94"/>
 <wire x1="7.62" y1="154.94" x2="355.6" y2="154.94" width="0.6096" layer="94"/>
@@ -3313,6 +3309,11 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <text x="35.56" y="203.2" size="2.54" layer="94">S3: Spannungsversorgung +3.3V angepasst, Versorgungen hinzugefuegt (+5V, +9.6V, +12V), S4: HDMI Stecker, TFP401 und RGB Stecker hinzugefuegt</text>
 <text x="10.16" y="195.58" size="2.54" layer="94">22.03.2014</text>
 <text x="35.56" y="195.58" size="2.54" layer="94">S5: EEPROM, ATMega48, FT232RL, USB und AVR_ISP Stecker hinzugefuegt, S6: SN75LVDS83 und LVDS Stecker hinzugefuegt</text>
+<text x="10.16" y="187.96" size="2.54" layer="94">24.03.2014</text>
+<text x="35.56" y="180.34" size="2.54" layer="94">S4: PWM Ansteuerung fuer RGB Display Hintergrundbeleuchtung hinzugefuegt, Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt
+S5: Potentiometer und ADC-Messung hinzugefuegt, Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt
+S6: Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt, alle: Sternpunkte eingebaut</text>
+<wire x1="7.62" y1="177.8" x2="355.6" y2="177.8" width="0.6096" layer="94"/>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="0" y="0"/>
@@ -3562,8 +3563,6 @@ Atmel AT2401C</text>
 <instance part="U$11" gate="G$1" x="114.3" y="119.38"/>
 <instance part="U$18" gate="G$1" x="114.3" y="160.02"/>
 <instance part="U$21" gate="G$1" x="78.74" y="119.38"/>
-<instance part="U$95" gate="G$1" x="114.3" y="215.9" rot="R90"/>
-<instance part="U$96" gate="G$1" x="114.3" y="182.88" rot="R90"/>
 <instance part="U$97" gate="G$1" x="114.3" y="144.78" rot="R90"/>
 <instance part="SP1" gate="G$1" x="68.58" y="226.06" rot="R90"/>
 </instances>
@@ -3638,7 +3637,8 @@ Atmel AT2401C</text>
 <wire x1="114.3" y1="187.96" x2="114.3" y2="193.04" width="0.1524" layer="91"/>
 <pinref part="U$14" gate="G$1" pin="+3V3"/>
 <pinref part="IC2" gate="G$1" pin="VOUT"/>
-<pinref part="U$96" gate="G$1" pin="2"/>
+<pinref part="C2" gate="G$1" pin="P$1"/>
+<wire x1="114.3" y1="187.96" x2="114.3" y2="182.88" width="0.1524" layer="91"/>
 <junction x="114.3" y="187.96"/>
 </segment>
 </net>
@@ -3648,7 +3648,8 @@ Atmel AT2401C</text>
 <wire x1="96.52" y1="220.98" x2="114.3" y2="220.98" width="0.1524" layer="91"/>
 <wire x1="114.3" y1="220.98" x2="114.3" y2="233.68" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="VOUT"/>
-<pinref part="U$95" gate="G$1" pin="2"/>
+<pinref part="C5" gate="G$1" pin="P$1"/>
+<wire x1="114.3" y1="220.98" x2="114.3" y2="215.9" width="0.1524" layer="91"/>
 <junction x="114.3" y="220.98"/>
 </segment>
 </net>
@@ -3702,23 +3703,11 @@ Atmel AT2401C</text>
 <junction x="78.74" y="134.62"/>
 </segment>
 </net>
-<net name="N$51" class="0">
-<segment>
-<pinref part="C2" gate="G$1" pin="P$1"/>
-<pinref part="U$96" gate="G$1" pin="1"/>
-</segment>
-</net>
 <net name="N$55" class="0">
 <segment>
 <pinref part="U$97" gate="G$1" pin="1"/>
 <pinref part="C3" gate="G$1" pin="P$1"/>
 <wire x1="114.3" y1="139.7" x2="114.3" y2="144.78" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$56" class="0">
-<segment>
-<pinref part="U$95" gate="G$1" pin="1"/>
-<pinref part="C5" gate="G$1" pin="P$1"/>
 </segment>
 </net>
 <net name="N$59" class="0">
@@ -4027,102 +4016,6 @@ JP 2-3: Backlight controlled via PWM
 <pinref part="C6" gate="G$1" pin="P$1"/>
 <pinref part="U$89" gate="G$1" pin="GND"/>
 <wire x1="91.44" y1="119.38" x2="91.44" y2="114.3" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="HDMI_CLK+" class="0">
-<segment>
-<wire x1="33.02" y1="233.68" x2="40.64" y2="233.68" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="CLK+"/>
-<label x="40.64" y="233.68" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RXC+"/>
-<wire x1="111.76" y1="233.68" x2="106.68" y2="233.68" width="0.1524" layer="91"/>
-<label x="106.68" y="233.68" size="1.4224" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="HDMI_CLK-" class="0">
-<segment>
-<wire x1="33.02" y1="231.14" x2="40.64" y2="231.14" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="CLK-"/>
-<label x="40.64" y="231.14" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RXC-"/>
-<wire x1="111.76" y1="231.14" x2="106.68" y2="231.14" width="0.1524" layer="91"/>
-<label x="106.68" y="231.14" size="1.4224" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="HDMI_DAT0+" class="0">
-<segment>
-<wire x1="33.02" y1="223.52" x2="40.64" y2="223.52" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="DATA0+"/>
-<label x="40.64" y="223.52" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RX0+"/>
-<wire x1="111.76" y1="226.06" x2="106.68" y2="226.06" width="0.1524" layer="91"/>
-<label x="106.68" y="226.06" size="1.4224" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="HDMI_DAT0-" class="0">
-<segment>
-<wire x1="33.02" y1="220.98" x2="40.64" y2="220.98" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="DATA0-"/>
-<label x="40.64" y="220.98" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RX0-"/>
-<wire x1="111.76" y1="223.52" x2="106.68" y2="223.52" width="0.1524" layer="91"/>
-<label x="106.68" y="223.52" size="1.4224" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="HDMI_DAT1+" class="0">
-<segment>
-<wire x1="33.02" y1="213.36" x2="40.64" y2="213.36" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="DATA1+"/>
-<label x="40.64" y="213.36" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RX1+"/>
-<wire x1="111.76" y1="218.44" x2="106.68" y2="218.44" width="0.1524" layer="91"/>
-<label x="106.68" y="218.44" size="1.4224" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="HDMI_DAT1-" class="0">
-<segment>
-<wire x1="33.02" y1="210.82" x2="40.64" y2="210.82" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="DATA1-"/>
-<label x="40.64" y="210.82" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RX1-"/>
-<wire x1="111.76" y1="215.9" x2="106.68" y2="215.9" width="0.1524" layer="91"/>
-<label x="106.68" y="215.9" size="1.4224" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="HDMI_DAT2+" class="0">
-<segment>
-<wire x1="33.02" y1="203.2" x2="40.64" y2="203.2" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="DATA2+"/>
-<label x="40.64" y="203.2" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RX2+"/>
-<wire x1="111.76" y1="210.82" x2="106.68" y2="210.82" width="0.1524" layer="91"/>
-<label x="106.68" y="210.82" size="1.4224" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="HDMI_DAT2-" class="0">
-<segment>
-<wire x1="33.02" y1="200.66" x2="40.64" y2="200.66" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="DATA2-"/>
-<label x="40.64" y="200.66" size="1.4224" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="RX2-"/>
-<wire x1="111.76" y1="208.28" x2="106.68" y2="208.28" width="0.1524" layer="91"/>
-<label x="106.68" y="208.28" size="1.4224" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="EDID_SDA" class="0">
@@ -4966,6 +4859,102 @@ JP 2-3: Backlight controlled via PWM
 <label x="139.7" y="30.48" size="1.27" layer="95" rot="MR180" xref="yes"/>
 </segment>
 </net>
+<net name="HDMI_CLK_P" class="0">
+<segment>
+<wire x1="33.02" y1="233.68" x2="40.64" y2="233.68" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="CLK+"/>
+<label x="40.64" y="233.68" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RXC+"/>
+<wire x1="111.76" y1="233.68" x2="106.68" y2="233.68" width="0.1524" layer="91"/>
+<label x="106.68" y="233.68" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="HDMI_CLK_M" class="0">
+<segment>
+<wire x1="33.02" y1="231.14" x2="40.64" y2="231.14" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="CLK-"/>
+<label x="40.64" y="231.14" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RXC-"/>
+<wire x1="111.76" y1="231.14" x2="106.68" y2="231.14" width="0.1524" layer="91"/>
+<label x="106.68" y="231.14" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="HDMI_DAT0_P" class="0">
+<segment>
+<wire x1="33.02" y1="223.52" x2="40.64" y2="223.52" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="DATA0+"/>
+<label x="40.64" y="223.52" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RX0+"/>
+<wire x1="111.76" y1="226.06" x2="106.68" y2="226.06" width="0.1524" layer="91"/>
+<label x="106.68" y="226.06" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="HDMI_DAT0_M" class="0">
+<segment>
+<wire x1="33.02" y1="220.98" x2="40.64" y2="220.98" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="DATA0-"/>
+<label x="40.64" y="220.98" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RX0-"/>
+<wire x1="111.76" y1="223.52" x2="106.68" y2="223.52" width="0.1524" layer="91"/>
+<label x="106.68" y="223.52" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="HDMI_DAT1_P" class="0">
+<segment>
+<wire x1="33.02" y1="213.36" x2="40.64" y2="213.36" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="DATA1+"/>
+<label x="40.64" y="213.36" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RX1+"/>
+<wire x1="111.76" y1="218.44" x2="106.68" y2="218.44" width="0.1524" layer="91"/>
+<label x="106.68" y="218.44" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="HDMI_DAT1_M" class="0">
+<segment>
+<wire x1="33.02" y1="210.82" x2="40.64" y2="210.82" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="DATA1-"/>
+<label x="40.64" y="210.82" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RX1-"/>
+<wire x1="111.76" y1="215.9" x2="106.68" y2="215.9" width="0.1524" layer="91"/>
+<label x="106.68" y="215.9" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="HDMI_DAT2_P" class="0">
+<segment>
+<wire x1="33.02" y1="203.2" x2="40.64" y2="203.2" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="DATA2+"/>
+<label x="40.64" y="203.2" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RX2+"/>
+<wire x1="111.76" y1="210.82" x2="106.68" y2="210.82" width="0.1524" layer="91"/>
+<label x="106.68" y="210.82" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="HDMI_DAT2_M" class="0">
+<segment>
+<wire x1="33.02" y1="200.66" x2="40.64" y2="200.66" width="0.1524" layer="91"/>
+<pinref part="CON2" gate="G$1" pin="DATA2-"/>
+<label x="40.64" y="200.66" size="1.4224" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="RX2-"/>
+<wire x1="111.76" y1="208.28" x2="106.68" y2="208.28" width="0.1524" layer="91"/>
+<label x="106.68" y="208.28" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -5039,6 +5028,8 @@ JP 2-3: LVDS Display</text>
 <instance part="SP12" gate="G$1" x="152.4" y="185.42"/>
 <instance part="SP13" gate="G$1" x="152.4" y="182.88"/>
 <instance part="U$35" gate="G$1" x="142.24" y="195.58"/>
+<instance part="R22" gate="G$1" x="76.2" y="200.66"/>
+<instance part="R23" gate="G$1" x="86.36" y="198.12"/>
 </instances>
 <busses>
 </busses>
@@ -5247,9 +5238,9 @@ JP 2-3: LVDS Display</text>
 <label x="27.94" y="231.14" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="99.06" y1="200.66" x2="86.36" y2="200.66" width="0.1524" layer="91"/>
-<label x="86.36" y="200.66" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC7" gate="G$1" pin="USBDP"/>
+<label x="68.58" y="200.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="71.12" y1="200.66" x2="68.58" y2="200.66" width="0.1524" layer="91"/>
+<pinref part="R22" gate="G$1" pin="P$1"/>
 </segment>
 </net>
 <net name="USB_D+" class="0">
@@ -5259,9 +5250,9 @@ JP 2-3: LVDS Display</text>
 <label x="27.94" y="228.6" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="99.06" y1="198.12" x2="86.36" y2="198.12" width="0.1524" layer="91"/>
-<label x="86.36" y="198.12" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC7" gate="G$1" pin="USBDM"/>
+<label x="68.58" y="198.12" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="81.28" y1="198.12" x2="68.58" y2="198.12" width="0.1524" layer="91"/>
+<pinref part="R23" gate="G$1" pin="P$1"/>
 </segment>
 </net>
 <net name="AVR_XTAL2" class="0">
@@ -5558,11 +5549,24 @@ JP 2-3: LVDS Display</text>
 <wire x1="347.98" y1="116.84" x2="381" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="R22" gate="G$1" pin="P$2"/>
+<pinref part="IC7" gate="G$1" pin="USBDP"/>
+<wire x1="81.28" y1="200.66" x2="99.06" y2="200.66" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$10" class="0">
+<segment>
+<pinref part="IC7" gate="G$1" pin="USBDM"/>
+<pinref part="R23" gate="G$1" pin="P$2"/>
+<wire x1="99.06" y1="198.12" x2="91.44" y2="198.12" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
 <plain>
-<text x="231.14" y="170.18" size="1.27" layer="91">TODO: LED_EN signal connect to AVR or Jumper</text>
 <text x="223.52" y="121.92" size="1.778" layer="91">JP7</text>
 <text x="223.52" y="127" size="1.778" layer="91">Jumper</text>
 <text x="261.62" y="127" size="1.778" layer="91">Description</text>
