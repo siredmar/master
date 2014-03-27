@@ -4249,140 +4249,140 @@ JP 2-3: Backlight controlled via PWM
 <wire x1="147.32" y1="195.58" x2="144.78" y2="195.58" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G3" class="0">
+<net name="GINT_RGB_EVEN_G3" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE11"/>
 <pinref part="R9" gate="G$1" pin="1M"/>
 <wire x1="147.32" y1="175.26" x2="144.78" y2="175.26" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G2" class="0">
+<net name="GINT_RGB_EVEN_G2" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE10"/>
 <pinref part="R9" gate="G$1" pin="2M"/>
 <wire x1="147.32" y1="177.8" x2="144.78" y2="177.8" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G1" class="0">
+<net name="GINT_RGB_EVEN_G1" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE9"/>
 <pinref part="R9" gate="G$1" pin="3M"/>
 <wire x1="147.32" y1="180.34" x2="144.78" y2="180.34" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G0" class="0">
+<net name="GINT_RGB_EVEN_G0" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE8"/>
 <pinref part="R9" gate="G$1" pin="4M"/>
 <wire x1="147.32" y1="182.88" x2="144.78" y2="182.88" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G7" class="0">
+<net name="GINT_RGB_EVEN_G7" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE15"/>
 <pinref part="R10" gate="G$1" pin="1M"/>
 <wire x1="147.32" y1="165.1" x2="144.78" y2="165.1" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G6" class="0">
+<net name="GINT_RGB_EVEN_G6" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE14"/>
 <pinref part="R10" gate="G$1" pin="2M"/>
 <wire x1="147.32" y1="167.64" x2="144.78" y2="167.64" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G5" class="0">
+<net name="GINT_RGB_EVEN_G5" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE13"/>
 <pinref part="R10" gate="G$1" pin="3M"/>
 <wire x1="147.32" y1="170.18" x2="144.78" y2="170.18" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_G4" class="0">
+<net name="GINT_RGB_EVEN_G4" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE12"/>
 <pinref part="R10" gate="G$1" pin="4M"/>
 <wire x1="147.32" y1="172.72" x2="144.78" y2="172.72" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R3" class="0">
+<net name="GINT_RGB_EVEN_R3" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE19"/>
 <pinref part="R11" gate="G$1" pin="1M"/>
 <wire x1="147.32" y1="152.4" x2="144.78" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R2" class="0">
+<net name="GINT_RGB_EVEN_R2" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE18"/>
 <pinref part="R11" gate="G$1" pin="2M"/>
 <wire x1="147.32" y1="154.94" x2="144.78" y2="154.94" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R1" class="0">
+<net name="GINT_RGB_EVEN_R1" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE17"/>
 <pinref part="R11" gate="G$1" pin="3M"/>
 <wire x1="147.32" y1="157.48" x2="144.78" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R0" class="0">
+<net name="GINT_RGB_EVEN_R0" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE16"/>
 <pinref part="R11" gate="G$1" pin="4M"/>
 <wire x1="147.32" y1="160.02" x2="144.78" y2="160.02" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R7" class="0">
+<net name="GINT_RGB_EVEN_R7" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE23"/>
 <pinref part="R12" gate="G$1" pin="1M"/>
 <wire x1="147.32" y1="142.24" x2="144.78" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R6" class="0">
+<net name="GINT_RGB_EVEN_R6" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE22"/>
 <pinref part="R12" gate="G$1" pin="2M"/>
 <wire x1="147.32" y1="144.78" x2="144.78" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R5" class="0">
+<net name="GINT_RGB_EVEN_R5" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE21"/>
 <pinref part="R12" gate="G$1" pin="3M"/>
 <wire x1="147.32" y1="147.32" x2="144.78" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_EVEN_R4" class="0">
+<net name="GINT_RGB_EVEN_R4" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="QE20"/>
 <pinref part="R12" gate="G$1" pin="4M"/>
 <wire x1="147.32" y1="149.86" x2="144.78" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_VSYNC" class="0">
+<net name="N$1" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="HSYNC"/>
 <pinref part="R2" gate="G$1" pin="1M"/>
 <wire x1="147.32" y1="226.06" x2="144.78" y2="226.06" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_HSYNC" class="0">
+<net name="N$6" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="VSYNC"/>
 <pinref part="R2" gate="G$1" pin="2M"/>
 <wire x1="147.32" y1="228.6" x2="144.78" y2="228.6" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_DE" class="0">
+<net name="N$7" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="DE"/>
 <pinref part="R2" gate="G$1" pin="3M"/>
 <wire x1="147.32" y1="231.14" x2="144.78" y2="231.14" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_ODCK" class="0">
+<net name="N$8" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="ODCK"/>
 <pinref part="R2" gate="G$1" pin="4M"/>

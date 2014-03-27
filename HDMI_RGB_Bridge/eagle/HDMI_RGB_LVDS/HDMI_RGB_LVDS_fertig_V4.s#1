@@ -4361,28 +4361,28 @@ JP 2-3: Backlight controlled via PWM
 <wire x1="147.32" y1="149.86" x2="144.78" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_VSYNC" class="0">
+<net name="N$1" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="HSYNC"/>
 <pinref part="R2" gate="G$1" pin="1M"/>
 <wire x1="147.32" y1="226.06" x2="144.78" y2="226.06" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_HSYNC" class="0">
+<net name="N$6" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="VSYNC"/>
 <pinref part="R2" gate="G$1" pin="2M"/>
 <wire x1="147.32" y1="228.6" x2="144.78" y2="228.6" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_DE" class="0">
+<net name="N$7" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="DE"/>
 <pinref part="R2" gate="G$1" pin="3M"/>
 <wire x1="147.32" y1="231.14" x2="144.78" y2="231.14" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT_RGB_ODCK" class="0">
+<net name="N$8" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="ODCK"/>
 <pinref part="R2" gate="G$1" pin="4M"/>
