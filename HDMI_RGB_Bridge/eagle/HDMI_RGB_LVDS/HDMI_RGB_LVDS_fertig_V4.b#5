@@ -20,7 +20,7 @@
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
@@ -1446,7 +1446,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="VALUE" x="20.3025" y="42.47" size="1.27" layer="27"/>
 </element>
 <element name="C17" library="SchlegelAr_Master" package="C0402" value="0.01u" x="20.9375" y="42.875" smashed="yes">
-<attribute name="NAME" x="22.365" y="42.385" size="1.27" layer="25"/>
+<attribute name="NAME" x="22.3025" y="42.385" size="1.27" layer="25"/>
 <attribute name="VALUE" x="20.3025" y="40.97" size="1.27" layer="27"/>
 </element>
 <element name="C15" library="SchlegelAr_Master" package="C0402" value="0.01u" x="18.5625" y="42.5" smashed="yes" rot="R180">
@@ -3389,9 +3389,9 @@ Covered vias can be set in Masks (Limit).
 <signal name="RGB_EVEN_G5">
 <contactref element="R10" pad="3P"/>
 <contactref element="CON3" pad="18"/>
-<wire x1="34.5125" y1="40.525" x2="33.35" y2="40.525" width="0.15" layer="1"/>
-<wire x1="33.35" y1="40.525" x2="33.25" y2="40.625" width="0.15" layer="1"/>
-<wire x1="33.25" y1="40.625" x2="30.9375" y2="40.625" width="0.15" layer="1"/>
+<wire x1="34.5125" y1="40.525" x2="32.725" y2="40.525" width="0.15" layer="1"/>
+<wire x1="32.725" y1="40.525" x2="32.625" y2="40.625" width="0.15" layer="1"/>
+<wire x1="32.625" y1="40.625" x2="30.9375" y2="40.625" width="0.15" layer="1"/>
 <contactref element="IC8" pad="14"/>
 <via x="28.6875" y="40.6875" extent="1-16" drill="0.3"/>
 <wire x1="25.625" y1="40.6875" x2="25.1875" y2="41.125" width="0.15" layer="16"/>
