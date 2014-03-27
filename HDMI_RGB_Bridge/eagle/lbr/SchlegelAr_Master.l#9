@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.005" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
@@ -1913,8 +1913,8 @@
 <text x="0.635" y="-0.635" size="1.524" layer="95">OUT</text>
 </symbol>
 <symbol name="C_POL">
-<pin name="P$1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
-<pin name="P$2" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<pin name="+" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
+<pin name="-" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
 <wire x1="-2.54" y1="1.778" x2="-2.54" y2="-1.778" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="-1.778" x2="-1.524" y2="-1.778" width="0.254" layer="94"/>
 <wire x1="-1.524" y1="-1.778" x2="-1.524" y2="1.778" width="0.254" layer="94"/>
@@ -1950,6 +1950,10 @@
 <pin name="+3V3" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
 <symbol name="+1V8">
+<description>&lt;b&gt;
+Symbol fuer +1.8V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <wire x1="1.27" y1="0.635" x2="0" y2="2.54" width="0.254" layer="94"/>
 <wire x1="0" y1="2.54" x2="-1.27" y2="0.635" width="0.254" layer="94"/>
 <text x="-2.54" y="-2.54" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
@@ -2963,8 +2967,8 @@ C Pol
 <devices>
 <device name="4X4MM" package="C_POL_4X4MM">
 <connects>
-<connect gate="G$1" pin="P$1" pad="+"/>
-<connect gate="G$1" pin="P$2" pad="-"/>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2972,8 +2976,8 @@ C Pol
 </device>
 <device name="6X6MM" package="C_POL_6X6MM">
 <connects>
-<connect gate="G$1" pin="P$1" pad="+"/>
-<connect gate="G$1" pin="P$2" pad="-"/>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2981,8 +2985,8 @@ C Pol
 </device>
 <device name="10X10MM" package="C_POL_10X10MM">
 <connects>
-<connect gate="G$1" pin="P$1" pad="+"/>
-<connect gate="G$1" pin="P$2" pad="-"/>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2991,6 +2995,10 @@ C Pol
 </devices>
 </deviceset>
 <deviceset name="+5V">
+<description>&lt;b&gt;
+Symbol fuer +5V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+5V" x="0" y="0"/>
 </gates>
@@ -3003,6 +3011,10 @@ C Pol
 </devices>
 </deviceset>
 <deviceset name="+3V3">
+<description>&lt;b&gt;
+Symbol fuer +3.3V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+3V3" x="0" y="0"/>
 </gates>
@@ -3015,6 +3027,10 @@ C Pol
 </devices>
 </deviceset>
 <deviceset name="+1V8">
+<description>&lt;b&gt;
+Symbol fuer +1.8V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+1V8" x="0" y="0"/>
 </gates>
@@ -3027,6 +3043,10 @@ C Pol
 </devices>
 </deviceset>
 <deviceset name="+1V2">
+<description>&lt;b&gt;
+Symbol fuer +1.2V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+1V2" x="0" y="0"/>
 </gates>
@@ -3295,9 +3315,9 @@ R SMD 0603, 0805, 1206
 </deviceset>
 <deviceset name="C_SMD" prefix="C" uservalue="yes">
 <description>&lt;b&gt;
-C SMD 0603, 0805, 1206
+C SMD 0402, 0603, 0805, 1206
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 21.03.2014  &lt;br&gt;&lt;br&gt;</description>
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -3341,6 +3361,10 @@ C SMD 0603, 0805, 1206
 </devices>
 </deviceset>
 <deviceset name="+12V">
+<description>&lt;b&gt;
+Symbol fuer +12V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+12V" x="0" y="0"/>
 </gates>
@@ -3435,6 +3459,14 @@ http://www.mouser.com/ds/2/200/irf9530nspbf-222492.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="BZG03C15TR3" prefix="D">
+<description>&lt;b&gt;
+BZG03C15TR3
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/Vishay-Semiconductors/BZG03C15TR3/?qs=RzxYCzJDjPUsxnwuRFs/Dg==
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/427/bzg03c-89028.pdf</description>
 <gates>
 <gate name="G$1" symbol="D" x="0" y="0"/>
 </gates>
@@ -3477,6 +3509,10 @@ http://www.ti.com/litv/slvs561k</description>
 </devices>
 </deviceset>
 <deviceset name="+9V6">
+<description>&lt;b&gt;
+Symbol fuer +9.6V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+9V6" x="0" y="0"/>
 </gates>
@@ -3685,6 +3721,18 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <connect gate="G$1" pin="G" pad="1"/>
 <connect gate="G$1" pin="S" pad="2"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RSS1C101MCN1GS">
+<gates>
+<gate name="G$1" symbol="C_POL" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="" package="C_POL_6X6MM">
 <technologies>
 <technology name=""/>
 </technologies>

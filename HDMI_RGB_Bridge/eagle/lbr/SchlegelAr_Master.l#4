@@ -1378,6 +1378,16 @@
 <rectangle x1="0.4064" y1="-0.6985" x2="1.0564" y2="0.7015" layer="51"/>
 <rectangle x1="-1.0668" y1="-0.6985" x2="-0.4168" y2="0.7015" layer="51"/>
 </package>
+<package name="LED0402">
+<wire x1="-0.245" y1="0.224" x2="0.245" y2="0.224" width="0.1524" layer="51"/>
+<wire x1="0.245" y1="-0.224" x2="-0.245" y2="-0.224" width="0.1524" layer="51"/>
+<smd name="1" x="-0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
+<smd name="2" x="0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
+<text x="-0.635" y="0.635" size="1.27" layer="25">&gt;NAME</text>
+<text x="-0.635" y="-1.905" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.554" y1="-0.3048" x2="-0.254" y2="0.2951" layer="51"/>
+<rectangle x1="0.2588" y1="-0.3048" x2="0.5588" y2="0.2951" layer="51"/>
+</package>
 </packages>
 <symbols>
 <symbol name="FI-X30SSLA-HF">
@@ -1913,8 +1923,8 @@
 <text x="0.635" y="-0.635" size="1.524" layer="95">OUT</text>
 </symbol>
 <symbol name="C_POL">
-<pin name="P$1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
-<pin name="P$2" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<pin name="+" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
+<pin name="-" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
 <wire x1="-2.54" y1="1.778" x2="-2.54" y2="-1.778" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="-1.778" x2="-1.524" y2="-1.778" width="0.254" layer="94"/>
 <wire x1="-1.524" y1="-1.778" x2="-1.524" y2="1.778" width="0.254" layer="94"/>
@@ -2301,6 +2311,31 @@ Symbol fuer +1.8V
 <pin name="A" x="0" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
 <pin name="E" x="0" y="5.08" visible="pad" length="short" direction="pas" rot="R270"/>
 <pin name="S" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+</symbol>
+<symbol name="LED">
+<wire x1="1.27" y1="2.54" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="2.54" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="-1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="-2.032" y1="1.778" x2="-3.429" y2="0.381" width="0.1524" layer="94"/>
+<wire x1="-1.905" y1="0.635" x2="-3.302" y2="-0.762" width="0.1524" layer="94"/>
+<text x="3.556" y="-2.032" size="1.778" layer="95" rot="R90">&gt;NAME</text>
+<text x="5.715" y="-2.032" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="C" x="0" y="-2.54" visible="off" length="short" direction="pas" rot="R90"/>
+<pin name="A" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+<polygon width="0.1524" layer="94">
+<vertex x="-3.429" y="0.381"/>
+<vertex x="-3.048" y="1.27"/>
+<vertex x="-2.54" y="0.762"/>
+</polygon>
+<polygon width="0.1524" layer="94">
+<vertex x="-3.302" y="-0.762"/>
+<vertex x="-2.921" y="0.127"/>
+<vertex x="-2.413" y="-0.381"/>
+</polygon>
 </symbol>
 </symbols>
 <devicesets>
@@ -2967,8 +3002,8 @@ C Pol
 <devices>
 <device name="4X4MM" package="C_POL_4X4MM">
 <connects>
-<connect gate="G$1" pin="P$1" pad="+"/>
-<connect gate="G$1" pin="P$2" pad="-"/>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2976,8 +3011,8 @@ C Pol
 </device>
 <device name="6X6MM" package="C_POL_6X6MM">
 <connects>
-<connect gate="G$1" pin="P$1" pad="+"/>
-<connect gate="G$1" pin="P$2" pad="-"/>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2985,8 +3020,8 @@ C Pol
 </device>
 <device name="10X10MM" package="C_POL_10X10MM">
 <connects>
-<connect gate="G$1" pin="P$1" pad="+"/>
-<connect gate="G$1" pin="P$2" pad="-"/>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3315,9 +3350,9 @@ R SMD 0603, 0805, 1206
 </deviceset>
 <deviceset name="C_SMD" prefix="C" uservalue="yes">
 <description>&lt;b&gt;
-C SMD 0603, 0805, 1206
+C SMD 0402, 0603, 0805, 1206
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 21.03.2014  &lt;br&gt;&lt;br&gt;</description>
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -3459,6 +3494,14 @@ http://www.mouser.com/ds/2/200/irf9530nspbf-222492.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="BZG03C15TR3" prefix="D">
+<description>&lt;b&gt;
+BZG03C15TR3
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/Vishay-Semiconductors/BZG03C15TR3/?qs=RzxYCzJDjPUsxnwuRFs/Dg==
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/427/bzg03c-89028.pdf</description>
 <gates>
 <gate name="G$1" symbol="D" x="0" y="0"/>
 </gates>
@@ -3501,6 +3544,10 @@ http://www.ti.com/litv/slvs561k</description>
 </devices>
 </deviceset>
 <deviceset name="+9V6">
+<description>&lt;b&gt;
+Symbol fuer +9.6V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+9V6" x="0" y="0"/>
 </gates>
@@ -3709,6 +3756,42 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <connect gate="G$1" pin="G" pad="1"/>
 <connect gate="G$1" pin="S" pad="2"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RSS1C101MCN1GS" prefix="C" uservalue="yes">
+<description>&lt;b&gt;
+RSS1C101MCN1GS
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 26.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/Nichicon/RSS1C101MCN1GS/?qs=%2fha2pyFaduh4ekcK%2fe1iGdvzMnyaUytWBcNeRf1q51h9wFdnE1%2fDNQ%3d%3d
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/293/2012fpcap_catalog_sssasb-1932.pdf</description>
+<gates>
+<gate name="G$1" symbol="C_POL" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="" package="C_POL_6X6MM">
+<connects>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="LED">
+<gates>
+<gate name="G$1" symbol="LED" x="0" y="0"/>
+</gates>
+<devices>
+<device name="0402" package="LED0402">
 <technologies>
 <technology name=""/>
 </technologies>
