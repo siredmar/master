@@ -3079,8 +3079,8 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 <part name="CON4" library="SchlegelAr_Master" deviceset="FCI-10033526-N3212LF" device=""/>
 <part name="CON5" library="SchlegelAr_Master" deviceset="MOLEX-53261-0671" device=""/>
 <part name="Q1" library="SchlegelAr_Master" deviceset="ATS073ASM-1" device=""/>
-<part name="C7" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="10p"/>
-<part name="C8" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="10p"/>
+<part name="C7" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="22p"/>
+<part name="C8" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="22p"/>
 <part name="C9" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>
 <part name="U$26" library="SchlegelAr_Master" deviceset="+5V" device=""/>
 <part name="U$27" library="SchlegelAr_Master" deviceset="GND" device=""/>
@@ -4361,28 +4361,28 @@ JP 2-3: Backlight controlled via PWM
 <wire x1="147.32" y1="149.86" x2="144.78" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$1" class="0">
+<net name="INT_RGB_VSYNC" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="HSYNC"/>
 <pinref part="R2" gate="G$1" pin="1M"/>
 <wire x1="147.32" y1="226.06" x2="144.78" y2="226.06" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="INT_RGB_HSYNC" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="VSYNC"/>
 <pinref part="R2" gate="G$1" pin="2M"/>
 <wire x1="147.32" y1="228.6" x2="144.78" y2="228.6" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$7" class="0">
+<net name="INT_RGB_DE" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="DE"/>
 <pinref part="R2" gate="G$1" pin="3M"/>
 <wire x1="147.32" y1="231.14" x2="144.78" y2="231.14" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$8" class="0">
+<net name="INT_RGB_ODCK" class="0">
 <segment>
 <pinref part="IC5" gate="G$1" pin="ODCK"/>
 <pinref part="R2" gate="G$1" pin="4M"/>

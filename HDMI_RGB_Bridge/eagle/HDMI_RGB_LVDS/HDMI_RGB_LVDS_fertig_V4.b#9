@@ -22,7 +22,7 @@
 <layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
@@ -1331,10 +1331,13 @@ Covered vias can be set in Masks (Limit).
 <element name="C14" library="SchlegelAr_Master" package="C0402" value="100n" x="41.5" y="15.75" rot="MR45"/>
 <element name="R5" library="SchlegelAr_Master" package="R0402" value="10k" x="60.5" y="19.25"/>
 <element name="R6" library="SchlegelAr_Master" package="R0402" value="10k" x="57.25" y="19.25" smashed="yes" rot="R180">
-<attribute name="NAME" x="58.635" y="21.1775" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="56.1775" y="20.01" size="1.27" layer="25"/>
 <attribute name="VALUE" x="57.885" y="21.155" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="R7" library="SchlegelAr_Master" package="R0402" value="100R" x="59.875" y="9.25" rot="R90"/>
+<element name="R7" library="SchlegelAr_Master" package="R0402" value="100R" x="59.875" y="9.25" smashed="yes" rot="R90">
+<attribute name="NAME" x="60.5725" y="10.635" size="1.27" layer="25" rot="R270"/>
+<attribute name="VALUE" x="61.78" y="8.615" size="1.27" layer="27" rot="R90"/>
+</element>
 <element name="CON3" library="SchlegelAr_Master" package="XF2M-4015-1A" value="XF2M-4015-1A" x="28.4375" y="39.375" rot="R270"/>
 <element name="IC2" library="SchlegelAr_Master" package="TO263-5" value="WPMDL1300331BD" x="73.5" y="35.5" smashed="yes" rot="R180">
 <attribute name="NAME" x="65.6725" y="37.205" size="1.27" layer="25" rot="R270"/>
@@ -1354,7 +1357,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="34.025003125" y="25.512496875" size="0.8128" layer="25" rot="R180"/>
 </element>
 <element name="R3" library="SchlegelAr_Master" package="R-ARRAY-4X0603" value="22R" x="36.0625" y="36.5625" smashed="yes" rot="R180">
-<attribute name="NAME" x="38.175003125" y="37.3375" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="38.300003125" y="37.3375" size="0.8128" layer="25" rot="R270"/>
 </element>
 <element name="R8" library="SchlegelAr_Master" package="R-ARRAY-4X0603" value="22R" x="35.5625" y="32.875" smashed="yes" rot="R135">
 <attribute name="NAME" x="37.537334375" y="31.606015625" size="0.8128" layer="25" rot="R225"/>
@@ -1363,7 +1366,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="37.550003125" y="44.275" size="0.8128" layer="25" rot="R270"/>
 </element>
 <element name="R10" library="SchlegelAr_Master" package="R-ARRAY-4X0603" value="22R" x="35.3125" y="40.125" smashed="yes" rot="R180">
-<attribute name="NAME" x="37.487503125" y="41.2125" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="37.612503125" y="41.15" size="0.8128" layer="25" rot="R270"/>
 </element>
 <element name="R11" library="SchlegelAr_Master" package="R-ARRAY-4X0603" value="22R" x="36.4375" y="50.625" smashed="yes" rot="R180">
 <attribute name="NAME" x="38.237503125" y="51.7125" size="0.8128" layer="25" rot="R270"/>

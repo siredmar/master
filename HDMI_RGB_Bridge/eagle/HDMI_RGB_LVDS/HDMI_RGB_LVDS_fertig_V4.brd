@@ -9,7 +9,7 @@
 <grid distance="0.0625" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
 <layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
 <layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
 <layer number="15" name="Route15" color="4" fill="6" visible="yes" active="yes"/>
@@ -1562,6 +1562,8 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="89.9475" y="39.0525" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="88.4475" y="41.5925" size="1.27" layer="27" rot="R180"/>
 </element>
+<element name="R28" library="SchlegelAr_Master" package="R0402" value="10k" x="58.5625" y="2.5" rot="MR180"/>
+<element name="R29" library="SchlegelAr_Master" package="R0402" value="10k" x="58.5625" y="1.3125" rot="MR180"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -2410,6 +2412,12 @@ Covered vias can be set in Masks (Limit).
 <wire x1="77.25" y1="24.8125" x2="75.6875" y2="24.8125" width="0.4064" layer="15"/>
 <wire x1="75.6875" y1="24.8125" x2="74.4375" y2="26.0625" width="0.4064" layer="15"/>
 <wire x1="74.4375" y1="26.0625" x2="74.4375" y2="26.4375" width="0.4064" layer="15"/>
+<contactref element="R29" pad="2"/>
+<contactref element="R28" pad="2"/>
+<wire x1="59.2125" y1="2.5" x2="60.0625" y2="2.5" width="0.15" layer="16"/>
+<wire x1="59.2125" y1="1.3125" x2="60.125" y2="1.3125" width="0.15" layer="16"/>
+<via x="60.0625" y="2.5" extent="1-16" drill="0.3"/>
+<via x="60.125" y="1.3125" extent="1-16" drill="0.3"/>
 </signal>
 <signal name="N$2">
 <contactref element="CON1" pad="3"/>
@@ -2506,6 +2514,9 @@ Covered vias can be set in Masks (Limit).
 <wire x1="56.875" y1="4.6875" x2="56.875" y2="3.375" width="0.15" layer="1"/>
 <wire x1="26.625" y1="5.25" x2="36.0625" y2="5.25" width="0.15" layer="16"/>
 <wire x1="36.0625" y1="5.25" x2="38.375" y2="2.9375" width="0.15" layer="16"/>
+<contactref element="R28" pad="1"/>
+<wire x1="57.9125" y1="2.5" x2="57.75" y2="2.5" width="0.15" layer="16"/>
+<wire x1="57.75" y1="2.5" x2="56.875" y2="3.375" width="0.15" layer="16"/>
 </signal>
 <signal name="EDID_SCL">
 <contactref element="CON2" pad="15"/>
@@ -2537,6 +2548,9 @@ Covered vias can be set in Masks (Limit).
 <wire x1="21.125" y1="9.5" x2="20.75" y2="9.5" width="0.15" layer="16"/>
 <wire x1="26.3125" y1="4.625" x2="36" y2="4.625" width="0.15" layer="16"/>
 <wire x1="36" y1="4.625" x2="38.25" y2="2.375" width="0.15" layer="16"/>
+<contactref element="R29" pad="1"/>
+<wire x1="57.9125" y1="1.3125" x2="56.625" y2="1.3125" width="0.15" layer="16"/>
+<wire x1="56.625" y1="1.3125" x2="55.3125" y2="2.625" width="0.15" layer="16"/>
 </signal>
 <signal name="N$18">
 <contactref element="CON2" pad="19"/>

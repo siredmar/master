@@ -17,11 +17,11 @@
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="yes"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
@@ -1398,11 +1398,11 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="34.4815" y="13.2775" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="27.4965" y="18.09" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="C7" library="SchlegelAr_Master" package="C0402" value="10p" x="28.5" y="12.3125" smashed="yes" rot="R90">
+<element name="C7" library="SchlegelAr_Master" package="C0402" value="22p" x="28.5" y="12.3125" smashed="yes" rot="R90">
 <attribute name="NAME" x="29.0525" y="9.0525" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="30.405" y="11.6775" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="C8" library="SchlegelAr_Master" package="C0402" value="10p" x="28.5" y="14.5625" smashed="yes" rot="R270">
+<element name="C8" library="SchlegelAr_Master" package="C0402" value="22p" x="28.5" y="14.5625" smashed="yes" rot="R270">
 <attribute name="NAME" x="27.8225" y="18.135" size="1.27" layer="25" rot="R270"/>
 <attribute name="VALUE" x="26.595" y="15.1975" size="1.27" layer="27" rot="R270"/>
 </element>
