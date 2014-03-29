@@ -6,20 +6,19 @@
 \contentsline {section}{\numberline {1.1}Motivation}{1}{section.8}
 \contentsline {section}{\numberline {1.2}Ziel der Arbeit}{1}{section.9}
 \contentsline {section}{\numberline {1.3}Aufbau der Arbeit}{1}{section.10}
-\contentsline {section}{\numberline {1.4}Voraussetzungen zum Verst\"andnis der Arbeit}{2}{section.11}
-\contentsline {section}{\numberline {1.5}Typographische Konventionen}{2}{section.12}
-\contentsline {chapter}{\numberline {2}Zitate und Referenzen}{3}{chapter.13}
-\contentsline {section}{\numberline {2.1}Definitionen}{3}{section.17}
-\contentsline {section}{\numberline {2.2}Service-orientierte Architektur}{4}{section.18}
-\contentsline {chapter}{\numberline {3}Bilder und Listings}{5}{chapter.23}
-\contentsline {section}{\numberline {3.1}Anbieten eines Webservice}{5}{section.27}
-\contentsline {section}{\numberline {3.2}Netzwerkverkehr beim Aufruf von \textsf {PersonFactory}}{6}{section.35}
-\contentsline {subsection}{\numberline {3.2.1}SOAP-Request}{6}{subsection.36}
-\contentsline {subsection}{\numberline {3.2.2}SOAP-Response}{7}{subsection.56}
-\contentsline {chapter}{\numberline {4}Aufz\"ahlungen und Tabellen}{8}{chapter.77}
-\contentsline {section}{\numberline {4.1}Vom Autor verwendete Software}{8}{section.82}
-\contentsline {section}{\numberline {4.2}Elemente der Ereignisgesteuerten Prozesskette}{10}{section.84}
-\contentsline {chapter}{\numberline {5}Fazit und kritische Bewertung}{13}{chapter.86}
-\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\"arung}{14}{chapter*.87}
-\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.88}
-\contentsline {section}{\numberline {A.1}Liste m\"oglicher Aktivit\"aten der BPEL}{ii}{section.89}
+\contentsline {section}{\numberline {1.4}Typographische Konventionen}{2}{section.11}
+\contentsline {chapter}{\numberline {2}Zitate und Referenzen}{3}{chapter.12}
+\contentsline {section}{\numberline {2.1}Definitionen}{3}{section.16}
+\contentsline {section}{\numberline {2.2}Service-orientierte Architektur}{4}{section.17}
+\contentsline {chapter}{\numberline {3}Bilder und Listings}{5}{chapter.22}
+\contentsline {section}{\numberline {3.1}Anbieten eines Webservice}{5}{section.26}
+\contentsline {section}{\numberline {3.2}Netzwerkverkehr beim Aufruf von \textsf {PersonFactory}}{6}{section.34}
+\contentsline {subsection}{\numberline {3.2.1}SOAP-Request}{6}{subsection.35}
+\contentsline {subsection}{\numberline {3.2.2}SOAP-Response}{7}{subsection.55}
+\contentsline {chapter}{\numberline {4}Aufz\"ahlungen und Tabellen}{8}{chapter.76}
+\contentsline {section}{\numberline {4.1}Vom Autor verwendete Software}{8}{section.81}
+\contentsline {section}{\numberline {4.2}Elemente der Ereignisgesteuerten Prozesskette}{10}{section.83}
+\contentsline {chapter}{\numberline {5}Fazit und kritische Bewertung}{13}{chapter.85}
+\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\"arung}{14}{chapter*.86}
+\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.87}
+\contentsline {section}{\numberline {A.1}Liste m\"oglicher Aktivit\"aten der BPEL}{ii}{section.88}
