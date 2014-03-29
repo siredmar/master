@@ -1,0 +1,56 @@
+Gliederung Masterarbeit
+
+1. Einleitung
+
+2. Theoretische Grundlagen
+2.1 Video-Schnittstellen
+2.1.1 HDMI/DVI
+2.1.2 LVDS
+2.1.3 RGB
+2.1.4 VGA
+2.1.5 TV-Out
+2.1.6 Intel-8080/Motorola 6800
+2.2 betrachtete embedded Linux Boards
+2.2.1 Raspberry Pi
+2.2.2 Beaglebone Black
+2.2.3 Gnublin Extended
+
+3. Gnublin mit 8080-Interface Display
+3.1 Gnublin mit Display ueber GPIO-Pins
+3.1.1 Konzept
+3.1.2 Hardwareverbindung zwischen GPIO-Pins und Display
+3.1.3 User-Space-Treiber
+3.1.3.1 Low-Level Treiber
+3.1.3.1.1 GPIO-Pin Frequenz erhoehen
+3.1.3.1.2 GPIO-Treiber
+3.1.3.1.3 Displaytreiber fuer SSD1963
+3.1.3.2 Ansteuerung des Displays
+3.1.4 Vor- und Nachteile 
+3.2 Gnublin mit Display ueber SRAM-Interface
+3.2.1 Konzept
+3.2.2 MPMC - Multiport Memory Controller
+3.2.3 Hardwareverbindung zwischen SRAM-Interface und Display (Adapterplatine)
+3.2.4 Software
+3.2.4.1 Entwicklung eines Linux-Framebuffer-Treibers 
+3.2.4.2 Entwicklung eines User-Space-Treibers
+3.2.4.3 Anpassung des APEX-Bootloaders zur Verwendung des Displays
+3.2.4.2 Probleme bei der Entwicklung und Fehlersuche
+3.2.4.2.1 Rolle des User-Space-Treibers
+3.2.4.2.2 Debuggen mit Logik-Analyzer
+3.2.4.2.3 Loesung des Problems
+3.2.5 Vor- und Nachteile
+
+4. Verwendung der DVI-Schnittstelle
+4.1 Konzept
+4.2 Hardwareentwicklung
+4.2.1 Versorgung
+4.2.2 HDMI-RGB-Bridge
+4.2.3 RGB-LVDS Bridge
+4.2.4 EDID-Daten
+4.3 Softwareentwicklung
+4.3.1 EDID Daten auf embedded Seite
+4.3.2 EDID Daten auf PC Seite
+
+5. Zusammenfassung
+
+
