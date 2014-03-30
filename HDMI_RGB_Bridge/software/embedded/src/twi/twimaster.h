@@ -99,7 +99,7 @@
  @param  void
  @return none
  */
-extern void i2c_init(void);
+void i2c_init(void);
 
 
 /** 
@@ -107,7 +107,7 @@ extern void i2c_init(void);
  @param void
  @return none
  */
-extern void i2c_stop(void);
+void i2c_stop(void);
 
 
 /** 
@@ -117,7 +117,7 @@ extern void i2c_stop(void);
  @retval   0   device accessible 
  @retval   1   failed to access device 
  */
-extern unsigned char i2c_start(unsigned char addr);
+unsigned char i2c_start(unsigned char addr);
 
 
 /**
@@ -127,7 +127,7 @@ extern unsigned char i2c_start(unsigned char addr);
  @retval  0 device accessible
  @retval  1 failed to access device
  */
-extern unsigned char i2c_rep_start(unsigned char addr);
+unsigned char i2c_rep_start(unsigned char addr);
 
 
 /**
@@ -137,7 +137,7 @@ extern unsigned char i2c_rep_start(unsigned char addr);
  @param    addr address and transfer direction of I2C device
  @return   none
  */
-extern void i2c_start_wait(unsigned char addr);
+void i2c_start_wait(unsigned char addr);
 
  
 /**
@@ -146,20 +146,20 @@ extern void i2c_start_wait(unsigned char addr);
  @retval   0 write successful
  @retval   1 write failed
  */
-extern unsigned char i2c_write(unsigned char data);
+unsigned char i2c_write(unsigned char data);
 
 
 /**
  @brief    read one byte from the I2C device, request more data from device 
  @return   byte read from I2C device
  */
-extern unsigned char i2c_readAck(void);
+unsigned char i2c_readAck(void);
 
 /**
  @brief    read one byte from the I2C device, read is followed by a stop condition 
  @return   byte read from I2C device
  */
-extern unsigned char i2c_readNak(void);
+unsigned char i2c_readNak(void);
 
 /** 
  @brief    read one byte from the I2C device
@@ -170,7 +170,7 @@ extern unsigned char i2c_readNak(void);
                0 send nak, read is followed by a stop condition 
  @return   byte read from I2C device
  */
-extern unsigned char i2c_read(unsigned char ack);
+unsigned char i2c_read(unsigned char ack);
 #define i2c_read(ack)  (ack) ? i2c_readAck() : i2c_readNak(); 
 
 

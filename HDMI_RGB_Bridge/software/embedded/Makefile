@@ -5,11 +5,12 @@
 # (GNU make, BSD make, SysV make)
 
 
-MCU = atmega128
+MCU = atmega88
 FORMAT = ihex
 #FORMAT = binary
 TARGET = main
-SRC = src/uart/uart.c src/gpio/gpio_lcfg.c src/gpio/gpio.c src/$(TARGET).c
+#SRC = src/uart/uart.c src/twi/twimaster.c src/gpio/gpio_lcfg.c src/gpio/gpio.c src/$(TARGET).c
+SRC = src/uart/uart.c src/twi/twimaster.c src/$(TARGET).c
 ASRC =
 OPT = s
 

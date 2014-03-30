@@ -23,7 +23,7 @@
 /*--- Macros ---------------------------------------------------------*/
 #define F_CPU 7372800UL
 
-#define BAUD 38400UL      /**< the high baudrate */
+#define BAUD 38400UL    /**< the high baudrate */
 
 /** Calculated UBRR value for high baud rate */
 #define UBRR_VAL ((F_CPU+BAUD*8)/(BAUD*16)-1)
@@ -38,15 +38,6 @@ uint8_t new_data = 0;
 /** Buffer holding the received data set */
 char uart_str[MAXUARTSTR] = "";
 
-/** Status variable, indicating whether a RMC data set has been received (1) or not (0) */
-uint8_t rmc_found = 0;
-
-/** Status variable, indicating whether a VTG data set has been received (1) or not (0) */
-uint8_t vtg_found = 0;
-
-/** Status variable, indicating whether a GGA data set has been received (1) or not (0) */
-uint8_t gga_found = 0;
-
 /** Status variable, indicating whether the end of a data set has been found (\n\r) */
 uint8_t block_finished = 0;
 
@@ -54,7 +45,7 @@ uint8_t block_finished = 0;
 uint8_t new_data_index = 0;
 
 /*--- External Function Definitions ----------------------------------*/
-extern command_ready(sint8* cmd);
+extern command_ready(uint8 cmd, uint8 data);
 
 
 /**
@@ -147,25 +138,36 @@ ISR(USART0_RX_vect)
    uint8 timer_val = 0;
    next_char = UDR0;
 
-   if(next_char == '#'){
+   if(next_char == '#')
+   {
       uart_str_cnt = 0;
       block_finished = 0;
    }
-   if(next_char == '*' && !block_finished){
+   if(next_char == '*' && !block_finished)
+   {
       block_finished = 1;
-      if(uart_str[1] == "s")
+
+      switch(uart_str[1])
+      {
+      case 's':
          command_ready(CMD_WRITE_START, 0xFF);
-      else{
-         if(uart_str[1] == "w")
-         {
-               // TODO: convert two ascii bytes to one hex value
-         }
+         break;
+
+      case 'w':
+         command_ready(CMD_WRITE_DATA, uart_str[3]);
+         break;
+
+      case 'x':
+         command_ready(CMD_WRITE_STOP, 0xFF);
+         break;
+      default:
+         command_ready(CMD_ERROR, 0xFF);
+         break;
       }
-
-
    }
 
-   if(!block_finished){
+   if(!block_finished)
+   {
       uart_str[uart_str_cnt] = next_char;
       uart_str_cnt++;
    }

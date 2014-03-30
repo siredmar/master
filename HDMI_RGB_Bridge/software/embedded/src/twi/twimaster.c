@@ -9,7 +9,7 @@
 #include <inttypes.h>
 #include <compat/twi.h>
 
-#include <i2cmaster.h>
+#include "twimaster.h"
 
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
