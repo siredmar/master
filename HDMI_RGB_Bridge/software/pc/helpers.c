@@ -7,17 +7,25 @@
 #include "helpers.h"
 
 
-char* hexToString(unsigned char x)
-{
-   const char *hex = "0123456789ABCDEF";
+//char* hexToString(unsigned char x)
+//{
+//   const char *hex = "0123456789ABCDEF";
+//
+//   char ret[4];
+//   sprintf(ret, "0x%c%c\n", hex[x >> 4 & 0x0F], hex[x & 0x0F]);
+//   return ret;
+//}
 
-   char ret[4];
-   sprintf(ret, "0x%c%c\n", hex[x >> 4 & 0x0F], hex[x & 0x0F]);
-   return ret;
+unsigned char fileExists(char *fname)
+{
+   if( access( fname, F_OK ) != -1 ) {
+      return 1;
+   } else {
+      return 0;
+   }
 }
 
-
-void GtkTextviewAppend(GtkWidget *textview, gchar *text)
+void GtkTextviewAppend(GtkTextView *textview, gchar *text)
 {
    GtkTextBuffer *tbuffer;
    GtkTextIter ei;
@@ -59,7 +67,7 @@ void on_window_destroy (GtkObject *object, gpointer user_data)
 }
 
 
-int return_comport(char *comport)
+int return_comport(gchar *comport)
 {
    int retval = 0;
 
@@ -111,7 +119,7 @@ int return_comport(char *comport)
    return retval;
 }
 
-int return_baudrate(char *baud)
+int return_baudrate(gchar *baud)
 {
    int retval;
    retval = atoi(baud);

@@ -9,6 +9,5 @@ Hardware:
 Software:
 PC:
 * EDID Datenformat: http://www.extron.com/download/files/extronews/understandingedid.pdf
-* Hexstring zu echten Hex: http://www.opensource.apple.com/source/CommonCrypto/CommonCrypto-55010/LocalTests/XTSTest/hexString.c
-
+* RS232 Treiber: http://www.teuniz.net/RS-232/
 

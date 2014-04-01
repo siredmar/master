@@ -13,11 +13,12 @@
 #include <stdio.h>
 void on_window_destroy (GtkObject *object, gpointer user_data);
 gchar *open_filename(GtkWidget * widget);
-void GtkTextviewAppend(GtkWidget *textview, gchar *text);
-int return_comport(char *comport);
-int return_baudrate(char *baud);
+void GtkTextviewAppend(GtkTextView *textview, gchar *text);
+int return_comport(gchar *comport);
+int return_baudrate(gchar *baud);
 void clearTextWidget(GtkWidget *widget);
 char charToNibble(char c);
 unsigned char *hexStringToBytes(char *inhex);
+unsigned char fileExists(char *fname);
 
 #endif /* HELPERS_H_ */

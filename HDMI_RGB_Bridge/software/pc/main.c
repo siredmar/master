@@ -6,18 +6,18 @@
 #include "helpers.h"
 
 unsigned char *edid_string[128];
-unsigned char edid_raw[128];
+unsigned char *edid_raw;
+int comport;
+int baudrate;
 
 /* windows declarations */
-GtkWidget *window_main, *window_about, *window_preferences;//, *scrolled_window_hexfile, *scrolled_window_status;
+GtkWidget *window_main, *window_about, *window_preferences;
 
 /* window_main widgets */
 GtkWidget *text_hexfile, *text_info, *status, *button_program;
 
 /* window_preferences widges */
 GtkWidget *entry_serial_interface, *entry_baudrate, *button_save_settings, *button_discard_settings;
-
-//GtkTextBuffer *buffer_hexfile, *buffer_status;
 
 
 
@@ -26,64 +26,59 @@ void program_edid(GtkWidget * widget, gpointer user_data)
 
 }
 
-void preferences_discard(GtkWidget * widget, gpointer user_data)
+void preferences_back(GtkWidget * widget, gpointer user_data)
 {
-
-}
-
-void preferences_save(GtkWidget * widget, gpointer user_data)
-{
-
-}
-
-void help_abou(GtkWidget * widget, gpointer user_data)
-{
-
+   char sprintf_buf[255];
+   loadSerialSettings();
+   sprintf(sprintf_buf, "Set comport to %s at %s baud\n",gtk_entry_get_text(entry_serial_interface), gtk_entry_get_text(entry_baudrate));
+   GtkTextviewAppend(text_info, sprintf_buf);
+   gtk_widget_hide(window_preferences);
 }
 
 void edit_preferences(GtkWidget * widget, gpointer user_data)
 {
-
+   gtk_widget_show(window_preferences);
 }
 
-
-
-
-void file_open(GtkWidget * widget, gpointer user_data)
+unsigned char open_binary_file(char *filename)
 {
-
-   char sprintf_buf[255];
-   int cnt = 0;
-   char c;
    FILE *fp;
-   gchar *filename;
-
    long lSize;
    char * buffer;
    size_t result;
-
-
+   char sprintf_buf[255];
+   int cnt = 0;
+   //char c;
    clearTextWidget(text_hexfile);
 
-   filename = open_filename(window_main);
-   sprintf(sprintf_buf, "Opening %s\n", filename);
-   GtkTextviewAppend(text_info, sprintf_buf);
-
+   if(filename == NULL)
+   {
+      sprintf(sprintf_buf, "Error opening file: no file selected!\n");
+      GtkTextviewAppend(text_info, sprintf_buf);
+      return 1;
+   }
+   else
+   {
+      sprintf(sprintf_buf, "Opening %s\n", filename);
+      GtkTextviewAppend(text_info, sprintf_buf);
+   }
    fp = fopen(filename, "rb");
    if (fp == NULL)
    {
-      GtkTextviewAppend(text_info, "Error opening profile file!\n");
+      GtkTextviewAppend(text_info, "Error opening file!\n");
+      return 2;
    }
    fseek (fp, 0, SEEK_END);
    lSize = ftell (fp);
    rewind (fp);
 
-   // allocate memory to contain the whole file:
    buffer = (unsigned char*) malloc (sizeof(unsigned char)*lSize);
+   edid_raw = (unsigned char*) malloc (sizeof(unsigned char)*lSize);
    if (buffer == NULL)
    {
       sprintf(buffer, "Memory error ", stderr);
       GtkTextviewAppend(text_info, buffer);
+      return 3;
    }
 
    result = fread (buffer, 1, lSize, fp);
@@ -91,41 +86,52 @@ void file_open(GtkWidget * widget, gpointer user_data)
    {
       sprintf(sprintf_buf, "Reading error ", stderr);
       GtkTextviewAppend(text_info, sprintf_buf);
+      return 4;
    }
 
-   printf("%s\n", buffer);
+   //printf("%s\n", buffer);
    for(cnt = 0; cnt < lSize; cnt++)
    {
-      edid_raw[cnt] = buffer[cnt];
-      sprintf(sprintf_buf, "0x%.2X ", buffer[cnt]);
-      printf("cnt[%i]: 0x%.2X\n", cnt, buffer[cnt]);
+      edid_raw[cnt] = (0xFF & buffer[cnt]);
+      sprintf(sprintf_buf, "0x%.2X ", edid_raw[cnt]);
+      printf("cnt[%i]: 0x%.2X\n", cnt, edid_raw[cnt]);
       GtkTextviewAppend(text_hexfile, sprintf_buf);
    }
-   //   do {
-   //      c = fgetc (fp);
-   //      edid_raw[cnt] = c;
-   //      printf("cnt[%i]: 0x%X\n", cnt, c);
-   //      sprintf(buffer, "%c", c);
-   //      GtkTextviewAppend(text_hexfile, buffer);
-   //      cnt++;
-   //   } while (c != EOF);
-
+   fclose(fp);
+   free(buffer);
 
 }
 
+void file_open(GtkWidget * widget, gpointer user_data)
+{
+
+   gchar *filename;
+
+   filename = open_filename(window_main);
+   open_binary_file(filename);
+}
+
+void loadSerialSettings()
+{
+//   char *sprintf_buf;
+//   static int firstrun = 1;
+//   if(firstrun)
+//   {
+      comport = return_comport(gtk_entry_get_text(entry_serial_interface));
+      baudrate = return_baudrate(gtk_entry_get_text(entry_baudrate));
+
+//      firstrun = 0;
+//   }
+}
 
 int main(int argc, char *argv[])
 {
-
-
-
-
    GtkBuilder *builder;
 
-   g_thread_init(NULL);
-   gdk_threads_init();
-
-   gdk_threads_enter();
+   //   g_thread_init(NULL);
+   //   gdk_threads_init();
+   //
+   //   gdk_threads_enter();
    gtk_init(&argc, &argv);
 
    builder = gtk_builder_new();
@@ -147,26 +153,30 @@ int main(int argc, char *argv[])
    entry_baudrate          = GTK_WIDGET(gtk_builder_get_object(builder, "entry_baudrate"));
    button_save_settings    = GTK_WIDGET(gtk_builder_get_object(builder, "button_save_settings"));
    button_discard_settings = GTK_WIDGET(gtk_builder_get_object(builder, "button_discard_settings"));
-   //
-   //   buffer_hexfile = gtk_text_buffer_new (NULL);
-   //   buffer_status = gtk_text_buffer_new (NULL);
 
-   //   scrolled_window_hexfile = gtk_scrolled_window_new (NULL, NULL);
-   //   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window_hexfile),
-   //                                     GTK_POLICY_AUTOMATIC,
-   //                                     GTK_POLICY_AUTOMATIC);
-   //
-   //
-   //   scrolled_window_status = gtk_scrolled_window_new (NULL, NULL);
-   //   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window_status),
-   //                                     GTK_POLICY_AUTOMATIC,
-   //                                     GTK_POLICY_AUTOMATIC);
 
    gtk_builder_connect_signals(builder, NULL);
    g_object_unref(G_OBJECT(builder));
 
    gtk_widget_show(window_main);
+   loadSerialSettings();
+
+   if(argc > 1)
+   {
+      if(fileExists(argv[1]))
+      {
+         open_binary_file(argv[1]);
+      }
+      else
+      {
+         GtkTextviewAppend(text_info, "Error: File does not exist!\n");
+      }
+   }
+
    gtk_main();
-   gdk_threads_leave();
+
+
+
+   //   gdk_threads_leave();
    return 0;
 }

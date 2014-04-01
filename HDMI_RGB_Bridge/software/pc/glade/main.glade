@@ -2,41 +2,6 @@
 <glade-interface>
   <!-- interface-requires gtk+ 2.24 -->
   <!-- interface-naming-policy project-wide -->
-  <widget class="GtkAboutDialog" id="window_about">
-    <property name="can_focus">False</property>
-    <property name="border_width">5</property>
-    <property name="type_hint">dialog</property>
-    <property name="program_name">EDID Programmer</property>
-    <property name="version">0.1</property>
-    <property name="copyright" translatable="yes">(c) 2014 Armin Schlegel</property>
-    <property name="comments" translatable="yes">This program sends EDID data to the
-HDMI_RGB_LVDS hardware.</property>
-    <property name="website">https://github.com/siredmar/master/tree/master/HDMI_RGB_Bridge</property>
-    <property name="authors">Armin Schlegel</property>
-    <child internal-child="vbox">
-      <widget class="GtkVBox" id="dialog-vbox1">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <widget class="GtkHButtonBox" id="dialog-action_area1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-          </widget>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-      </widget>
-    </child>
-  </widget>
   <widget class="GtkWindow" id="window_main">
     <property name="width_request">550</property>
     <property name="height_request">430</property>
@@ -44,6 +9,7 @@ HDMI_RGB_LVDS hardware.</property>
     <property name="resizable">False</property>
     <property name="default_width">600</property>
     <property name="default_height">350</property>
+    <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
     <child>
       <widget class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -110,30 +76,6 @@ HDMI_RGB_LVDS hardware.</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="edit_preferences" swapped="no"/>
-                      </widget>
-                    </child>
-                  </widget>
-                </child>
-              </widget>
-            </child>
-            <child>
-              <widget class="GtkMenuItem" id="menu_help">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Help</property>
-                <property name="use_underline">True</property>
-                <child>
-                  <widget class="GtkMenu" id="help">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <widget class="GtkImageMenuItem" id="imagemenuitem10">
-                        <property name="label">gtk-about</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="help_about" swapped="no"/>
                       </widget>
                     </child>
                   </widget>
@@ -242,26 +184,18 @@ HDMI_RGB_LVDS hardware.</property>
     <property name="width_request">275</property>
     <property name="height_request">150</property>
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Serial interface preferences</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="deletable">False</property>
+    <signal name="destroy" handler="preferences_close" swapped="no"/>
+    <signal name="destroy" handler="window_preferences_destroy_cb" swapped="no"/>
     <child>
       <widget class="GtkFixed" id="fixed2">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <child>
-          <widget class="GtkButton" id="button_save_settings">
-            <property name="label" translatable="yes">Save</property>
-            <property name="width_request">100</property>
-            <property name="height_request">25</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="yalign">0.55000001192092896</property>
-            <signal name="clicked" handler="preferences_save" swapped="no"/>
-          </widget>
-          <packing>
-            <property name="x">25</property>
-            <property name="y">100</property>
-          </packing>
-        </child>
         <child>
           <widget class="GtkLabel" id="label_serial_interface">
             <property name="width_request">100</property>
@@ -326,13 +260,15 @@ HDMI_RGB_LVDS hardware.</property>
         </child>
         <child>
           <widget class="GtkButton" id="button_discard_settings">
-            <property name="label" translatable="yes">Discard</property>
+            <property name="label" translatable="yes">Save
+</property>
             <property name="width_request">100</property>
             <property name="height_request">25</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <signal name="activate" handler="preferences_discard" swapped="no"/>
+            <signal name="destroy" handler="preferences_back" swapped="no"/>
+            <signal name="clicked" handler="preferences_back" swapped="no"/>
           </widget>
           <packing>
             <property name="x">150</property>
