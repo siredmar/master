@@ -3261,10 +3261,10 @@ LED 0402
 <part name="U$71" library="SchlegelAr_Master" deviceset="+3V3" device=""/>
 <part name="U$72" library="SchlegelAr_Master" deviceset="+9V6" device=""/>
 <part name="U$73" library="SchlegelAr_Master" deviceset="+12V" device=""/>
-<part name="R24" library="SchlegelAr_Master" deviceset="R" device="0402" value="260R"/>
+<part name="R24" library="SchlegelAr_Master" deviceset="R" device="0402" value="261R"/>
 <part name="R25" library="SchlegelAr_Master" deviceset="R" device="0402" value="600R"/>
-<part name="R26" library="SchlegelAr_Master" deviceset="R" device="0402" value="1.5k"/>
-<part name="R27" library="SchlegelAr_Master" deviceset="R" device="0402" value="2k"/>
+<part name="R26" library="SchlegelAr_Master" deviceset="R" device="0402" value="1k5"/>
+<part name="R27" library="SchlegelAr_Master" deviceset="R" device="0402" value="2k5"/>
 <part name="U$78" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$79" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$80" library="SchlegelAr_Master" deviceset="GND" device=""/>

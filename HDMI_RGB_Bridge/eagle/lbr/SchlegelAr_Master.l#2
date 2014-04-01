@@ -3789,7 +3789,7 @@ http://www.mouser.com/ds/2/293/2012fpcap_catalog_sssasb-1932.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="LED" prefix="LED">
+<deviceset name="LED" prefix="LED" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="LED" x="0" y="0"/>
 </gates>

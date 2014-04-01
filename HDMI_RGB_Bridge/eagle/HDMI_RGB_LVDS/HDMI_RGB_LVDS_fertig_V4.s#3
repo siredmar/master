@@ -3634,20 +3634,20 @@ backlight</text>
 <instance part="U$21" gate="G$1" x="78.74" y="119.38"/>
 <instance part="LED1" gate="G$1" x="236.22" y="223.52" rot="R180"/>
 <instance part="LED2" gate="G$1" x="251.46" y="223.52" rot="R180"/>
-<instance part="LED3" gate="G$1" x="269.24" y="223.52" rot="R180"/>
-<instance part="LED4" gate="G$1" x="284.48" y="223.52" rot="R180"/>
+<instance part="LED3" gate="G$1" x="266.7" y="223.52" rot="R180"/>
+<instance part="LED4" gate="G$1" x="281.94" y="223.52" rot="R180"/>
 <instance part="U$70" gate="G$1" x="236.22" y="228.6"/>
 <instance part="U$71" gate="G$1" x="251.46" y="228.6"/>
-<instance part="U$72" gate="G$1" x="269.24" y="228.6"/>
-<instance part="U$73" gate="G$1" x="284.48" y="228.6"/>
+<instance part="U$72" gate="G$1" x="266.7" y="228.6"/>
+<instance part="U$73" gate="G$1" x="281.94" y="228.6"/>
 <instance part="R24" gate="G$1" x="236.22" y="210.82" rot="R90"/>
 <instance part="R25" gate="G$1" x="251.46" y="210.82" rot="R90"/>
-<instance part="R26" gate="G$1" x="269.24" y="210.82" rot="R90"/>
-<instance part="R27" gate="G$1" x="284.48" y="210.82" rot="R90"/>
+<instance part="R26" gate="G$1" x="266.7" y="210.82" rot="R90"/>
+<instance part="R27" gate="G$1" x="281.94" y="210.82" rot="R90"/>
 <instance part="U$78" gate="G$1" x="236.22" y="200.66"/>
 <instance part="U$79" gate="G$1" x="251.46" y="200.66"/>
-<instance part="U$80" gate="G$1" x="269.24" y="200.66"/>
-<instance part="U$81" gate="G$1" x="284.48" y="200.66"/>
+<instance part="U$80" gate="G$1" x="266.7" y="200.66"/>
+<instance part="U$81" gate="G$1" x="281.94" y="200.66"/>
 </instances>
 <busses>
 </busses>
@@ -3726,12 +3726,12 @@ backlight</text>
 <segment>
 <pinref part="U$80" gate="G$1" pin="GND"/>
 <pinref part="R26" gate="G$1" pin="P$1"/>
-<wire x1="269.24" y1="205.74" x2="269.24" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="205.74" x2="266.7" y2="200.66" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$81" gate="G$1" pin="GND"/>
 <pinref part="R27" gate="G$1" pin="P$1"/>
-<wire x1="284.48" y1="205.74" x2="284.48" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="281.94" y1="205.74" x2="281.94" y2="200.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+3V3" class="0">
@@ -3807,7 +3807,7 @@ backlight</text>
 <segment>
 <pinref part="U$72" gate="G$1" pin="+9V6"/>
 <pinref part="LED3" gate="G$1" pin="C"/>
-<wire x1="269.24" y1="226.06" x2="269.24" y2="228.6" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="226.06" x2="266.7" y2="228.6" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$35" class="0">
@@ -3850,7 +3850,7 @@ backlight</text>
 <segment>
 <pinref part="U$73" gate="G$1" pin="+12V"/>
 <pinref part="LED4" gate="G$1" pin="C"/>
-<wire x1="284.48" y1="226.06" x2="284.48" y2="228.6" width="0.1524" layer="91"/>
+<wire x1="281.94" y1="226.06" x2="281.94" y2="228.6" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -3871,14 +3871,14 @@ backlight</text>
 <segment>
 <pinref part="LED3" gate="G$1" pin="A"/>
 <pinref part="R26" gate="G$1" pin="P$2"/>
-<wire x1="269.24" y1="215.9" x2="269.24" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="215.9" x2="266.7" y2="218.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
 <pinref part="LED4" gate="G$1" pin="A"/>
 <pinref part="R27" gate="G$1" pin="P$2"/>
-<wire x1="284.48" y1="215.9" x2="284.48" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="281.94" y1="215.9" x2="281.94" y2="218.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

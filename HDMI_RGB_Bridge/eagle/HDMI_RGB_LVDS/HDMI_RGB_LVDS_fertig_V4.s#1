@@ -3373,6 +3373,8 @@ S6: Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt</text>
 <text x="35.56" y="172.72" size="2.54" layer="94">S2: Blockschaltbild angepasst, Versorgungsgraph angepasst</text>
 <text x="10.16" y="165.1" size="2.54" layer="94">26.03.2014</text>
 <text x="35.56" y="165.1" size="2.54" layer="94">S3: Supply voltage indicator LEDs hinzugefuegt</text>
+<text x="10.16" y="157.48" size="2.54" layer="94">29.03.2014</text>
+<text x="35.56" y="157.48" size="2.54" layer="94">S3: added Pull-Up Resistors on I2C SCL and SDA</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="0" y="0"/>

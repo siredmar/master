@@ -3460,7 +3460,7 @@ TI SN75LVDS83B</text>
 <text x="22.86" y="175.26" size="2.54" layer="94">I2C EEPROM
 
 Atmel AT2401C</text>
-<text x="22.86" y="144.78" size="2.54" layer="94">Atmel ATmega32U4</text>
+<text x="22.86" y="144.78" size="2.54" layer="94">Atmel ATmega88</text>
 <text x="40.64" y="195.58" size="2.54" layer="97">Edid data</text>
 <text x="134.62" y="223.52" size="2.54" layer="97">RGB Bus</text>
 <text x="200.66" y="223.52" size="2.54" layer="97">LVDS</text>
@@ -3475,7 +3475,7 @@ Atmel AT2401C</text>
 <text x="182.88" y="152.4" size="3.81" layer="94">+12V</text>
 <rectangle x1="182.88" y1="114.3" x2="360.68" y2="116.84" layer="94"/>
 <text x="182.88" y="116.84" size="3.81" layer="94">+5V</text>
-<text x="185.42" y="99.06" size="3.81" layer="92">ATmega48</text>
+<text x="185.42" y="99.06" size="3.81" layer="92">ATmega88</text>
 <text x="233.68" y="99.06" size="3.81" layer="92">I2C EEPROM</text>
 <text x="281.94" y="99.06" size="3.81" layer="92">FT232RL</text>
 <text x="185.42" y="63.5" size="3.81" layer="92">TFP401A</text>
