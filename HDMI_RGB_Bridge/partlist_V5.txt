@@ -1,0 +1,96 @@
+Partlist
+
+Exported from HDMI_RGB_LVDS_fertig_V5.sch at 4/2/14 1:35 PM
+
+EAGLE Version 6.3.0 Copyright (c) 1988-2012 CadSoft
+
+Assembly variant: 
+
+Part     Value                Device                        Package              Library           Sheet
+
+C1       100u                 RSS1C101MCN1GS                C_POL_6X6MM          SchlegelAr_Master 3
+C2       10u                  C_POL4X4MM                    C_POL_4X4MM          SchlegelAr_Master 3
+C3       100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C4       100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C6       100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C7       22p                  C_SMD0402                     C0402                SchlegelAr_Master 5
+C8       22p                  C_SMD0402                     C0402                SchlegelAr_Master 5
+C9       100n                 C_SMD0402                     C0402                SchlegelAr_Master 5
+C10      100n                 C_SMD0402                     C0402                SchlegelAr_Master 5
+C11      100n                 C_SMD0402                     C0402                SchlegelAr_Master 5
+C12      100n                 C_SMD0402                     C0402                SchlegelAr_Master 5
+C13      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C14      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C15      0.01u                C_SMD0402                     C0402                SchlegelAr_Master 6
+C16      0.1u                 C_SMD0402                     C0402                SchlegelAr_Master 6
+C17      0.01u                C_SMD0402                     C0402                SchlegelAr_Master 6
+C18      0.1u                 C_SMD0402                     C0402                SchlegelAr_Master 6
+C19      0.01u                C_SMD0402                     C0402                SchlegelAr_Master 6
+C20      0.1u                 C_SMD0402                     C0402                SchlegelAr_Master 6
+C21      0.01u                C_SMD0402                     C0402                SchlegelAr_Master 6
+C22      0.01u                C_SMD0402                     C0402                SchlegelAr_Master 6
+C23      100n                 C_SMD0402                     C0402                SchlegelAr_Master 5
+C24      100n                 C_SMD0402                     C0402                SchlegelAr_Master 5
+C25      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C26      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C27      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C28      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C29      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C30      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C31      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C32      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C33      100n                 C_SMD0402                     C0402                SchlegelAr_Master 4
+C34      10u                  C_POL4X4MM                    C_POL_4X4MM          SchlegelAr_Master 4
+C35      10u                  C_POL4X4MM                    C_POL_4X4MM          SchlegelAr_Master 4
+C36      10u                  C_POL4X4MM                    C_POL_4X4MM          SchlegelAr_Master 6
+CON1     KLDX-0202-A-LT       KLDX-0202-A-LT                KLDX-0202-A-LT       SchlegelAr_Master 3
+CON2     FCI-10029449-111RLF  FCI-10029449-111RLF           FCI-10029449-111RLF  SchlegelAr_Master 4
+CON3     XF2M-4015-1A         XF2M-4015-1A                  XF2M-4015-1A         SchlegelAr_Master 4
+CON4     FCI-10033526-N3212LF FCI-10033526-N3212LF          FCI-10033526-N3212LF SchlegelAr_Master 5
+CON5     MOLEX-53261-0671     MOLEX-53261-0671              MOLEX-53261-0671     SchlegelAr_Master 5
+CON6     FI-X30SSLA-HF        FI-X30SSLA-HF                 FI-X30SSLA-HF        SchlegelAr_Master 6
+IC2      WPMDL1300331BD       WPMDL1300331BD                TO263-5              SchlegelAr_Master 3
+IC4      AT24C01C-SSHM-B      AT24C01C-SSHM-B               SOIC8                SchlegelAr_Master 5
+IC5      TFP401APZP           TFP401APZP                    HTQFP-100            SchlegelAr_Master 4
+IC6      ATMEGA48A-AU         ATMEGA48A-AU                  TQFP32               SchlegelAr_Master 5
+IC7      FT232RL              FT232RL                       SSOP28               SchlegelAr_Master 5
+IC8      SN75LVDS83BDGGR      SN75LVDS83BDGGR               TSSOP-56             SchlegelAr_Master 6
+JP1      JUMPER2              JUMPER2                       JUMPER2_THROUGHHOLE  SchlegelAr_Master 4
+JP2      JUMPER2              JUMPER2                       JUMPER2_THROUGHHOLE  SchlegelAr_Master 4
+JP3      JUMPER2              JUMPER2                       JUMPER2_THROUGHHOLE  SchlegelAr_Master 4
+JP4      JUMPER3              JUMPER3                       JUMPER3_THROUGHHOLE  SchlegelAr_Master 4
+JP5                           JUMPER2                       JUMPER2_THROUGHHOLE  SchlegelAr_Master 5
+JP6      JUMPER3              JUMPER3                       JUMPER3_THROUGHHOLE  SchlegelAr_Master 5
+JP7                           JUMPER2                       JUMPER2_THROUGHHOLE  SchlegelAr_Master 6
+JP8                           JUMPER2                       JUMPER2_THROUGHHOLE  SchlegelAr_Master 6
+LED1                          LED0402                       LED0402              SchlegelAr_Master 3
+LED2                          LED0402                       LED0402              SchlegelAr_Master 3
+Q1       ATS073ASM-1          ATS073ASM-1                   HC49/USSM            SchlegelAr_Master 5
+R1       100k                 R0402                         R0402                SchlegelAr_Master 3
+R2       22R                  CTR-742C083220JP-4X22R-4X0603 R-ARRAY-4X0603       SchlegelAr_Master 4
+R3       22R                  CTR-742C083220JP-4X22R-4X0603 R-ARRAY-4X0603       SchlegelAr_Master 4
+R4       10k                  R0402                         R0402                SchlegelAr_Master 6
+R5       10k                  R0402                         R0402                SchlegelAr_Master 4
+R6       10k                  R0402                         R0402                SchlegelAr_Master 4
+R7       10k                  R0402                         R0402                SchlegelAr_Master 4
+R8       22R                  CTR-742C083220JP-4X22R-4X0603 R-ARRAY-4X0603       SchlegelAr_Master 4
+R9       22R                  CTR-742C083220JP-4X22R-4X0603 R-ARRAY-4X0603       SchlegelAr_Master 4
+R10      22R                  CTR-742C083220JP-4X22R-4X0603 R-ARRAY-4X0603       SchlegelAr_Master 4
+R11      22R                  CTR-742C083220JP-4X22R-4X0603 R-ARRAY-4X0603       SchlegelAr_Master 4
+R12      22R                  CTR-742C083220JP-4X22R-4X0603 R-ARRAY-4X0603       SchlegelAr_Master 4
+R13      10k                  R0402                         R0402                SchlegelAr_Master 5
+R14      22R                  R0402                         R0402                SchlegelAr_Master 5
+R15      10k                  R0402                         R0402                SchlegelAr_Master 4
+R16      10k                  R0402                         R0402                SchlegelAr_Master 5
+R17      10k                  R0402                         R0402                SchlegelAr_Master 5
+R18      10k                  R0402                         R0402                SchlegelAr_Master 6
+R19      10k                  35WR5KLFTR                    35WR5KLFTR           SchlegelAr_Master 5
+R20      15R                  R2512                         R2512                SchlegelAr_Master 4
+R22      0R                   R0402                         R0402                SchlegelAr_Master 5
+R23      0R                   R0402                         R0402                SchlegelAr_Master 5
+R25      600R                 R0402                         R0402                SchlegelAr_Master 3
+R27      2k5                  R0402                         R0402                SchlegelAr_Master 3
+R28      10k                  R0402                         R0402                SchlegelAr_Master 5
+R29      10k                  R0402                         R0402                SchlegelAr_Master 5
+T1       IRLML5203TRPBF       IRLML5203TRPBF                SOT23                SchlegelAr_Master 3
+T2       IRLML2502TRPBF       IRLML2502TRPBF                SOT23                SchlegelAr_Master 4

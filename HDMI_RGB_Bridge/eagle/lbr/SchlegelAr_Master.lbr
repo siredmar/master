@@ -3827,6 +3827,31 @@ LED 0402
 </device>
 </devices>
 </deviceset>
+<deviceset name="IRLML5203TRPBF" prefix="T">
+<description>&lt;b&gt;
+IRLML5203TRPBF
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/International-Rectifier/IRLML5203TRPBF/?qs=sGAEpiMZZMshyDBzk1%2fWi5%252bqVgN3%252bWS8t7qb9msI9Rk%3d
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/200/irlml5203pbf-223113.pdf</description>
+<gates>
+<gate name="G$1" symbol="P-MOSFET" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOT23">
+<connects>
+<connect gate="G$1" pin="D" pad="3"/>
+<connect gate="G$1" pin="G" pad="1"/>
+<connect gate="G$1" pin="S" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </drawing>

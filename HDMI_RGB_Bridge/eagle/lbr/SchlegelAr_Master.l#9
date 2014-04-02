@@ -3728,6 +3728,14 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="RSS1C101MCN1GS" prefix="C" uservalue="yes">
+<description>&lt;b&gt;
+RSS1C101MCN1GS
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 26.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/Nichicon/RSS1C101MCN1GS/?qs=%2fha2pyFaduh4ekcK%2fe1iGdvzMnyaUytWBcNeRf1q51h9wFdnE1%2fDNQ%3d%3d
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/293/2012fpcap_catalog_sssasb-1932.pdf</description>
 <gates>
 <gate name="G$1" symbol="C_POL" x="2.54" y="0"/>
 </gates>
