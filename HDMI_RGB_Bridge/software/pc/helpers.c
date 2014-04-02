@@ -6,6 +6,8 @@
  */
 #include "helpers.h"
 
+extern GtkWidget *text_info;
+extern GtkWidget *text_hexfile;
 
 //char* hexToString(unsigned char x)
 //{
@@ -25,14 +27,46 @@ unsigned char fileExists(char *fname)
    }
 }
 
-void GtkTextviewAppend(GtkTextView *textview, gchar *text)
+//void GtkTextviewAppend(GtkWidget *textview, gchar *text)
+//{
+//   GtkTextBuffer *tbuffer;
+//   GtkTextIter ei;
+//
+//   tbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
+//   gtk_text_buffer_get_end_iter(tbuffer, &ei);
+//   gtk_text_buffer_insert(tbuffer, &ei, text, -1);
+//}
+
+void GtkTextviewAppendHexfile(const char *format, ...)
 {
    GtkTextBuffer *tbuffer;
    GtkTextIter ei;
+   char sprintf_buf[255];
+   va_list arglist;
 
-   tbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
+   va_start( arglist, format );
+   vsprintf(sprintf_buf, format, arglist );
+   va_end( arglist );
+
+   tbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_hexfile));
    gtk_text_buffer_get_end_iter(tbuffer, &ei);
-   gtk_text_buffer_insert(tbuffer, &ei, text, -1);
+   gtk_text_buffer_insert(tbuffer, &ei, sprintf_buf, -1);
+}
+
+void GtkTextviewAppendInfo(const char *format, ...)
+{
+   GtkTextBuffer *tbuffer;
+   GtkTextIter ei;
+   char sprintf_buf[255];
+   va_list arglist;
+
+   va_start( arglist, format );
+   vsprintf(sprintf_buf, format, arglist );
+   va_end( arglist );
+
+   tbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_info));
+   gtk_text_buffer_get_end_iter(tbuffer, &ei);
+   gtk_text_buffer_insert(tbuffer, &ei, sprintf_buf, -1);
 }
 
 
@@ -58,7 +92,7 @@ gchar *open_filename(GtkWidget * widget)
 void clearTextWidget(GtkWidget *widget)
 {
    GtkTextBuffer *buffer = NULL;
-   gtk_text_view_set_buffer(widget, buffer);
+   gtk_text_view_set_buffer(GTK_TEXT_VIEW(widget), buffer);
 }
 
 void on_window_destroy (GtkObject *object, gpointer user_data)
@@ -67,7 +101,7 @@ void on_window_destroy (GtkObject *object, gpointer user_data)
 }
 
 
-int return_comport(gchar *comport)
+int return_comport(const gchar *comport)
 {
    int retval = 0;
 
@@ -107,7 +141,7 @@ int return_comport(gchar *comport)
       retval = 16;
    else if (strcmp(comport, "ttyUSB1") == 0)
       retval = 17;
-   else if (strcmp(comport, "ttyUSB@") == 0)
+   else if (strcmp(comport, "ttyUSB2") == 0)
       retval = 18;
    else if (strcmp(comport, "ttyUSB3") == 0)
       retval = 19;
@@ -115,14 +149,34 @@ int return_comport(gchar *comport)
       retval = 20;
    else if (strcmp(comport, "ttyUSB5") == 0)
       retval = 21;
-   printf("return_comport->comport: %s, retval: %d\n", comport, retval);
+   else if (strcmp(comport, "ttyAMA0") == 0)
+      retval = 22;
+   else if (strcmp(comport, "ttyAMA1") == 0)
+      retval = 23;
+   else if (strcmp(comport, "ttyACM0") == 0)
+      retval = 24;
+   else if (strcmp(comport, "ttyACM1") == 0)
+      retval = 25;
+   else if (strcmp(comport, "rfcomm0") == 0)
+      retval = 26;
+   else if (strcmp(comport, "rfcomm1") == 0)
+      retval = 27;
+   else if (strcmp(comport, "ircomm0") == 0)
+      retval = 28;
+   else if (strcmp(comport, "ircomm1") == 0)
+      retval = 29;
+
    return retval;
 }
 
-int return_baudrate(gchar *baud)
+int return_baudrate(const gchar *baud)
 {
    int retval;
    retval = atoi(baud);
 
    return retval;
 }
+
+
+
+

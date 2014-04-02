@@ -20,18 +20,90 @@ GtkWidget *text_hexfile, *text_info, *status, *button_program;
 GtkWidget *entry_serial_interface, *entry_baudrate, *button_save_settings, *button_discard_settings;
 
 
+void loadSerialSettings()
+{
+   comport = return_comport(gtk_entry_get_text(GTK_ENTRY(entry_serial_interface)));
+   baudrate = return_baudrate(gtk_entry_get_text(GTK_ENTRY(entry_baudrate)));
+}
+
+int writeConfigFile()
+{
+   FILE * fp;
+   char sprintf_buf[255];
+   char filename[255];
+
+   sprintf(filename, "%s/.edid_writer/config", getenv("HOME"));
+   fp = fopen(filename, "w+");
+   if (fp == NULL)
+   {
+
+      GtkTextviewAppendInfo("Cannot open config file %s! Check permissions!\n", filename);
+      return 1;
+   }
+   sprintf(sprintf_buf, "%s\n%s\n", gtk_entry_get_text(GTK_ENTRY(entry_serial_interface)), gtk_entry_get_text(GTK_ENTRY(entry_baudrate)));
+   fputs(sprintf_buf, fp);
+
+   //sprintf(sprintf_buf, );
+   GtkTextviewAppendInfo("Writing config file: %s.\n", filename);
+
+   fclose(fp);
+   return 0;
+}
+
+int readConfigFile()
+{
+   FILE * fp;
+   char * line = NULL;
+   size_t len = 0;
+   ssize_t read;
+   char filename[255];
+   char config_file_read[2][255];
+   int cnt = 0;
+   char* pRemoveNewline ;
+
+
+   sprintf(filename, "%s/.edid_writer/config", getenv("HOME"));
+   fp = fopen(filename, "r");
+   if (fp == NULL)
+   {
+      GtkTextviewAppendInfo("Cannot open config file %s. Setting default values!\n", filename);
+      writeConfigFile();
+      return 1;
+   }
+   while ((read = getline(&line, &len, fp)) != -1)
+   {
+      sprintf(config_file_read[cnt], "%s", line);
+      pRemoveNewline = strstr(config_file_read[cnt++], "\n");
+      *pRemoveNewline = '\0';
+   }
+
+   GtkTextviewAppendInfo("Reading config file: %s. Setting comport to %s at %s baud.\n", filename, config_file_read[0], config_file_read[1]);
+
+   gtk_entry_set_text(GTK_ENTRY(entry_serial_interface), config_file_read[0]);
+   gtk_entry_set_text(GTK_ENTRY(entry_baudrate), config_file_read[1]);
+
+
+   if (line)
+      free(line);
+   fclose(fp);
+   return 0;
+}
 
 void program_edid(GtkWidget * widget, gpointer user_data)
 {
-
+   int ret;
+   ret = RS232_OpenComport(comport, baudrate);
+   if(ret == 1)
+   {
+      GtkTextviewAppendInfo("Error opening Comport! Check port and baudrate!\n");
+   }
 }
 
 void preferences_back(GtkWidget * widget, gpointer user_data)
 {
-   char sprintf_buf[255];
    loadSerialSettings();
-   sprintf(sprintf_buf, "Set comport to %s at %s baud\n",gtk_entry_get_text(entry_serial_interface), gtk_entry_get_text(entry_baudrate));
-   GtkTextviewAppend(text_info, sprintf_buf);
+   GtkTextviewAppendInfo("Set comport to %s at %s baud\n",gtk_entry_get_text(GTK_ENTRY(entry_serial_interface)), gtk_entry_get_text(GTK_ENTRY(entry_baudrate)));
+   writeConfigFile();
    gtk_widget_hide(window_preferences);
 }
 
@@ -46,60 +118,52 @@ unsigned char open_binary_file(char *filename)
    long lSize;
    char * buffer;
    size_t result;
-   char sprintf_buf[255];
    int cnt = 0;
    //char c;
    clearTextWidget(text_hexfile);
 
    if(filename == NULL)
    {
-      sprintf(sprintf_buf, "Error opening file: no file selected!\n");
-      GtkTextviewAppend(text_info, sprintf_buf);
+      GtkTextviewAppendInfo("Error opening file: no file selected!\n");
       return 1;
    }
    else
    {
-      sprintf(sprintf_buf, "Opening %s\n", filename);
-      GtkTextviewAppend(text_info, sprintf_buf);
+      GtkTextviewAppendInfo("Opening %s\n", filename);
    }
    fp = fopen(filename, "rb");
    if (fp == NULL)
    {
-      GtkTextviewAppend(text_info, "Error opening file!\n");
+      GtkTextviewAppendInfo("Error opening file!\n");
       return 2;
    }
    fseek (fp, 0, SEEK_END);
    lSize = ftell (fp);
    rewind (fp);
 
-   buffer = (unsigned char*) malloc (sizeof(unsigned char)*lSize);
+   buffer = (char*) malloc (sizeof(char)*lSize);
    edid_raw = (unsigned char*) malloc (sizeof(unsigned char)*lSize);
    if (buffer == NULL)
    {
-      sprintf(buffer, "Memory error ", stderr);
-      GtkTextviewAppend(text_info, buffer);
+      GtkTextviewAppendInfo("Memory error ", stderr);
       return 3;
    }
 
    result = fread (buffer, 1, lSize, fp);
    if (result != lSize)
    {
-      sprintf(sprintf_buf, "Reading error ", stderr);
-      GtkTextviewAppend(text_info, sprintf_buf);
+      GtkTextviewAppendInfo("Reading error ", stderr);
       return 4;
    }
 
-   //printf("%s\n", buffer);
    for(cnt = 0; cnt < lSize; cnt++)
    {
       edid_raw[cnt] = (0xFF & buffer[cnt]);
-      sprintf(sprintf_buf, "0x%.2X ", edid_raw[cnt]);
-      printf("cnt[%i]: 0x%.2X\n", cnt, edid_raw[cnt]);
-      GtkTextviewAppend(text_hexfile, sprintf_buf);
+      GtkTextviewAppendHexfile("0x%.2X ", edid_raw[cnt]);
    }
    fclose(fp);
    free(buffer);
-
+   return 0;
 }
 
 void file_open(GtkWidget * widget, gpointer user_data)
@@ -111,23 +175,11 @@ void file_open(GtkWidget * widget, gpointer user_data)
    open_binary_file(filename);
 }
 
-void loadSerialSettings()
-{
-//   char *sprintf_buf;
-//   static int firstrun = 1;
-//   if(firstrun)
-//   {
-      comport = return_comport(gtk_entry_get_text(entry_serial_interface));
-      baudrate = return_baudrate(gtk_entry_get_text(entry_baudrate));
-
-//      firstrun = 0;
-//   }
-}
 
 int main(int argc, char *argv[])
 {
    GtkBuilder *builder;
-
+   int ret;
    //   g_thread_init(NULL);
    //   gdk_threads_init();
    //
@@ -159,7 +211,17 @@ int main(int argc, char *argv[])
    g_object_unref(G_OBJECT(builder));
 
    gtk_widget_show(window_main);
-   loadSerialSettings();
+
+   //gtk_widget_show(window_preferences);
+   //gtk_widget_hide(window_preferences);
+
+   ret = readConfigFile();
+
+   if (ret == 1)
+   {
+      loadSerialSettings();
+
+   }
 
    if(argc > 1)
    {
@@ -169,7 +231,7 @@ int main(int argc, char *argv[])
       }
       else
       {
-         GtkTextviewAppend(text_info, "Error: File does not exist!\n");
+         GtkTextviewAppendInfo("Error: File does not exist!\n");
       }
    }
 

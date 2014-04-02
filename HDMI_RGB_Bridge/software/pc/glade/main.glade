@@ -149,6 +149,8 @@
                     <property name="can_focus">True</property>
                     <property name="editable">False</property>
                     <property name="wrap_mode">word</property>
+                    <property name="cursor_visible">False</property>
+                    <property name="accepts_tab">False</property>
                   </widget>
                 </child>
               </widget>
@@ -190,8 +192,7 @@
     <property name="window_position">center</property>
     <property name="destroy_with_parent">True</property>
     <property name="deletable">False</property>
-    <signal name="destroy" handler="preferences_close" swapped="no"/>
-    <signal name="destroy" handler="window_preferences_destroy_cb" swapped="no"/>
+    <signal name="destroy" handler="preferences_back" swapped="no"/>
     <child>
       <widget class="GtkFixed" id="fixed2">
         <property name="visible">True</property>

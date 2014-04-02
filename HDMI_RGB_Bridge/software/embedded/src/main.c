@@ -76,7 +76,7 @@ int main()
    uart_puts("Command help:\n\r");
    uart_puts("*s#   - indicates the start of a write process   - returns *1#\n\r");
    uart_puts("*d,X# - writes a byte X                          - returns *2#\n\r");
-   uart_puts("*x#   -  indicates the end of a data transfer    - returns *3#\n\r");
+   uart_puts("*x#   - indicates the end of a data transfer     - returns *3#\n\r");
    uart_puts("Note: for a complete EDID dataset write 128 bytes\n\r\n\r");
 
    sei(); /* Enable the interrupts */
