@@ -5,24 +5,55 @@
 #include "rs232/rs232.h"
 #include "helpers.h"
 
+
+/** The maximum size of a string that is sent via UART */
+#define MAXUARTSTR 250
+
 unsigned char *edid_string[128];
 unsigned char *edid_raw;
-int comport;
+char *comport;
+int received_flag = 0;
+
 int baudrate;
+long hexfile_size;
+int comport_fd;
+
+/** Counter variable used for determining the type and the end of the received data set */
+char uart_str_cnt = 0;
+
+/** Status variable, indicating whether a new data set is incoming (1) or not (0) */
+char new_data = 0;
+
+/** Buffer holding the received data set */
+char uart_str[MAXUARTSTR] = "";
+
+/** Status variable, indicating whether the end of a data set has been found (\n\r) */
+char block_finished = 0;
+
+/** Index of the beginning of a new data set within the UART buffer */
+char new_data_index = 0;
+
 
 /* windows declarations */
 GtkWidget *window_main, *window_about, *window_preferences;
 
 /* window_main widgets */
-GtkWidget *text_hexfile, *text_info, *status, *button_program;
+GtkWidget *text_hexfile, *text_info, *progressbar, *button_program;
 
 /* window_preferences widges */
 GtkWidget *entry_serial_interface, *entry_baudrate, *button_save_settings, *button_discard_settings;
 
+enum
+{
+   CMD_1_ACK = 1,
+   CMD_2_ACK = 2,
+   CMD_3_ACK = 3
+};
+
 
 void loadSerialSettings()
 {
-   comport = return_comport(gtk_entry_get_text(GTK_ENTRY(entry_serial_interface)));
+   comport = gtk_entry_get_text(GTK_ENTRY(entry_serial_interface));
    baudrate = return_baudrate(gtk_entry_get_text(GTK_ENTRY(entry_baudrate)));
 }
 
@@ -89,14 +120,108 @@ int readConfigFile()
    return 0;
 }
 
+/* TODO: test if ACK signals are working */
+int rs232_data_received()
+{
+   //__asm("nop");
+   char next_char;
+   // uint8 timer_val = 0;
+   read(comport_fd, next_char, 1);
+
+   if(next_char == '#')
+   {
+      uart_str_cnt = 0;
+      block_finished = 0;
+   }
+   if(next_char == '*' && !block_finished)
+   {
+      block_finished = 1;
+      switch(uart_str[1])
+      {
+      case '1':
+         setAck(CMD_1_ACK);
+         break;
+
+      case '2':
+         setAck(CMD_2_ACK);
+         break;
+
+      case '3':
+         setAck(CMD_3_ACK);
+         break;
+      default:
+
+         break;
+      }
+   }
+
+   if(!block_finished)
+   {
+      uart_str[uart_str_cnt] = next_char;
+      uart_str_cnt++;
+   }
+}
+
+void waitForAck(int ack)
+{
+   while(!ack);
+}
+
+void setAck(int ack)
+{
+   ack = 1;
+}
+
+void resetAck(int ack)
+{
+   ack = 0;
+}
+
 void program_edid(GtkWidget * widget, gpointer user_data)
 {
-   int ret;
-   ret = RS232_OpenComport(comport, baudrate);
-   if(ret == 1)
+   /* TODO: check if hexfile was loaded */
+
+   unsigned char sprintf_buf[255];
+   //int comport_fd;
+   int cnt;
+
+   comport_fd = rs232_open_port(comport, baudrate);
+   //ret = RS232_OpenComport(comport, baudrate);
+   printf("comport_fd: %i\n", comport_fd);
+   if(comport_fd)
    {
-      GtkTextviewAppendInfo("Error opening Comport! Check port and baudrate!\n");
+      GtkTextviewAppendInfo("Opening %s successfully! Writing EDID data into EEPROM... \n", comport);
    }
+   else
+   {
+      GtkTextviewAppendInfo("Error %s Comport! Check port and baudrate!\n", comport);
+   }
+
+   rs232_puts(comport_fd, "#s*");
+   waitForAck(CMD_1_ACK);
+   resetAck(CMD_1_ACK);
+
+   //printf("hexfile_size: %i\n", hexfile_size);
+   for(cnt = 0; cnt < hexfile_size; cnt++)
+   {
+      sprintf(sprintf_buf, "#w,%c*", edid_raw[cnt]);
+      //RS232_cputs(comport, sprintf_buf);
+      waitForAck(CMD_2_ACK);
+      resetAck(CMD_2_ACK);
+
+      gtk_progress_set_percentage(GTK_PROGRESS_BAR(progressbar), (float)cnt / (float)hexfile_size);
+
+   }
+   //RS232_cputs(comport, "#x*");
+   waitForAck(CMD_3_ACK);
+   resetAck(CMD_3_ACK);
+
+   gtk_progress_set_percentage(GTK_PROGRESS_BAR(progressbar), 1);
+
+   //rs232_close_port(comport_fd);
+   //RS232_CloseComport(comport);
+
+   GtkTextviewAppendInfo("EDID data successfully written into EEPROM.\n");
 }
 
 void preferences_back(GtkWidget * widget, gpointer user_data)
@@ -115,7 +240,7 @@ void edit_preferences(GtkWidget * widget, gpointer user_data)
 unsigned char open_binary_file(char *filename)
 {
    FILE *fp;
-   long lSize;
+
    char * buffer;
    size_t result;
    int cnt = 0;
@@ -138,25 +263,25 @@ unsigned char open_binary_file(char *filename)
       return 2;
    }
    fseek (fp, 0, SEEK_END);
-   lSize = ftell (fp);
+   hexfile_size = ftell (fp);
    rewind (fp);
 
-   buffer = (char*) malloc (sizeof(char)*lSize);
-   edid_raw = (unsigned char*) malloc (sizeof(unsigned char)*lSize);
+   buffer = (char*) malloc (sizeof(char)*hexfile_size);
+   edid_raw = (unsigned char*) malloc (sizeof(unsigned char)*hexfile_size);
    if (buffer == NULL)
    {
       GtkTextviewAppendInfo("Memory error ", stderr);
       return 3;
    }
 
-   result = fread (buffer, 1, lSize, fp);
-   if (result != lSize)
+   result = fread (buffer, 1, hexfile_size, fp);
+   if (result != hexfile_size)
    {
       GtkTextviewAppendInfo("Reading error ", stderr);
       return 4;
    }
 
-   for(cnt = 0; cnt < lSize; cnt++)
+   for(cnt = 0; cnt < hexfile_size; cnt++)
    {
       edid_raw[cnt] = (0xFF & buffer[cnt]);
       GtkTextviewAppendHexfile("0x%.2X ", edid_raw[cnt]);
@@ -179,7 +304,6 @@ void file_open(GtkWidget * widget, gpointer user_data)
 int main(int argc, char *argv[])
 {
    GtkBuilder *builder;
-   int ret;
    //   g_thread_init(NULL);
    //   gdk_threads_init();
    //
@@ -197,7 +321,7 @@ int main(int argc, char *argv[])
    /* connect glade widgets to gtk widgets for window_main */
    text_hexfile        = GTK_WIDGET(gtk_builder_get_object(builder, "text_hexfile"));
    text_info           = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
-   status              = GTK_WIDGET(gtk_builder_get_object(builder, "status"));
+   progressbar         = GTK_WIDGET(gtk_builder_get_object(builder, "progressbar"));
    button_program      = GTK_WIDGET(gtk_builder_get_object(builder, "button_program"));
 
    /* connect glade widgets to gtk widgets for window_preferences */
@@ -215,13 +339,8 @@ int main(int argc, char *argv[])
    //gtk_widget_show(window_preferences);
    //gtk_widget_hide(window_preferences);
 
-   ret = readConfigFile();
-
-   if (ret == 1)
-   {
-      loadSerialSettings();
-
-   }
+   readConfigFile();
+   loadSerialSettings();
 
    if(argc > 1)
    {

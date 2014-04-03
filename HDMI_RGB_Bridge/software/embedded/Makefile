@@ -4,8 +4,10 @@
 # is public domain), believed to be neutral to any flavor of "make"
 # (GNU make, BSD make, SysV make)
 
+F_CPU = 8000000
 
-MCU = atmega88
+#MCU = atmega88
+MCU = atmega128
 FORMAT = ihex
 #FORMAT = binary
 TARGET = main
@@ -30,7 +32,7 @@ DEBUG = stabs
 CSTANDARD = -std=c99
 
 # Place -D or -U options here
-CDEFS =
+CDEFS = -DF_CPU=$(F_CPU)UL
 
 # Place -I options here
 CINCS =

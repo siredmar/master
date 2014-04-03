@@ -154,14 +154,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkStatusbar" id="status">
+          <object class="GtkProgressBar" id="progressbar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="spacing">1</property>
-            <property name="has_resize_grip">False</property>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">2</property>
           </packing>
@@ -204,7 +202,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="invisible_char">&#x25CF;</property>
-            <property name="text" translatable="yes">ttyUSB0</property>
+            <property name="text" translatable="yes">/dev/ttyUSB0</property>
             <property name="primary_icon_activatable">False</property>
             <property name="secondary_icon_activatable">False</property>
             <property name="primary_icon_sensitive">True</property>

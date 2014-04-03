@@ -60,11 +60,9 @@ typedef enum
 /*--- Function Prototypes --------------------------------------------*/
 
 void uart_init(uart_rxenType rxen, uart_txenType txen, uart_rxieType rxcie);
-uint8 uart_getc(void);
-void uart_putc(sint8 byte);
-void uart_send_byte(sint8 byte);
-void uart_puts(const sint8 *s);
-void uart_byte_s(sint8 *s, uint8 length);
+void uart_putc(uint8 byte);
+void uart_puts(const uint8 *s);
+
 
 #endif /* #ifndef _UART_H_ */
 
