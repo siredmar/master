@@ -14,7 +14,13 @@
 #include "rs232.h"
 
 extern int received_flag;
-//
+extern void rs232_data_received();
+extern int waitForInterrupt;
+extern volatile int new_data;
+extern unsigned char checksum;
+extern int checksum_valid;
+extern int comport_fd;
+
 //char comports[30][16]={"/dev/ttyS0","/dev/ttyS1","/dev/ttyS2","/dev/ttyS3","/dev/ttyS4","/dev/ttyS5",
 //      "/dev/ttyS6","/dev/ttyS7","/dev/ttyS8","/dev/ttyS9","/dev/ttyS10","/dev/ttyS11",
 //      "/dev/ttyS12","/dev/ttyS13","/dev/ttyS14","/dev/ttyS15","/dev/ttyUSB0",
@@ -81,7 +87,7 @@ int rs232_returnBaudrate(int baudrate)
    return baudr;
 }
 
-void rs232_receive_handler (int status);   /* definition of signal handler */
+void signal_handler_IO (int status);   /* definition of signal handler */
 
 int rs232_open_port(char *comport, int baudrate)
 {
@@ -92,14 +98,15 @@ int rs232_open_port(char *comport, int baudrate)
    int baudRate;
    int fd;
 
-   fd = open(comport, O_RDWR | O_NOCTTY | O_NDELAY);
+   fd = open(comport, O_RDWR | O_NOCTTY | O_NONBLOCK | O_SYNC);
+   //fd = open(comport, O_RDWR | O_NOCTTY | O_NDELAY);
    if (fd == -1)
    {
       perror("open_port: Unable to open comport\n");
       return 1;
    }
 
-   saio.sa_handler = rs232_receive_handler;
+   saio.sa_handler = signal_handler_IO;
    saio.sa_flags = 0;
    saio.sa_restorer = NULL;
    sigaction(SIGIO, &saio, NULL);
@@ -131,7 +138,8 @@ int rs232_open_port(char *comport, int baudrate)
 int rs232_sendByte(int comport, unsigned char byte)
 {
    int n;
-
+   if(checksum_valid)
+      checksum = checksum ^ byte;
    n = write(comport, &byte, 1);
    if(n < 0)  return 1;
 
@@ -143,23 +151,43 @@ int rs232_sendByte(int comport, unsigned char byte)
 //   return(write(comport, buf, size));
 //}
 
-void rs232_puts(int comport, const char *text)
+//int rs232_puts(int comport_number, unsigned char *buf, int size)
+//{
+//  return(write(Cport[comport_number], buf, size));
+//}
+
+void rs232_puts(int comport, const char *text, int length)
 {
-  while(*text != 0)  rs232_sendByte(comport, *(text++));
+   write(comport, text, length);
 }
 
 int rs232_close_port(int comport)
 {
-   printf("%s closed....\n", comport);
+   printf("%d closed....\n", comport);
    close(comport);
 
    return 0;
 }
 
-void rs232_receive_handler(int status)
+void signal_handler_IO(int status)
 {
-   printf("received data from UART.\n");
-   rs232_data_received();
+   //   static int cnt = 0;
+   ////   char buf[3];
+   //   printf("signal_handler_IO\n");
+   //   if(waitForInterrupt == 1)
+   //   {
+   //      if(cnt == 3)
+   //      {
+   //         printf("signal_handler_IO called, cnt: %d\n", cnt);
+   new_data++;
+   //         cnt = 0;
+   //      }
+   //      else
+   //      {
+   //         //new_data = 0;
+   //         cnt++;
+   //      }
+   //   }
 }
 
 

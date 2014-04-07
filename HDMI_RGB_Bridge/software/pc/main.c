@@ -4,7 +4,9 @@
 #include <string.h>
 #include "rs232/rs232.h"
 #include "helpers.h"
+#include <pthread.h>
 
+#define USE_THREADS 0
 
 /** The maximum size of a string that is sent via UART */
 #define MAXUARTSTR 250
@@ -20,9 +22,6 @@ int comport_fd;
 
 /** Counter variable used for determining the type and the end of the received data set */
 char uart_str_cnt = 0;
-
-/** Status variable, indicating whether a new data set is incoming (1) or not (0) */
-char new_data = 0;
 
 /** Buffer holding the received data set */
 char uart_str[MAXUARTSTR] = "";
@@ -43,12 +42,24 @@ GtkWidget *text_hexfile, *text_info, *progressbar, *button_program;
 /* window_preferences widges */
 GtkWidget *entry_serial_interface, *entry_baudrate, *button_save_settings, *button_discard_settings;
 
-enum
+hexfileType *hexfile;
+
+unsigned char checksum = 0x6A;
+
+int waitForInterrupt = 0;
+
+typedef enum
 {
-   CMD_1_ACK = 1,
-   CMD_2_ACK = 2,
-   CMD_3_ACK = 3
-};
+   NO_ACK = 0,
+   ACK
+}CMD_ACK_Type;
+
+volatile CMD_ACK_Type CMD_1_ACK = NO_ACK;
+volatile CMD_ACK_Type CMD_2_ACK = NO_ACK;
+volatile CMD_ACK_Type CMD_3_ACK = NO_ACK;
+
+volatile int new_data = 0;
+int checksum_valid = 0;
 
 
 void loadSerialSettings()
@@ -120,14 +131,31 @@ int readConfigFile()
    return 0;
 }
 
-/* TODO: test if ACK signals are working */
+void setAck(CMD_ACK_Type ack)
+{
+   ack = ACK;
+   //printf("set ACK\n");
+}
+
+void resetAck(CMD_ACK_Type ack)
+{
+   ack = NO_ACK;
+   //printf("set ACK\n");
+}
+
+
 int rs232_data_received()
 {
+   char buf[4];
+   read(comport_fd, buf, 4);
+   // printf("buf: %s\n", buf);
+
    //__asm("nop");
    char next_char;
    // uint8 timer_val = 0;
-   read(comport_fd, next_char, 1);
+   next_char = buf[0];
 
+   printf("next_char: %c\n", next_char);
    if(next_char == '#')
    {
       uart_str_cnt = 0;
@@ -136,20 +164,25 @@ int rs232_data_received()
    if(next_char == '*' && !block_finished)
    {
       block_finished = 1;
+      uart_str[uart_str_cnt++] = next_char;
+      printf("uart_str: %s\n", uart_str);
       switch(uart_str[1])
       {
       case '1':
-         setAck(CMD_1_ACK);
-         break;
+         printf("setting CMD_1_ACK = ACK\n");
 
-      case '2':
-         setAck(CMD_2_ACK);
+         CMD_1_ACK = ACK;
+         //setAck(CMD_1_ACK);
          break;
-
-      case '3':
-         setAck(CMD_3_ACK);
-         break;
-      default:
+//
+//      case '2':
+//         CMD_2_ACK = ACK;
+//         break;
+//
+//      case '3':
+//         CMD_3_ACK = ACK;
+//         break;
+//      default:
 
          break;
       }
@@ -162,32 +195,71 @@ int rs232_data_received()
    }
 }
 
-void waitForAck(int ack)
-{
-   while(!ack);
-}
+//void rs232_data_received()
+//{
+//   char buf[4];
+//   read(comport_fd, buf, 3);
+//
+//   //buf[4] = '\0';
+//   printf("string: %s\n", buf);
+//   switch(buf[1])
+//   {
+//   case '1':
+//      printf("setting CMD_1_ACK = ACK\n");
+//      CMD_1_ACK = ACK;
+//      //setAck(CMD_1_ACK);
+//      break;
+//
+//   case '2':
+//      printf("setting CMD_2_ACK = ACK\n");
+//      CMD_2_ACK = ACK;//setAck(CMD_2_ACK);
+//      break;
+//
+//   case '3':
+//      printf("setting CMD_3_ACK = ACK\n");
+//      CMD_3_ACK = ACK;//setAck(CMD_3_ACK);
+//      break;
+//   default:
+//
+//      break;
+//   }
+//}
 
-void setAck(int ack)
+static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned char nodata_flag)
 {
-   ack = 1;
-}
+   unsigned char buf[4];
 
-void resetAck(int ack)
-{
-   ack = 0;
+   if(nodata_flag == 1)
+   {
+     // buf = (unsigned char*) malloc(sizeof(unsigned char) * 3);
+      buf[0] = '#'; printf("0x%.2X ", buf[0]);
+      buf[1] = cmd; printf("0x%.2X ", buf[1]);
+      buf[2] = '*'; printf("0x%.2X\n", buf[2]);
+      buf[3] = 0;   printf("0x%.2X\n", buf[3]);
+
+
+   }
+   else
+   {
+     // buf = (unsigned char*) malloc(sizeof(unsigned char) * 4);
+      buf[0] = '#'; printf("0x%.2X ", buf[0]);
+      buf[1] = cmd; printf("0x%.2X ", buf[1]);
+      buf[2] = hex; printf("0x%.2X ", buf[2]);
+      buf[3] = '*'; printf("0x%.2X\n", buf[3]);
+      //sprintf(buf, "#%c%c*", cmd, hex);
+   }
+   return buf;
 }
 
 void program_edid(GtkWidget * widget, gpointer user_data)
 {
    /* TODO: check if hexfile was loaded */
+   int command_sent = 0;
+   int command_index = 0;
 
-   unsigned char sprintf_buf[255];
-   //int comport_fd;
-   int cnt;
 
    comport_fd = rs232_open_port(comport, baudrate);
-   //ret = RS232_OpenComport(comport, baudrate);
-   printf("comport_fd: %i\n", comport_fd);
+
    if(comport_fd)
    {
       GtkTextviewAppendInfo("Opening %s successfully! Writing EDID data into EEPROM... \n", comport);
@@ -197,32 +269,76 @@ void program_edid(GtkWidget * widget, gpointer user_data)
       GtkTextviewAppendInfo("Error %s Comport! Check port and baudrate!\n", comport);
    }
 
-   rs232_puts(comport_fd, "#s*");
-   waitForAck(CMD_1_ACK);
-   resetAck(CMD_1_ACK);
-
-   //printf("hexfile_size: %i\n", hexfile_size);
-   for(cnt = 0; cnt < hexfile_size; cnt++)
+   while(1)
    {
-      sprintf(sprintf_buf, "#w,%c*", edid_raw[cnt]);
-      //RS232_cputs(comport, sprintf_buf);
-      waitForAck(CMD_2_ACK);
-      resetAck(CMD_2_ACK);
 
-      gtk_progress_set_percentage(GTK_PROGRESS_BAR(progressbar), (float)cnt / (float)hexfile_size);
+      checksum_valid = 1;
+      if(command_sent == 0)
+      {
+         CMD_1_ACK = NO_ACK;
+         waitForInterrupt = 0;
+       //  printf("string: %s\n", returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag));
+         rs232_puts(comport_fd, returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag), 4);
+        // printf("send: %s\n", returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag));
+         //rs232_puts(comport_fd, "#s*");
+         waitForInterrupt = 1;
+         command_sent = 1;
+         //printf("command_sent: %d\n", command_sent);
+      }
 
+      if(command_sent && new_data > 0)
+      {
+
+         if(new_data >= 2)
+         {
+            //printf("command_sent: %d, new_data: %d\n", command_sent, new_data);
+            rs232_data_received();
+           // printf("rs232_data_received();\n");
+            //printf("command_sent: %d, new_data: %d\n", command_sent, new_data);
+            //ack_received = 1;
+
+         }
+      }
+
+      if(command_sent == 1 && CMD_1_ACK == ACK)
+      {
+         new_data = 0;
+         //printf("ACK1: %d, ACK2: %d, ACK3: %d\n", CMD_1_ACK, CMD_2_ACK, CMD_3_ACK);
+         // printf("ACK received, continuing with next instruction\n");
+
+         CMD_1_ACK = NO_ACK;
+
+         //printf("CMD_1_ACK: %d\n", CMD_1_ACK);
+         //printf("#################################################\n");
+         command_sent = 0;
+
+         if(command_index < hexfile_size + CMD_S_SIZE + CMD_X_SIZE)
+         {
+            //printf("ACK: command_index: %d\n", command_index);
+            command_index++;
+            //continue;   // continue with next command
+         }
+         else
+         {
+            break;      // exit loop because all commands are sent
+         }
+      }
+
+      //printf("command_index: %d\n", command_index);
+      usleep(50000);
+      //break;
    }
-   //RS232_cputs(comport, "#x*");
-   waitForAck(CMD_3_ACK);
-   resetAck(CMD_3_ACK);
+   checksum_valid = 0;
+   printf("sending ended ...\n");
 
-   gtk_progress_set_percentage(GTK_PROGRESS_BAR(progressbar), 1);
-
-   //rs232_close_port(comport_fd);
-   //RS232_CloseComport(comport);
-
-   GtkTextviewAppendInfo("EDID data successfully written into EEPROM.\n");
+   GtkTextviewAppendInfo("Checksum 0x%.2X\n", checksum);
 }
+
+/* TODO: test if ACK signals are working */
+
+
+
+
 
 void preferences_back(GtkWidget * widget, gpointer user_data)
 {
@@ -244,7 +360,6 @@ unsigned char open_binary_file(char *filename)
    char * buffer;
    size_t result;
    int cnt = 0;
-   //char c;
    clearTextWidget(text_hexfile);
 
    if(filename == NULL)
@@ -281,11 +396,41 @@ unsigned char open_binary_file(char *filename)
       return 4;
    }
 
+   hexfile = (hexfileType*)malloc((hexfile_size + CMD_X_SIZE + CMD_S_SIZE) * sizeof(hexfileType)); // +2 for start and end condition commands
+   //hexfile = (hexfileType*)malloc(hexfile_size * 2 * sizeof(unsigned char) + 2); // +2 for start and end condition commands
+
+   /* load the actual data into the program */
    for(cnt = 0; cnt < hexfile_size; cnt++)
    {
       edid_raw[cnt] = (0xFF & buffer[cnt]);
+
       GtkTextviewAppendHexfile("0x%.2X ", edid_raw[cnt]);
    }
+
+   /* Set expected acknowledge values for each command */
+   hexfile[0].cmd = 's';
+   hexfile[0].hex = 0;
+   hexfile[0].ack = '1';
+   hexfile[0].nodata_flag = 1;
+
+   for(cnt = 0; cnt < hexfile_size; cnt++)
+   {
+      hexfile[cnt+CMD_S_SIZE].cmd = 'w';
+      hexfile[cnt+CMD_S_SIZE].hex = edid_raw[cnt];
+      hexfile[cnt+CMD_S_SIZE].ack = '2';
+      hexfile[cnt+CMD_S_SIZE].nodata_flag = 0;
+   }
+
+   hexfile[hexfile_size +  CMD_X_SIZE].cmd = 'x';
+   hexfile[hexfile_size +  CMD_X_SIZE].hex = 0;
+   hexfile[hexfile_size +  CMD_X_SIZE].ack = '3';
+   hexfile[hexfile_size +  CMD_X_SIZE].nodata_flag = 1;
+
+   for(cnt = 0; cnt < hexfile_size + CMD_S_SIZE + CMD_X_SIZE; cnt++)
+   {
+      printf("%u\tcmd: %c, hex: 0x%.2X, ack: %c, nodata_flag: %u\n", cnt, hexfile[cnt].cmd, hexfile[cnt].hex, hexfile[cnt].ack, hexfile[cnt].nodata_flag);
+   }
+
    fclose(fp);
    free(buffer);
    return 0;
@@ -300,14 +445,17 @@ void file_open(GtkWidget * widget, gpointer user_data)
    open_binary_file(filename);
 }
 
-
 int main(int argc, char *argv[])
 {
    GtkBuilder *builder;
+   //pthread_t main_tid;
+   //
+   //
+   //
    //   g_thread_init(NULL);
    //   gdk_threads_init();
-   //
    //   gdk_threads_enter();
+
    gtk_init(&argc, &argv);
 
    builder = gtk_builder_new();

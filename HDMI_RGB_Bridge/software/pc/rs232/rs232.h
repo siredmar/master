@@ -63,7 +63,7 @@ int rs232_open_port(char *comport, int baudrate);
 int rs232_sendByte(int comport_number, unsigned char byte);
 int rs232_sendBuf(int comport_number, unsigned char *buf, int size);
 int rs232_close_port(int comport);
-void rs232_puts(int comport, const char *text);
+void rs232_puts(int comport, const char *text, int length);
 
 
 #endif

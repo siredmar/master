@@ -9,6 +9,7 @@
 extern GtkWidget *text_info;
 extern GtkWidget *text_hexfile;
 
+
 //char* hexToString(unsigned char x)
 //{
 //   const char *hex = "0123456789ABCDEF";

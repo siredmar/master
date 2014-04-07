@@ -35,7 +35,9 @@ typedef enum
    CMD_WRITE_START = 0U,
    CMD_WRITE_DATA,
    CMD_WRITE_STOP,
-   CMD_ERROR
+   CMD_ERROR,
+   CMD_DBG,
+   CMD_CHECKSUM
 }uart_i2cCommandType;
 
 typedef enum

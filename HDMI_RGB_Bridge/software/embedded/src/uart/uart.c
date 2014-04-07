@@ -20,6 +20,7 @@
 
 #include "uart.h"
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 /*--- Macros ---------------------------------------------------------*/
 //#define F_CPU 7372800UL
@@ -47,7 +48,7 @@ uint8_t new_data_index = 0;
 
 /*--- External Function Definitions ----------------------------------*/
 extern void command_ready(uart_i2cCommandType cmd, uint8 data);
-
+extern uint8 checksum;
 
 /**
  * \brief Initialize UART communication with given parameters rxen, txen, rxcie and BAUD_VAL_HIGH
@@ -73,6 +74,7 @@ void uart_putc(uint8 byte)
 {
    while (!(UCSR0A & (1 << UDRE0)));
    UDR0 = byte;         /* sende Zeichen */
+
 }
 
 /**
@@ -83,6 +85,7 @@ void uart_putc(uint8 byte)
 void uart_puts(const uint8 *s) {
    while (*s ) {
       uart_putc(*s);
+      _delay_us(100);
       s++;
    }
 }
@@ -101,8 +104,11 @@ ISR(USART0_RX_vect)
 {
    //__asm("nop");
    sint8 next_char;
+
    // uint8 timer_val = 0;
    next_char = UDR0;
+
+   checksum = checksum ^ next_char;
 
    if(next_char == '#')
    {
@@ -122,12 +128,20 @@ ISR(USART0_RX_vect)
          break;
 
       case 'w':
-         command_ready(CMD_WRITE_DATA, uart_str[3]);
+         command_ready(CMD_WRITE_DATA, uart_str[2]);
          break;
 
       case 'x':
          command_ready(CMD_WRITE_STOP, 0xFF);
          break;
+      case 'd':
+         command_ready(CMD_DBG, 0xFF);
+         break;
+
+      case 'c':
+         command_ready(CMD_CHECKSUM, 0xFF);
+         break;
+
       default:
          command_ready(CMD_ERROR, 0xFF);
          break;
