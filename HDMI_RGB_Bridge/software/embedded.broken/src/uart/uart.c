@@ -25,7 +25,7 @@
 /*--- Macros ---------------------------------------------------------*/
 //#define F_CPU 7372800UL
 
-#define BAUD 4800UL    /**< the high baudrate */
+#define BAUD 9600UL    /**< the high baudrate */
 
 /** Calculated UBRR value for high baud rate */
 #define UBRR_VAL ((F_CPU+BAUD*8)/(BAUD*16)-1)
@@ -108,8 +108,7 @@ ISR(USART0_RX_vect)
    // uint8 timer_val = 0;
    next_char = UDR0;
 
-
-
+   checksum = checksum ^ next_char;
 
    if(next_char == '#')
    {
@@ -122,13 +121,6 @@ ISR(USART0_RX_vect)
       //uart_str[uart_str_cnt + 1] = '\0';
       //uart_puts(uart_str);
       //uart_puts("command received\n\r");
-      if(uart_str[1] != 'c')
-      {
-         checksum = checksum ^ uart_str[0];
-         checksum = checksum ^ uart_str[1];
-         checksum = checksum ^ uart_str[2];
-      }
-
       switch(uart_str[1])
       {
       case 's':
@@ -137,7 +129,6 @@ ISR(USART0_RX_vect)
 
       case 'w':
          command_ready(CMD_WRITE_DATA, uart_str[2]);
-         checksum = checksum ^ uart_str[3];
          break;
 
       case 'x':

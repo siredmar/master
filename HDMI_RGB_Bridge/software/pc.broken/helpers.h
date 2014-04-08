@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/sem.h>
 
 typedef struct
 {
@@ -24,10 +25,15 @@ typedef struct
 #define CMD_S_SIZE (1)
 #define CMD_W_SIZE (1)
 #define CMD_X_SIZE (1)
-#define CMD_C_SIZE (1)
+
+#define LOCK       -1
+#define UNLOCK      1
+#define PERM 0666      /* Zugriffsrechte */
+#define KEY  123458L
 
 
-
+//int semaphore_operation (int op);
+//int init_semaphore (void);
 void on_window_destroy (GtkObject *object, gpointer user_data);
 gchar *open_filename(GtkWidget * widget);
 void GtkTextviewAppend(GtkWidget *textview, gchar *text);

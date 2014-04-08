@@ -21,7 +21,6 @@ extern unsigned char checksum;
 extern int checksum_valid;
 extern int comport_fd;
 
-struct termios termAttr, oltAttr;
 //char comports[30][16]={"/dev/ttyS0","/dev/ttyS1","/dev/ttyS2","/dev/ttyS3","/dev/ttyS4","/dev/ttyS5",
 //      "/dev/ttyS6","/dev/ttyS7","/dev/ttyS8","/dev/ttyS9","/dev/ttyS10","/dev/ttyS11",
 //      "/dev/ttyS12","/dev/ttyS13","/dev/ttyS14","/dev/ttyS15","/dev/ttyUSB0",
@@ -94,7 +93,7 @@ int rs232_open_port(char *comport, int baudrate)
 {
    //int n;
 
-   //struct termios termAttr, oltAttr;
+   struct termios termAttr;
    struct sigaction saio;
    int baudRate;
    int fd;
@@ -116,15 +115,11 @@ int rs232_open_port(char *comport, int baudrate)
    fcntl(fd, F_SETOWN, getpid());
    fcntl(fd, F_SETFL,  O_ASYNC ); /**<<<<<<------This line made it work.**/
 
-   tcgetattr(fd, &oltAttr);
-
    tcgetattr(fd, &termAttr);
    baudRate = rs232_returnBaudrate(baudrate);
    //printf("baudrate: %i\n", baudRate);
    cfsetispeed(&termAttr, baudRate);
    cfsetospeed(&termAttr, baudRate);
-   //termAttr.c_cc[VTIME]    = 1;     /* inter-character timer unused */
-   //termAttr.c_cc[VMIN]     = 1;     /* blocking read until 1 character arrives */
    termAttr.c_cflag &= ~PARENB;
    termAttr.c_cflag &= ~CSTOPB;
    termAttr.c_cflag &= ~CSIZE;
@@ -133,7 +128,11 @@ int rs232_open_port(char *comport, int baudrate)
    termAttr.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
    termAttr.c_iflag &= ~(IXON | IXOFF | IXANY);
    termAttr.c_oflag &= ~OPOST;
+   //termAttr.c_cc[VTIME] = 0; /* Set timeout of 1 seconds */
+   //termAttr.c_cc[VMIN] = 0; /* Set 0 elements as minimum */
    tcsetattr(fd,TCSANOW,&termAttr);
+
+
 
    printf("%s opened....\n", comport);
 
@@ -168,7 +167,6 @@ void rs232_puts(int comport, const char *text, int length)
 
 int rs232_close_port(int comport)
 {
-   tcsetattr(comport, TCSANOW, &oltAttr);
    printf("%d closed....\n", comport);
    close(comport);
 
@@ -177,11 +175,8 @@ int rs232_close_port(int comport)
 
 void signal_handler_IO(int status)
 {
-//   if(waitForInterrupt == 1)
-//   {
-      //printf("signal_handler_IO called, new_data: %d\n", new_data);
+//   if(waitForInterrupt)
       new_data++;
-//   }
 }
 
 

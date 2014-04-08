@@ -12,7 +12,7 @@
 uint8 cnt = 0;
 uint8 cmds[130];
 
-uint8 checksum = 0;
+uint8 checksum;
 
 uint8 w_start()
 {
@@ -21,7 +21,7 @@ uint8 w_start()
 
    //i2c_write(0x00);                                /* select register address 0x00 to start the write process */
    //uart_puts(0x00);
-   _delay_ms(100);
+   _delay_ms(1);
    uart_puts("#1*");
    ret = E_OK;
    return ret;
@@ -32,7 +32,7 @@ uint8 w_data(uint8 data)
    Std_ReturnType ret = E_NOT_OK;
    //i2c_write(data);
    //uart_puts(data);
-   _delay_ms(100);
+   _delay_ms(1);
    uart_puts("#2*");
    ret = E_OK;
    return ret;
@@ -43,7 +43,7 @@ uint8 w_stop()
    Std_ReturnType ret = E_NOT_OK;
    //i2c_stop();
    //uart_puts(0xFF);
-   _delay_ms(100);
+   _delay_ms(1);
    uart_puts("#3*");
    ret = E_OK;
    return ret;
@@ -58,12 +58,9 @@ uint8 dbg_output()
 
 void send_checksum()
 {
-//   char buf[10];
-//   sprintf(buf, "%c", checksum);
-   uart_putc('#');
-   uart_putc('c');
-   uart_putc(checksum);
-   uart_putc('*');
+   char buf[10];
+   sprintf(buf, "#%c*", checksum);
+   uart_puts(buf);
 }
 void command_ready(uart_i2cCommandType cmd, uint8 data)
 {

@@ -1,0 +1,27 @@
+ATMega48 
+PRTWI set 0 to enable TWI
+
+1. write START condition to TWCR
+2. write TWINT bit 1 to start transfer
+3. TWSR is updated indicating the START condition has been sent 
+4. check TWSR if start condition war sent successfully
+5. write SLA+W into TWDR
+6. write TWINT bit 1 to start transfer
+7. TWSR is updated indicating the address packet has been sent
+8. check TWSR if ACK bit has the expected value
+9. write DATA into TWDR
+10. write TWINT bit 1 to start transfer
+11. TWSR is updated indicating the data packet has been sent
+12. check TWSR if ACK bit has the expected value
+13. write STOP condition into TWDR
+14. write TWINT bit 1 to start transfer
+15. TWSR is updated indicating that the STOP condition has been sent
+16. check TWSR if STOP condition has the expected value
+
+START condition:
+TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN);
+
+wait for TWINT Flag:
+while(!(TWCR & (1 << TWINT)));
+
+
