@@ -12,6 +12,9 @@
 #define MAXUARTSTR 250
 #define TIMEOUT_CYCLES 2000
 #define TIMEOUT_50MS       30000
+#define GTK_MAIN_ITERATION()          while( gtk_events_pending() ) \
+      gtk_main_iteration()
+
 
 unsigned char *edid_string[128];
 unsigned char *edid_raw;
@@ -40,14 +43,14 @@ char file_opened = 1;
 GtkWidget *window_main, *window_about, *window_preferences;
 
 /* window_main widgets */
-GtkWidget *text_hexfile, *text_info, *progressbar, *button_program;
+GtkWidget *text_hexfile, *text_info, *progressbar, *button_program, *image_status;
 
 /* window_preferences widges */
 GtkWidget *entry_serial_interface, *entry_baudrate, *button_save_settings, *button_discard_settings;
 
 hexfileType *hexfile;
 
-unsigned char checksum = 0x6A;
+unsigned char checksum = 0x00;
 
 int waitForInterrupt = 0;
 short timeoutCounter;
@@ -67,6 +70,17 @@ volatile CMD_ACK_Type CMD_3_ACK = NO_ACK;
 volatile int new_data = 0;
 int checksum_valid = 0;
 
+void disableWidgets()
+{
+   gtk_widget_set_sensitive(button_program, 0);
+   gtk_widget_set_sensitive(window_main, 0);
+}
+
+void enableWidgets()
+{
+   gtk_widget_set_sensitive(button_program, 1);
+   gtk_widget_set_sensitive(window_main, 1);
+}
 
 void loadSerialSettings()
 {
@@ -172,14 +186,13 @@ int rs232_data_received()
    {
       block_finished = 1;
       uart_str[uart_str_cnt++] = next_char;
-      g_print("uart_str: %s -> ", uart_str);
+      //g_print("uart_str: %s -> ", uart_str);
       CMD_ACK = ACK;
       g_print("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", uart_str[0], uart_str[1], uart_str[2], uart_str[3]);
       if(uart_str[1] == 'c')
       {
          checksum_buf = uart_str[2];
       }
-
    }
 
    if(!block_finished)
@@ -260,6 +273,21 @@ static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned 
    return buf;
 }
 
+void calculateChecksum(unsigned char *text, int length)
+{
+   int cnt;
+   if(text[1] != 'c')
+   {
+      for (cnt = 0; cnt < length; cnt++)
+      {
+         checksum = checksum ^ text[cnt];
+
+      }
+      printf("checksum: 0x%.2X\n", checksum);
+   }
+
+}
+
 void program_edid(GtkWidget * widget, gpointer user_data)
 {
    /* TODO: check if hexfile was loaded */
@@ -269,90 +297,88 @@ void program_edid(GtkWidget * widget, gpointer user_data)
    timeoutCounter = 0;
    comport_fd = rs232_open_port(comport, baudrate);
    unsigned char *command;
-   int checkChecksum = 0;
+   checksum = 0;
 
-   //   if(comport_fd)
-   //   {
-   //      GtkTextviewAppendInfo("Opening %s successfully! Writing EDID data into EEPROM... \n", comport);
-   //   }
-   //   else
-   //   {
-   //      GtkTextviewAppendInfo("Error %s Comport! Check port and baudrate!\n", comport);
-   //   }
-
-   if(file_opened == 1)
+   if(!comport_fd)
    {
-      //      GtkTextviewAppendInfo("No file opened!\n");
+      GtkTextviewAppendInfo("Error %s Comport! Check port and baudrate!\n", comport);
    }
    else
    {
-      while(timeoutCounter < TIMEOUT_CYCLES)
+      GtkTextviewAppendInfo("Opening %s successfully! Writing EDID data into EEPROM... \n", comport);
+
+
+      if(file_opened == 1)
       {
-         if(command_sent == 0 && command_index < hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
-         {
-            CMD_ACK = NO_ACK;
-            waitForInterrupt = 0;
-            //  g_print("string: %s\n", returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag));
-            command = returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag);
-            rs232_puts(comport_fd, command, 4);
-            // g_print("send: %s\n", returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag));
-            //rs232_puts(comport_fd, "#s*");
-            waitForInterrupt = 1;
-            command_sent = 1;
-            //g_print("command_sent: %d\n", command_sent);
-         }
-
-         if(command_sent && new_data > 0)
-         {
-            if(new_data >= 2)
-            {
-               rs232_data_received();
-
-            }
-         }
-         if(command_sent == 1 && CMD_ACK == ACK)
-         {
-            new_data = 0;
-            CMD_ACK = NO_ACK;
-            command_sent = 0;
-
-            if(command_index < hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
-            {
-               //               g_print("CHILD::command_index: %i < %i + 2\n", command_index, hexfile_size);
-               command_index++;
-            }
-         }
-         if(command_index >= hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
-         {
-            //            read(comport, checksum_buf, 5);
-            printf("Checksum: 0x%.2X\n",  checksum_buf);
-            timeoutCounter = TIMEOUT_CYCLES + 1;
-         }
-         //g_print("command_index: %d\n", command_index);
-         usleep(TIMEOUT_50MS);
-         timeoutCounter++;
-         //break;
-
+         GtkTextviewAppendInfo("No file opened!\n");
       }
+      else
+      {
+         disableWidgets();
+         gtk_image_set_from_stock ( image_status, GTK_STOCK_DIALOG_WARNING, GTK_ICON_SIZE_MENU);
+         while(timeoutCounter < TIMEOUT_CYCLES)
+         {
+            if(command_sent == 0 && command_index < hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
+            {
+               CMD_ACK = NO_ACK;
+               waitForInterrupt = 0;
 
-      printf("Checksum: 0x%.2X\n",  checksum_buf);
-      //  g_print("sending ended ...\n");
+               command = returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag);
+               calculateChecksum(command, 4);
+               rs232_puts(comport_fd, command, 4);
 
-      // GtkTextviewAppendInfo("Checksum 0x%.2X\n", checksum);
+               waitForInterrupt = 1;
+               command_sent = 1;
+            }
+
+            if(command_sent && new_data > 0)
+            {
+               if(new_data >= 2)
+               {
+                  rs232_data_received();
+
+               }
+            }
+            if(command_sent == 1 && CMD_ACK == ACK)
+            {
+               new_data = 0;
+               CMD_ACK = NO_ACK;
+               command_sent = 0;
+
+               if(command_index < hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
+               {
+                  command_index++;
+                  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progressbar), (float)command_index/(float)(hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE));
+                  GTK_MAIN_ITERATION();
+               }
+            }
+            if(command_index >= hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
+            {
+               printf("Checksum: 0x%.2X\n",  checksum_buf);
+               timeoutCounter = TIMEOUT_CYCLES + 1;
+            }
+            usleep(TIMEOUT_50MS);
+            timeoutCounter++;
+         }
+
+         printf("Received checksum: 0x%.2X, calculated checksum: 0x%.2X\n",  checksum_buf, checksum);
+      }
    }
-   if(command_index >= hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
+
+   /* compare received checksum with calculated checksum */
+   if(checksum_buf == checksum)
    {
-      g_print("Writing content successfully... \n");
-      //      GtkTextviewAppendInfo("Writing content successfully... \n");
-      //      GTK_MAIN_ITERATION();
+      gtk_image_set_from_stock (image_status, GTK_STOCK_YES, GTK_ICON_SIZE_MENU);
+      GtkTextviewAppendInfo("Writing content successfully\n");
    }
    else
    {
-      g_print("Writing timed out! Please try again... \n");
-      //      GtkTextviewAppendInfo("Writing timed out! Please try again... \n");
-      //      GTK_MAIN_ITERATION();
+      gtk_image_set_from_stock (image_status, GTK_STOCK_NO, GTK_ICON_SIZE_MENU);
+      GtkTextviewAppendInfo("Writing error. Checksum mismatch. Please try again!\n");
    }
+
    rs232_close_port(comport_fd);
+   enableWidgets();
 }
 
 /* TODO: test if ACK signals are working */
@@ -504,6 +530,9 @@ int main(int argc, char *argv[])
    entry_baudrate          = GTK_WIDGET(gtk_builder_get_object(builder, "entry_baudrate"));
    button_save_settings    = GTK_WIDGET(gtk_builder_get_object(builder, "button_save_settings"));
    button_discard_settings = GTK_WIDGET(gtk_builder_get_object(builder, "button_discard_settings"));
+   image_status            = GTK_WIDGET(gtk_builder_get_object(builder, "image_status"));
+
+   gtk_image_set_from_stock ( image_status, GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_MENU);
 
 
    gtk_builder_connect_signals(builder, NULL);

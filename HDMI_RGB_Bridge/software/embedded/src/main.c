@@ -12,7 +12,7 @@
 uint8 cnt = 0;
 uint8 cmds[130];
 
-uint8 checksum = 0;
+volatile uint8 checksum = 0x00;
 
 uint8 w_start()
 {
@@ -51,9 +51,9 @@ uint8 w_stop()
 
 uint8 dbg_output()
 {
-   uint8 i;
-   for(i = 0; i < 127; i++)
-      uart_putc(cmds[i]);
+//   uint8 i;
+//   for(i = 0; i < 127; i++)
+//      uart_putc(cmds[i]);
 }
 
 void send_checksum()
@@ -67,7 +67,7 @@ void send_checksum()
 }
 void command_ready(uart_i2cCommandType cmd, uint8 data)
 {
-   cmds[cnt++] = data;
+   //cmds[cnt++] = data;
    switch(cmd)
    {
    case CMD_WRITE_START:
@@ -103,7 +103,7 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
 
 int main()
 {
-   checksum = 0;
+   //checksum = 0;
    uart_init(RECEPTION_ENABLED, TRANSMISSION_ENABLED, INTERRUPT_ENABLED);
    //gpio_init();
    i2c_init();

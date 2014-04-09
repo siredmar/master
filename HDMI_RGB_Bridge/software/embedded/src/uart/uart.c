@@ -25,30 +25,30 @@
 /*--- Macros ---------------------------------------------------------*/
 //#define F_CPU 7372800UL
 
-#define BAUD 4800UL    /**< the high baudrate */
+#define BAUD 9600UL    /**< the high baudrate */
 
 /** Calculated UBRR value for high baud rate */
 #define UBRR_VAL ((F_CPU+BAUD*8)/(BAUD*16)-1)
 
 
 /** Counter variable used for determining the type and the end of the received data set */
-uint8_t uart_str_cnt = 0;
+uint8 uart_str_cnt = 0;
 
 /** Status variable, indicating whether a new data set is incoming (1) or not (0) */
-uint8_t new_data = 0;
+uint8new_data = 0;
 
 /** Buffer holding the received data set */
 char uart_str[MAXUARTSTR] = "";
 
 /** Status variable, indicating whether the end of a data set has been found (\n\r) */
-uint8_t block_finished = 0;
+uint8 block_finished = 0;
 
 /** Index of the beginning of a new data set within the UART buffer */
-uint8_t new_data_index = 0;
+uint8 new_data_index = 0;
 
 /*--- External Function Definitions ----------------------------------*/
 extern void command_ready(uart_i2cCommandType cmd, uint8 data);
-extern uint8 checksum;
+extern volatile uint8 checksum;
 
 /**
  * \brief Initialize UART communication with given parameters rxen, txen, rxcie and BAUD_VAL_HIGH
@@ -90,26 +90,19 @@ void uart_puts(const uint8 *s) {
    }
 }
 
-//uint8 convert_uart_str_to_int(sint8 *str)
-//{
-//   uint8 retval = 0;
-//   retval += 100*(str[1]-48);
-//   retval += 10*(str[2]-48);
-//   retval += (str[3]-48);
-//   return retval;
-//}
-
+void calculateChecksum()
+{
+   checksum ^= uart_str[0];
+   checksum ^= uart_str[1];
+   checksum ^= uart_str[2];
+   if(uart_str[1] == 'w')
+      checksum ^= uart_str[3];
+}
 
 ISR(USART0_RX_vect)
 {
-   //__asm("nop");
    sint8 next_char;
-
-   // uint8 timer_val = 0;
    next_char = UDR0;
-
-
-
 
    if(next_char == '#')
    {
@@ -122,29 +115,27 @@ ISR(USART0_RX_vect)
       //uart_str[uart_str_cnt + 1] = '\0';
       //uart_puts(uart_str);
       //uart_puts("command received\n\r");
-      if(uart_str[1] != 'c')
-      {
-         checksum = checksum ^ uart_str[0];
-         checksum = checksum ^ uart_str[1];
-         checksum = checksum ^ uart_str[2];
-      }
 
       switch(uart_str[1])
       {
       case 's':
+         checksum = 0;
+         calculateChecksum();
          command_ready(CMD_WRITE_START, 0xFF);
          break;
 
       case 'w':
+         calculateChecksum();
          command_ready(CMD_WRITE_DATA, uart_str[2]);
-         checksum = checksum ^ uart_str[3];
          break;
 
       case 'x':
+         calculateChecksum();
          command_ready(CMD_WRITE_STOP, 0xFF);
          break;
       case 'd':
          command_ready(CMD_DBG, 0xFF);
+         //calculateChecksum();
          break;
 
       case 'c':

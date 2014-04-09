@@ -143,8 +143,12 @@ int rs232_open_port(char *comport, int baudrate)
 int rs232_sendByte(int comport, unsigned char byte)
 {
    int n;
-   if(checksum_valid)
+   if(checksum_valid == 1)
+   {
       checksum = checksum ^ byte;
+      printf("checksum: 0x%.2X\n", checksum);
+   }
+
    n = write(comport, &byte, 1);
    if(n < 0)  return 1;
 
@@ -163,6 +167,8 @@ int rs232_sendByte(int comport, unsigned char byte)
 
 void rs232_puts(int comport, const char *text, int length)
 {
+   int cnt;
+
    write(comport, text, length);
 }
 
@@ -177,11 +183,11 @@ int rs232_close_port(int comport)
 
 void signal_handler_IO(int status)
 {
-//   if(waitForInterrupt == 1)
-//   {
-      //printf("signal_handler_IO called, new_data: %d\n", new_data);
-      new_data++;
-//   }
+   //   if(waitForInterrupt == 1)
+   //   {
+   //printf("signal_handler_IO called, new_data: %d\n", new_data);
+   new_data++;
+   //   }
 }
 
 
