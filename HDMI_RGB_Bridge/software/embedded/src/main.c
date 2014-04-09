@@ -10,50 +10,43 @@
 #define EDID_EEPROM_ADDRESS 0x50
 
 uint8 cnt = 0;
-uint8 cmds[130];
+uint8 cmds[131];
 
 volatile uint8 checksum = 0x00;
+volatile uint8 handshake_received = 0;
 
-uint8 w_start()
+void w_start()
 {
-   Std_ReturnType ret = E_NOT_OK;
+   cnt = 0;
+   //handshake_received = 0;
    //i2c_start(EDID_EEPROM_ADDRESS + I2C_WRITE);     /* select EDID eeprom with address 0x50 in write mode */
-
    //i2c_write(0x00);                                /* select register address 0x00 to start the write process */
-   //uart_puts(0x00);
    _delay_ms(100);
    uart_puts("#1*");
-   ret = E_OK;
-   return ret;
 }
 
-uint8 w_data(uint8 data)
+void w_data(uint8 data)
 {
-   Std_ReturnType ret = E_NOT_OK;
+   cmds[cnt] = data;
+   cnt++;
    //i2c_write(data);
-   //uart_puts(data);
    _delay_ms(100);
    uart_puts("#2*");
-   ret = E_OK;
-   return ret;
 }
 
-uint8 w_stop()
+void w_stop()
 {
-   Std_ReturnType ret = E_NOT_OK;
    //i2c_stop();
-   //uart_puts(0xFF);
    _delay_ms(100);
    uart_puts("#3*");
-   ret = E_OK;
-   return ret;
+   handshake_received = 0;
 }
 
-uint8 dbg_output()
+void dbg_output()
 {
-//   uint8 i;
-//   for(i = 0; i < 127; i++)
-//      uart_putc(cmds[i]);
+   uint8 i;
+   for(i = 0; i < 128; i++)
+      uart_putc(cmds[i]);
 }
 
 void send_checksum()
@@ -65,7 +58,6 @@ void send_checksum()
 }
 void command_ready(uart_i2cCommandType cmd, uint8 data)
 {
-   //cmds[cnt++] = data;
    switch(cmd)
    {
    case CMD_WRITE_START:
@@ -78,6 +70,7 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
 
    case CMD_WRITE_STOP:
       w_stop();
+      handshake_received = 0;
       break;
 
    case CMD_DBG:
@@ -86,6 +79,11 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
 
    case CMD_CHECKSUM:
       send_checksum();
+      break;
+
+   case CMD_HANDSHAKE:
+      //uart_puts("handshake received");
+     // handshake_received = 1;
       break;
 
    case CMD_ERROR:
@@ -99,10 +97,14 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
 }
 
 
-int main()
+uint8 main()
 {
+   handshake_received = 0;
    uart_init(RECEPTION_ENABLED, TRANSMISSION_ENABLED, INTERRUPT_ENABLED);
    i2c_init();
+//   char buf[255];
+//   uint16 second = 0;
+
 //   uart_puts("\n\r");
 //   uart_puts("----------------------------------------\n\r");
 //   uart_puts("HDMI_RGB_LVDS Board EDID Data programmer\n\r");
@@ -119,7 +121,14 @@ int main()
 
    while(1)
    {
-
+      if(handshake_received == 0)
+      {
+         uart_puts("h");
+//         itoa(second++, buf, 10);
+//
+//         uart_puts(buf);
+         _delay_ms(2000);
+      }
    }
 
    return 0;

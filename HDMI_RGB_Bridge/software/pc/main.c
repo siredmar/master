@@ -11,7 +11,11 @@
 /** The maximum size of a string that is sent via UART */
 #define MAXUARTSTR 250
 #define TIMEOUT_CYCLES 2000
-#define TIMEOUT_50MS       30000
+#define TIMEOUT_HANDSHAKE_CYCLES 50
+
+#define TIMEOUT_30MS       30000
+#define TIMEOUT_50MS       100000
+
 #define GTK_MAIN_ITERATION()          while( gtk_events_pending() ) \
       gtk_main_iteration()
 
@@ -54,7 +58,7 @@ unsigned char checksum = 0x00;
 int waitForInterrupt = 0;
 short timeoutCounter;
 unsigned char checksum_buf;
-
+volatile int handshake = 0;
 
 typedef enum
 {
@@ -161,7 +165,7 @@ void rs232_data_received()
    // uint8 timer_val = 0;
    next_char = buf[0];
 
-   // g_print("next_char: %c\n", next_char);
+   debugOutput("next_char: %c\n", next_char);
    //   CMD_ACK = ACK;
    if(next_char == '#')
    {
@@ -185,6 +189,20 @@ void rs232_data_received()
    {
       uart_str[uart_str_cnt] = next_char;
       uart_str_cnt++;
+   }
+}
+
+int rs232_handshake_received()
+{
+   char buf[10] = {0};
+   read(comport_fd, buf, 1);
+
+
+   debugOutput("handshake_buf: %s\n", buf);
+   if(buf[0] == 'h')
+   {
+      new_data = 0;
+      return 1;
    }
 }
 
@@ -224,16 +242,19 @@ void calculateChecksum(char *text, int length)
 
 }
 
-void program_edid(GtkWidget * widget, gpointer user_data)
+int program_edid(GtkWidget * widget, gpointer user_data)
 {
    /* TODO: check if hexfile was loaded */
    int command_sent = 0;
    int command_index = 0;
 
+
    timeoutCounter = 0;
    comport_fd = rs232_open_port(comport, baudrate);
    char *command;
    checksum = 0;
+   handshake = 0;
+
 
    if(!comport_fd)
    {
@@ -241,15 +262,47 @@ void program_edid(GtkWidget * widget, gpointer user_data)
    }
    else
    {
-      GtkTextviewAppendInfo("Opening %s successfully! Writing EDID data into EEPROM... \n", comport);
+      GtkTextviewAppendInfo("Opening %s successfully! Checking for hardware ...\n", comport);
+      disableWidgets();
+      GTK_MAIN_ITERATION();
+      /* Handshake */
+      while(timeoutCounter < TIMEOUT_HANDSHAKE_CYCLES)
+      {
+         if(new_data > 0)
+         {
+            handshake = rs232_handshake_received();
+         }
+         if(handshake == 1)
+            break;
+         debugOutput("handshake counter: %i\n", timeoutCounter);
+         timeoutCounter++;
+         usleep(TIMEOUT_50MS);
+      }
+
+      if(handshake == 1)
+      {
+         GtkTextviewAppendInfo("Hardware found. Continuing ...\n", comport);
+         GTK_MAIN_ITERATION();
+      }
+      else
+      {
+         GtkTextviewAppendInfo("No Hardware found. Timeout! Check connections and please try again!\n", comport);
+         GTK_MAIN_ITERATION();
+         enableWidgets();
+         return 1;
+      }
+
+
 
 
       if(file_opened == 1)
       {
          GtkTextviewAppendInfo("No file opened!\n");
+         return 2;
       }
       else
       {
+         timeoutCounter = 0;
          disableWidgets();
          gtk_image_set_from_stock (GTK_IMAGE(image_status), GTK_STOCK_DIALOG_WARNING, GTK_ICON_SIZE_MENU);
          while(timeoutCounter < TIMEOUT_CYCLES)
@@ -292,7 +345,7 @@ void program_edid(GtkWidget * widget, gpointer user_data)
                debugOutput("Checksum: 0x%.2X\n",  checksum_buf);
                timeoutCounter = TIMEOUT_CYCLES + 1;
             }
-            usleep(TIMEOUT_50MS);
+            usleep(TIMEOUT_30MS);
             timeoutCounter++;
          }
 

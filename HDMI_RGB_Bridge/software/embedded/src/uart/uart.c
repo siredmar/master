@@ -35,7 +35,7 @@
 uint8 uart_str_cnt = 0;
 
 /** Status variable, indicating whether a new data set is incoming (1) or not (0) */
-uint8new_data = 0;
+uint8 new_data = 0;
 
 /** Buffer holding the received data set */
 char uart_str[MAXUARTSTR] = "";
@@ -49,6 +49,7 @@ uint8 new_data_index = 0;
 /*--- External Function Definitions ----------------------------------*/
 extern void command_ready(uart_i2cCommandType cmd, uint8 data);
 extern volatile uint8 checksum;
+extern volatile uint8 handshake_received;
 
 /**
  * \brief Initialize UART communication with given parameters rxen, txen, rxcie and BAUD_VAL_HIGH
@@ -132,11 +133,16 @@ ISR(USART0_RX_vect)
          break;
       case 'd':
          command_ready(CMD_DBG, 0xFF);
-         //calculateChecksum();
          break;
 
       case 'c':
          command_ready(CMD_CHECKSUM, 0xFF);
+         break;
+
+      case 'h':
+         handshake_received = 1;
+         command_ready(CMD_HANDSHAKE, 0xFF);
+
          break;
 
       default:

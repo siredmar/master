@@ -37,7 +37,8 @@ typedef enum
    CMD_WRITE_STOP,
    CMD_ERROR,
    CMD_DBG,
-   CMD_CHECKSUM
+   CMD_CHECKSUM,
+   CMD_HANDSHAKE
 }uart_i2cCommandType;
 
 typedef enum
