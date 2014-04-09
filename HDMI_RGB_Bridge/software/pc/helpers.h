@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+//#define DEBUG
+
 typedef struct
 {
    unsigned char cmd;
@@ -40,5 +42,6 @@ unsigned char fileExists(char *fname);
 void GtkTextviewAppendInfo(const char *format, ...);
 void GtkTextviewAppendHexfile(const char *format, ...);
 
+void debugOutput(const char *format, ...);
 
 #endif /* HELPERS_H_ */

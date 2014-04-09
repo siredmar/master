@@ -15,10 +15,9 @@
 #define GTK_MAIN_ITERATION()          while( gtk_events_pending() ) \
       gtk_main_iteration()
 
-
 unsigned char *edid_string[128];
 unsigned char *edid_raw;
-char *comport;
+const char *comport;
 int received_flag = 0;
 
 int baudrate;
@@ -26,10 +25,10 @@ long hexfile_size;
 int comport_fd;
 
 /** Counter variable used for determining the type and the end of the received data set */
-char uart_str_cnt = 0;
+unsigned char uart_str_cnt = 0;
 
 /** Buffer holding the received data set */
-char uart_str[MAXUARTSTR] = "";
+unsigned char uart_str[MAXUARTSTR] = "";
 
 /** Status variable, indicating whether the end of a data set has been found (\n\r) */
 char block_finished = 0;
@@ -151,27 +150,14 @@ int readConfigFile()
    return 0;
 }
 
-void setAck(CMD_ACK_Type ack)
-{
-   ack = ACK;
-   //g_print("set ACK\n");
-}
-
-void resetAck(CMD_ACK_Type ack)
-{
-   ack = NO_ACK;
-   //g_print("set ACK\n");
-}
-
-
-int rs232_data_received()
+void rs232_data_received()
 {
    char buf[10] = {0};
    read(comport_fd, buf, 5);
    // g_print("buf: %s\n", buf);
 
    //__asm("nop");
-   char next_char;
+   unsigned char next_char;
    // uint8 timer_val = 0;
    next_char = buf[0];
 
@@ -186,9 +172,9 @@ int rs232_data_received()
    {
       block_finished = 1;
       uart_str[uart_str_cnt++] = next_char;
-      //g_print("uart_str: %s -> ", uart_str);
+      debugOutput("uart_str: %s -> ", uart_str);
       CMD_ACK = ACK;
-      g_print("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", uart_str[0], uart_str[1], uart_str[2], uart_str[3]);
+      debugOutput("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", uart_str[0], uart_str[1], uart_str[2], uart_str[3]);
       if(uart_str[1] == 'c')
       {
          checksum_buf = uart_str[2];
@@ -202,78 +188,28 @@ int rs232_data_received()
    }
 }
 
-//int rs232_data_received()
-//{
-//   char buf[10] = {0};
-//   read(comport_fd, buf, 5);
-//   // g_print("buf: %s\n", buf);
-//
-//   //__asm("nop");
-//   char next_char;
-//   // uint8 timer_val = 0;
-//   next_char = buf[0];
-//
-//   // g_print("next_char: %c\n", next_char);
-////   CMD_ACK = ACK;
-//   if(next_char == '#')
-//   {
-//      uart_str_cnt = 0;
-//      block_finished = 0;
-//   }
-//   if(next_char == '*' && !block_finished)
-//   {
-//      block_finished = 1;
-//      uart_str[uart_str_cnt++] = next_char;
-//      g_print("uart_str: %s -> ", uart_str);
-//      g_print("0x%.2X 0x%.2X 0x%.2X\n", uart_str[0], uart_str[1], uart_str[2]);
-//      switch(uart_str[1])
-//      {
-//      case '1':
-//      case '2':
-//      case '3':
-//         g_print("ACK%c received\n", uart_str[1]);
-//         CMD_ACK = ACK;
-//         break;
-//      }
-//   }
-//
-//   if(!block_finished)
-//   {
-//      uart_str[uart_str_cnt] = next_char;
-//      uart_str_cnt++;
-//   }
-//}
-
 static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned char nodata_flag)
 {
-   unsigned char *buf;
+   char *buf;
    //unsigned char buf[4];
 
    if(nodata_flag == 1)
    {
-      buf = (unsigned char*) malloc(sizeof(unsigned char) * 3);
-      //      buf[0] = '#'; g_print("0x%.2X ", buf[0]);
-      //      buf[1] = cmd; g_print("0x%.2X ", buf[1]);
-      //      buf[2] = '*'; g_print("0x%.2X\n", buf[2]);
-      //      buf[3] = 0;   g_print("0x%.2X\n", buf[3]);
-      sprintf(buf, "#%c*", cmd, hex);
-      g_print("0x%.2X 0x%.2X 0x%.2X\n", buf[0], buf[1], buf[2]);
+      buf = (char*) malloc(sizeof(char) * 3);
+      sprintf(buf, "#%c*", (char)cmd);
+      debugOutput("0x%.2X 0x%.2X 0x%.2X\n", buf[0], buf[1], buf[2]);
 
    }
    else
    {
-      buf = (unsigned char*) malloc(sizeof(unsigned char) * 4);
-      //      buf[0] = '#'; g_print("0x%.2X ", buf[0]);
-      //      buf[1] = cmd; g_print("0x%.2X ", buf[1]);
-      //      buf[2] = hex; g_print("0x%.2X ", buf[2]);
-      //      buf[3] = '*'; g_print("0x%.2X\n", buf[3]);
-      sprintf(buf, "#%c%c*", cmd, hex);
-      g_print("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", buf[0], buf[1], buf[2], buf[3]);
+      buf = (char*) malloc(sizeof(char) * 4);
+      sprintf(buf, "#%c%c*", (char)cmd, (char)hex);
+      debugOutput("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", buf[0], buf[1], buf[2], buf[3]);
    }
    return buf;
 }
 
-void calculateChecksum(unsigned char *text, int length)
+void calculateChecksum(char *text, int length)
 {
    int cnt;
    if(text[1] != 'c')
@@ -283,7 +219,7 @@ void calculateChecksum(unsigned char *text, int length)
          checksum = checksum ^ text[cnt];
 
       }
-      printf("checksum: 0x%.2X\n", checksum);
+      debugOutput("checksum: 0x%.2X\n", checksum);
    }
 
 }
@@ -296,7 +232,7 @@ void program_edid(GtkWidget * widget, gpointer user_data)
 
    timeoutCounter = 0;
    comport_fd = rs232_open_port(comport, baudrate);
-   unsigned char *command;
+   char *command;
    checksum = 0;
 
    if(!comport_fd)
@@ -315,7 +251,7 @@ void program_edid(GtkWidget * widget, gpointer user_data)
       else
       {
          disableWidgets();
-         gtk_image_set_from_stock ( image_status, GTK_STOCK_DIALOG_WARNING, GTK_ICON_SIZE_MENU);
+         gtk_image_set_from_stock (GTK_IMAGE(image_status), GTK_STOCK_DIALOG_WARNING, GTK_ICON_SIZE_MENU);
          while(timeoutCounter < TIMEOUT_CYCLES)
          {
             if(command_sent == 0 && command_index < hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
@@ -336,7 +272,6 @@ void program_edid(GtkWidget * widget, gpointer user_data)
                if(new_data >= 2)
                {
                   rs232_data_received();
-
                }
             }
             if(command_sent == 1 && CMD_ACK == ACK)
@@ -354,38 +289,32 @@ void program_edid(GtkWidget * widget, gpointer user_data)
             }
             if(command_index >= hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE)
             {
-               printf("Checksum: 0x%.2X\n",  checksum_buf);
+               debugOutput("Checksum: 0x%.2X\n",  checksum_buf);
                timeoutCounter = TIMEOUT_CYCLES + 1;
             }
             usleep(TIMEOUT_50MS);
             timeoutCounter++;
          }
 
-         printf("Received checksum: 0x%.2X, calculated checksum: 0x%.2X\n",  checksum_buf, checksum);
+         debugOutput("Received checksum: 0x%.2X, calculated checksum: 0x%.2X\n",  checksum_buf, checksum);
       }
    }
 
    /* compare received checksum with calculated checksum */
    if(checksum_buf == checksum)
    {
-      gtk_image_set_from_stock (image_status, GTK_STOCK_YES, GTK_ICON_SIZE_MENU);
+      gtk_image_set_from_stock (GTK_IMAGE(image_status), GTK_STOCK_YES, GTK_ICON_SIZE_MENU);
       GtkTextviewAppendInfo("Writing content successfully\n");
    }
    else
    {
-      gtk_image_set_from_stock (image_status, GTK_STOCK_NO, GTK_ICON_SIZE_MENU);
+      gtk_image_set_from_stock (GTK_IMAGE(image_status), GTK_STOCK_NO, GTK_ICON_SIZE_MENU);
       GtkTextviewAppendInfo("Writing error. Checksum mismatch. Please try again!\n");
    }
 
    rs232_close_port(comport_fd);
    enableWidgets();
 }
-
-/* TODO: test if ACK signals are working */
-
-
-
-
 
 void preferences_back(GtkWidget * widget, gpointer user_data)
 {
@@ -444,7 +373,6 @@ unsigned char open_binary_file(char *filename)
    }
 
    hexfile = (hexfileType*)malloc((hexfile_size + CMD_X_SIZE + CMD_S_SIZE + CMD_C_SIZE) * sizeof(hexfileType)); // +2 for start and end condition commands
-   //hexfile = (hexfileType*)malloc(hexfile_size * 2 * sizeof(unsigned char) + 2); // +2 for start and end condition commands
 
    /* load the actual data into the program */
    for(cnt = 0; cnt < hexfile_size; cnt++)
@@ -479,10 +407,12 @@ unsigned char open_binary_file(char *filename)
    hexfile[hexfile_size +  CMD_X_SIZE + CMD_C_SIZE].nodata_flag = 1;
 
 
+#if defined (DEBUG)
    for(cnt = 0; cnt < hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE; cnt++)
    {
-      g_print("%u\tcmd: %c, hex: 0x%.2X, ack: %c, nodata_flag: %u\n", cnt, hexfile[cnt].cmd, hexfile[cnt].hex, hexfile[cnt].ack, hexfile[cnt].nodata_flag);
+      debugOutput("%u\tcmd: %c, hex: 0x%.2X, ack: %c, nodata_flag: %u\n", cnt, hexfile[cnt].cmd, hexfile[cnt].hex, hexfile[cnt].ack, hexfile[cnt].nodata_flag);
    }
+#endif
 
    fclose(fp);
    free(buffer);
@@ -501,13 +431,6 @@ void file_open(GtkWidget * widget, gpointer user_data)
 int main(int argc, char *argv[])
 {
    GtkBuilder *builder;
-   //pthread_t main_tid;
-   //
-   //
-   //
-   //   g_thread_init(NULL);
-   //   gdk_threads_init();
-   //   gdk_threads_enter();
 
    gtk_init(&argc, &argv);
 
@@ -532,16 +455,12 @@ int main(int argc, char *argv[])
    button_discard_settings = GTK_WIDGET(gtk_builder_get_object(builder, "button_discard_settings"));
    image_status            = GTK_WIDGET(gtk_builder_get_object(builder, "image_status"));
 
-   gtk_image_set_from_stock ( image_status, GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_MENU);
-
+   gtk_image_set_from_stock (GTK_IMAGE(image_status), GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_MENU);
 
    gtk_builder_connect_signals(builder, NULL);
    g_object_unref(G_OBJECT(builder));
 
    gtk_widget_show(window_main);
-
-   //gtk_widget_show(window_preferences);
-   //gtk_widget_hide(window_preferences);
 
    readConfigFile();
    loadSerialSettings();
@@ -560,8 +479,5 @@ int main(int argc, char *argv[])
 
    gtk_main();
 
-
-
-   //   gdk_threads_leave();
    return 0;
 }

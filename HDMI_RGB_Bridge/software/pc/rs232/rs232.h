@@ -34,8 +34,8 @@
 /* For more info and how to use this libray, visit: http://www.teuniz.net/RS-232/ */
 
 
-#ifndef rs232_INCLUDED
-#define rs232_INCLUDED
+#ifndef RS232_H
+#define RS232_H
 
 
 #include <stdio.h>
@@ -48,18 +48,8 @@
 #include <sys/stat.h>
 #include <limits.h>
 
-
-typedef struct
-{
-   int fd;
-   int connected;
-   int baudrate;
-
-}serialType;
-
-
 void rs232_receive_handler (int status);
-int rs232_open_port(char *comport, int baudrate);
+int rs232_open_port(const char *comport, int baudrate);
 int rs232_sendByte(int comport_number, unsigned char byte);
 int rs232_sendBuf(int comport_number, unsigned char *buf, int size);
 int rs232_close_port(int comport);

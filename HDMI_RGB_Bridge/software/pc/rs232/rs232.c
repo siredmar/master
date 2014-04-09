@@ -12,6 +12,7 @@
 #include <termios.h>
 
 #include "rs232.h"
+#include "../helpers.h"
 
 extern int received_flag;
 extern void rs232_data_received();
@@ -22,12 +23,6 @@ extern int checksum_valid;
 extern int comport_fd;
 
 struct termios termAttr, oltAttr;
-//char comports[30][16]={"/dev/ttyS0","/dev/ttyS1","/dev/ttyS2","/dev/ttyS3","/dev/ttyS4","/dev/ttyS5",
-//      "/dev/ttyS6","/dev/ttyS7","/dev/ttyS8","/dev/ttyS9","/dev/ttyS10","/dev/ttyS11",
-//      "/dev/ttyS12","/dev/ttyS13","/dev/ttyS14","/dev/ttyS15","/dev/ttyUSB0",
-//      "/dev/ttyUSB1","/dev/ttyUSB2","/dev/ttyUSB3","/dev/ttyUSB4","/dev/ttyUSB5",
-//      "/dev/ttyAMA0","/dev/ttyAMA1","/dev/ttyACM0","/dev/ttyACM1",
-//      "/dev/rfcomm0","/dev/rfcomm1","/dev/ircomm0","/dev/ircomm1"};
 
 int rs232_returnBaudrate(int baudrate)
 {
@@ -81,29 +76,25 @@ int rs232_returnBaudrate(int baudrate)
    break;
    case 1000000 : baudr = B1000000;
    break;
-   default      : printf("invalid baudrate\n");
+   default      : debugOutput("invalid baudrate\n");
    return(0);
    break;
    }
    return baudr;
 }
 
-void signal_handler_IO (int status);   /* definition of signal handler */
+void signal_handler_IO (int status);
 
-int rs232_open_port(char *comport, int baudrate)
+int rs232_open_port(const char *comport, int baudrate)
 {
-   //int n;
-
-   //struct termios termAttr, oltAttr;
    struct sigaction saio;
    int baudRate;
    int fd;
 
    fd = open(comport, O_RDWR | O_NOCTTY | O_NONBLOCK | O_SYNC);
-   //fd = open(comport, O_RDWR | O_NOCTTY | O_NDELAY);
    if (fd == -1)
    {
-      perror("open_port: Unable to open comport\n");
+      debugOutput("open_port: Unable to open comport\n");
       return 1;
    }
 
@@ -114,13 +105,13 @@ int rs232_open_port(char *comport, int baudrate)
 
    fcntl(fd, F_SETFL, FNDELAY);
    fcntl(fd, F_SETOWN, getpid());
-   fcntl(fd, F_SETFL,  O_ASYNC ); /**<<<<<<------This line made it work.**/
+   fcntl(fd, F_SETFL,  O_ASYNC );
 
    tcgetattr(fd, &oltAttr);
 
    tcgetattr(fd, &termAttr);
    baudRate = rs232_returnBaudrate(baudrate);
-   //printf("baudrate: %i\n", baudRate);
+   debugOutput("baudrate: %i\n", baudRate);
    cfsetispeed(&termAttr, baudRate);
    cfsetospeed(&termAttr, baudRate);
    //termAttr.c_cc[VTIME]    = 1;     /* inter-character timer unused */
@@ -135,59 +126,29 @@ int rs232_open_port(char *comport, int baudrate)
    termAttr.c_oflag &= ~OPOST;
    tcsetattr(fd,TCSANOW,&termAttr);
 
-   printf("%s opened....\n", comport);
+   debugOutput("%s opened....\n", comport);
 
    return fd;
 }
 
-int rs232_sendByte(int comport, unsigned char byte)
-{
-   int n;
-   if(checksum_valid == 1)
-   {
-      checksum = checksum ^ byte;
-      printf("checksum: 0x%.2X\n", checksum);
-   }
-
-   n = write(comport, &byte, 1);
-   if(n < 0)  return 1;
-
-   return 0;
-}
-
-//int rs232_sendBuf(int comport, unsigned char *buf, int size)
-//{
-//   return(write(comport, buf, size));
-//}
-
-//int rs232_puts(int comport_number, unsigned char *buf, int size)
-//{
-//  return(write(Cport[comport_number], buf, size));
-//}
-
 void rs232_puts(int comport, const char *text, int length)
 {
-   int cnt;
-
    write(comport, text, length);
 }
 
 int rs232_close_port(int comport)
 {
    tcsetattr(comport, TCSANOW, &oltAttr);
-   printf("%d closed....\n", comport);
+   debugOutput("%d closed....\n", comport);
    close(comport);
-
    return 0;
 }
 
 void signal_handler_IO(int status)
 {
-   //   if(waitForInterrupt == 1)
-   //   {
-   //printf("signal_handler_IO called, new_data: %d\n", new_data);
+   debugOutput("signal_handler_IO called, new_data: %d\n", new_data);
    new_data++;
-   //   }
+
 }
 
 

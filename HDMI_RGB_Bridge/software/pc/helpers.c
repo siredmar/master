@@ -10,15 +10,6 @@ extern GtkWidget *text_info;
 extern GtkWidget *text_hexfile;
 
 
-//char* hexToString(unsigned char x)
-//{
-//   const char *hex = "0123456789ABCDEF";
-//
-//   char ret[4];
-//   sprintf(ret, "0x%c%c\n", hex[x >> 4 & 0x0F], hex[x & 0x0F]);
-//   return ret;
-//}
-
 unsigned char fileExists(char *fname)
 {
    if( access( fname, F_OK ) != -1 ) {
@@ -28,15 +19,21 @@ unsigned char fileExists(char *fname)
    }
 }
 
-//void GtkTextviewAppend(GtkWidget *textview, gchar *text)
-//{
-//   GtkTextBuffer *tbuffer;
-//   GtkTextIter ei;
-//
-//   tbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
-//   gtk_text_buffer_get_end_iter(tbuffer, &ei);
-//   gtk_text_buffer_insert(tbuffer, &ei, text, -1);
-//}
+#ifdef DEBUG
+void debugOutput(const char *format, ...)
+{
+
+   va_list arglist;
+
+   va_start( arglist, format );
+   vprintf(format, arglist);
+   va_end( arglist );
+
+}
+#else
+void debugOutput(const char *format, ...){};
+#endif
+
 
 void GtkTextviewAppendHexfile(const char *format, ...)
 {
@@ -68,6 +65,7 @@ void GtkTextviewAppendInfo(const char *format, ...)
    tbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_info));
    gtk_text_buffer_get_end_iter(tbuffer, &ei);
    gtk_text_buffer_insert(tbuffer, &ei, sprintf_buf, -1);
+   gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW(text_info), &ei, 0.0, FALSE, 0, 0);
 }
 
 

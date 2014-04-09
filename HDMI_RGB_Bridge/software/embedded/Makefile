@@ -4,7 +4,8 @@
 # is public domain), believed to be neutral to any flavor of "make"
 # (GNU make, BSD make, SysV make)
 
-F_CPU = 8000000
+F_CPU = 7372800
+#F_CPU = 8000000
 
 #MCU = atmega88
 MCU = atmega128

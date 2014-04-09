@@ -58,8 +58,6 @@ uint8 dbg_output()
 
 void send_checksum()
 {
-//   char buf[10];
-//   sprintf(buf, "%c", checksum);
    uart_putc('#');
    uart_putc('c');
    uart_putc(checksum);
@@ -103,9 +101,7 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
 
 int main()
 {
-   //checksum = 0;
    uart_init(RECEPTION_ENABLED, TRANSMISSION_ENABLED, INTERRUPT_ENABLED);
-   //gpio_init();
    i2c_init();
 //   uart_puts("\n\r");
 //   uart_puts("----------------------------------------\n\r");

@@ -112,9 +112,6 @@ ISR(USART0_RX_vect)
    if(next_char == '*' && !block_finished)
    {
       block_finished = 1;
-      //uart_str[uart_str_cnt + 1] = '\0';
-      //uart_puts(uart_str);
-      //uart_puts("command received\n\r");
 
       switch(uart_str[1])
       {
