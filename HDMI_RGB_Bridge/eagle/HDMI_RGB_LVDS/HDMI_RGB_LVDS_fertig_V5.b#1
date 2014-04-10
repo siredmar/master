@@ -1423,7 +1423,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="26.31" y="20.4115" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="28.435" y="20.921" size="1.27" layer="27" ratio="10" rot="R180"/>
 </element>
-<element name="R19" library="SchlegelAr_Master" package="35WR5KLFTR" value="10k" x="10.625" y="13.1875" rot="R270"/>
+<element name="R19" library="SchlegelAr_Master" package="35WR5KLFTR" value="5k" x="10.625" y="13.1875" rot="R270"/>
 <element name="C23" library="SchlegelAr_Master" package="C0402" value="100n" x="27.125" y="11.6875" smashed="yes" rot="R270">
 <attribute name="NAME" x="29.4275" y="7.3025" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="25.22" y="12.3225" size="1.27" layer="27" rot="R270"/>

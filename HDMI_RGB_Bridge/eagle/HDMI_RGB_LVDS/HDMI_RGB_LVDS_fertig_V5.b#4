@@ -19,9 +19,9 @@
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
@@ -1344,7 +1344,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="VALUE" x="27.4965" y="18.09" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="C7" library="SchlegelAr_Master" package="C0402" value="22p" x="28.5" y="12.3125" smashed="yes" rot="R90">
-<attribute name="NAME" x="29.0525" y="9.0525" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="30.615" y="11.1775" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="30.405" y="11.6775" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C8" library="SchlegelAr_Master" package="C0402" value="22p" x="28.5" y="14.5625" smashed="yes" rot="R270">
@@ -1425,7 +1425,7 @@ Covered vias can be set in Masks (Limit).
 </element>
 <element name="R19" library="SchlegelAr_Master" package="35WR5KLFTR" value="10k" x="10.625" y="13.1875" rot="R270"/>
 <element name="C23" library="SchlegelAr_Master" package="C0402" value="100n" x="27.125" y="11.6875" smashed="yes" rot="R270">
-<attribute name="NAME" x="27.1775" y="12.865" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="29.4275" y="7.3025" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="25.22" y="12.3225" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C24" library="SchlegelAr_Master" package="C0402" value="100n" x="14.125" y="12.4375" rot="R270"/>
@@ -1520,7 +1520,10 @@ Covered vias can be set in Masks (Limit).
 <element name="C35" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="30.0625" y="54.8125"/>
 <element name="C36" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="7.8125" y="51.8125" rot="R180"/>
 <element name="C34" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="6.25" y="29.5625" rot="R270"/>
-<element name="R14" library="SchlegelAr_Master" package="R0402" value="22R" x="-1.25" y="-7.125"/>
+<element name="R14" library="SchlegelAr_Master" package="R0402" value="22R" x="25.5" y="15.6875" smashed="yes">
+<attribute name="NAME" x="19.76" y="19.8225" size="1.27" layer="25" rot="R270"/>
+<attribute name="VALUE" x="24.865" y="13.7825" size="1.27" layer="27"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
@@ -3724,11 +3727,9 @@ Covered vias can be set in Masks (Limit).
 </signal>
 <signal name="AVR_PWM">
 <contactref element="JP6" pad="2"/>
-<wire x1="20.35" y1="16.1625" x2="20.5625" y2="16.375" width="0.15" layer="1"/>
-<wire x1="20.5625" y1="16.375" x2="23" y2="16.375" width="0.15" layer="1"/>
-<wire x1="23" y1="16.375" x2="24.625" y2="18" width="0.15" layer="1"/>
 <contactref element="R14" pad="2"/>
-<wire x1="-0.6" y1="-7.125" x2="20.35" y2="16.1625" width="0" layer="19" extent="1-1"/>
+<wire x1="26.15" y1="15.6875" x2="26.15" y2="16.475" width="0.15" layer="1"/>
+<wire x1="26.15" y1="16.475" x2="24.625" y2="18" width="0.15" layer="1"/>
 </signal>
 <signal name="LVDS_PWM">
 <contactref element="JP6" pad="3"/>
@@ -4068,7 +4069,11 @@ Covered vias can be set in Masks (Limit).
 <signal name="N$1">
 <contactref element="IC6" pad="13"/>
 <contactref element="R14" pad="1"/>
-<wire x1="-1.9" y1="-7.125" x2="20.35" y2="15.3551" width="0" layer="19" extent="1-1"/>
+<wire x1="20.6875" y1="16.375" x2="24.1625" y2="16.375" width="0.15" layer="1"/>
+<wire x1="24.1625" y1="16.375" x2="24.85" y2="15.6875" width="0.15" layer="1"/>
+<wire x1="20.6875" y1="16.375" x2="20.375" y2="16.0625" width="0.15" layer="1"/>
+<wire x1="20.375" y1="16.0625" x2="20.375" y2="15.3801" width="0.15" layer="1"/>
+<wire x1="20.375" y1="15.3801" x2="20.35" y2="15.3551" width="0.15" layer="1"/>
 </signal>
 </signals>
 </board>

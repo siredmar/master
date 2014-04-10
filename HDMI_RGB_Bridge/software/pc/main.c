@@ -154,8 +154,9 @@ static int readConfigFile()
    return 0;
 }
 
-static void rs232_data_received()
+static int rs232_checksum_received()
 {
+   int retVal = 0;
    char buf[10] = {0};
    read(comport_fd, buf, 5);
    // g_print("buf: %s\n", buf);
@@ -166,7 +167,7 @@ static void rs232_data_received()
    next_char = buf[0];
 
    debugOutput("next_char: %c\n", next_char);
-   //   CMD_ACK = ACK;
+
    if(next_char == '#')
    {
       uart_str_cnt = 0;
@@ -182,6 +183,11 @@ static void rs232_data_received()
       if(uart_str[1] == 'c')
       {
          checksum_buf = uart_str[2];
+         retVal =  1;
+      }
+      else
+      {
+         retVal =  0;
       }
    }
 
@@ -189,6 +195,32 @@ static void rs232_data_received()
    {
       uart_str[uart_str_cnt] = next_char;
       uart_str_cnt++;
+   }
+   return retVal;
+}
+
+static void rs232_data_received()
+{
+   char buf[10] = {0};
+   read(comport_fd, buf, 1);
+   unsigned char next_char;
+   static unsigned char old_char = 0;
+   next_char = buf[0];
+
+   debugOutput("old_char: %c, next_char: %c\n", old_char, next_char);
+   uart_str_cnt++;
+   //uart_str[uart_str_cnt++] = next_char;
+   if(uart_str_cnt >=3)
+   {
+      //debugOutput("uart_str: %s -> ", uart_str);
+      CMD_ACK = ACK;
+      // debugOutput("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", uart_str[0], uart_str[1], uart_str[2], uart_str[3]);
+      uart_str_cnt = 0;
+      //      if(old_char == 'c')
+      //      {
+      //         checksum_buf = next_char;
+      //      }
+      old_char = next_char;
    }
 }
 
@@ -209,7 +241,7 @@ static int rs232_handshake_received()
    {
       retVal = 0;
    }
-return retVal;
+   return retVal;
 }
 
 static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned char nodata_flag)
@@ -231,17 +263,11 @@ static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned 
    return buf;
 }
 
-static void calculateChecksum(char *text, int length)
+static void calculateChecksum(unsigned char byte)
 {
    int cnt;
-   if(text[1] != 'c')
-   {
-      for (cnt = 0; cnt < length; cnt++)
-      {
-         checksum = checksum ^ text[cnt];
-      }
-      debugOutput("checksum: 0x%.2X\n", checksum);
-   }
+   checksum ^= byte;
+   debugOutput("checksum: 0x%.2X\n", checksum);
 }
 
 int program_edid(GtkWidget * widget, gpointer user_data)
@@ -249,7 +275,8 @@ int program_edid(GtkWidget * widget, gpointer user_data)
    /* TODO: check if hexfile was loaded */
    int command_sent = 0;
    int command_index = 0;
-
+   int checksum_received = 0;
+int cnt;
 
    timeoutCounter = 0;
    comport_fd = rs232_open_port(comport, baudrate);
@@ -312,7 +339,7 @@ int program_edid(GtkWidget * widget, gpointer user_data)
                waitForInterrupt = 0;
 
                command = returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag);
-               calculateChecksum(command, 4);
+               //calculateChecksum(command, 4);
                rs232_puts(comport_fd, command, 4);
 
                waitForInterrupt = 1;
@@ -351,6 +378,29 @@ int program_edid(GtkWidget * widget, gpointer user_data)
          debugOutput("Received checksum: 0x%.2X, calculated checksum: 0x%.2X\n",  checksum_buf, checksum);
       }
    }
+
+   /* Checksum */
+
+
+
+   while(timeoutCounter < TIMEOUT_HANDSHAKE_CYCLES)
+   {
+      if(new_data > 0)
+      {
+         checksum_received = rs232_checksum_received();
+      }
+      if(checksum_received == 1)
+         break;
+      debugOutput("checksum timer: %i\n", timeoutCounter);
+      timeoutCounter++;
+      usleep(TIMEOUT_50MS);
+   }
+   for(cnt = 0; cnt < hexfile_size; cnt++)
+   {
+      calculateChecksum(hexfile[cnt].hex);
+   }
+   debugOutput("Calculated Checksum: 0x%.2X\n", checksum);
+   debugOutput("Received   Checksum: 0x%.2X\n", checksum_buf);
 
    /* compare received checksum with calculated checksum */
    if(checksum_buf == checksum)
@@ -425,7 +475,7 @@ static unsigned char open_binary_file(char *filename)
       return 4;
    }
 
-   hexfile = (hexfileType*)malloc((hexfile_size + CMD_X_SIZE + CMD_S_SIZE + CMD_C_SIZE) * sizeof(hexfileType)); // +2 for start and end condition commands
+   hexfile = (hexfileType*)malloc((hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_SIZE) * sizeof(hexfileType)); // +2 for start and end condition commands
 
    /* load the actual data into the program */
    for(cnt = 0; cnt < hexfile_size; cnt++)
@@ -461,7 +511,7 @@ static unsigned char open_binary_file(char *filename)
 
 
 #if defined (DEBUG)
-   for(cnt = 0; cnt < hexfile_size + CMD_S_SIZE + CMD_X_SIZE + CMD_C_SIZE; cnt++)
+   for(cnt = 0; cnt < hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_SIZE; cnt++)
    {
       debugOutput("%u\tcmd: %c, hex: 0x%.2X, ack: %c, nodata_flag: %u\n", cnt, hexfile[cnt].cmd, hexfile[cnt].hex, hexfile[cnt].ack, hexfile[cnt].nodata_flag);
    }

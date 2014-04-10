@@ -1368,7 +1368,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="23.885" y="5.5725" size="1.27" layer="26" rot="MR0"/>
 <attribute name="VALUE" x="20.135" y="4.0325" size="1.27" layer="28" rot="MR0"/>
 </element>
-<element name="IC6" library="SchlegelAr_Master" package="TQFP32" value="ATMEGA48A-AU" x="20.75" y="11.0625" smashed="yes" rot="R180">
+<element name="IC6" library="SchlegelAr_Master" package="TQFP32" value="ATMEGA88PA" x="20.75" y="11.0625" smashed="yes" rot="R180">
 <attribute name="NAME" x="24.5175" y="7.4561" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" x="23.7726" y="12.3325" size="0.8128" layer="27" rot="R180"/>
 </element>

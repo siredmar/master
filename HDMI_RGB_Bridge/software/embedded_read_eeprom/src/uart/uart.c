@@ -44,10 +44,6 @@ uint8 block_finished = 0;
 /** Index of the beginning of a new data set within the UART buffer */
 uint8 new_data_index = 0;
 
-/*--- External Function Definitions ----------------------------------*/
-extern void command_ready(uart_i2cCommandType cmd, uint8 data);
-extern volatile uint8 checksum;
-extern volatile uint8 handshake_received;
 
 /**
  * @brief Initialize UART communication with given parameters rxen, txen, rxcie and BAUD_VAL_HIGH
@@ -89,82 +85,7 @@ void uart_puts(const uint8 *s) {
    }
 }
 
-///**
-// * @brief Calculates the checksum of the given uart_str (XOR)
-// *
-// */
-//void calculateChecksum()
-//{
-//   checksum ^= uart_str[0];
-//   checksum ^= uart_str[1];
-//   checksum ^= uart_str[2];
-//   if(uart_str[1] == 'w')
-//      checksum ^= uart_str[3];
-//}
 
-/**
- * @brief Interrupt Service Routine for receiving charakters via UART
- *
- */
-ISR(USART0_RX_vect)
-{
-   sint8 next_char;
-   next_char = UDR0;
-
-   if(next_char == '#')
-   {
-      uart_str_cnt = 0;
-      block_finished = 0;
-   }
-   if(next_char == '*' && !block_finished)
-   {
-      block_finished = 1;
-
-      switch(uart_str[1])
-      {
-      case 's':
-         checksum = 0;
-         //calculateChecksum();
-         command_ready(CMD_WRITE_START, 0xFF);
-         break;
-
-      case 'w':
-         checksum = 0;
-        // calculateChecksum();
-         command_ready(CMD_WRITE_DATA, uart_str[2]);
-         break;
-
-      case 'x':
-       //  calculateChecksum();
-         command_ready(CMD_WRITE_STOP, 0xFF);
-         break;
-
-      case 'd':
-         command_ready(CMD_DBG, 0xFF);
-         break;
-
-      case 'c':
-         command_ready(CMD_CHECKSUM, 0xFF);
-         break;
-
-      case 'h':
-         handshake_received = 1;
-        // command_ready(CMD_HANDSHAKE, 0xFF);
-
-         break;
-
-      default:
-         command_ready(CMD_ERROR, 0xFF);
-         break;
-      }
-   }
-
-   if(!block_finished)
-   {
-      uart_str[uart_str_cnt] = next_char;
-      uart_str_cnt++;
-   }
-}
 
 
 

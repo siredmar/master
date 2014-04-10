@@ -9,11 +9,11 @@
 <grid distance="0.0625" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
 <layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
 <layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="no" active="yes"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
@@ -22,7 +22,7 @@
 <layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
@@ -48,8 +48,8 @@
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
@@ -131,7 +131,7 @@
 <wire x1="70" y1="0" x2="70" y2="60" width="0" layer="20"/>
 <wire x1="70" y1="60" x2="0" y2="60" width="0" layer="20"/>
 <wire x1="0" y1="60" x2="0" y2="0" width="0" layer="20"/>
-<text x="33.4375" y="57.5" size="1.778" layer="16" font="vector" ratio="15" rot="MR0">HDMI_RGB_LVDS V5</text>
+<text x="33.4375" y="57.5" size="1.778" layer="16" font="vector" ratio="15" rot="MR0">HDMI_RGB_LVDS V6</text>
 <text x="28.625" y="55.3125" size="1.778" layer="16" font="vector" ratio="15" rot="MR0">Armin Schlegel</text>
 <text x="64.8125" y="15" size="1.778" layer="1" ratio="15">1</text>
 <text x="64.8125" y="12.8125" size="1.778" layer="2" ratio="15">2</text>
@@ -141,7 +141,7 @@
 <hole x="2" y="58" drill="3.2"/>
 <hole x="68" y="58" drill="3.2"/>
 <hole x="68" y="2" drill="3.2"/>
-<text x="22.125" y="52.9375" size="1.778" layer="16" ratio="15" rot="MR0">02.04.2014</text>
+<text x="22.125" y="52.9375" size="1.778" layer="16" ratio="15" rot="MR0">10.04.2014</text>
 </plain>
 <libraries>
 <library name="SchlegelAr_Master">
@@ -1344,7 +1344,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="VALUE" x="27.4965" y="18.09" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="C7" library="SchlegelAr_Master" package="C0402" value="22p" x="28.5" y="12.3125" smashed="yes" rot="R90">
-<attribute name="NAME" x="29.0525" y="9.0525" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="30.615" y="11.1775" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="30.405" y="11.6775" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C8" library="SchlegelAr_Master" package="C0402" value="22p" x="28.5" y="14.5625" smashed="yes" rot="R270">
@@ -1368,7 +1368,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="23.885" y="5.5725" size="1.27" layer="26" rot="MR0"/>
 <attribute name="VALUE" x="20.135" y="4.0325" size="1.27" layer="28" rot="MR0"/>
 </element>
-<element name="IC6" library="SchlegelAr_Master" package="TQFP32" value="ATMEGA48A-AU" x="20.75" y="11.0625" smashed="yes" rot="R180">
+<element name="IC6" library="SchlegelAr_Master" package="TQFP32" value="ATMEGA88PA" x="20.75" y="11.0625" smashed="yes" rot="R180">
 <attribute name="NAME" x="24.5175" y="7.4561" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" x="23.7726" y="12.3325" size="0.8128" layer="27" rot="R180"/>
 </element>
@@ -1389,7 +1389,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="VALUE" x="21.6615" y="44.181" size="1.27" layer="28" rot="MR270"/>
 </element>
 <element name="CON6" library="SchlegelAr_Master" package="FI-X30SSLA-HF" value="FI-X30SSLA-HF" x="5" y="38.375" rot="MR270"/>
-<element name="C16" library="SchlegelAr_Master" package="C0402" value="0.1u" x="20.9375" y="44.375" smashed="yes">
+<element name="C16" library="SchlegelAr_Master" package="C0402" value="100n" x="20.9375" y="44.375" smashed="yes">
 <attribute name="NAME" x="22.365" y="44.01" size="1.27" layer="25"/>
 <attribute name="VALUE" x="20.3025" y="42.47" size="1.27" layer="27"/>
 </element>
@@ -1401,7 +1401,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="17.26" y="43.1775" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.1975" y="44.405" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="C18" library="SchlegelAr_Master" package="C0402" value="0.1u" x="18.5625" y="40.75" smashed="yes" rot="R180">
+<element name="C18" library="SchlegelAr_Master" package="C0402" value="100n" x="18.5625" y="40.75" smashed="yes" rot="R180">
 <attribute name="NAME" x="17.26" y="41.365" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.1975" y="42.655" size="1.27" layer="27" rot="R180"/>
 </element>
@@ -1409,7 +1409,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="17.3225" y="37.99" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.0725" y="39.28" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="C20" library="SchlegelAr_Master" package="C0402" value="0.1u" x="18.4375" y="35.875" smashed="yes" rot="R180">
+<element name="C20" library="SchlegelAr_Master" package="C0402" value="100n" x="18.4375" y="35.875" smashed="yes" rot="R180">
 <attribute name="NAME" x="17.385" y="36.365" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.0725" y="37.78" size="1.27" layer="27" rot="R180"/>
 </element>
@@ -1423,9 +1423,9 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="26.31" y="20.4115" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="28.435" y="20.921" size="1.27" layer="27" ratio="10" rot="R180"/>
 </element>
-<element name="R19" library="SchlegelAr_Master" package="35WR5KLFTR" value="10k" x="10.625" y="13.1875" rot="R270"/>
+<element name="R19" library="SchlegelAr_Master" package="35WR5KLFTR" value="5k" x="10.625" y="13.1875" rot="R270"/>
 <element name="C23" library="SchlegelAr_Master" package="C0402" value="100n" x="27.125" y="11.6875" smashed="yes" rot="R270">
-<attribute name="NAME" x="27.1775" y="12.865" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="29.4275" y="7.3025" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="25.22" y="12.3225" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C24" library="SchlegelAr_Master" package="C0402" value="100n" x="14.125" y="12.4375" rot="R270"/>
@@ -1520,6 +1520,12 @@ Covered vias can be set in Masks (Limit).
 <element name="C35" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="30.0625" y="54.8125"/>
 <element name="C36" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="7.8125" y="51.8125" rot="R180"/>
 <element name="C34" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="6.25" y="29.5625" rot="R270"/>
+<element name="R14" library="SchlegelAr_Master" package="R0402" value="22R" x="25.5" y="15.6875" smashed="yes">
+<attribute name="NAME" x="19.76" y="19.8225" size="1.27" layer="25" rot="R270"/>
+<attribute name="VALUE" x="24.865" y="13.7825" size="1.27" layer="27"/>
+</element>
+<element name="JP9" library="SchlegelAr_Master" package="JUMPER2_THROUGHHOLE" value="JUMPER2" x="27.5" y="2.3125" rot="R90"/>
+<element name="JP10" library="SchlegelAr_Master" package="JUMPER2_THROUGHHOLE" value="JUMPER2" x="33.25" y="2.3125" rot="R90"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -2071,6 +2077,7 @@ Covered vias can be set in Masks (Limit).
 <via x="27.5" y="50.5625" extent="1-16" drill="0.3"/>
 <via x="28.1875" y="51.25" extent="1-16" drill="0.3"/>
 <via x="28.875" y="50.5625" extent="1-16" drill="0.3"/>
+<contactref element="JP10" pad="1"/>
 </signal>
 <signal name="+3V3">
 <contactref element="IC2" pad="3"/>
@@ -2417,6 +2424,7 @@ Covered vias can be set in Masks (Limit).
 <contactref element="R13" pad="1"/>
 <wire x1="14.0875" y1="5" x2="15" y2="5" width="0.3" layer="16"/>
 <via x="15" y="5" extent="1-16" drill="0.3"/>
+<contactref element="JP10" pad="2"/>
 </signal>
 <signal name="N$2">
 <contactref element="CON1" pad="3"/>
@@ -2494,8 +2502,8 @@ Covered vias can be set in Masks (Limit).
 <polygon width="0.3" layer="1" thermals="no">
 <vertex x="5.5" y="27.75"/>
 <vertex x="5.5" y="24.25"/>
-<vertex x="7.75" y="24.25"/>
-<vertex x="7.75" y="25.375"/>
+<vertex x="9.5" y="24.25"/>
+<vertex x="9.5" y="25.375"/>
 <vertex x="7" y="25.375"/>
 <vertex x="7" y="27.75"/>
 </polygon>
@@ -2512,6 +2520,8 @@ Covered vias can be set in Masks (Limit).
 <wire x1="40.6" y1="53.5575" x2="40.55" y2="53.5075" width="0.8128" layer="16"/>
 <wire x1="51.8125" y1="48.125" x2="45.9325" y2="48.125" width="0.8128" layer="16"/>
 <wire x1="45.9325" y1="48.125" x2="40.55" y2="53.5075" width="0.8128" layer="16"/>
+<via x="8" y="24.8125" extent="1-16" drill="0.3"/>
+<via x="8.9375" y="24.8125" extent="1-16" drill="0.3"/>
 </signal>
 <signal name="EDID_SDA">
 <contactref element="CON2" pad="16"/>
@@ -2538,11 +2548,17 @@ Covered vias can be set in Masks (Limit).
 <wire x1="54.25" y1="2.8125" x2="54.8125" y2="3.375" width="0.15" layer="16"/>
 <wire x1="54.8125" y1="3.375" x2="56.875" y2="3.375" width="0.15" layer="16"/>
 <wire x1="56.875" y1="4.6875" x2="56.875" y2="3.375" width="0.15" layer="1"/>
-<wire x1="26.625" y1="5.25" x2="36.0625" y2="5.25" width="0.15" layer="16"/>
+<wire x1="26.625" y1="5.25" x2="28.0625" y2="5.25" width="0.15" layer="16"/>
+<wire x1="28.25" y1="5.25" x2="36.0625" y2="5.25" width="0.15" layer="16"/>
 <wire x1="36.0625" y1="5.25" x2="38.375" y2="2.9375" width="0.15" layer="16"/>
 <contactref element="R28" pad="1"/>
 <wire x1="57.9125" y1="2.5" x2="57.75" y2="2.5" width="0.15" layer="16"/>
 <wire x1="57.75" y1="2.5" x2="56.875" y2="3.375" width="0.15" layer="16"/>
+<contactref element="JP9" pad="1"/>
+<wire x1="28.77" y1="2.3125" x2="28.77" y2="4.73" width="0.15" layer="1"/>
+<wire x1="28.77" y1="4.73" x2="28.25" y2="5.25" width="0.15" layer="1"/>
+<via x="28.25" y="5.25" extent="1-16" drill="0.3"/>
+<wire x1="28.25" y1="5.25" x2="28.0625" y2="5.25" width="0.15" layer="16"/>
 </signal>
 <signal name="EDID_SCL">
 <contactref element="CON2" pad="15"/>
@@ -2577,6 +2593,9 @@ Covered vias can be set in Masks (Limit).
 <contactref element="R29" pad="1"/>
 <wire x1="57.9125" y1="1.3125" x2="56.625" y2="1.3125" width="0.15" layer="16"/>
 <wire x1="56.625" y1="1.3125" x2="55.3125" y2="2.625" width="0.15" layer="16"/>
+<contactref element="JP9" pad="2"/>
+<wire x1="26.3125" y1="4.625" x2="26.3125" y2="2.395" width="0.15" layer="16"/>
+<wire x1="26.3125" y1="2.395" x2="26.23" y2="2.3125" width="0.15" layer="16"/>
 </signal>
 <signal name="N$18">
 <contactref element="CON2" pad="19"/>
@@ -3720,12 +3739,10 @@ Covered vias can be set in Masks (Limit).
 <wire x1="29.125" y1="43.875" x2="28.625" y2="43.875" width="0.15" layer="1"/>
 </signal>
 <signal name="AVR_PWM">
-<contactref element="IC6" pad="13"/>
 <contactref element="JP6" pad="2"/>
-<wire x1="20.35" y1="15.3551" x2="20.35" y2="16.1625" width="0.15" layer="1"/>
-<wire x1="20.35" y1="16.1625" x2="20.5625" y2="16.375" width="0.15" layer="1"/>
-<wire x1="20.5625" y1="16.375" x2="23" y2="16.375" width="0.15" layer="1"/>
-<wire x1="23" y1="16.375" x2="24.625" y2="18" width="0.15" layer="1"/>
+<contactref element="R14" pad="2"/>
+<wire x1="26.15" y1="15.6875" x2="26.15" y2="16.475" width="0.15" layer="1"/>
+<wire x1="26.15" y1="16.475" x2="24.625" y2="18" width="0.15" layer="1"/>
 </signal>
 <signal name="LVDS_PWM">
 <contactref element="JP6" pad="3"/>
@@ -4061,6 +4078,15 @@ Covered vias can be set in Masks (Limit).
 <wire x1="7.75" y1="12.0625" x2="7.75" y2="7.5" width="0.3" layer="15"/>
 <wire x1="7.75" y1="7.5" x2="6.875" y2="6.625" width="0.3" layer="15"/>
 <wire x1="11.9" y1="3.3125" x2="11.875" y2="3.3375" width="0.3" layer="16"/>
+</signal>
+<signal name="N$1">
+<contactref element="IC6" pad="13"/>
+<contactref element="R14" pad="1"/>
+<wire x1="20.6875" y1="16.375" x2="24.1625" y2="16.375" width="0.15" layer="1"/>
+<wire x1="24.1625" y1="16.375" x2="24.85" y2="15.6875" width="0.15" layer="1"/>
+<wire x1="20.6875" y1="16.375" x2="20.375" y2="16.0625" width="0.15" layer="1"/>
+<wire x1="20.375" y1="16.0625" x2="20.375" y2="15.3801" width="0.15" layer="1"/>
+<wire x1="20.375" y1="15.3801" x2="20.35" y2="15.3551" width="0.15" layer="1"/>
 </signal>
 </signals>
 </board>

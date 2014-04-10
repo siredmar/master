@@ -1,6 +1,5 @@
 #ifndef _I2CMASTER_H
-#define _I2CMASTER_H
-#include "../../inc/std_types.h"
+#define _I2CMASTER_H   1
 /************************************************************************* 
 * Title:    C include file for the I2C master interface 
 *           (i2cmaster.S or twimaster.c)
@@ -87,23 +86,13 @@
 #endif
 
 #include <avr/io.h>
-/** defines the bytes for addressing the I2C device */
-#define EEPROM_WIDTH EEPROM_ADDR_2_BYTES
-
-/** defines the address of the EEPROM */
-#define EDID_EEPROM_ADDRESS 0xA0
-
-/** defines the selection of the address bytes for the I2C device */
-enum{
-   EEPROM_ADDR_2_BYTES  = 2U,
-   EEPROM_ADDR_1_BYTES
-};
 
 /** defines the data direction (reading from I2C device) in i2c_start(),i2c_rep_start() */
 #define I2C_READ    1
 
 /** defines the data direction (writing to I2C device) in i2c_start(),i2c_rep_start() */
 #define I2C_WRITE   0
+
 
 /**
  @brief initialize the I2C master interace. Need to be called only once 
@@ -183,20 +172,6 @@ unsigned char i2c_readNak(void);
  */
 unsigned char i2c_read(unsigned char ack);
 #define i2c_read(ack)  (ack) ? i2c_readAck() : i2c_readNak(); 
-
-/**
- @brief  Writes a data byte to a given address
- @param    address specifies the the address to which the data should be written to
- @param    data specifies the data that should be written
- */
-void write_eeprom_byte(uint16 address, uint8 data);
-
-/**
- @brief    Reads a data byte at a specific address
- @param    address specifies the the address from which the data should be read
- @return   byte read from I2C device at specific address
- */
-uint8 read_eeprom_byte(uint16 address);
 
 
 /**@}*/

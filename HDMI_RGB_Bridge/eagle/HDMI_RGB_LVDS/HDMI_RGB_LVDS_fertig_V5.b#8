@@ -2311,11 +2311,11 @@ Covered vias can be set in Masks (Limit).
 <vertex x="3.5" y="53.125"/>
 </polygon>
 <polygon width="0.3" layer="1" thermals="no">
-<vertex x="30.5625" y="50.0625"/>
-<vertex x="30.5625" y="54.4375"/>
-<vertex x="33.125" y="54.4375"/>
-<vertex x="33.125" y="52.6875"/>
-<vertex x="32.25" y="51.8125"/>
+<vertex x="30.6875" y="50.0625"/>
+<vertex x="30.6875" y="54.4375"/>
+<vertex x="33" y="54.4375"/>
+<vertex x="33" y="52.6875"/>
+<vertex x="32.25" y="51.9375"/>
 <vertex x="32.25" y="50"/>
 <vertex x="30.625" y="50"/>
 </polygon>

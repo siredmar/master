@@ -3021,14 +3021,14 @@ LED 0402
 <part name="U$55" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$56" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$57" library="SchlegelAr_Master" deviceset="+3V3" device=""/>
-<part name="C16" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="0.1u"/>
+<part name="C16" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>
 <part name="C17" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="0.01u"/>
 <part name="U$58" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$59" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="C15" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="0.01u"/>
-<part name="C18" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="0.1u"/>
+<part name="C18" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>
 <part name="C19" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="0.01u"/>
-<part name="C20" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="0.1u"/>
+<part name="C20" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>
 <part name="C21" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="0.01u"/>
 <part name="U$60" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$61" library="SchlegelAr_Master" deviceset="GND" device=""/>

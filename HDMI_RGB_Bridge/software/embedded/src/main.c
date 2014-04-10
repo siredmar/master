@@ -26,6 +26,8 @@ uint8 cnt = 0;
 
 /** Storage array for received data */
 uint8 cmds[131];
+uint8 eeprom[131] = {0};
+uint8 address_counter = 0;
 
 /** Global variable for calculating the checksum */
 volatile uint8 checksum = 0x00;
@@ -37,6 +39,7 @@ volatile uint8 handshake_received = 0;
 volatile connectionStatusType transmission_status = NO_ERROR;
 
 volatile connectionStatusType connection_status = CLOSED;
+
 /**
  * @brief Function to be called when command #s* is received. Starts the i2c communication.
  *
@@ -59,9 +62,10 @@ void w_start()
 
 
    //handshake_received = 0;
-   i2c_start(EDID_EEPROM_ADDRESS + I2C_WRITE);     /* select EDID eeprom with address 0x50 in write mode */
-   i2c_write(0x00);                                /* select register address 0x00 to start the write process */
+//   i2c_start(EDID_EEPROM_ADDRESS + I2C_WRITE);     /* select EDID eeprom with address 0x50 in write mode */
+//   i2c_write(0x00);                                /* select register address 0x00 to start the write process */
 
+   address_counter = 0;
    /* Leave connection open */
    connection_status = OPEN;
 
@@ -77,9 +81,10 @@ void w_start()
  */
 void w_data(uint8 data)
 {
-   cmds[cnt] = data;
-   cnt++;
-   i2c_write(data);
+
+   cmds[address_counter] = data;
+   write_eeprom_byte(address_counter, data);
+   address_counter++;
    _delay_ms(100);
    uart_puts("#2*");
 }
@@ -91,7 +96,8 @@ void w_data(uint8 data)
 void w_stop()
 {
 
-   i2c_stop();
+   address_counter = 0;
+   //_stop();
    //transmission_status = NO_ERROR;
    connection_status = CLOSED;
    _delay_ms(100);
@@ -106,8 +112,12 @@ void w_stop()
 void dbg_output()
 {
    uint8 i;
+
    for(i = 0; i < 128; i++)
-      uart_putc(cmds[i]);
+   {
+      eeprom[i] = read_eeprom_byte(i);                     // read one byte form address 0
+      uart_putc(eeprom[i]);
+   }
 }
 
 /**
@@ -116,6 +126,18 @@ void dbg_output()
  */
 void send_checksum()
 {
+   uint8 i;
+   for(i = 0; i < 128; i++)
+   {
+      eeprom[i] = read_eeprom_byte(i);                     // read one byte form address 0
+      uart_putc(eeprom[i]);
+   }
+
+   for(i = 0; i < 128; i++)
+   {
+      checksum ^= eeprom[i];
+   }
+
    uart_putc('#');
    uart_putc('c');
    uart_putc(checksum);
@@ -131,6 +153,7 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
    {
    case CMD_WRITE_START:
       w_start();
+      uart_puts("s");
       break;
 
    case CMD_WRITE_DATA:
@@ -140,10 +163,13 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
    case CMD_WRITE_STOP:
       w_stop();
       handshake_received = 0;
+      uart_puts("x");
       break;
 
    case CMD_DBG:
+      handshake_received = 1;
       dbg_output();
+      handshake_received = 0;
       break;
 
    case CMD_CHECKSUM:
@@ -171,8 +197,10 @@ void command_ready(uart_i2cCommandType cmd, uint8 data)
  */
 uint8 main()
 {
+   int i;
    handshake_received = 0;
    uart_init(RECEPTION_ENABLED, TRANSMISSION_ENABLED, INTERRUPT_ENABLED);
+
    i2c_init();
 
    //   uart_puts("\n\r");

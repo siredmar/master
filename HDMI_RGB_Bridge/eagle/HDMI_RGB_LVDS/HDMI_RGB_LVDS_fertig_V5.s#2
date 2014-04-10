@@ -3005,7 +3005,7 @@ LED 0402
 <part name="R17" library="SchlegelAr_Master" deviceset="R" device="0402" value="10k"/>
 <part name="U$50" library="SchlegelAr_Master" deviceset="+5V" device=""/>
 <part name="U$51" library="SchlegelAr_Master" deviceset="GND" device=""/>
-<part name="IC6" library="SchlegelAr_Master" deviceset="ATMEGA48A-AU" device=""/>
+<part name="IC6" library="SchlegelAr_Master" deviceset="ATMEGA48A-AU" device="" value="ATMEGA88PA"/>
 <part name="U$52" library="SchlegelAr_Master" deviceset="+5V" device=""/>
 <part name="IC7" library="SchlegelAr_Master" deviceset="FT232RL" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>

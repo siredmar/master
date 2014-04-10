@@ -1389,7 +1389,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="VALUE" x="21.6615" y="44.181" size="1.27" layer="28" rot="MR270"/>
 </element>
 <element name="CON6" library="SchlegelAr_Master" package="FI-X30SSLA-HF" value="FI-X30SSLA-HF" x="5" y="38.375" rot="MR270"/>
-<element name="C16" library="SchlegelAr_Master" package="C0402" value="0.1u" x="20.9375" y="44.375" smashed="yes">
+<element name="C16" library="SchlegelAr_Master" package="C0402" value="100n" x="20.9375" y="44.375" smashed="yes">
 <attribute name="NAME" x="22.365" y="44.01" size="1.27" layer="25"/>
 <attribute name="VALUE" x="20.3025" y="42.47" size="1.27" layer="27"/>
 </element>
@@ -1401,7 +1401,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="17.26" y="43.1775" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.1975" y="44.405" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="C18" library="SchlegelAr_Master" package="C0402" value="0.1u" x="18.5625" y="40.75" smashed="yes" rot="R180">
+<element name="C18" library="SchlegelAr_Master" package="C0402" value="100n" x="18.5625" y="40.75" smashed="yes" rot="R180">
 <attribute name="NAME" x="17.26" y="41.365" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.1975" y="42.655" size="1.27" layer="27" rot="R180"/>
 </element>
@@ -1409,7 +1409,7 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="17.3225" y="37.99" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.0725" y="39.28" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="C20" library="SchlegelAr_Master" package="C0402" value="0.1u" x="18.4375" y="35.875" smashed="yes" rot="R180">
+<element name="C20" library="SchlegelAr_Master" package="C0402" value="100n" x="18.4375" y="35.875" smashed="yes" rot="R180">
 <attribute name="NAME" x="17.385" y="36.365" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="19.0725" y="37.78" size="1.27" layer="27" rot="R180"/>
 </element>

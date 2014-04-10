@@ -3041,7 +3041,7 @@ LED 0402
 <part name="U$66" library="SchlegelAr_Master" deviceset="+3V3" device=""/>
 <part name="U$67" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="JP6" library="SchlegelAr_Master" deviceset="JUMPER3" device=""/>
-<part name="R19" library="SchlegelAr_Master" deviceset="35WR5KLFTR" device="" value="10k"/>
+<part name="R19" library="SchlegelAr_Master" deviceset="35WR5KLFTR" device="" value="5k"/>
 <part name="U$68" library="SchlegelAr_Master" deviceset="+5V" device=""/>
 <part name="U$69" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="C23" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>

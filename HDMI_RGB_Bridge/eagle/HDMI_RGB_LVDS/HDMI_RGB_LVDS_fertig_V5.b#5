@@ -1520,6 +1520,7 @@ Covered vias can be set in Masks (Limit).
 <element name="C35" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="30.0625" y="54.8125"/>
 <element name="C36" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="7.8125" y="51.8125" rot="R180"/>
 <element name="C34" library="SchlegelAr_Master" package="C_POL_4X4MM" value="10u" x="6.25" y="29.5625" rot="R270"/>
+<element name="R14" library="SchlegelAr_Master" package="R0402" value="22R" x="-1.25" y="-7.125"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -3722,12 +3723,12 @@ Covered vias can be set in Masks (Limit).
 <wire x1="29.125" y1="43.875" x2="28.625" y2="43.875" width="0.15" layer="1"/>
 </signal>
 <signal name="AVR_PWM">
-<contactref element="IC6" pad="13"/>
 <contactref element="JP6" pad="2"/>
-<wire x1="20.35" y1="15.3551" x2="20.35" y2="16.1625" width="0.15" layer="1"/>
 <wire x1="20.35" y1="16.1625" x2="20.5625" y2="16.375" width="0.15" layer="1"/>
 <wire x1="20.5625" y1="16.375" x2="23" y2="16.375" width="0.15" layer="1"/>
 <wire x1="23" y1="16.375" x2="24.625" y2="18" width="0.15" layer="1"/>
+<contactref element="R14" pad="2"/>
+<wire x1="-0.6" y1="-7.125" x2="20.35" y2="16.1625" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LVDS_PWM">
 <contactref element="JP6" pad="3"/>
@@ -4063,6 +4064,11 @@ Covered vias can be set in Masks (Limit).
 <wire x1="7.75" y1="12.0625" x2="7.75" y2="7.5" width="0.3" layer="15"/>
 <wire x1="7.75" y1="7.5" x2="6.875" y2="6.625" width="0.3" layer="15"/>
 <wire x1="11.9" y1="3.3125" x2="11.875" y2="3.3375" width="0.3" layer="16"/>
+</signal>
+<signal name="N$1">
+<contactref element="IC6" pad="13"/>
+<contactref element="R14" pad="1"/>
+<wire x1="-1.9" y1="-7.125" x2="20.35" y2="15.3551" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
