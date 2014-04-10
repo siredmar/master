@@ -14,12 +14,12 @@
 #include "rs232.h"
 #include "../helpers.h"
 
-extern int received_flag;
+//extern int received_flag;
 extern void rs232_data_received();
-extern int waitForInterrupt;
+//extern int waitForInterrupt;
 extern volatile int new_data;
-extern unsigned char checksum;
-extern int checksum_valid;
+//extern unsigned char checksum;
+//extern int checksum_valid;
 extern int comport_fd;
 
 struct termios termAttr, oltAttr;
@@ -139,7 +139,7 @@ void rs232_puts(int comport, const char *text, int length)
 int rs232_close_port(int comport)
 {
    tcsetattr(comport, TCSANOW, &oltAttr);
-   debugOutput("%d closed....\n", comport);
+   debugOutput("%d closed....\n", comport_fd);
    close(comport);
    return 0;
 }

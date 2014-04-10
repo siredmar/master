@@ -34,8 +34,8 @@
 /* For more info and how to use this libray, visit: http://www.teuniz.net/RS-232/ */
 
 
-#ifndef RS232_H
-#define RS232_H
+#ifndef RS232_H_
+#define RS232_H_
 
 
 #include <stdio.h>

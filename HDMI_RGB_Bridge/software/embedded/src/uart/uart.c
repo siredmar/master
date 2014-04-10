@@ -1,6 +1,6 @@
 /**
  * \file uart.c
- * \brief This file contains the implementation of the UART module.
+ * @brief This file contains the implementation of the UART module.
  *
  * Copyright (C) 2011  Armin Schlegel, Christian Eismann
  *
@@ -23,13 +23,11 @@
 #include <util/delay.h>
 
 /*--- Macros ---------------------------------------------------------*/
-//#define F_CPU 7372800UL
-
-#define BAUD 9600UL    /**< the high baudrate */
+/** Baudrate for UART communication */
+#define BAUD 9600UL
 
 /** Calculated UBRR value for high baud rate */
 #define UBRR_VAL ((F_CPU+BAUD*8)/(BAUD*16)-1)
-
 
 /** Counter variable used for determining the type and the end of the received data set */
 uint8 uart_str_cnt = 0;
@@ -52,11 +50,11 @@ extern volatile uint8 checksum;
 extern volatile uint8 handshake_received;
 
 /**
- * \brief Initialize UART communication with given parameters rxen, txen, rxcie and BAUD_VAL_HIGH
+ * @brief Initialize UART communication with given parameters rxen, txen, rxcie and BAUD_VAL_HIGH
  *
- * \param rxen   enable receiving
- * \param txen   enable transmitting
- * \param rxcie  enable receiving interrupts
+ * @param[in] rxen   enable receiving
+ * @param[in] txen   enable transmitting
+ * @param[in] rxcie  enable receiving interrupts
  */
 void uart_init(uart_rxenType rxen, uart_txenType txen, uart_rxieType rxcie)
 {
@@ -67,9 +65,9 @@ void uart_init(uart_rxenType rxen, uart_txenType txen, uart_rxieType rxcie)
 }
 
 /**
- * \brief Send a single character via UART
+ * @brief Sends a single character via UART
  *
- * \param c byte to send
+ * @param[in] c byte to send
  */
 void uart_putc(uint8 byte)
 {
@@ -79,9 +77,9 @@ void uart_putc(uint8 byte)
 }
 
 /**
- * \brief Transmit string
+ * @brief Transmit string
  *
- * \param s pointer to string to send
+ * @param[in] s pointer to string to send
  */
 void uart_puts(const uint8 *s) {
    while (*s ) {
@@ -91,6 +89,10 @@ void uart_puts(const uint8 *s) {
    }
 }
 
+/**
+ * @brief Calculates the checksum of the given uart_str (XOR)
+ *
+ */
 void calculateChecksum()
 {
    checksum ^= uart_str[0];
@@ -100,6 +102,10 @@ void calculateChecksum()
       checksum ^= uart_str[3];
 }
 
+/**
+ * @brief Interrupt Service Routine for receiving charakters via UART
+ *
+ */
 ISR(USART0_RX_vect)
 {
    sint8 next_char;
@@ -141,7 +147,7 @@ ISR(USART0_RX_vect)
 
       case 'h':
          handshake_received = 1;
-         command_ready(CMD_HANDSHAKE, 0xFF);
+        // command_ready(CMD_HANDSHAKE, 0xFF);
 
          break;
 

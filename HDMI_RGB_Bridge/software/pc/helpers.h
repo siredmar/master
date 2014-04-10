@@ -13,7 +13,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-//#define DEBUG
+#define CMD_S_SIZE (1)
+#define CMD_W_SIZE (1)
+#define CMD_X_SIZE (1)
+#define CMD_C_SIZE (1)
 
 typedef struct
 {
@@ -22,13 +25,6 @@ typedef struct
    unsigned char ack;
    unsigned char nodata_flag;
 }hexfileType;
-
-#define CMD_S_SIZE (1)
-#define CMD_W_SIZE (1)
-#define CMD_X_SIZE (1)
-#define CMD_C_SIZE (1)
-
-
 
 void on_window_destroy (GtkObject *object, gpointer user_data);
 gchar *open_filename(GtkWidget * widget);

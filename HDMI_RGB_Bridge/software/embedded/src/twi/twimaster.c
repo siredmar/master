@@ -10,6 +10,7 @@
 #include <compat/twi.h>
 
 #include "twimaster.h"
+#include "../../inc/std_types.h"
 
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
@@ -137,7 +138,7 @@ unsigned char i2c_rep_start(unsigned char address)
 *************************************************************************/
 void i2c_stop(void)
 {
-    /* send stop condition */
+   /* send stop condition */
 	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
 	
 	// wait until stop condition is executed and bus released

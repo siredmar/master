@@ -73,25 +73,25 @@ volatile CMD_ACK_Type CMD_3_ACK = NO_ACK;
 volatile int new_data = 0;
 int checksum_valid = 0;
 
-void disableWidgets()
+static void disableWidgets()
 {
    gtk_widget_set_sensitive(button_program, 0);
    gtk_widget_set_sensitive(window_main, 0);
 }
 
-void enableWidgets()
+static void enableWidgets()
 {
    gtk_widget_set_sensitive(button_program, 1);
    gtk_widget_set_sensitive(window_main, 1);
 }
 
-void loadSerialSettings()
+static void loadSerialSettings()
 {
    comport = gtk_entry_get_text(GTK_ENTRY(entry_serial_interface));
    baudrate = return_baudrate(gtk_entry_get_text(GTK_ENTRY(entry_baudrate)));
 }
 
-int writeConfigFile()
+static int writeConfigFile()
 {
    FILE * fp;
    char sprintf_buf[255];
@@ -115,7 +115,7 @@ int writeConfigFile()
    return 0;
 }
 
-int readConfigFile()
+static int readConfigFile()
 {
    FILE * fp;
    char * line = NULL;
@@ -154,7 +154,7 @@ int readConfigFile()
    return 0;
 }
 
-void rs232_data_received()
+static void rs232_data_received()
 {
    char buf[10] = {0};
    read(comport_fd, buf, 5);
@@ -192,8 +192,9 @@ void rs232_data_received()
    }
 }
 
-int rs232_handshake_received()
+static int rs232_handshake_received()
 {
+   int retVal = 0;
    char buf[10] = {0};
    read(comport_fd, buf, 1);
 
@@ -202,15 +203,18 @@ int rs232_handshake_received()
    if(buf[0] == 'h')
    {
       new_data = 0;
-      return 1;
+      retVal =  1;
    }
+   else
+   {
+      retVal = 0;
+   }
+return retVal;
 }
 
 static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned char nodata_flag)
 {
    char *buf;
-   //unsigned char buf[4];
-
    if(nodata_flag == 1)
    {
       buf = (char*) malloc(sizeof(char) * 3);
@@ -227,7 +231,7 @@ static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned 
    return buf;
 }
 
-void calculateChecksum(char *text, int length)
+static void calculateChecksum(char *text, int length)
 {
    int cnt;
    if(text[1] != 'c')
@@ -235,11 +239,9 @@ void calculateChecksum(char *text, int length)
       for (cnt = 0; cnt < length; cnt++)
       {
          checksum = checksum ^ text[cnt];
-
       }
       debugOutput("checksum: 0x%.2X\n", checksum);
    }
-
 }
 
 int program_edid(GtkWidget * widget, gpointer user_data)
@@ -291,9 +293,6 @@ int program_edid(GtkWidget * widget, gpointer user_data)
          enableWidgets();
          return 1;
       }
-
-
-
 
       if(file_opened == 1)
       {
@@ -367,6 +366,7 @@ int program_edid(GtkWidget * widget, gpointer user_data)
 
    rs232_close_port(comport_fd);
    enableWidgets();
+   return 0;
 }
 
 void preferences_back(GtkWidget * widget, gpointer user_data)
@@ -382,7 +382,7 @@ void edit_preferences(GtkWidget * widget, gpointer user_data)
    gtk_widget_show(window_preferences);
 }
 
-unsigned char open_binary_file(char *filename)
+static unsigned char open_binary_file(char *filename)
 {
    FILE *fp;
 
