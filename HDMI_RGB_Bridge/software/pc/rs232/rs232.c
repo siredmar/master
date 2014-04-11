@@ -76,9 +76,10 @@ int rs232_returnBaudrate(int baudrate)
    break;
    case 1000000 : baudr = B1000000;
    break;
-   default      : debugOutput("invalid baudrate\n");
-   return(0);
-   break;
+   default      :
+      debugOutput("invalid baudrate\n");
+      return(0);
+      break;
    }
    return baudr;
 }

@@ -18,6 +18,18 @@
 #define CMD_X_SIZE (1)
 #define CMD_C_SIZE (1)
 
+#ifdef DEBUG
+#define debugOutput(fmt, args...) printf("DBG::%s[%i]: "fmt, __FUNCTION__, __LINE__, ##args)
+#else
+#define debugOutput(fmt, args...)
+#endif
+
+//#ifdef DEBUG
+//    #define debugOutput(fmt, args ...) printf("DBG::%s(): "fmt, __FUNCTION__, args ...)
+//#else
+//    #define debugOutput(fmt, args ...)
+//#endif
+
 typedef struct
 {
    unsigned char cmd;
@@ -38,6 +50,8 @@ unsigned char fileExists(char *fname);
 void GtkTextviewAppendInfo(const char *format, ...);
 void GtkTextviewAppendHexfile(const char *format, ...);
 
-void debugOutput(const char *format, ...);
+//debugOutput(const char* fmt, va_list args, ...);
+//void debugOutput(fmt, args ...);
+//void debugOutput(const char *format, ...);
 
 #endif /* HELPERS_H_ */

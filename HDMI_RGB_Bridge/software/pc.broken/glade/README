@@ -1,4 +1,0 @@
-To convert the glade file into a readable format for 
-gtk_builder_add_from_file() do this:
-
-gtk-builder-convert main.glade main.xml

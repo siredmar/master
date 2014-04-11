@@ -12,6 +12,7 @@
 #define MAXUARTSTR 250
 #define TIMEOUT_CYCLES 2000
 #define TIMEOUT_HANDSHAKE_CYCLES 50
+#define TIMEOUT_CHECKSUM_CYCLES 50
 
 #define TIMEOUT_30MS       30000
 #define TIMEOUT_50MS       100000
@@ -53,11 +54,16 @@ GtkWidget *entry_serial_interface, *entry_baudrate, *button_save_settings, *butt
 
 hexfileType *hexfile;
 
-unsigned char checksum = 0x00;
+
 
 int waitForInterrupt = 0;
 short timeoutCounter;
 unsigned char checksum_buf;
+unsigned char checksum = 0x00;
+int checksum_valid = 0;
+
+
+volatile int new_data = 0;
 volatile int handshake = 0;
 
 typedef enum
@@ -70,8 +76,8 @@ volatile CMD_ACK_Type CMD_ACK = NO_ACK;
 volatile CMD_ACK_Type CMD_2_ACK = NO_ACK;
 volatile CMD_ACK_Type CMD_3_ACK = NO_ACK;
 
-volatile int new_data = 0;
-int checksum_valid = 0;
+
+
 
 static void disableWidgets()
 {
@@ -108,7 +114,6 @@ static int writeConfigFile()
    sprintf(sprintf_buf, "%s\n%s\n", gtk_entry_get_text(GTK_ENTRY(entry_serial_interface)), gtk_entry_get_text(GTK_ENTRY(entry_baudrate)));
    fputs(sprintf_buf, fp);
 
-   //sprintf(sprintf_buf, );
    GtkTextviewAppendInfo("Writing config file: %s.\n", filename);
 
    fclose(fp);
@@ -158,44 +163,17 @@ static int rs232_checksum_received()
 {
    int retVal = 0;
    char buf[10] = {0};
-   read(comport_fd, buf, 5);
-   // g_print("buf: %s\n", buf);
-
-   //__asm("nop");
-   unsigned char next_char;
-   // uint8 timer_val = 0;
-   next_char = buf[0];
-
-   debugOutput("next_char: %c\n", next_char);
-
-   if(next_char == '#')
+   read(comport_fd, buf, 3);
+   debugOutput("next_char: %c\n", buf[0]);
+   CMD_ACK = ACK;
+   if(buf[0] == buf[1])
    {
-      uart_str_cnt = 0;
-      block_finished = 0;
+      debugOutput("buf[0]: 0x%.2X, buf[1]: 0x%.2X\n", buf[0], buf[1]);
+      checksum_buf = buf[0];
+      retVal =  1;
    }
-   if(next_char == '*' && !block_finished)
-   {
-      block_finished = 1;
-      uart_str[uart_str_cnt++] = next_char;
-      debugOutput("uart_str: %s -> ", uart_str);
-      CMD_ACK = ACK;
-      debugOutput("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", uart_str[0], uart_str[1], uart_str[2], uart_str[3]);
-      if(uart_str[1] == 'c')
-      {
-         checksum_buf = uart_str[2];
-         retVal =  1;
-      }
-      else
-      {
-         retVal =  0;
-      }
-   }
-
-   if(!block_finished)
-   {
-      uart_str[uart_str_cnt] = next_char;
-      uart_str_cnt++;
-   }
+   else
+      retVal = 0;
    return retVal;
 }
 
@@ -209,17 +187,10 @@ static void rs232_data_received()
 
    debugOutput("old_char: %c, next_char: %c\n", old_char, next_char);
    uart_str_cnt++;
-   //uart_str[uart_str_cnt++] = next_char;
    if(uart_str_cnt >=3)
    {
-      //debugOutput("uart_str: %s -> ", uart_str);
       CMD_ACK = ACK;
-      // debugOutput("0x%.2X 0x%.2X 0x%.2X 0x%.2X\n", uart_str[0], uart_str[1], uart_str[2], uart_str[3]);
       uart_str_cnt = 0;
-      //      if(old_char == 'c')
-      //      {
-      //         checksum_buf = next_char;
-      //      }
       old_char = next_char;
    }
 }
@@ -263,25 +234,17 @@ static char *returnSerialCommand(unsigned char cmd, unsigned char hex, unsigned 
    return buf;
 }
 
-static void calculateChecksum(unsigned char byte)
-{
-   int cnt;
-   checksum ^= byte;
-   debugOutput("checksum: 0x%.2X\n", checksum);
-}
+/* TODO: Check file size! Size must be exact 128 Bytes! */
 
 int program_edid(GtkWidget * widget, gpointer user_data)
 {
-   /* TODO: check if hexfile was loaded */
    int command_sent = 0;
    int command_index = 0;
    int checksum_received = 0;
-int cnt;
 
    timeoutCounter = 0;
    comport_fd = rs232_open_port(comport, baudrate);
    char *command;
-   checksum = 0;
    handshake = 0;
 
 
@@ -339,7 +302,6 @@ int cnt;
                waitForInterrupt = 0;
 
                command = returnSerialCommand(hexfile[command_index].cmd, hexfile[command_index].hex, hexfile[command_index].nodata_flag);
-               //calculateChecksum(command, 4);
                rs232_puts(comport_fd, command, 4);
 
                waitForInterrupt = 1;
@@ -381,24 +343,28 @@ int cnt;
 
    /* Checksum */
 
-
-
-   while(timeoutCounter < TIMEOUT_HANDSHAKE_CYCLES)
+   new_data = 0;
+   timeoutCounter = 0;
+   while(timeoutCounter < TIMEOUT_CHECKSUM_CYCLES)
    {
-      if(new_data > 0)
+      if(new_data > 3)
       {
          checksum_received = rs232_checksum_received();
       }
+
       if(checksum_received == 1)
-         break;
-      debugOutput("checksum timer: %i\n", timeoutCounter);
-      timeoutCounter++;
-      usleep(TIMEOUT_50MS);
+      {
+         timeoutCounter = TIMEOUT_CHECKSUM_CYCLES;
+         continue;
+      }
+      else
+      {
+         debugOutput("checksum timer: %i\n", timeoutCounter);
+         timeoutCounter++;
+         usleep(TIMEOUT_50MS);
+      }
    }
-   for(cnt = 0; cnt < hexfile_size; cnt++)
-   {
-      calculateChecksum(hexfile[cnt].hex);
-   }
+
    debugOutput("Calculated Checksum: 0x%.2X\n", checksum);
    debugOutput("Received   Checksum: 0x%.2X\n", checksum_buf);
 
@@ -475,7 +441,7 @@ static unsigned char open_binary_file(char *filename)
       return 4;
    }
 
-   hexfile = (hexfileType*)malloc((hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_SIZE) * sizeof(hexfileType)); // +2 for start and end condition commands
+   hexfile = (hexfileType*)malloc((hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_SIZE) * sizeof(hexfileType));
 
    /* load the actual data into the program */
    for(cnt = 0; cnt < hexfile_size; cnt++)
@@ -497,6 +463,7 @@ static unsigned char open_binary_file(char *filename)
       hexfile[cnt+CMD_S_SIZE].hex = edid_raw[cnt];
       hexfile[cnt+CMD_S_SIZE].ack = '2';
       hexfile[cnt+CMD_S_SIZE].nodata_flag = 0;
+      checksum ^= edid_raw[cnt];
    }
 
    hexfile[hexfile_size +  CMD_X_SIZE].cmd = 'x';
