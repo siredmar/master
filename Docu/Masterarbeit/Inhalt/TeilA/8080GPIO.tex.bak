@@ -1,0 +1,13 @@
+\section{8080-Interface mittels GPIO-Pins}
+\label{sec:TeilA_8080GPIO}
+
+\subsection{Konzept}
+\subsection{Hardwareverbindung zwischen GPIO-Pins und Display}
+\subsection{User-Space-Treiber}
+\subsubsection{Low-Level-Treiber}
+\paragraph{GPIO-Pin Frequenz erhoehen}
+\paragraph{GPIO-Treiber}
+\paragraph{Displaytreiber fuer SSD1963}
+\subsection{Ansteuerung des Displays}
+
+

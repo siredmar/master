@@ -1,0 +1,15 @@
+\chapter{Theoretische Grundlagen}
+\label{cha:Grundlagen}
+
+\section{Video-Schnittstellen}
+\subsection{DVI}
+\subsection{HDMI}
+\subsection{VGA}
+\subsection{8080-Interface}
+\subsection{TV-OUT}
+
+\section{betrachtete Embedded Linux Boards}
+\subsection{Raspberry Pi}
+\subsection{Beaglebone Black}
+\subsection{Gnublin Extended}
+

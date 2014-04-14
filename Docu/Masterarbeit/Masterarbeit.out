@@ -1,62 +1,63 @@
 \BOOKMARK [0][]{chapter*.4}{Abbildungsverzeichnis}{}% 1
 \BOOKMARK [0][]{chapter*.5}{Tabellenverzeichnis}{}% 2
-\BOOKMARK [0][]{chapter*.6}{Verzeichnis der Listings}{}% 3
-\BOOKMARK [0][]{chapter.7}{Einleitung}{}% 4
-\BOOKMARK [1][]{section.8}{Motivation}{chapter.7}% 5
-\BOOKMARK [1][]{section.9}{Ziel der Arbeit}{chapter.7}% 6
-\BOOKMARK [1][]{section.10}{Aufbau der Arbeit}{chapter.7}% 7
-\BOOKMARK [1][]{section.11}{Typographische Konventionen}{chapter.7}% 8
-\BOOKMARK [0][]{chapter.12}{Theoretische Grundlagen}{}% 9
-\BOOKMARK [1][]{section.13}{Embedded Linux Boards}{chapter.12}% 10
-\BOOKMARK [1][]{section.14}{Video-Schnittstellen}{chapter.12}% 11
-\BOOKMARK [2][]{subsection.15}{DVI}{section.14}% 12
-\BOOKMARK [2][]{subsection.16}{HDMI}{section.14}% 13
-\BOOKMARK [2][]{subsection.17}{VGA}{section.14}% 14
-\BOOKMARK [2][]{subsection.18}{8080-Interface}{section.14}% 15
-\BOOKMARK [2][]{subsection.19}{TV-OUT}{section.14}% 16
-\BOOKMARK [0][]{chapter.20}{Teil A}{}% 17
-\BOOKMARK [1][]{section.21}{Display mit 8080-Interface}{chapter.20}% 18
-\BOOKMARK [1][]{section.22}{8080-Interface mittels GPIO-Pins}{chapter.20}% 19
-\BOOKMARK [2][]{subsection.23}{Konzept}{section.22}% 20
-\BOOKMARK [2][]{subsection.24}{Hardwareverbindung zwischen GPIO-Pins und Display}{section.22}% 21
-\BOOKMARK [2][]{subsection.25}{User-Space-Treiber}{section.22}% 22
-\BOOKMARK [3][]{subsubsection.26}{Low-Level-Treiber}{subsection.25}% 23
-\BOOKMARK [4][]{paragraph.27}{GPIO-Pin Frequenz erhoehen}{subsubsection.26}% 24
-\BOOKMARK [4][]{paragraph.28}{GPIO-Treiber}{subsubsection.26}% 25
-\BOOKMARK [4][]{paragraph.29}{Displaytreiber fuer SSD1963}{subsubsection.26}% 26
-\BOOKMARK [2][]{subsection.30}{Ansteuerung des Displays}{section.22}% 27
-\BOOKMARK [1][]{section.31}{8080-Interface mittels SRAM-Interface}{chapter.20}% 28
-\BOOKMARK [2][]{subsection.32}{Konzept}{section.31}% 29
-\BOOKMARK [2][]{subsection.33}{MPMC - Multiport Memory Controller des NXP LPC313x}{section.31}% 30
-\BOOKMARK [2][]{subsection.34}{Hardwareverbindung zwischen SRAM-Interface und Display \(Adapterplatine\)}{section.31}% 31
-\BOOKMARK [2][]{subsection.35}{Software}{section.31}% 32
-\BOOKMARK [3][]{subsubsection.36}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.35}% 33
-\BOOKMARK [3][]{subsubsection.37}{Entwicklung eines User-Space-Treibers}{subsection.35}% 34
-\BOOKMARK [3][]{subsubsection.38}{ANpassung des APEX-Bootloaders zur Verwendung des Displays}{subsection.35}% 35
-\BOOKMARK [3][]{subsubsection.39}{Probleme bei der Entwicklung und Fehlersuche}{subsection.35}% 36
-\BOOKMARK [4][]{paragraph.40}{Rolle des User-Space-Treibers}{subsubsection.39}% 37
-\BOOKMARK [4][]{paragraph.41}{Debuggen mit Logik-Analyzer}{subsubsection.39}% 38
-\BOOKMARK [4][]{paragraph.42}{Loesung des Problems}{subsubsection.39}% 39
-\BOOKMARK [1][]{section.43}{Vor- und Nachteile}{chapter.20}% 40
-\BOOKMARK [0][]{chapter.44}{Teil B}{}% 41
-\BOOKMARK [1][]{section.45}{Konzept}{chapter.44}% 42
-\BOOKMARK [1][]{section.46}{Hardwareentwicklung}{chapter.44}% 43
-\BOOKMARK [2][]{subsection.47}{Spannungsversorgung}{section.46}% 44
-\BOOKMARK [2][]{subsection.48}{HDMI-RGB-Bridge}{section.46}% 45
-\BOOKMARK [2][]{subsection.49}{RGB-LVDS-Bridge}{section.46}% 46
-\BOOKMARK [2][]{subsection.50}{EDID-Daten}{section.46}% 47
-\BOOKMARK [1][]{section.51}{Software}{chapter.44}% 48
-\BOOKMARK [2][]{subsection.52}{EDID-Daten auf embedded Seite}{section.51}% 49
-\BOOKMARK [3][]{subsubsection.53}{Konzept}{subsection.52}% 50
-\BOOKMARK [3][]{subsubsection.54}{Low-Level-Treiber}{subsection.52}% 51
-\BOOKMARK [4][]{paragraph.55}{UART-Treiber}{subsubsection.54}% 52
-\BOOKMARK [4][]{paragraph.56}{I2C-Treiber}{subsubsection.54}% 53
-\BOOKMARK [3][]{subsubsection.57}{Programmablauf}{subsection.52}% 54
-\BOOKMARK [2][]{subsection.58}{EDID-Daten auf PC Seite}{section.51}% 55
-\BOOKMARK [3][]{subsubsection.59}{Konzept}{subsection.58}% 56
-\BOOKMARK [3][]{subsubsection.60}{GTK GUI mit Glade}{subsection.58}% 57
-\BOOKMARK [3][]{subsubsection.61}{Programmablauf}{subsection.58}% 58
-\BOOKMARK [0][]{chapter.62}{Zusammenfassung}{}% 59
-\BOOKMARK [0][]{chapter*.63}{Eidesstattliche Erkl\344rung}{}% 60
-\BOOKMARK [0][]{appendix.64}{Anhang}{}% 61
-\BOOKMARK [1][]{section.65}{Liste m\366glicher Aktivit\344ten der BPEL}{appendix.64}% 62
+\BOOKMARK [0][]{chapter.6}{Einleitung}{}% 3
+\BOOKMARK [1][]{section.7}{Motivation}{chapter.6}% 4
+\BOOKMARK [1][]{section.8}{Ziel der Arbeit}{chapter.6}% 5
+\BOOKMARK [1][]{section.9}{Aufbau der Arbeit}{chapter.6}% 6
+\BOOKMARK [1][]{section.10}{Typographische Konventionen}{chapter.6}% 7
+\BOOKMARK [0][]{chapter.11}{Theoretische Grundlagen}{}% 8
+\BOOKMARK [1][]{section.12}{Video-Schnittstellen}{chapter.11}% 9
+\BOOKMARK [2][]{subsection.13}{DVI}{section.12}% 10
+\BOOKMARK [2][]{subsection.14}{HDMI}{section.12}% 11
+\BOOKMARK [2][]{subsection.15}{VGA}{section.12}% 12
+\BOOKMARK [2][]{subsection.16}{8080-Interface}{section.12}% 13
+\BOOKMARK [2][]{subsection.17}{TV-OUT}{section.12}% 14
+\BOOKMARK [1][]{section.18}{betrachtete Embedded Linux Boards}{chapter.11}% 15
+\BOOKMARK [2][]{subsection.19}{Raspberry Pi}{section.18}% 16
+\BOOKMARK [2][]{subsection.20}{Beaglebone Black}{section.18}% 17
+\BOOKMARK [2][]{subsection.21}{Gnublin Extended}{section.18}% 18
+\BOOKMARK [0][]{chapter.22}{Teil A}{}% 19
+\BOOKMARK [1][]{section.23}{Display mit 8080-Interface}{chapter.22}% 20
+\BOOKMARK [1][]{section.24}{8080-Interface mittels GPIO-Pins}{chapter.22}% 21
+\BOOKMARK [2][]{subsection.25}{Konzept}{section.24}% 22
+\BOOKMARK [2][]{subsection.26}{Hardwareverbindung zwischen GPIO-Pins und Display}{section.24}% 23
+\BOOKMARK [2][]{subsection.27}{User-Space-Treiber}{section.24}% 24
+\BOOKMARK [3][]{subsubsection.28}{Low-Level-Treiber}{subsection.27}% 25
+\BOOKMARK [4][]{paragraph.29}{GPIO-Pin Frequenz erhoehen}{subsubsection.28}% 26
+\BOOKMARK [4][]{paragraph.30}{GPIO-Treiber}{subsubsection.28}% 27
+\BOOKMARK [4][]{paragraph.31}{Displaytreiber fuer SSD1963}{subsubsection.28}% 28
+\BOOKMARK [2][]{subsection.32}{Ansteuerung des Displays}{section.24}% 29
+\BOOKMARK [1][]{section.33}{8080-Interface mittels SRAM-Interface}{chapter.22}% 30
+\BOOKMARK [2][]{subsection.34}{Konzept}{section.33}% 31
+\BOOKMARK [2][]{subsection.35}{MPMC - Multiport Memory Controller des NXP LPC313x}{section.33}% 32
+\BOOKMARK [2][]{subsection.36}{Hardwareverbindung zwischen SRAM-Interface und Display \(Adapterplatine\)}{section.33}% 33
+\BOOKMARK [2][]{subsection.37}{Software}{section.33}% 34
+\BOOKMARK [3][]{subsubsection.38}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.37}% 35
+\BOOKMARK [3][]{subsubsection.39}{Entwicklung eines User-Space-Treibers}{subsection.37}% 36
+\BOOKMARK [3][]{subsubsection.40}{ANpassung des APEX-Bootloaders zur Verwendung des Displays}{subsection.37}% 37
+\BOOKMARK [3][]{subsubsection.41}{Probleme bei der Entwicklung und Fehlersuche}{subsection.37}% 38
+\BOOKMARK [4][]{paragraph.42}{Rolle des User-Space-Treibers}{subsubsection.41}% 39
+\BOOKMARK [4][]{paragraph.43}{Debuggen mit Logik-Analyzer}{subsubsection.41}% 40
+\BOOKMARK [4][]{paragraph.44}{Loesung des Problems}{subsubsection.41}% 41
+\BOOKMARK [1][]{section.45}{Vor- und Nachteile}{chapter.22}% 42
+\BOOKMARK [0][]{chapter.46}{Teil B}{}% 43
+\BOOKMARK [1][]{section.47}{Konzept}{chapter.46}% 44
+\BOOKMARK [1][]{section.48}{Hardwareentwicklung}{chapter.46}% 45
+\BOOKMARK [2][]{subsection.49}{Spannungsversorgung}{section.48}% 46
+\BOOKMARK [2][]{subsection.50}{HDMI-RGB-Bridge}{section.48}% 47
+\BOOKMARK [2][]{subsection.51}{RGB-LVDS-Bridge}{section.48}% 48
+\BOOKMARK [2][]{subsection.52}{EDID-Daten}{section.48}% 49
+\BOOKMARK [1][]{section.53}{Software}{chapter.46}% 50
+\BOOKMARK [2][]{subsection.54}{EDID-Daten auf embedded Seite}{section.53}% 51
+\BOOKMARK [3][]{subsubsection.55}{Konzept}{subsection.54}% 52
+\BOOKMARK [3][]{subsubsection.56}{Low-Level-Treiber}{subsection.54}% 53
+\BOOKMARK [4][]{paragraph.57}{UART-Treiber}{subsubsection.56}% 54
+\BOOKMARK [4][]{paragraph.58}{I2C-Treiber}{subsubsection.56}% 55
+\BOOKMARK [3][]{subsubsection.59}{Programmablauf}{subsection.54}% 56
+\BOOKMARK [2][]{subsection.60}{EDID-Daten auf PC Seite}{section.53}% 57
+\BOOKMARK [3][]{subsubsection.61}{Konzept}{subsection.60}% 58
+\BOOKMARK [3][]{subsubsection.62}{GTK GUI mit Glade}{subsection.60}% 59
+\BOOKMARK [3][]{subsubsection.63}{Programmablauf}{subsection.60}% 60
+\BOOKMARK [0][]{chapter.64}{Zusammenfassung}{}% 61
+\BOOKMARK [0][]{chapter*.65}{Eidesstattliche Erkl\344rung}{}% 62
+\BOOKMARK [0][]{appendix.66}{Anhang}{}% 63

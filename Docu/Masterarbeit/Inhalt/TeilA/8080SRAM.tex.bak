@@ -1,0 +1,14 @@
+\section{8080-Interface mittels SRAM-Interface}
+\label{sec:TeilA_8080SRAM}
+
+\subsection{Konzept}
+\subsection{MPMC - Multiport Memory Controller des NXP LPC313x}
+\subsection{Hardwareverbindung zwischen SRAM-Interface und Display (Adapterplatine)}
+\subsection{Software}
+\subsubsection{Entwicklung eines Linux-Framebuffer-Treibers}
+\subsubsection{Entwicklung eines User-Space-Treibers}
+\subsubsection{ANpassung des APEX-Bootloaders zur Verwendung des Displays}
+\subsubsection{Probleme bei der Entwicklung und Fehlersuche}
+\paragraph{Rolle des User-Space-Treibers}
+\paragraph{Debuggen mit Logik-Analyzer}
+\paragraph{Loesung des Problems}

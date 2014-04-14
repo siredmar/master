@@ -1,0 +1,8 @@
+\chapter{Teil B}
+\label{cha:TeilB}
+
+\input{Inhalt/TeilB/TeilBKonzept}
+\input{Inhalt/TeilB/TeilBHardware}
+\input{Inhalt/TeilB/TeilBSoftware}
+
+
