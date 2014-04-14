@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  29 MAR 2014 14:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  14 APR 2014 14:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1004,9 +1004,10 @@ Writing nomenclature file Masterarbeit.nlo
 \openout2 = `Befehle.aux'.
 
 (./Befehle.tex) (./Masterarbeit.aux (./Deckblatt.aux) (./Inhalt/Abstract.aux)
-(./Inhalt/Einleitung.aux) (./Inhalt/ZitateReferenzen.aux)
-(./Inhalt/BilderListings.aux) (./Inhalt/AufzaehlungenTabellen.aux)
-(./Inhalt/Fazit.aux) (./Erklaerung.aux) (./Inhalt/BPELAktivitaeten.aux))
+(./Inhalt/Einleitung/Einleitung.aux) (./Inhalt/Grundlagen/Grundlagen.aux)
+(./Inhalt/TeilA/TeilA.aux) (./Inhalt/TeilB/TeilB.aux)
+(./Inhalt/Zusammenfassung/Zusammenfassung.aux) (./Erklaerung.aux)
+(./Inhalt/BPELAktivitaeten.aux))
 \openout1 = `Masterarbeit.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
@@ -1128,7 +1129,7 @@ LaTeX Info: Redefining \selectfont on input line 56.
 
 
 (./Deckblatt.tex
-<Bilder/LogoOhmHochschuleMitText.jpg, id=99, 1508.63625pt x 290.08376pt>
+<Bilder/LogoOhmHochschuleMitText.jpg, id=256, 1508.63625pt x 290.08376pt>
 File: Bilder/LogoOhmHochschuleMitText.jpg Graphic file (type jpg)
 
 <use Bilder/LogoOhmHochschuleMitText.jpg>
@@ -1193,7 +1194,7 @@ Package babel Info: Redefining ngerman shorthand "~
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Bilde
 r/LogoOhmHochschuleMitText.jpg>]
-<Bilder/LogoOhmHochschule.jpg, id=109, 284.06125pt x 284.06125pt>
+<Bilder/LogoOhmHochschule.jpg, id=266, 284.06125pt x 284.06125pt>
 File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
 
 <use Bilder/LogoOhmHochschule.jpg>
@@ -1229,14 +1230,29 @@ Package babel Info: Redefining ngerman shorthand "~
 [3
 
 
-] (./Masterarbeit.toc)
+] (./Masterarbeit.toc
+File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
+ <use Bilder/LogoOhmHochschule.jpg>
+Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 32.
+(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
+
+Overfull \vbox (10.86862pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 32.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 32.
+
+[1
+
+
+])
 \tf@toc=\write7
 \openout7 = `Masterarbeit.toc'.
 
  (./Inhalt/Glossar.tex)
 File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
-
-<use Bilder/LogoOhmHochschule.jpg>
+ <use Bilder/LogoOhmHochschule.jpg>
 Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 78.
 (pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
 
@@ -1247,10 +1263,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 78.
 
-[1
-
-
-]
+[2]
 No file Masterarbeit.nls.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 82.
@@ -1272,7 +1285,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 83.
 
-[2
+[3
 
 
 ]
@@ -1311,7 +1324,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 85.
 
-[3
+[4
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
@@ -1334,11 +1347,7 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              a package that still implements the
 (scrreprt)              deprecated \float@addtolist interface .
 
-(./Masterarbeit.lol
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 5.
- (/usr/local/texlive/2013/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-))
+(./Masterarbeit.lol)
 \tf@lol=\write10
 \openout10 = `Masterarbeit.lol'.
 
@@ -1354,12 +1363,12 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 88.
 
-[4
+[5
 
 ] (./Inhalt.tex
-\openout2 = `Inhalt/Einleitung.aux'.
+\openout2 = `Inhalt/Einleitung/Einleitung.aux'.
 
- (./Inhalt/Einleitung.tex
+ (./Inhalt/Einleitung/Einleitung.tex
 Kapitel 1.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
@@ -1412,106 +1421,42 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 5.
 
 [2]
-\openout2 = `Inhalt/ZitateReferenzen.aux'.
+\openout2 = `Inhalt/Grundlagen/Grundlagen.aux'.
 
- (./Inhalt/ZitateReferenzen.tex
+ (./Inhalt/Grundlagen/Grundlagen.tex
 Kapitel 2.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
-
-Package natbib Warning: Citation `SAP2007' on page 3 undefined on input line 4.
-
-
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 4.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 4.
-
-Package natbib Warning: Citation `SAP2007' on page 3 undefined on input line 4.
-
-
-
-Package natbib Warning: Citation `Software2007b' on page 3 undefined on input l
-ine 4.
-
-
-Package natbib Warning: Citation `Software2007b' on page 3 undefined on input l
-ine 4.
-
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 6.
-
-Overfull \hbox (0.65285pt too wide) in paragraph at lines 6--6
-\T1/lmr/m/n/10.95 schäftspro- 
- []
-
-
-Overfull \hbox (0.65285pt too wide) in paragraph at lines 6--6
-\T1/lmr/m/n/10.95 schäftspro- 
- []
-
-
-Overfull \hbox (0.65285pt too wide) in paragraph at lines 6--6
-\T1/lmr/m/n/10.95 schäftspro- 
- []
-
-
-Overfull \hbox (0.65285pt too wide) in paragraph at lines 6--6
-\T1/lmr/m/n/10.95 schäftspro- 
- []
-
-
-Package natbib Warning: Citation `Goodliffe2007' on page 3 undefined on input l
-ine 8.
-
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 8.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 8.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 9.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 10.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 10.
-File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
-<use Bilder/LogoOhmHochschule.jpg>
-Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 13.
-(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
-
-Overfull \vbox (10.86862pt too high) has occurred while \output is active []
-
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 13.
+(babel)             in language  on input line 11.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 13.
-
-[3
-
-
-
-]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 13.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 13.
-
-
-Package natbib Warning: Citation `OASIS2007' on page 4 undefined on input line 
-14.
-
-
-Package natbib Warning: Citation `OASIS2007' on page 4 undefined on input line 
-14.
-
-
-Package natbib Warning: Citation `OASIS2006a' on page 4 undefined on input line
- 16.
-
-
-Package natbib Warning: Citation `OASIS2006a' on page 4 undefined on input line
- 18.
-
-
-Package natbib Warning: Citation `OASIS2006a' on page 4 undefined on input line
- 18.
-
+(babel)             in language  on input line 11.
 )
 File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
  <use Bilder/LogoOhmHochschule.jpg>
@@ -1525,89 +1470,135 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 6.
 
-[4]
-\openout2 = `Inhalt/BilderListings.aux'.
+[3
 
- (./Inhalt/BilderListings.tex
+
+
+]
+\openout2 = `Inhalt/TeilA/TeilA.aux'.
+
+ (./Inhalt/TeilA/TeilA.tex
 Kapitel 3.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
-
-Overfull \hbox (6.05806pt too wide) in paragraph at lines 3--4
-\T1/lmr/m/n/10.95 or-che-striert wer-den kön-nen. Hier-zu ver-wen-det er aus-sc
-hlieÿ-lich Open-Source-Software,
- []
-
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 4.
+(./Inhalt/TeilA/8080GPIO.tex
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 4.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 5.
-<Bilder/HelloWorldStruktur.jpg, id=228, 123.46124pt x 64.24pt>
-File: Bilder/HelloWorldStruktur.jpg Graphic file (type jpg)
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 10.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 10.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 11.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 11.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 11.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 11.
+) (./Inhalt/TeilA/8080SRAM.tex
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 5.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 5.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 8.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 8.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 10.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 10.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 11.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 11.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 13.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 13.
+File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
 
-<use Bilder/HelloWorldStruktur.jpg>
-Package pdftex.def Info: Bilder/HelloWorldStruktur.jpg used on input line 11.
-(pdftex.def)             Requested size: 119.50279pt x 62.18332pt.
+<use Bilder/LogoOhmHochschule.jpg>
+Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 13.
+(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
+
+Overfull \vbox (10.86862pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 13.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 13.
+
+[4
+
+
+
+]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 14.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 14.
+)
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 9.
+)
 File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
  <use Bilder/LogoOhmHochschule.jpg>
-Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 18.
-(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
-
-Overfull \vbox (10.86862pt too high) has occurred while \output is active []
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 18.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 18.
-
-[5
-
-
-
- <./Bilder/HelloWorldStruktur.jpg>]
-(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2014/03/04 1.5c listings language file
-)
-(./DVD/Listings/HelloWorld/HelloWorld.java)
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 22.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 22.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 24.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 24.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2014/03/04 1.5c listings language file
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
-)
-(./DVD/Listings/PersonFactorySOAPRequest.txt)
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 31.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 31.
-File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
-
-<use Bilder/LogoOhmHochschule.jpg>
-Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 33.
-(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
-
-Overfull \vbox (10.86862pt too high) has occurred while \output is active []
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 33.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 33.
-
-[6] (./DVD/Listings/PersonFactorySOAPResponse.txt))
-File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
-
-<use Bilder/LogoOhmHochschule.jpg>
 Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 7.
 (pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
 
@@ -1618,139 +1609,88 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 7.
 
-[7]
-\openout2 = `Inhalt/AufzaehlungenTabellen.aux'.
+[5]
+\openout2 = `Inhalt/TeilB/TeilB.aux'.
 
- (./Inhalt/AufzaehlungenTabellen.tex
+ (./Inhalt/TeilB/TeilB.tex
 Kapitel 4.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
+(./Inhalt/TeilB/TeilBKonzept.tex
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 19.
-File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
-<use Bilder/LogoOhmHochschule.jpg>
-Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 25.
-(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
-
-Overfull \vbox (10.86862pt too high) has occurred while \output is active []
-
+(babel)             in language  on input line 1.
+) (./Inhalt/TeilB/TeilBHardware.tex
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 25.
+(babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 25.
-
-[8
-
-
-
-]
+(babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 36.
+(babel)             in language  on input line 4.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 36.
- <Bilder/EPK-Funktion.jpg, id=310, 84.315pt x 58.71938pt>
-File: Bilder/EPK-Funktion.jpg Graphic file (type jpg)
-
-<use Bilder/EPK-Funktion.jpg>
-Package pdftex.def Info: Bilder/EPK-Funktion.jpg used on input line 49.
-(pdftex.def)             Requested size: 85.35826pt x 59.44673pt.
-
-<Bilder/EPK-Ereignis.jpg, id=311, 78.2925pt x 54.9553pt>
-File: Bilder/EPK-Ereignis.jpg Graphic file (type jpg)
-
-<use Bilder/EPK-Ereignis.jpg>
-Package pdftex.def Info: Bilder/EPK-Ereignis.jpg used on input line 56.
-(pdftex.def)             Requested size: 85.35826pt x 59.91684pt.
-
-<Bilder/EPK-Operatoren.jpg, id=312, 121.20282pt x 35.38219pt>
-File: Bilder/EPK-Operatoren.jpg Graphic file (type jpg)
-
-<use Bilder/EPK-Operatoren.jpg>
-Package pdftex.def Info: Bilder/EPK-Operatoren.jpg used on input line 61.
-(pdftex.def)             Requested size: 85.35826pt x 24.9196pt.
-
-<Bilder/EPK-Organisationseinheit.jpg, id=313, 85.06781pt x 46.67438pt>
-File: Bilder/EPK-Organisationseinheit.jpg Graphic file (type jpg)
-
-<use Bilder/EPK-Organisationseinheit.jpg>
-Package pdftex.def Info: Bilder/EPK-Organisationseinheit.jpg used on input line
- 68.
-(pdftex.def)             Requested size: 85.35826pt x 46.8359pt.
-
-Underfull \hbox (badness 2221) in paragraph at lines 74--74
-[]\T1/lmr/m/n/10.95 Beispiele: \T1/lmr/m/it/10.95 Kun-den-da-ten-bank\T1/lmr/m/
-n/10.95 , \T1/lmr/m/it/10.95 Ver-si-che-rungs-an-trag\T1/lmr/m/n/10.95 , \T1/lm
-r/m/it/10.95 Rech-
- []
-
-<Bilder/EPK-Informationen.jpg, id=314, 78.2925pt x 54.9553pt>
-File: Bilder/EPK-Informationen.jpg Graphic file (type jpg)
-
-<use Bilder/EPK-Informationen.jpg>
-Package pdftex.def Info: Bilder/EPK-Informationen.jpg used on input line 75.
-(pdftex.def)             Requested size: 85.35826pt x 59.91684pt.
-
-Underfull \hbox (badness 2073) in paragraph at lines 79--79
-[]\T1/lmr/m/n/10.95 Mit Pro-zess-weg-wei-sern wer-den Pro-zes-se, die in an-de-
-
- []
-
-
-Underfull \hbox (badness 4403) in paragraph at lines 79--79
-\T1/lmr/m/n/10.95 ren EPKs be-schrie-ben sind, re-fe-ren-ziert. So kön-nen
- []
-
-<Bilder/EPK-Prozesspfad.jpg, id=315, 87.32625pt x 61.73062pt>
-File: Bilder/EPK-Prozesspfad.jpg Graphic file (type jpg)
-
-<use Bilder/EPK-Prozesspfad.jpg>
-Package pdftex.def Info: Bilder/EPK-Prozesspfad.jpg used on input line 80.
-(pdftex.def)             Requested size: 85.35826pt x 60.34299pt.
-File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
- <use Bilder/LogoOhmHochschule.jpg>
-Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 82.
-(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
-
-Overfull \vbox (10.86862pt too high) has occurred while \output is active []
-
+(babel)             in language  on input line 4.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 82.
+(babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 82.
-
-[9]
-File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
- <use Bilder/LogoOhmHochschule.jpg>
-Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 82.
-(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
-
-Overfull \vbox (10.86862pt too high) has occurred while \output is active []
-
+(babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 82.
+(babel)             in language  on input line 6.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 82.
-
-[10]
-File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
- <use Bilder/LogoOhmHochschule.jpg>
-Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 82.
-(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
-
-Overfull \vbox (10.86862pt too high) has occurred while \output is active []
-
+(babel)             in language  on input line 6.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 82.
+(babel)             in language  on input line 7.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 82.
-
-[11 <./Bilder/EPK-Funktion.jpg> <./Bilder/EPK-Ereignis.jpg> <./Bilder/EPK-Opera
-toren.jpg> <./Bilder/EPK-Organisationseinheit.jpg> <./Bilder/EPK-Informationen.
-jpg>])
+(babel)             in language  on input line 7.
+)
+(./Inhalt/TeilB/TeilBSoftware.tex
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 4.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 5.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 5.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 6.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 8.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 8.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 9.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 11.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 11.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 12.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 12.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 13.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 13.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 14.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 14.
+))
 File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
  <use Bilder/LogoOhmHochschule.jpg>
 Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 8.
@@ -1763,10 +1703,27 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 8.
 
-[12 <./Bilder/EPK-Prozesspfad.jpg>]
-\openout2 = `Inhalt/Fazit.aux'.
+[6
 
- (./Inhalt/Fazit.tex
+
+
+]
+File: Bilder/LogoOhmHochschule.jpg Graphic file (type jpg)
+ <use Bilder/LogoOhmHochschule.jpg>
+Package pdftex.def Info: Bilder/LogoOhmHochschule.jpg used on input line 8.
+(pdftex.def)             Requested size: 42.60735pt x 42.60735pt.
+
+Overfull \vbox (10.86862pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 8.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 8.
+
+[7]
+\openout2 = `Inhalt/Zusammenfassung/Zusammenfassung.aux'.
+
+ (./Inhalt/Zusammenfassung/Zusammenfassung.tex
 Kapitel 5.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
@@ -1785,7 +1742,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 9.
 
-[13
+[8
 
 
 
@@ -1816,7 +1773,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 101.
 
-[14
+[9
 
 
 
@@ -1862,7 +1819,10 @@ Underfull \hbox (badness 1924) in paragraph at lines 16--16
 n
  []
 
-
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 18.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 Overfull \hbox (2.32866pt too wide) in paragraph at lines 25--25
 []  \T1/lmtt/m/n/10 outputVariable="VarName">[] 
  []
@@ -1933,44 +1893,38 @@ Package natbib Warning: There were undefined citations.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 122.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 122.
 (./Masterarbeit.aux (./Deckblatt.aux) (./Inhalt/Abstract.aux)
-(./Inhalt/Einleitung.aux) (./Inhalt/ZitateReferenzen.aux)
-(./Inhalt/BilderListings.aux) (./Inhalt/AufzaehlungenTabellen.aux)
-(./Inhalt/Fazit.aux) (./Erklaerung.aux) (./Inhalt/BPELAktivitaeten.aux))
+(./Inhalt/Einleitung/Einleitung.aux) (./Inhalt/Grundlagen/Grundlagen.aux)
+(./Inhalt/TeilA/TeilA.aux) (./Inhalt/TeilB/TeilB.aux)
+(./Inhalt/Zusammenfassung/Zusammenfassung.aux) (./Erklaerung.aux)
+(./Inhalt/BPELAktivitaeten.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 122.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 122.
 Package rerunfilecheck Info: File `Masterarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 1BD47CF20E409E711BD23B0F007628DF;1479.
+(rerunfilecheck)             Checksum: 3C92937E3B3647EF62CE9DA63F79F8D4;4233.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 122.
  ) 
 Here is how much of TeX's memory you used:
- 23219 strings out of 494220
- 414426 string characters out of 6156460
- 594655 words of memory out of 5000000
- 25790 multiletter control sequences out of 15000+600000
- 101990 words of font info for 71 fonts, out of 8000000 for 9000
+ 22635 strings out of 494220
+ 407218 string characters out of 6156460
+ 530172 words of memory out of 5000000
+ 25255 multiletter control sequences out of 15000+600000
+ 78371 words of font info for 54 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 76i,15n,78p,1383b,1294s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,15n,66p,1113b,662s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
-texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/20
-13/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2013/texmf-dist
-/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
-e1/public/lm/lmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/
-lm/lmbx8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx9.pf
-b></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/l
-ocal/texlive/2013/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texliv
-e/2013/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2013/texm
-f-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2013/texmf-dist/fonts
-/type1/public/lm/lmr8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/lm/lmr9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri10.
-pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2013/
-texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2013/texmf-dist
-/fonts/type1/public/lm/lmtt9.pfb>
-Output written on Masterarbeit.pdf (25 pages, 652468 bytes).
+texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2013/
+texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2013/texmf-dist
+/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
+e1/public/lm/lmcsc10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
+/lm/lmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmr12.p
+fb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/l
+ocal/texlive/2013/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2013/
+texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Masterarbeit.pdf (21 pages, 389189 bytes).
 PDF statistics:
- 443 PDF objects out of 1000 (max. 8388607)
- 387 compressed objects within 4 object streams
- 116 named destinations out of 1000 (max. 500000)
- 242 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 482 PDF objects out of 1000 (max. 8388607)
+ 443 compressed objects within 5 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 519 words of extra memory for PDF output out of 10000 (max. 10000000)
 

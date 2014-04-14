@@ -1,24 +1,63 @@
 \select@language {ngerman}
-\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{II}{chapter*.4}
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{III}{chapter*.5}
-\contentsline {chapter}{\nonumberline Verzeichnis der Listings}{IV}{chapter*.6}
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{III}{chapter*.4}
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{IV}{chapter*.5}
+\contentsline {chapter}{\nonumberline Verzeichnis der Listings}{V}{chapter*.6}
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.7}
 \contentsline {section}{\numberline {1.1}Motivation}{1}{section.8}
 \contentsline {section}{\numberline {1.2}Ziel der Arbeit}{1}{section.9}
 \contentsline {section}{\numberline {1.3}Aufbau der Arbeit}{1}{section.10}
 \contentsline {section}{\numberline {1.4}Typographische Konventionen}{2}{section.11}
-\contentsline {chapter}{\numberline {2}Zitate und Referenzen}{3}{chapter.12}
-\contentsline {section}{\numberline {2.1}Definitionen}{3}{section.16}
-\contentsline {section}{\numberline {2.2}Service-orientierte Architektur}{4}{section.17}
-\contentsline {chapter}{\numberline {3}Bilder und Listings}{5}{chapter.22}
-\contentsline {section}{\numberline {3.1}Anbieten eines Webservice}{5}{section.26}
-\contentsline {section}{\numberline {3.2}Netzwerkverkehr beim Aufruf von \textsf {PersonFactory}}{6}{section.34}
-\contentsline {subsection}{\numberline {3.2.1}SOAP-Request}{6}{subsection.35}
-\contentsline {subsection}{\numberline {3.2.2}SOAP-Response}{7}{subsection.55}
-\contentsline {chapter}{\numberline {4}Aufz\"ahlungen und Tabellen}{8}{chapter.76}
-\contentsline {section}{\numberline {4.1}Vom Autor verwendete Software}{8}{section.81}
-\contentsline {section}{\numberline {4.2}Elemente der Ereignisgesteuerten Prozesskette}{10}{section.83}
-\contentsline {chapter}{\numberline {5}Fazit und kritische Bewertung}{13}{chapter.85}
-\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\"arung}{14}{chapter*.86}
-\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.87}
-\contentsline {section}{\numberline {A.1}Liste m\"oglicher Aktivit\"aten der BPEL}{ii}{section.88}
+\contentsline {chapter}{\numberline {2}Theoretische Grundlagen}{3}{chapter.12}
+\contentsline {section}{\numberline {2.1}Embedded Linux Boards}{3}{section.13}
+\contentsline {section}{\numberline {2.2}Video-Schnittstellen}{3}{section.14}
+\contentsline {subsection}{\numberline {2.2.1}DVI}{3}{subsection.15}
+\contentsline {subsection}{\numberline {2.2.2}HDMI}{3}{subsection.16}
+\contentsline {subsection}{\numberline {2.2.3}VGA}{3}{subsection.17}
+\contentsline {subsection}{\numberline {2.2.4}8080-Interface}{3}{subsection.18}
+\contentsline {subsection}{\numberline {2.2.5}TV-OUT}{3}{subsection.19}
+\contentsline {chapter}{\numberline {3}Teil A}{4}{chapter.20}
+\contentsline {section}{\numberline {3.1}Display mit 8080-Interface}{4}{section.21}
+\contentsline {section}{\numberline {3.2}8080-Interface mittels GPIO-Pins}{4}{section.22}
+\contentsline {subsection}{\numberline {3.2.1}Konzept}{4}{subsection.23}
+\contentsline {subsection}{\numberline {3.2.2}Hardwareverbindung zwischen GPIO-Pins und Display}{4}{subsection.24}
+\contentsline {subsection}{\numberline {3.2.3}User-Space-Treiber}{4}{subsection.25}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Low-Level-Treiber}{4}{subsubsection.26}
+\contentsline {paragraph}{\numberline {3.2.3.1.1}GPIO-Pin Frequenz erhoehen}{4}{paragraph.27}
+\contentsline {paragraph}{\numberline {3.2.3.1.2}GPIO-Treiber}{4}{paragraph.28}
+\contentsline {paragraph}{\numberline {3.2.3.1.3}Displaytreiber fuer SSD1963}{4}{paragraph.29}
+\contentsline {subsection}{\numberline {3.2.4}Ansteuerung des Displays}{5}{subsection.30}
+\contentsline {section}{\numberline {3.3}8080-Interface mittels SRAM-Interface}{5}{section.31}
+\contentsline {subsection}{\numberline {3.3.1}Konzept}{5}{subsection.32}
+\contentsline {subsection}{\numberline {3.3.2}MPMC - Multiport Memory Controller des NXP LPC313x}{5}{subsection.33}
+\contentsline {subsection}{\numberline {3.3.3}Hardwareverbindung zwischen SRAM-Interface und Display (Adapterplatine)}{5}{subsection.34}
+\contentsline {subsection}{\numberline {3.3.4}Software}{5}{subsection.35}
+\contentsline {subsubsection}{\numberline {3.3.4.1}Entwicklung eines Linux-Framebuffer-Treibers}{5}{subsubsection.36}
+\contentsline {subsubsection}{\numberline {3.3.4.2}Entwicklung eines User-Space-Treibers}{5}{subsubsection.37}
+\contentsline {subsubsection}{\numberline {3.3.4.3}ANpassung des APEX-Bootloaders zur Verwendung des Displays}{5}{subsubsection.38}
+\contentsline {subsubsection}{\numberline {3.3.4.4}Probleme bei der Entwicklung und Fehlersuche}{5}{subsubsection.39}
+\contentsline {paragraph}{\numberline {3.3.4.4.1}Rolle des User-Space-Treibers}{5}{paragraph.40}
+\contentsline {paragraph}{\numberline {3.3.4.4.2}Debuggen mit Logik-Analyzer}{5}{paragraph.41}
+\contentsline {paragraph}{\numberline {3.3.4.4.3}Loesung des Problems}{5}{paragraph.42}
+\contentsline {section}{\numberline {3.4}Vor- und Nachteile}{5}{section.43}
+\contentsline {chapter}{\numberline {4}Teil B}{6}{chapter.44}
+\contentsline {section}{\numberline {4.1}Konzept}{6}{section.45}
+\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{6}{section.46}
+\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{6}{subsection.47}
+\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{6}{subsection.48}
+\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{6}{subsection.49}
+\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{6}{subsection.50}
+\contentsline {section}{\numberline {4.3}Software}{6}{section.51}
+\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{6}{subsection.52}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{6}{subsubsection.53}
+\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{6}{subsubsection.54}
+\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{6}{paragraph.55}
+\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{6}{paragraph.56}
+\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{7}{subsubsection.57}
+\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{7}{subsection.58}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{7}{subsubsection.59}
+\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{7}{subsubsection.60}
+\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{7}{subsubsection.61}
+\contentsline {chapter}{\numberline {5}Zusammenfassung}{8}{chapter.62}
+\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\"arung}{9}{chapter*.63}
+\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.64}
+\contentsline {section}{\numberline {A.1}Liste m\"oglicher Aktivit\"aten der BPEL}{ii}{section.65}

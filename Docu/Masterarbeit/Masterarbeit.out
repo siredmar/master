@@ -6,18 +6,57 @@
 \BOOKMARK [1][]{section.9}{Ziel der Arbeit}{chapter.7}% 6
 \BOOKMARK [1][]{section.10}{Aufbau der Arbeit}{chapter.7}% 7
 \BOOKMARK [1][]{section.11}{Typographische Konventionen}{chapter.7}% 8
-\BOOKMARK [0][]{chapter.12}{Zitate und Referenzen}{}% 9
-\BOOKMARK [1][]{section.16}{Definitionen}{chapter.12}% 10
-\BOOKMARK [1][]{section.17}{Service-orientierte Architektur}{chapter.12}% 11
-\BOOKMARK [0][]{chapter.22}{Bilder und Listings}{}% 12
-\BOOKMARK [1][]{section.26}{Anbieten eines Webservice}{chapter.22}% 13
-\BOOKMARK [1][]{section.34}{Netzwerkverkehr beim Aufruf von PersonFactory}{chapter.22}% 14
-\BOOKMARK [2][]{subsection.35}{SOAP-Request}{section.34}% 15
-\BOOKMARK [2][]{subsection.55}{SOAP-Response}{section.34}% 16
-\BOOKMARK [0][]{chapter.76}{Aufz\344hlungen und Tabellen}{}% 17
-\BOOKMARK [1][]{section.81}{Vom Autor verwendete Software}{chapter.76}% 18
-\BOOKMARK [1][]{section.83}{Elemente der Ereignisgesteuerten Prozesskette}{chapter.76}% 19
-\BOOKMARK [0][]{chapter.85}{Fazit und kritische Bewertung}{}% 20
-\BOOKMARK [0][]{chapter*.86}{Eidesstattliche Erkl\344rung}{}% 21
-\BOOKMARK [0][]{appendix.87}{Anhang}{}% 22
-\BOOKMARK [1][]{section.88}{Liste m\366glicher Aktivit\344ten der BPEL}{appendix.87}% 23
+\BOOKMARK [0][]{chapter.12}{Theoretische Grundlagen}{}% 9
+\BOOKMARK [1][]{section.13}{Embedded Linux Boards}{chapter.12}% 10
+\BOOKMARK [1][]{section.14}{Video-Schnittstellen}{chapter.12}% 11
+\BOOKMARK [2][]{subsection.15}{DVI}{section.14}% 12
+\BOOKMARK [2][]{subsection.16}{HDMI}{section.14}% 13
+\BOOKMARK [2][]{subsection.17}{VGA}{section.14}% 14
+\BOOKMARK [2][]{subsection.18}{8080-Interface}{section.14}% 15
+\BOOKMARK [2][]{subsection.19}{TV-OUT}{section.14}% 16
+\BOOKMARK [0][]{chapter.20}{Teil A}{}% 17
+\BOOKMARK [1][]{section.21}{Display mit 8080-Interface}{chapter.20}% 18
+\BOOKMARK [1][]{section.22}{8080-Interface mittels GPIO-Pins}{chapter.20}% 19
+\BOOKMARK [2][]{subsection.23}{Konzept}{section.22}% 20
+\BOOKMARK [2][]{subsection.24}{Hardwareverbindung zwischen GPIO-Pins und Display}{section.22}% 21
+\BOOKMARK [2][]{subsection.25}{User-Space-Treiber}{section.22}% 22
+\BOOKMARK [3][]{subsubsection.26}{Low-Level-Treiber}{subsection.25}% 23
+\BOOKMARK [4][]{paragraph.27}{GPIO-Pin Frequenz erhoehen}{subsubsection.26}% 24
+\BOOKMARK [4][]{paragraph.28}{GPIO-Treiber}{subsubsection.26}% 25
+\BOOKMARK [4][]{paragraph.29}{Displaytreiber fuer SSD1963}{subsubsection.26}% 26
+\BOOKMARK [2][]{subsection.30}{Ansteuerung des Displays}{section.22}% 27
+\BOOKMARK [1][]{section.31}{8080-Interface mittels SRAM-Interface}{chapter.20}% 28
+\BOOKMARK [2][]{subsection.32}{Konzept}{section.31}% 29
+\BOOKMARK [2][]{subsection.33}{MPMC - Multiport Memory Controller des NXP LPC313x}{section.31}% 30
+\BOOKMARK [2][]{subsection.34}{Hardwareverbindung zwischen SRAM-Interface und Display \(Adapterplatine\)}{section.31}% 31
+\BOOKMARK [2][]{subsection.35}{Software}{section.31}% 32
+\BOOKMARK [3][]{subsubsection.36}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.35}% 33
+\BOOKMARK [3][]{subsubsection.37}{Entwicklung eines User-Space-Treibers}{subsection.35}% 34
+\BOOKMARK [3][]{subsubsection.38}{ANpassung des APEX-Bootloaders zur Verwendung des Displays}{subsection.35}% 35
+\BOOKMARK [3][]{subsubsection.39}{Probleme bei der Entwicklung und Fehlersuche}{subsection.35}% 36
+\BOOKMARK [4][]{paragraph.40}{Rolle des User-Space-Treibers}{subsubsection.39}% 37
+\BOOKMARK [4][]{paragraph.41}{Debuggen mit Logik-Analyzer}{subsubsection.39}% 38
+\BOOKMARK [4][]{paragraph.42}{Loesung des Problems}{subsubsection.39}% 39
+\BOOKMARK [1][]{section.43}{Vor- und Nachteile}{chapter.20}% 40
+\BOOKMARK [0][]{chapter.44}{Teil B}{}% 41
+\BOOKMARK [1][]{section.45}{Konzept}{chapter.44}% 42
+\BOOKMARK [1][]{section.46}{Hardwareentwicklung}{chapter.44}% 43
+\BOOKMARK [2][]{subsection.47}{Spannungsversorgung}{section.46}% 44
+\BOOKMARK [2][]{subsection.48}{HDMI-RGB-Bridge}{section.46}% 45
+\BOOKMARK [2][]{subsection.49}{RGB-LVDS-Bridge}{section.46}% 46
+\BOOKMARK [2][]{subsection.50}{EDID-Daten}{section.46}% 47
+\BOOKMARK [1][]{section.51}{Software}{chapter.44}% 48
+\BOOKMARK [2][]{subsection.52}{EDID-Daten auf embedded Seite}{section.51}% 49
+\BOOKMARK [3][]{subsubsection.53}{Konzept}{subsection.52}% 50
+\BOOKMARK [3][]{subsubsection.54}{Low-Level-Treiber}{subsection.52}% 51
+\BOOKMARK [4][]{paragraph.55}{UART-Treiber}{subsubsection.54}% 52
+\BOOKMARK [4][]{paragraph.56}{I2C-Treiber}{subsubsection.54}% 53
+\BOOKMARK [3][]{subsubsection.57}{Programmablauf}{subsection.52}% 54
+\BOOKMARK [2][]{subsection.58}{EDID-Daten auf PC Seite}{section.51}% 55
+\BOOKMARK [3][]{subsubsection.59}{Konzept}{subsection.58}% 56
+\BOOKMARK [3][]{subsubsection.60}{GTK GUI mit Glade}{subsection.58}% 57
+\BOOKMARK [3][]{subsubsection.61}{Programmablauf}{subsection.58}% 58
+\BOOKMARK [0][]{chapter.62}{Zusammenfassung}{}% 59
+\BOOKMARK [0][]{chapter*.63}{Eidesstattliche Erkl\344rung}{}% 60
+\BOOKMARK [0][]{appendix.64}{Anhang}{}% 61
+\BOOKMARK [1][]{section.65}{Liste m\366glicher Aktivit\344ten der BPEL}{appendix.64}% 62
