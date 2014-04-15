@@ -49,14 +49,14 @@ int main(int argc, const char *argv[])
       exit(1);
    }
 
-  // uint16 buf_display[TFT_HEIGHT_UI16][TFT_WIDTH_UI16];  // the current display content
-  // uint16 buf_source[TFT_HEIGHT_UI16][TFT_WIDTH_UI16];   // the source framebuffer content
+   // uint16 buf_display[TFT_HEIGHT_UI16][TFT_WIDTH_UI16];  // the current display content
+   // uint16 buf_source[TFT_HEIGHT_UI16][TFT_WIDTH_UI16];   // the source framebuffer content
 
 
-  // srand(time(NULL));
-  // uint16 color = rand() % 0xFFFF;
-  //
-  // {
+   // srand(time(NULL));
+   // uint16 color = rand() % 0xFFFF;
+   //
+   // {
    xs = atoi(argv[1]);
    ys = atoi(argv[2]);
    xe = atoi(argv[3]);
@@ -82,20 +82,11 @@ int main(int argc, const char *argv[])
 
    //tft_clearScreen(YELLOW);
 
-//#if BENCHMARK == 1
+   while(1)
+   {
+      tft_drawRectangle(xs, ys, xe, ye, getRGB565Rainbow());
+   }
 
-   //tft_drawPixel(xs, ys, BLUE);
-   tft_drawRectangle(xs, ys, xe, ye, YELLOW);
-//   tft_sendPixelData(BLUE);
-//   tft_sendPixelData(BLUE);
-//   tft_sendPixelData(BLUE);
-   usleep(10000000);
-   tft_selectReset();
-   usleep(1000);
-   tft_deSelectReset();
-   usleep(1000);
-   tft_drawRectangle(0, 0, 222, 222, BLUE);
-   // }
 
    return 0;
 

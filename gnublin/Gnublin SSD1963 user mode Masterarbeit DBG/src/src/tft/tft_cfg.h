@@ -17,15 +17,15 @@
 #define ROTATE 0
 
 #if !ROTATE
-   #define TFT_WIDTH_UI16                    (uint16)480
-   #define TFT_HEIGHT_UI16                   (uint16)272
-#else
-   #define TFT_WIDTH_UI16                    (uint16)272
+   #define TFT_WIDTH_UI16                    (uint16)800
    #define TFT_HEIGHT_UI16                   (uint16)480
+#else
+   #define TFT_WIDTH_UI16                    (uint16)480
+   #define TFT_HEIGHT_UI16                   (uint16)800
 #endif
 #define TFT_ZERO_X                           (uint16)0
 #define TFT_ZERO_Y                           (uint16)0
-#define TFT_PIXELS_UI32                      (uint32)130560
+#define TFT_PIXELS_UI32                      (uint32)384000
 
 #define TFT_RS_PIN_UI8                       DIO_CHANNEL_18
 #define TFT_WR_PIN_UI8                       DIO_CHANNEL_17
@@ -37,17 +37,17 @@
 #define TFT_CS_PIN_UI8                       DIO_CHANNEL_1
 #define TFT_RESET_PIN_UI8                    DIO_CHANNEL_0
 
-#define HDP                         479           // 479
-#define HT                          531           // 525
-#define HPS                         43            // 40
-#define LPS                         8             // 6
-#define HPW                         10            // 39
+#define HDP 799           // 479
+#define HT  928            // 525
+#define HPS 46            // 40
+#define LPS 15            // 6
+#define HPW 48            // 39
 
-#define VDP                         271           // 271
-#define VT                          288           // 288
-#define VPS                         12            // 12
-#define FPS                         4             // 8
-#define VPW                         10            // 11
+#define VDP 479           // 271
+#define VT  525            // 288
+#define VPS 16            // 12
+#define FPS 8             // 8
+#define VPW 16            // 11
 
 /* TFT Controler Register defines */
 /* TFT Controler Register defines */
@@ -128,8 +128,8 @@
 #define SSD1963_GET_LSHIFT_FREQ       0xE7
 #define SSD1963_SET_PIXEL_DATA_INTERFACE 0xF0
 #define SSD1963_GET_PIXEL_DATA_INTERFACE 0xF1
-#define SCREENWIDTH                      480
-#define SCREENHEIGHT                     272
+#define SCREENWIDTH                      800
+#define SCREENHEIGHT                     480
 
 /* ***************************** enums ************************************** */
 

@@ -57,7 +57,7 @@ static int __init hello_init(void)
    MPMC_STWTOEN0  = 0;
    MPMC_STWTRD0   = 31;
    MPMC_STWTPG0   = 0;
-   MPMC_STWTWR0   = 4;
+   MPMC_STWTWR0   = 31;
    MPMC_STWTTURN0 = 0;
 
 
