@@ -1,0 +1,4 @@
+kernel/fs/nfs/nfs.ko
+kernel/fs/exportfs/exportfs.ko
+kernel/fs/nfsd/nfsd.ko
+kernel/fs/lockd/lockd.ko

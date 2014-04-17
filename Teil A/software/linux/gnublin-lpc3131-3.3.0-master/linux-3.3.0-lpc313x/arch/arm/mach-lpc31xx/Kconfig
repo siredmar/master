@@ -1,0 +1,82 @@
+menu "LPC313x Implementations"
+	depends on ARCH_LPC31XX
+
+choice
+	prompt "LPC313x Platform type"
+	default MACH_EA313X
+
+config MACH_EA313X
+	bool "ea313x board"
+	help
+	  Say Y here if you are using the Embedded Artist's EA313x board
+
+config MACH_GNUBLIN
+	bool "gnublin board"
+	help
+	  Say Y here if you are using the Embedded Gnublin Board
+
+config MACH_EA3152
+	bool "ea3152 board"
+	select LPC3152_AD
+	help
+	  Say Y here if you are using Embedded Artist's EA3152 board
+	  
+config MACH_VAL3153
+	bool "val3153 board"
+	help
+	  Say Y here if you are using the NXP val3153 board
+
+config MACH_VAL3154
+	bool "val3154 board"
+	select LPC3152_AD
+	help
+	  Say Y here if you are using the NXP val3154 board
+	  
+endchoice
+
+config LPC3152_AD
+	bool
+
+source "kernel/Kconfig.hz"
+
+endmenu
+
+
+
+
+menu "Special settings"
+	depends on ARCH_LPC31XX
+
+
+config DUAL_MODE
+	bool "Add a second SPI device"
+	help
+	   If you want to connect 2 SPI devices to GNUBLIN, then its required 
+	   to have 2 chip selects.
+	   This option will set a second chipselect.
+	   (Chip select 0 -->GPIO_15)
+	   (Chip select 1 -->GPIO_11)
+
+config CS_TO_IO11
+	bool "Use GPIO11 as SPI chip select"
+	depends on !DUAL_MODE
+	help
+	   This option will set the CS_OUT0 Pin to GPIO11. This is usefull for the
+	   standart GNUBLIN edition, if you don't want to use the little tespoint.
+
+endmenu
+
+#menu "GNUBLIN IRQ INITIALISATION(not supportet yet!)"
+#	depends on ARCH_LPC31XX
+
+	
+#choice 
+#	 bool "Choice menu"
+	 
+#		config IRQ_GPIO_LOW_ACTIVE
+#		bool "LOW"
+#		config IRQ_GPIO_HIGH_ACTIVE
+#	 	bool "HIGH"
+#	endchoice
+#endmenu
+

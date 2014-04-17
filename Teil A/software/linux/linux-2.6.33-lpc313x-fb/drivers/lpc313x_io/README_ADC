@@ -1,0 +1,79 @@
+The /device-node based configuration consists of a 16bit-value. A single nibble controls a specific 
+part of the configuration, so it's easy to calculate the 16bit-word without paper+pencil.
+
+These are the single nibbles:
+	0x3210
+	  ||||
+	  |||+-- CHANNEL
+	  ||+--- RESOLUTION / CONFIG
+	  |+---- POWERSAVE / AVERAGING
+	  +----- STATUS
+
+CHANNEL: select ADC-channel
+	BIT-NR	3210
+		xx||
+		  |+---- 0x0001 CH_SELECT0
+		  +----- 0x0002 CH_SELECT1
+
+	BIT-NR	1 0 | CHANNEL
+	------------+--------
+		0 0 | channel 0 (default)
+		0 1 | channel 1
+		1 0 | channel 2 (not available on gnublin board)
+		1 1 | channel 3
+
+RESOLUTION / CONFIG: select resolution (4bit, 8bit, 10bit), other configuration
+	BIT-NR  3210
+		|x||
+		| |+---- 0x0010 RES_SELECT0
+		| +----- 0x0020 RES_SELECT1
+                |
+		+------- 0x0080 DEBUG (if set, the driver will be verbose)
+
+	BIT-NR	1 0 | Resolution
+	------------+-----------
+		0 0 | 10bit (default)
+		0 1 | 8bit
+		1 0 | 4bit
+
+POWERSAVE / AVERAGING :
+	BIT-NR	3210
+		||||
+		|||+---- 0x0100 POWERSAVE_SELECT0
+		||+----- 0x0200 POWERSAVE_SELECT1
+		|+------ 0x0400 AVERAGING_MODE0
+		+------- 0x0800 AVERAGING_MODE1
+
+	BIT 	1 0 | Powersave Mode
+	------------+--------
+		0 0 | powersaving off, adc always on
+		0 1 | auto on/off for adc, only on when needed, takes more time, saves power (default)
+		1 0 | adc always off, results are always waste
+
+	BIT 	3 2 | Averaging Mode
+	------------+---------------
+		0 0 | averaging off, single shot ad conversion
+		0 1 | averaging on, build average from 10 conversions
+		1 0 | averaging on, build average from 75 conversions
+		1 1 | averaging on, build average from 150 conversions
+
+
+
+STATUS: if any of these 4 bits is set, the driver will print it's status via printk to "dmesg".
+all other configuration bits are DON'T CARE in this case, no operation/configuration
+will be performed.
+	
+
+
+          
+        
+      
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+cmd_drivers/video/console/fbcon.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/video/console/fbcon.ko drivers/video/console/fbcon.o drivers/video/console/fbcon.mod.o

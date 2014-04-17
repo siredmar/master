@@ -1,0 +1,2 @@
+kernel/drivers/net/can/vcan.ko
+kernel/drivers/net/can/can-dev.ko
