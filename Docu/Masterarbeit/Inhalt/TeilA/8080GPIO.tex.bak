@@ -5,9 +5,7 @@
 \subsection{Hardwareverbindung zwischen GPIO-Pins und Display}
 \subsection{User-Space-Treiber}
 \subsubsection{Low-Level-Treiber}
-\paragraph{GPIO-Pin Frequenz erhoehen}
+\paragraph{GPIO-Pin Frequenz erh"ohen}
 \paragraph{GPIO-Treiber}
-\paragraph{Displaytreiber fuer SSD1963}
+\paragraph{Displaytreiber f"ur SSD1963}
 \subsection{Ansteuerung des Displays}
-
-

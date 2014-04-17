@@ -7,8 +7,9 @@
 \subsection{VGA}
 \subsection{8080-Interface}
 \subsection{TV-OUT}
+\subsection{Verwendung der SPI-Schnittstelle}
 
-\section{betrachtete Embedded Linux Boards}
+\section{Betrachtete Embedded Linux Boards}
 \subsection{Raspberry Pi}
 \subsection{Beaglebone Black}
 \subsection{Gnublin Extended}

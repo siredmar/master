@@ -4,11 +4,25 @@
 \subsection{Konzept}
 \subsection{MPMC - Multiport Memory Controller des NXP LPC313x}
 \subsection{Hardwareverbindung zwischen SRAM-Interface und Display (Adapterplatine)}
+\subsection{Untersuchte Displays}
+\subsubsection{3.2" mit SSD1289}
+\subsubsection{4.3"/5" mit SSD1963}
+\subsubsection{5" mit CPLD}
 \subsection{Software}
 \subsubsection{Entwicklung eines Linux-Framebuffer-Treibers}
+\paragraph{Anpassungen f"ur Display mit SSD1289 Controller}
+\paragraph{Anpassungen f"ur Display mit SSD1963 Controller}
+\paragraph{Anpassungen f"ur Display mit CPLD Controller}
 \subsubsection{Entwicklung eines User-Space-Treibers}
-\subsubsection{ANpassung des APEX-Bootloaders zur Verwendung des Displays}
+\paragraph{Anpassungen f"ur Display mit SSD1289 Controller}
+\paragraph{Anpassungen f"ur Display mit SSD1963 Controller}
+\paragraph{Anpassungen f"ur Display mit CPLD Controller}
+\subsubsection{Anpassung des APEX-Bootloaders zur Verwendung des Displays}
 \subsubsection{Probleme bei der Entwicklung und Fehlersuche}
-\paragraph{Rolle des User-Space-Treibers}
-\paragraph{Debuggen mit Logik-Analyzer}
-\paragraph{Loesung des Problems}
+\paragraph{Probleme mit SSD1289}
+\paragraph{Probleme mit SSD1963}
+\subparagraph{Rolle des User-Space-Treibers}
+\subparagraph{Debuggen mit Logik-Analyzer}
+\subparagraph{L"osung des Problems}
+
+
