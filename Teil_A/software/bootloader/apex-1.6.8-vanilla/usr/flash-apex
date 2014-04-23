@@ -1,0 +1,96 @@
+#!/bin/sh
+
+# Copyright (C) 2006  Joey Hess  <joeyh@debian.org>
+# Copyright (C) 2006  Martin Michlmayr <tbm@cyrius.com>
+# Copyright (C) 2007  Gordon Farquharson <gordonfarquharson@gmail.com>
+#
+#   This program is free software; you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License
+#   version 2 as published by the Free Software Foundation.
+#   Please refer to the file debian/copyright for further details.
+#
+
+set -e
+
+error() {
+	echo "$@" >&2
+	exit 1
+}
+
+check_mtd() {
+	if [ ! -e /proc/mtd ]; then
+		error "/proc/mtd doesn't exist"
+	fi
+}
+
+mtdblock() {
+	grep "$1" /proc/mtd | cut -d: -f 1 | sed 's/mtd/\/dev\/mtdblock/'
+}
+
+# See http://www.nslu2-linux.org/wiki/Info/BootFlash -- the NSLU2 uses a
+# 16 byte MTD header, the first four bytes (big endian) give the length of
+# the remainder of the image, and the remaining bytes are zero.  Generate
+# this header.
+sercomm_header() {
+	perl -e 'print pack("N4", shift)' "$1"
+}
+
+nslu2_swap() {
+	if [ "$little_endian" ]; then
+		devio "<<"$1 "xp $,4"
+	else
+		cat $1
+	fi
+}
+
+apex_file=/boot/apex.flash
+
+if [ ! -e $apex_file ]; then
+	error "Can't find $apex_file"
+fi
+
+machine=$(grep "^Hardware" /proc/cpuinfo | sed 's/Hardware\s*:\s*//')
+case "$machine" in
+	"Linksys NSLU2")
+		check_mtd
+		case "$(dpkg --print-architecture)" in
+			arm|armel)
+				little_endian=1
+			;;
+			armeb)
+				little_endian=0
+			;;
+		esac
+		mtdloader=$(mtdblock Loader)
+		if [ -z "$mtdloader" ]; then
+			error "Cannot find mtd partition 'Loader'"
+		fi
+		lsize=$(wc -c $apex_file | awk '{print $1}')
+		mtdblocksize=131072
+		pad=$(expr $mtdblocksize - $lsize - 16)
+		# Store non-default APEX configuration
+		tmp=$(tempfile)
+		(apex-env printenv | egrep -v '\*=') > $tmp
+		printf "Flashing loader: " >&2
+		(
+			sercomm_header $(expr $lsize + 16)
+			nslu2_swap $apex_file
+			perl -e "print pack(\"C\", 0xff) x $pad"
+		) > "$mtdloader" || error "failed."
+		# Write the stored APEX configuration. For each line,
+		# remove whitespace from the start and the end of the
+		# line, and use all the characters, including
+		# whitespace, after '=' as the value.
+		while read line
+		do
+			key=$(echo $line | cut -d '=' -f1 | awk '{print $1}')
+			val=$(echo $line | awk '{$1=""; $2=""; print substr($0,3)}')
+			apex-env setenv "$key" "$val"
+		done < $tmp
+		rm $tmp
+		echo "done." >&2
+	;;
+	*)
+		error "Unsupported platform."
+	;;
+esac

@@ -1,1 +1,0 @@
-cmd_net/sunrpc/sunrpc.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/dev/gnublin/gnublin-lpc3131-2.6.33/linux-2.6.33-lpc313x/scripts/module-common.lds --build-id -o net/sunrpc/sunrpc.ko net/sunrpc/sunrpc.o net/sunrpc/sunrpc.mod.o

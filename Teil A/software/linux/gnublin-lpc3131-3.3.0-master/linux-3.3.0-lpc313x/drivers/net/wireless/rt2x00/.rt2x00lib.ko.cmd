@@ -1,1 +1,0 @@
-cmd_drivers/net/wireless/rt2x00/rt2x00lib.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/gnublin-lpc3131-3.3.0-master/linux-3.3.0-lpc313x/scripts/module-common.lds --build-id  -o drivers/net/wireless/rt2x00/rt2x00lib.ko drivers/net/wireless/rt2x00/rt2x00lib.o drivers/net/wireless/rt2x00/rt2x00lib.mod.o

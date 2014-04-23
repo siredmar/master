@@ -1,0 +1,44 @@
+===========================
+     APEX Boot Loader
+        MemoryMap
+===========================
+
+It may be helpful to understand where pieces go in RAM and why.  It is
+easy for these numbers to change, so be careful about depending on
+them.  Always check the compiled programs to be sure.
+
+The numbers herin reflect an ARM system where SDRAM starts at
+0xc0000000.  The base address for SDRAM varies from chip to chip and
+from architecture to architecture.
+
+
+APEX
+----
+
+The loader copies itself from wherever it start execution to
+0xc0200000.  It only copies the code and read-only data portions.
+BSS, stacks, and some buffers follow the code in memory.  In some
+configurations, this image may be 300KiB or more in total.
+
+
+Kernel
+------
+
+Most kernels execute at 0xc0008000.  Compressed kernels are preceeded
+by a decompression header that will move the kernel if necessary after
+decompressing it.  APEX runs at the 2MiB boundary.  The kernel must be
+smaller than 2MiB - 32KiB for it to start execution at 0xc0008000.
+This is a safe assumption since most compressed kernels a megabyte or
+less.
+
+
+ATAGS
+-----
+
+In the 2.6 kernel series, information about the running system as well
+as the command line is passed in an ATAG structure list.  This list is
+begins at 0xc0000100.  There has been some effort applied to make this
+base address available in a register when the kernel receives
+execution control.  That work is incomplete.
+
+

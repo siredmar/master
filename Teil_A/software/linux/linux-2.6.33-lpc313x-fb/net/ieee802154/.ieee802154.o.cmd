@@ -1,0 +1,1 @@
+cmd_net/ieee802154/ieee802154.o := arm-linux-gnueabi-ld -EL    -r -o net/ieee802154/ieee802154.o net/ieee802154/netlink.o net/ieee802154/nl-mac.o net/ieee802154/nl-phy.o net/ieee802154/nl_policy.o net/ieee802154/wpan-class.o 
