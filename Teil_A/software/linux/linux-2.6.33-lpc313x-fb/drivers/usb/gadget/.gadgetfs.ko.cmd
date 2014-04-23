@@ -1,1 +1,1 @@
-cmd_drivers/usb/gadget/gadgetfs.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/usb/gadget/gadgetfs.ko drivers/usb/gadget/gadgetfs.o drivers/usb/gadget/gadgetfs.mod.o
+cmd_drivers/usb/gadget/gadgetfs.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/usb/gadget/gadgetfs.ko drivers/usb/gadget/gadgetfs.o drivers/usb/gadget/gadgetfs.mod.o

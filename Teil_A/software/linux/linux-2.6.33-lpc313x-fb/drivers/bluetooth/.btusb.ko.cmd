@@ -1,1 +1,1 @@
-cmd_drivers/bluetooth/btusb.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/bluetooth/btusb.ko drivers/bluetooth/btusb.o drivers/bluetooth/btusb.mod.o
+cmd_drivers/bluetooth/btusb.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/bluetooth/btusb.ko drivers/bluetooth/btusb.o drivers/bluetooth/btusb.mod.o

@@ -1,1 +1,1 @@
-cmd_drivers/net/usb/zaurus.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/net/usb/zaurus.ko drivers/net/usb/zaurus.o drivers/net/usb/zaurus.mod.o
+cmd_drivers/net/usb/zaurus.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/net/usb/zaurus.ko drivers/net/usb/zaurus.o drivers/net/usb/zaurus.mod.o

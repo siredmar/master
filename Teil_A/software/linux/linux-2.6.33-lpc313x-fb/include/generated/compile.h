@@ -1,7 +1,7 @@
-/* This file is auto generated, version 14 */
+/* This file is auto generated, version 15 */
 #define UTS_MACHINE "arm"
-#define UTS_VERSION "#14 Mon Mar 3 12:27:38 CET 2014"
-#define LINUX_COMPILE_TIME "12:27:38"
+#define UTS_VERSION "#15 Wed Apr 23 11:32:46 CEST 2014"
+#define LINUX_COMPILE_TIME "11:32:46"
 #define LINUX_COMPILE_BY "armin"
 #define LINUX_COMPILE_HOST "localhost"
 #define LINUX_COMPILE_DOMAIN

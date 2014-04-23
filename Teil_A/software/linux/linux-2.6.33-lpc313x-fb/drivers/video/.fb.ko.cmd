@@ -1,1 +1,0 @@
-cmd_drivers/video/fb.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/video/fb.ko drivers/video/fb.o drivers/video/fb.mod.o

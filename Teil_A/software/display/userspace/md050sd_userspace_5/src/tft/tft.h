@@ -155,10 +155,7 @@ void tft_setWindow
 *  \param [out] ---
 *  \return      ---
 */
-void tft_init
-(
-   uint8 init
-);
+void tft_init(void);
 
 
 

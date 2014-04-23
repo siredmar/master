@@ -1,1 +1,1 @@
-cmd_drivers/hwmon/sht15.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/hwmon/sht15.ko drivers/hwmon/sht15.o drivers/hwmon/sht15.mod.o
+cmd_drivers/hwmon/sht15.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/hwmon/sht15.ko drivers/hwmon/sht15.o drivers/hwmon/sht15.mod.o

@@ -13,7 +13,7 @@
 @	compiled by GNU C version 4.6.4 20120303 (prerelease), GMP version 5.0.4, MPFR version 3.1.0, MPC version 0.8.2
 @ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 @ options passed:  -nostdinc
-@ -I /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include
+@ -I /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include
 @ -I include -I arch/arm/mach-lpc313x/include -D __KERNEL__
 @ -D __LINUX_ARM_ARCH__=5 -U arm -D KBUILD_STR(s)=#s
 @ -D KBUILD_BASENAME=KBUILD_STR(bounds)

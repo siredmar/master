@@ -1,1 +1,1 @@
-cmd_drivers/rtc/rtc-core.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/rtc/rtc-core.ko drivers/rtc/rtc-core.o drivers/rtc/rtc-core.mod.o
+cmd_drivers/rtc/rtc-core.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/rtc/rtc-core.ko drivers/rtc/rtc-core.o drivers/rtc/rtc-core.mod.o

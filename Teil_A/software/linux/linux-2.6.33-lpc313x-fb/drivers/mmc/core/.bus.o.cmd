@@ -1,4 +1,4 @@
-cmd_drivers/mmc/core/bus.o := arm-linux-gnueabi-gcc -Wp,-MD,drivers/mmc/core/.bus.o.d  -nostdinc -isystem /opt/eldk-5.2.1/armv5te/sysroots/i686-eldk-linux/usr/lib/armv5te-linux-gnueabi/gcc/arm-linux-gnueabi/4.6.4/include -I/home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-lpc313x/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=5 -march=armv5te -mtune=arm9tdmi -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-dwarf2-cfi-asm -fconserve-stack   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(bus)"  -D"KBUILD_MODNAME=KBUILD_STR(mmc_core)"  -c -o drivers/mmc/core/bus.o drivers/mmc/core/bus.c
+cmd_drivers/mmc/core/bus.o := arm-linux-gnueabi-gcc -Wp,-MD,drivers/mmc/core/.bus.o.d  -nostdinc -isystem /opt/eldk-5.2.1/armv5te/sysroots/i686-eldk-linux/usr/lib/armv5te-linux-gnueabi/gcc/arm-linux-gnueabi/4.6.4/include -I/home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-lpc313x/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=5 -march=armv5te -mtune=arm9tdmi -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-dwarf2-cfi-asm -fconserve-stack   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(bus)"  -D"KBUILD_MODNAME=KBUILD_STR(mmc_core)"  -c -o drivers/mmc/core/bus.o drivers/mmc/core/bus.c
 
 deps_drivers/mmc/core/bus.o := \
   drivers/mmc/core/bus.c \
@@ -23,13 +23,13 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/lbdaf.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/types.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/bitsperlong.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
   include/linux/posix_types.h \
   include/linux/stddef.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/posix_types.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/posix_types.h \
   include/linux/kobject.h \
     $(wildcard include/config/hotplug.h) \
   include/linux/list.h \
@@ -37,40 +37,40 @@ deps_drivers/mmc/core/bus.o := \
   include/linux/poison.h \
     $(wildcard include/config/illegal/pointer/value.h) \
   include/linux/prefetch.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/processor.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/processor.h \
     $(wildcard include/config/mmu.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/ptrace.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/arm/thumb.h) \
     $(wildcard include/config/smp.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/hwcap.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/cache.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/hwcap.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/cache.h \
     $(wildcard include/config/arm/l1/cache/shift.h) \
     $(wildcard include/config/aeabi.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/system.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/system.h \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/cpu/sa1100.h) \
     $(wildcard include/config/cpu/sa110.h) \
     $(wildcard include/config/cpu/32v6k.h) \
   include/linux/linkage.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/linkage.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/linkage.h \
   include/linux/irqflags.h \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
     $(wildcard include/config/preempt/tracer.h) \
     $(wildcard include/config/trace/irqflags/support.h) \
   include/linux/typecheck.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/irqflags.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/irqflags.h \
   include/asm-generic/cmpxchg-local.h \
   include/asm-generic/cmpxchg.h \
   include/linux/sysfs.h \
     $(wildcard include/config/sysfs.h) \
   include/linux/errno.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/errno.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/atomic.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/atomic.h \
   include/asm-generic/atomic-long.h \
   include/linux/spinlock.h \
     $(wildcard include/config/debug/spinlock.h) \
@@ -86,18 +86,18 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/generic/find/first/bit.h) \
     $(wildcard include/config/generic/find/last/bit.h) \
     $(wildcard include/config/generic/find/next/bit.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/bitops.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/bitops.h \
   include/asm-generic/bitops/non-atomic.h \
   include/asm-generic/bitops/fls64.h \
   include/asm-generic/bitops/sched.h \
   include/asm-generic/bitops/hweight.h \
   include/asm-generic/bitops/lock.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/thread_info.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/fpstate.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/domain.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/domain.h \
     $(wildcard include/config/io/36.h) \
   include/linux/kernel.h \
     $(wildcard include/config/preempt/voluntary.h) \
@@ -112,18 +112,18 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/arch/has/ilog2/u32.h) \
     $(wildcard include/config/arch/has/ilog2/u64.h) \
   include/linux/dynamic_debug.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/byteorder.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/swab.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/bug.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/div64.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/div64.h \
   include/linux/stringify.h \
   include/linux/bottom_half.h \
   include/linux/spinlock_types.h \
@@ -138,7 +138,7 @@ deps_drivers/mmc/core/bus.o := \
   include/linux/spinlock_api_up.h \
   include/linux/kref.h \
   include/linux/wait.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/current.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/current.h \
   include/linux/klist.h \
   include/linux/module.h \
     $(wildcard include/config/symbol/prefix.h) \
@@ -151,7 +151,7 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/constructors.h) \
   include/linux/stat.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/stat.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/stat.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
   include/linux/cache.h \
@@ -192,12 +192,12 @@ deps_drivers/mmc/core/bus.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/string.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/string.h \
   include/linux/pageblock-flags.h \
     $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/generated/bounds.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/page.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -205,7 +205,7 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/cpu/copy/fa.h) \
     $(wildcard include/config/cpu/xscale.h) \
     $(wildcard include/config/cpu/copy/v6.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/glue.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/glue.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm710.h) \
     $(wildcard include/config/cpu/abrt/lv4t.h) \
@@ -218,14 +218,14 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/cpu/pabrt/legacy.h) \
     $(wildcard include/config/cpu/pabrt/v6.h) \
     $(wildcard include/config/cpu/pabrt/v7.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/memory.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/dram/size.h) \
     $(wildcard include/config/dram/base.h) \
   include/linux/const.h \
   arch/arm/mach-lpc313x/include/mach/memory.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/sizes.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/sparsemem/vmemmap.h) \
   include/asm-generic/getorder.h \
@@ -249,14 +249,14 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/disable/obsolete/cpumask/functions.h) \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/topology.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/topology.h \
   include/asm-generic/topology.h \
   include/linux/mmdebug.h \
     $(wildcard include/config/debug/virtual.h) \
   include/linux/elf.h \
   include/linux/elf-em.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/elf.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/user.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/elf.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/user.h \
   include/linux/moduleparam.h \
     $(wildcard include/config/alpha.h) \
     $(wildcard include/config/ia64.h) \
@@ -269,7 +269,7 @@ deps_drivers/mmc/core/bus.o := \
   include/linux/completion.h \
   include/linux/rcutree.h \
     $(wildcard include/config/no/hz.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/local.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/local.h \
   include/asm-generic/local.h \
   include/linux/percpu.h \
     $(wildcard include/config/need/per/cpu/embed/first/chunk.h) \
@@ -288,11 +288,11 @@ deps_drivers/mmc/core/bus.o := \
   include/trace/define_trace.h \
   include/linux/kmalloc_sizes.h \
   include/linux/pfn.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/percpu.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/percpu.h \
   include/asm-generic/percpu.h \
   include/linux/percpu-defs.h \
     $(wildcard include/config/debug/force/weak/per/cpu.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/module.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/module.h \
     $(wildcard include/config/arm/unwind.h) \
   include/trace/events/module.h \
   include/linux/pm.h \
@@ -308,15 +308,15 @@ deps_drivers/mmc/core/bus.o := \
   include/linux/jiffies.h \
   include/linux/timex.h \
   include/linux/param.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/param.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/param.h \
     $(wildcard include/config/hz.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/timex.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/timex.h \
   arch/arm/mach-lpc313x/include/mach/timex.h \
   arch/arm/mach-lpc313x/include/mach/constants.h \
   include/linux/debugobjects.h \
     $(wildcard include/config/debug/objects/free.h) \
   include/linux/semaphore.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/device.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/device.h \
     $(wildcard include/config/dmabounce.h) \
   include/linux/pm_wakeup.h \
     $(wildcard include/config/pm.h) \
@@ -332,8 +332,8 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/virt/cpu/accounting.h) \
   include/linux/ftrace_irq.h \
     $(wildcard include/config/ftrace/nmi/enter.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/hardirq.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/irq.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/hardirq.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/irq.h \
   arch/arm/mach-lpc313x/include/mach/irqs.h \
     $(wildcard include/config/lpc3152/ad.h) \
     $(wildcard include/config/mach/val3153.h) \
@@ -392,24 +392,24 @@ deps_drivers/mmc/core/bus.o := \
     $(wildcard include/config/aio.h) \
     $(wildcard include/config/mmu/notifier.h) \
   include/linux/auxvec.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/auxvec.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/auxvec.h \
   include/linux/prio_tree.h \
   include/linux/page-debug-flags.h \
     $(wildcard include/config/page/poisoning.h) \
     $(wildcard include/config/page/debug/something/else.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/mmu.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/cputime.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/cputime.h \
   include/asm-generic/cputime.h \
   include/linux/sem.h \
   include/linux/ipc.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/ipcbuf.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/sembuf.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/ipcbuf.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/sembuf.h \
   include/linux/signal.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/signal.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/signal.h \
   include/asm-generic/signal-defs.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/sigcontext.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/siginfo.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/sigcontext.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/siginfo.h \
   include/asm-generic/siginfo.h \
   include/linux/path.h \
   include/linux/pid.h \
@@ -423,7 +423,7 @@ deps_drivers/mmc/core/bus.o := \
   include/linux/plist.h \
     $(wildcard include/config/debug/pi/list.h) \
   include/linux/resource.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/resource.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/resource.h \
   include/asm-generic/resource.h \
   include/linux/task_io_accounting.h \
     $(wildcard include/config/task/io/accounting.h) \
@@ -441,7 +441,7 @@ deps_drivers/mmc/core/bus.o := \
   include/linux/uio.h \
   drivers/mmc/core/core.h \
   include/linux/delay.h \
-  /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/delay.h \
+  /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/arch/arm/include/asm/delay.h \
   drivers/mmc/core/sdio_cis.h \
   drivers/mmc/core/bus.h \
 

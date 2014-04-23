@@ -1,1 +1,1 @@
-cmd_drivers/w1/slaves/w1_therm.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/w1/slaves/w1_therm.ko drivers/w1/slaves/w1_therm.o drivers/w1/slaves/w1_therm.mod.o
+cmd_drivers/w1/slaves/w1_therm.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/w1/slaves/w1_therm.ko drivers/w1/slaves/w1_therm.o drivers/w1/slaves/w1_therm.mod.o

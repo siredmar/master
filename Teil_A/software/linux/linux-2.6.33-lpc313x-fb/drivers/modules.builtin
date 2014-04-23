@@ -47,5 +47,10 @@ kernel/drivers/usb/host/ehci-hcd.ko
 kernel/drivers/usb/mon/usbmon.ko
 kernel/drivers/usb/storage/usb-storage.ko
 kernel/drivers/usb/gadget/fsl_usb2_udc.ko
+kernel/drivers/video/fb.ko
+kernel/drivers/video/console/fbcon.ko
+kernel/drivers/video/console/bitblit.ko
+kernel/drivers/video/console/font.ko
+kernel/drivers/video/console/softcursor.ko
 kernel/drivers/w1/wire.ko
 kernel/drivers/watchdog/wdt_lpc313x.ko

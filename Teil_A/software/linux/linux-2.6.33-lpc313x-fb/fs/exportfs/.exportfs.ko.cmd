@@ -1,1 +1,0 @@
-cmd_fs/exportfs/exportfs.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/dev/gnublin/gnublin-lpc3131-2.6.33/linux-2.6.33-lpc313x/scripts/module-common.lds --build-id -o fs/exportfs/exportfs.ko fs/exportfs/exportfs.o fs/exportfs/exportfs.mod.o

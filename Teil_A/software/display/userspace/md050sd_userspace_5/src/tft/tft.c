@@ -222,22 +222,22 @@ void tft_sendData
       uint16 data_ui16
 )
 {
-   if(debug_output == 0)
-   {
+//   if(debug_output == 0)
+//   {
       *(sram0_data) = data_ui16;
-   }
-   if(debug_output == 1)
-   {
-      printf("%d\ttft_sendData:\t\t 0x%.2X", send_counter++, data_ui16);
-      waitForUserInput();
-      *(sram0_data) = data_ui16;
-   }
-   if(debug_output == 2)
-   {
-      printf("%d\ttft_sendData:\t\t 0x%.2X\n", send_counter++, data_ui16);
-      *(sram0_data) = data_ui16;
-      tft_waitXms(1000);
-   }
+//   }
+//   if(debug_output == 1)
+//   {
+//      printf("%d\ttft_sendData:\t\t 0x%.2X", send_counter++, data_ui16);
+//      waitForUserInput();
+//      *(sram0_data) = data_ui16;
+//   }
+//   if(debug_output == 2)
+//   {
+//      printf("%d\ttft_sendData:\t\t 0x%.2X\n", send_counter++, data_ui16);
+//      *(sram0_data) = data_ui16;
+//      tft_waitXms(1000);
+//   }
 
 
 
@@ -248,22 +248,25 @@ void tft_sendPixelData
       uint16 data_ui16
 )
 {
-   if(debug_output == 0)
-   {
-      *(sram0_data) = data_ui16;
-   }
-   if(debug_output == 1)
-   {
-      printf("%d\ttft_sendPixelData:\t 0x%.2X",  send_counter++, data_ui16);
-      waitForUserInput();
-      *(sram0_data) = data_ui16;
-   }
-   if(debug_output == 2)
-   {
-      printf("%d\ttft_sendPixelData:\t 0x%.2X\n",  send_counter++, data_ui16);
-      *(sram0_data) = data_ui16;
-      tft_waitXms(1000);
-   }
+//   if(debug_output == 0)
+//   {
+      *(sram0_data) = data_ui16 * 6000;
+
+   //*(sram0_data) = (data_ui16 >> 8) & 0xFF;
+//   *(sram0_data) = data_ui16 & 0xFF;
+//   }
+//   if(debug_output == 1)
+//   {
+//      printf("%d\ttft_sendPixelData:\t 0x%.2X",  send_counter++, data_ui16);
+//      waitForUserInput();
+//      *(sram0_data) = data_ui16;
+//   }
+//   if(debug_output == 2)
+//   {
+//      printf("%d\ttft_sendPixelData:\t 0x%.2X\n",  send_counter++, data_ui16);
+//      *(sram0_data) = data_ui16;
+//      tft_waitXms(1000);
+//   }
 }
 
 //void tft_sendPixelData_8Bit
@@ -290,22 +293,22 @@ void tft_sendCommand
 )
 {
    // data_ui16 = data_ui16 & 0xFF;
-   if(debug_output == 0)
-   {
+//   if(debug_output == 0)
+//   {
     *(sram0_ctrl) = (data_ui16 & 0xFF);
-   }
-   if(debug_output == 1)
-   {
-      printf("%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
-      waitForUserInput();
-      *(sram0_ctrl) = (data_ui16 & 0xFF);
-   }
-   if(debug_output == 2)
-   {
-      printf("%d\ttft_sendCommand:\t 0x%.2X\n", send_counter++, data_ui16);
-      *(sram0_ctrl) = (data_ui16 & 0xFF);
-      tft_waitXms(1000);
-   }
+//   }
+//   if(debug_output == 1)
+//   {
+//      printf("%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
+//      waitForUserInput();
+//      *(sram0_ctrl) = (data_ui16 & 0xFF);
+//   }
+//   if(debug_output == 2)
+//   {
+//      printf("%d\ttft_sendCommand:\t 0x%.2X\n", send_counter++, data_ui16);
+//      *(sram0_ctrl) = (data_ui16 & 0xFF);
+//      tft_waitXms(1000);
+//   }
 
 }
 
@@ -395,10 +398,7 @@ void tft_setWindow
  *  \param [out] ---
  *  \return      ---
  */
-void tft_init
-(
-      uint8 init
-)
+void tft_init(void)
 {
    printf("tft_openSRAM0Memory() called\n");
    tft_openSRAM0Memory();
@@ -418,8 +418,6 @@ void tft_init
    printf("tft_readSRAM0Timings() returned\n\n");
 #endif
 
-   if(init == 1)
-   {
       tft_deSelectReset();
       tft_waitXms(200);   /* Wait 100ms */
       tft_selectReset(); /* Reset Display done */
@@ -427,7 +425,6 @@ void tft_init
 
 //      tft_sendCommand(MD050SD_SET_BACKLIGHT_PWM);
 //      tft_sendData(2);
-   }
 }
 
 

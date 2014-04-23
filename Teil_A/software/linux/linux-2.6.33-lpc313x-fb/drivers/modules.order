@@ -1,4 +1,9 @@
 kernel/drivers/gpio/pca953x.ko
+kernel/drivers/video/sysfillrect.ko
+kernel/drivers/video/syscopyarea.ko
+kernel/drivers/video/sysimgblt.ko
+kernel/drivers/video/fb_sys_fops.ko
+kernel/drivers/video/vfb.ko
 kernel/drivers/serial/sc16is7x2.ko
 kernel/drivers/misc/eeprom/eeprom_93cx6.ko
 kernel/drivers/scsi/scsi_wait_scan.ko

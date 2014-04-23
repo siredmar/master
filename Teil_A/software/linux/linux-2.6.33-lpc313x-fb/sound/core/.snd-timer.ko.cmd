@@ -1,1 +1,1 @@
-cmd_sound/core/snd-timer.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/gnublin/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o sound/core/snd-timer.ko sound/core/snd-timer.o sound/core/snd-timer.mod.o
+cmd_sound/core/snd-timer.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o sound/core/snd-timer.ko sound/core/snd-timer.o sound/core/snd-timer.mod.o
