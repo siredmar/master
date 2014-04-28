@@ -1,0 +1,99 @@
+Partlist
+
+Exported from HDMI_RGB_LVDS_fertig_V7.brd at 4/28/14 12:24 PM
+
+EAGLE Version 6.3.0 Copyright (c) 1988-2012 CadSoft
+
+Assembly variant: 
+
+Part     Value                Package              Library           Position (mm)         Orientation
+
+C1       100u                 C_POL_6X6MM          SchlegelAr_Master (43.25 53.4375)       MR0
+C2       10u                  C_POL_4X4MM          SchlegelAr_Master (66 48.5625)          MR270
+C3       100n                 C0402                SchlegelAr_Master (53.5 21.5)           MR270
+C4       100n                 C0402                SchlegelAr_Master (47.5625 18)          MR315
+C6       100n                 C0402                SchlegelAr_Master (43.5625 10.875)      MR45
+C7       22p                  C0402                SchlegelAr_Master (28.5 12.3125)        R90
+C8       22p                  C0402                SchlegelAr_Master (28.5 14.5625)        R270
+C9       100n                 C0402                SchlegelAr_Master (26.5 9.3125)         R270
+C10      100n                 C0402                SchlegelAr_Master (17.5 8.9375)         MR270
+C11      100n                 C0402                SchlegelAr_Master (6.8125 12.8125)      MR90
+C12      100n                 C0402                SchlegelAr_Master (8.625 13.8125)       MR90
+C13      100n                 C0402                SchlegelAr_Master (50.5 22.8125)        MR45
+C14      100n                 C0402                SchlegelAr_Master (41.5 15.75)          MR45
+C15      0.01u                C0402                SchlegelAr_Master (18.5625 42.5)        R180
+C16      100n                 C0402                SchlegelAr_Master (20.9375 44.375)      R0
+C17      0.01u                C0402                SchlegelAr_Master (20.9375 42.875)      R0
+C18      100n                 C0402                SchlegelAr_Master (18.5625 40.75)       R180
+C19      0.01u                C0402                SchlegelAr_Master (18.4375 37.375)      R180
+C20      100n                 C0402                SchlegelAr_Master (18.4375 35.875)      R180
+C21      0.01u                C0402                SchlegelAr_Master (20.75 35.125)        R0
+C22      0.01u                C0402                SchlegelAr_Master (20.6875 47.625)      R0
+C23      100n                 C0402                SchlegelAr_Master (27.125 11.6875)      R270
+C24      100n                 C0402                SchlegelAr_Master (14.125 12.4375)      R270
+C25      100n                 C0402                SchlegelAr_Master (46.0625 16.0625)     MR135
+C26      100n                 C0402                SchlegelAr_Master (44.375 14.375)       MR135
+C27      100n                 C0402                SchlegelAr_Master (43.75 29.375)        MR315
+C28      100n                 C0402                SchlegelAr_Master (49.5 30.5625)        MR225
+C29      100n                 C0402                SchlegelAr_Master (54.25 17.1875)       MR315
+C30      100n                 C0402                SchlegelAr_Master (49.4375 19.5)        MR135
+C31      100n                 C0402                SchlegelAr_Master (39.375 25.25)        MR135
+C32      100n                 C0402                SchlegelAr_Master (37.75 23.5625)       MR135
+C33      100n                 C0402                SchlegelAr_Master (37.9375 19.375)      MR45
+C34      10u                  C_POL_4X4MM          SchlegelAr_Master (9.75 29.5625)        R270
+C35      10u                  C_POL_4X4MM          SchlegelAr_Master (30.0625 54.8125)     R0
+C36      10u                  C_POL_4X4MM          SchlegelAr_Master (12.6875 51.75)       R180
+CON1     KLDX-0202-A-LT       KLDX-0202-A-LT       SchlegelAr_Master (59.5 32.375)         R180
+CON2     FCI-10029449-111RLF  FCI-10029449-111RLF  SchlegelAr_Master (54.125 6.5)          R0
+CON3     XF2M-4015-1A         XF2M-4015-1A         SchlegelAr_Master (28.4375 39.375)      R270
+CON4     FCI-10033526-N3212LF FCI-10033526-N3212LF SchlegelAr_Master (9.4375 6.5625)       R0
+CON5     MOLEX-53261-0671     MOLEX-53261-0671     SchlegelAr_Master (2.5625 18.5625)      R270
+CON6     FI-X30SSLA-HF        FI-X30SSLA-HF        SchlegelAr_Master (2.0625 38.375)       MR90
+IC2      WPMDL1300331BD       TO263-5              SchlegelAr_Master (59.625 51)           R180
+IC4      AT24C01C-SSHM-B      SOIC8                SchlegelAr_Master (20.75 11.0625)       MR180
+IC5      TFP401APZP           HTQFP-100            SchlegelAr_Master (43.75 21.5)          R225
+IC6      ATMEGA88PA           TQFP32               SchlegelAr_Master (20.75 11.0625)       R180
+IC7      FT232RL              SSOP28               SchlegelAr_Master (9.625 6.9375)        MR0
+IC8      SN75LVDS83BDGGR      TSSOP-56             SchlegelAr_Master (19.6875 40.875)      MR270
+JP1      JUMPER2              JUMPER2_THROUGHHOLE  SchlegelAr_Master (58 20.4375)          R90
+JP2      JUMPER2              JUMPER2_THROUGHHOLE  SchlegelAr_Master (58 25.8125)          R90
+JP3      JUMPER2              JUMPER2_THROUGHHOLE  SchlegelAr_Master (31.375 22.75)        R0
+JP4      JUMPER3              JUMPER3_THROUGHHOLE  SchlegelAr_Master (24.625 21.75)        R270
+JP5                           JUMPER2_THROUGHHOLE  SchlegelAr_Master (21.375 3.375)        R90
+JP6      JUMPER3              JUMPER3_THROUGHHOLE  SchlegelAr_Master (24.625 18)           R90
+JP7                           JUMPER2_THROUGHHOLE  SchlegelAr_Master (17.5 18)             R90
+JP8                           JUMPER2_THROUGHHOLE  SchlegelAr_Master (17.5 21.75)          R90
+JP9      JUMPER2              JUMPER2_THROUGHHOLE  SchlegelAr_Master (33.4375 2.375)       R90
+JP10     JUMPER2              JUMPER2_THROUGHHOLE  SchlegelAr_Master (39.0625 2.375)       R90
+JP11                          JUMPER2_THROUGHHOLE  SchlegelAr_Master (27.75 2.3125)        R90
+LED1                          LED0402              SchlegelAr_Master (65.6875 19.625)      R0
+LED2                          LED0402              SchlegelAr_Master (65.6875 21.1875)     R0
+Q1       ATS073ASM-1          HC49/USSM            SchlegelAr_Master (31.6875 12.375)      R270
+R1       100k                 R0402                SchlegelAr_Master (66 40.875)           R180
+R2       22R                  R-ARRAY-4X0603       SchlegelAr_Master (33.125 27.3125)      R90
+R3       22R                  R-ARRAY-4X0603       SchlegelAr_Master (35.625 37)           R180
+R4       10k                  R0402                SchlegelAr_Master (14.25 21.75)         R270
+R5       10k                  R0402                SchlegelAr_Master (57.25 23.6875)       R0
+R6       10k                  R0402                SchlegelAr_Master (57.25 18.25)         R0
+R7       10k                  R0402                SchlegelAr_Master (58.9375 10.6875)     R180
+R8       22R                  R-ARRAY-4X0603       SchlegelAr_Master (35.5 33.375)         R135
+R9       22R                  R-ARRAY-4X0603       SchlegelAr_Master (35.3125 43.625)      R180
+R10      22R                  R-ARRAY-4X0603       SchlegelAr_Master (35.3125 40.125)      R180
+R11      22R                  R-ARRAY-4X0603       SchlegelAr_Master (36.4375 50.625)      R180
+R12      22R                  R-ARRAY-4X0603       SchlegelAr_Master (36.4375 47.125)      R180
+R13      10k                  R0402                SchlegelAr_Master (13.4375 5)           MR0
+R14      22R                  R0402                SchlegelAr_Master (25.5 15.6875)        R0
+R15      10k                  R0402                SchlegelAr_Master (27.625 25.5)         R0
+R16      10k                  R0402                SchlegelAr_Master (21.875 5.3125)       R180
+R17      10k                  R0402                SchlegelAr_Master (19.5 5.9375)         MR0
+R18      10k                  R0402                SchlegelAr_Master (14.375 17.9375)      R90
+R19      5k                   35WR5KLFTR           SchlegelAr_Master (10.625 13.1875)      R270
+R20      15R                  R2512                SchlegelAr_Master (39.75 55.625)        MR180
+R22      0R                   R0402                SchlegelAr_Master (1.4375 7.1875)       R90
+R23      0R                   R0402                SchlegelAr_Master (2.75 7.1875)         R90
+R25      600R                 R0402                SchlegelAr_Master (63.4375 19.625)      R0
+R27      2k5                  R0402                SchlegelAr_Master (63.4375 21.1875)     R0
+R28      4k7                  R0402                SchlegelAr_Master (58.5625 2.5)         MR180
+R29      4k7                  R0402                SchlegelAr_Master (58.5625 1.3125)      MR180
+T1       IRLML5203TRPBF       SOT23                SchlegelAr_Master (62.875 39.8125)      R180
+T2       IRLML2502TRPBF       SOT23                SchlegelAr_Master (36.25 54.5625)       MR0
