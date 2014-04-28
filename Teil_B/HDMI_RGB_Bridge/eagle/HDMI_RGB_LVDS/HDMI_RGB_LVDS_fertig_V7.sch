@@ -132,18 +132,18 @@
 <package name="FRAME">
 </package>
 <package name="KLDX-0202-A-LT">
-<wire x1="2.6" y1="-1.66" x2="2.6" y2="1.64" width="0" layer="46"/>
-<wire x1="2.6" y1="1.64" x2="3.6" y2="1.64" width="0" layer="46"/>
-<wire x1="3.6" y1="1.64" x2="3.6" y2="-1.66" width="0" layer="46"/>
-<wire x1="3.6" y1="-1.66" x2="2.6" y2="-1.66" width="0" layer="46"/>
-<wire x1="1.4" y1="-5.31" x2="1.4" y2="-4.31" width="0" layer="46"/>
-<wire x1="1.4" y1="-4.31" x2="-1.4" y2="-4.31" width="0" layer="46"/>
-<wire x1="-1.4" y1="-4.31" x2="-1.4" y2="-5.31" width="0" layer="46"/>
-<wire x1="-1.4" y1="-5.31" x2="1.4" y2="-5.31" width="0" layer="46"/>
-<wire x1="-3.5" y1="-1.41" x2="-3.5" y2="1.39" width="0" layer="46"/>
-<wire x1="-3.5" y1="1.39" x2="-2.5" y2="1.39" width="0" layer="46"/>
-<wire x1="-2.5" y1="1.39" x2="-2.5" y2="-1.41" width="0" layer="46"/>
-<wire x1="-2.5" y1="-1.41" x2="-3.5" y2="-1.41" width="0" layer="46"/>
+<wire x1="2.6" y1="-1.75" x2="2.6" y2="1.75" width="0" layer="46"/>
+<wire x1="2.6" y1="1.75" x2="3.6" y2="1.75" width="0" layer="46"/>
+<wire x1="3.6" y1="1.75" x2="3.6" y2="-1.75" width="0" layer="46"/>
+<wire x1="3.6" y1="-1.75" x2="2.6" y2="-1.75" width="0" layer="46"/>
+<wire x1="1.5" y1="-5.31" x2="1.5" y2="-4.31" width="0" layer="46"/>
+<wire x1="1.5" y1="-4.31" x2="-1.5" y2="-4.31" width="0" layer="46"/>
+<wire x1="-1.5" y1="-4.31" x2="-1.5" y2="-5.31" width="0" layer="46"/>
+<wire x1="-1.5" y1="-5.31" x2="1.5" y2="-5.31" width="0" layer="46"/>
+<wire x1="-3.5" y1="-1.75" x2="-3.5" y2="1.75" width="0" layer="46"/>
+<wire x1="-3.5" y1="1.75" x2="-2.5" y2="1.75" width="0" layer="46"/>
+<wire x1="-2.5" y1="1.75" x2="-2.5" y2="-1.75" width="0" layer="46"/>
+<wire x1="-2.5" y1="-1.75" x2="-3.5" y2="-1.75" width="0" layer="46"/>
 <wire x1="-10.4" y1="4.29" x2="-10.4" y2="-4.31" width="0.2032" layer="21"/>
 <wire x1="-10.4" y1="-4.31" x2="3.9" y2="-4.31" width="0.2032" layer="51"/>
 <wire x1="3.9" y1="-4.31" x2="3.9" y2="4.29" width="0.2032" layer="51"/>
@@ -1886,9 +1886,9 @@ A3 Frame querformat
 </deviceset>
 <deviceset name="KLDX-0202-A-LT" prefix="CON">
 <description>&lt;b&gt;
-KLDX-0202-A-LT
+KLDX-0202-A-LT - DC-Spannungsversorgungssteckverbinder 2.0mm PCB JACK LOCKING TYPE
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 20.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/Kycon/KLDX-0202-A-LT/?qs=%2fha2pyFadug6yAePtFHF%252bYgVUqD4usJO%252bzszO19jtQE%252bUyITMB7Piw%3d%3d
 &lt;br&gt; &lt;br&gt;
@@ -1899,9 +1899,9 @@ http://www.mouser.com/ds/2/222/KLDX_0202_LT-221016.pdf</description>
 <devices>
 <device name="" package="KLDX-0202-A-LT">
 <connects>
-<connect gate="G$1" pin="1" pad="3"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="1"/>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="3"/>
+<connect gate="G$1" pin="3" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -1911,7 +1911,7 @@ http://www.mouser.com/ds/2/222/KLDX_0202_LT-221016.pdf</description>
 </deviceset>
 <deviceset name="RSS1C101MCN1GS" prefix="C" uservalue="yes">
 <description>&lt;b&gt;
-RSS1C101MCN1GS
+RSS1C101MCN1GS - Elko 100UF 16V 20%
 
 &lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 26.03.2014  &lt;br&gt;&lt;br&gt;
 
@@ -1972,6 +1972,10 @@ C Pol
 </devices>
 </deviceset>
 <deviceset name="GND">
+<description>&lt;b&gt;
+Symbol fuer GND
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="GND" x="0" y="0"/>
 </gates>
@@ -1984,6 +1988,10 @@ C Pol
 </devices>
 </deviceset>
 <deviceset name="+3V3">
+<description>&lt;b&gt;
+Symbol fuer +3.3V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+3V3" x="0" y="0"/>
 </gates>
@@ -1996,6 +2004,10 @@ C Pol
 </devices>
 </deviceset>
 <deviceset name="+5V">
+<description>&lt;b&gt;
+Symbol fuer +5V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+5V" x="0" y="0"/>
 </gates>
@@ -2009,9 +2021,9 @@ C Pol
 </deviceset>
 <deviceset name="R" prefix="R" uservalue="yes">
 <description>&lt;b&gt;
-R SMD 0603, 0805, 1206
+Widerstaende in 0402, 0603, 0805, 1206, 2512
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 21.03.2014  &lt;br&gt;&lt;br&gt;</description>
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -2065,9 +2077,9 @@ R SMD 0603, 0805, 1206
 </deviceset>
 <deviceset name="C_SMD" prefix="C" uservalue="yes">
 <description>&lt;b&gt;
-C SMD 0603, 0805, 1206
+C SMD 0402, 0603, 0805, 1206
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 21.03.2014  &lt;br&gt;&lt;br&gt;</description>
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -2128,9 +2140,9 @@ Symbol fuer +12V
 </deviceset>
 <deviceset name="TFP401APZP" prefix="IC">
 <description>&lt;b&gt;
-TFP401APZP
+TFP401APZP - Display-IC-Schnittstelle PanelBus DVI Rcvr 165MHz HSYNC fix
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 19.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/Texas-Instruments/TFP401APZP/?qs=sGAEpiMZZMvzx35sqAbYyS%2FHXqUWhI80Lx8TsthrfGA%3D
 &lt;br&gt; &lt;br&gt;
@@ -2250,9 +2262,9 @@ http://www.mouser.com/ds/2/405/slds120e-285347.pdf</description>
 </deviceset>
 <deviceset name="FCI-10029449-111RLF" prefix="CON">
 <description>&lt;b&gt;
-FCI-10029449-111RLF
+FCI-10029449-111RLF - HDMI, Displayport &amp; DVI-Steckverbinder HDMI TYPE A RECEPT
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 20.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/FCI/10029449-111RLF/?qs=%2Fha2pyFadug8U4IOZZI2jnut2zm2rFMAp8K8PcXPAIyrEGZ2XRAPnyrp%252b5pF2ZP7
 &lt;br&gt; &lt;br&gt;
@@ -2294,6 +2306,10 @@ http://portal.fciconnect.com/Comergent/en/US/adirect/fci?cmd=catProductDetail&am
 </devices>
 </deviceset>
 <deviceset name="JUMPER3" prefix="JP">
+<description>&lt;b&gt;
+JUMPER3 - Jumper 3 pol.
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="JUMPER3" x="0" y="0"/>
 </gates>
@@ -2312,9 +2328,9 @@ http://portal.fciconnect.com/Comergent/en/US/adirect/fci?cmd=catProductDetail&am
 </deviceset>
 <deviceset name="XF2M-4015-1A" prefix="CON">
 <description>&lt;b&gt;
-Omron Electronics XF2M-4015-1A 
+Omron Electronics XF2M-4015-1A - FFC &amp; FPC-Steckverbinder .5mm Rotary BackLock SMT Dual 40P Adhesv.
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 19.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/Molex/54132-4062/?qs=%2Fha2pyFaduiie%252bDsDPE%252bbxxE%252byCORF54wAjQh9n3aQM%3D
 &lt;br&gt; &lt;br&gt;
@@ -2375,6 +2391,14 @@ http://www.molex.com/pdm_docs/sd/541324062_sd.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="WPMDL1300331BD" prefix="IC">
+<description>&lt;b&gt;
+WPMDL1300331BD - MagI³C-FDRM Fixed Step Down Regulator Module 3.3V
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
+
+http://katalog.we-online.de/de/pm/MagIC-FDRM
+&lt;br&gt; &lt;br&gt;
+http://katalog.we-online.de/pm/datasheet/171030301.pdf</description>
 <gates>
 <gate name="G$1" symbol="VREG_MAGIC_FDRM" x="0" y="2.54"/>
 </gates>
@@ -2396,9 +2420,9 @@ http://www.molex.com/pdm_docs/sd/541324062_sd.pdf</description>
 </deviceset>
 <deviceset name="IRLML5203TRPBF" prefix="T">
 <description>&lt;b&gt;
-IRLML5203TRPBF
+IRLML5203TRPBF - MOSFET MOSFT P-Ch -30V -3A 98mOhm 9.5nC Log Lvl
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/International-Rectifier/IRLML5203TRPBF/?qs=sGAEpiMZZMshyDBzk1%2fWi5%252bqVgN3%252bWS8t7qb9msI9Rk%3d
 &lt;br&gt; &lt;br&gt;
@@ -2421,9 +2445,9 @@ http://www.mouser.com/ds/2/200/irlml5203pbf-223113.pdf</description>
 </deviceset>
 <deviceset name="CTR-742C083220JP-4X22R-4X0603" prefix="R" uservalue="yes">
 <description>&lt;b&gt;
-CTS-742C083220JP, 4x22 Ohm, 4x0603
+CTS-742C083220JP - Widerstandnetzwerke u. -Arrays 22ohms 50V 5%
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 20.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/CTS/742C083220JP/?qs=%2Fha2pyFadugZw%2FZ8FzXmJjgugrSX4rX8irC%252bdOVCTeo59FWpXkhYqw%3D%3D
 &lt;br&gt; &lt;br&gt;
@@ -2451,7 +2475,7 @@ http://pdf1.alldatasheet.net/datasheet-pdf/view/159746/CTS/741X083220JP.html</de
 </deviceset>
 <deviceset name="AT24C01C-SSHM-B" prefix="IC">
 <description>&lt;b&gt;
-AT24C01C-SSHM-B
+AT24C01C-SSHM-B - EEPROM 1K 2-WIRE 8 SOIC PB HALOFREE NiPdAu 1.7V
 
 &lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 20.03.2014  &lt;br&gt;&lt;br&gt;
 
@@ -2481,9 +2505,9 @@ http://www.mouser.com/ds/2/36/doc8700-75503.pdf</description>
 </deviceset>
 <deviceset name="FCI-10033526-N3212LF" prefix="CON">
 <description>&lt;b&gt;
-FCI-10033526-N3212LF
+FCI-10033526-N3212LF - USB-Stecker MINIUSB B TYPE RT ANGLE RECEPTACLE
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 20.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/FCI/10033526-N3212LF/?qs=%2Fha2pyFadujxDEaTCG%2F3IgsbFChSuv66JrkjaCBKgukjCIH%2FH4qAI7ajoEkcwwLO
 &lt;br&gt; &lt;br&gt;
@@ -2512,9 +2536,9 @@ http://portal.fciconnect.com/Comergent//fci/drawing/10033526.pdf</description>
 </deviceset>
 <deviceset name="MOLEX-53261-0671" prefix="CON">
 <description>&lt;b&gt;
-MOLEX-53261-0671
+MOLEX-53261-0671 - Molex picoblade 53261-0671 6 pol
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 20.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/Molex/53261-0671/?qs=%2Fha2pyFadujL8XqTNrjzA%2Fy0AZso5hx2IWE7X8dEAdsn1tpb%2FKahAA%3D%3D
 &lt;br&gt; &lt;br&gt;
@@ -2542,7 +2566,7 @@ http://www.mouser.com/ds/2/276/0532610671_PCB_HEADERS-170915.pdf</description>
 </deviceset>
 <deviceset name="ATS073ASM-1" prefix="Q">
 <description>&lt;b&gt;
-ATS073ASM-1
+ATS073ASM-1 - Quarze 7.3728MHz Series 30ppm -20C 70C
 
 &lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 21.03.2014  &lt;br&gt;&lt;br&gt;
 
@@ -2565,6 +2589,10 @@ http://www.mouser.com/ds/2/96/008-0309-0-32667.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="JUMPER2" prefix="JP">
+<description>&lt;b&gt;
+JUMPER2 - Jumper 2 pol.
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="JUMPER2" x="0" y="-2.54"/>
 </gates>
@@ -2636,9 +2664,9 @@ http://www.mouser.com/ds/2/36/doc8271-50296.pdf</description>
 </deviceset>
 <deviceset name="FT232RL" prefix="IC">
 <description>&lt;b&gt;
-FT232RL
+FT232RL - USB-IC-Schnittstelle USB to Serial UART Enhanced IC
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 19.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/FTDI/FT232RL-REEL/?qs=sGAEpiMZZMs5ceO8zL%252bTxyQLQIH6hE7q
 &lt;br&gt; &lt;br&gt;
@@ -2684,9 +2712,9 @@ http://www.mouser.com/ds/2/163/DS_FT232R-11534.pdf</description>
 </deviceset>
 <deviceset name="SN75LVDS83BDGGR" prefix="IC">
 <description>&lt;b&gt;
-SN75LVDS83BDGGR
+SN75LVDS83BDGGR - Bussender FlatLink 10-135MHz Transmitter
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 19.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/Texas-Instruments/SN75LVDS83BDGGR/?qs=%2Fha2pyFaduhUFID9k9uYqsoOJBy0IbxuibAsBHqa1LMrXVKttVeSnesdWlE%2FojUG
 &lt;br&gt; &lt;br&gt;
@@ -2761,8 +2789,10 @@ http://www.mouser.com/ds/2/405/slls846b-121924.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="FI-X30SSLA-HF" prefix="CON">
-<description>&lt;b&gt;JAE Electronics FI-X30SSLA-HF &lt;br&gt;&lt;br&gt;&lt;/b&gt;
-last modified: Armin Schlegel, 22.03.2014 &lt;br&gt;&lt;br&gt;
+<description>&lt;b&gt;JAE Electronics FI-X30SSLA-HF - FFC &amp; FPC-Steckverbinder CONN FPC RCP 30POS 1MM SLDR RA SMD
+
+&lt;br&gt;&lt;br&gt;&lt;/b&gt;
+last modified: Armin Schlegel, 28.04.2014 &lt;br&gt;&lt;br&gt;
 http://de.mouser.com/ProductDetail/JAE-Electronics/FI-X30SSLA-HF/?qs=%2fha2pyFaduioZsvOJCeWcg109ZmKz2%2fupnzggFRdCcW4jqYF4CRRJw%3d%3d
 &lt;br&gt;&lt;br&gt;
 http://jae-connector.com/en/pdf_download_exec.cfm?param=SJ110033.pdf</description>
@@ -2773,39 +2803,39 @@ http://jae-connector.com/en/pdf_download_exec.cfm?param=SJ110033.pdf</descriptio
 <device name="" package="FI-X30SSLA-HF">
 <connects>
 <connect gate="G$1" pin="GND@1" pad="GND@1"/>
-<connect gate="G$1" pin="GND@10" pad="15"/>
-<connect gate="G$1" pin="GND@11" pad="18"/>
-<connect gate="G$1" pin="GND@12" pad="21"/>
-<connect gate="G$1" pin="GND@13" pad="26"/>
+<connect gate="G$1" pin="GND@10" pad="22"/>
+<connect gate="G$1" pin="GND@11" pad="25"/>
+<connect gate="G$1" pin="GND@12" pad="27"/>
+<connect gate="G$1" pin="GND@13" pad="28"/>
 <connect gate="G$1" pin="GND@2" pad="GND@2"/>
 <connect gate="G$1" pin="GND@3" pad="GND@3"/>
 <connect gate="G$1" pin="GND@4" pad="GND@4"/>
-<connect gate="G$1" pin="GND@5" pad="3"/>
-<connect gate="G$1" pin="GND@6" pad="4"/>
-<connect gate="G$1" pin="GND@7" pad="6"/>
-<connect gate="G$1" pin="GND@8" pad="9"/>
-<connect gate="G$1" pin="GND@9" pad="12"/>
-<connect gate="G$1" pin="LED_EN" pad="25"/>
-<connect gate="G$1" pin="NC" pad="27"/>
-<connect gate="G$1" pin="PWM" pad="24"/>
-<connect gate="G$1" pin="RA+" pad="8"/>
-<connect gate="G$1" pin="RA-" pad="7"/>
-<connect gate="G$1" pin="RB+" pad="11"/>
-<connect gate="G$1" pin="RB-" pad="10"/>
-<connect gate="G$1" pin="RC+" pad="14"/>
-<connect gate="G$1" pin="RC-" pad="13"/>
-<connect gate="G$1" pin="RCLK+" pad="17"/>
-<connect gate="G$1" pin="RCLK-" pad="16"/>
-<connect gate="G$1" pin="RDM+" pad="20"/>
-<connect gate="G$1" pin="RDM-" pad="19"/>
-<connect gate="G$1" pin="SHLI" pad="5"/>
-<connect gate="G$1" pin="TP@1" pad="22"/>
-<connect gate="G$1" pin="TP@2" pad="23"/>
-<connect gate="G$1" pin="VCC@1" pad="1"/>
-<connect gate="G$1" pin="VCC@2" pad="2"/>
-<connect gate="G$1" pin="VLED@1" pad="28"/>
-<connect gate="G$1" pin="VLED@2" pad="29"/>
-<connect gate="G$1" pin="VLED@3" pad="30"/>
+<connect gate="G$1" pin="GND@5" pad="5"/>
+<connect gate="G$1" pin="GND@6" pad="10"/>
+<connect gate="G$1" pin="GND@7" pad="13"/>
+<connect gate="G$1" pin="GND@8" pad="16"/>
+<connect gate="G$1" pin="GND@9" pad="19"/>
+<connect gate="G$1" pin="LED_EN" pad="6"/>
+<connect gate="G$1" pin="NC" pad="4"/>
+<connect gate="G$1" pin="PWM" pad="7"/>
+<connect gate="G$1" pin="RA+" pad="23"/>
+<connect gate="G$1" pin="RA-" pad="24"/>
+<connect gate="G$1" pin="RB+" pad="20"/>
+<connect gate="G$1" pin="RB-" pad="21"/>
+<connect gate="G$1" pin="RC+" pad="17"/>
+<connect gate="G$1" pin="RC-" pad="18"/>
+<connect gate="G$1" pin="RCLK+" pad="14"/>
+<connect gate="G$1" pin="RCLK-" pad="15"/>
+<connect gate="G$1" pin="RDM+" pad="11"/>
+<connect gate="G$1" pin="RDM-" pad="12"/>
+<connect gate="G$1" pin="SHLI" pad="26"/>
+<connect gate="G$1" pin="TP@1" pad="8"/>
+<connect gate="G$1" pin="TP@2" pad="9"/>
+<connect gate="G$1" pin="VCC@1" pad="29"/>
+<connect gate="G$1" pin="VCC@2" pad="30"/>
+<connect gate="G$1" pin="VLED@1" pad="1"/>
+<connect gate="G$1" pin="VLED@2" pad="2"/>
+<connect gate="G$1" pin="VLED@3" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2815,9 +2845,9 @@ http://jae-connector.com/en/pdf_download_exec.cfm?param=SJ110033.pdf</descriptio
 </deviceset>
 <deviceset name="35WR5KLFTR" prefix="R" uservalue="yes">
 <description>&lt;b&gt;
-35WR5KLFTR
+35WR5KLFTR - Trimmerwiderstände – SMD 5K OHM 3MM ST CERM
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/BI-Technologies-TT-electronics/35WR5KLFTR/?qs=sGAEpiMZZMvygUB3GLcD7k0onkdf2zwbjj6v9Mqce6o%3d
 &lt;br&gt; &lt;br&gt;
@@ -2840,9 +2870,9 @@ http://www.mouser.com/ds/2/414/35-2231.pdf</description>
 </deviceset>
 <deviceset name="IRLML2502TRPBF" prefix="T">
 <description>&lt;b&gt;
-IRLML2502TRPBF
+IRLML2502TRPBF - MOSFET MOSFT 20V 4.2A 45mOhm 8nC Log Lvl
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://de.mouser.com/ProductDetail/International-Rectifier/IRLML2502TRPBF/?qs=sGAEpiMZZMshyDBzk1%2fWi5%252bqVgN3%252bWS8yrGFmPL6hzw%3d
 &lt;br&gt; &lt;br&gt;
@@ -2865,9 +2895,9 @@ http://www.mouser.com/ds/2/200/irlml2502pbf-222939.pdf</description>
 </deviceset>
 <deviceset name="LED" prefix="LED" uservalue="yes">
 <description>&lt;b&gt;
-LED 0402
+LED 0402 - LED im 0402 Gehaeuse
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 26.03.2014  &lt;br&gt;&lt;br&gt;</description>
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="LED" x="0" y="0"/>
 </gates>
@@ -2884,6 +2914,10 @@ LED 0402
 </devices>
 </deviceset>
 <deviceset name="+5V_USB">
+<description>&lt;b&gt;
+Symbol fuer +5V_USB
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+5V_USB" x="0" y="0"/>
 </gates>
@@ -3227,6 +3261,8 @@ S6: Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt</text>
 <text x="35.56" y="157.48" size="2.54" layer="94">S5: added Pull-Up Resistors on I2C SCL and SDA</text>
 <text x="10.16" y="149.86" size="2.54" layer="94">10.04.2014</text>
 <text x="35.56" y="149.86" size="2.54" layer="94">S5: PullUps von I2C auf 4k7 reduziert, Jumper auf I2C Leitungen platziert </text>
+<text x="10.16" y="142.24" size="2.54" layer="94">28.04.2014</text>
+<text x="35.56" y="142.24" size="2.54" layer="94">Layout angepasst, nach Bauteilreview des LVDS Steckers</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="0" y="0"/>

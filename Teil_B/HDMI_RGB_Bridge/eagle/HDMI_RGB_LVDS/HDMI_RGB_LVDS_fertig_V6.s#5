@@ -3076,8 +3076,8 @@ LED 0402
 <part name="R27" library="SchlegelAr_Master" deviceset="R" device="0402" value="2k5"/>
 <part name="U$79" library="SchlegelAr_Master" deviceset="GND" device=""/>
 <part name="U$81" library="SchlegelAr_Master" deviceset="GND" device=""/>
-<part name="R28" library="SchlegelAr_Master" deviceset="R" device="0402" value="4k7"/>
-<part name="R29" library="SchlegelAr_Master" deviceset="R" device="0402" value="4k7"/>
+<part name="R28" library="SchlegelAr_Master" deviceset="R" device="0402" value="10k"/>
+<part name="R29" library="SchlegelAr_Master" deviceset="R" device="0402" value="10k"/>
 <part name="U$82" library="SchlegelAr_Master" deviceset="+5V" device=""/>
 <part name="U$84" library="SchlegelAr_Master" deviceset="+5V" device=""/>
 <part name="U$16" library="SchlegelAr_Master" deviceset="+5V_USB" device=""/>
@@ -3121,8 +3121,6 @@ LED 0402
 <part name="R14" library="SchlegelAr_Master" deviceset="R" device="0402" value="22R"/>
 <part name="JP9" library="SchlegelAr_Master" deviceset="JUMPER2" device=""/>
 <part name="JP10" library="SchlegelAr_Master" deviceset="JUMPER2" device=""/>
-<part name="U$35" library="SchlegelAr_Master" deviceset="GND" device=""/>
-<part name="JP11" library="SchlegelAr_Master" deviceset="JUMPER2" device="" value=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3224,9 +3222,9 @@ S6: Jumper modifiziert, Tabelle fuer Jumpererklaerung hinzugefuegt</text>
 <text x="10.16" y="165.1" size="2.54" layer="94">26.03.2014</text>
 <text x="35.56" y="165.1" size="2.54" layer="94">S3: Supply voltage indicator LEDs hinzugefuegt</text>
 <text x="10.16" y="157.48" size="2.54" layer="94">29.03.2014</text>
-<text x="35.56" y="157.48" size="2.54" layer="94">S5: added Pull-Up Resistors on I2C SCL and SDA</text>
+<text x="35.56" y="157.48" size="2.54" layer="94">S3: added Pull-Up Resistors on I2C SCL and SDA</text>
 <text x="10.16" y="149.86" size="2.54" layer="94">10.04.2014</text>
-<text x="35.56" y="149.86" size="2.54" layer="94">S5: PullUps von I2C auf 4k7 reduziert, Jumper auf I2C Leitungen platziert </text>
+<text x="35.56" y="149.86" size="2.54" layer="94">S3: PullUps von I2C auf 4k7 reduziert, Jumper auf I2C Leitungen platziert </text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="0" y="0"/>
@@ -4996,8 +4994,6 @@ JP 2-3: LVDS Display</text>
 <instance part="R14" gate="G$1" x="177.8" y="187.96" rot="R180"/>
 <instance part="JP9" gate="G$1" x="297.18" y="190.5" rot="R90"/>
 <instance part="JP10" gate="G$1" x="297.18" y="182.88" rot="R90"/>
-<instance part="U$35" gate="G$1" x="111.76" y="106.68"/>
-<instance part="JP11" gate="G$1" x="106.68" y="114.3" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -5148,12 +5144,6 @@ JP 2-3: LVDS Display</text>
 <pinref part="U$83" gate="G$1" pin="GND"/>
 <wire x1="175.26" y1="149.86" x2="175.26" y2="152.4" width="0.1524" layer="91"/>
 </segment>
-<segment>
-<pinref part="JP11" gate="G$1" pin="1"/>
-<wire x1="109.22" y1="111.76" x2="111.76" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="111.76" x2="111.76" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="U$35" gate="G$1" pin="GND"/>
-</segment>
 </net>
 <net name="AVR_SCK" class="0">
 <segment>
@@ -5182,13 +5172,6 @@ JP 2-3: LVDS Display</text>
 <label x="185.42" y="231.14" size="1.27" layer="95" xref="yes"/>
 <junction x="182.88" y="231.14"/>
 <pinref part="IC6" gate="G$1" pin="PC6(PCINT14/RESET)"/>
-</segment>
-<segment>
-<pinref part="JP11" gate="G$1" pin="2"/>
-<wire x1="109.22" y1="114.3" x2="111.76" y2="114.3" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="114.3" x2="111.76" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="119.38" x2="114.3" y2="119.38" width="0.1524" layer="91"/>
-<label x="114.3" y="119.38" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="AVR_MISO" class="0">

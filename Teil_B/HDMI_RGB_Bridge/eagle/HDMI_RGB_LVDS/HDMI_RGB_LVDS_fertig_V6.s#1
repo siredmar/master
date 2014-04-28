@@ -2773,39 +2773,39 @@ http://jae-connector.com/en/pdf_download_exec.cfm?param=SJ110033.pdf</descriptio
 <device name="" package="FI-X30SSLA-HF">
 <connects>
 <connect gate="G$1" pin="GND@1" pad="GND@1"/>
-<connect gate="G$1" pin="GND@10" pad="15"/>
-<connect gate="G$1" pin="GND@11" pad="18"/>
-<connect gate="G$1" pin="GND@12" pad="21"/>
-<connect gate="G$1" pin="GND@13" pad="26"/>
+<connect gate="G$1" pin="GND@10" pad="22"/>
+<connect gate="G$1" pin="GND@11" pad="25"/>
+<connect gate="G$1" pin="GND@12" pad="27"/>
+<connect gate="G$1" pin="GND@13" pad="28"/>
 <connect gate="G$1" pin="GND@2" pad="GND@2"/>
 <connect gate="G$1" pin="GND@3" pad="GND@3"/>
 <connect gate="G$1" pin="GND@4" pad="GND@4"/>
-<connect gate="G$1" pin="GND@5" pad="3"/>
-<connect gate="G$1" pin="GND@6" pad="4"/>
-<connect gate="G$1" pin="GND@7" pad="6"/>
-<connect gate="G$1" pin="GND@8" pad="9"/>
-<connect gate="G$1" pin="GND@9" pad="12"/>
-<connect gate="G$1" pin="LED_EN" pad="25"/>
-<connect gate="G$1" pin="NC" pad="27"/>
-<connect gate="G$1" pin="PWM" pad="24"/>
-<connect gate="G$1" pin="RA+" pad="8"/>
-<connect gate="G$1" pin="RA-" pad="7"/>
-<connect gate="G$1" pin="RB+" pad="11"/>
-<connect gate="G$1" pin="RB-" pad="10"/>
-<connect gate="G$1" pin="RC+" pad="14"/>
-<connect gate="G$1" pin="RC-" pad="13"/>
-<connect gate="G$1" pin="RCLK+" pad="17"/>
-<connect gate="G$1" pin="RCLK-" pad="16"/>
-<connect gate="G$1" pin="RDM+" pad="20"/>
-<connect gate="G$1" pin="RDM-" pad="19"/>
-<connect gate="G$1" pin="SHLI" pad="5"/>
-<connect gate="G$1" pin="TP@1" pad="22"/>
-<connect gate="G$1" pin="TP@2" pad="23"/>
-<connect gate="G$1" pin="VCC@1" pad="1"/>
-<connect gate="G$1" pin="VCC@2" pad="2"/>
-<connect gate="G$1" pin="VLED@1" pad="28"/>
-<connect gate="G$1" pin="VLED@2" pad="29"/>
-<connect gate="G$1" pin="VLED@3" pad="30"/>
+<connect gate="G$1" pin="GND@5" pad="5"/>
+<connect gate="G$1" pin="GND@6" pad="10"/>
+<connect gate="G$1" pin="GND@7" pad="13"/>
+<connect gate="G$1" pin="GND@8" pad="16"/>
+<connect gate="G$1" pin="GND@9" pad="19"/>
+<connect gate="G$1" pin="LED_EN" pad="6"/>
+<connect gate="G$1" pin="NC" pad="4"/>
+<connect gate="G$1" pin="PWM" pad="7"/>
+<connect gate="G$1" pin="RA+" pad="23"/>
+<connect gate="G$1" pin="RA-" pad="24"/>
+<connect gate="G$1" pin="RB+" pad="20"/>
+<connect gate="G$1" pin="RB-" pad="21"/>
+<connect gate="G$1" pin="RC+" pad="17"/>
+<connect gate="G$1" pin="RC-" pad="18"/>
+<connect gate="G$1" pin="RCLK+" pad="14"/>
+<connect gate="G$1" pin="RCLK-" pad="15"/>
+<connect gate="G$1" pin="RDM+" pad="11"/>
+<connect gate="G$1" pin="RDM-" pad="12"/>
+<connect gate="G$1" pin="SHLI" pad="26"/>
+<connect gate="G$1" pin="TP@1" pad="8"/>
+<connect gate="G$1" pin="TP@2" pad="9"/>
+<connect gate="G$1" pin="VCC@1" pad="29"/>
+<connect gate="G$1" pin="VCC@2" pad="30"/>
+<connect gate="G$1" pin="VLED@1" pad="1"/>
+<connect gate="G$1" pin="VLED@2" pad="2"/>
+<connect gate="G$1" pin="VLED@3" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3121,6 +3121,8 @@ LED 0402
 <part name="R14" library="SchlegelAr_Master" deviceset="R" device="0402" value="22R"/>
 <part name="JP9" library="SchlegelAr_Master" deviceset="JUMPER2" device=""/>
 <part name="JP10" library="SchlegelAr_Master" deviceset="JUMPER2" device=""/>
+<part name="U$35" library="SchlegelAr_Master" deviceset="GND" device=""/>
+<part name="JP11" library="SchlegelAr_Master" deviceset="JUMPER2" device="" value=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4994,6 +4996,8 @@ JP 2-3: LVDS Display</text>
 <instance part="R14" gate="G$1" x="177.8" y="187.96" rot="R180"/>
 <instance part="JP9" gate="G$1" x="297.18" y="190.5" rot="R90"/>
 <instance part="JP10" gate="G$1" x="297.18" y="182.88" rot="R90"/>
+<instance part="U$35" gate="G$1" x="111.76" y="106.68"/>
+<instance part="JP11" gate="G$1" x="106.68" y="114.3" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -5144,6 +5148,12 @@ JP 2-3: LVDS Display</text>
 <pinref part="U$83" gate="G$1" pin="GND"/>
 <wire x1="175.26" y1="149.86" x2="175.26" y2="152.4" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="JP11" gate="G$1" pin="1"/>
+<wire x1="109.22" y1="111.76" x2="111.76" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="111.76" x2="111.76" y2="106.68" width="0.1524" layer="91"/>
+<pinref part="U$35" gate="G$1" pin="GND"/>
+</segment>
 </net>
 <net name="AVR_SCK" class="0">
 <segment>
@@ -5172,6 +5182,13 @@ JP 2-3: LVDS Display</text>
 <label x="185.42" y="231.14" size="1.27" layer="95" xref="yes"/>
 <junction x="182.88" y="231.14"/>
 <pinref part="IC6" gate="G$1" pin="PC6(PCINT14/RESET)"/>
+</segment>
+<segment>
+<pinref part="JP11" gate="G$1" pin="2"/>
+<wire x1="109.22" y1="114.3" x2="111.76" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="114.3" x2="111.76" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="119.38" x2="114.3" y2="119.38" width="0.1524" layer="91"/>
+<label x="114.3" y="119.38" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="AVR_MISO" class="0">
