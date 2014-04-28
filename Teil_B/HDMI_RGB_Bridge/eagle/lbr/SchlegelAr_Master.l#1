@@ -3286,6 +3286,10 @@ http://www.mouser.com/ds/2/281/kmp_4500-48790.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="JUMPER2" prefix="JP">
+<description>&lt;b&gt;
+JUMPER2
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="JUMPER2" x="0" y="-2.54"/>
 </gates>
@@ -3816,11 +3820,40 @@ LED 0402
 </devices>
 </deviceset>
 <deviceset name="+5V_USB">
+<description>&lt;b&gt;
+Symbol fuer +5V_USB
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+5V_USB" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="IRLML5203TRPBF" prefix="T">
+<description>&lt;b&gt;
+IRLML5203TRPBF
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/International-Rectifier/IRLML5203TRPBF/?qs=sGAEpiMZZMshyDBzk1%2fWi5%252bqVgN3%252bWS8t7qb9msI9Rk%3d
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/200/irlml5203pbf-223113.pdf</description>
+<gates>
+<gate name="G$1" symbol="P-MOSFET" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOT23">
+<connects>
+<connect gate="G$1" pin="D" pad="3"/>
+<connect gate="G$1" pin="G" pad="1"/>
+<connect gate="G$1" pin="S" pad="2"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>

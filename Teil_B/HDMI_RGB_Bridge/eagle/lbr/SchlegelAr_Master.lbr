@@ -3190,6 +3190,14 @@ http://www.st.com/web/en/resource/technical/document/datasheet/CD00001883.pdf</d
 </devices>
 </deviceset>
 <deviceset name="TLV1117-50CDCY" prefix="IC">
+<description>&lt;b&gt;
+TLV1117-50CDCY
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+http://de.mouser.com/ProductDetail/Texas-Instruments/TLV1117-50CDCY/?qs=sGAEpiMZZMsGz1a6aV8DcHWet81Yjl3lOy3fxD3Qy5g%3d
+&lt;br&gt; &lt;br&gt;
+
+http://www.mouser.com/ds/2/405/slvs561k-267195.pdf</description>
 <gates>
 <gate name="G$1" symbol="VREG" x="0" y="0"/>
 </gates>
@@ -3286,6 +3294,10 @@ http://www.mouser.com/ds/2/281/kmp_4500-48790.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="JUMPER2" prefix="JP">
+<description>&lt;b&gt;
+JUMPER2
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="JUMPER2" x="0" y="-2.54"/>
 </gates>
@@ -3421,6 +3433,10 @@ Symbol fuer +12V
 </devices>
 </deviceset>
 <deviceset name="JUMPER3" prefix="JP">
+<description>&lt;b&gt;
+JUMPER3
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="JUMPER3" x="0" y="0"/>
 </gates>
@@ -3438,6 +3454,14 @@ Symbol fuer +12V
 </devices>
 </deviceset>
 <deviceset name="WPMDL1300331BD" prefix="IC">
+<description>&lt;b&gt;
+WPMDL1300331BD
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://katalog.we-online.de/de/pm/MagIC-FDRM
+&lt;br&gt; &lt;br&gt;
+http://katalog.we-online.de/pm/datasheet/171030301.pdf</description>
 <gates>
 <gate name="G$1" symbol="VREG_MAGIC_FDRM" x="0" y="2.54"/>
 </gates>
@@ -3458,6 +3482,14 @@ Symbol fuer +12V
 </devices>
 </deviceset>
 <deviceset name="WPMDL1300501BD" prefix="IC">
+<description>&lt;b&gt;
+WPMDL1300501BD
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+
+http://katalog.we-online.de/de/pm/MagIC-FDRM
+&lt;br&gt; &lt;br&gt;
+http://katalog.we-online.de/pm/datasheet/171030501.pdf</description>
 <gates>
 <gate name="G$1" symbol="VREG_MAGIC_FDRM" x="0" y="2.54"/>
 </gates>
@@ -3816,6 +3848,10 @@ LED 0402
 </devices>
 </deviceset>
 <deviceset name="+5V_USB">
+<description>&lt;b&gt;
+Symbol fuer +5V_USB
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="+5V_USB" x="0" y="0"/>
 </gates>
