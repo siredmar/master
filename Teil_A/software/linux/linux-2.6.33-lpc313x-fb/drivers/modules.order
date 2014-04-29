@@ -1,9 +1,4 @@
 kernel/drivers/gpio/pca953x.ko
-kernel/drivers/video/sysfillrect.ko
-kernel/drivers/video/syscopyarea.ko
-kernel/drivers/video/sysimgblt.ko
-kernel/drivers/video/fb_sys_fops.ko
-kernel/drivers/video/vfb.ko
 kernel/drivers/serial/sc16is7x2.ko
 kernel/drivers/misc/eeprom/eeprom_93cx6.ko
 kernel/drivers/scsi/scsi_wait_scan.ko
@@ -42,6 +37,7 @@ kernel/drivers/usb/gadget/g_mass_storage.ko
 kernel/drivers/usb/gadget/g_serial.ko
 kernel/drivers/usb/gadget/g_printer.ko
 kernel/drivers/usb/gadget/g_cdc.ko
+kernel/drivers/input/evdev.ko
 kernel/drivers/rtc/rtc-core.ko
 kernel/drivers/rtc/rtc-mcp7940.ko
 kernel/drivers/rtc/rtc-rv3029.ko

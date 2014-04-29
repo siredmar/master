@@ -1,0 +1,1 @@
+cmd_drivers/video/md050sd.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/video/md050sd.ko drivers/video/md050sd.o drivers/video/md050sd.mod.o

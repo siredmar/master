@@ -129,6 +129,7 @@ obj-$(CONFIG_XEN_FBDEV_FRONTEND)  += xen-fbfront.o
 obj-$(CONFIG_FB_CARMINE)          += carminefb.o
 obj-$(CONFIG_FB_MB862XX)	  += mb862xx/
 obj-$(CONFIG_FB_SSD1963)	  += ssd1963.o
+obj-$(CONFIG_FB_MD050SD)	  += md050sd.o
 obj-$(CONFIG_FB_MSM)              += msm/
 
 # Platform or fallback drivers go here

@@ -4,6 +4,8 @@ deps_arch/arm/mach-lpc313x/ea313x.o := \
   arch/arm/mach-lpc313x/ea313x.c \
     $(wildcard include/config/fb/ssd1963.h) \
     $(wildcard include/config/ssd1963.h) \
+    $(wildcard include/config/fb/md050sd.h) \
+    $(wildcard include/config/md050sd.h) \
     $(wildcard include/config/dm9000.h) \
     $(wildcard include/config/mtd/nand/lpc313x.h) \
     $(wildcard include/config/spi/lpc313x.h) \

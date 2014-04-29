@@ -2156,6 +2156,17 @@ config FB_SSD1963
   help
     This is a framebuffer device for the Solomon Systek SSD1963
     controller.
+    
+config FB_MD050SD
+  tristate "MD050SD display support"
+  depends on FB
+  select FB_SYS_FILLRECT
+  select FB_SYS_COPYAREA
+  select FB_SYS_IMAGEBLIT
+  select FB_SYS_FOPS
+  select FB_DEFERRED_IO
+  help
+    This is a framebuffer device for the MD050SD.
 
 config FB_MSM
 	tristate "MSM Framebuffer support"

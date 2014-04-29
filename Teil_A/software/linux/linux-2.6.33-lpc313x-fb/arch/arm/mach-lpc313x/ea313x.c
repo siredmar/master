@@ -203,38 +203,77 @@ static void __init ea_add_device_ssd1963(void)
 static void __init ea_add_device_ssd1963(void) {}
 #endif /* CONFIG_SSD1963 */
 
-static struct resource testmod_resource[] = {
-   [0] = {
-         .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
-         .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
-         .flags = IORESOURCE_MEM,
-      },
-      [1] = {
-         .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
-         .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
-         .flags = IORESOURCE_MEM,
-   },
+#if defined (CONFIG_FB_MD050SD)
+static struct resource md050sd_resource[] = {
+  [0] = {
+     .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
+     .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
+     .flags = IORESOURCE_MEM,
+  },
+  [1] = {
+     .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
+     .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
+     .flags = IORESOURCE_MEM,
+  },
 };
 
-static struct platform_device testmod_device = {
-   .name          = "testmod",
-   .id            = 0,
-   .num_resources = ARRAY_SIZE(testmod_resource),
-   .resource      = testmod_resource,
+static struct platform_device md050sd_device = {
+  .name          = "md050sd",
+  .id            = 0,
+  .num_resources = ARRAY_SIZE(md050sd_resource),
+  .resource      = md050sd_resource,
 };
 
-static void __init ea_add_device_testmod(void)
+static void __init ea_add_device_md050sd(void)
 {
-   MPMC_STCONFIG0 = 0x81;
-   MPMC_STWTWEN0  = 10;
-   MPMC_STWTOEN0  = 0;
-   MPMC_STWTRD0   = 31;
-   MPMC_STWTPG0   = 0;
-   MPMC_STWTWR0   = 31;
-   MPMC_STWTTURN0 = 0;
+  MPMC_STCONFIG0 = 0x81;
+  MPMC_STWTWEN0  = 0;
+  MPMC_STWTOEN0  = 0;
+  MPMC_STWTRD0   = 0;
+  MPMC_STWTPG0   = 0;
+  MPMC_STWTWR0   = 2;
+  MPMC_STWTTURN0 = 0;
 
-   platform_device_register(&testmod_device);
+  printk(KERN_ALERT "MD050SD->EA313x: platform_device_register(&md050sd_device) called\n");
+  platform_device_register(&md050sd_device);
+  printk(KERN_ALERT "MD050SD->EA313x: platform_device_register(&md050sd_device) returned\n");
 }
+#else
+static void __init ea_add_device_md050sd(void) {}
+#endif /* CONFIG_MD050SD */
+
+//static struct resource testmod_resource[] = {
+//   [0] = {
+//         .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
+//         .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
+//         .flags = IORESOURCE_MEM,
+//      },
+//      [1] = {
+//         .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
+//         .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
+//         .flags = IORESOURCE_MEM,
+//   },
+//};
+//
+//static struct platform_device testmod_device = {
+//   .name          = "testmod",
+//   .id            = 0,
+//   .num_resources = ARRAY_SIZE(testmod_resource),
+//   .resource      = testmod_resource,
+//};
+
+//static void __init ea_add_device_testmod(void)
+//{
+//   MPMC_STCONFIG0 = 0x81;
+//   MPMC_STWTWEN0  = 10;
+//   MPMC_STWTOEN0  = 0;
+//   MPMC_STWTRD0   = 31;
+//   MPMC_STWTPG0   = 0;
+//   MPMC_STWTWR0   = 31;
+//   MPMC_STWTTURN0 = 0;
+//
+//   platform_device_register(&testmod_device);
+//}
 
 
 //#define DM_IO_DELAY()   do {} while(0)
@@ -606,12 +645,9 @@ static void __init ea313x_init(void)
 
 	/* add DM9000 device */
 	ea_add_device_dm9000();
-	
-	printk(KERN_ALERT "SSD1963->EA313x: ea_add_device_ssd1963() called\n");
-	//ea_add_device_ssd1963();
-	printk(KERN_ALERT "SSD1963->EA313x: ea_add_device_ssd1963() returned\n");
-
-	ea_add_device_testmod();
+	ea_add_device_ssd1963();
+	ea_add_device_md050sd();
+//   ea_add_device_testmod();
 
 	/* register i2cdevices */
 	lpc313x_register_i2c_devices();

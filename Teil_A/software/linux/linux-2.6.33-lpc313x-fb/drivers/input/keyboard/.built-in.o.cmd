@@ -1,1 +1,1 @@
-cmd_drivers/input/keyboard/built-in.o :=  arm-linux-gnueabi-ld -EL    -r -o drivers/input/keyboard/built-in.o drivers/input/keyboard/atkbd.o 
+cmd_drivers/input/keyboard/built-in.o :=  rm -f drivers/input/keyboard/built-in.o; arm-linux-gnueabi-ar rcs drivers/input/keyboard/built-in.o

@@ -243,11 +243,11 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
 #elif defined(CONFIG_MACH_EPLPC3131_V1)
   /* LCD display, 16 bit */
   MPMC_STCONFIG0  = 0x81;
-  MPMC_STWTWEN0   = 0;
+  MPMC_STWTWEN0   = 1;
   MPMC_STWTOEN0   = 0;
   MPMC_STWTRD0    = 31;
   MPMC_STWTPG0    = 0;
-  MPMC_STWTWR0    = 1;
+  MPMC_STWTWR0    = 3;
   MPMC_STWTTURN0  = 0;
 
 #endif

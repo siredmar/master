@@ -462,6 +462,7 @@ deps_drivers/input/mousedev.o := \
   include/linux/random.h \
   include/linux/irqnr.h \
   include/linux/major.h \
+  include/linux/miscdevice.h \
 
 drivers/input/mousedev.o: $(deps_drivers/input/mousedev.o)
 
