@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Terminal=0
+Exec=/home/pierre/Desktop/XnConvert/xnconvert.sh
+Icon=/home/pierre/Desktop/XnConvert/xnconvert.png
+Type=Application
+Categories=Graphics;
+StartupNotify=true
+Name=XnConvert
+GenericName=XnConvert
+

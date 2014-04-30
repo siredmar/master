@@ -25,7 +25,7 @@
 
 /* ***************************** modul global functions ********************* */
 
-#define WITH_MPMC 0
+#define WITH_MPMC 1
 
 
 static int  mem_fd;
@@ -42,6 +42,25 @@ void *mpmc_memory_map;
 
 static int send_counter = 1;
 extern uint8 debug_output;
+
+/*  \brief Waits x ms
+ *
+ *  \param [in]  waitTime_ui16 = Wait time in ms
+ *  \param [out] ---
+ *  \return      ---
+ */
+static void tft_waitXms
+(
+      uint16 waitTime_ui16
+)
+{
+   uint16 tmp_ui16 = 0;
+   for(tmp_ui16 = 0; tmp_ui16 < waitTime_ui16; tmp_ui16++)
+   {
+      usleep(1000);
+   }
+}
+
 
 static Std_ReturnType tft_openSRAM0Memory()
 {
@@ -199,47 +218,31 @@ static void tft_initSRAM0Timings()
 
 
 
-/*  \brief Waits x ms
- *
- *  \param [in]  waitTime_ui16 = Wait time in ms
- *  \param [out] ---
- *  \return      ---
- */
-static void tft_waitXms
-(
-      uint16 waitTime_ui16
-)
-{
-   uint16 tmp_ui16 = 0;
-   for(tmp_ui16 = 0; tmp_ui16 < waitTime_ui16; tmp_ui16++)
-   {
-      usleep(1000);
-   }
-}
+
 
 void tft_sendData
 (
       uint16 data_ui16
 )
 {
-   if(debug_output == 1)
-   {
-      printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
-      waitForUserInput();
-      *(sram0_data) = data_ui16;
-   }else {
-      if(debug_output == 2)
-      {
-         printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
+//   if(debug_output == 1)
+//   {
+//      printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
+//      waitForUserInput();
+//      *(sram0_data) = data_ui16;
+//   }else {
+//      if(debug_output == 2)
+//      {
+//         printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
+//         *(sram0_data) = data_ui16;
+//         tft_waitXms(10);
+//      }else
+//      {
          *(sram0_data) = data_ui16;
-         tft_waitXms(10);
-      }else
-      {
-         *(sram0_data) = data_ui16;
-      }
-
-
-   }
+//      }
+//
+//
+//   }
 }
 
 void tft_sendPixelData
@@ -247,22 +250,22 @@ void tft_sendPixelData
       uint16 data_ui16
 )
 {
-   if(debug_output == 1)
-   {
-      printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
-      waitForUserInput();
-      *(sram0_data) = data_ui16;
-   } else {
-      if(debug_output == 2)
-      {
-         printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
+//   if(debug_output == 1)
+//   {
+//      printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
+//      waitForUserInput();
+//      *(sram0_data) = data_ui16;
+//   } else {
+//      if(debug_output == 2)
+//      {
+//         printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
+//         *(sram0_data) = data_ui16;
+//         tft_waitXms(10);
+//      }else
+//      {
          *(sram0_data) = data_ui16;
-         tft_waitXms(10);
-      }else
-      {
-         *(sram0_data) = data_ui16;
-      }
-   }
+//      }
+//   }
 }
 
 //void tft_sendPixelData_8Bit
@@ -288,26 +291,28 @@ void tft_sendCommand
       uint16 data_ui16
 )
 {
-
-   if(debug_output == 1)
-   {
-      printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
-      waitForUserInput();
-      *(sram0_ctrl) = (data_ui16 & 0xFF);
-   } else {
-      if(debug_output == 2)
-      {
-         printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
+//
+//   if(debug_output == 1)
+//   {
+//      printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
+//      waitForUserInput();
+//      *(sram0_ctrl) = (data_ui16 & 0xFF);
+//   } else {
+//      if(debug_output == 2)
+//      {
+//         printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
+//         *(sram0_ctrl) = (data_ui16 & 0xFF);
+//         tft_waitXms(10);
+//      } else
+//      {
          *(sram0_ctrl) = (data_ui16 & 0xFF);
-         tft_waitXms(10);
-      } else
-      {
-         *(sram0_ctrl) = (data_ui16 & 0xFF);
-      }
-   }
-
+//      }
+//   }
+//
 
 }
+
+
 
 void tft_sendCommand_slow
 (
@@ -389,7 +394,7 @@ void tft_setWindow
       uint16 endPositionY_ui16
 )
 {
-   tft_setDisplayRegister(SSD1289_REG_H_RAM_ADR_POS, (uint16)((endPositionX_ui16 << 8) | startPositionX_ui16));
+   tft_setDisplayRegister(SSD1289_REG_H_RAM_ADR_POS, (uint16)((endPositionX_ui16 << 8) + startPositionX_ui16));
    tft_setDisplayRegister(SSD1289_REG_V_RAM_ADR_START, startPositionY_ui16);
    tft_setDisplayRegister(SSD1289_REG_V_RAM_ADR_END, endPositionY_ui16);
    tft_setDisplayRegister(SSD1289_REG_GDDRAM_X_ADDR, startPositionX_ui16);
@@ -427,13 +432,13 @@ void tft_init
    tft_readSRAM0Timings();
    printf("tft_readSRAM0Timings() returned\n\n");
 
-   printf("tft_initSRAM0Timings() called\n");
-   tft_initSRAM0Timings();
-   printf("tft_initSRAM0Timings() returned\n\n");
-
-   printf("tft_readSRAM0Timings() called\n");
-   tft_readSRAM0Timings();
-   printf("tft_readSRAM0Timings() returned\n\n");
+//   printf("tft_initSRAM0Timings() called\n");
+//   tft_initSRAM0Timings();
+//   printf("tft_initSRAM0Timings() returned\n\n");
+//
+//   printf("tft_readSRAM0Timings() called\n");
+//   tft_readSRAM0Timings();
+//   printf("tft_readSRAM0Timings() returned\n\n");
 #endif
 
    if(init == 1)
@@ -442,6 +447,7 @@ void tft_init
       tft_waitXms(100);   /* Wait 100ms */
       tft_selectReset(); /* Reset Display done */
       usleep(1000);
+      dio_writeChannel(TFT_BACKLIGHT_PIN_UI8, 1);
 
 
 
@@ -451,10 +457,17 @@ void tft_init
       tft_setDisplayRegister(0x000D, 0x080C);  tft_waitXms(10);
       tft_setDisplayRegister(0x000E, 0x2B00);  tft_waitXms(10);
       tft_setDisplayRegister(0x001E, 0x00B0);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0001, 0x2B3F);  tft_waitXms(150);
       tft_setDisplayRegister(0x0002, 0x0600);  tft_waitXms(10);
       tft_setDisplayRegister(0x0010, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0011, 0x6070);  tft_waitXms(200);
+      // picture
+//      tft_setDisplayRegister(0x0001, 0x2B3F);  tft_waitXms(150);
+//      tft_setDisplayRegister(0x0011, 0x6070);  tft_waitXms(200);
+
+      //landscape
+      tft_setDisplayRegister(0x0001, 0x293F);  tft_waitXms(150);
+      tft_setDisplayRegister(0x0011, 0x6078);  tft_waitXms(200);
+
+
       tft_setDisplayRegister(0x0005, 0x0000);  tft_waitXms(10);
       tft_setDisplayRegister(0x0006, 0x0000);  tft_waitXms(10);
       tft_setDisplayRegister(0x0016, 0xEF1C);  tft_waitXms(10);
@@ -491,6 +504,15 @@ void tft_init
 }
 
 
+void tft_drawStart()
+{
+
+   tft_sendCommand(SSD1289_REG_GDDRAM_DATA);
+}
+
+void tft_drawStop()
+{
+}
 
 /*
  *  \brief Function clears whole screen with one color
@@ -561,6 +583,52 @@ Std_ReturnType tft_drawPixel
 }
 
 /*
+ *  \brief Function draw a filled Line at x/y position with a given length
+ *
+ *  \param [in]  xStartPosition_ui16 = X Start position of rectangle
+ *  \param [in]  yStartPosition_ui16 = Y Start position of rectangle
+ *  \param [in]  lineLength_ui16 = Length of the line
+ *  \param [in]  rectangleWidth_ui16 = Width of rectangle in pixel
+ *  \param [in]  rectangleHeight_ui16 = Height of rectangle in pixel
+ *  \param [in]  rectangleColor_ui16 = Color of rectangle
+
+ *  \param [out] ---
+ *  \return      E_OK = Rectangle draw successfull
+ *               E_NOT_OK = Rectangle draw not successfull
+ */
+Std_ReturnType tft_drawLine
+(
+      uint16 xPosition_ui16,
+      uint16 yPosition_ui16,
+      uint16 lineLength_ui16,
+      tft_ColorType rectangleColor_ui16
+)
+{
+   Std_ReturnType returnValue;
+   uint16 cnt = 0;
+   //   uint32 forCounter_ui32;
+   //   uint32 pixelSizeOfRectangle_ui32;
+
+   returnValue = E_NOT_OK;
+
+   /* Set window size and position - modified for portrait view */
+   tft_setWindow(xPosition_ui16, yPosition_ui16, lineLength_ui16 + xPosition_ui16, yPosition_ui16);
+
+//   tft_setPixelCoordinates(xPosition_ui16, yPosition_ui16);
+
+   for(cnt = 0; cnt < lineLength_ui16; cnt++)
+   {
+      tft_sendData(rectangleColor_ui16);
+   }
+
+
+   returnValue = E_OK;
+
+   return returnValue;
+}
+
+
+/*
  *  \brief Function draw a filled Rectangle at x/y position
  *
  *  \param [in]  xStartPosition_ui16 = X Start position of rectangle
@@ -605,15 +673,10 @@ Std_ReturnType tft_drawRectangle
    {
       // do nothing
    }
-   /* calculate pixel size */
-   pixelSizeOfRectangle_ui32 = rectangleWidth_ui16 * rectangleHeight_ui16;
 
-   tft_setWindow(xPosition_ui16, yPosition_ui16, endPositionX_ui16, endPositionY_ui16);
-
-   for(forCounter_ui32 = 0; forCounter_ui32 < pixelSizeOfRectangle_ui32; forCounter_ui32++)
+   for(forCounter_ui32 = yPosition_ui16; forCounter_ui32 < rectangleHeight_ui16 + yPosition_ui16; forCounter_ui32++)
    {
-      tft_sendData(rectangleColor_ui16);
-     // usleep(100);
+      tft_drawLine(xPosition_ui16, forCounter_ui32, rectangleWidth_ui16, rectangleColor_ui16);
    }
 
 

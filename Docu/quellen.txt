@@ -1,4 +1,4 @@
-HDMI RGB LVDS:
+TEIL_B: HDMI RGB LVDS:
 =============
 Hardware:
 * HDMI Stecker +5V-Versorgung liefert min. 55 mA: http://www.hdmi.org/learningcenter/kb.aspx?c=6#42
@@ -9,4 +9,10 @@ Software:
 PC:
 * EDID Datenformat: http://www.extron.com/download/files/extronews/understandingedid.pdf
 * RS232 Treiber: http://www.teuniz.net/RS-232/
+
+
+TEIL_A: 
+=======
+Software:
+* SGI-RGB Image format http://paulbourke.net/dataformats/sgirgb/
 

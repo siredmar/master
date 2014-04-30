@@ -19,4 +19,4 @@ clean:
 		rm -f $(TARGET) *~
 
 copy:
-	scp gnublin_ssd1963 root@gnublin:/root
+	scp gnublin_ssd1289 root@gnublin:/root

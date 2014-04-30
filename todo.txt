@@ -1,0 +1,15 @@
+TEIL_A:
+======
+* Konverter von Bildern ins Framebuffer RAW Format (verwendung von SDL, ...)
+* SSD1963 Test mit PLL Initialisierung in Bootloader, Rest im Framebuffer- bzw. Userspace-Treiber
+* SSD1289 fade out beseitigen (evtl. neues Display besorgen?)
+* SSD1289 Framebuffertreiber und Userspace-Treiber fertigstellen
+* Memcpy zum Schreiben auf 8080-Interface untersuchen (Erhoehte Geschwindigkeit)
+* Bestellung der Adapterplatine bei Herr Schmitt
+* ggf. Zusammenfassung der Framebuffertreiber in einen mit Auswahl per Kernel Bootkommano
+
+TEIL_B:
+======
+* Review von Schaltplan und Layout
+* Bestellung der Platinen bei PCBPool
+

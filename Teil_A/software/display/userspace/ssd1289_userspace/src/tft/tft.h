@@ -220,6 +220,28 @@ Std_ReturnType tft_drawRectangle
    tft_ColorType rectangleColor_ui16
 );
 
+/*
+ *  \brief Function draw a filled Line at x/y position with a given length
+ *
+ *  \param [in]  xStartPosition_ui16 = X Start position of rectangle
+ *  \param [in]  yStartPosition_ui16 = Y Start position of rectangle
+ *  \param [in]  lineLength_ui16 = Length of the line
+ *  \param [in]  rectangleWidth_ui16 = Width of rectangle in pixel
+ *  \param [in]  rectangleHeight_ui16 = Height of rectangle in pixel
+ *  \param [in]  rectangleColor_ui16 = Color of rectangle
+
+ *  \param [out] ---
+ *  \return      E_OK = Rectangle draw successfull
+ *               E_NOT_OK = Rectangle draw not successfull
+ */
+Std_ReturnType tft_drawLine
+(
+      uint16 xPosition_ui16,
+      uint16 yPosition_ui16,
+      uint16 lineLength_ui16,
+      tft_ColorType rectangleColor_ui16
+);
+
 Std_ReturnType tft_drawRectangle2
 (
    uint16 xPosition_ui16,
