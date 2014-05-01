@@ -1,4 +1,0 @@
-To install XnConvert in KDE/Gnome menu, change the pathname of xnconvert's folder in XnConvert.desktop (Exec & Icon) and move it to /usr/share/applications
-
-sudo cp XnConvert.desktop /usr/share/applications
-

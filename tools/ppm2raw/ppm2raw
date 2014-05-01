@@ -1,2 +1,0 @@
-echo "SGI Image File Format (*.rgb) to framebuffer (*.raw) format"
-dd bs=512 skip=1 if=$1 of=$2
