@@ -225,24 +225,24 @@ void tft_sendData
       uint16 data_ui16
 )
 {
-//   if(debug_output == 1)
-//   {
-//      printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
-//      waitForUserInput();
-//      *(sram0_data) = data_ui16;
-//   }else {
-//      if(debug_output == 2)
-//      {
-//         printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
-//         *(sram0_data) = data_ui16;
-//         tft_waitXms(10);
-//      }else
-//      {
-         *(sram0_data) = data_ui16;
-//      }
-//
-//
-//   }
+   //   if(debug_output == 1)
+   //   {
+   //      printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
+   //      waitForUserInput();
+   //      *(sram0_data) = data_ui16;
+   //   }else {
+   //      if(debug_output == 2)
+   //      {
+   //         printf("%d\ttft_sendData:\t\t 0x%.4X", send_counter++, data_ui16);
+   //         *(sram0_data) = data_ui16;
+   //         tft_waitXms(10);
+   //      }else
+   //      {
+   *(sram0_data) = data_ui16;
+   //      }
+   //
+   //
+   //   }
 }
 
 void tft_sendPixelData
@@ -250,22 +250,22 @@ void tft_sendPixelData
       uint16 data_ui16
 )
 {
-//   if(debug_output == 1)
-//   {
-//      printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
-//      waitForUserInput();
-//      *(sram0_data) = data_ui16;
-//   } else {
-//      if(debug_output == 2)
-//      {
-//         printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
-//         *(sram0_data) = data_ui16;
-//         tft_waitXms(10);
-//      }else
-//      {
-         *(sram0_data) = data_ui16;
-//      }
-//   }
+   //   if(debug_output == 1)
+   //   {
+   //      printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
+   //      waitForUserInput();
+   //      *(sram0_data) = data_ui16;
+   //   } else {
+   //      if(debug_output == 2)
+   //      {
+   //         printf("%d\ttft_sendPixelData:\t 0x%.4X",  send_counter++, data_ui16);
+   //         *(sram0_data) = data_ui16;
+   //         tft_waitXms(10);
+   //      }else
+   //      {
+   *(sram0_data) = data_ui16;
+   //      }
+   //   }
 }
 
 //void tft_sendPixelData_8Bit
@@ -291,24 +291,24 @@ void tft_sendCommand
       uint16 data_ui16
 )
 {
-//
-//   if(debug_output == 1)
-//   {
-//      printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
-//      waitForUserInput();
-//      *(sram0_ctrl) = (data_ui16 & 0xFF);
-//   } else {
-//      if(debug_output == 2)
-//      {
-//         printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
-//         *(sram0_ctrl) = (data_ui16 & 0xFF);
-//         tft_waitXms(10);
-//      } else
-//      {
-         *(sram0_ctrl) = (data_ui16 & 0xFF);
-//      }
-//   }
-//
+   //
+   //   if(debug_output == 1)
+   //   {
+   //      printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
+   //      waitForUserInput();
+   //      *(sram0_ctrl) = (data_ui16 & 0xFF);
+   //   } else {
+   //      if(debug_output == 2)
+   //      {
+   //         printf("\n%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
+   //         *(sram0_ctrl) = (data_ui16 & 0xFF);
+   //         tft_waitXms(10);
+   //      } else
+   //      {
+   *(sram0_ctrl) = (data_ui16 & 0xFF);
+   //      }
+   //   }
+   //
 
 }
 
@@ -432,13 +432,13 @@ void tft_init
    tft_readSRAM0Timings();
    printf("tft_readSRAM0Timings() returned\n\n");
 
-//   printf("tft_initSRAM0Timings() called\n");
-//   tft_initSRAM0Timings();
-//   printf("tft_initSRAM0Timings() returned\n\n");
-//
-//   printf("tft_readSRAM0Timings() called\n");
-//   tft_readSRAM0Timings();
-//   printf("tft_readSRAM0Timings() returned\n\n");
+   //   printf("tft_initSRAM0Timings() called\n");
+   //   tft_initSRAM0Timings();
+   //   printf("tft_initSRAM0Timings() returned\n\n");
+   //
+   //   printf("tft_readSRAM0Timings() called\n");
+   //   tft_readSRAM0Timings();
+   //   printf("tft_readSRAM0Timings() returned\n\n");
 #endif
 
    if(init == 1)
@@ -448,57 +448,184 @@ void tft_init
       tft_selectReset(); /* Reset Display done */
       usleep(1000);
       dio_writeChannel(TFT_BACKLIGHT_PIN_UI8, 1);
+      //
+      //      tft_setDisplayRegister(0x00, 0x0001); tft_waitXms( 100 );
+      //      tft_setDisplayRegister(0x03, 0xA8A4); tft_waitXms( 1 );
+      //      tft_setDisplayRegister(0x0C, 0x0000); tft_waitXms( 1 );
+      //      tft_setDisplayRegister(0x0D, 0x080C); tft_waitXms( 1 );
+      //      tft_setDisplayRegister(0x0E, 0x2B00); tft_waitXms( 1 );
+      //      tft_setDisplayRegister(0x1E, 0x00B7); tft_waitXms( 1 );
+      //
+      //      tft_setDisplayRegister(0x02, 0x0600); tft_waitXms( 1 );
+      //      tft_setDisplayRegister(0x10, 0x0000); tft_waitXms( 1 );
+      //
+      //
+      ////       LANDSCAPE:
+      //             tft_setDisplayRegister(0x01, 0x2B3F); tft_waitXms( 1 );
+      //            tft_setDisplayRegister( 0x11, 0x60A8 );  tft_waitXms( 1 ); // entry mode
+      //
+      ////      // PORTRAIT:
+      ////      tft_setDisplayRegister(0x01, 0x29EF); tft_waitXms( 1 );
+      ////      tft_setDisplayRegister( 0x11, 0x6098 );  tft_waitXms( 1 ); // entry mode
+      //
+
+            //tft_setDisplayRegister(0x11, 0x6070); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x05, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x06, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x16, 0xEF1C); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x17, 0x0003); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x07, 0x0233); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x0B, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x0F, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x41, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x42, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x48, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x49, 0x013F); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x4A, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x4B, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x44, 0xEF00); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x45, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x46, 0x013F); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x30, 0x0707); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x31, 0x0204); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x32, 0x0204); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x33, 0x0502); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x34, 0x0507); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x35, 0x0204); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x36, 0x0204); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x37, 0x0502); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x3A, 0x0302); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x3B, 0x0302); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x23, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x24, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x25, 0x8000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x4f, 0x0000); tft_waitXms( 1 );
+//            tft_setDisplayRegister(0x4e, 0x0000); tft_waitXms( 1 );
+
+            tft_setDisplayRegister(0x0000, 0x0001);  tft_waitXms(150);
+            tft_setDisplayRegister(0x0003, 0xA8A4);  tft_waitXms(10);
+            tft_setDisplayRegister(0x000C, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x000D, 0x080C);  tft_waitXms(10);
+            tft_setDisplayRegister(0x000E, 0x2B00);  tft_waitXms(10);
+            tft_setDisplayRegister(0x001E, 0x00B0);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0002, 0x0600);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0010, 0x0000);  tft_waitXms(10);
+            // portrait
+//            tft_setDisplayRegister(0x0001, 0x2B3F);  tft_waitXms(150); //0x2B3F
+//            tft_setDisplayRegister(0x0011, 0x6070);  tft_waitXms(200);
+
+      //      //landscape
+            tft_setDisplayRegister(0x0001, 0x2BEF);  tft_waitXms(150);  //0x293F
+            tft_setDisplayRegister(0x0011, 0b110000001000000 + (7) << 2);  tft_waitXms(200); //0x6078
 
 
+            tft_setDisplayRegister(0x0005, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0006, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0016, 0xEF1C);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0017, 0x0003);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0007, 0x0233);  tft_waitXms(10);
+            tft_setDisplayRegister(0x000B, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x000F, 0x0000);  tft_waitXms(200);
+            tft_setDisplayRegister(0x0041, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0042, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0048, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0049, 0x013F);  tft_waitXms(10);
+            tft_setDisplayRegister(0x004A, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x004B, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0044, 0xEF00);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0045, 0x0000);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0046, 0x013F);  tft_waitXms(200);
+            tft_setDisplayRegister(0x0030, 0x0707);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0031, 0x0204);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0032, 0x0204);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0033, 0x0502);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0034, 0x0507);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0035, 0x0204);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0036, 0x0204);  tft_waitXms(10);
+            tft_setDisplayRegister(0x0037, 0x0502);  tft_waitXms(10);
+            tft_setDisplayRegister(0x003A, 0x0302);  tft_waitXms(10);
+            tft_setDisplayRegister(0x003B, 0x0302);  tft_waitXms(20);
+            //      tft_setDisplayRegister(0x0023, 0x0000);  tft_waitXms(1000);
+            //      tft_setDisplayRegister(0x0024, 0x0000);  tft_waitXms(1000);
+            //      tft_setDisplayRegister(0x0025, 0x8000);  tft_waitXms(1000);
+            //      tft_setDisplayRegister(0x004f, 0x0000);  tft_waitXms(1000);
+            //      tft_setDisplayRegister(0x004e, 0x0000);  tft_waitXms(1000);
 
-      tft_setDisplayRegister(0x0000, 0x0001);  tft_waitXms(150);
-      tft_setDisplayRegister(0x0003, 0xA8A4);  tft_waitXms(10);
-      tft_setDisplayRegister(0x000C, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x000D, 0x080C);  tft_waitXms(10);
-      tft_setDisplayRegister(0x000E, 0x2B00);  tft_waitXms(10);
-      tft_setDisplayRegister(0x001E, 0x00B0);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0002, 0x0600);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0010, 0x0000);  tft_waitXms(10);
-      // picture
-//      tft_setDisplayRegister(0x0001, 0x2B3F);  tft_waitXms(150);
-//      tft_setDisplayRegister(0x0011, 0x6070);  tft_waitXms(200);
+//      // OSCEN=1
+//      tft_setDisplayRegister(SSD1289_REG_OSCILLATION, 0x0001);
+//      // DCT=b1010=fosc/4 BT=b001=VGH:+6,VGL:-4
+//      // DC=b1010=fosc/4 AP=b010=small to medium
+//      tft_setDisplayRegister(SSD1289_REG_POWER_CTRL_1, 0xa2a4);
+//      // VRC=b100:5.5V
+//      tft_setDisplayRegister(SSD1289_REG_POWER_CTRL_2, 0x0004);
+//      // VRH=b1000:Vref*2.165
+//      tft_setDisplayRegister(SSD1289_REG_POWER_CTRL_3, 0x0308);
+//      // VCOMG=1 VDV=b1000:VLCD63*1.05
+//      tft_setDisplayRegister(SSD1289_REG_POWER_CTRL_4, 0x3000);
+//      // nOTP=1 VCM=0x2a:VLCD63*0.77
+//      tft_setDisplayRegister(SSD1289_REG_POWER_CTRL_5, 0x00ea);
+//      // RL=0 REV=1 CAD=0 BGR=1 SM=0 TB=1 MUX=0x13f=319
+//      tft_setDisplayRegister(SSD1289_REG_DRIVER_OUT_CTRL, 0x2b3f);
+//      // FLD=0 ENWS=0 D/C=1 EOR=1 WSMD=0 NW=0x00=0
+//      tft_setDisplayRegister(SSD1289_REG_LCD_DRIVE_AC, 0x0600);
+//      // SLP=0
+//      tft_setDisplayRegister(SSD1289_REG_SLEEP_MODE, 0x0000);
+//      // VSMode=0 DFM=3:65k TRAMS=0 OEDef=0 WMode=0 Dmode=0
+//      // TY=0 ID=3 AM=0 LG=0
+//      tft_setDisplayRegister(SSD1289_REG_ENTRY_MODE, 0x6030);
+//      // PT=0 VLE=1 SPT=0 GON=1 DTE=1 CM=0 D=3
+//      tft_setDisplayRegister(SSD1289_REG_DISPLAY_CTRL, 0x0233);
+//      // NO=0 SDT=0 EQ=0 DIV=0 SDIV=1 SRTN=1 RTN=9:25 clock
+//      tft_setDisplayRegister(SSD1289_REG_FRAME_CYCLE, 0x0039);
+//      // SCN=0
+//      tft_setDisplayRegister(SSD1289_REG_GATE_SCAN_START, 0x0000);
+//
+//      // PKP1=7 PKP0=7
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_1, 0x0707);
+//      // PKP3=2 PKP2=4
+//      tft_setDisplayRegister(SSD1289_REG_GAMME_CTRL_2, 0x0204);
+//      // PKP5=2 PKP4=2
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_3, 0x0204);
+//      // PRP1=5 PRP0=2
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_4, 0x0502);
+//      // PKN1=5 PKN0=7
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_5, 0x0507);
+//      // PKN3=2 PNN2=4
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_6, 0x0204);
+//      // PKN5=2 PKN4=4
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_7, 0x0204);
+//      // PRN1=5 PRN0=2
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_8, 0x0502);
+//      // VRP1=3 VRP0=2
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_9, 0x0302);
+//      // VRN1=3 VRN0=2
+//      tft_setDisplayRegister(SSD1289_REG_GAMMA_CTRL_10, 0x0302);
+//
+//      // WMR=0 WMG=0
+//      tft_setDisplayRegister(SSD1289_REG_WR_DATA_MASK_1, 0x0000);
+//      // WMB=0
+//      tft_setDisplayRegister(SSD1289_REG_WR_DATA_MASK_2, 0x0000);
+//      // OSC=b1010:548k
+//      tft_setDisplayRegister(SSD1289_REG_FRAME_FREQUENCY, 0xa000);
+//      // SS1=0
+//      tft_setDisplayRegister(SSD1289_REG_FIRST_WIN_START, 0x0000);
+//      // SE1=319
+//      tft_setDisplayRegister(SSD1289_REG_FIRST_WIN_END, (TFT_HEIGHT_UI16 - 1));
+//      // SS2=0
+//      tft_setDisplayRegister(SSD1289_REG_SECND_WIN_START, 0x0000);
+//      // SE2=0
+//      tft_setDisplayRegister(SSD1289_REG_SECND_WIN_END, 0x0000);
+//      // VL1=0
+//      tft_setDisplayRegister(SSD1289_REG_V_SCROLL_CTRL_1, 0x0000);
+//      // VL2=0
+//      tft_setDisplayRegister(SSD1289_REG_V_SCROLL_CTRL_2, 0x0000);
+//      // HEA=0xef=239 HSA=0
+//      tft_setDisplayRegister(SSD1289_REG_H_RAM_ADR_POS, (TFT_WIDTH_UI16 - 1) << 8);
+//      // VSA=0
+//      tft_setDisplayRegister(SSD1289_REG_V_RAM_ADR_START, 0x0000);
+//      // VEA=0x13f=319
+//      tft_setDisplayRegister(SSD1289_REG_V_RAM_ADR_END, (TFT_HEIGHT_UI16 - 1));
 
-      //landscape
-      tft_setDisplayRegister(0x0001, 0x293F);  tft_waitXms(150);
-      tft_setDisplayRegister(0x0011, 0x6078);  tft_waitXms(200);
-
-
-      tft_setDisplayRegister(0x0005, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0006, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0016, 0xEF1C);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0017, 0x0003);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0007, 0x0233);  tft_waitXms(10);
-      tft_setDisplayRegister(0x000B, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x000F, 0x0000);  tft_waitXms(200);
-      tft_setDisplayRegister(0x0041, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0042, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0048, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0049, 0x013F);  tft_waitXms(10);
-      tft_setDisplayRegister(0x004A, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x004B, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0044, 0xEF00);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0045, 0x0000);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0046, 0x013F);  tft_waitXms(200);
-      tft_setDisplayRegister(0x0030, 0x0707);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0031, 0x0204);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0032, 0x0204);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0033, 0x0502);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0034, 0x0507);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0035, 0x0204);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0036, 0x0204);  tft_waitXms(10);
-      tft_setDisplayRegister(0x0037, 0x0502);  tft_waitXms(10);
-      tft_setDisplayRegister(0x003A, 0x0302);  tft_waitXms(10);
-      tft_setDisplayRegister(0x003B, 0x0302);  tft_waitXms(20);
-      //      tft_setDisplayRegister(0x0023, 0x0000);  tft_waitXms(1000);
-      //      tft_setDisplayRegister(0x0024, 0x0000);  tft_waitXms(1000);
-      //      tft_setDisplayRegister(0x0025, 0x8000);  tft_waitXms(1000);
-      //      tft_setDisplayRegister(0x004f, 0x0000);  tft_waitXms(1000);
-      //      tft_setDisplayRegister(0x004e, 0x0000);  tft_waitXms(1000);
 
    }
 }
@@ -614,7 +741,7 @@ Std_ReturnType tft_drawLine
    /* Set window size and position - modified for portrait view */
    tft_setWindow(xPosition_ui16, yPosition_ui16, lineLength_ui16 + xPosition_ui16, yPosition_ui16);
 
-//   tft_setPixelCoordinates(xPosition_ui16, yPosition_ui16);
+   //   tft_setPixelCoordinates(xPosition_ui16, yPosition_ui16);
 
    for(cnt = 0; cnt < lineLength_ui16; cnt++)
    {

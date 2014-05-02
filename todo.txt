@@ -1,6 +1,5 @@
 TEIL_A:
 ======
-* Konverter von Bildern ins Framebuffer RAW Format (verwendung von SDL, ...)
 * SSD1963 Test mit PLL Initialisierung in Bootloader, Rest im Framebuffer- bzw. Userspace-Treiber
 * SSD1289 fade out beseitigen (evtl. neues Display besorgen?)
 * SSD1289 Framebuffertreiber und Userspace-Treiber fertigstellen

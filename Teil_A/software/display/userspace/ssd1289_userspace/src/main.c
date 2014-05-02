@@ -135,7 +135,8 @@ sint32 main (sint32 * argc, uint8 * argv[])
    while (cmp < CYCLES)
    {
       cmp++;
-      tft_clearScreen (cmp);
+      tft_drawRectangle(0, 0, atoi(argv[1]), atoi(argv[2]), cmp);
+//      tft_clearScreen (cmp);
    }
    gettimeofday (&stop, NULL);
 
