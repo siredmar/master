@@ -1,0 +1,245 @@
+if ARCH_LPC313X
+
+choice
+	prompt "LPC313X Implementations"
+	#default MACH_EA313x_V1
+	default MACH_EPLPC3131_V1
+
+config MACH_VAL3153
+	bool "NXP validation board VAL3131"
+	select USES_CS8900
+	select USES_NAND
+	select USES_SPINOR
+
+config MACH_VAL3154
+	bool "NXP validation board VAL3154"
+	select HAS_ANALOG_DIE
+	select USES_NAND
+
+config MACH_EA313x_V1
+	bool "EA313x 1.0 board w/o ethernet"
+	select USES_NAND
+	select USES_SPINOR
+
+config MACH_EA313x_V2
+	bool "EA313x 2.0 board w/ ethernet"
+	select USES_DM9000
+	select USES_NAND
+	select USES_SPINOR
+	
+config MACH_EA3152
+	bool "EA3152 board w/ ethernet"
+	select HAS_ANALOG_DIE
+	select USES_DM9000
+	select USES_NAND
+	select USES_SPINOR
+
+config MACH_EPLPC3131_V1
+		bool "Embedded Projects GmbH LPC3131"
+
+
+endchoice
+
+
+menu "Platform Setup"
+
+config OSC_FREQ
+	int "Crystal frequency"
+	default 12000000 
+	depends on ARCH_LPC313X
+	help
+	  Change this if using crystal other than 12MHz. 
+choice
+	prompt "PLL frequency"
+	default PLL_180
+
+config PLL_90
+	bool "Set PLL/ARM frequency at 90MHz and AHB=45MHz"
+
+config PLL_180
+	bool "Set PLL/ARM frequency at 180MHz and AHB=90MHz"
+
+config PLL_270
+	bool "Set PLL/ARM frequency at 270MHz and AHB=90MHz."
+	help
+	  This frequency is garunteed only for LPC314x series with core
+	  voltage set to 1.3v. 
+
+
+endchoice
+
+config DYNAMIC_CLOCKS
+	bool "Enable automatic clock scaling"
+	help
+	  Enables automatic clock scaling feature present in CGU. Whenever
+	  AHB bus system is inactive CGU automaticly switches the FDC0 to FDC7
+	  to DynFDC0 to DyncFDC7.   
+	  
+config USB_BOOT
+	bool "Enable LPC313x USB boot method"
+	help
+	  Make sure you have copied usbmsc.d file under 
+	  src\mach-lpc313x\usb directory.   
+	  
+config ATAG_PHYS
+	hex "Physical address for ATAGs list"
+	default "0x30000100"
+	depends on ATAG
+	help
+	  This is the address where APEX will construct the ATAG list
+	  before starting the Linux kernel.  This address should be
+	  within the first 16KiB of physical RAM.  Don't change this
+	  value unless you know what you are doing. 
+
+config ARCH_NUMBER
+	int
+	default 9999 if (MACH_VAL3153)
+	default 9998 if (MACH_EA313x_V1 || MACH_EA313x_V2 || MACH_EPLPC3131_V1)
+	default 9997 if (MACH_VAL3154)
+	default 9996 if (MACH_EA3152)
+
+config APEX_VMA
+	hex "APEX Runtime Address"
+	default "0x11029000"
+
+config KERNEL_LMA
+	hex "Kernel Load Address"
+	default "0x30008000"
+
+config USE_RAMDISK
+	bool "Enable ramdisk options"
+	default n
+	help
+	  This option doesn't enable the ramdisk, per se.  It enables
+	  other configuration options that help setup a default
+	  ramdisk.  The kernel command line and the APEX startup
+	  commands may be overridden to perform the same steps.
+
+	  There is a separate option in the Environment section that
+	  controls whether or not APEX copies the ramdisk from flash
+	  into RAM at startup.  That is where the ramdisk region is
+	  defined.
+
+config RAMDISK_LMA
+	hex "Ramdisk load address"
+	default "0x32000000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the physical load address for an initial
+	  ramdisk (a.k.a initrd).
+
+config RAMDISK_SIZE
+	hex "Ramdisk compressed size"
+	default "0x00300000"
+	depends on USE_RAMDISK
+	help
+	  This option sets the size, in bytes, of the initial ramdisk
+	  (a.k.a. initrd).  This is the size of the compressed initrd
+	  image.
+
+config AUTOFORMAT_BLOCK0
+	bool "Autoformat NAND block 0"
+	default y
+	depends on DRIVER_NAND
+	help
+	  The LPC31xx devices use block 0 of FLASH to store device bad
+	  block and NAND boot information. If this option is enabled,
+	  this information will be built automatically if it doesn't
+	  exist. (A image of all the factory bad blocks are stored in
+	  here.) It is highly recommended that this option always be
+	  enabled. If it is not enabled, the device should be formatted
+	  manually with the lpcnand format command. If this is not
+	  done, the device will lose it's factory bad block information
+	  as soon as writes start occuring to the device. See the
+	  additional information about NAND FLASH included with the BSP
+	  for more information.
+
+choice
+	prompt "LPC NAND device"
+	depends on DRIVER_NAND
+	default MICRON_MT29F2G08
+
+config MICRON_MT29F2G08
+	bool "MICRON NAND MT29F2G08 device."
+
+config MICRON_MT29F4G08
+	bool "MICRON NAND MT29F4G08 device."
+
+config SAMSUNG_K9K8G
+	bool "SAMSUNG NAND K9K8G device."
+
+config TOSHIBA_TC58DVM82A
+	bool "TOSHIBA C58DVM82A device (small block)."
+
+endchoice
+
+config DRIVER_SPINOR
+	bool "SPI NOR Flash"
+	depends on USES_SPINOR=y
+	default y
+	help
+	  This driver implements a SPI-NOR flash driver
+	  which works with most contemporary SPI-NOR flash chips. 
+
+choice
+	prompt "SPI NOR device"
+	depends on DRIVER_SPINOR
+	default SPINOR_AT45DB
+
+config SPINOR_AT45DB
+	bool "Atmel SPINOR AT45DB device."
+
+endchoice
+
+
+choice
+	prompt "Choose RAM size"
+	default RAM_SIZE_8MB 
+	help
+	    With this Option you can choose the correct size of your RAM. 
+
+config  RAM_SIZE_8MB
+	bool "8MB RAM"
+
+config  RAM_SIZE_32MB
+	bool "32MB RAM"
+
+config  RAM_SIZE_64MB
+	bool "64MB RAM"
+
+endchoice
+
+
+config USES_LCD
+   bool "Enable LCD options"
+   prompt "LCD Display Controller"
+   default n
+   help
+       Enables the used display controller 
+
+config  USES_SSD1963
+   depends on USES_LCD
+   bool "SSD1963 PLL initialization"
+
+
+endmenu
+
+config MACH
+	string
+	default "lpc313x"
+
+config ARCH_LPC313X
+	bool
+	select CPU_ARMV5
+	select CPU_ARM9
+	select CPU_ARM926T
+
+
+config HAS_ANALOG_DIE
+	bool
+
+config USES_SPINOR
+	bool
+
+endif
+

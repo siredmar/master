@@ -14,5 +14,4 @@ PC:
 TEIL_A: 
 =======
 Software:
-* SGI-RGB Image format http://paulbourke.net/dataformats/sgirgb/
-
+* Copy: memcopy vs. for-loop: http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly

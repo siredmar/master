@@ -94,10 +94,10 @@ int main(int argc, const char *argv[])
 
 //   tft_drawRectangle(0, 0, 10, 10, color);
 
-//   while(1)
-//   {
-//      tft_drawRectangle(xs, ys, xe, ye, getRGB565Rainbow());
-//   }
+   while(1)
+   {
+      tft_drawRectangle(xs, ys, xe, ye, getRGB565Rainbow());
+   }
 
   return 0;
 }

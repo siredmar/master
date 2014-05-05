@@ -222,22 +222,22 @@ void tft_sendData
       uint16 data_ui16
 )
 {
-//   if(debug_output == 0)
-//   {
-      *(sram0_data) = data_ui16;
-//   }
-//   if(debug_output == 1)
-//   {
-//      printf("%d\ttft_sendData:\t\t 0x%.2X", send_counter++, data_ui16);
-//      waitForUserInput();
-//      *(sram0_data) = data_ui16;
-//   }
-//   if(debug_output == 2)
-//   {
-//      printf("%d\ttft_sendData:\t\t 0x%.2X\n", send_counter++, data_ui16);
-//      *(sram0_data) = data_ui16;
-//      tft_waitXms(1000);
-//   }
+   //   if(debug_output == 0)
+   //   {
+   *(sram0_data) = data_ui16;
+   //   }
+   //   if(debug_output == 1)
+   //   {
+   //      printf("%d\ttft_sendData:\t\t 0x%.2X", send_counter++, data_ui16);
+   //      waitForUserInput();
+   //      *(sram0_data) = data_ui16;
+   //   }
+   //   if(debug_output == 2)
+   //   {
+   //      printf("%d\ttft_sendData:\t\t 0x%.2X\n", send_counter++, data_ui16);
+   //      *(sram0_data) = data_ui16;
+   //      tft_waitXms(1000);
+   //   }
 
 
 
@@ -248,25 +248,25 @@ void tft_sendPixelData
       uint16 data_ui16
 )
 {
-//   if(debug_output == 0)
-//   {
-      *(sram0_data) = data_ui16 * 6000;
+   //   if(debug_output == 0)
+   //   {
+   *(sram0_data) = data_ui16 * 6000;
 
    //*(sram0_data) = (data_ui16 >> 8) & 0xFF;
-//   *(sram0_data) = data_ui16 & 0xFF;
-//   }
-//   if(debug_output == 1)
-//   {
-//      printf("%d\ttft_sendPixelData:\t 0x%.2X",  send_counter++, data_ui16);
-//      waitForUserInput();
-//      *(sram0_data) = data_ui16;
-//   }
-//   if(debug_output == 2)
-//   {
-//      printf("%d\ttft_sendPixelData:\t 0x%.2X\n",  send_counter++, data_ui16);
-//      *(sram0_data) = data_ui16;
-//      tft_waitXms(1000);
-//   }
+   //   *(sram0_data) = data_ui16 & 0xFF;
+   //   }
+   //   if(debug_output == 1)
+   //   {
+   //      printf("%d\ttft_sendPixelData:\t 0x%.2X",  send_counter++, data_ui16);
+   //      waitForUserInput();
+   //      *(sram0_data) = data_ui16;
+   //   }
+   //   if(debug_output == 2)
+   //   {
+   //      printf("%d\ttft_sendPixelData:\t 0x%.2X\n",  send_counter++, data_ui16);
+   //      *(sram0_data) = data_ui16;
+   //      tft_waitXms(1000);
+   //   }
 }
 
 //void tft_sendPixelData_8Bit
@@ -293,22 +293,22 @@ void tft_sendCommand
 )
 {
    // data_ui16 = data_ui16 & 0xFF;
-//   if(debug_output == 0)
-//   {
-    *(sram0_ctrl) = (data_ui16 & 0xFF);
-//   }
-//   if(debug_output == 1)
-//   {
-//      printf("%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
-//      waitForUserInput();
-//      *(sram0_ctrl) = (data_ui16 & 0xFF);
-//   }
-//   if(debug_output == 2)
-//   {
-//      printf("%d\ttft_sendCommand:\t 0x%.2X\n", send_counter++, data_ui16);
-//      *(sram0_ctrl) = (data_ui16 & 0xFF);
-//      tft_waitXms(1000);
-//   }
+   //   if(debug_output == 0)
+   //   {
+   *(sram0_ctrl) = (data_ui16 & 0xFF);
+   //   }
+   //   if(debug_output == 1)
+   //   {
+   //      printf("%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
+   //      waitForUserInput();
+   //      *(sram0_ctrl) = (data_ui16 & 0xFF);
+   //   }
+   //   if(debug_output == 2)
+   //   {
+   //      printf("%d\ttft_sendCommand:\t 0x%.2X\n", send_counter++, data_ui16);
+   //      *(sram0_ctrl) = (data_ui16 & 0xFF);
+   //      tft_waitXms(1000);
+   //   }
 
 }
 
@@ -418,13 +418,13 @@ void tft_init(void)
    printf("tft_readSRAM0Timings() returned\n\n");
 #endif
 
-      tft_deSelectReset();
-      tft_waitXms(200);   /* Wait 100ms */
-      tft_selectReset(); /* Reset Display done */
-      tft_waitXms(200);
+   tft_deSelectReset();
+   tft_waitXms(200);   /* Wait 100ms */
+   tft_selectReset(); /* Reset Display done */
+   tft_waitXms(200);
 
-//      tft_sendCommand(MD050SD_SET_BACKLIGHT_PWM);
-//      tft_sendData(2);
+   //      tft_sendCommand(MD050SD_SET_BACKLIGHT_PWM);
+   //      tft_sendData(2);
 }
 
 
@@ -442,7 +442,7 @@ void tft_clearScreen
 )
 {
 
-   tft_drawRectangle(0, 0, TFT_WIDTH_UI16-1, TFT_HEIGHT_UI16-1, color_ui16);
+   tft_drawRectangle(0, 0, TFT_WIDTH_UI16, TFT_HEIGHT_UI16, color_ui16);
 }
 
 
@@ -550,7 +550,6 @@ Std_ReturnType tft_drawRectangle
    for(forCounter_ui32 = 0; forCounter_ui32 < pixelSizeOfRectangle_ui32; forCounter_ui32++)
    {
       tft_sendPixelData(rectangleColor_ui16);
-      //tft_sendData(rectangleColor_ui16);
    }
 
 

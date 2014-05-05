@@ -16,4 +16,4 @@ __attribute__((section(".modinfo"))) =
 "depends=led-class";
 
 
-MODULE_INFO(srcversion, "9E99F88021BB04279F6CC33");
+MODULE_INFO(srcversion, "8402BCB53CAC42A22C389B7");

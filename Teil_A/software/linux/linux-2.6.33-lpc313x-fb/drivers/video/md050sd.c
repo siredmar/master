@@ -2,7 +2,7 @@
  * MD050SD Framebuffer
  *
  *
- * Copyright (c) 2013 Armin Schlegel <armin.schlegel@gmx.de>
+ * Copyright (c) 2014 Armin Schlegel <armin.schlegel@gmx.de>
  * Original: Copyright (c) 2009 Jean-Christian de Rivaz
  * Original: Copyright (c) 2012 Jeroen Domburg <jeroen@spritesmods.com>
  *
@@ -16,8 +16,6 @@
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file "COPYING" in the main directory of this archive
  * for more details.
- *
- * The Solomon Systech MD050SD chip drive TFT screen with a resolution of 800x480.
  *
  * For direct I/O-mode:
  *
@@ -51,10 +49,12 @@
 //#define LED_ENABLE_PIN  20
 #define LED_RESET_PIN  19
 
-/* TFT Controler Register defines */
-#define NOCMD                 0xFFFF
-#define NOPARAM               0
-#define PARAM                 1
+///* TFT Controler Register defines */
+//#define NOCMD                 0xFFFF
+//#define NOPARAM               0
+//#define PARAM                 1
+
+#define USE_MEMCPY   0
 
 
 /* TFT Controler Register defines */
@@ -91,14 +91,9 @@ struct md050sd {
    volatile unsigned short *data_io;
 };
 
-//#define MD050SD_PAGE_SIZE  (2048*2)
-#define MD050SD_LINES_PER_PAGE  32
+#define MD050SD_LINES_PER_PAGE  60
 #define MD050SD_BYTES_PER_PIXEL         2
 #define MD050SD_PAGE_SIZE  (MD050SD_LINES_PER_PAGE * MD050SD_WIDTH * MD050SD_BYTES_PER_PIXEL)
-
-//#define MD050SD_PAGE_SIZE  (800*2)
-
-
 
 inline void md050sd_send_cmd(struct md050sd *item, unsigned short cmd)
 {
@@ -110,24 +105,6 @@ inline void md050sd_send_data(struct md050sd *item, unsigned short data)
 {
    writew(data, item->data_io);
 }
-
-
-
-//void md050sd_setDisplayRegister
-//(struct md050sd *item,
-//      unsigned short tft_register_ui16,
-//      unsigned short tft_registerValue_ui16,
-//      unsigned short tft_registerParameters_ui16)
-//{
-//   /* First send Command if it is != NOCMD */
-//   if (tft_register_ui16 != NOCMD) {
-//      md050sd_send_cmd(item, tft_register_ui16);
-//   }
-//   /* Then send or continue sending Parameter to tft controler if needed */
-//   if (tft_registerParameters_ui16 != NOPARAM) {
-//      md050sd_send_cmd(item, tft_registerValue_ui16);
-//   }
-//}
 
 void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short ys,
       unsigned short xe, unsigned short ye)
@@ -144,17 +121,6 @@ void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short y
 
    md050sd_send_cmd(item, MD050SD_WRITE_MEMORY_START);
 }
-
-//void md050sd_drawPixel(struct md050sd *item,
-//      unsigned short xPosition_ui16,
-//      unsigned short yPosition_ui16,
-//      unsigned short rectangleColor_ui16)
-//{
-//   /* Set window size and position - modified for portrait view */
-//   md050sd_setWindow(item, xPosition_ui16, yPosition_ui16,
-//         xPosition_ui16 + 1, yPosition_ui16 + 1);
-//   md050sd_send_data(item, rectangleColor_ui16);
-//}
 
 void md050sd_copy(struct md050sd *item, unsigned int index)
 {
@@ -179,7 +145,7 @@ void md050sd_copy(struct md050sd *item, unsigned int index)
    dev_dbg(item->dev,
          "%s: page[%u]: x=%3hu y=%3hu buffer=0x%p len=%3hu\n",
          __func__, index, x, y, buffer, len);
-
+#if USE_MEMCPY == 0
    tmpy = 0;
    xend = 0;
    for (y_local = y; y_local < y + MD050SD_LINES_PER_PAGE; y_local++) {
@@ -199,6 +165,10 @@ void md050sd_copy(struct md050sd *item, unsigned int index)
       }
       tmpy++;
    }
+#else
+   md050sd_setWindow(item, x, MD050SD_WIDTH, y, y + MD050SD_LINES_PER_PAGE);
+   memcpy(item->data_io, buffer, len * 2);
+#endif
 }
 
 static void md050sd_update_all(struct md050sd *item)
@@ -253,14 +223,6 @@ static void __init md050sd_setup(struct md050sd *item)
    md050sd_setWindow(item, 0, 0, MD050SD_WIDTH - 1, MD050SD_HEIGHT - 1);
    for (x = 0; x < MD050SD_WIDTH * MD050SD_HEIGHT; x++)
       md050sd_send_data(item, 0x0000);
-
-
-   //   md050sd_setWindow(item, 0, 0, MD050SD_WIDTH - 1, MD050SD_HEIGHT - 1);
-   //   for (y = 0; y < item->pages_count; y++) {
-   //      for (x = 0; x < item->pages[y].len; x++) {
-   //         md050sd_send_data(item, item->pages[y].buffer[x]);
-   //      }
-   //   }
 
    msleep(10);
    printk(KERN_ALERT
@@ -541,7 +503,7 @@ static struct fb_var_screeninfo md050sd_var __initdata = {
 };
 
 static struct fb_deferred_io md050sd_defio = {
-      .delay = HZ / 20,
+      .delay = HZ / 30,
       .deferred_io = &md050sd_update,
 };
 
@@ -636,27 +598,6 @@ static int __init md050sd_probe(struct platform_device *dev)
    dev_dbg(&dev->dev, "%s: ctrl_io=%p data_io=%p\n",
          __func__, item->ctrl_io, item->data_io);
 
-
-   //   md050sd_send_cmd(item, SOFT_RESET);
-   //   mdelay(200);
-   //   md050sd_send_cmd(item, READ_DDB);
-   //   //mdelay(1);
-   //
-   //   id[0]=readw(item->data_io);
-   //   id[1]=readw(item->data_io);
-   //   id[2]=readw(item->data_io);
-   //   id[3]=readw(item->data_io);
-   //   id[4]=readw(item->data_io);
-
-   //   dev_dbg(&dev->dev, "%s: signature=%02x %02x %02x %02x %02x\n", __func__, id[0],id[1],id[2],id[3],id[4]);
-   //
-   //   if (!(id[0]==0x01 && id[1]==0x57 && id[2]==0x61 && id[3]==0x01)) {
-   //      ret = -ENODEV;
-   //      dev_err(&dev->dev,
-   //         "%s: unknown signature %02x %02x %02x %02x %02x\n", __func__, id[0],id[1],id[2],id[3],id[4]);
-   //      goto out_item;
-   //   }
-
    dev_info(&dev->dev, "item=0x%p ctrl=0x%p data=0x%p\n", (void *)item,
          (void *)ctrl_res->start, (void *)data_res->start);
 
@@ -738,7 +679,7 @@ static int md050sd_suspend(struct platform_device *dev, pm_message_t state)
    //      struct fb_info *info = dev_get_drvdata(&spi->dev);
    //      struct md050sd *item = (struct md050sd *)info->par;
    /* enter into sleep mode */
-   //      md050sd_reg_set(item, MD050SD_REG_SLEEP_MODE, 0x0001);
+
    return 0;
 }
 
@@ -747,7 +688,7 @@ static int md050sd_resume(struct platform_device *dev)
    //      struct fb_info *info = dev_get_drvdata(&spi->dev);
    //      struct md050sd *item = (struct md050sd *)info->par;
    /* leave sleep mode */
-   //      md050sd_reg_set(item, MD050SD_REG_SLEEP_MODE, 0x0000);
+
    return 0;
 }
 #else

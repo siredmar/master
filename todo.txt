@@ -1,6 +1,5 @@
 TEIL_A:
 ======
-* SSD1963 Test mit PLL Initialisierung in Bootloader, Rest im Framebuffer- bzw. Userspace-Treiber
 * SSD1289 fade out beseitigen (evtl. neues Display besorgen?)
 * SSD1289 Framebuffertreiber und Userspace-Treiber fertigstellen
 * Memcpy zum Schreiben auf 8080-Interface untersuchen (Erhoehte Geschwindigkeit)

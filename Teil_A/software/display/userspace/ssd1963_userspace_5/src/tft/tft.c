@@ -468,130 +468,130 @@ void tft_init
 
    if(init == 1)
    {
-      tft_deSelectReset();
-      tft_waitXms(100);   /* Wait 100ms */
-      tft_selectReset(); /* Reset Display done */
-      usleep(100);
-
-//      tft_readSignature();
-      tft_waitXms(10);
-
-
-
-
-
-      tft_sendCommand(SSD1963_SET_PLL_MN); // PLL config - continued
+//      tft_deSelectReset();
+//      tft_waitXms(100);   /* Wait 100ms */
+//      tft_selectReset(); /* Reset Display done */
+//      usleep(100);
+////
+//////      tft_readSignature();
+////      tft_waitXms(10);
+////
+////
+////
+////
+////
+//      tft_sendCommand(SSD1963_SET_PLL_MN); // PLL config - continued
+////      tft_waitXms(5);
+//      tft_sendData(0x0023);
+////      tft_waitXms(5);
+//      tft_sendData(0x0002);
+////      tft_waitXms(5);
+//      tft_sendData(0x00FF);
+//
+//      tft_waitXms(100);
+//
+//      tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
 //      tft_waitXms(5);
-      tft_sendData(0x0023);
+//      tft_sendData(0x0001);
+//      tft_waitXms(100);
+//
+////      tft_readSignature();
+//      tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
 //      tft_waitXms(5);
-      tft_sendData(0x0002);
-//      tft_waitXms(5);
-      tft_sendData(0x00FF);
-
-      tft_waitXms(100);
-
-      tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
-      tft_waitXms(5);
-      tft_sendData(0x0001);
-      tft_waitXms(100);
-
-//      tft_readSignature();
-      tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
-      tft_waitXms(5);
-      tft_sendData(0x0003);
-
-//      do
-//      {
-//         tft_sendCommand(SSD1963_GET_PLL_STATUS);
-//      } while (tft_readData_slowPLL() != 0x04);
-
-
-      //
-      //      tft_readSignature();
-
-      //      tft_readPLL();
-      //      tft_waitXms(1000);
-
-
-
-      tft_sendCommand(SSD1963_SOFT_RESET);
-      tft_waitXms(100);
-
-      //      tft_waitXms(100);
-      //      tft_readSignature();
-      //      //
-      //      //      tft_readSignature();
-      //      //      tft_waitXms(1000);
-            tft_readPLL();
-      ////
-
-      ////      tft_readSignature();
-      //      //      tft_readPLL();
-      //      tft_readPLL();
-      //      /* Wait for PLL to lock */
-
-      //
-      //
-      //      tft_sendCommand(SSD1963_SET_LSHIFT_FREQ);
-      //      tft_sendData(0x0003); // LSHIFT freq
-      //      tft_sendData(0x00FF);
-      //      tft_sendData(0x00FF);
-      //
-      //      tft_sendCommand(SSD1963_SET_LCD_MODE);
-      //      tft_sendData(0x0027);
-      //      tft_sendData(0x0000);
-      //      tft_sendData((HDP>>8)&0X00FF);  //Set HDP
-      //      tft_sendData(HDP&0X00FF);
-      //      tft_sendData((VDP>>8)&0X00FF);  //Set VDP
-      //      tft_sendData(VDP&0X00FF);
-      //      tft_sendData(0x0000);
-      //      tft_waitXms(5);
-      //
-      //      tft_sendCommand(SSD1963_SET_HORI_PERIOD);
-      //      tft_sendData(((HT >> 8U) & 0x00FF));  // horizontal period
-      //      tft_sendData((HT & 0x00FF));
-      //      tft_sendData(((HPS >> 8U) & 0x00FF));
-      //      tft_sendData((HPS & 0x00FF));
-      //      tft_sendData(HPW);
-      //      tft_sendData(((LPS >> 8U) & 0x00FF));
-      //      tft_sendData((LPS & 0x00FF));
-      //      tft_sendData(0x0000);
-      //
-      //      tft_sendCommand(SSD1963_SET_VERT_PERIOD);
-      //      tft_sendData(((VT >> 8U) & 0x00FF)); // vertical period
-      //      tft_sendData((VT & 0x00FF));
-      //      tft_sendData((VPS >> 8U) & 0x00FF);
-      //      tft_sendData((VPS & 0x00FF));
-      //      tft_sendData(VPW);
-      //      tft_sendData(((FPS >> 8U) & 0x00FF));
-      //      tft_sendData((FPS & 0x00FF));
-      //
-      //      tft_sendCommand(SSD1963_SET_ADDRESS_MODE);
-      //      tft_sendData(0x0000);  // rotation - landscape
-      //
-      //      tft_sendCommand(SSD1963_SET_PIXEL_DATA_INTERFACE);
-      //      tft_sendData(0x0003);  // pixel data interface 16 bit    0b011 is 16 Bit
-      //      tft_waitXms(5);
-      //
-      //      tft_sendCommand(SSD1963_SET_DISPLAY_ON); // set display on
-      //
-      //      tft_sendCommand(SSD1963_SET_PWM_CONF);
-      //      tft_sendData(0x0006);  // pwm config
-      //      tft_sendData(0x00F0);
-      //      tft_sendData(0x0001);
-      //      tft_sendData(0x00F0);
-      //      tft_sendData(0x0000);
-      //      tft_sendData(0x0000);
-      //
-      //      tft_sendCommand(SSD1963_SET_DBC_CONF);
-      //      tft_sendData(0x000D); // pwm coffig continued
-      //
-      //      tft_sendCommand(SSD1963_SET_GPIO_CONF);
-      //      tft_sendData(0x0000); // gpio config
-      //      tft_sendData(0x0000);
-      //
-      //      tft_sendCommand(SSD1963_SET_GPIO_VALUE);
-      //      tft_sendData(0x0000); // gpio to 0x00
+//      tft_sendData(0x0003);
+////
+//////      do
+////      {
+////         tft_sendCommand(SSD1963_GET_PLL_STATUS);
+////      } while (tft_readData_slowPLL() != 0x04);
+//
+//
+//      //
+////            tft_readSignature();
+////
+////            tft_readPLL();
+////      //      tft_waitXms(1000);
+////
+//////
+////
+//      tft_sendCommand(SSD1963_SOFT_RESET);
+//      tft_waitXms(100);
+////
+////      //      tft_waitXms(100);
+////      //      tft_readSignature();
+////      //      //
+////      //      //      tft_readSignature();
+////      //      //      tft_waitXms(1000);
+////            tft_readPLL();
+////      ////
+////
+////      ////      tft_readSignature();
+////      //      //      tft_readPLL();
+////      //      tft_readPLL();
+////      //      /* Wait for PLL to lock */
+////
+////      //
+////      //
+//            tft_sendCommand(SSD1963_SET_LSHIFT_FREQ);
+//            tft_sendData(0x0003); // LSHIFT freq
+//            tft_sendData(0x00FF);
+//            tft_sendData(0x00FF);
+//
+//            tft_sendCommand(SSD1963_SET_LCD_MODE);
+//            tft_sendData(0x0027);
+//            tft_sendData(0x0000);
+//            tft_sendData((HDP>>8)&0X00FF);  //Set HDP
+//            tft_sendData(HDP&0X00FF);
+//            tft_sendData((VDP>>8)&0X00FF);  //Set VDP
+//            tft_sendData(VDP&0X00FF);
+//            tft_sendData(0x0000);
+//            tft_waitXms(5);
+//
+//            tft_sendCommand(SSD1963_SET_HORI_PERIOD);
+//            tft_sendData(((HT >> 8U) & 0x00FF));  // horizontal period
+//            tft_sendData((HT & 0x00FF));
+//            tft_sendData(((HPS >> 8U) & 0x00FF));
+//            tft_sendData((HPS & 0x00FF));
+//            tft_sendData(HPW);
+//            tft_sendData(((LPS >> 8U) & 0x00FF));
+//            tft_sendData((LPS & 0x00FF));
+//            tft_sendData(0x0000);
+//
+//            tft_sendCommand(SSD1963_SET_VERT_PERIOD);
+//            tft_sendData(((VT >> 8U) & 0x00FF)); // vertical period
+//            tft_sendData((VT & 0x00FF));
+//            tft_sendData((VPS >> 8U) & 0x00FF);
+//            tft_sendData((VPS & 0x00FF));
+//            tft_sendData(VPW);
+//            tft_sendData(((FPS >> 8U) & 0x00FF));
+//            tft_sendData((FPS & 0x00FF));
+//
+//            tft_sendCommand(SSD1963_SET_ADDRESS_MODE);
+//            tft_sendData(0x0000);  // rotation - landscape
+//
+//            tft_sendCommand(SSD1963_SET_PIXEL_DATA_INTERFACE);
+//            tft_sendData(0x0003);  // pixel data interface 16 bit    0b011 is 16 Bit
+//            tft_waitXms(5);
+//
+//            tft_sendCommand(SSD1963_SET_DISPLAY_ON); // set display on
+//
+//            tft_sendCommand(SSD1963_SET_PWM_CONF);
+//            tft_sendData(0x0006);  // pwm config
+//            tft_sendData(0x00F0);
+//            tft_sendData(0x0001);
+//            tft_sendData(0x00F0);
+//            tft_sendData(0x0000);
+//            tft_sendData(0x0000);
+//
+//            tft_sendCommand(SSD1963_SET_DBC_CONF);
+//            tft_sendData(0x000D); // pwm coffig continued
+//
+//            tft_sendCommand(SSD1963_SET_GPIO_CONF);
+//            tft_sendData(0x0000); // gpio config
+//            tft_sendData(0x0000);
+//
+//            tft_sendCommand(SSD1963_SET_GPIO_VALUE);
+//            tft_sendData(0x0000); // gpio to 0x00
    }
 }
 

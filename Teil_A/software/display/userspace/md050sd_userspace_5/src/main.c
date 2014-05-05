@@ -99,7 +99,7 @@
 #define BENCHMARK FALSE
 #if BENCHMARK == TRUE
    #include <time.h>
-   #define CYCLES 250
+   #define CYCLES 50
 #endif
 
 #define MAIN   5
@@ -360,13 +360,11 @@ sint32 main (sint32 * argc, uint8 * argv[])
                tft_setWindow (x, y, xend, y);
                tft_drawStart ();
 
-               //for(j = tmpx; j < tmpx+xend; j++)
                for (j = x; j <= xend; j++)
                {
                   tft_sendPixelData (buf_source[y][j]);
                   buf_display[y][j] = buf_source[y][j];
                   drawed++;
-                  //   x++;
                }
                x = xend;
             }
