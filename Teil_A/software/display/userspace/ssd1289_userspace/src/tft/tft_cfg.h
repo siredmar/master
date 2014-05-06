@@ -15,8 +15,8 @@
 /* ***************************** typedefs *********************************** */
 /* ***************************** defines ************************************ */
 
-#define TFT_WIDTH_UI16                       (uint16)320
-#define TFT_HEIGHT_UI16                      (uint16)240
+#define TFT_WIDTH_UI16                       (uint16)240
+#define TFT_HEIGHT_UI16                      (uint16)320
 
 #define TFT_ZERO_X                           (uint16)0
 #define TFT_ZERO_Y                           (uint16)0
@@ -66,8 +66,8 @@
 #define SSD1289_REG_GDDRAM_X_ADDR    0x4e
 #define SSD1289_REG_GDDRAM_Y_ADDR    0x4f
 
-#define SCREENWIDTH                      320
-#define SCREENHEIGHT                     240
+#define SCREENWIDTH                      TFT_WIDTH_UI16
+#define SCREENHEIGHT                     TFT_HEIGHT_UI16
 
 /* Hardware stuff */
 #define SRAM0_BASE       (0x20000000U)
