@@ -3743,9 +3743,9 @@ Sternpunkt 3 pol.
 </deviceset>
 <deviceset name="SP4" prefix="SP">
 <description>&lt;b&gt;
-Sternpunkt SP4
+Sternpunkt 4 pol.
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;</description>
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="SP4" x="0" y="0"/>
 </gates>

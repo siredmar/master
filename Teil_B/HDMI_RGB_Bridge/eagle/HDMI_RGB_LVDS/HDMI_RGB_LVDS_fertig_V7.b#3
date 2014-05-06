@@ -1288,9 +1288,9 @@ Covered vias can be set in Masks (Limit).
 <attribute name="NAME" x="58.4475" y="17.615" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="56.615" y="16.345" size="1.27" layer="27"/>
 </element>
-<element name="R7" library="SchlegelAr_Master" package="R0402" value="10k" x="59.875" y="9.25" smashed="yes" rot="R90">
-<attribute name="NAME" x="60.5725" y="10.635" size="1.27" layer="25" rot="R270"/>
-<attribute name="VALUE" x="61.78" y="8.615" size="1.27" layer="27" rot="R90"/>
+<element name="R7" library="SchlegelAr_Master" package="R0402" value="10k" x="58.9375" y="10.6875" smashed="yes" rot="R180">
+<attribute name="NAME" x="57.5525" y="11.385" size="1.27" layer="25"/>
+<attribute name="VALUE" x="59.5725" y="12.5925" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="CON3" library="SchlegelAr_Master" package="XF2M-4015-1A" value="XF2M-4015-1A" x="28.4375" y="39.375" rot="R270"/>
 <element name="IC2" library="SchlegelAr_Master" package="TO263-5" value="WPMDL1300331BD" x="59.625" y="51" smashed="yes" rot="R180">
@@ -2423,12 +2423,12 @@ Covered vias can be set in Masks (Limit).
 <contactref element="R7" pad="2"/>
 <via x="58.375" y="9.6875" extent="1-16" drill="0.3"/>
 <wire x1="58.375" y1="7.5" x2="58.375" y2="9.6875" width="0.3" layer="1"/>
-<wire x1="59.875" y1="9.9" x2="58.5875" y2="9.9" width="0.3" layer="1"/>
-<wire x1="58.5875" y1="9.9" x2="58.375" y2="9.6875" width="0.3" layer="1"/>
 <contactref element="R13" pad="1"/>
 <wire x1="14.0875" y1="5" x2="15" y2="5" width="0.3" layer="16"/>
 <via x="15" y="5" extent="1-16" drill="0.3"/>
 <contactref element="JP10" pad="2"/>
+<wire x1="58.2875" y1="10.6875" x2="58.2875" y2="9.775" width="0.3" layer="1"/>
+<wire x1="58.2875" y1="9.775" x2="58.375" y2="9.6875" width="0.3" layer="1"/>
 </signal>
 <signal name="N$2">
 <contactref element="CON1" pad="1"/>
@@ -2497,7 +2497,7 @@ Covered vias can be set in Masks (Limit).
 <via x="10.5625" y="24.8125" extent="1-16" drill="0.3"/>
 <polygon width="0.3" layer="1" thermals="no">
 <vertex x="9" y="27.75"/>
-<vertex x="9.0625" y="25.3125"/>
+<vertex x="9" y="25.3125"/>
 <vertex x="9.0625" y="25.25"/>
 <vertex x="6" y="25.25"/>
 <vertex x="6" y="24.1875"/>
@@ -2612,9 +2612,10 @@ Covered vias can be set in Masks (Limit).
 <contactref element="CON2" pad="19"/>
 <contactref element="R7" pad="1"/>
 <wire x1="58.875" y1="7.5" x2="58.875" y2="8.375" width="0.3048" layer="1"/>
-<wire x1="58.875" y1="8.375" x2="59.125" y2="8.625" width="0.3048" layer="1"/>
-<wire x1="59.125" y1="8.625" x2="59.85" y2="8.625" width="0.3048" layer="1"/>
-<wire x1="59.85" y1="8.625" x2="59.875" y2="8.6" width="0.3048" layer="1"/>
+<wire x1="58.875" y1="8.375" x2="58.875" y2="9" width="0.3" layer="1"/>
+<wire x1="58.875" y1="9" x2="59.5" y2="9.625" width="0.3" layer="1"/>
+<wire x1="59.5" y1="9.625" x2="59.5" y2="10.6" width="0.3" layer="1"/>
+<wire x1="59.5" y1="10.6" x2="59.5875" y2="10.6875" width="0.3" layer="1"/>
 </signal>
 <signal name="HDMI_OCK_INV">
 <contactref element="IC5" pad="100"/>

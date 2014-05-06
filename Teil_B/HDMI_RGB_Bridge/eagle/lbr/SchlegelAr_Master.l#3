@@ -3147,6 +3147,10 @@ http://www.mouser.com/ds/2/395/MBS2%20SERIES_J12-248491.pdf</description>
 </devices>
 </deviceset>
 <deviceset name="VCC_EXT">
+<description>&lt;b&gt;
+Symbol fuer VCC_EXT
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;</description>
 <gates>
 <gate name="G$1" symbol="VCC_EXT" x="0" y="0"/>
 </gates>
@@ -3465,9 +3469,9 @@ JUMPER3 - Jumper 3 pol.
 </deviceset>
 <deviceset name="WPMDL1300331BD" prefix="IC">
 <description>&lt;b&gt;
-WPMDL1300331BD
+WPMDL1300331BD - MagI³C-FDRM Fixed Step Down Regulator Module 3.3V
 
-&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 24.03.2014  &lt;br&gt;&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
 
 http://katalog.we-online.de/de/pm/MagIC-FDRM
 &lt;br&gt; &lt;br&gt;
