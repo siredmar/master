@@ -209,7 +209,24 @@ config  RAM_SIZE_64MB
 
 endchoice
 
+choice
+   prompt "Display Controller"
+   default DISP_NONE
+   help
+       Select the timing for display controllers. 
+config DISP_NONE
+   bool "none"
 
+config  DISP_SSD1963
+   bool "SSD1963"
+
+config  DISP_MD050SD
+   bool "MD050SD"
+
+config  DISP_SSD1289
+   bool "SSD1289"
+
+endchoice
 
 
 

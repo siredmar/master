@@ -32,8 +32,6 @@ kernel/drivers/media/video/ir-kbd-i2c.ko
 kernel/drivers/mmc/card/mmc_block.ko
 kernel/drivers/mmc/core/mmc_core.ko
 kernel/drivers/mmc/host/lpc313x_mmc.ko
-kernel/drivers/net/can/vcan.ko
-kernel/drivers/net/can/can-dev.ko
 kernel/drivers/rtc/rtc-lib.ko
 kernel/drivers/scsi/scsi_mod.ko
 kernel/drivers/scsi/sd_mod.ko
@@ -52,7 +50,7 @@ kernel/drivers/video/sysfillrect.ko
 kernel/drivers/video/syscopyarea.ko
 kernel/drivers/video/sysimgblt.ko
 kernel/drivers/video/fb_sys_fops.ko
-kernel/drivers/video/md050sd.ko
+kernel/drivers/video/ssd1289.ko
 kernel/drivers/video/console/fbcon.ko
 kernel/drivers/video/console/bitblit.ko
 kernel/drivers/video/console/font.ko

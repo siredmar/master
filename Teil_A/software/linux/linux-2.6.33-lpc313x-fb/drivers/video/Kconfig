@@ -2145,6 +2145,40 @@ config FB_PRE_INIT_FB
 	  Select this option if display contents should be inherited as set by
 	  the bootloader.
 
+config FB_MSM
+   tristate "MSM Framebuffer support"
+   depends on FB && ARCH_MSM
+   select FB_CFB_FILLRECT
+   select FB_CFB_COPYAREA
+   select FB_CFB_IMAGEBLIT
+   default y
+
+config FB_MX3
+   tristate "MX3 Framebuffer support"
+   depends on FB && MX3_IPU
+   select FB_CFB_FILLRECT
+   select FB_CFB_COPYAREA
+   select FB_CFB_IMAGEBLIT
+   default y
+   help
+     This is a framebuffer device for the i.MX31 LCD Controller. So
+     far only synchronous displays are supported. If you plan to use
+     an LCD display with your i.MX31 system, say Y here.
+
+config FB_BROADSHEET
+   tristate "E-Ink Broadsheet/Epson S1D13521 controller support"
+   depends on FB
+   select FB_SYS_FILLRECT
+   select FB_SYS_COPYAREA
+   select FB_SYS_IMAGEBLIT
+   select FB_SYS_FOPS
+   select FB_DEFERRED_IO
+   help
+     This driver implements support for the E-Ink Broadsheet
+     controller. The release name for this device was Epson S1D13521
+     and could also have been called by other names when coupled with
+     a bridge adapter.
+     
 config FB_SSD1963
   tristate "Solomon Systech SSD1963 controller support"
   depends on FB
@@ -2157,6 +2191,18 @@ config FB_SSD1963
     This is a framebuffer device for the Solomon Systek SSD1963
     controller.
     
+config FB_SSD1289
+  tristate "SSD1289 display support"
+  depends on FB
+  select FB_SYS_FILLRECT
+  select FB_SYS_COPYAREA
+  select FB_SYS_IMAGEBLIT
+  select FB_SYS_FOPS
+  select FB_DEFERRED_IO
+  help
+    This is a framebuffer device for the Solomon Systek SSD1289 
+    controller.
+        
 config FB_MD050SD
   tristate "MD050SD display support"
   depends on FB
@@ -2167,40 +2213,6 @@ config FB_MD050SD
   select FB_DEFERRED_IO
   help
     This is a framebuffer device for the MD050SD.
-
-config FB_MSM
-	tristate "MSM Framebuffer support"
-	depends on FB && ARCH_MSM
-	select FB_CFB_FILLRECT
-	select FB_CFB_COPYAREA
-	select FB_CFB_IMAGEBLIT
-	default y
-
-config FB_MX3
-	tristate "MX3 Framebuffer support"
-	depends on FB && MX3_IPU
-	select FB_CFB_FILLRECT
-	select FB_CFB_COPYAREA
-	select FB_CFB_IMAGEBLIT
-	default y
-	help
-	  This is a framebuffer device for the i.MX31 LCD Controller. So
-	  far only synchronous displays are supported. If you plan to use
-	  an LCD display with your i.MX31 system, say Y here.
-
-config FB_BROADSHEET
-	tristate "E-Ink Broadsheet/Epson S1D13521 controller support"
-	depends on FB
-	select FB_SYS_FILLRECT
-	select FB_SYS_COPYAREA
-	select FB_SYS_IMAGEBLIT
-	select FB_SYS_FOPS
-	select FB_DEFERRED_IO
-	help
-	  This driver implements support for the E-Ink Broadsheet
-	  controller. The release name for this device was Epson S1D13521
-	  and could also have been called by other names when coupled with
-	  a bridge adapter.
 
 source "drivers/video/omap/Kconfig"
 source "drivers/video/omap2/Kconfig"

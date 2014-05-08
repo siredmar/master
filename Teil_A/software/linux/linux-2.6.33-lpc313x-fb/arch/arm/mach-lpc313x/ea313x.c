@@ -201,7 +201,7 @@ static void __init ea_add_device_ssd1963(void)
 }
 #else
 static void __init ea_add_device_ssd1963(void) {}
-#endif /* CONFIG_SSD1963 */
+#endif /* CONFIG_FB_SSD1963 */
 
 #if defined (CONFIG_FB_MD050SD)
 static struct resource md050sd_resource[] = {
@@ -240,7 +240,46 @@ static void __init ea_add_device_md050sd(void)
 }
 #else
 static void __init ea_add_device_md050sd(void) {}
-#endif /* CONFIG_MD050SD */
+#endif /* CONFIG_FB_MD050SD */
+
+#if defined (CONFIG_FB_SSD1289)
+static struct resource ssd1289_resource[] = {
+  [0] = {
+     .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
+     .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
+     .flags = IORESOURCE_MEM,
+  },
+  [1] = {
+     .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
+     .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
+     .flags = IORESOURCE_MEM,
+  },
+};
+
+static struct platform_device ssd1289_device = {
+  .name          = "ssd1289",
+  .id            = 0,
+  .num_resources = ARRAY_SIZE(ssd1289_resource),
+  .resource      = ssd1289_resource,
+};
+
+static void __init ea_add_device_ssd1289(void)
+{
+  MPMC_STCONFIG0 = 0x81;
+  MPMC_STWTWEN0  = 0;
+  MPMC_STWTOEN0  = 0;
+  MPMC_STWTRD0   = 0;
+  MPMC_STWTPG0   = 0;
+  MPMC_STWTWR0   = 2;
+  MPMC_STWTTURN0 = 0;
+
+  printk(KERN_ALERT "SSD1289->EA313x: platform_device_register(&ssd1289_device) called\n");
+  platform_device_register(&ssd1289_device);
+  printk(KERN_ALERT "SSD1289->EA313x: platform_device_register(&ssd1289_device) returned\n");
+}
+#else
+static void __init ea_add_device_ssd1289(void) {}
+#endif /* CONFIG_FB_SSD1289 */
 
 //static struct resource testmod_resource[] = {
 //   [0] = {
@@ -646,7 +685,9 @@ static void __init ea313x_init(void)
 	/* add DM9000 device */
 	ea_add_device_dm9000();
 	ea_add_device_ssd1963();
+	ea_add_device_ssd1289();
 	ea_add_device_md050sd();
+
 //   ea_add_device_testmod();
 
 	/* register i2cdevices */
@@ -657,7 +698,6 @@ static void __init ea313x_init(void)
 	GPIO_OUT_HIGH(IOCONF_GPIO,(1 << GPIO_GPIO11)); /* GPIO11 */
 	GPIO_OUT_HIGH(IOCONF_GPIO,(1 << GPIO_GPIO15)); /* GPIO15 */
 	GPIO_OUT_HIGH(IOCONF_GPIO,(1 << GPIO_GPIO19)); /* GPIO19 */
-
 
 	
 #if defined(CONFIG_MACH_EA3152)
