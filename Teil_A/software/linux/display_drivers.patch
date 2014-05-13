@@ -1,7 +1,264 @@
-diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/Kconfig linux-2.6.33-lpc313x-fb/drivers/video/Kconfig
+diff -uNr linux-2.6.33-lpc313x-vanilla/arch/arm/mach-lpc313x/ea313x.c linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c
+--- linux-2.6.33-lpc313x-vanilla/arch/arm/mach-lpc313x/ea313x.c	2014-05-13 18:16:09.361514071 +0200
++++ linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c	2014-05-08 13:58:11.948636902 +0200
+@@ -49,6 +49,7 @@
+ #include <linux/i2c/pca953x.h>
+ #include <linux/serial_sc16is7x2.h>
+ 
++
+ static struct lpc313x_mci_irq_data irq_data = {
+ 	.irq = IRQ_SDMMC_CD,
+ };
+@@ -163,6 +164,158 @@
+ 	.resource	= lpc313x_mci_resources,
+ };
+ 
++#if defined (CONFIG_FB_SSD1963)
++static struct resource ssd1963_resource[] = {
++  [0] = {
++     .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
++     .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
++     .flags = IORESOURCE_MEM,
++  },
++  [1] = {
++     .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
++     .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
++     .flags = IORESOURCE_MEM,
++  },
++};
++
++static struct platform_device ssd1963_device = {
++  .name          = "ssd1963",
++  .id            = 0,
++  .num_resources = ARRAY_SIZE(ssd1963_resource),
++  .resource      = ssd1963_resource,
++};
++
++static void __init ea_add_device_ssd1963(void)
++{
++  MPMC_STCONFIG0 = 0x81;
++  MPMC_STWTWEN0  = 0;
++  MPMC_STWTOEN0  = 0;
++  MPMC_STWTRD0   = 31;
++  MPMC_STWTPG0   = 0;
++  MPMC_STWTWR0   = 15;
++  MPMC_STWTTURN0 = 0;
++
++  printk(KERN_ALERT "SSD1963->EA313x: platform_device_register(&ssd1963_device) called\n");
++  platform_device_register(&ssd1963_device);
++  printk(KERN_ALERT "SSD1963->EA313x: platform_device_register(&ssd1963_device) returned\n");
++}
++#else
++static void __init ea_add_device_ssd1963(void) {}
++#endif /* CONFIG_FB_SSD1963 */
++
++#if defined (CONFIG_FB_MD050SD)
++static struct resource md050sd_resource[] = {
++  [0] = {
++     .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
++     .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
++     .flags = IORESOURCE_MEM,
++  },
++  [1] = {
++     .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
++     .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
++     .flags = IORESOURCE_MEM,
++  },
++};
++
++static struct platform_device md050sd_device = {
++  .name          = "md050sd",
++  .id            = 0,
++  .num_resources = ARRAY_SIZE(md050sd_resource),
++  .resource      = md050sd_resource,
++};
++
++static void __init ea_add_device_md050sd(void)
++{
++  MPMC_STCONFIG0 = 0x81;
++  MPMC_STWTWEN0  = 0;
++  MPMC_STWTOEN0  = 0;
++  MPMC_STWTRD0   = 0;
++  MPMC_STWTPG0   = 0;
++  MPMC_STWTWR0   = 2;
++  MPMC_STWTTURN0 = 0;
++
++  printk(KERN_ALERT "MD050SD->EA313x: platform_device_register(&md050sd_device) called\n");
++  platform_device_register(&md050sd_device);
++  printk(KERN_ALERT "MD050SD->EA313x: platform_device_register(&md050sd_device) returned\n");
++}
++#else
++static void __init ea_add_device_md050sd(void) {}
++#endif /* CONFIG_FB_MD050SD */
++
++#if defined (CONFIG_FB_SSD1289)
++static struct resource ssd1289_resource[] = {
++  [0] = {
++     .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
++     .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
++     .flags = IORESOURCE_MEM,
++  },
++  [1] = {
++     .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
++     .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
++     .flags = IORESOURCE_MEM,
++  },
++};
++
++static struct platform_device ssd1289_device = {
++  .name          = "ssd1289",
++  .id            = 0,
++  .num_resources = ARRAY_SIZE(ssd1289_resource),
++  .resource      = ssd1289_resource,
++};
++
++static void __init ea_add_device_ssd1289(void)
++{
++  MPMC_STCONFIG0 = 0x81;
++  MPMC_STWTWEN0  = 0;
++  MPMC_STWTOEN0  = 0;
++  MPMC_STWTRD0   = 0;
++  MPMC_STWTPG0   = 0;
++  MPMC_STWTWR0   = 2;
++  MPMC_STWTTURN0 = 0;
++
++  printk(KERN_ALERT "SSD1289->EA313x: platform_device_register(&ssd1289_device) called\n");
++  platform_device_register(&ssd1289_device);
++  printk(KERN_ALERT "SSD1289->EA313x: platform_device_register(&ssd1289_device) returned\n");
++}
++#else
++static void __init ea_add_device_ssd1289(void) {}
++#endif /* CONFIG_FB_SSD1289 */
++
++//static struct resource testmod_resource[] = {
++//   [0] = {
++//         .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
++//         .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
++//         .flags = IORESOURCE_MEM,
++//      },
++//      [1] = {
++//         .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
++//         .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
++//         .flags = IORESOURCE_MEM,
++//   },
++//};
++//
++//static struct platform_device testmod_device = {
++//   .name          = "testmod",
++//   .id            = 0,
++//   .num_resources = ARRAY_SIZE(testmod_resource),
++//   .resource      = testmod_resource,
++//};
++
++//static void __init ea_add_device_testmod(void)
++//{
++//   MPMC_STCONFIG0 = 0x81;
++//   MPMC_STWTWEN0  = 10;
++//   MPMC_STWTOEN0  = 0;
++//   MPMC_STWTRD0   = 31;
++//   MPMC_STWTPG0   = 0;
++//   MPMC_STWTWR0   = 31;
++//   MPMC_STWTTURN0 = 0;
++//
++//   platform_device_register(&testmod_device);
++//}
++
++
++//#define DM_IO_DELAY()   do {} while(0)
+ /*
+  * DM9000 ethernet device
+  */
+@@ -195,7 +348,7 @@
+ 11nsec but DM9000 needs 80nsec between nOEs. So lets add some dummy instructions such as
+ reading a GPIO register to compensate for extra 70nsec.
+ */
+-# define DM_IO_DELAY()	do { gpio_get_value(GPIO_MNAND_RYBN3);} while(0)
++#define DM_IO_DELAY()	do { gpio_get_value(GPIO_MNAND_RYBN3);} while(0)
+ 
+ static void dm9000_dumpblk(void __iomem *reg, int count)
+ {
+@@ -403,9 +556,6 @@
+ 	.resource	= lpc313x_spi_resources,
+ };
+ 
+-
+-
+-
+ #if defined(CONFIG_MTD_DATAFLASH)
+ /* MTD Data FLASH driver registration */
+ static int __init lpc313x_spimtd_register(void)
+@@ -441,6 +591,18 @@
+ 		.length		= SZ_4K,
+ 		.type		= MT_DEVICE
+ 	},
++//   {
++//      .virtual = io_p2v(EXT_SRAM0_PHYS + 0x10000),
++//      .pfn     = __phys_to_pfn(EXT_SRAM0_PHYS + 0x10000),
++//      .length     = SZ_4K,
++//      .type    = MT_DEVICE
++//   },
++//   {
++//      .virtual = io_p2v(IO_MPMC_CFG_PHYS),
++//      .pfn     = __phys_to_pfn(IO_MPMC_CFG_PHYS),
++//      .length     = SZ_4K,
++//      .type    = MT_DEVICE
++//   },
+ 	{
+ 		.virtual	= io_p2v(EXT_SRAM1_PHYS + 0x10000),
+ 		.pfn		= __phys_to_pfn(EXT_SRAM1_PHYS + 0x10000),
+@@ -518,13 +680,15 @@
+ {
+ 	lpc313x_init();
+ 	
+-	
+-
+ 	platform_add_devices(devices, ARRAY_SIZE(devices));
+ 
+ 	/* add DM9000 device */
+ 	ea_add_device_dm9000();
+-	
++	ea_add_device_ssd1963();
++	ea_add_device_ssd1289();
++	ea_add_device_md050sd();
++
++//   ea_add_device_testmod();
+ 
+ 	/* register i2cdevices */
+ 	lpc313x_register_i2c_devices();
+@@ -535,7 +699,6 @@
+ 	GPIO_OUT_HIGH(IOCONF_GPIO,(1 << GPIO_GPIO15)); /* GPIO15 */
+ 	GPIO_OUT_HIGH(IOCONF_GPIO,(1 << GPIO_GPIO19)); /* GPIO19 */
+ 
+-
+ 	
+ #if defined(CONFIG_MACH_EA3152)
+ 	i2c_register_board_info(1, ea3152_i2c1_devices,
+diff -uNr linux-2.6.33-lpc313x-vanilla/build_kernel.sh linux-2.6.33-lpc313x/build_kernel.sh
+--- linux-2.6.33-lpc313x-vanilla/build_kernel.sh	1970-01-01 01:00:00.000000000 +0100
++++ linux-2.6.33-lpc313x/build_kernel.sh	2014-05-13 18:18:08.248515922 +0200
+@@ -0,0 +1,18 @@
++#!/bin/bash
++# Armin Schlegel (2014)
++# compiles the kernel and copies the ready files to ready
++
++cd ready
++rm -r lib/*
++rm ready.tar.gz
++cd ..
++
++make -j4
++make modules -j4
++cp arch/arm/boot/zImage ready/boot
++make modules_install INSTALL_MOD_PATH=ready
++
++cd ready
++tar cvfz ready.tar.gz boot lib
++cd ..
++
+diff -uNr linux-2.6.33-lpc313x-vanilla/drivers/video/Kconfig linux-2.6.33-lpc313x/drivers/video/Kconfig
 --- linux-2.6.33-lpc313x-vanilla/drivers/video/Kconfig	2014-05-13 18:17:08.084514985 +0200
-+++ linux-2.6.33-lpc313x-fb/drivers/video/Kconfig	2014-05-08 13:18:19.890707579 +0200
-@@ -2146,38 +2146,73 @@ config FB_PRE_INIT_FB
++++ linux-2.6.33-lpc313x/drivers/video/Kconfig	2014-05-08 13:18:19.890707579 +0200
+@@ -2146,38 +2146,73 @@
  	  the bootloader.
  
  config FB_MSM
@@ -103,10 +360,10 @@ diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/Kconfig linux-2.6.33-lpc31
  
  source "drivers/video/omap/Kconfig"
  source "drivers/video/omap2/Kconfig"
-diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/Makefile linux-2.6.33-lpc313x-fb/drivers/video/Makefile
+diff -uNr linux-2.6.33-lpc313x-vanilla/drivers/video/Makefile linux-2.6.33-lpc313x/drivers/video/Makefile
 --- linux-2.6.33-lpc313x-vanilla/drivers/video/Makefile	2014-05-13 18:17:08.085514985 +0200
-+++ linux-2.6.33-lpc313x-fb/drivers/video/Makefile	2014-05-08 13:18:41.647706936 +0200
-@@ -128,6 +128,9 @@ obj-y                             += oma
++++ linux-2.6.33-lpc313x/drivers/video/Makefile	2014-05-08 13:18:41.647706936 +0200
+@@ -128,6 +128,9 @@
  obj-$(CONFIG_XEN_FBDEV_FRONTEND)  += xen-fbfront.o
  obj-$(CONFIG_FB_CARMINE)          += carminefb.o
  obj-$(CONFIG_FB_MB862XX)	  += mb862xx/
@@ -116,9 +373,9 @@ diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/Makefile linux-2.6.33-lpc3
  obj-$(CONFIG_FB_MSM)              += msm/
  
  # Platform or fallback drivers go here
-diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/md050sd.c linux-2.6.33-lpc313x-fb/drivers/video/md050sd.c
+diff -uNr linux-2.6.33-lpc313x-vanilla/drivers/video/md050sd.c linux-2.6.33-lpc313x/drivers/video/md050sd.c
 --- linux-2.6.33-lpc313x-vanilla/drivers/video/md050sd.c	1970-01-01 01:00:00.000000000 +0100
-+++ linux-2.6.33-lpc313x-fb/drivers/video/md050sd.c	2014-05-13 18:18:42.174516450 +0200
++++ linux-2.6.33-lpc313x/drivers/video/md050sd.c	2014-05-13 18:18:42.174516450 +0200
 @@ -0,0 +1,724 @@
 +/*
 + * MD050SD Framebuffer
@@ -844,9 +1101,9 @@ diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/md050sd.c linux-2.6.33-lpc
 +MODULE_AUTHOR("Jeroen Domburg <jeroen@spritesmods.com>");
 +MODULE_AUTHOR("Armin Schlegel <armin.schlegel@gmx.de");
 +MODULE_LICENSE("GPL");
-diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1289.c linux-2.6.33-lpc313x-fb/drivers/video/ssd1289.c
+diff -uNr linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1289.c linux-2.6.33-lpc313x/drivers/video/ssd1289.c
 --- linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1289.c	1970-01-01 01:00:00.000000000 +0100
-+++ linux-2.6.33-lpc313x-fb/drivers/video/ssd1289.c	2014-05-08 15:52:21.686434515 +0200
++++ linux-2.6.33-lpc313x/drivers/video/ssd1289.c	2014-05-08 15:52:21.686434515 +0200
 @@ -0,0 +1,823 @@
 +/*
 + * SSD1289 Framebuffer
@@ -1671,9 +1928,9 @@ diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1289.c linux-2.6.33-lpc
 +MODULE_AUTHOR("Jeroen Domburg <jeroen@spritesmods.com>");
 +MODULE_AUTHOR("Armin Schlegel <armin.schlegel@gmx.de");
 +MODULE_LICENSE("GPL");
-diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1963.c linux-2.6.33-lpc313x-fb/drivers/video/ssd1963.c
+diff -uNr linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1963.c linux-2.6.33-lpc313x/drivers/video/ssd1963.c
 --- linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1963.c	1970-01-01 01:00:00.000000000 +0100
-+++ linux-2.6.33-lpc313x-fb/drivers/video/ssd1963.c	2014-04-29 11:26:44.843641869 +0200
++++ linux-2.6.33-lpc313x/drivers/video/ssd1963.c	2014-04-29 11:26:44.843641869 +0200
 @@ -0,0 +1,979 @@
 +/*
 +* SSD1963 Framebuffer
@@ -2654,10 +2911,10 @@ diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/ssd1963.c linux-2.6.33-lpc
 +MODULE_AUTHOR("Jeroen Domburg <jeroen@spritesmods.com>");
 +MODULE_AUTHOR("Armin Schlegel <armin.schlegel@gmx.de");
 +MODULE_LICENSE("GPL");
-diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/vfb.c linux-2.6.33-lpc313x-fb/drivers/video/vfb.c
+diff -uNr linux-2.6.33-lpc313x-vanilla/drivers/video/vfb.c linux-2.6.33-lpc313x/drivers/video/vfb.c
 --- linux-2.6.33-lpc313x-vanilla/drivers/video/vfb.c	2014-05-13 18:17:09.679515010 +0200
-+++ linux-2.6.33-lpc313x-fb/drivers/video/vfb.c	2014-02-23 14:15:10.833737002 +0100
-@@ -80,15 +80,15 @@ static void rvfree(void *mem, unsigned l
++++ linux-2.6.33-lpc313x/drivers/video/vfb.c	2014-02-23 14:15:10.833737002 +0100
+@@ -80,15 +80,15 @@
  }
  
  static struct fb_var_screeninfo vfb_default __initdata = {
@@ -2682,7 +2939,7 @@ diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/vfb.c linux-2.6.33-lpc313x
        	.height =	-1,
        	.width =	-1,
        	.pixclock =	20000,
-@@ -240,11 +240,11 @@ static int vfb_check_var(struct fb_var_s
+@@ -240,11 +240,11 @@
  			var->transp.offset = 15;
  			var->transp.length = 1;
  		} else {	/* RGB 565 */
@@ -2696,3 +2953,85 @@ diff -rupN linux-2.6.33-lpc313x-vanilla/drivers/video/vfb.c linux-2.6.33-lpc313x
  			var->blue.length = 5;
  			var->transp.offset = 0;
  			var->transp.length = 0;
+diff -uNr linux-2.6.33-lpc313x-vanilla/install_SD.sh linux-2.6.33-lpc313x/install_SD.sh
+--- linux-2.6.33-lpc313x-vanilla/install_SD.sh	2014-05-13 18:17:18.608515149 +0200
++++ linux-2.6.33-lpc313x/install_SD.sh	1970-01-01 01:00:00.000000000 +0100
+@@ -1,22 +0,0 @@
+-#!/bin/bash
+-
+-
+-path1=$(pwd)
+-path2="$1"
+-
+-if [ ! -e .config ]
+-then
+-  make gnublin_defconfig
+-fi
+-
+-make zImage  || exit 1 
+-make modules || exit 1
+-sudo rm -r /home/brenson/tmp/modules_install/*
+-make modules_install INSTALL_MOD_PATH=/home/brenson/tmp/modules_install || exit 1
+-
+-sudo cp -r "/home/brenson/tmp/modules_install/lib" "${path2}"
+-sudo cp arch/arm/boot/zImage "${path2}"
+-sleep 1
+-sudo sync
+-sleep 1
+-sudo umount "${path2}"
+diff -uNr linux-2.6.33-lpc313x-vanilla/install_SD_all.sh linux-2.6.33-lpc313x/install_SD_all.sh
+--- linux-2.6.33-lpc313x-vanilla/install_SD_all.sh	1970-01-01 01:00:00.000000000 +0100
++++ linux-2.6.33-lpc313x/install_SD_all.sh	2014-05-13 18:21:37.412519178 +0200
+@@ -0,0 +1,28 @@
++#!/bin/bash
++
++# Armin Schlegel (2014)
++# This script installs the kernel and the modules on the sd card
++# Usage: ./intall_SD_all.sh sdX
++# Note: sdX is the device for the sd card.
++# Note: /dev/sdX3 must be the root partition and /dev/sdX1 the boot partition.
++
++sd=$1
++ready_path=$(pwd)/ready
++mkdir $ready_path
++
++echo mounting sd card
++mount /dev/$13 /mnt/hd
++mount /dev/$11 /mnt/hd/boot
++
++cd /mnt/hd
++
++echo  extracting $ready_path/ready.tar.gz
++
++tar xvfz $ready_path/ready.tar.gz
++cd $ready_path/..
++
++echo unmounting sd card
++umount /mnt/hd/boot
++umount /mnt/hd
++
++echo done ...
+diff -uNr linux-2.6.33-lpc313x-vanilla/install_SD_kernel.sh linux-2.6.33-lpc313x/install_SD_kernel.sh
+--- linux-2.6.33-lpc313x-vanilla/install_SD_kernel.sh	1970-01-01 01:00:00.000000000 +0100
++++ linux-2.6.33-lpc313x/install_SD_kernel.sh	2014-05-13 18:22:02.880519574 +0200
+@@ -0,0 +1,20 @@
++#!/bin/bash
++# Armin Schlegel (2014)
++# This script installs the kernel on the sd card
++# Usage: ./intall_SD_kernel.sh sdX
++# Note: sdX is the device for the sd card.
++# Note: /dev/sdX1 must be the boot partition.
++
++sd=$1
++ready_path=$(pwd)/ready
++mkdir $ready_path
++
++echo mounting sd card
++mount /dev/$11 /mnt/hd
++
++cp ready/boot/zImage /mnt/hd
++sleep 1
++echo unmounting sd card
++umount /mnt/hd
++
++echo done ...

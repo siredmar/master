@@ -29,9 +29,11 @@ git clone https://github.com/embeddedprojects/gnublin-lpc3131-2.6.33.git
 
 2. Patching Kernel Source
 -------------------------
-cd gnublin-lpc3131-2.6.33/linux-2.6.33-lpc313x
+cd gnublin-lpc3131-2.6.33
 wget https://github.com/siredmar/master/raw/master/Teil_A/software/linux/display_drivers.patch
-patch < display_drivers.patch
+cd linux-2.6.33-lpc313x
+make gnublin_defconfig
+patch -p1 < ../display_drivers.patch
 
 3. Configuring the Kernel
 -------------------------
@@ -107,6 +109,8 @@ patch < display_drivers.patch
 
 4. Building the Kernel
 ----------------------
+chmod a+x *.sh
+
 ./build_kernel.sh
 ./install_SD_all.sh sdX #sdX is the device of the sd card
 
