@@ -172,8 +172,9 @@ patch -p1 < ../apex_display.patch
 
 8. Building APEX bootloader
 ---------------------------
+chmod a+x *.sh
 make
-./write_bootloader /dev/sdX2 apex.bin
+./write_bootloader.sh /dev/sdX2 apex.bin
 
 9. Booting up
 -------------
