@@ -253,11 +253,11 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
 #elif defined(CONFIG_DISP_MD050SD)
    /* LCD display, 16 bit */
    MPMC_STCONFIG0  = 0x81;
-   MPMC_STWTWEN0   = 1;
+   MPMC_STWTWEN0   = 13;
    MPMC_STWTOEN0   = 0;
-   MPMC_STWTRD0    = 31;
+   MPMC_STWTRD0    = 0;
    MPMC_STWTPG0    = 0;
-   MPMC_STWTWR0    = 4;
+   MPMC_STWTWR0    = 15;
    MPMC_STWTTURN0  = 0;
 #elif defined(CONFIG_DISP_SSD1289)
    /* LCD display, 16 bit */

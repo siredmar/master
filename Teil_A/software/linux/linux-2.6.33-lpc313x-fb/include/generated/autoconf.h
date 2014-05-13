@@ -1,7 +1,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.33
- * Thu May  8 14:15:07 2014
+ * Tue May 13 10:57:40 2014
  */
 #define AUTOCONF_INCLUDED
 #define CONFIG_VIDEO_V4L1_COMPAT 1
@@ -408,9 +408,9 @@
 #define CONFIG_VECTORS_BASE 0xffff0000
 #define CONFIG_IP_VS 1
 #define CONFIG_HZ 100
+#define CONFIG_FB_MD050SD 1
 #define CONFIG_TRACING_SUPPORT 1
 #define CONFIG_NLS_ISO8859_1 1
-#define CONFIG_FB_SSD1289 1
 #define CONFIG_NET_ETHERNET 1
 #define CONFIG_XFRM_MIGRATE 1
 #define CONFIG_RT2800_LIB_MODULE 1

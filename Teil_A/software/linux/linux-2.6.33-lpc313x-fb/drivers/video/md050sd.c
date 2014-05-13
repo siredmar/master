@@ -46,7 +46,7 @@
 #include <linux/uaccess.h>
 
 
-//#define LED_ENABLE_PIN  20
+#define LED_BACKLIGHT_PIN  20
 #define LED_RESET_PIN  19
 
 ///* TFT Controler Register defines */
@@ -91,7 +91,7 @@ struct md050sd {
    volatile unsigned short *data_io;
 };
 
-#define MD050SD_LINES_PER_PAGE  60
+#define MD050SD_LINES_PER_PAGE  16
 #define MD050SD_BYTES_PER_PIXEL         2
 #define MD050SD_PAGE_SIZE  (MD050SD_LINES_PER_PAGE * MD050SD_WIDTH * MD050SD_BYTES_PER_PIXEL)
 
@@ -214,7 +214,7 @@ static void __init md050sd_setup(struct md050sd *item)
    int y;
    printk(KERN_ALERT "md050sd_setup() called\n");
    dev_dbg(item->dev, "%s: item=0x%p\n", __func__, (void *) item);
-
+   gpio_direction_output(LED_BACKLIGHT_PIN, 0);
    gpio_direction_output(LED_RESET_PIN, 0);
    msleep(200);
    gpio_direction_output(LED_RESET_PIN, 1);
@@ -224,6 +224,7 @@ static void __init md050sd_setup(struct md050sd *item)
    for (x = 0; x < MD050SD_WIDTH * MD050SD_HEIGHT; x++)
       md050sd_send_data(item, 0x0000);
 
+   gpio_direction_output(LED_BACKLIGHT_PIN, 1);
    msleep(10);
    printk(KERN_ALERT
          "md050sd_setup() end: pages_count: %d, item->pages[x].len: %d\n\n",
@@ -503,7 +504,7 @@ static struct fb_var_screeninfo md050sd_var __initdata = {
 };
 
 static struct fb_deferred_io md050sd_defio = {
-      .delay = HZ / 30,
+      .delay = HZ / 20,
       .deferred_io = &md050sd_update,
 };
 
