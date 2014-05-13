@@ -15,3 +15,13 @@ git push origin master
 
 * update local repo from github
 git pull
+
+--- 
+creating a patch:
+diff -rupN original/ new/ > original.patch
+
+use a patch:
+patch < patch.file
+
+undo a patch:
+patch -R < patch.file
