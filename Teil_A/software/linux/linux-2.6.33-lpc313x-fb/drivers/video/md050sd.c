@@ -91,7 +91,7 @@ struct md050sd {
    volatile unsigned short *data_io;
 };
 
-#define MD050SD_LINES_PER_PAGE  16
+#define MD050SD_LINES_PER_PAGE  20
 #define MD050SD_BYTES_PER_PIXEL         2
 #define MD050SD_PAGE_SIZE  (MD050SD_LINES_PER_PAGE * MD050SD_WIDTH * MD050SD_BYTES_PER_PIXEL)
 

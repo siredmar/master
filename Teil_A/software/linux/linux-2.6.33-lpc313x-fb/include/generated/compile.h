@@ -1,7 +1,7 @@
-/* This file is auto generated, version 83 */
+/* This file is auto generated, version 84 */
 #define UTS_MACHINE "arm"
-#define UTS_VERSION "#83 Tue May 13 11:45:19 CEST 2014"
-#define LINUX_COMPILE_TIME "11:45:19"
+#define UTS_VERSION "#84 Tue May 13 17:33:56 CEST 2014"
+#define LINUX_COMPILE_TIME "17:33:56"
 #define LINUX_COMPILE_BY "root"
 #define LINUX_COMPILE_HOST "localhost"
 #define LINUX_COMPILE_DOMAIN

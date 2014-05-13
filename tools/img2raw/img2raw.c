@@ -38,8 +38,6 @@ int hexToAsciiHex(unsigned short hex, char *buffer)
    return 1;
 }
 
-
-
 int
 main (int argc, char *argv[])
 {
@@ -109,7 +107,7 @@ main (int argc, char *argv[])
 
    SDL_BlitSurface(infile, 0, screen, 0);
    SDL_Flip(screen);
-
+   getchar();
    if(SDL_MUSTLOCK(screen))
       SDL_LockSurface(screen);
 
@@ -122,7 +120,8 @@ main (int argc, char *argv[])
          framebuffer_type *pixels = (framebuffer_type*)screen->pixels;
          x = i % screen->w;
          y =  i / screen->w;
-         fwrite(&pixels[(y * screen->w) + x], 2, 1, outfile);
+         fwrite(&pixels[i], 2, 1, outfile);
+//         fwrite(&pixels[(y * screen->w) + x], 2, 1, outfile);
       }
 
       if(SDL_MUSTLOCK(screen))
@@ -140,10 +139,10 @@ main (int argc, char *argv[])
       sprintf(buffer, "u16 image[] = {%d, %d, \n", screen->w, screen->h);
       fwrite(buffer, strlen(buffer), 1, outfile);
 
+      framebuffer_type *pixels = (framebuffer_type*)screen->pixels;
+
       for(i = 0; i < (screen->w * screen->h); i++)
       {
-
-         framebuffer_type *pixels = (framebuffer_type*)screen->pixels;
          x = i % screen->w;
          y =  i / screen->w;
 
@@ -152,7 +151,10 @@ main (int argc, char *argv[])
             sprintf(buffer, "\n");
             fwrite(buffer, strlen(buffer), 1, outfile);
          }
-         hexToAsciiHex(pixels[(y * screen->w)] + x, buffer);
+//         hexToAsciiHex(pixels[(y * screen->w)] + x, buffer);
+//         printf("in: 0x%.4X, out: %s\n", pixels[(y * screen->w)] + x, buffer);
+         hexToAsciiHex(pixels[i], buffer);
+         //printf("in: 0x%.4X, out: %s\n", pixels[i], buffer);
          fwrite(buffer, strlen(buffer), 1, outfile);
          if(i == (screen->w * screen->h) -1)
             break;

@@ -27,7 +27,6 @@
 #include <sdramboot.h>
 
 #include "hardware.h"
-
 #include <debug_ll.h>
 
 //{fin_select; ndec; mdec; pdec; selr; seli; selp; mode; freq;}
@@ -75,7 +74,33 @@ extern const CGU_CLKS_INIT_T g_cgu_default_clks_1;
 
 #endif
 
+#if defined(CONFIG_DISP_MD050SD) || defined(CONFIG_DISP_SSD1963) || defined(CONFIG_DISP_SSD1289)
+#define DISP_PHYS        (EXT_SRAM0_PHYS)
+#define DISP_PHYS_CTRL   (DISP_PHYS + 0)
+#define DISP_PHYS_DATA   (DISP_PHYS + 0x10000)
 
+unsigned int width;
+unsigned int height;
+int pixel;
+
+struct display {
+      volatile u16* ctrl;
+      volatile u16* data;
+   };
+
+   static struct display display;
+
+   static void display_send_cmd(u16 cmd)
+   {
+      *display.ctrl = 0x00FF & cmd;
+   }
+
+   static void display_send_data(u16 data)
+   {
+      *display.data = data;
+   }
+
+#endif
 
 #if defined(CONFIG_RAM_SIZE_8MB)
 #define SDRAM_CHIP_MODE   _SBF(13, 0x23)
@@ -114,7 +139,7 @@ void __naked __section (.bootstrap.early.exit) bootstrap_early_exit (void)
    Note that this function is neither __naked nor static.  It is
    available to the rest of the application as is.
 
-   Keep in mind that it has a limit of about 357913.94125ms.  
+   Keep in mind that it has a limit of about 357913.94125ms.
 
    This routine assumes 12MHz clock is used as source clock for timer
    block. Which means 12 ticks for every usec.
@@ -157,7 +182,12 @@ void __section (.bootstrap) usleep (unsigned long us)
 void __naked __section (.bootstrap) initialize_bootstrap (void)
       {
    unsigned long lr;
+#if defined(CONFIG_LOGO_TUX)
+   extern u16 boot_logo_tux[];
+#endif
    __asm volatile ("mov %0, lr" : "=r" (lr));
+
+
 
    /* init CGU block*/
    cgu_init();
@@ -184,6 +214,9 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    cgu_clk_en_dis( CGU_SB_TIMER1_PCLK_ID, 1);
    /* enable EBI clock */
    cgu_clk_en_dis( CGU_SB_EBI_CLK_ID, 1);
+
+   /* enable IOCONF click */
+   cgu_clk_en_dis( CGU_SB_IOCONF_PCLK_ID, 1);
 
    /* enable MPMC controller clocks */
    cgu_clk_en_dis( CGU_SB_MPMC_CFG_CLK_ID, 1);
@@ -280,6 +313,10 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
 
 #endif
 
+
+
+
+
    /* SDRAM */
    MPMC_DYRDCFG    = MPMC_SDRAMC_RDCFG_CMDDELAY_STG;
 
@@ -360,6 +397,61 @@ void __naked __section (.bootstrap) initialize_bootstrap (void)
    SYS_MPMC_TESTMODE1 = (10 + NS_TO_MPMCCLK(20, HCLK) + NS_TO_MPMCCLK(66, HCLK)) * (PLLCLK/HCLK);
 #endif
 
+#if defined(CONFIG_DISP_MD050SD) || defined(CONFIG_DISP_SSD1963) || defined(CONFIG_DISP_SSD1289)
+      display.ctrl = &__REG16 (DISP_PHYS_CTRL);   //&__REG16
+      display.data = &__REG16 (DISP_PHYS_DATA); //&__REG16
+#if defined(CONFIG_DISP_MD050SD)
+      GPIO_OUT_LOW(IOCONF_GPIO, _BIT(14)); //GPIO20 is LED_ENABLE
+
+      GPIO_OUT_LOW(IOCONF_GPIO, _BIT(13)); //GPIO19 is nRESET
+      udelay(20000);
+      GPIO_OUT_HIGH(IOCONF_GPIO, _BIT(13)); //GPIO19 is nRESET
+      udelay(20000);
+
+      display_send_cmd(0x0002);
+      display_send_data(0);
+      display_send_cmd(0x0003);
+      display_send_data(0);
+
+      display_send_cmd(0x0006);
+      display_send_data(480 - 1);
+      display_send_cmd(0x0007);
+      display_send_data(800 - 1);
+
+      display_send_cmd(0x000F);
+
+      for(pixel = 0; pixel <= 800 * 480; pixel++)
+      {
+         display_send_data(0x0000);
+      }
+
+      GPIO_OUT_HIGH(IOCONF_GPIO, _BIT(14)); //GPIO20 is LED_ENABLE
+
+#if defined(CONFIG_LOGO_TUX)
+      width = boot_logo_tux[0];
+      height = boot_logo_tux[1];
+
+      display_send_cmd(0x0002);
+      display_send_data(480/2 - (height - 1)/2);
+      display_send_cmd(0x0003);
+      display_send_data(800/2 - (width - 1)/2);
+      display_send_cmd(0x0006);
+      display_send_data(480/2 + (height - 1)/2 + 1);
+      display_send_cmd(0x0007);
+      display_send_data(800/2 + (width - 1)/2 + 1);
+      display_send_cmd(0x000F);
+
+      for(pixel = 2; pixel < width * height + 2; pixel++)
+      {
+         display_send_data(boot_logo_tux[pixel]);
+      }
+#endif
+
+#endif
+#endif
+
+
+
    __asm volatile ("mov r0, #-1\t\n"
          "mov pc, %0" : : "r" (lr));
       }
@@ -379,3 +471,5 @@ static void target_init (void)
 static __service_0 struct service_d lpc313x_target_service = {
       .init    = target_init,
 };
+
+
