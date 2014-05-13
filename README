@@ -18,10 +18,8 @@ git pull
 
 --- 
 creating a patch:
-diff -rupN original/ new/ > original.patch
+diff -uNr  original/ new/ > original.patch
 
 use a patch:
-patch < patch.file
-
-undo a patch:
-patch -R < patch.file
+cd original
+patch -p1 < ../patch.file

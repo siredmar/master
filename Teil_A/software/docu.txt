@@ -121,9 +121,9 @@ tar xvfz apex-1.6.8.tar.gz
 
 6. Patching APEX bootloader
 ---------------------------
-cd apex-1.6.8
 wget https://github.com/siredmar/master/raw/master/Teil_A/software/bootloader/apex_display.patch
-patch < apex_display.patch
+cd apex-1.6.8
+patch -p1 < ../apex_display.patch
 
 7. Configuring APEX bootloader
 ------------------------------
@@ -179,6 +179,6 @@ make
 -------------
 Connect the power and let the system boot up
 
-10. NOTE:=
+10. NOTE:
 ----------
 For USB keyboard include USB, HID and keyboard setup in kernel config

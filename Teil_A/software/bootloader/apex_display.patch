@@ -1,16 +1,16 @@
-diff -rupN apex-1.6.8-vanilla/.config apex-1.6.8/.config
+diff -uNr apex-1.6.8-vanilla/.config apex-1.6.8/.config
 --- apex-1.6.8-vanilla/.config	2013-07-22 18:48:57.000000000 +0200
-+++ apex-1.6.8/.config	2014-05-13 17:23:35.240464975 +0200
++++ apex-1.6.8/.config	2014-05-13 19:54:49.216606219 +0200
 @@ -1,7 +1,7 @@
  #
  # Automatically generated make config: don't edit
  # Linux kernel version: KERNELVERSION
 -# Mon Jul 22 18:48:57 2013
-+# Tue May 13 17:23:35 2014
++# Tue May 13 19:53:27 2014
  #
  CONFIG_ARM=y
  CONFIG_CPU_ARMV5=y
-@@ -53,6 +53,7 @@ CONFIG_MACH_EPLPC3131_V1=y
+@@ -53,6 +53,7 @@
  # Platform Setup
  #
  CONFIG_OSC_FREQ=12000000
@@ -18,7 +18,7 @@ diff -rupN apex-1.6.8-vanilla/.config apex-1.6.8/.config
  CONFIG_PLL_180=y
  # CONFIG_PLL_270 is not set
  CONFIG_DYNAMIC_CLOCKS=y
-@@ -60,6 +61,12 @@ CONFIG_DYNAMIC_CLOCKS=y
+@@ -60,6 +61,12 @@
  # CONFIG_RAM_SIZE_8MB is not set
  CONFIG_RAM_SIZE_32MB=y
  # CONFIG_RAM_SIZE_64MB is not set
@@ -31,7 +31,7 @@ diff -rupN apex-1.6.8-vanilla/.config apex-1.6.8/.config
  
  #
  # Commands
-@@ -136,7 +143,7 @@ CONFIG_ENV_REGION_KERNEL="lnand:768k+2m"
+@@ -136,7 +143,7 @@
  # Overrides
  #
  CONFIG_ENV_DEFAULT_CMDLINE_OVERRIDE=y
@@ -40,387 +40,10 @@ diff -rupN apex-1.6.8-vanilla/.config apex-1.6.8/.config
  CONFIG_ENV_DEFAULT_STARTUP_OVERRIDE=y
  CONFIG_ENV_DEFAULT_STARTUP="wait 2; copy ext2://1/zImage 0x30008000; boot"
  CONFIG_RELOCATE_SIMPLE=y
-diff -rupN apex-1.6.8-vanilla/.config.old apex-1.6.8/.config.old
---- apex-1.6.8-vanilla/.config.old	2013-07-22 18:46:13.000000000 +0200
-+++ apex-1.6.8/.config.old	1970-01-01 01:00:00.000000000 +0100
-@@ -1,143 +0,0 @@
--#
--# Automatically generated make config: don't edit
--# Linux kernel version: KERNELVERSION
--# Mon Jul 22 18:46:13 2013
--#
--CONFIG_ARM=y
--CONFIG_CPU_ARMV5=y
--CONFIG_CPU_ARM9=y
--CONFIG_CPU_ARM926T=y
--# CONFIG_ARCH_LH7952X is not set
--# CONFIG_ARCH_LH7A40X is not set
--# CONFIG_ARCH_IXP42X is not set
--# CONFIG_ARCH_S3C2410 is not set
--# CONFIG_ARCH_MX3 is not set
--# CONFIG_ARCH_ORION5X is not set
--CONFIG_ARCH_LPC313X=y
--# CONFIG_EXPERIMENTAL is not set
--# CONFIG_SMALL is not set
--
--#
--# General Setup
--#
--CONFIG_TARGET_DESCRIPTION="Embedded Projects EPLPC3131"
--CONFIG_CROSS_COMPILE="arm-linux-gnueabi-"
--CONFIG_AEABI=y
--# CONFIG_DRIVER_LONG_LONG_SIZE is not set
--CONFIG_CC_OPTIMIZE_FOR_SIZE=y
--# CONFIG_CC_OPTIMIZE_FOR_SPEED is not set
--# CONFIG_CC_NO_OPTIMIZATION is not set
--# CONFIG_STARTUP_UART is not set
--# CONFIG_DEBUG_LL is not set
--CONFIG_SPINNER=y
--CONFIG_ATAG=y
--# CONFIG_MMU is not set
--CONFIG_DISABLE_MMU_AT_BOOT=y
--CONFIG_SDRAMBOOT_REPORT=y
--CONFIG_STACK_SIZE=0x1000
--# CONFIG_BOOTSTRAP_MEMTEST is not set
--CONFIG_ATAG_PHYS=0x30000100
--CONFIG_ARCH_NUMBER=9998
--CONFIG_APEX_VMA=0x11029000
--CONFIG_KERNEL_LMA=0x30008000
--# CONFIG_USE_RAMDISK is not set
--CONFIG_MACH="lpc313x"
--# CONFIG_MACH_VAL3153 is not set
--# CONFIG_MACH_VAL3154 is not set
--# CONFIG_MACH_EA313x_V1 is not set
--# CONFIG_MACH_EA313x_V2 is not set
--# CONFIG_MACH_EA3152 is not set
--CONFIG_MACH_EPLPC3131_V1=y
--
--#
--# Platform Setup
--#
--CONFIG_OSC_FREQ=12000000
--CONFIG_PLL_180=y
--# CONFIG_PLL_270 is not set
--CONFIG_DYNAMIC_CLOCKS=y
--# CONFIG_USB_BOOT is not set
--CONFIG_RAM_SIZE_8MB=y
--# CONFIG_RAM_SIZE_32MB is not set
--# CONFIG_RAM_SIZE_64MB is not set
--
--#
--# Commands
--#
--CONFIG_ALLHELP=y
--CONFIG_ALPHABETIZE_COMMANDS=y
--CONFIG_PARTIAL_MATCHES=y
--CONFIG_DEL_IS_BS=y
--CONFIG_ANSI_KEYS=y
--CONFIG_COMMAND_HISTORY=y
--CONFIG_COMMAND_EDITING=y
--# CONFIG_TIME_COMMANDS is not set
--CONFIG_CMD_ALIAS=y
--CONFIG_CMD_CHECKSUM=y
--CONFIG_CMD_COPY=y
--CONFIG_CMD_COMPARE=y
--CONFIG_CMD_DRVINFO=y
--CONFIG_CMD_DUMP=y
--CONFIG_CMD_ENV=y
--CONFIG_CMD_IMAGE=y
--CONFIG_CMD_IMAGE_APEX=y
--# CONFIG_CMD_IMAGE_UBOOT is not set
--CONFIG_CMD_IMAGE_SHOW=y
--CONFIG_CMD_SETENV=y
--CONFIG_CMD_ERASE=y
--CONFIG_CMD_FILL=y
--CONFIG_CMD_GO=y
--CONFIG_CMD_INFO=y
--# CONFIG_CMD_PARSE is not set
--# CONFIG_CMD_PAUSE is not set
--# CONFIG_CMD_FLASHUSAGE is not set
--CONFIG_CMD_WAIT=y
--CONFIG_CMD_XRECEIVE=y
--# CONFIG_CMD_MEMLIMIT is not set
--# CONFIG_CMD_MEMSCAN is not set
--# CONFIG_CMD_MEMTEST is not set
--# CONFIG_CRC32_LSB is not set
--
--#
--# Generic Drivers
--#
--# CONFIG_DRIVER_FAT is not set
--CONFIG_DRIVER_EXT2=y
--CONFIG_DRIVER_EXT2_BLOCKDEVICE="mmc"
--# CONFIG_DRIVER_JFFS2 is not set
--# CONFIG_DRIVER_FIS is not set
--# CONFIG_DRIVER_ONENAND is not set
--CONFIG_USES_PATHNAME_PARSER=y
--
--#
--# Environment
--#
--CONFIG_ENV=y
--CONFIG_ENV_MUTABLE=y
--CONFIG_ENV_REGION="lnand:512k+256k"
--CONFIG_ENV_SAVEATONCE=y
--CONFIG_ENV_SIZE=16384
--CONFIG_ENV_CHECK_LEN=1024
--# CONFIG_VARIATIONS is not set
--CONFIG_NO_BOOTSTRAP=y
--# CONFIG_NOR_BOOT is not set
--# CONFIG_NAND_BOOT is not set
--# CONFIG_ONENAND_BOOT is not set
--# CONFIG_COMPANION_EVT1_BOOT is not set
--# CONFIG_COMPANION_EVT2_BOOT is not set
--# CONFIG_ENV_STARTUP_PREFIX_P is not set
--
--#
--# Regions
--#
--CONFIG_ENV_REGION_KERNEL="lnand:768k+2m"
--
--#
--# Overrides
--#
--CONFIG_ENV_DEFAULT_CMDLINE_OVERRIDE=y
--CONFIG_ENV_DEFAULT_CMDLINE="console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait "
--CONFIG_ENV_DEFAULT_STARTUP_OVERRIDE=y
--CONFIG_ENV_DEFAULT_STARTUP="wait 2; copy ext2://1/zImage 0x30008000; boot"
--CONFIG_RELOCATE_SIMPLE=y
--CONFIG_ALIASES=y
-diff -rupN apex-1.6.8-vanilla/.config_old apex-1.6.8/.config_old
---- apex-1.6.8-vanilla/.config_old	1970-01-01 01:00:00.000000000 +0100
-+++ apex-1.6.8/.config_old	2014-05-13 15:35:12.133363748 +0200
-@@ -0,0 +1,150 @@
-+#
-+# Automatically generated make config: don't edit
-+# Linux kernel version: KERNELVERSION
-+# Tue May 13 15:35:12 2014
-+#
-+CONFIG_ARM=y
-+CONFIG_CPU_ARMV5=y
-+CONFIG_CPU_ARM9=y
-+CONFIG_CPU_ARM926T=y
-+# CONFIG_ARCH_LH7952X is not set
-+# CONFIG_ARCH_LH7A40X is not set
-+# CONFIG_ARCH_IXP42X is not set
-+# CONFIG_ARCH_S3C2410 is not set
-+# CONFIG_ARCH_MX3 is not set
-+# CONFIG_ARCH_ORION5X is not set
-+CONFIG_ARCH_LPC313X=y
-+# CONFIG_EXPERIMENTAL is not set
-+# CONFIG_SMALL is not set
-+
-+#
-+# General Setup
-+#
-+CONFIG_TARGET_DESCRIPTION="Embedded Projects EPLPC3131"
-+CONFIG_CROSS_COMPILE="arm-linux-gnueabi-"
-+CONFIG_AEABI=y
-+# CONFIG_DRIVER_LONG_LONG_SIZE is not set
-+CONFIG_CC_OPTIMIZE_FOR_SIZE=y
-+# CONFIG_CC_OPTIMIZE_FOR_SPEED is not set
-+# CONFIG_CC_NO_OPTIMIZATION is not set
-+# CONFIG_STARTUP_UART is not set
-+# CONFIG_DEBUG_LL is not set
-+CONFIG_SPINNER=y
-+CONFIG_ATAG=y
-+# CONFIG_MMU is not set
-+CONFIG_DISABLE_MMU_AT_BOOT=y
-+CONFIG_SDRAMBOOT_REPORT=y
-+CONFIG_STACK_SIZE=0x1000
-+# CONFIG_BOOTSTRAP_MEMTEST is not set
-+CONFIG_ATAG_PHYS=0x30000100
-+CONFIG_ARCH_NUMBER=9998
-+CONFIG_APEX_VMA=0x11029000
-+CONFIG_KERNEL_LMA=0x30008000
-+# CONFIG_USE_RAMDISK is not set
-+CONFIG_MACH="lpc313x"
-+# CONFIG_MACH_VAL3153 is not set
-+# CONFIG_MACH_VAL3154 is not set
-+# CONFIG_MACH_EA313x_V1 is not set
-+# CONFIG_MACH_EA313x_V2 is not set
-+# CONFIG_MACH_EA3152 is not set
-+CONFIG_MACH_EPLPC3131_V1=y
-+
-+#
-+# Platform Setup
-+#
-+CONFIG_OSC_FREQ=12000000
-+# CONFIG_PLL_90 is not set
-+CONFIG_PLL_180=y
-+# CONFIG_PLL_270 is not set
-+CONFIG_DYNAMIC_CLOCKS=y
-+# CONFIG_USB_BOOT is not set
-+# CONFIG_RAM_SIZE_8MB is not set
-+CONFIG_RAM_SIZE_32MB=y
-+# CONFIG_RAM_SIZE_64MB is not set
-+# CONFIG_DISP_NONE is not set
-+# CONFIG_DISP_SSD1963 is not set
-+CONFIG_DISP_MD050SD=y
-+# CONFIG_DISP_SSD1289 is not set
-+# CONFIG_LOGO_NONE is not set
-+CONFIG_LOGO_300_150=y
-+
-+#
-+# Commands
-+#
-+CONFIG_ALLHELP=y
-+CONFIG_ALPHABETIZE_COMMANDS=y
-+CONFIG_PARTIAL_MATCHES=y
-+CONFIG_DEL_IS_BS=y
-+CONFIG_ANSI_KEYS=y
-+CONFIG_COMMAND_HISTORY=y
-+CONFIG_COMMAND_EDITING=y
-+# CONFIG_TIME_COMMANDS is not set
-+CONFIG_CMD_ALIAS=y
-+CONFIG_CMD_CHECKSUM=y
-+CONFIG_CMD_COPY=y
-+CONFIG_CMD_COMPARE=y
-+CONFIG_CMD_DRVINFO=y
-+CONFIG_CMD_DUMP=y
-+CONFIG_CMD_ENV=y
-+CONFIG_CMD_IMAGE=y
-+CONFIG_CMD_IMAGE_APEX=y
-+# CONFIG_CMD_IMAGE_UBOOT is not set
-+CONFIG_CMD_IMAGE_SHOW=y
-+CONFIG_CMD_SETENV=y
-+CONFIG_CMD_ERASE=y
-+CONFIG_CMD_FILL=y
-+CONFIG_CMD_GO=y
-+CONFIG_CMD_INFO=y
-+# CONFIG_CMD_PARSE is not set
-+# CONFIG_CMD_PAUSE is not set
-+# CONFIG_CMD_FLASHUSAGE is not set
-+CONFIG_CMD_WAIT=y
-+CONFIG_CMD_XRECEIVE=y
-+# CONFIG_CMD_MEMLIMIT is not set
-+# CONFIG_CMD_MEMSCAN is not set
-+# CONFIG_CMD_MEMTEST is not set
-+# CONFIG_CRC32_LSB is not set
-+
-+#
-+# Generic Drivers
-+#
-+# CONFIG_DRIVER_FAT is not set
-+CONFIG_DRIVER_EXT2=y
-+CONFIG_DRIVER_EXT2_BLOCKDEVICE="mmc"
-+# CONFIG_DRIVER_JFFS2 is not set
-+# CONFIG_DRIVER_FIS is not set
-+# CONFIG_DRIVER_ONENAND is not set
-+CONFIG_USES_PATHNAME_PARSER=y
-+
-+#
-+# Environment
-+#
-+CONFIG_ENV=y
-+CONFIG_ENV_MUTABLE=y
-+CONFIG_ENV_REGION="lnand:512k+256k"
-+CONFIG_ENV_SAVEATONCE=y
-+CONFIG_ENV_SIZE=16384
-+CONFIG_ENV_CHECK_LEN=1024
-+# CONFIG_VARIATIONS is not set
-+CONFIG_NO_BOOTSTRAP=y
-+# CONFIG_NOR_BOOT is not set
-+# CONFIG_NAND_BOOT is not set
-+# CONFIG_ONENAND_BOOT is not set
-+# CONFIG_COMPANION_EVT1_BOOT is not set
-+# CONFIG_COMPANION_EVT2_BOOT is not set
-+# CONFIG_ENV_STARTUP_PREFIX_P is not set
-+
-+#
-+# Regions
-+#
-+CONFIG_ENV_REGION_KERNEL="lnand:768k+2m"
-+
-+#
-+# Overrides
-+#
-+CONFIG_ENV_DEFAULT_CMDLINE_OVERRIDE=y
-+CONFIG_ENV_DEFAULT_CMDLINE="console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait console=tty0,115200 fbcon=rotate:0 fbcon=font:VGA8x16"
-+CONFIG_ENV_DEFAULT_STARTUP_OVERRIDE=y
-+CONFIG_ENV_DEFAULT_STARTUP="wait 2; copy ext2://1/zImage 0x30008000; boot"
-+CONFIG_RELOCATE_SIMPLE=y
-+CONFIG_ALIASES=y
-Binary files apex-1.6.8-vanilla/apex.bin and apex-1.6.8/apex.bin differ
-diff -rupN apex-1.6.8-vanilla/include/config/auto.conf apex-1.6.8/include/config/auto.conf
---- apex-1.6.8-vanilla/include/config/auto.conf	2013-07-22 18:49:03.000000000 +0200
-+++ apex-1.6.8/include/config/auto.conf	2014-05-13 17:23:36.604464996 +0200
-@@ -1,7 +1,7 @@
- #
- # Automatically generated make config: don't edit
- # Linux kernel version: KERNELVERSION
--# Mon Jul 22 18:49:03 2013
-+# Tue May 13 17:23:36 2014
- #
- CONFIG_ALIASES=y
- CONFIG_ALLHELP=y
-@@ -24,6 +24,7 @@ CONFIG_CMD_COMPARE=y
- CONFIG_ARCH_NUMBER=9998
- CONFIG_CMD_DRVINFO=y
- CONFIG_ARCH_LPC313X=y
-+CONFIG_DISP_MD050SD=y
- CONFIG_DRIVER_EXT2=y
- CONFIG_ENV_MUTABLE=y
- CONFIG_AEABI=y
-@@ -44,12 +45,13 @@ CONFIG_ENV_SIZE=16384
- CONFIG_CMD_CHECKSUM=y
- CONFIG_CMD_XRECEIVE=y
- CONFIG_COMMAND_HISTORY=y
-+CONFIG_LOGO_TUX=y
- CONFIG_CMD_IMAGE=y
- CONFIG_MACH_EPLPC3131_V1=y
- CONFIG_CMD_ALIAS=y
- CONFIG_ENV_DEFAULT_STARTUP_OVERRIDE=y
- CONFIG_CMD_ERASE=y
--CONFIG_ENV_DEFAULT_CMDLINE="console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait "
-+CONFIG_ENV_DEFAULT_CMDLINE="console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait console=tty0,115200 fbcon=rotate:0 fbcon=font:VGA8x16"
- CONFIG_CPU_ARMV5=y
- CONFIG_NO_BOOTSTRAP=y
- CONFIG_ATAG_PHYS=0x30000100
-diff -rupN apex-1.6.8-vanilla/include/linux/autoconf.h apex-1.6.8/include/linux/autoconf.h
---- apex-1.6.8-vanilla/include/linux/autoconf.h	2013-07-22 18:49:03.000000000 +0200
-+++ apex-1.6.8/include/linux/autoconf.h	2014-05-13 17:23:36.604464996 +0200
-@@ -1,7 +1,7 @@
- /*
-  * Automatically generated C config: don't edit
-  * Linux kernel version: KERNELVERSION
-- * Mon Jul 22 18:49:03 2013
-+ * Tue May 13 17:23:36 2014
-  */
- #define AUTOCONF_INCLUDED
- #define CONFIG_ALIASES 1
-@@ -25,6 +25,7 @@
- #define CONFIG_ARCH_NUMBER 9998
- #define CONFIG_CMD_DRVINFO 1
- #define CONFIG_ARCH_LPC313X 1
-+#define CONFIG_DISP_MD050SD 1
- #define CONFIG_DRIVER_EXT2 1
- #define CONFIG_ENV_MUTABLE 1
- #define CONFIG_AEABI 1
-@@ -45,12 +46,13 @@
- #define CONFIG_CMD_CHECKSUM 1
- #define CONFIG_CMD_XRECEIVE 1
- #define CONFIG_COMMAND_HISTORY 1
-+#define CONFIG_LOGO_TUX 1
- #define CONFIG_CMD_IMAGE 1
- #define CONFIG_MACH_EPLPC3131_V1 1
- #define CONFIG_CMD_ALIAS 1
- #define CONFIG_ENV_DEFAULT_STARTUP_OVERRIDE 1
- #define CONFIG_CMD_ERASE 1
--#define CONFIG_ENV_DEFAULT_CMDLINE "console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait "
-+#define CONFIG_ENV_DEFAULT_CMDLINE "console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait console=tty0,115200 fbcon=rotate:0 fbcon=font:VGA8x16"
- #define CONFIG_CPU_ARMV5 1
- #define CONFIG_NO_BOOTSTRAP 1
- #define CONFIG_ATAG_PHYS 0x30000100
-Binary files apex-1.6.8-vanilla/scripts/basic/docproc and apex-1.6.8/scripts/basic/docproc differ
-Binary files apex-1.6.8-vanilla/scripts/basic/fixdep and apex-1.6.8/scripts/basic/fixdep differ
-Binary files apex-1.6.8-vanilla/scripts/kconfig/conf and apex-1.6.8/scripts/kconfig/conf differ
-Binary files apex-1.6.8-vanilla/scripts/kconfig/mconf and apex-1.6.8/scripts/kconfig/mconf differ
-Binary files apex-1.6.8-vanilla/src/arch-arm/rom/apex.bin and apex-1.6.8/src/arch-arm/rom/apex.bin differ
-diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/Kconfig apex-1.6.8/src/mach-lpc313x/Kconfig
+diff -uNr apex-1.6.8-vanilla/src/mach-lpc313x/Kconfig apex-1.6.8/src/mach-lpc313x/Kconfig
 --- apex-1.6.8-vanilla/src/mach-lpc313x/Kconfig	2013-01-15 11:42:51.000000000 +0100
 +++ apex-1.6.8/src/mach-lpc313x/Kconfig	2014-05-13 17:20:30.294462096 +0200
-@@ -53,6 +53,9 @@ choice
+@@ -53,6 +53,9 @@
  	prompt "PLL frequency"
  	default PLL_180
  
@@ -430,7 +53,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/Kconfig apex-1.6.8/src/mach-lpc31
  config PLL_180
  	bool "Set PLL/ARM frequency at 180MHz and AHB=90MHz"
  
-@@ -206,9 +209,37 @@ config  RAM_SIZE_64MB
+@@ -206,9 +209,37 @@
  
  endchoice
  
@@ -468,7 +91,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/Kconfig apex-1.6.8/src/mach-lpc31
  
  endmenu
  
-diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/Makefile apex-1.6.8/src/mach-lpc313x/Makefile
+diff -uNr apex-1.6.8-vanilla/src/mach-lpc313x/Makefile apex-1.6.8/src/mach-lpc313x/Makefile
 --- apex-1.6.8-vanilla/src/mach-lpc313x/Makefile	2012-10-15 15:06:32.000000000 +0200
 +++ apex-1.6.8/src/mach-lpc313x/Makefile	2014-05-13 17:21:59.737463488 +0200
 @@ -9,13 +9,15 @@
@@ -488,7 +111,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/Makefile apex-1.6.8/src/mach-lpc3
  
  obj-y += $(obj-xyy)
  
-diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.c apex-1.6.8/src/mach-lpc313x/boot_logo_tux.c
+diff -uNr apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.c apex-1.6.8/src/mach-lpc313x/boot_logo_tux.c
 --- apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.c	1970-01-01 01:00:00.000000000 +0100
 +++ apex-1.6.8/src/mach-lpc313x/boot_logo_tux.c	2014-05-13 18:35:48.687532428 +0200
 @@ -0,0 +1,1489 @@
@@ -1981,9 +1604,9 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.c apex-1.6.8/src/ma
 +      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 +      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
 +#endif
-diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.h apex-1.6.8/src/mach-lpc313x/boot_logo_tux.h
+diff -uNr apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.h apex-1.6.8/src/mach-lpc313x/boot_logo_tux.h
 --- apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.h	1970-01-01 01:00:00.000000000 +0100
-+++ apex-1.6.8/src/mach-lpc313x/boot_logo_tux.h	2014-05-13 17:22:20.223463807 +0200
++++ apex-1.6.8/src/mach-lpc313x/boot_logo_tux.h	2014-05-13 19:50:37.219602296 +0200
 @@ -0,0 +1,11 @@
 +/* Image in RGB565 format, width: 300, height: 150 */
 +
@@ -1992,11 +1615,11 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/boot_logo_tux.h apex-1.6.8/src/ma
 +
 +#include "hardware.h"
 +
-+#if defined(CONFIG_LOGO_300_150)
++#if defined(CONFIG_LOGO_TUX)
 +u16 boot_logo_tux[];
 +#endif
 +#endif /* BOOT_LOGO_H_ */
-diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-lpc313x/initialize.c
+diff -uNr apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-lpc313x/initialize.c
 --- apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c	2013-01-15 11:45:06.000000000 +0100
 +++ apex-1.6.8/src/mach-lpc313x/initialize.c	2014-05-13 18:35:33.929532199 +0200
 @@ -19,7 +19,7 @@
@@ -2025,7 +1648,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-
  #define PLL_90M   {CGU_FIN_SELECT_FFAST, 770,  8191, 66, 0, 16,  8, 0, 90000000}
  #define PLL_180M  {CGU_FIN_SELECT_FFAST, 770,  8191, 98, 0, 16,  8, 0, 180000000}
  #define PLL_270M  {CGU_FIN_SELECT_FFAST, 514, 19660, 98, 0, 48, 23, 0, 270000000}
-@@ -62,8 +62,44 @@ extern const CGU_CLKS_INIT_T g_cgu_defau
+@@ -62,8 +62,44 @@
  extern const CGU_CLKS_INIT_T g_cgu_default_clks_3;
  #define DEFAULT_CFG   &g_cgu_default_clks_3
  
@@ -2070,7 +1693,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-
  
  #if defined(CONFIG_RAM_SIZE_8MB)
  #define SDRAM_CHIP_MODE   _SBF(13, 0x23)
-@@ -76,13 +112,13 @@ const CGU_HPLL_SETUP_T const g_pll = CUR
+@@ -76,13 +112,13 @@
  
  void __naked __section (.bootstrap.early) bootstrap_early (void)
  {
@@ -2089,7 +1712,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-
  }
  
  void __naked __section (.bootstrap.early.exit) bootstrap_early_exit (void)
-@@ -102,7 +138,7 @@ void __naked __section (.bootstrap.early
+@@ -102,7 +138,7 @@
     Note that this function is neither __naked nor static.  It is
     available to the rest of the application as is.
  
@@ -2098,7 +1721,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-
  
     This routine assumes 12MHz clock is used as source clock for timer
     block. Which means 12 ticks for every usec.
-@@ -111,15 +147,15 @@ void __naked __section (.bootstrap.early
+@@ -111,15 +147,15 @@
  
  void __section (.bootstrap) usleep (unsigned long us)
  {
@@ -2123,7 +1746,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-
  }
  
  
-@@ -140,185 +176,274 @@ void __section (.bootstrap) usleep (unsi
+@@ -140,185 +176,274 @@
     not we're running in SDRAM.
  
  
@@ -2542,7 +2165,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-
  }
  
  
-@@ -327,12 +452,14 @@ void __naked __section (.bootstrap) init
+@@ -327,12 +452,14 @@
     performs the rest of the hardware initialization that didn't have
     to be performed during the bootstrap phase.
  
@@ -2559,10 +2182,10 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/initialize.c apex-1.6.8/src/mach-
  };
 +
 +
-diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/lpc313x_cgu_default.c apex-1.6.8/src/mach-lpc313x/lpc313x_cgu_default.c
+diff -uNr apex-1.6.8-vanilla/src/mach-lpc313x/lpc313x_cgu_default.c apex-1.6.8/src/mach-lpc313x/lpc313x_cgu_default.c
 --- apex-1.6.8-vanilla/src/mach-lpc313x/lpc313x_cgu_default.c	2012-10-15 15:06:32.000000000 +0200
 +++ apex-1.6.8/src/mach-lpc313x/lpc313x_cgu_default.c	2014-03-13 15:14:13.429578238 +0100
-@@ -488,6 +488,149 @@ const CGU_CLKS_INIT_T g_cgu_default_clks
+@@ -488,6 +488,149 @@
    }
  };
  
@@ -2712,7 +2335,7 @@ diff -rupN apex-1.6.8-vanilla/src/mach-lpc313x/lpc313x_cgu_default.c apex-1.6.8/
  #endif
  
  
-diff -rupN apex-1.6.8-vanilla/write_bootloader.sh apex-1.6.8/write_bootloader.sh
+diff -uNr apex-1.6.8-vanilla/write_bootloader.sh apex-1.6.8/write_bootloader.sh
 --- apex-1.6.8-vanilla/write_bootloader.sh	1970-01-01 01:00:00.000000000 +0100
 +++ apex-1.6.8/write_bootloader.sh	2014-05-13 18:37:47.336534275 +0200
 @@ -0,0 +1,4 @@

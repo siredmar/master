@@ -5,7 +5,7 @@
 
 #include "hardware.h"
 
-#if defined(CONFIG_LOGO_300_150)
+#if defined(CONFIG_LOGO_TUX)
 u16 boot_logo_tux[];
 #endif
 #endif /* BOOT_LOGO_H_ */
