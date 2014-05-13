@@ -3,6 +3,7 @@
 # compiles the kernel and copies the ready files to ready
 
 mkdir ready
+mkdir ready/boot
 cd ready
 rm -r lib/*
 rm ready.tar.gz
