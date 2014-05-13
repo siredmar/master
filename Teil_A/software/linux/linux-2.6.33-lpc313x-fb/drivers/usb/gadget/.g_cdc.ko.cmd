@@ -1,1 +1,0 @@
-cmd_drivers/usb/gadget/g_cdc.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/usb/gadget/g_cdc.ko drivers/usb/gadget/g_cdc.o drivers/usb/gadget/g_cdc.mod.o

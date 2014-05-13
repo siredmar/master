@@ -1,1 +1,0 @@
-cmd_drivers/net/enc28j60.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/net/enc28j60.ko drivers/net/enc28j60.o drivers/net/enc28j60.mod.o

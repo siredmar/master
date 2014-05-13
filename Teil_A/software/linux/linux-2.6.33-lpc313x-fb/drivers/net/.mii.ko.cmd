@@ -1,1 +1,0 @@
-cmd_drivers/net/mii.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/net/mii.ko drivers/net/mii.o drivers/net/mii.mod.o

@@ -53,9 +53,6 @@ choice
 	prompt "PLL frequency"
 	default PLL_180
 
-config PLL_90
-	bool "Set PLL/ARM frequency at 90MHz and AHB=45MHz"
-
 config PLL_180
 	bool "Set PLL/ARM frequency at 180MHz and AHB=90MHz"
 
@@ -209,37 +206,9 @@ config  RAM_SIZE_64MB
 
 endchoice
 
-choice
-   prompt "Display Controller"
-   default DISP_NONE
-   help
-       Select the timing for display controllers. 
-config DISP_NONE
-   bool "none"
 
-config  DISP_SSD1963
-   bool "SSD1963"
 
-config  DISP_MD050SD
-   bool "MD050SD"
 
-config  DISP_SSD1289
-   bool "SSD1289"
-
-endchoice
-
-choice
-   prompt "Bootup Logo"
-   default LOGO_NONE
-   help
-       Select the bootup logo 
-config LOGO_NONE
-   bool "none"
-
-config  LOGO_TUX
-   bool "Tux Logo"
-
-endchoice
 
 endmenu
 

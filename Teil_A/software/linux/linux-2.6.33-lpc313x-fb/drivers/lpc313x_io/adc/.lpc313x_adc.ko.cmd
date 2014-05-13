@@ -1,1 +1,0 @@
-cmd_drivers/lpc313x_io/adc/lpc313x_adc.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o drivers/lpc313x_io/adc/lpc313x_adc.ko drivers/lpc313x_io/adc/lpc313x_adc.o drivers/lpc313x_io/adc/lpc313x_adc.mod.o

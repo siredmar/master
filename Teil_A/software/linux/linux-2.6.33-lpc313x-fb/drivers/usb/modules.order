@@ -1,4 +1,0 @@
-kernel/drivers/usb/class/cdc-acm.ko
-kernel/drivers/usb/serial/usbserial.ko
-kernel/drivers/usb/serial/cp210x.ko
-kernel/drivers/usb/serial/ftdi_sio.ko

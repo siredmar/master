@@ -1,1 +1,0 @@
-cmd_src/arch-arm/entry/built-in.o :=  arm-linux-gnueabi-ld    -r -o src/arch-arm/entry/built-in.o src/arch-arm/entry/reset.o src/arch-arm/entry/mmu-alloc.o src/arch-arm/entry/sdramboot.o src/arch-arm/entry/relocate-simple.o 

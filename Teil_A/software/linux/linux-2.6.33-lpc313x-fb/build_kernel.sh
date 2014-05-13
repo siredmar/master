@@ -1,4 +1,7 @@
 #!/bin/bash
+# Armin Schlegel (2014)
+# compiles the kernel and copies the ready files to ready
+
 cd ready
 rm -r lib/*
 rm ready.tar.gz

@@ -49,13 +49,7 @@
 #define LED_BACKLIGHT_PIN  20
 #define LED_RESET_PIN  19
 
-///* TFT Controler Register defines */
-//#define NOCMD                 0xFFFF
-//#define NOPARAM               0
-//#define PARAM                 1
-
 #define USE_MEMCPY   0
-
 
 /* TFT Controler Register defines */
 #define MD050SD_SET_BACKLIGHT_PWM        (0x0001)

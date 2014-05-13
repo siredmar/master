@@ -1,3 +1,0 @@
-kernel/drivers/rtc/rtc-core.ko
-kernel/drivers/rtc/rtc-mcp7940.ko
-kernel/drivers/rtc/rtc-rv3029.ko

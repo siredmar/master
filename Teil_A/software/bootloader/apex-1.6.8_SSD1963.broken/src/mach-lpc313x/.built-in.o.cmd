@@ -1,1 +1,0 @@
-cmd_src/mach-lpc313x/built-in.o :=  arm-linux-gnueabi-ld    -r -o src/mach-lpc313x/built-in.o src/mach-lpc313x/initialize.o src/mach-lpc313x/serial.o src/mach-lpc313x/timer.o src/mach-lpc313x/env.o src/mach-lpc313x/lpc313x_cgu_default.o src/mach-lpc313x/lpc313x_cgu_driver.o src/mach-lpc313x/drv-crc32.o src/mach-lpc313x/cmd-reset.o src/mach-lpc313x/drv-mmc.o 

@@ -1,3 +1,0 @@
-kernel/drivers/hwmon/ads7828.ko
-kernel/drivers/hwmon/lm75.ko
-kernel/drivers/hwmon/sht15.ko

@@ -1,8 +1,0 @@
-kernel/drivers/usb/gadget/g_zero.ko
-kernel/drivers/usb/gadget/g_ether.ko
-kernel/drivers/usb/gadget/gadgetfs.ko
-kernel/drivers/usb/gadget/g_file_storage.ko
-kernel/drivers/usb/gadget/g_mass_storage.ko
-kernel/drivers/usb/gadget/g_serial.ko
-kernel/drivers/usb/gadget/g_printer.ko
-kernel/drivers/usb/gadget/g_cdc.ko

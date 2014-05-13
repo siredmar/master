@@ -1,6 +1,14 @@
 #!/bin/bash
+
+# Armin Schlegel (2014)
+# This script installs the kernel and the modules on the sd card
+# Usage: ./intall_SD_all.sh sdX
+# Note: sdX is the device for the sd card.
+# Note: /dev/sdX3 must be the root partition and /dev/sdX1 the boot partition.
+
 sd=$1
 ready_path=$(pwd)/ready
+mkdir $ready_path
 
 echo mounting sd card
 mount /dev/$13 /mnt/hd

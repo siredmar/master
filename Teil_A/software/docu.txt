@@ -1,0 +1,180 @@
+Gnublin Extended with MD050SD Display
+=====================================
+Armin Schlegel, 05/13/2014
+
+
+0. Setting up the environment
+-----------------------------
+cd /tmp
+wget http://gnublin.org/downloads/eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2
+tar xvfj eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2 -C /
+
+Create file and save it here: /opt/eldk-5.2.1/set.sh
+====================================================
+
+P1=/opt/eldk-5.2.1/armv5te/sysroots/i686-eldk-linux/usr/bin/armv5te-linux-gnueabi/
+P2=/opt/eldk-5.2.1/armv5te/sysroots/i686-eldk-linux/bin/armv5te-linux-gnueabi/
+ 
+export ARCH=arm 
+export CROSS_COMPILE=arm-linux-gnueabi-
+export PATH=$P1:$P2:$PATH
+
+Set environment variables:
+==========================
+. /opt/eldk-5.2.1/set.sh
+
+1. Getting Linux Source: 
+------------------------
+git clone https://github.com/embeddedprojects/gnublin-lpc3131-2.6.33.git
+
+2. Patching Kernel Source
+-------------------------
+cd gnublin-lpc3131-2.6.33/linux-2.6.33-lpc313x
+wget https://github.com/siredmar/master/raw/master/Teil_A/software/linux/display_drivers.patch
+patch < display_drivers.patch
+
+3. Configuring the Kernel
+-------------------------
+ - make menuconfig
+  │ │        Kernel Features  --->                                        │ │  
+  │ │        Boot options  --->                                           │ │  
+  │ │        CPU Power Management  --->                                   │ │  
+  │ │        Floating point emulation  --->                               │ │  
+  │ │        Userspace binary formats  --->                               │ │  
+  │ │        Power management options  --->                               │ │  
+  │ │    [*] Networking support  --->                                     │ │  
+  │ │        Device Drivers  --->                                         │ │  
+  │ │        File systems  --->                                           │ │  
+  │ │        Kernel hacking  --->  
+
+-> Device Drivers
+
+  │        Graphics support  --->                                         │  
+  │ │    <*> Sound card support  --->                                     │ │  
+  │ │    [*] HID Devices  --->                                            │ │  
+  │ │    [*] USB support  --->                                            │ │  
+  │ │    <*> MMC/SD/SDIO card support  --->                               │ │  
+  │ │    < > Sony MemoryStick card support (EXPERIMENTAL)  --->           │ │  
+  │ │    [*] LED Support  --->                                            │ │  
+  │ │    [ ] Accessibility support  --->                                  │ │  
+  │ │    <M> Real Time Clock  --->                                        │ │  
+  │ │    [ ] DMA Engine support  --->                                     │ │  
+  │ └────↓(+)─────────────────────────────────────────────────────────────┘
+
+-> Graphics support
+  │ │    < > Lowlevel video output switch controls                        │ │  
+  │ │    <*> Support for frame buffer devices  --->                       │ │  
+  │ │    [ ] Backlight & LCD device support  --->                         │ │  
+  │ │        Display device support  --->                                 │ │  
+  │ │        Console display driver support  --->                         │ │  
+  │ │    [ ] Bootup logo  --->   
+
+-> Support for frame buffer devices
+  │ │    [ ]   Enable Tile Blitting Support                               │ │  
+  │ │          *** Frame buffer hardware drivers ***                      │ │  
+  │ │    < >   Epson S1D13XXX framebuffer support                         │ │  
+  │ │    < >   Virtual Frame Buffer support (ONLY FOR TESTING!)           │ │  
+  │ │    < >   E-Ink Metronome/8track controller support                  │ │  
+  │ │    < >   Fujitsu MB862xx GDC support                                │ │  
+  │ │    < >   E-Ink Broadsheet/Epson S1D13521 controller support         │ │  
+  │ │    < >   Solomon Systech SSD1963 controller support                 │ │  
+  │ │    < >   SSD1289 display support                                    │ │  
+  │ │    <*>   MD050SD display support                                    │ │  
+  │ └─────────────────────────────────────────────────────────────────────┘ │
+-> MD050SD built-in
+-> go back to Graphics support
+  │ │    < > Lowlevel video output switch controls                        │ │  
+  │ │    <*> Support for frame buffer devices  --->                       │ │  
+  │ │    [ ] Backlight & LCD device support  --->                         │ │  
+  │ │        Display device support  --->                                 │ │  
+  │ │        Console display driver support  --->                         │ │  
+  │ │    [ ] Bootup logo  --->                                            │ │  
+  │ │                                                                     │ │ 
+-> Console display river support
+  │ ┌─────────────────────────────────────────────────────────────────────┐ │  
+  │ │    [ ] VGA text console                                             │ │  
+  │ │    <*> Framebuffer Console support                                  │ │  
+  │ │    [*]   Map the console to the primary display device              │ │  
+  │ │    [*]   Framebuffer Console Rotation                               │ │  
+  │ │    [*] Select compiled-in fonts                                     │ │  
+  │ │    [ ]   VGA 8x8 font                                               │ │  
+  │ │    [*]   VGA 8x16 font                                              │ │  
+-> Framebuffer Console support (built-in)
+-> Framebuffer Console Rotation (build-in)
+-> compiled-in font: VGA 8x16 (built-in)
+
+-> Save config and exit
+
+4. Building the Kernel
+----------------------
+./build_kernel.sh
+./install_SD_all.sh sdX #sdX is the device of the sd card
+
+5. Getting APEX bootloader
+--------------------------
+wget https://github.com/embeddedprojects/gnublin-distribution/raw/master/lpc3131/bootloader/apex/1.6.8/apex-1.6.8.tar.gz
+tar xvfz apex-1.6.8.tar.gz
+
+6. Patching APEX bootloader
+---------------------------
+cd apex-1.6.8
+wget https://github.com/siredmar/master/raw/master/Teil_A/software/bootloader/apex_display.patch
+patch < apex_display.patch
+
+7. Configuring APEX bootloader
+------------------------------
+. /opt/elk-5.2.1/set.sh
+ - make menuconfig
+  │ ┌─────────────────────────────────────────────────────────────────────┐ │  
+  │ │        ARM Platform (NXP LPC313x)  --->                             │ │  
+  │ │    [ ] Enable experimental features                                 │ │  
+  │ │    [ ] Make APEX small                                              │ │  
+  │ │        General Setup  --->                                          │ │  
+  │ │        LPC313X Implementations (Embedded Projects GmbH LPC3131)  ---│ │  
+  │ │        Platform Setup  --->                                         │ │  
+  │ │        Commands  --->                                               │ │  
+  │ │        Generic Drivers  --->                                        │ │  
+  │ │        Environment  --->                                            │
+-> Platform Setup
+
+  │ │        PLL frequency (Set PLL/ARM frequency at 180MHz and AHB=90MHz)│ │  
+  │ │    [*] Enable automatic clock scaling                               │ │  
+  │ │    [ ] Enable LPC313x USB boot method                               │ │  
+  │ │    (0x30000100) Physical address for ATAGs list                     │ │  
+  │ │    (0x11029000) APEX Runtime Address                                │ │  
+  │ │    (0x30008000) Kernel Load Address                                 │ │  
+  │ │    [ ] Enable ramdisk options                                       │ │  
+  │ │        Choose RAM size (32MB RAM)  --->                             │ │  
+  │ │        Display Controller (MD050SD)  --->                           │ │  
+  │ │        Bootup Logo (Tux Logo)  --->                                 │ │  
+  │ └─────────────────────────────────────────────────────────────────────┘ │ 
+-> Bootup Logo -> Tux Logo
+-> Display Controller -> MX050SD
+-> Go back to main menu
+-> Environment
+  │ │    [ ] Enable environment variations                                │ │  
+  │ │        Bootstrap Method (No Bootstrap)  --->                        │ │  
+  │ │    [ ] Define a prefix to the default startup command               │ │  
+  │ │        *** Regions ***                                              │ │  
+  │ │    (lnand:768k+2m) Source region for kernel                         │ │  
+  │ │        *** Overrides ***                                            │ │  
+  │ │    [*] Override the target default kernel command line              │ │  
+  │ │    (console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 ro│ │  
+  │ │    [*] Override the target startup command                          │ │  
+  │ │    (wait 2; copy ext2://1/zImage 0x30008000; boot) Default startup c│ │  
+  │ └─────────────────────────────────────────────────────────────────────┘ │  
+-> append 'console=tty0,115200 fbcon=rotate:0 fbcon=font:VGA8x16' to the command line parameters
+
+
+8. Building APEX bootloader
+---------------------------
+make
+./write_bootloader /dev/sdX2 apex.bin
+
+9. Booting up
+-------------
+Connect the power and let the system boot up
+
+10. NOTE:=
+----------
+For USB keyboard include USB, HID and keyboard setup in kernel config

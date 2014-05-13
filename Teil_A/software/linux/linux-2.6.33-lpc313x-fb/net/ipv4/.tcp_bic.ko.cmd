@@ -1,1 +1,0 @@
-cmd_net/ipv4/tcp_bic.ko := arm-linux-gnueabi-ld -EL -r  -T /home/armin/Masterarbeit/Teil_A/software/linux/linux-2.6.33-lpc313x-fb/scripts/module-common.lds --build-id -o net/ipv4/tcp_bic.ko net/ipv4/tcp_bic.o net/ipv4/tcp_bic.mod.o
