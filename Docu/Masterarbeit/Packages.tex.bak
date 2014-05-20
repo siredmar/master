@@ -14,7 +14,8 @@
 %   Umlaute/Sonderzeichen wie äüöß direkt im Quelltext verwenden (CodePage).
 %   Erlaubt automatische Trennung von Worten mit Umlauten.
 % ------------------------------------------------------------------------------
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp} % Euro-Zeichen etc.
 
