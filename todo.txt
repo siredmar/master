@@ -1,10 +1,6 @@
 TEIL_A:
 ======
-* SSD1289 fade out beseitigen (evtl. neues Display besorgen?)
-* SSD1289 Framebuffertreiber und Userspace-Treiber fertigstellen
-* ggf. Zusammenfassung der Framebuffertreiber in einen mit Auswahl per Kernel Bootkommano
 
 TEIL_B:
 ======
-* Bestellung der Platinen bei PCBPool
 
