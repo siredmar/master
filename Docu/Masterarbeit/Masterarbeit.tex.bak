@@ -1,5 +1,5 @@
 % ------------------------------------------------------------------------------
-% Formatvorlage für Masterarbeiten an der Ohm-Hochschule Nürnberg
+% Formatvorlage fÃ¼r Masterarbeiten an der Ohm-Hochschule NÃ¼rnberg
 % ------------------------------------------------------------------------------
 %   erstellt von Stefan Macke, 24.04.2009
 %   http://blog.stefan-macke.de
@@ -8,42 +8,42 @@
 %   Diese Vorlage basiert auf "scrreprt" aus dem koma-script.
 % ------------------------------------------------------------------------------
 \documentclass[
-    11pt, % Schriftgröße
+    11pt, % SchriftgrÃ¶ÃŸe
     DIV10,
-    ngerman, % für Umlaute, Silbentrennung etc.
+    ngerman, % fÃ¼r Umlaute, Silbentrennung etc.
     a4paper, % Papierformat
     oneside, % einseitiges Dokument
     titlepage, % es wird eine Titelseite verwendet
-    parskip=half, % Abstand zwischen Absätzen (halbe Zeile)
-    headings=normal, % Größe der Überschriften verkleinern
-    listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen
-    bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
-    index=totoc, % Index im Inhaltsverzeichnis aufführen
+    parskip=half, % Abstand zwischen AbsÃ¤tzen (halbe Zeile)
+    headings=normal, % GrÃ¶ÃŸe der Ãœberschriften verkleinern
+    listof=totoc, % Verzeichnisse im Inhaltsverzeichnis auffÃ¼hren
+    bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis auffÃ¼hren
+    index=totoc, % Index im Inhaltsverzeichnis auffÃ¼hren
     captions=tableheading, % Beschriftung von Tabellen unterhalb ausgeben
     final % Status des Dokuments (final/draft)
 ]{scrreprt}
 
 % Meta-Informationen -----------------------------------------------------------
-%   Informationen über das Dokument, wie z.B. Titel, Autor, Matrikelnr. etc
-%   werden in der Datei Meta.tex definiert und können danach global
+%   Informationen Ã¼ber das Dokument, wie z.B. Titel, Autor, Matrikelnr. etc
+%   werden in der Datei Meta.tex definiert und kÃ¶nnen danach global
 %   verwendet werden.
 % ------------------------------------------------------------------------------
 \input{Meta}
 
-% benötigte Packages -----------------------------------------------------------
-%   LaTeX-Packages, die benötigt werden, sind in die Datei Packages.tex
-%   "ausgelagert", um diese Vorlage möglichst übersichtlich zu halten.
+% benÃ¶tigte Packages -----------------------------------------------------------
+%   LaTeX-Packages, die benÃ¶tigt werden, sind in die Datei Packages.tex
+%   "ausgelagert", um diese Vorlage mÃ¶glichst Ã¼bersichtlich zu halten.
 % ------------------------------------------------------------------------------
 \input{Packages}
 
-% Erstellung eines Index und Abkürzungsverzeichnisses aktivieren ---------------
+% Erstellung eines Index und AbkÃ¼rzungsverzeichnisses aktivieren ---------------
 \makeindex
 \makenomenclature
 
-% Kopf- und Fußzeilen, Seitenränder etc. ---------------------------------------
+% Kopf- und FuÃŸzeilen, SeitenrÃ¤nder etc. ---------------------------------------
 \input{Seitenstil}
 
-% eigene Definitionen für Silbentrennung
+% eigene Definitionen fÃ¼r Silbentrennung
 \include{Silbentrennung}
 
 % eigene LaTeX-Befehle
@@ -66,15 +66,15 @@
 \ofoot{\pagemark}
 
 % Seitennummerierung -----------------------------------------------------------
-%   Vor dem Hauptteil werden die Seiten in großen römischen Ziffern 
+%   Vor dem Hauptteil werden die Seiten in groÃŸen rÃ¶mischen Ziffern 
 %   nummeriert.
 % ------------------------------------------------------------------------------
 \pagenumbering{Roman}
 \tableofcontents % Inhaltsverzeichnis
 
-% Abkürzungsverzeichnis --------------------------------------------------------
+% AbkÃ¼rzungsverzeichnis --------------------------------------------------------
 \input{Inhalt/Glossar}
-% für korrekte Überschrift in der Kopfzeile
+% fÃ¼r korrekte Ãœberschrift in der Kopfzeile
 \clearpage\markboth{\nomname}{\nomname} 
 \printnomenclature
 \label{sec:Glossar}
@@ -98,7 +98,7 @@
 \bibliography{Bibliographie} % Aufruf: bibtex Masterarbeit
 \bibliographystyle{natdin} % DIN-Stil des Literaturverzeichnisses
 
-\include{Erklaerung} % Selbständigkeitserklärung
+\include{Erklaerung} % SelbstÃ¤ndigkeitserklÃ¤rung
 
 % Anhang -----------------------------------------------------------------------
 %   Die Inhalte des Anhangs werden analog zu den Kapiteln inkludiert.
@@ -109,7 +109,7 @@
     \pagenumbering{roman}
     \chapter{Anhang}
     \label{sec:Anhang}
-    % Rand der Aufzählungen in Tabellen anpassen
+    % Rand der AufzÃ¤hlungen in Tabellen anpassen
     \setdefaultleftmargin{1em}{}{}{}{}{}
     \input{Anhang}
 \end{appendix}

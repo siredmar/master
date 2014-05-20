@@ -1,4 +1,4 @@
-\section{Liste mˆglicher Aktivit‰ten der BPEL}
+\section{Liste m√∂glicher Aktivit√§ten der BPEL}
 \label{sec:ListeBPELAktivitaeten}
 
 Die folgenden Listen basieren auf \Zitat[Abschnitt~10~u.~11]{OASIS2007a}.
@@ -7,13 +7,13 @@ Die folgenden Listen basieren auf \Zitat[Abschnitt~10~u.~11]{OASIS2007a}.
 
 \small
 \begin{longtable}{|p{0.14\textwidth}|p{0.43\textwidth}|p{0.35\textwidth}|}
-\caption{Ausgew‰hlte elementare BPEL-Aktivit‰ten} \\
+\caption{Ausgew√§hlte elementare BPEL-Aktivit√§ten} \\
 \hline
 \label{tab:ListeBPELAktivitaetenElementar}
-\textbf{Aktivit‰t} & \textbf{Beschreibung} & \textbf{Beispiel} \\
+\textbf{Aktivit√§t} & \textbf{Beschreibung} & \textbf{Beispiel} \\
 \hline
 \XMLElement{invoke} & 
-Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-way}- und \Fachbegriff{Request-response}-Kommunikation unterschieden. Eventuelle Input- und Output-Nachrichten werden hierbei angegeben. \XMLElement{invoke}-Elemente kˆnnen weitere Elemente (wie \zB \XMLElement{faultHandler} zur Fehlerbehandlung) beinhalten. & 
+Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-way}- und \Fachbegriff{Request-response}-Kommunikation unterschieden. Eventuelle Input- und Output-Nachrichten werden hierbei angegeben. \XMLElement{invoke}-Elemente k√∂nnen weitere Elemente (wie \zB \XMLElement{faultHandler} zur Fehlerbehandlung) beinhalten. & 
 \vspace{-0.8cm}
 \begin{verbatim}
 <invoke 
@@ -24,7 +24,7 @@ Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-wa
   outputVariable="VarName">
 \end{verbatim}\\
 \hline
-\XMLElement{receive} & Empf‰ngt eine Nachricht von einem Partner. Dazu muss die Operation angegeben werden, die der Prozess anbietet um die Nachricht entgegenzunehmen. Die Nachricht kann in einer \XMLElement{variable} gespeichert werden. & 
+\XMLElement{receive} & Empf√§ngt eine Nachricht von einem Partner. Dazu muss die Operation angegeben werden, die der Prozess anbietet um die Nachricht entgegenzunehmen. Die Nachricht kann in einer \XMLElement{variable} gespeichert werden. & 
 \vspace{-0.8cm}
 \begin{verbatim}
 <receive 
@@ -67,7 +67,7 @@ Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-wa
   faultVariable="VarName">
 \end{verbatim} \\
 \hline
-\XMLElement{wait} & L‰sst den Prozess eine gewisse Zeit lang warten. & 
+\XMLElement{wait} & L√§sst den Prozess eine gewisse Zeit lang warten. & 
 \vspace{-0.8cm}
 \begin{verbatim}
 <wait>
@@ -87,12 +87,12 @@ Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-wa
 
 \small
 \begin{longtable}{|p{0.14\textwidth}|p{0.43\textwidth}|p{0.35\textwidth}|}
-\caption{Ausgew‰hlte strukturierte BPEL-Aktivit‰ten} \\
+\caption{Ausgew√§hlte strukturierte BPEL-Aktivit√§ten} \\
 \hline
 \label{tab:ListeBPELAktivitaetenStrukturiert}
-\textbf{Aktivit‰t} & \textbf{Beschreibung} & \textbf{Beispiel} \\
+\textbf{Aktivit√§t} & \textbf{Beschreibung} & \textbf{Beispiel} \\
 \hline
-\XMLElement{sequence} & Sequentielles Abarbeiten der angegebenen Aktivit‰ten. & 
+\XMLElement{sequence} & Sequentielles Abarbeiten der angegebenen Aktivit√§ten. & 
 \vspace{-0.8cm}
 \begin{verbatim}
 <sequence>
@@ -101,7 +101,7 @@ Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-wa
 </sequence>
 \end{verbatim}\\
 \hline
-\XMLElement{flow} & Paralleles Abarbeiten der angegebenen Aktivit‰ten. & 
+\XMLElement{flow} & Paralleles Abarbeiten der angegebenen Aktivit√§ten. & 
 \vspace{-0.8cm}
 \begin{verbatim}
 <flow>
@@ -129,7 +129,7 @@ Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-wa
 </if>
 \end{verbatim}\\
 \hline
-\XMLElement{while} & Wiederholung der angegebenen Aktivit‰ten (vergleichbar zur Programmierung). & 
+\XMLElement{while} & Wiederholung der angegebenen Aktivit√§ten (vergleichbar zur Programmierung). & 
 \vspace{-0.8cm}
 \begin{verbatim}
 <while>
@@ -140,7 +140,7 @@ Aufruf einer Operation eines Webservice. Dabei wird zwischen \Fachbegriff{One-wa
 </while>
 \end{verbatim}\\
 \hline
-\XMLElement{scope} & Ver‰ndern des Kontextes in dem die angegebenen Aktivit‰ten ablaufen. So kˆnnen \zB neue Variablen deklariert oder eine andere Fehlerbehandlung definiert werden. Das \XMLElement{scope}-Element stellt eigentlich keine Aktivit‰t dar, soll hier aber trotzdem erw‰hnt werden. & 
+\XMLElement{scope} & Ver√§ndern des Kontextes in dem die angegebenen Aktivit√§ten ablaufen. So k√∂nnen \zB neue Variablen deklariert oder eine andere Fehlerbehandlung definiert werden. Das \XMLElement{scope}-Element stellt eigentlich keine Aktivit√§t dar, soll hier aber trotzdem erw√§hnt werden. & 
 \vspace{-0.8cm}
 \begin{verbatim}
 <scope>
