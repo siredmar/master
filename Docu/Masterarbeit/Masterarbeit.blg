@@ -16,44 +16,59 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Bibliographie.bib
-You've used 4 entries,
+Warning--entry type for "Brandt2013" isn't style-file defined
+--line 4 of file Bibliographie.bib
+Warning--entry type for "Intel2010" isn't style-file defined
+--line 13 of file Bibliographie.bib
+Warning--entry type for "Leunig2002" isn't style-file defined
+--line 22 of file Bibliographie.bib
+Warning--entry type for "Extron2014" isn't style-file defined
+--line 31 of file Bibliographie.bib
+Warning--entry type for "TI2011" isn't style-file defined
+--line 40 of file Bibliographie.bib
+Warning--entry type for "Valcarce2011" isn't style-file defined
+--line 49 of file Bibliographie.bib
+Warning--entry type for "SSD2007" isn't style-file defined
+--line 58 of file Bibliographie.bib
+You've used 7 entries,
             4728 wiz_defined-function locations,
-            917 strings with 7276 characters,
-and the built_in function-call counts, 1912 in all, are:
-= -- 192
-> -- 40
-< -- 31
-+ -- 40
-- -- 13
-* -- 117
-:= -- 337
-add.period$ -- 8
-call.type$ -- 4
-change.case$ -- 16
-chr.to.int$ -- 4
-cite$ -- 4
-duplicate$ -- 64
-empty$ -- 149
-format.name$ -- 24
-if$ -- 397
+            933 strings with 7625 characters,
+and the built_in function-call counts, 3393 in all, are:
+= -- 348
+> -- 70
+< -- 66
++ -- 81
+- -- 23
+* -- 204
+:= -- 592
+add.period$ -- 14
+call.type$ -- 7
+change.case$ -- 28
+chr.to.int$ -- 7
+cite$ -- 7
+duplicate$ -- 112
+empty$ -- 260
+format.name$ -- 42
+if$ -- 706
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 24
-newline$ -- 39
-num.names$ -- 16
-pop$ -- 24
+missing$ -- 42
+newline$ -- 57
+num.names$ -- 28
+pop$ -- 42
 preamble$ -- 1
-purify$ -- 24
+purify$ -- 42
 quote$ -- 0
-skip$ -- 108
+skip$ -- 200
 stack$ -- 0
-substring$ -- 78
-swap$ -- 12
-text.length$ -- 4
+substring$ -- 148
+swap$ -- 21
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 52
+type$ -- 91
 warning$ -- 0
-while$ -- 16
+while$ -- 28
 width$ -- 0
-write$ -- 72
+write$ -- 117
+(There were 7 warnings)

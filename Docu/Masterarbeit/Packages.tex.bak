@@ -88,6 +88,7 @@
 
 % URL verlinken, lange URLs umbrechen etc. -------------------------------------
 \usepackage{url}
+\def\UrlBreaks{\do\/\do-}
 
 % wichtig für korrekte Zitierweise ---------------------------------------------
 \usepackage[square]{natbib}
@@ -149,3 +150,9 @@
 
 % sorgt dafür, dass Leerzeichen hinter parameterlosen Makros nicht als Makroendezeichen interpretiert werden
 \usepackage{xspace}
+
+% Verwendung von Referenzen einfacher
+\newcommand{\refa}[1]{{Abbildung \ref{#1}}}
+\newcommand{\reft}[1]{{Tabelle \ref{#1}}}
+\newcommand{\refl}[1]{{Listing \ref{#1}}}
+

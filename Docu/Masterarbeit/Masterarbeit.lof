@@ -1,7 +1,9 @@
 \select@language {ngerman}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Quelle: DVI-Timing, \cite {Wikipedia2010a}}}{4}{figure.21}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces VGA-Timing, Quelle: \cite {Valcarce2011}}}{4}{figure.16}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces RGB-Timing, Quelle: \cite {TI2011}}}{5}{figure.28}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces 8080-Timing des SSD1289, Quelle: \cite {SSD2007}}}{7}{figure.33}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

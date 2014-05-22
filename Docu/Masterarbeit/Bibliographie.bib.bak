@@ -1,9 +1,8 @@
 % This file was created with JabRef 2.4.2.
 % Encoding: Cp1252
 
-@misc{Brandt2013,
+@online{Brandt2013,
   title = {Fast 80 Prozent Marktanteil für Android},
-  publisher = {statista},
   lastchecked = {20.05.2014},
   year = {2013},
   author = {Mathtias Brandt},
@@ -11,9 +10,8 @@
   url = {http://de.statista.com/themen/581/smartphones/infografik/1326/smartphone-absatz-weltweit}
 }
 
-@misc{Intel2010,
+@online{Intel2010,
   title = {Leading PC Companies Move to All Digital Display Technology, Phasing out Analog},
-  publisher = {Intel Newsroom},
   lastchecked = {20.05.2014},
   year = {2010},
   author = {Nick Knuppfer},
@@ -21,31 +19,47 @@
   url = {http://newsroom.intel.com/community/intel_newsroom/blog/2010/12/08/leading-pc-companies-move-to-all-digital-display-technology-phasing-out-analog?cid=rss-258152-c1-262653}
 }
 
-@misc{Leunig2002,
+@online{Leunig2002,
   title = {Der DVI-Standard - ein Überblick},
-  publisher = {Leunig},
   lastchecked = {20.05.2014},
   year = {2002},
   author = {Peter H. Leunig},
-  timestamp = {Januar 2002},
+  timestamp = {01.01.2002},
   url = {http://www.leunig.de/_pro/downloads/DVI_WhitePaper.pdf}
 }
 
-@misc{Wikipedia2010a,
-  title = {Timing Diagramm des DVI Standards},
-  lastchecked = {20.05.2014},
-  year = {2010},
-  author = {Wikipedia},
-  timestamp = {01.10.2010},
-  url = {http://commons.wikimedia.org/wiki/File:Dvi-timing-serializer-function.png}
-}
-
-@misc{Extron2014,
+@online{Extron2014,
   title = {DVI and HDMI: The Short and the Long of It},
   lastchecked = {20.05.2014},
   year = {2014},
   author = {Extron},
+  timestamp = {01.01.2014},
   url = {http://www.extron.com/company/article.aspx?id=dvihdmi_ts}
 }
 
-	
+@online{TI2011,
+  title = {TI PanelBus™ DIGITAL RECEIVER - TFP401A-EP},
+  lastchecked = {22.05.2014},
+  year = {2011},
+  author = {Texas Instruments},
+  timestamp = {01.07.2011},
+  url = {www.ti.com/litv/slds160a}
+}
+
+@online{Valcarce2011,
+  title = {VGA Video Signal Format and Timing Specifications},
+  lastchecked = {22.05.2014},
+  year = {2011},
+  author = {Javier Valcarce},
+  timestamp = {10.02.2011},
+  url = {http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications}
+}
+
+@online{SSD2007,
+  title = {SSD1289 Datasheet},
+  lastchecked = {22.05.2014},
+  year = {2007},
+  author = {Solomon Systech Limited},
+  timestamp = {01.04.2007},
+  url = {http://www.kosmodrom.com.ua/el/STM32-TFT/SSD1289.pdf}
+}
