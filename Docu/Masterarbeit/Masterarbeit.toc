@@ -14,66 +14,65 @@
 \contentsline {subsection}{\numberline {2.1.4}RGB}{5}{subsection.26}
 \contentsline {subsection}{\numberline {2.1.5}LVDS}{6}{subsection.30}
 \contentsline {subsection}{\numberline {2.1.6}8080-Interface}{6}{subsection.32}
-\contentsline {subsection}{\numberline {2.1.7}Verwendung der SPI-Schnittstelle}{8}{subsection.35}
-\contentsline {subsection}{\numberline {2.1.8}Bewertung der Video-Schnittstellen}{8}{subsection.36}
-\contentsline {section}{\numberline {2.2}Betrachtete Embedded Linux Boards}{8}{section.37}
-\contentsline {subsection}{\numberline {2.2.1}Raspberry Pi}{8}{subsection.38}
-\contentsline {subsection}{\numberline {2.2.2}Gnublin Extended}{8}{subsection.39}
-\contentsline {subsection}{\numberline {2.2.3}Bewertung der Linux-Boards}{8}{subsection.40}
-\contentsline {chapter}{\numberline {3}Teil A}{9}{chapter.41}
-\contentsline {section}{\numberline {3.1}Display mit 8080-Interface}{9}{section.42}
-\contentsline {section}{\numberline {3.2}8080-Interface mittels GPIO-Pins}{9}{section.43}
-\contentsline {subsection}{\numberline {3.2.1}Konzept}{9}{subsection.44}
-\contentsline {subsection}{\numberline {3.2.2}Hardwareverbindung zwischen GPIO-Pins und Display}{9}{subsection.45}
-\contentsline {subsection}{\numberline {3.2.3}User-Space-Treiber}{9}{subsection.46}
-\contentsline {subsubsection}{\numberline {3.2.3.1}Low-Level-Treiber}{9}{subsubsection.47}
-\contentsline {paragraph}{\numberline {3.2.3.1.1}GPIO-Pin Frequenz erh"ohen}{9}{paragraph.48}
-\contentsline {paragraph}{\numberline {3.2.3.1.2}GPIO-Treiber}{9}{paragraph.49}
-\contentsline {paragraph}{\numberline {3.2.3.1.3}Displaytreiber f"ur SSD1963}{9}{paragraph.50}
-\contentsline {subsection}{\numberline {3.2.4}Ansteuerung des Displays}{10}{subsection.51}
-\contentsline {section}{\numberline {3.3}8080-Interface mittels SRAM-Interface}{10}{section.52}
-\contentsline {subsection}{\numberline {3.3.1}Konzept}{10}{subsection.53}
-\contentsline {subsection}{\numberline {3.3.2}MPMC - Multiport Memory Controller des NXP LPC313x}{10}{subsection.54}
-\contentsline {subsection}{\numberline {3.3.3}Hardwareverbindung zwischen SRAM-Interface und Display (Adapterplatine)}{10}{subsection.55}
-\contentsline {subsection}{\numberline {3.3.4}Untersuchte Displays}{10}{subsection.56}
-\contentsline {subsubsection}{\numberline {3.3.4.1}3.2" mit SSD1289}{10}{subsubsection.57}
-\contentsline {subsubsection}{\numberline {3.3.4.2}4.3"/5" mit SSD1963}{10}{subsubsection.58}
-\contentsline {subsubsection}{\numberline {3.3.4.3}5" mit CPLD}{10}{subsubsection.59}
-\contentsline {subsection}{\numberline {3.3.5}Software}{10}{subsection.60}
-\contentsline {subsubsection}{\numberline {3.3.5.1}Entwicklung eines Linux-Framebuffer-Treibers}{10}{subsubsection.61}
-\contentsline {paragraph}{\numberline {3.3.5.1.1}Anpassungen f"ur Display mit SSD1289 Controller}{10}{paragraph.62}
-\contentsline {paragraph}{\numberline {3.3.5.1.2}Anpassungen f"ur Display mit SSD1963 Controller}{10}{paragraph.63}
-\contentsline {paragraph}{\numberline {3.3.5.1.3}Anpassungen f"ur Display mit CPLD Controller}{10}{paragraph.64}
-\contentsline {subsubsection}{\numberline {3.3.5.2}Entwicklung eines User-Space-Treibers}{10}{subsubsection.65}
-\contentsline {paragraph}{\numberline {3.3.5.2.1}Anpassungen f"ur Display mit SSD1289 Controller}{10}{paragraph.66}
-\contentsline {paragraph}{\numberline {3.3.5.2.2}Anpassungen f"ur Display mit SSD1963 Controller}{10}{paragraph.67}
-\contentsline {paragraph}{\numberline {3.3.5.2.3}Anpassungen f"ur Display mit CPLD Controller}{10}{paragraph.68}
-\contentsline {subsubsection}{\numberline {3.3.5.3}Anpassung des APEX-Bootloaders zur Verwendung des Displays}{11}{subsubsection.69}
-\contentsline {subsubsection}{\numberline {3.3.5.4}Probleme bei der Entwicklung und Fehlersuche}{11}{subsubsection.70}
-\contentsline {paragraph}{\numberline {3.3.5.4.1}Probleme mit SSD1963}{11}{paragraph.71}
-\contentsline {subparagraph}{\numberline {3.3.5.4.1.1}Rolle des User-Space-Treibers}{11}{subparagraph.72}
-\contentsline {subparagraph}{\numberline {3.3.5.4.1.2}Debuggen mit Logik-Analyzer}{11}{subparagraph.73}
-\contentsline {subparagraph}{\numberline {3.3.5.4.1.3}L"osung des Problems}{11}{subparagraph.74}
-\contentsline {section}{\numberline {3.4}Vor- und Nachteile}{11}{section.75}
-\contentsline {chapter}{\numberline {4}Teil B}{12}{chapter.76}
-\contentsline {section}{\numberline {4.1}Konzept}{12}{section.77}
-\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{12}{section.78}
-\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{12}{subsection.79}
-\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{12}{subsection.80}
-\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{12}{subsection.81}
-\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{12}{subsection.82}
-\contentsline {section}{\numberline {4.3}Software}{12}{section.83}
-\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{12}{subsection.84}
-\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{12}{subsubsection.85}
-\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{12}{subsubsection.86}
-\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{12}{paragraph.87}
-\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{12}{paragraph.88}
-\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{13}{subsubsection.89}
-\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{13}{subsection.90}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{13}{subsubsection.91}
-\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{13}{subsubsection.92}
-\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{13}{subsubsection.93}
-\contentsline {chapter}{\numberline {5}Zusammenfassung}{14}{chapter.94}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{15}{chapter*.95}
-\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{16}{chapter*.96}
-\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.97}
+\contentsline {subsection}{\numberline {2.1.7}Bewertung der Video-Schnittstellen}{8}{subsection.35}
+\contentsline {section}{\numberline {2.2}Betrachtete Embedded Linux Boards}{9}{section.38}
+\contentsline {subsection}{\numberline {2.2.1}Raspberry Pi}{9}{subsection.39}
+\contentsline {subsection}{\numberline {2.2.2}Gnublin Extended}{9}{subsection.45}
+\contentsline {subsection}{\numberline {2.2.3}Bewertung der Linux-Boards}{9}{subsection.46}
+\contentsline {chapter}{\numberline {3}Teil A}{10}{chapter.47}
+\contentsline {section}{\numberline {3.1}Display mit 8080-Interface}{10}{section.48}
+\contentsline {section}{\numberline {3.2}8080-Interface mittels GPIO-Pins}{10}{section.49}
+\contentsline {subsection}{\numberline {3.2.1}Konzept}{10}{subsection.50}
+\contentsline {subsection}{\numberline {3.2.2}Hardwareverbindung zwischen GPIO-Pins und Display}{10}{subsection.51}
+\contentsline {subsection}{\numberline {3.2.3}User-Space-Treiber}{10}{subsection.52}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Low-Level-Treiber}{10}{subsubsection.53}
+\contentsline {paragraph}{\numberline {3.2.3.1.1}GPIO-Pin Frequenz erh"ohen}{10}{paragraph.54}
+\contentsline {paragraph}{\numberline {3.2.3.1.2}GPIO-Treiber}{10}{paragraph.55}
+\contentsline {paragraph}{\numberline {3.2.3.1.3}Displaytreiber f"ur SSD1963}{10}{paragraph.56}
+\contentsline {subsection}{\numberline {3.2.4}Ansteuerung des Displays}{11}{subsection.57}
+\contentsline {section}{\numberline {3.3}8080-Interface mittels SRAM-Interface}{11}{section.58}
+\contentsline {subsection}{\numberline {3.3.1}Konzept}{11}{subsection.59}
+\contentsline {subsection}{\numberline {3.3.2}MPMC - Multiport Memory Controller des NXP LPC313x}{11}{subsection.60}
+\contentsline {subsection}{\numberline {3.3.3}Hardwareverbindung zwischen SRAM-Interface und Display (Adapterplatine)}{11}{subsection.61}
+\contentsline {subsection}{\numberline {3.3.4}Untersuchte Displays}{11}{subsection.62}
+\contentsline {subsubsection}{\numberline {3.3.4.1}3.2" mit SSD1289}{11}{subsubsection.63}
+\contentsline {subsubsection}{\numberline {3.3.4.2}4.3"/5" mit SSD1963}{11}{subsubsection.64}
+\contentsline {subsubsection}{\numberline {3.3.4.3}5" mit CPLD}{11}{subsubsection.65}
+\contentsline {subsection}{\numberline {3.3.5}Software}{11}{subsection.66}
+\contentsline {subsubsection}{\numberline {3.3.5.1}Entwicklung eines Linux-Framebuffer-Treibers}{11}{subsubsection.67}
+\contentsline {paragraph}{\numberline {3.3.5.1.1}Anpassungen f"ur Display mit SSD1289 Controller}{11}{paragraph.68}
+\contentsline {paragraph}{\numberline {3.3.5.1.2}Anpassungen f"ur Display mit SSD1963 Controller}{11}{paragraph.69}
+\contentsline {paragraph}{\numberline {3.3.5.1.3}Anpassungen f"ur Display mit CPLD Controller}{11}{paragraph.70}
+\contentsline {subsubsection}{\numberline {3.3.5.2}Entwicklung eines User-Space-Treibers}{11}{subsubsection.71}
+\contentsline {paragraph}{\numberline {3.3.5.2.1}Anpassungen f"ur Display mit SSD1289 Controller}{11}{paragraph.72}
+\contentsline {paragraph}{\numberline {3.3.5.2.2}Anpassungen f"ur Display mit SSD1963 Controller}{11}{paragraph.73}
+\contentsline {paragraph}{\numberline {3.3.5.2.3}Anpassungen f"ur Display mit CPLD Controller}{11}{paragraph.74}
+\contentsline {subsubsection}{\numberline {3.3.5.3}Anpassung des APEX-Bootloaders zur Verwendung des Displays}{12}{subsubsection.75}
+\contentsline {subsubsection}{\numberline {3.3.5.4}Probleme bei der Entwicklung und Fehlersuche}{12}{subsubsection.76}
+\contentsline {paragraph}{\numberline {3.3.5.4.1}Probleme mit SSD1963}{12}{paragraph.77}
+\contentsline {subparagraph}{\numberline {3.3.5.4.1.1}Rolle des User-Space-Treibers}{12}{subparagraph.78}
+\contentsline {subparagraph}{\numberline {3.3.5.4.1.2}Debuggen mit Logik-Analyzer}{12}{subparagraph.79}
+\contentsline {subparagraph}{\numberline {3.3.5.4.1.3}L"osung des Problems}{12}{subparagraph.80}
+\contentsline {section}{\numberline {3.4}Vor- und Nachteile}{12}{section.81}
+\contentsline {chapter}{\numberline {4}Teil B}{13}{chapter.82}
+\contentsline {section}{\numberline {4.1}Konzept}{13}{section.83}
+\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{13}{section.84}
+\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{13}{subsection.85}
+\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{13}{subsection.86}
+\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{13}{subsection.87}
+\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{13}{subsection.88}
+\contentsline {section}{\numberline {4.3}Software}{13}{section.89}
+\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{13}{subsection.90}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{13}{subsubsection.91}
+\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{13}{subsubsection.92}
+\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{13}{paragraph.93}
+\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{13}{paragraph.94}
+\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{14}{subsubsection.95}
+\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{14}{subsection.96}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{14}{subsubsection.97}
+\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{14}{subsubsection.98}
+\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{14}{subsubsection.99}
+\contentsline {chapter}{\numberline {5}Zusammenfassung}{15}{chapter.100}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{16}{chapter*.101}
+\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{17}{chapter*.102}
+\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.103}

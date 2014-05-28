@@ -151,6 +151,8 @@
 % sorgt dafür, dass Leerzeichen hinter parameterlosen Makros nicht als Makroendezeichen interpretiert werden
 \usepackage{xspace}
 
+\usepackage{placeins}
+
 % Verwendung von Referenzen einfacher
 \newcommand{\refa}[1]{{Abbildung \ref{#1}}}
 \newcommand{\reft}[1]{{Tabelle \ref{#1}}}
