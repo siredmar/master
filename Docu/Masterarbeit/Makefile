@@ -3,5 +3,6 @@ all:
 	pdflatex Masterarbeit.tex
 	bibtex Masterarbeit
 	pdflatex Masterarbeit.tex
+pdf:
 	acroread Masterarbeit.pdf
 	

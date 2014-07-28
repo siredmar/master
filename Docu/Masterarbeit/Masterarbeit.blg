@@ -30,45 +30,55 @@ Warning--entry type for "Valcarce2011" isn't style-file defined
 --line 49 of file Bibliographie.bib
 Warning--entry type for "SSD2007" isn't style-file defined
 --line 58 of file Bibliographie.bib
-You've used 7 entries,
+Warning--entry type for "SSD2008" isn't style-file defined
+--line 67 of file Bibliographie.bib
+Warning--entry type for "ITEAD2013" isn't style-file defined
+--line 76 of file Bibliographie.bib
+Warning--entry type for "Schlegel2013" isn't style-file defined
+--line 85 of file Bibliographie.bib
+Warning--entry type for "NXP2010" isn't style-file defined
+--line 94 of file Bibliographie.bib
+Warning--entry type for "Coldtears" isn't style-file defined
+--line 105 of file Bibliographie.bib
+You've used 12 entries,
             4728 wiz_defined-function locations,
-            933 strings with 7625 characters,
-and the built_in function-call counts, 3393 in all, are:
-= -- 348
-> -- 70
-< -- 66
-+ -- 81
-- -- 23
-* -- 204
-:= -- 592
-add.period$ -- 14
-call.type$ -- 7
-change.case$ -- 28
-chr.to.int$ -- 7
-cite$ -- 7
-duplicate$ -- 112
-empty$ -- 260
-format.name$ -- 42
-if$ -- 706
+            959 strings with 8504 characters,
+and the built_in function-call counts, 5536 in all, are:
+= -- 564
+> -- 120
+< -- 84
++ -- 109
+- -- 37
+* -- 340
+:= -- 973
+add.period$ -- 23
+call.type$ -- 12
+change.case$ -- 48
+chr.to.int$ -- 12
+cite$ -- 12
+duplicate$ -- 191
+empty$ -- 441
+format.name$ -- 72
+if$ -- 1172
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 42
-newline$ -- 57
-num.names$ -- 28
-pop$ -- 42
+missing$ -- 72
+newline$ -- 86
+num.names$ -- 48
+pop$ -- 75
 preamble$ -- 1
-purify$ -- 42
+purify$ -- 72
 quote$ -- 0
-skip$ -- 200
+skip$ -- 309
 stack$ -- 0
-substring$ -- 148
-swap$ -- 21
-text.length$ -- 7
+substring$ -- 219
+swap$ -- 36
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 91
+type$ -- 156
 warning$ -- 0
-while$ -- 28
+while$ -- 48
 width$ -- 0
-write$ -- 117
-(There were 7 warnings)
+write$ -- 190
+(There were 12 warnings)

@@ -1,0 +1,9 @@
+\section{Known Bugs}
+\subsection{Hardware}
+\subsubsection{HDMI-Stecker gekreuzt, CON2}
+\subsubsection{LVDS-Steckerfootprint gespiegelt, CON6}
+\subsubsection{+12V PWM Hintergrundbeleuchtung}
+\subsubsection{+5V Kreis / Widerstand R13}
+\subsubsection{USB D+/D- vertauscht R22, R23}
+\subsection{Software}
+\subsubsection{EDID Programmer}

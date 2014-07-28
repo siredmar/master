@@ -1,15 +1,16 @@
-\nomenclatureentry{aAPI@[{API}]\begingroup Application Programming Interface\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aARIS@[{ARIS}]\begingroup Architektur integrierter Informationssysteme\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aBPR@[{BPR}]\begingroup Business Process Reengineering\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aeEPK@[{eEPK}]\begingroup erweiterte Ereignisgesteuerte Prozesskette\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aEPK@[{EPK}]\begingroup Ereignisgesteuerte Prozesskette\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aJMS@[{JMS}]\begingroup Java Message Service\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aSDK@[{SDK}]\begingroup Software Development Kit\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aURI@[{URI}]\begingroup Uniform Resource Identifier\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aURL@[{URL}]\begingroup Uniform Resource Locator\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aURN@[{URN}]\begingroup Uniform Resource Name\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aW3C@[{W3C}]\begingroup World Wide Web Consortium\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aXML@[{XML}]\begingroup Extensible Markup Language\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aXPath@[{XPath}]\begingroup XML Path Language\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aXSL@[{XSL}]\begingroup Extensible Stylesheet Language\nomeqref {0.0}|nompageref}{III}
-\nomenclatureentry{aXSLT@[{XSLT}]\begingroup XSL Transformations\nomeqref {0.0}|nompageref}{III}
+\nomenclatureentry{aAPI@[{API}]\begingroup Application Programming Interface\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aARIS@[{ARIS}]\begingroup Architektur integrierter Informationssysteme\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aBPR@[{BPR}]\begingroup Business Process Reengineering\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aeEPK@[{eEPK}]\begingroup erweiterte Ereignisgesteuerte Prozesskette\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aEPK@[{EPK}]\begingroup Ereignisgesteuerte Prozesskette\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aJMS@[{JMS}]\begingroup Java Message Service\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aSDK@[{SDK}]\begingroup Software Development Kit\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aURI@[{URI}]\begingroup Uniform Resource Identifier\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aURL@[{URL}]\begingroup Uniform Resource Locator\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aURN@[{URN}]\begingroup Uniform Resource Name\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aW3C@[{W3C}]\begingroup World Wide Web Consortium\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aXML@[{XML}]\begingroup Extensible Markup Language\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aXPath@[{XPath}]\begingroup XML Path Language\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aXSL@[{XSL}]\begingroup Extensible Stylesheet Language\nomeqref {0.0}|nompageref}{II}
+\nomenclatureentry{aXSLT@[{XSLT}]\begingroup XSL Transformations\nomeqref {0.0}|nompageref}{II}
+mpageref}{III}

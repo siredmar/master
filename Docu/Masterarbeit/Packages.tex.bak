@@ -153,8 +153,10 @@
 
 \usepackage{placeins}
 
+
 % Verwendung von Referenzen einfacher
 \newcommand{\refa}[1]{{Abbildung \ref{#1}}}
 \newcommand{\reft}[1]{{Tabelle \ref{#1}}}
 \newcommand{\refl}[1]{{Listing \ref{#1}}}
+\newcommand{\refc}[1]{{Abschnitt \ref{#1}}}
 

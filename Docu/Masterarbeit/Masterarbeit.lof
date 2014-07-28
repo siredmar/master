@@ -5,6 +5,9 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces RGB-Timing, Quelle: \cite {TI2011}}}{5}{figure.28}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces 8080-Timing des SSD1289, Quelle: \cite {SSD2007}}}{7}{figure.33}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 8080-Display Pinout, Quelle: \cite {Coldtears}}}{11}{figure.51}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces NXP LPC313x EBI, Quelle: \cite {NXP2010}}}{14}{figure.61}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces NXP LPC313x MPMC, Quelle: }}{16}{figure.66}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

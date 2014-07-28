@@ -39,6 +39,7 @@ Aufgrund der hohen Geschwindigkeit und geringen Fehlerrate werden differentielle
 \subsection{8080-Interface}
 Das 8080-Interface ist eine antike Schnittstelle ursprünglich von Intel 8080 Prozessor. Sie wird bis heute verwendet, um Speicher, kleine TFT-Displays oder andere Bausteine mit einem Mikrocontroller zu betreiben. Eckdaten des 8080-Interface sind sowohl der Datenbus selbst als auch der Adressbus mit z.B. acht, 16 oder 32 Bit, je eine eine Leitung für Read-Enable, Write-Enable und Chip-Select. Durch die Verwendung der Chip-Select Leitungen ist es möglich mehrere Teilnehmer am selben Bus zu betreiben. Alle Teilnehmer, deren Chip-Leitung nicht aktiv ist, verhalten sich für andere Busteilnehmer unsichtbar. Erst mit Zuweisung der Chip-Selects werden diese sichtbar und übernehmen den Bus. Ein Hostsystem steuert als sog. Master die am Bus hängenden Slaves. Moechte das Hostsystem von einem Slave Daten lesen, wird ein Lesezyklus initiiert, der die Chip-Select Leitung aktiviert, die gewünschte Adresse an den Bus anlegt, die Read-Enable Leitung aktiviert und nach einer festgelegten Zeit diese wieder deaktiviert. Der Slave legt die gewünschten Daten auf den Datenbus und der Host kann diese Daten korrekt lesen. Analog dazu funktioniert der Schreibzyklus ähnlich. 
 \refa{fig:8080_timing} zeigt das Timing Diagramm eines Schreib- und Lesezyklus des Displaycontrollers SSD1289. Das Signal D/C wird verwendet um zu unterscheiden, ob ein Daten oder ein Kommando auf dem Bus anliegen. Dazu kann beispielsweise eine Adressleitung des 8080-Bus verwendet werden. CS stellt das Chip-Select dar. WR und RD beziehen sich auf Write- bzw. Read-Enable. D0-D17 sind 18 Datenbits des Bus (\cite{SSD2007}). 
+
 \begin{figure}[htp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Grundlagen/8080_timing.png}
@@ -51,30 +52,32 @@ Viele Mikrocontroller besitzen bereits ein 8080-Interface dediziert in Hardware 
 \clearpage
 
 \subsection{Bewertung der Video-Schnittstellen}
+\label{cha:bewertung_video}
 Nachdem nun die wichtigsten Schnittstellen dargestellt wurden, werden diese im Folgenden mit dem Fokus auf die Masterareit hinsichtlich der Relevanz bewertet.
 Da die VGA-Schnittstelle antik und obsolet ist, spielt sie heutzutage nur noch eine geringe Rolle. Insbesondere im Bereich der embedded Systeme wird sie kaum verwendet. Für die Masterarbeit ist die VGA-Schnittstelle uninteressant, da diese von keiner, in der Masterarbeit behandelten, Hardware verwendet wird. Jedoch wurde diese eingangs behandelt, da diese den Übergang zum digitalen RGB-Bus schafft.\\
 Die DVI- und HDMI-Schnittstellen, welche für den Bereich der Videoanzeige praktisch identisch sind, nehmen jedoch einen hohen Stellenwert in der Masterarbeit ein. Im zweiten Teil der Arbeit wird eine Hardware entwickelt, welche als Eingangssignale die TMDS der DVI-/HDMI-Schnittstelle nutzt. 
 Ebenso spielen die RGB-Schnittstelle und LVDS eine große Rolle\todo{große Rolle: umschreiben}, da an diesen Schnittstellen der entwickelten Hardware TFT-Panels angeschlossen werden. \\
-Neben den reinen Video-Schnittstellen weist das beschriebene 8080-Interface, das ursprünglich nicht zur Bildübertragung gedacht war, ein hohes Potential auf und besitzt für den ersten Teil der Masterarbeit hohen Stellenwert. Gerade im embedded Bereich besitzt diese Schnittstelle nach wie vor einen hohen Stellenwert, da vor allem kleine Displays damit hinreichend schnell und effizient betrieben werden können. \reft{tab:interface_vergleich} zeigt nochmals eine kurze Übersicht der Relevanz der einzelnen Schnittstellen fuer die Masterarbeit.
-\FloatBarrier
-\begin{table}
+Neben den reinen Video-Schnittstellen weist das beschriebene 8080-Interface, das ursprünglich nicht zur Bildübertragung gedacht war, ein hohes Potential auf und besitzt für den ersten Teil der Masterarbeit hohen Stellenwert. Gerade im embedded Bereich besitzt diese Schnittstelle nach wie vor einen hohen Stellenwert, da vor allem kleine Displays damit hinreichend schnell und effizient betrieben werden können. \reft{tab:interface_vergleich} zeigt nochmals eine kurze Übersicht der Relevanz der einzelnen Schnittstellen für die Masterarbeit.
+
+\begin{table}[h]
 \begin{tabular}{|c|c|c|}\hline
-   Schnittstelle & Relevanz für Masterarbeit & Verwendung in der Masterarbeit\\ \hline
-   VGA & keine  & - \\               \hline
-   DVI & mittel & Teil B \\          \hline
-   HDMI & hoch	& Teil B \\          \hline
-   RGB & hoch & Teil B \\            \hline
-   LVDS & hoch & Teil B \\           \hline
-   8080-Interface & hoch & Teil A \\ \hline
+   \textbf{Schnittstelle} 	& \textbf{Relevanz für Masterarbeit} 	& \textbf{Verwendung in der Masterarbeit}	\\ \hline
+   VGA 						& keine  								& - 	 									\\ \hline
+   DVI 						& mittel 								& Teil B 									\\ \hline
+   HDMI						& hoch 									& Teil B 									\\ \hline
+   RGB 						& hoch 									& Teil B 									\\ \hline
+   LVDS 					& hoch									& Teil B 									\\ \hline
+   8080-Interface 			& hoch 									& Teil A 									\\ \hline
 \end{tabular}
 \caption{Relevanz der Display-Schnittstellen für die Masterarbeit}
 \label{tab:interface_vergleich}
 \end{table}
-%\FloatBarrier
 
 \section{Betrachtete Embedded Linux Boards}
+\label{cha:betrachtete_linux_boards}
 In diesem Abschnitt werden die verwendeten Linux-Boards dargestellt, verglichen und hinsichtlich der Verwendbarkeit in der Masterarbeit bewertet. Da sich die Masterarbeit in zwei Teile gliedert, wird für beide Anwendungsfaelle ein typisches Linux-Board hergezogen, welches den Anforderungen gerecht werden muss, eine billige und effiziente Anzeige zu gestatten.
 \subsection{Raspberry Pi}
+\label{cha:raspberry}
 Am wohl bekanntesten und mit einer riesigen Community hinter dem Projekt ist der Raspberry Pi von der Raspberry Pi Foundation \footnote{\url{http://www.raspberrypi.org}}. Um die wichtigsten Eckdaten des Einplatinenrechners im Checkkartenformat zu nennen, besitzt er in der Ausfuehrung Model B einen ARM11-Core (Broadcom BCM2835), 512 Megabyte SDRAM, eine Broadcom VideoCore IV GPU sowie diverse Schnittstellen wie HDMI, USB 2.0, UART\footnote{UART: Universal Asynchronous Receiver Transmitter - RS2332}, SPI\footnote{SPI: Serial Peripheral Interface - 4 Draht Bus}, I2C\footnote{I2C: Inter Integrated Circuit - 2 Draht Bus} sowie GPIO-Pins\footnote{GPIO: General Purpose Input Output}.\\
 Der erschwingliche Preis macht den Raspberry Pi attraktiv und zieht die Community an, da man für rund 40 Euro einen kompletten Rechner bekommt. \\
 \begin{tabular}{|c|c|}\hline
@@ -86,6 +89,9 @@ Der erschwingliche Preis macht den Raspberry Pi attraktiv und zieht die Communit
 
 
 \subsection{Gnublin Extended}
+\label{cha:gnublin_extended}
+\todo{8080-Interface in SRAM erwaehnen!}
 
 
 \subsection{Bewertung der Linux-Boards}
+\label{cha:bewertung_linux_boards}

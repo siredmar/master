@@ -2,6 +2,7 @@
 \label{sec:TeilA_8080GPIO}
 
 \subsection{Konzept}
+
 \subsection{Hardwareverbindung zwischen GPIO-Pins und Display}
 \subsection{User-Space-Treiber}
 \subsubsection{Low-Level-Treiber}
