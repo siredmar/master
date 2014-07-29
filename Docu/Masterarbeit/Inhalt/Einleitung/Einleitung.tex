@@ -19,3 +19,23 @@ Der Zweite Teil behandelt das embedded Linux Board 'Gnublin', welches von Haus a
 Im dritten Teil wird für leistungsstärkere embedded Linux-Systeme mit HDMI-Schnittstelle eine Hardware entwickelt, RGB- oder LVDS-Panels anzuschließen. Um die Displays über die entwickelte Hardware anzusteuern, wird der dedizierte Grafikcontroller der Boards verwendet.
 
 \section{Typographische Konventionen}
+
+\section{Verwendete Programme}
+Um Schaltpläne und Layouts zu erstellen, wurde das Programm Eagle von Cadsoft\footnote{http://www.cadsoft.com/} verwendet. Im Rahmen von Teil B dieser Arbeit ist eine Bauteilbibliothek entstanden, um alle benötigten Bauteile im Schaltplan und Layout verwenden zu können. Diese Bibliothek befindet sich im Anhang auf der CD.
+Für elektrische Simulationen wurde das Programm LTSpice von Linear Technology\footnote{http://www.linear.com/designtools/software/} verwendet. Die für den Teil B durchgeführte Simulation befindet sich im Anhang auf der CD.
+Zur Entwicklung der Programme für die Plattformen PC, ARM und AVR wurde Eclipse\footnote{https://www.eclipse.org/} verwendet. Die verwendeten Compiler sind allesamt Plattformabhaengige gcc-Versionen\footnote{https://gcc.gnu.org/}. \reft{tab:verwendete_compiler} zeigt eine Übersicht der verwendeten Compiler für diese Arbeit.
+
+\begin{table}[h]
+\begin{tabular}{|p{4.5cm}|p{4cm}|p{4cm}|}\hline
+\rowcolor{TableBackgroundColor} 
+\textbf{Plattform}		&	\textbf{Compiler}		&	\textbf{Version}  \\ \hline
+ Linux 3.10.11-smp i686	&	gcc						& 4.8.1	\\ \hline
+ Atmel ATMega88p		&	avr-gcc					& 4.3.3	\\ \hline
+ ARM9 NXP LPC313x		&	arm-linux-gnueabi-gcc	& 4.6.4	\\ \hline
+\end{tabular}
+\caption{Verwendete Compiler}
+\label{tab:verwendete_compiler}
+\end{table}
+
+
+

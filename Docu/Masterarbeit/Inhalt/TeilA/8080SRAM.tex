@@ -3,58 +3,139 @@
 Wie bereits in \refc{cha:gnublin_extended} erwaehnt, besitzt der Prozessor des Gnublin bereits ein externes 8080-Interface, auf welches zugegriffen wird. Im Folgenden wird auf das Konzept, die Idee und die Realisierung auf Hardware- und Softwareseite eingegangen.
 \newpage
 \subsection{Konzept}
-Im Gnublin stellt ein NXP LPC313x die zentrale Recheneinheit dar. Dieser besitzt ein sogenanntes EBI \footnote{EBI: External Bus Interface}, worüber externe Bausteine wie Speicher, Ethernetcontroller oder ähnliche Bausteine angesprochen werden können. 
+\label{cha:teila_konzept}
+Im Gnublin stellt ein NXP LPC313x die zentrale Recheneinheit dar. Dieser besitzt ein sogenanntes EBI \footnote{EBI: External Bus Interface}, worüber externe Bausteine wie Speicher, Ethernetcontroller oder ähnliche Bausteine angesprochen werden können.
 
 
 \begin{figure}[htp]
 %\begin{minipage}[t]{0.8\textwidth}
 %\begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth]{TeilA/lpc_ebi.png}
+\fbox{	\includegraphics[width=1.0\textwidth]{TeilA/lpc_ebi.png}}
 	\caption{NXP LPC313x EBI, Quelle: \cite{NXP2010}}
 	\label{fig:lpc_ebi}
 \end{figure}
 %\end{minipage}
 
-In \refa{fig:lpc_ebi} ist ein Blockschaltbild des EBI zu sehen, bei welchem neben CGU \footnote{CGU: Clock Generation Unit, Takterzeugung} und SYSCREG\footnote{SYSCREG: System Control Register, Steuerregister}, MPMC\footnote{MPMC: Multiport Memory Controller} sowie das NAND Flash an den Eingängen des EBI angeschlossen sind. An den Ausgängen des EBI sind Adress- und Datenbus zum Anschluss an externe Bausteine herausgeführt. Damit verschiedenartigen Bausteine an denselben Adress- und Datenpins angeschlossen werden kann, ist eine Priorisierung notwendig. Die Höchste Priorität besitzt der MPMC, gefolgt vom NAND Flash. 
-Die Grundidee ist, das Display über den MPMC anzuschließen, da er so konfiguriert werden kann, dass er sich 8080-konform verhält.
+In \refa{fig:lpc_ebi} ist ein Blockschaltbild des EBI zu sehen, bei welchem neben CGU \footnote{CGU: Clock Generation Unit, Takterzeugung} und SYSCREG\footnote{SYSCREG: System Control Register, Steuerregister}, MPMC\footnote{MPMC: Multiport Memory Controller} sowie das NAND Flash an den Eingängen des EBI angeschlossen sind. Abgesehen von NAND Flash sind die Eingänge zum EBI für diese Arbeit relevant und grün markiert. An den Ausgängen des EBI sind Adress- und Datenbus zum Anschluss an externe Bausteine herausgeführt. Damit verschiedenartigen Bausteine an denselben Adress- und Datenpins angeschlossen werden kann, ist eine Priorisierung notwendig. Die Höchste Priorität besitzt der MPMC, gefolgt vom NAND Flash. 
+Die Grundidee ist, das Display über den MPMC anzuschließen, da er so konfiguriert werden kann, dass er sich 8080-konform verhält. Die für diese Arbeit interessanten Leitungen am Ausgang des EBI sind mit rot markiert. Hier wird der Datenbus selbst, sowie die oberen 13 Bit des Adressbus gezeigt.
 
 
 \subsection{MPMC - Multiport Memory Controller des NXP LPC313x}
+\label{cha:mpmc}
 
-Der MPMC stellt die Möglichkeit zur Verfügung Bausteine wie dynamisches und statisches RAM anzubinden. Die Refresh-Zyklen werden bei Verwendung von dynamischen RAMs automatisch vollzogen. Das SDRAM-Interface bietet von Haus aus die Möglichkeit Displays mit 8080-Interface zu betreiben. Dies schließt allerdings die Verwendung von dynamischen RAMs aus. Soll ein Betriebssystem wie Linux laufen, ist allerdings die Verwendung von dynamischem RAM unerlässlich. Im Folgenden wird die Schnittstelle für das statische RAM SRAM-Interface benannt. Es besteht die Möglichkeit das Interface des statischen RAM zu verwenden, um ein Display zu betreiben, da es sich so konfigurieren lässt, dass es sich wie ein 8080-Interface verhält. Damit sich die verschiedenen Slaves an Adress- und Datenbus nicht überschneiden, regelt das EBI den Zugriff auf die Busse über Chip-Select Leitungen. Am Gnublin ist eine dieser Chip-Select-Leitungen fuer das SRAM-Interface nach außen gelegt. Die restlichen Anschlüsse wie Write-Enable, Read-Enable sind ebenfalls herausgeführt \cite{NXP2010}.
+Der MPMC stellt die Möglichkeit zur Verfügung Bausteine wie dynamisches und statisches RAM anzubinden. Die Refresh-Zyklen werden bei Verwendung von dynamischen RAMs automatisch vollzogen. Das SDRAM-Interface bietet von Haus aus die Möglichkeit Displays mit 8080-Interface zu betreiben. Dies schließt allerdings die Verwendung von dynamischen RAMs aus. Soll ein Betriebssystem wie Linux auf dem System betrieben werden, ist allerdings die Verwendung von dynamischem RAM unerlässlich. Im Folgenden wird die Schnittstelle für das statische RAM SRAM-Interface benannt. Es besteht die Möglichkeit das Interface des statischen RAM zu verwenden, um ein Display zu betreiben, da es sich so konfigurieren lässt, dass es sich wie ein 8080-Interface verhält. Damit sich die verschiedenen Slaves an Adress- und Datenbus nicht überschneiden, regelt das EBI den Zugriff auf die Busse über Chip-Select Leitungen. Am Gnublin ist eine dieser Chip-Select-Leitungen für das SRAM-Interface nach außen gelegt. Die restlichen Anschlüsse wie Write-Enable, Read-Enable, Reset sind ebenfalls herausgeführt \cite{NXP2010}. Ein Blockschaltbild des MPMC ist in \refa{fig:lpc_mpmc} zu sehen.
 
 
 \begin{figure}[tbph]
 %\begin{figure}[h!]
 	\centering
-	\includegraphics[width=1.0\textwidth]{TeilA/lpc_mpmc.png}
-	\caption{NXP LPC313x MPMC, Quelle: }
+\fbox{	\includegraphics[width=1.0\textwidth]{TeilA/lpc_mpmc.png}}
+	\caption{NXP LPC313x MPMC, \cite{NXP2010} }
 	\label{fig:lpc_mpmc}
 \end{figure}
 \newpage
-Die Register des MPMC werden so konfiguriert, dass die Schnittstelle kompatibel zum Display und dessen Timings wird. Entsprechend dem verwendeten Chip-Select-Signal werden die Register MPMCStaticConfig0, MPMCStaticWaitWen0, MPMCStaticWaitOen0, MPMCStaticRd0, MPMCStaticPage0, MPMCStaticWr0 und MPMCStaticWaitTurn0 entsprechend \reft{tab:mpmc_config} konfiguriert. Die Basisadresse des MPMC ist 0x1700 8000.
+Die Register des MPMC werden so konfiguriert, dass die Schnittstelle kompatibel zum Display und dessen Timings wird. Entsprechend dem verwendeten Chip-Select-Signal werden die Register \begin{itemize}
+\item MPMCStaticConfig0\item  MPMCStaticWaitWen0\item  MPMCStaticWaitOen0\item  MPMCStaticRd0\item  MPMCStaticPage0\item  MPMCStaticWr0 \item MPMCStaticWaitTurn0 \end{itemize} entsprechend \reft{tab:mpmc_config} konfiguriert. Die Basisadresse des MPMC ist 0x1700 8000. Wie die Register zu beschreiben sind, ist in \cite{NXP2010} auf Seite 56 zu entnehmen. Die Timings wurden so gewählt, dass die Timinganforderungen der Displaycontroller eingehalten werden.
 
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{1cm}|p{6.6cm}|}\hline
-%\begin{tabular}{|c|c|c|c|}\hline
+\rowcolor{TableBackgroundColor} 
 	\textbf{Register} 	& \textbf{Offset} 	& \textbf{Wert} & \textbf{Beschreibung} 							\\ \hline
 	MPMCStaticConfig0 	& 0x200 		& 0x81 			& 16 Bit Modus, Aktiviert die Nutzung von EBI\_nWE 	\\ \hline
-	MPMCStaticWaitWen0 	& 0x204 		& 13 			& 13 + 1 = 14 Wartezyklen ab Chi- Select bis Write-Enable 	\\ \hline
+	MPMCStaticWaitWen0 	& 0x204 		& 13 			& 13 + 1 = 14 Wartezyklen ab Chip-Select bis Write-Enable 	\\ \hline
 	MPMCStaticWaitOen0 	& 0x208 		& 0 			& 0 + 1 = 1 Wartezyklus ab Chip-Select bis Output-Enable  												\\ \hline
 	MPMCStaticRd0 		& 0x20C 		& 0 			& 0 + 1 = 1 Wartezyklus ab Chip-Select bis Read-Enable					\\ \hline
 	MPMCStaticPage0 	& 0x210 		& 0 			& 0 + 1 = 1 Wartezyklus für sequential Page Mode Access												\\ \hline
 	MPMCStaticWr0 		& 0x214 		& 15 			& 15 + 2  = 17 Wartezyklen bis Write-Access	\\ \hline
 	MPMCStaticWaitTurn0 & 0x218 		& 0 			& 0 + 1 = 1 Turnaround Cycles 								\\ \hline
 \end{tabular}
-\caption{MPMC Register}
+\caption{MPMC Register, \cite{NXP2010}}
 \label{tab:mpmc_config}
 \end{table}
 
+\subsection{Hardwareverbindung zwischen SRAM-Interface und Display}
+In diesem Abschnitt wird die Verbindung zwischen dem Prozessor und dem Display behandelt. Eingangs wurde bereits erwähnt, dass beim Kauf der Displays Augenmerk auf Pinkompatibilität gelegt wurde. Das schlägt sich beim Entwurf der Adapterplatine positiv zu Buche, da nun lediglich ein Adapter benötigt wird. \newline
+Bereits dargestellt zeigt \refa{fig:8080_pinout} auf Seite \pageref{fig:8080_pinout} das Pinout der verwendeten Displays. Der Anschluss an den Prozessor stellt sich wir in \reft{tab:display_gnublin_verbindung} dar. Anhand der gewonnenen Erkenntnisse aus \refc{cha:teila_konzept} und \refc{cha:mpmc} sowie des Schaltplans des verwendeten Gnublin Extended (siehe \cite{EmbeddedProjects2013}) kann eine Zuordnung getroffen werden. Nicht verbundene Pins sind mit 'nc' vermerkt.
 
-\subsection{Hardwareverbindung zwischen SRAM-Interface und Display (Adapterplatine)}
+\begin{table}[h]
+\begin{tabular}{|p{0.6cm}|p{2.5cm}|p{2.5cm}|p{0.6cm}|p{2.5cm}|p{2.5cm}|}\hline
+\rowcolor{TableBackgroundColor} 
+\textbf{Nr.}	&	\textbf{Pin Display}	&	\textbf{Pin Gnublin}  & \textbf{Nr.}	&	\textbf{Pin Display}	&	\textbf{Pin Gnublin} 	\\ \hline
+1				&	GND						&	GND					  &	21				&	DB0						&	LPC\_DB0				\\ \hline
+2				&	+3V3					&	+3V3				  &	22				&	DB1						&	LPC\_DB1				\\ \hline
+3				&	nc						&	nc				 	  & 23				&	DB2						&	LPC\_DB2				\\ \hline
+4				&	RS						&	LPC\_A15	    	  &	24				&	DB3						&	LPC\_DB3				\\ \hline
+5				&	WR						&	LPC\_WE				  &	25				&	DB4						&	LPC\_DB4				\\ \hline
+6				&	RD						&	LPC\_DQM0			  &	26				&	DB5						&	LPC\_DB5				\\ \hline
+7				&	DB8						&	LPC\_DB8			  &	27				&	DB6						&	LPC\_DB6				\\ \hline
+8				&	DB9						&	LPC\_DB9			  &	28				&	DB7						&	LPC\_DB7				\\ \hline
+9				&	DB10					&	LPC\_DB10			  &	29				&	nc						&	nc						\\ \hline
+10				&	DB11					&	LPC\_DB11			  &	30				&	nc						&	nc						\\ \hline
+11				&	DB12					&	LPC\_DB12			  &	31				&	nc						&	nc						\\ \hline
+12				&	DB13					&	LPC\_DB13			  &	32				&	nc						&	nc						\\ \hline
+13				&	DB14					&	LPC\_DB14			  &	33				&	nc						&	nc						\\ \hline
+14				&	DB15					&	LPC\_DB15			  &	34				&	nc						&	nc						\\ \hline
+15				&	CS						&	STCS0				  &	35				&	nc						&	nc						\\ \hline
+16				&	nc						&	nc					  &	36				&	nc						&	nc						\\ \hline
+17				&	RESET					&	GPIO19				  &	37				&	nc						&	nc						\\ \hline
+18				&	nc						&	nc					  &	38				&	nc						&	nc						\\ \hline
+19				&	LED-A					&	GPIO20				  &	39				&	nc						&	nc						\\ \hline
+20				&	nc						&	nc				 	  &	40				&	nc						&	nc						\\ \hline
+
+\end{tabular}
+\caption{Displayverbindung mit dem Gnublin, \cite{Coldtears2014}, \cite{EmbeddedProjects2013}}
+\label{tab:display_gnublin_verbindung}
+\end{table}
+
+Das Daten-Interface des Displays ist mit den Pins DB[0:15] mit dem Datenbus verbunden. Die Signale Read-Enable RD und Write-Enable WR liegen auf den Pins LPC\_DQM0 und LPC\_WE. Als Chip-Select wird das Signal STCS0 verwendet. Diese Pins sind aus dem EBI herausgeführt (siehe \refa{fig:lpc_ebi}) und werden, sofern es das System von der Auslastung am Bus ermöglicht, für das Display zur Verfügung gestellt.
+
+Das RS Signal am Display, welches zwischen Kommando und Daten unterscheidet, liegt auf dem Adresssignal A15. Werden Daten gesendet, so ist der Pin logisch 1, was einem Wert auf dem Adressbus von 0x8000\footnote{0x8000 Hex = 0b1000 0000 0000 0000 Binär} entspricht. Bei Kommandos ist der Pin logisch 0 mit einem Adresswert von 0x0000\footnote{0x0000 Hex = 0b0000 0000 0000 0000 Binär}. Die unteren 15 Bits des Adressraums lassen sich also willkürlich verändern, da nur das MSB\footnote{MSB: Most Sigificant Bit, das höchstwertige Bit} vom Display verwendet wird.
+
+Als RS-Pin ist die Adressleitung A15 gewählt, da so möglicherweise DMA-Transfers\footnote{DMA: Direct Memory Access, Speichertransfer effizient und schnell direkt in Hardware} von bis zu 32.768 Bytes\footnote{32.768 = $2^{15}$} möglich sind. Der DMA-Transfer könnte die Adressleitungen bei Daten von 0x8000 bis 0xFFFF\footnote{0xFFFF Hex = 0b1111 1111 1111 1111  Binär} bzw. bei Kommandos von 0x0000 bis 0x7FFF\footnote{0x7FFF Hex = 0b0111 1111 1111 1111 Binär} inkrementieren ohne die Gültigkeit der Wahl zwischen Kommando und Daten des Displays zu gefährden.
+
+Die Untersuchung inwieweit DMA-Transfer praktisch mit der verwendeten Hardware möglich ist, ist allerdings nicht Bestandteil dieser Arbeit. 
+
+\newpage
+\subsection{Adapterplatine zwischen Gnublin Extended und Display}
+Der Adapter wird als Platine realisiert, die auf den Gnublin Extended aufgesteckt wird. Das Display wiederum wird mit der Adapterplatine steckbar verbunden. Der Schaltplan ist in \refa{fig:adapterplatine} gezeigt und stellt entsprechend \reft{tab:display_gnublin_verbindung} die Verbindungen her.
+
+Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnublin Extended und im blauen Rechteck sind weitere kleine Bauteile untergebracht. Hier sind Pullup-Wiederstande mit 10~k$\Omega$ an den Leitungen STCS0, Reset und LED-A um definierte Pegel vorzugeben zu sehen sowie einen Blockkondensator mit 100~nF, der für eine bessere Spannungsversorgung des Displays sorgt.
+
+\begin{figure}[tbph]
+%\begin{figure}[h!]
+	\centering
+\fbox{	\includegraphics[width=1.0\textwidth]{TeilA/schematic.png}}
+	\caption{Schaltplan Adapterplatine}
+	\label{fig:adapterplatine}
+\end{figure}
+\newpage
+
+\refa{fig:adapterplatine} zeigt je ein gerendertes 3D Bild der Ober- und Unterseite der Adapterplatine. Auf der Oberseite wird das Display auf der linken Seite mit der 40 poligen Stiftleiste angeschossen. Mit der Unterseite wird die Platine auf das Gnublin Extended mit je zwei 50 poligen Buchsenleisten aufgesteckt.
+
+\begin{figure}
+        \begin{center}
+        \begin{subfigure}[htp]{0.8\textwidth}
+                \fbox{\includegraphics[width=\textwidth]{TeilA/gnublin_ext_ssd1963_top.png}}
+                \caption{Adapterplatine Top Layer}
+                \label{fig:adapter_top}
+        \end{subfigure}
+
+        \begin{subfigure}[htp]{0.8\textwidth}
+               \fbox{ \includegraphics[width=\textwidth]{TeilA/gnublin_ext_ssd1963_bot.png} }              				\caption{Adapterplatine Bottom Layer}
+                \label{fig:adapter_bot}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+          %(or a blank line to force the subfigure onto a new line)
+
+		\end{center}
+        \caption{Adapterplatine zwischen Gnublin Extended und Display}\label{fig:adapterplatine}
+\end{figure}
+
+Die Schaltplan und das Layout befinden sich in der CD im Anhang dieser Arbeit.
 
 \subsection{Software}
+
 \subsubsection{Entwicklung eines Linux-Framebuffer-Treibers}
 \paragraph{Anpassungen für Display mit SSD1289 Controller}
 \paragraph{Anpassungen für Display mit SSD1963 Controller}

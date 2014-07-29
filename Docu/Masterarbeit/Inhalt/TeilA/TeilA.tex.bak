@@ -4,25 +4,25 @@ Im Folgenden Kapitel wird Teil A dieser Arbeit behandelt. Es wird die Ansteuerun
 
 \section{Untersuchte Displays mit 8080-Interface}
 Dieser Abschnitt behandelt die untersuchten Displays. Es wurden drei Displays aus China untersucht. Der Fokus bei der Bestellung lag vor allem darauf, dass die Pinbelegung der jeweiligen Displays übereinstimmen. So ist die Entwicklung von nur einer Adapterplatine zwischen Gnublin und Display nötig. Alle verwendeten Displays werden im 16 Bit Farbmodus betrieben. Die hieraus resultierende Farbtiefe beträgt 65.535 Farben.\newline % \footnote{2^16 = 65.536}
-Alle verwendeten Displays arbeiten dahingehend gleich, dass sie Kommandos und Daten auf dem Datenbus anliegen, diese jedoch durch eine gesonderte Leitung unterschieden werden. Soll dem Display also etwas mitgeteilt werden, so muss zuerst ein entsprechendes Kommando und im Anschluss die Nutzdaten gesendet werden. Um Pixeldaten an das Display zu senden, hat sich die Vorgehensweise etabliert, eine Rechteckige Region im RAM des Displays zu reservieren, das durch die 4 Eckpunkte des Rechtecks definiert sind. Werden im Anschluss Pixeldaten gesendet, inkrementiert der Controller die Adresse automatisch und springt bei einem Zeilenumbruch automatisch an die richtige Stelle im RAM. Der maximale Speicher im Controller beschränkt die maximale Auflösung der ansteuerbaren TFT-Panel. Trotz der Tatsache, dass sich die Displays auf elektrischer Seite nicht unterscheiden, so müssen diese allerdings alle speziell softwareseitig behandelt werden.
+Alle verwendeten Displays arbeiten dahingehend gleich, dass sie Kommandos und Daten auf dem Datenbus anliegen, diese jedoch durch eine gesonderte Leitung unterschieden werden. Soll dem Display also etwas mitgeteilt werden, so muss zuerst ein entsprechendes Kommando und im Anschluss die Nutzdaten gesendet werden. Um Pixeldaten an das Display zu senden, hat sich die Vorgehensweise etabliert, eine Rechteckige Region im RAM des Displays zu reservieren, das durch die 4 Eckpunkte des Rechtecks definiert sind. Werden im Anschluss Pixeldaten gesendet, inkrementiert der Controller die Adresse automatisch und springt bei einem Zeilenumbruch automatisch an die richtige Stelle im RAM. Der maximale Speicher im Controller beschränkt die maximale Auflösung der ansteuerbaren TFT-Panel. Trotz der Tatsache, dass sich die Displays auf elektrischer Seite nicht unterscheiden, so müssen diese allerdings alle speziell softwareseitig behandelt werden. \todo{bild von Ramfenster hinzufuegen}
 
 \subsection{4.3"'/5"' mit SSD1963}
 Die Wahl des Controllers SSD1963 von Solomon Systech liegt nahe, da dieser bereits mit einem 4.3"'  Panel in einer vorausgehende Arbeit verwendet wird. Dort ist das Display mittels GPIO-Pins am Raspberry Pi angeschlossen. Die Software bezüglich der reinen Displayansteuerung ist somit bereits vorhanden (siehe \cite{Schlegel2013}). Aufgrund eines Problems, das in Abschnitt \ref{cha:TeilAKnownBugs_SSD1963} näher beschrieben ist, wird für diese Arbeit zusätzlich ein anderes Display mit 5"' Panel aber selbem Controller untersucht. 
 \refa{fig:8080_pinout} zeigt das Pinout der verwendeten Displays.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{TeilA/display_pinout.png}
-	\caption{8080-Display Pinout, Quelle: \cite{Coldtears}}
+\fbox{	\includegraphics[width=0.5\textwidth]{TeilA/display_pinout.png}}
+	\caption{8080-Display Pinout, Quelle: \cite{Coldtears2014}}
 	\label{fig:8080_pinout}
 \end{figure}
 Die Displays besitzen bei 4.3"' eine Auflösung von 480x272 beziehungsweise bei 5"' 800x480 Pixeln. Neben den für die Initialisierung nötigen Kommandos besitzt der Controller folgende wichtigen Kommandos. Diese sind in \reft{tab:Kommandos_SSD1963} beschrieben. Die zur Initialisierung notwendigen Kommandos werden hier nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{8cm}|}\hline
+\rowcolor{TableBackgroundColor} 
    \textbf{Kommando} & \textbf{Hex-Code} & \textbf{Kommentar}\\ \hline
    Set Column Address & 0x2A & Eckpunkte des RAM-Fensters in X-Richtung \\ \hline
    Set Page Address & 0x2B & Eckpunkte des RAM-Fensters in Y-Richtung \\ \hline
    Write Memory Start & 0x2C & Alle Folgenden Pixeldaten werden im RAM-Fenster platziert \\ \hline
-
 \end{tabular}
 \caption{Relevante Kommandos des SSD1963, \cite{SSD2008}}
 \label{tab:Kommandos_SSD1963}
@@ -33,6 +33,7 @@ Die Displays besitzen bei 4.3"' eine Auflösung von 480x272 beziehungsweise bei 
 Das 3.2"' Display von Sainsmart wird mit einen SSD1289 von Solomon Systech betrieben. Dieses Display hat eine Aufloesung ovn 320x240 Farbpunkten. Das Pinout ist dasselbe, das in \refa{fig:8080_pinout}MPMCStatic zu sehen ist. Analog zu \reft{tab:Kommandos_SSD1963} besitzt der SSD1289 seine eigenen wichtigen Kommandos. Diese sind in  \reft{tab:Kommandos_SSD1289} erlaeutert. Die zur Initialisierung notwendigen Kommandos werden hier nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{8cm}|}\hline
+\rowcolor{TableBackgroundColor}
    \textbf{Kommando} & \textbf{Hex-Code} & \textbf{Kommentar}\\ \hline
    Horizontal RAM address position & 0x44 & Eckpunkte des RAM-Fensters in X-Richtung \\ \hline
    Vertical RAM address start position & 0x45 & Startpunkt des RAM-Fensters in Y-Richtung \\ \hline
@@ -52,6 +53,7 @@ Wichtige Kommandos zum Betrieb des Displays sind in \reft{tab:Kommandos_MD050SD}
 
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{8cm}|}\hline
+\rowcolor{TableBackgroundColor}
    \textbf{Kommando} & \textbf{Hex-Code} & \textbf{Kommentar}\\ \hline
    Beginning Row Address & 0x02 & Startpunkt des RAM-Fensters in X-Richtung \\ \hline
    Ending Row Address& 0x06 & Endpunkt des RAM-Fensters in X-Richtung \\ \hline

@@ -10,7 +10,7 @@ Die Funktionsweise der VGA-Schnittstelle ist in \refa{fig:vga_timing} zu sehen. 
 
 \begin{figure}[htp]
 	\centering
-	\includegraphics[width=0.7\textwidth]{Grundlagen/vga_timing.png}
+\fbox{	\includegraphics[width=0.7\textwidth]{Grundlagen/vga_timing.png}}
 	\caption{VGA-Timing, Quelle: \cite{Valcarce2011}}
 	\label{fig:vga_timing}
 \end{figure}
@@ -22,15 +22,15 @@ Hinter DVI steht der Begriff Digital Visual Interface und stellt ein digitale Sc
 Gegeneber der DVI-Schnittstelle bietet die HDMI Schnittstelle dieselben Eigenschaften bezüglich der Videoübertragung verwendet zur ebenfalls TMDS. Hinzu kommt allerdings, dass sowohl Audio als auch Verschlüsselung unterstützt werden. Der Formfaktor der Stecker sind für den Hausgebrauch verkleinert worden. HDMI wurde als normierte Universallösung entwickelt und hat sich als solche etabliert (\cite{Extron2014}). Nahezu jedes neu entwickelte Gerät mit Anzeigemöglichkeit, bietet eine HDMI-Schnittstelle - ebenso embedded Linux Boards wie z.B. bekannte Linux Boards wie Raspberry Pi oder Beagle Bone Black.
 
 \subsection{RGB}
-Der RGB-Bus, verwendet für kleine TFT-Panels bis ca. 7", funktioniert prinzipiell analog zur VGA-Schnittstelle, mit dem Unterschied, dass die Datenleitungen komplett digital sind. 
-So werden die Signale für Rot, Grün und Blau nicht mehr analog im Bereich von 0V bis +0.7V dargestellt, sondern durch einen üblicherweise acht Bit breiten Bus pro Farbkanal. Die Auflösung pro Farbkanal ist mit 255 Intensitätsstufen gerechnet ausreichend um ein gesamtes Farbspektrum von 16777216 \footnote{16777216 Farben = 2\textasciicircum24} Farben zu erhalten. 
+Der RGB-Bus, verwendet für kleine TFT-Panels bis ca. 7"', funktioniert prinzipiell analog zur VGA-Schnittstelle, mit dem Unterschied, dass die Datenleitungen komplett digital sind. 
+So werden die Signale für Rot, Grün und Blau nicht mehr analog im Bereich von 0V bis +0.7V dargestellt, sondern durch einen üblicherweise acht Bit breiten Bus pro Farbkanal. Die Auflösung pro Farbkanal ist mit 255 Intensitätsstufen gerechnet ausreichend um ein gesamtes Farbspektrum von 16.777.216 \footnote{16.777.216 Farben = $2^{24}$} Farben zu erhalten. 
 \begin{figure}[htp]
 	\centering
-	\includegraphics[width=0.8\textwidth]{Grundlagen/rgb_timing.png}
+\fbox{	\includegraphics[width=0.8\textwidth]{Grundlagen/rgb_timing.png}}
 	\caption{RGB-Timing, Quelle: \cite{TI2011}}
 	\label{fig:rgb_timing}
 \end{figure}
-Dieser Farbmodus wird auch RGB888 genannt, da acht Bit für jede Farbe zur Kodierung, insgesamt also 24 Bit, zur Verfügung stehen. Neben dem 24 Bit Modus ist RGB565 noch weit verbreitet, der je fünf Bit für Rot und Blau und sechs Bit für Grün verwendet. Hier ergibt sich ein Farbspektrum von 65536\footnote{65536 = 2\textasciicircum16} Farben. Da digital übertragen wird, ist eine Taktleitung notwendig um die Synchronizität zu ermöglichen. 
+Dieser Farbmodus wird auch RGB888 genannt, da acht Bit für jede Farbe zur Kodierung, insgesamt also 24 Bit, zur Verfügung stehen. Neben dem 24 Bit Modus ist RGB565 noch weit verbreitet, der je fünf Bit für Rot und Blau und sechs Bit für Grün verwendet. Hier ergibt sich ein Farbspektrum von 65.536\footnote{65.536 = $2^{16}$}Farben. Da digital übertragen wird, ist eine Taktleitung notwendig um die Synchronizität zu ermöglichen. 
 Aufgrund der Verbreitung und Mächtigkeit der Schnittstelle besitzen einige Prozessor, wie z.B. der Linuxfähige OMAP3530 von Texas Instruments, eine RGB-Schnittstelle. 
 \refa{fig:rgb_timing} zeigt exemplarisch ein Timing-Diagramm der RGB-Schnittstelle des Bausteins TFP-401A von Texas Instruments.
 \subsection{LVDS}
@@ -42,7 +42,7 @@ Das 8080-Interface ist eine antike Schnittstelle ursprünglich von Intel 8080 Pr
 
 \begin{figure}[htp]
 	\centering
-	\includegraphics[width=1.0\textwidth]{Grundlagen/8080_timing.png}
+\fbox{	\includegraphics[width=1.0\textwidth]{Grundlagen/8080_timing.png}}
 	\caption{8080-Timing des SSD1289, Quelle: \cite{SSD2007}}
 	\label{fig:8080_timing}
 \end{figure}
@@ -61,6 +61,7 @@ Neben den reinen Video-Schnittstellen weist das beschriebene 8080-Interface, das
 
 \begin{table}[h]
 \begin{tabular}{|c|c|c|}\hline
+\rowcolor{TableBackgroundColor}
    \textbf{Schnittstelle} 	& \textbf{Relevanz für Masterarbeit} 	& \textbf{Verwendung in der Masterarbeit}	\\ \hline
    VGA 						& keine  								& - 	 									\\ \hline
    DVI 						& mittel 								& Teil B 									\\ \hline
