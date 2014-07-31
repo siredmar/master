@@ -37,8 +37,77 @@
 \displaywidowpenalty = 10000
 
 % Quellcode-Ausgabe formatieren
-\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, breaklines=true}
-\lstset{emph={square}, emphstyle=\color{red}, emph={[2]root,base}, emphstyle={[2]\color{blue}}}
+%\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, breaklines=true}
+%\lstset{emph={square}, emphstyle=\color{red}, emph={[2]root,base}, emphstyle={[2]\color{blue}}}
 
 % Fußnoten fortlaufend durchnummerieren
 \counterwithout{footnote}{chapter}
+
+%\definecolor{hellgelb}{rgb}{1,1,0.9}
+\definecolor{hellgelb}{rgb}{1,1,0.95}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+\definecolor{colRules}{rgb}{0,0,1}
+\lstset{
+    float=hbp,                        % Realisierung als Gleitobjekte
+    basicstyle=\ttfamily\color{black}\small\smaller,
+    identifierstyle=\color{colIdentifier},
+    keywordstyle=\color{colKeys},
+    stringstyle=\color{colString},
+    commentstyle=\color{colComments},
+    columns=fixed,                    % Zeichensatz: fixed, flexible, ...
+    tabsize=2,
+    frame=lines,                      % Linien oben und unten
+    extendedchars=true,               
+    showspaces=false,                 % Leerräume anzeigen
+    showstringspaces=false,           % Leerräume in Strings anzeigen
+    numbers=left,                     % Zeilennummern Platzierung
+    numberstyle=\tiny,                % Zeilennummern Größe
+    breaklines=true,
+    backgroundcolor=\color{hellgelb},
+    breakautoindent=true,
+    rulecolor=\color{colRules},       % Linienfarbe
+    linewidth=13.5cm,                 % absolute Zeilenbreite
+    xleftmargin=1cm,                % linker Einzug
+    framexleftmargin=15pt,            % linker Rand des Rahmens
+	captionpos=b,                     % Caption: (b)ottom, (t)op
+}
+
+\lstdefinelanguage{MyC}{
+language=C,
+morekeywords={
+float32,
+float64,
+sint8,
+sint16,
+sint32,
+uint8,
+uint16,
+uint32,
+u8,
+u16,
+u32,
+i8,
+i16,
+i32}
+}
+
+
+%\lstset{
+% frame=shadowbox,
+% rulesepcolor=\color{black},
+% showspaces=false,showtabs=false,tabsize=2,
+% numberstyle=\tiny,numbers=left,
+% basicstyle= \listingsfont,
+% stringstyle=\color{sh_string},
+% keywordstyle = \color{sh_keyword}\bfseries,
+% commentstyle=\color{sh_comment}\itshape,
+% captionpos=b,
+% xleftmargin=0.7cm, xrightmargin=0.5cm,
+% lineskip=-0.3em,
+% escapebegin={\lstsmallmath}, escapeend={\lstsmallmathend}
+% }
+ 
+%\lstset{escapechar=@,style=customc}

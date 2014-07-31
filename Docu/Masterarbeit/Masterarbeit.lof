@@ -1,15 +1,15 @@
 \select@language {ngerman}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces VGA-Timing, Quelle: \cite {Valcarce2011}\relax }}{4}{figure.caption.22}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces RGB-Timing, Quelle: \cite {TI2011}\relax }}{5}{figure.caption.34}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces 8080-Timing des SSD1289, Quelle: \cite {SSD2007}\relax }}{7}{figure.caption.39}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces VGA-Timing, Quelle: \cite {Valcarce2011}\relax }}{4}{figure.caption.23}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces RGB-Timing, Quelle: \cite {TI2011}\relax }}{5}{figure.caption.35}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces 8080-Timing des SSD1289, Quelle: \cite {SSD2007}\relax }}{7}{figure.caption.40}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces 8080-Display Pinout, Quelle: \cite {Coldtears2014}\relax }}{11}{figure.caption.58}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces NXP LPC313x EBI, Quelle: \cite {NXP2010}\relax }}{14}{figure.caption.68}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces NXP LPC313x MPMC, \cite {NXP2010} \relax }}{16}{figure.caption.73}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Schaltplan Adapterplatine\relax }}{20}{figure.caption.85}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Adapterplatine zwischen Gnublin Extended und Display\relax }}{21}{figure.caption.86}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 8080-Display Pinout, Quelle: \cite {Coldtears2014}\relax }}{11}{figure.caption.59}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces NXP LPC313x EBI, Quelle: \cite {NXP2010}\relax }}{14}{figure.caption.69}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces NXP LPC313x MPMC, \cite {NXP2010} \relax }}{16}{figure.caption.74}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Schaltplan Adapterplatine\relax }}{21}{figure.caption.89}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Adapterplatine zwischen Gnublin Extended und Display\relax }}{22}{figure.caption.90}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

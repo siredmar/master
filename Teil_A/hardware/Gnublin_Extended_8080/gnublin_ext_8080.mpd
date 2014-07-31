@@ -1,0 +1,6 @@
+//MPD-File
+#ifndef(pack_C1) #declare global_pack_C1=yes; object {CAP_SMD_CHIP_0805()translate<0,-0,0> rotate<0,0.000000,0>rotate<0,-180.000000,0> rotate<0,0,180> translate<10.900000,-1.500000,68.100000>translate<0,-0.035000,0> }#end		//SMD Kondensator 0805 C1 100n C0805
+#ifndef(pack_JP2) #declare global_pack_JP2=yes; object {CON_PH_2X20()translate<0,0,0> rotate<0,0.000000,0>rotate<0,-270.000000,0> rotate<0,0,0> translate<4.500000,0.000000,42.000000>}#end		//Stiftleiste 2,54mm Raster 20Pin 2Reihen (pinhead.lib) JP2  2X20
+#ifndef(pack_R1) #declare global_pack_R1=yes; object {RES_SMD_CHIP_0603("103",)translate<0,-0,0> rotate<0,0.000000,0>rotate<0,-180.000000,0> rotate<0,0,180> translate<83.900000,-1.500000,17.500000>translate<0,-0.035000,0> }#end		//SMD Widerstand 0603 R1 10k R0603
+#ifndef(pack_R2) #declare global_pack_R2=yes; object {RES_SMD_CHIP_0603("103",)translate<0,-0,0> rotate<0,0.000000,0>rotate<0,0.000000,0> rotate<0,0,180> translate<80.200000,-1.500000,17.500000>translate<0,-0.035000,0> }#end		//SMD Widerstand 0603 R2 10k R0603
+#ifndef(pack_R3) #declare global_pack_R3=yes; object {RES_SMD_CHIP_0603("103",)translate<0,-0,0> rotate<0,0.000000,0>rotate<0,-270.000000,0> rotate<0,0,180> translate<67.750000,-1.500000,66.500000>translate<0,-0.035000,0> }#end		//SMD Widerstand 0603 R3 10k R0603
