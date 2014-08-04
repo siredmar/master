@@ -1,15 +1,16 @@
 \select@language {ngerman}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces Verwendete Compiler\relax }}{2}{table.caption.17}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Relevanz der Display-Schnittstellen f\IeC {\"u}r die Masterarbeit\relax }}{8}{table.caption.44}
+\contentsline {table}{\numberline {1.1}{\ignorespaces Verwendete Compiler\relax }}{2}{table.caption.18}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Relevante Kommandos des SSD1963, \cite {SSD2008}\relax }}{11}{table.caption.60}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Relevante Kommandos des SSD1289, \cite {SSD2007}\relax }}{12}{table.caption.62}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Relevante Kommandos des MD050SD, \cite {ITEAD2013}\relax }}{13}{table.caption.65}
-\contentsline {table}{\numberline {3.4}{\ignorespaces MPMC Register, \cite {NXP2010}\relax }}{18}{table.caption.75}
-\contentsline {table}{\numberline {3.5}{\ignorespaces Displayverbindung mit dem Gnublin, \cite {Coldtears2014}, \cite {EmbeddedProjects2013}\relax }}{19}{table.caption.79}
-\contentsline {table}{\numberline {3.6}{\ignorespaces Adressen f\IeC {\"u}r SRAM-Zugriff, \cite {NXP2010}\relax }}{20}{table.caption.87}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Relevanz der Display-Schnittstellen f\IeC {\"u}r die Masterarbeit\relax }}{8}{table.caption.45}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Relevante Kommandos des SSD1963, \cite {SSD2008}\relax }}{11}{table.caption.61}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Relevante Kommandos des SSD1289, \cite {SSD2007}\relax }}{12}{table.caption.63}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Relevante Kommandos des MD050SD, \cite {ITEAD2013}\relax }}{13}{table.caption.66}
+\contentsline {table}{\numberline {3.4}{\ignorespaces MPMC Register, \cite {NXP2010}\relax }}{18}{table.caption.76}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Displayverbindung mit dem Gnublin, \cite {Coldtears2014}, \cite {EmbeddedProjects2013}\relax }}{19}{table.caption.80}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Adressen f\IeC {\"u}r SRAM-Zugriff, \cite {NXP2010}\relax }}{20}{table.caption.88}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

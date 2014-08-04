@@ -160,15 +160,42 @@ Die Softwareentwicklung ist in drei Teile auf gegliedert:
 \end{itemize}
 
 \subsubsection{Anpassung des APEX-Bootloaders zur Verwendung des Displays}
-Der APEX-Bootloader\footnote{\url{https://gitorious.org/apex/}} wurde ursprünglich für Prozessoren de Sharp LH Familie entwickelt, wurde allerdings auf eine Vielzahl von weiteren ARM basierten Prozessoren portiert, so auch für die verwendeten NXP LPC313x CPU\footnote{CPU: Central Processing Unit, Prozessor}.
-Die Aufgabe des Bootloaders ist es, grundlegende prozessorinterne Hardwareeinheiten wie z.b. CGU oder SD-RAM zu initialisieren um für den Linux-Kernel die notwendige Umgebung zu schaffen. Im Anschluss wird der Linux-Kernel geladen und gestartet. An dieser Stelle werden die verwendeten MPMC-Register konfiguriert. Wie in \ref{cha:mpmc} muss das SYSCREG-Register SYSCREG\_AHB\_MPMC\_MISC nicht explizit beschrieben werden, da es im Resetzustand bereits richtig konfiguriert wird. 
-\paragraph{Boot-Logo im APEX-Bootloader}
-Um dem Display beim Systemstart einen initialisierten Zustand zu geben und dem Benutzer bereits während des Ladens des Linux-Kernels ein Bild zu anzuzeigen, ist ein Bootlogo konfigurierbar. Hierfür bedarf es einem Displaytreiber im Bootloader. Im Folgenden wird die Darstellung des Boot-Logos unter Verwendung des CPLD-basierten Displays dargestellt. \refl{lst:apex_gemeinsamer_teil} zeigt den gemeinsamen Teil des Treibers, bei dem grundlegende Datentypen sowie Sendefunktionen für Daten und Kommandos gelistet sind. 
+Der APEX-Bootloader\footnote{\url{https://gitorious.org/apex/}} wurde ursprünglich für Prozessoren de Sharp LH Familie entwickelt, wurde allerdings auf eine Vielzahl von weiteren ARM basierten Prozessoren portiert, so auch für die verwendete NXP LPC313x CPU\footnote{CPU: Central Processing Unit, Prozessor}.
+Die Aufgabe des Bootloaders ist es, grundlegende prozessorinterne Hardwareeinheiten wie z.B. CGU oder SD-RAM zu initialisieren um für den Linux-Kernel die notwendige Umgebung zu schaffen. Im Anschluss wird der Linux-Kernel geladen und gestartet. Es werden außerdem dem Linux-Kernel Bootparameter übergeben, die zum Start benötigt werden. Am Anfang des Bootloader-Codes werden die verwendeten MPMC-Register konfiguriert. Wie in \refc{cha:mpmc} muss das SYSCREG-Register SYSCREG\_AHB\_MPMC\_MISC nicht explizit beschrieben werden, da es im Resetzustand bereits richtig konfiguriert ist. \refl{lst:apex_mpmc_config} zeigt die entsprechende Initialisierung der MPMC-Register für das MD050SD. Die Adressen von z.B. MPMC\_STCONFIG0 sind in der \lstinline|lpc313x.h| definiert. Die Modifikationen im Bootloader finden in der Datei \lstinline|initialize.c| statt.
 
 \begin{lstlisting}[%
 language=MyC,
-caption={Funktionen zum Senden und grundlegende Datentypen fuer den Treiber},
-label=lst:apex_gemeinsamer_teil
+caption={Bootloader: MPMC-Konfiguration},
+label=lst:apex_mpmc_config
+]
+#elif defined(CONFIG_MACH_EPLPC3131_V1)
+#if defined(CONFIG_DISP_SSD1963)
+	// ...
+#elif defined(CONFIG_DISP_MD050SD)
+   /* LCD display, 16 bit */
+   MPMC_STCONFIG0  = 0x81;
+   MPMC_STWTWEN0   = 13;
+   MPMC_STWTOEN0   = 0;
+   MPMC_STWTRD0    = 0;
+   MPMC_STWTPG0    = 0;
+   MPMC_STWTWR0    = 15;
+   MPMC_STWTTURN0  = 0;
+#elif defined(CONFIG_DISP_SSD1289)
+	// ...
+#elif defined(CONFIG_DISP_NONE)
+	// ...
+#endif
+#endif
+\end{lstlisting}
+
+
+\paragraph{Boot-Logo im APEX-Bootloader}
+Um dem Display beim Systemstart einen initialisierten Zustand zu geben und dem Benutzer bereits während dem Laden des Linux-Kernels ein Bild anzuzeigen, ist ein Bootlogo konfigurierbar. Hierfür bedarf es eines rudimentären Displaytreibers im Bootloader. Im Folgenden wird die Darstellung des Boot-Logos unter Verwendung des MD050SD dargestellt. \refl{lst:apex_erster_teil} zeigt den ersten Teil des Treibers, bei dem grundlegende Datentypen sowie Sendefunktionen für Daten und Kommandos gelistet sind. 
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Bootloader: Grundlegende Datentypen und Funktionen},
+label=lst:apex_erster_teil
 ]
 #if defined(CONFIG_DISP_MD050SD) || defined(CONFIG_DISP_SSD1963) || defined(CONFIG_DISP_SSD1289)
 #define DISP_PHYS        (EXT_SRAM0_PHYS)
@@ -199,14 +226,13 @@ static void display_send_data(u16 data)
 #endif
 \end{lstlisting}
 
-Die Struktur \todo{code style?} display in Zeile 10 von \refl{lst:apex_gemeinsamer_teil} enthält Zeiger auf die jeweiligen Adressen aus \reft{tab:sram_adressen}. 
-
+Die Struktur \lstinline|struct display| ab Zeile 10 von \refl{lst:apex_erster_teil} enthält zwei Zeiger \lstinline|u16* ctrl| und \lstinline|u16* data| auf die jeweiligen Adressen aus \reft{tab:sram_adressen} für Kommandos und Daten. In den Zeilen 17 und 22 sind die zwei Sendefunktionen \lstinline|display_send_cmd(u16 cmd)| und 
+\lstinline|display_send_data(u16 cmd)| definiert. Hiermit werden die Kommandos und Daten an das Display gesendet. Wird auf eine der beiden Adressen ein Wert geschrieben, kümmert sich das MPMC und das EBI automatisch um die restlichen Signale wie WR, RD und CS. 
 
 \begin{lstlisting}[%
 language=MyC,
-caption={
-Display Initialisierung und Logo},
-label=lst:apex_init_und_logo
+caption={Bootloader: Display-Initialisierung und Bootlogo},
+label=lst:apex_zweiter_teil
 ]
 #if defined(CONFIG_DISP_MD050SD) || defined(CONFIG_DISP_SSD1963) || defined(CONFIG_DISP_SSD1289)
    display.ctrl = &__REG16 (DISP_PHYS_CTRL);   
@@ -233,7 +259,7 @@ label=lst:apex_init_und_logo
 	/* Clear the display with color black */
    display_send_cmd(0x000F);
 
-   for(pixel = 0; pixel <= 800 * 480; pixel++)
+   for(pixel = 0; pixel < 800 * 480; pixel++)
    {
       display_send_data(0x0000);
    }
@@ -263,25 +289,51 @@ label=lst:apex_init_und_logo
 #endif
 \end{lstlisting}
 
-
+Der Eigentliche Treiber und der Code für das Anzeigen des Bootlogos ist in \refl{lst:apex_zweiter_teil} zu sehen. In Zeile 2 und 3 werden den Adresszeigern die pysikalischen Adressen zum Schreiben von Kommandos und Daten zugewiesen. Von Zeile 5 bis 10 wird die Hintergrundbeleuchtung explizit abgschaltet und ein Reset auf das Display gegeben. Da das MD050SD einen CPLD-Controller besitzt, welcher eine auf genau dieses TFT-Panel zugeschnittene Programmierung enthält, fällt eine Initialisierungsroutine weg. Dies wäre bei Controllern wie dem SSD1963 nicht der Fall, da diese mit einer Vielzahl von Panels arbeiten können und demzufolge eine spezielle Initialisierung brauchen. Das MD050SD ist nach dem Reset also initialisiert und erwartet Kommandos. Von Zeile 13 bis 24 in \refl{lst:apex_zweiter_teil} wird ein Bereich im Display-RAM der vollen Bildschirmgröße reserviert und die Bereitschaft zum Datenempfang gestartet (siehe \reft{tab:Kommandos_MD050SD}). Alle Daten die im Anschluss gesendet werden, werden automatisch an die richtige Stelle im Display geschrieben. In einer Schleife werden ab Zeile 26 alle reservierten Pixel von zuvor mit der Farbe Schwarz beschrieben, um das automatisch angezeigte Testbild des Displays beim Start zu überschreiben. Im Anschluss wird die Hintergrundbeleuchtung wieder eingeschaltet. Ist über den Codeswitch \lstinline|CONFIG_LOGO_TUX| das Bootlogo aktiviert, so wird dies ab Zeile 34 angezeigt. Die Größe des Logos wird in den Zeilen 34 und 35 ausgelesen und in den Folgenden angezeigt. Die Pixeldaten des Logos sind im Array \lstinline|u16 boot_logo_tux[]| in den Dateien \lstinline|boot_logo_tux.c| und \lstinline|boot_logo_tux.h| hinterlegt.
 
 
 \paragraph{Konfiguration des APEX-Bootloaders}
+Der APEX-Bootloader besitzt zur Konfiguration dasselbe System wie der Linux-Kernel. Dieses System heißt KConfig und wird durch den Befehl \lstinline|make menuconfig| aufgerufen, welches ein Konfigurationsmenü im aufrufenden Terminal erscheinen lässt. Hier sind neben Grundlegenden Konfiguration zum Beispiel für die Prozessorarchitektur oder Taktraten auch der Displaytreiber und das Bootlogo eingepflegt. \refa{fig:apex_config} zeigt exemplarisch den Unterpunkt \lstinline|Platform Setup| bei dem das Display MD050SD und das Bootlogo ausgewählt sind. 
+
+\begin{figure}[tbph]
+%\begin{figure}[h!]
+	\centering
+\fbox{	\includegraphics[width=0.8\textwidth]{TeilA/apex_config.png}}
+	\caption{APEX-Bootloader KConfig}
+	\label{fig:apex_config}
+\end{figure}
+\newpage
+
+Bevor der Bootloader konfiguriert werden kann, muss der Vanilla-Quellcode noch gepatcht werden. \refl{lst:apex_patchen} zeigt die einzelnen Schritte, um den Bootloader herunterzuladen und zu Patchen. Der Patch enthält alle nötigen Dinge zum Betrieb des MD050SD-Display und des Boot-Logos.
 
 
-\paragraph{Inbetriebnahme des APEX-Bootloaders}
+\begin{lstlisting}[%
+language=bash,
+caption={Bootloader: Herunterladen und Patchen},
+label=lst:apex_patchen
+]
+$ wget https://github.com/embeddedprojects/gnublin-distribution/raw/master/lpc3131/bootloader/apex/1.6.8/apex-1.6.8.tar.gz
+$ tar xvfz apex-1.6.8.tar.gz
+$ wget https://github.com/siredmar/master/raw/master/Teil_A/software/bootloader/apex_display.patch
+$ cd apex-1.6.8
+$ patch -p1 < ../apex_display.patch
+\end{lstlisting}
 
+Im Folgenden wird die Konfiguration des Bootloaders und die damit möglichen Einstellungsmöglichkeiten beschrieben. Im Konfigurationsmenü sind nach dem patchen im Untermenü \lstinline|Platform Setup| die Optionen \lstinline|Display Controller| und \lstinline|Bootup Logo| verfügbar. Hier wird die Auswahl bezüglich Displaycontrollers und Logo getroffen. Wird ein Displaycontroller anders als MD050SD gewählt, so werden nur entsprechende Timings der MPMC-Register gesetzt und kein Boot-Logo angezeigt. 
+Um den Kernel mit spezifischen Parametern starten zu können, werden für den Betrieb der unterschiedlichen Treiber (Framebuffer, User-Space) andere Bootparameter benötigt. So ist der originalen Parameterliste 
+\lstinline{console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait} im Untermenü \lstinline|Environment| für den Betrieb mit dem Framebuffer-Treiber ein \lstinline|fbcon=rotate:0 fbcon=font:VGA8x16| hinzuzufügen um dem Kernel beim Start Informationen über den Kernel-Treiber \lstinline|fbcon| mitzuteilen. Wird der User-Space-Treiber verwendet, so übernimmt das Kernel-Modul \lstinline|vfb|\footnote{vfb: Virtual Frame Buffer} die Aufgabe des Framebuffers. Die Parameterliste ist mit \lstinline|console=tty0 video=vfb: vfb_enable=1| zu ergänzen (siehe \cite{LinuxKernelFBCON}).
 
-
+Der Bootloader wird per \lstinline|make apex.bin| kompiliert und mit \lstinline|dd if=src/arch-arm/rom/apex.bin of=/dev/sdXY| \footnote{/dev/sdXY: bezieht sich auf die Bootpartition auf der korrekten SD-Karte, z.b. /dev/sdb2} auf die SD-Karte des Gnublin geschrieben (siehe \cite{GnublinWiki2013}).
 
 \subsubsection{Entwicklung eines Linux-Framebuffer-Treibers}
+
 \paragraph{Anpassungen für SSD1963 Controller}
 \paragraph{Anpassungen für SSD1289 Controller}
-\paragraph{Anpassungen für CPLD Controller}
+\paragraph{Anpassungen für MD050SD}
 \subsubsection{Entwicklung eines User-Space-Treibers}
 \paragraph{Anpassungen für SSD1963 Controller}
 \paragraph{Anpassungen für SSD1289 Controller}
-\paragraph{Anpassungen für CPLD Controller}
+\paragraph{Anpassungen für MD050SD}
 \subsubsection{Probleme bei der Entwicklung und Fehlersuche}
 \paragraph{Probleme mit SSD1963}
 \subparagraph{Rolle des User-Space-Treibers}

@@ -1,83 +1,83 @@
 \BOOKMARK [0][]{chapter*.4}{Abbildungsverzeichnis}{}% 1
 \BOOKMARK [0][]{chapter*.5}{Tabellenverzeichnis}{}% 2
-\BOOKMARK [0][]{chapter.6}{Einleitung}{}% 3
-\BOOKMARK [1][]{section.7}{Motivation}{chapter.6}% 4
-\BOOKMARK [1][]{section.8}{Ziel der Arbeit}{chapter.6}% 5
-\BOOKMARK [1][]{section.9}{Aufbau der Arbeit}{chapter.6}% 6
-\BOOKMARK [1][]{section.10}{Typographische Konventionen}{chapter.6}% 7
-\BOOKMARK [1][]{section.11}{Verwendete Programme}{chapter.6}% 8
-\BOOKMARK [0][]{chapter.18}{Theoretische Grundlagen}{}% 9
-\BOOKMARK [1][]{section.19}{Video-Schnittstellen}{chapter.18}% 10
-\BOOKMARK [2][]{subsection.20}{VGA}{section.19}% 11
-\BOOKMARK [2][]{subsection.24}{DVI}{section.19}% 12
-\BOOKMARK [2][]{subsection.32}{HDMI}{section.19}% 13
-\BOOKMARK [2][]{subsection.33}{RGB}{section.19}% 14
-\BOOKMARK [2][]{subsection.37}{LVDS}{section.19}% 15
-\BOOKMARK [2][]{subsection.39}{8080-Interface}{section.19}% 16
-\BOOKMARK [2][]{subsection.42}{Bewertung der Video-Schnittstellen}{section.19}% 17
-\BOOKMARK [1][]{section.45}{Betrachtete Embedded Linux Boards}{chapter.18}% 18
-\BOOKMARK [2][]{subsection.46}{Raspberry Pi}{section.45}% 19
-\BOOKMARK [2][]{subsection.52}{Gnublin Extended}{section.45}% 20
-\BOOKMARK [2][]{subsection.54}{Bewertung der Linux-Boards}{section.45}% 21
-\BOOKMARK [0][]{chapter.55}{Teil A}{}% 22
-\BOOKMARK [1][]{section.56}{Untersuchte Displays mit 8080-Interface}{chapter.55}% 23
-\BOOKMARK [2][]{subsection.58}{4.3\215/5\215 mit SSD1963}{section.56}% 24
-\BOOKMARK [2][]{subsection.61}{3.2\215 mit SSD1289}{section.56}% 25
-\BOOKMARK [2][]{subsection.63}{5\215 mit CPLD}{section.56}% 26
-\BOOKMARK [1][]{section.66}{8080-Interface mittels SRAM-Interface}{chapter.55}% 27
-\BOOKMARK [2][]{subsection.67}{Konzept}{section.66}% 28
-\BOOKMARK [2][]{subsection.73}{MPMC - Multiport Memory Controller des NXP LPC313x}{section.66}% 29
-\BOOKMARK [2][]{subsection.77}{Hardwareverbindung zwischen SRAM-Interface und Display}{section.66}% 30
-\BOOKMARK [2][]{subsection.88}{Adapterplatine zwischen Gnublin Extended und Display}{section.66}% 31
-\BOOKMARK [2][]{subsection.91}{Software}{section.66}% 32
-\BOOKMARK [3][]{subsubsection.92}{Anpassung des APEX-Bootloaders zur Verwendung des Displays}{subsection.91}% 33
-\BOOKMARK [4][]{paragraph.95}{Boot-Logo im APEX-Bootloader}{subsubsection.92}% 34
-\BOOKMARK [4][]{paragraph.179}{Konfiguration des APEX-Bootloaders}{subsubsection.92}% 35
-\BOOKMARK [4][]{paragraph.180}{Inbetriebnahme des APEX-Bootloaders}{subsubsection.92}% 36
-\BOOKMARK [3][]{subsubsection.181}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.91}% 37
-\BOOKMARK [4][]{paragraph.182}{Anpassungen f\374r SSD1963 Controller}{subsubsection.181}% 38
-\BOOKMARK [4][]{paragraph.183}{Anpassungen f\374r SSD1289 Controller}{subsubsection.181}% 39
-\BOOKMARK [4][]{paragraph.184}{Anpassungen f\374r CPLD Controller}{subsubsection.181}% 40
-\BOOKMARK [3][]{subsubsection.185}{Entwicklung eines User-Space-Treibers}{subsection.91}% 41
-\BOOKMARK [4][]{paragraph.186}{Anpassungen f\374r SSD1963 Controller}{subsubsection.185}% 42
-\BOOKMARK [4][]{paragraph.187}{Anpassungen f\374r SSD1289 Controller}{subsubsection.185}% 43
-\BOOKMARK [4][]{paragraph.188}{Anpassungen f\374r CPLD Controller}{subsubsection.185}% 44
-\BOOKMARK [3][]{subsubsection.189}{Probleme bei der Entwicklung und Fehlersuche}{subsection.91}% 45
-\BOOKMARK [4][]{paragraph.190}{Probleme mit SSD1963}{subsubsection.189}% 46
-\BOOKMARK [5][]{subparagraph.191}{Rolle des User-Space-Treibers}{paragraph.190}% 47
-\BOOKMARK [5][]{subparagraph.192}{Debuggen mit Logik-Analyzer}{paragraph.190}% 48
-\BOOKMARK [1][]{section.193}{Known Bugs}{chapter.55}% 49
-\BOOKMARK [2][]{subsection.194}{Known Bugs SSD1963}{section.193}% 50
-\BOOKMARK [2][]{subsection.195}{Known Bugs SSD1289}{section.193}% 51
-\BOOKMARK [2][]{subsection.196}{Known Bugs CPLD Display}{section.193}% 52
-\BOOKMARK [0][]{chapter.197}{Teil B}{}% 53
-\BOOKMARK [1][]{section.198}{Konzept}{chapter.197}% 54
-\BOOKMARK [1][]{section.199}{Hardwareentwicklung}{chapter.197}% 55
-\BOOKMARK [2][]{subsection.200}{Spannungsversorgung}{section.199}% 56
-\BOOKMARK [2][]{subsection.201}{HDMI-RGB-Bridge}{section.199}% 57
-\BOOKMARK [2][]{subsection.202}{RGB-LVDS-Bridge}{section.199}% 58
-\BOOKMARK [2][]{subsection.203}{EDID-Daten}{section.199}% 59
-\BOOKMARK [1][]{section.204}{Software}{chapter.197}% 60
-\BOOKMARK [2][]{subsection.205}{EDID-Daten auf embedded Seite}{section.204}% 61
-\BOOKMARK [3][]{subsubsection.206}{Konzept}{subsection.205}% 62
-\BOOKMARK [3][]{subsubsection.207}{Low-Level-Treiber}{subsection.205}% 63
-\BOOKMARK [4][]{paragraph.208}{UART-Treiber}{subsubsection.207}% 64
-\BOOKMARK [4][]{paragraph.209}{I2C-Treiber}{subsubsection.207}% 65
-\BOOKMARK [3][]{subsubsection.210}{Programmablauf}{subsection.205}% 66
-\BOOKMARK [2][]{subsection.211}{EDID-Daten auf PC Seite}{section.204}% 67
-\BOOKMARK [3][]{subsubsection.212}{Konzept}{subsection.211}% 68
-\BOOKMARK [3][]{subsubsection.213}{GTK GUI mit Glade}{subsection.211}% 69
-\BOOKMARK [3][]{subsubsection.214}{Programmablauf}{subsection.211}% 70
-\BOOKMARK [1][]{section.215}{Known Bugs}{chapter.197}% 71
-\BOOKMARK [2][]{subsection.216}{Hardware}{section.215}% 72
-\BOOKMARK [3][]{subsubsection.217}{HDMI-Stecker gekreuzt, CON2}{subsection.216}% 73
-\BOOKMARK [3][]{subsubsection.218}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.216}% 74
-\BOOKMARK [3][]{subsubsection.219}{+12V PWM Hintergrundbeleuchtung}{subsection.216}% 75
-\BOOKMARK [3][]{subsubsection.220}{+5V Kreis / Widerstand R13}{subsection.216}% 76
-\BOOKMARK [3][]{subsubsection.221}{USB D+/D- vertauscht R22, R23}{subsection.216}% 77
-\BOOKMARK [2][]{subsection.222}{Software}{section.215}% 78
-\BOOKMARK [3][]{subsubsection.223}{EDID Programmer}{subsection.222}% 79
-\BOOKMARK [0][]{chapter.224}{Zusammenfassung}{}% 80
-\BOOKMARK [0][]{chapter*.225}{Literaturverzeichnis}{}% 81
-\BOOKMARK [0][]{chapter*.226}{Eidesstattliche Erkl\344rung}{}% 82
-\BOOKMARK [0][]{appendix.227}{Anhang}{}% 83
+\BOOKMARK [0][]{chapter*.6}{Listings}{}% 3
+\BOOKMARK [0][]{chapter.7}{Einleitung}{}% 4
+\BOOKMARK [1][]{section.8}{Motivation}{chapter.7}% 5
+\BOOKMARK [1][]{section.9}{Ziel der Arbeit}{chapter.7}% 6
+\BOOKMARK [1][]{section.10}{Aufbau der Arbeit}{chapter.7}% 7
+\BOOKMARK [1][]{section.11}{Typographische Konventionen}{chapter.7}% 8
+\BOOKMARK [1][]{section.12}{Verwendete Programme}{chapter.7}% 9
+\BOOKMARK [0][]{chapter.19}{Theoretische Grundlagen}{}% 10
+\BOOKMARK [1][]{section.20}{Video-Schnittstellen}{chapter.19}% 11
+\BOOKMARK [2][]{subsection.21}{VGA}{section.20}% 12
+\BOOKMARK [2][]{subsection.25}{DVI}{section.20}% 13
+\BOOKMARK [2][]{subsection.33}{HDMI}{section.20}% 14
+\BOOKMARK [2][]{subsection.34}{RGB}{section.20}% 15
+\BOOKMARK [2][]{subsection.38}{LVDS}{section.20}% 16
+\BOOKMARK [2][]{subsection.40}{8080-Interface}{section.20}% 17
+\BOOKMARK [2][]{subsection.43}{Bewertung der Video-Schnittstellen}{section.20}% 18
+\BOOKMARK [1][]{section.46}{Betrachtete Embedded Linux Boards}{chapter.19}% 19
+\BOOKMARK [2][]{subsection.47}{Raspberry Pi}{section.46}% 20
+\BOOKMARK [2][]{subsection.53}{Gnublin Extended}{section.46}% 21
+\BOOKMARK [2][]{subsection.55}{Bewertung der Linux-Boards}{section.46}% 22
+\BOOKMARK [0][]{chapter.56}{Teil A}{}% 23
+\BOOKMARK [1][]{section.57}{Untersuchte Displays mit 8080-Interface}{chapter.56}% 24
+\BOOKMARK [2][]{subsection.59}{4.3\215/5\215 mit SSD1963}{section.57}% 25
+\BOOKMARK [2][]{subsection.62}{3.2\215 mit SSD1289}{section.57}% 26
+\BOOKMARK [2][]{subsection.64}{5\215 mit CPLD}{section.57}% 27
+\BOOKMARK [1][]{section.67}{8080-Interface mittels SRAM-Interface}{chapter.56}% 28
+\BOOKMARK [2][]{subsection.68}{Konzept}{section.67}% 29
+\BOOKMARK [2][]{subsection.74}{MPMC - Multiport Memory Controller des NXP LPC313x}{section.67}% 30
+\BOOKMARK [2][]{subsection.78}{Hardwareverbindung zwischen SRAM-Interface und Display}{section.67}% 31
+\BOOKMARK [2][]{subsection.89}{Adapterplatine zwischen Gnublin Extended und Display}{section.67}% 32
+\BOOKMARK [2][]{subsection.92}{Software}{section.67}% 33
+\BOOKMARK [3][]{subsubsection.93}{Anpassung des APEX-Bootloaders zur Verwendung des Displays}{subsection.92}% 34
+\BOOKMARK [4][]{paragraph.115}{Boot-Logo im APEX-Bootloader}{subsubsection.93}% 35
+\BOOKMARK [4][]{paragraph.198}{Konfiguration des APEX-Bootloaders}{subsubsection.93}% 36
+\BOOKMARK [3][]{subsubsection.208}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.92}% 37
+\BOOKMARK [4][]{paragraph.209}{Anpassungen f\374r SSD1963 Controller}{subsubsection.208}% 38
+\BOOKMARK [4][]{paragraph.210}{Anpassungen f\374r SSD1289 Controller}{subsubsection.208}% 39
+\BOOKMARK [4][]{paragraph.211}{Anpassungen f\374r CPLD Controller}{subsubsection.208}% 40
+\BOOKMARK [3][]{subsubsection.212}{Entwicklung eines User-Space-Treibers}{subsection.92}% 41
+\BOOKMARK [4][]{paragraph.213}{Anpassungen f\374r SSD1963 Controller}{subsubsection.212}% 42
+\BOOKMARK [4][]{paragraph.214}{Anpassungen f\374r SSD1289 Controller}{subsubsection.212}% 43
+\BOOKMARK [4][]{paragraph.215}{Anpassungen f\374r CPLD Controller}{subsubsection.212}% 44
+\BOOKMARK [3][]{subsubsection.216}{Probleme bei der Entwicklung und Fehlersuche}{subsection.92}% 45
+\BOOKMARK [4][]{paragraph.217}{Probleme mit SSD1963}{subsubsection.216}% 46
+\BOOKMARK [5][]{subparagraph.218}{Rolle des User-Space-Treibers}{paragraph.217}% 47
+\BOOKMARK [5][]{subparagraph.219}{Debuggen mit Logik-Analyzer}{paragraph.217}% 48
+\BOOKMARK [1][]{section.220}{Known Bugs}{chapter.56}% 49
+\BOOKMARK [2][]{subsection.221}{Known Bugs SSD1963}{section.220}% 50
+\BOOKMARK [2][]{subsection.222}{Known Bugs SSD1289}{section.220}% 51
+\BOOKMARK [2][]{subsection.223}{Known Bugs CPLD Display}{section.220}% 52
+\BOOKMARK [0][]{chapter.224}{Teil B}{}% 53
+\BOOKMARK [1][]{section.225}{Konzept}{chapter.224}% 54
+\BOOKMARK [1][]{section.226}{Hardwareentwicklung}{chapter.224}% 55
+\BOOKMARK [2][]{subsection.227}{Spannungsversorgung}{section.226}% 56
+\BOOKMARK [2][]{subsection.228}{HDMI-RGB-Bridge}{section.226}% 57
+\BOOKMARK [2][]{subsection.229}{RGB-LVDS-Bridge}{section.226}% 58
+\BOOKMARK [2][]{subsection.230}{EDID-Daten}{section.226}% 59
+\BOOKMARK [1][]{section.231}{Software}{chapter.224}% 60
+\BOOKMARK [2][]{subsection.232}{EDID-Daten auf embedded Seite}{section.231}% 61
+\BOOKMARK [3][]{subsubsection.233}{Konzept}{subsection.232}% 62
+\BOOKMARK [3][]{subsubsection.234}{Low-Level-Treiber}{subsection.232}% 63
+\BOOKMARK [4][]{paragraph.235}{UART-Treiber}{subsubsection.234}% 64
+\BOOKMARK [4][]{paragraph.236}{I2C-Treiber}{subsubsection.234}% 65
+\BOOKMARK [3][]{subsubsection.237}{Programmablauf}{subsection.232}% 66
+\BOOKMARK [2][]{subsection.238}{EDID-Daten auf PC Seite}{section.231}% 67
+\BOOKMARK [3][]{subsubsection.239}{Konzept}{subsection.238}% 68
+\BOOKMARK [3][]{subsubsection.240}{GTK GUI mit Glade}{subsection.238}% 69
+\BOOKMARK [3][]{subsubsection.241}{Programmablauf}{subsection.238}% 70
+\BOOKMARK [1][]{section.242}{Known Bugs}{chapter.224}% 71
+\BOOKMARK [2][]{subsection.243}{Hardware}{section.242}% 72
+\BOOKMARK [3][]{subsubsection.244}{HDMI-Stecker gekreuzt, CON2}{subsection.243}% 73
+\BOOKMARK [3][]{subsubsection.245}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.243}% 74
+\BOOKMARK [3][]{subsubsection.246}{+12V PWM Hintergrundbeleuchtung}{subsection.243}% 75
+\BOOKMARK [3][]{subsubsection.247}{+5V Kreis / Widerstand R13}{subsection.243}% 76
+\BOOKMARK [3][]{subsubsection.248}{USB D+/D- vertauscht R22, R23}{subsection.243}% 77
+\BOOKMARK [2][]{subsection.249}{Software}{section.242}% 78
+\BOOKMARK [3][]{subsubsection.250}{EDID Programmer}{subsection.249}% 79
+\BOOKMARK [0][]{chapter.251}{Zusammenfassung}{}% 80
+\BOOKMARK [0][]{chapter*.252}{Literaturverzeichnis}{}% 81
+\BOOKMARK [0][]{chapter*.253}{Eidesstattliche Erkl\344rung}{}% 82
+\BOOKMARK [0][]{appendix.254}{Anhang}{}% 83
