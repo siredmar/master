@@ -48,46 +48,50 @@ Warning--entry type for "GnublinWiki2013" isn't style-file defined
 --line 128 of file Bibliographie.bib
 Warning--entry type for "LinuxKernelFBCON" isn't style-file defined
 --line 137 of file Bibliographie.bib
+Warning--entry type for "LinuxKernelFB" isn't style-file defined
+--line 146 of file Bibliographie.bib
+Warning--entry type for "LinuxKernelPlatformDeviceDriver" isn't style-file defined
+--line 164 of file Bibliographie.bib
 Warning--I didn't find a database entry for "Schlegel2013"
-You've used 16 entries,
+You've used 18 entries,
             4728 wiz_defined-function locations,
-            982 strings with 9229 characters,
-and the built_in function-call counts, 7569 in all, are:
-= -- 779
-> -- 160
-< -- 138
-+ -- 174
-- -- 50
-* -- 463
-:= -- 1320
-add.period$ -- 31
-call.type$ -- 16
-change.case$ -- 64
-chr.to.int$ -- 14
-cite$ -- 16
-duplicate$ -- 255
-empty$ -- 589
-format.name$ -- 96
-if$ -- 1591
+            994 strings with 9604 characters,
+and the built_in function-call counts, 8653 in all, are:
+= -- 897
+> -- 180
+< -- 177
++ -- 218
+- -- 55
+* -- 516
+:= -- 1504
+add.period$ -- 35
+call.type$ -- 18
+change.case$ -- 72
+chr.to.int$ -- 16
+cite$ -- 18
+duplicate$ -- 287
+empty$ -- 663
+format.name$ -- 108
+if$ -- 1811
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 96
-newline$ -- 110
-num.names$ -- 64
-pop$ -- 99
+missing$ -- 108
+newline$ -- 122
+num.names$ -- 72
+pop$ -- 111
 preamble$ -- 1
-purify$ -- 96
+purify$ -- 108
 quote$ -- 0
-skip$ -- 433
+skip$ -- 510
 stack$ -- 0
-substring$ -- 320
-swap$ -- 52
-text.length$ -- 16
+substring$ -- 380
+swap$ -- 58
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 208
+type$ -- 234
 warning$ -- 0
-while$ -- 64
+while$ -- 72
 width$ -- 0
-write$ -- 250
-(There were 17 warnings)
+write$ -- 280
+(There were 19 warnings)

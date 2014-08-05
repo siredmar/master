@@ -6,7 +6,6 @@ Wie bereits in \refc{cha:gnublin_extended} erwaehnt, besitzt der Prozessor des G
 \label{cha:teila_konzept}
 Im Gnublin stellt ein NXP LPC313x die zentrale Recheneinheit dar. Dieser besitzt ein sogenanntes EBI \footnote{EBI: External Bus Interface}, worüber externe Bausteine wie Speicher, Ethernetcontroller oder ähnliche Bausteine angesprochen werden können.
 
-
 \begin{figure}[htp]
 %\begin{minipage}[t]{0.8\textwidth}
 %\begin{figure}[h]
@@ -117,7 +116,7 @@ Die Untersuchung inwieweit DMA-Transfer praktisch mit der verwendeten Hardware m
 
 \newpage
 \subsection{Adapterplatine zwischen Gnublin Extended und Display}
-Der Adapter wird als Platine realisiert, die auf den Gnublin Extended aufgesteckt wird. Das Display wiederum wird mit der Adapterplatine steckbar verbunden. Der Schaltplan ist in \refa{fig:adapterplatine} gezeigt und stellt entsprechend \reft{tab:display_gnublin_verbindung} die Verbindungen her.
+Der Adapter wird als Platine realisiert, die auf den Gnublin Extended aufgesteckt wird. Das Display wiederum wird mit der Adapterplatine steckbar verbunden. Der Schaltplan ist in \refa{fig:adapterplatine_sch} gezeigt und stellt entsprechend \reft{tab:display_gnublin_verbindung} die Verbindungen her.
 
 Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnublin Extended und im blauen Rechteck sind weitere kleine Bauteile untergebracht. Hier sind Pullup-Wiederstande mit 10~k$\Omega$ an den Leitungen STCS0, Reset und LED-A um definierte Pegel vorzugeben zu sehen sowie einen Blockkondensator mit 100~nF, der für eine bessere Spannungsversorgung des Displays sorgt.
 
@@ -126,7 +125,7 @@ Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnubl
 	\centering
 \fbox{	\includegraphics[width=1.0\textwidth]{TeilA/schematic.png}}
 	\caption{Schaltplan Adapterplatine}
-	\label{fig:adapterplatine}
+	\label{fig:adapterplatine_sch}
 \end{figure}
 \newpage
 
@@ -326,10 +325,188 @@ Um den Kernel mit spezifischen Parametern starten zu können, werden für den Be
 Der Bootloader wird per \lstinline|make apex.bin| kompiliert und mit \lstinline|dd if=src/arch-arm/rom/apex.bin of=/dev/sdXY| \footnote{/dev/sdXY: bezieht sich auf die Bootpartition auf der korrekten SD-Karte, z.b. /dev/sdb2} auf die SD-Karte des Gnublin geschrieben (siehe \cite{GnublinWiki2013}).
 
 \subsubsection{Entwicklung eines Linux-Framebuffer-Treibers}
+\todo{Kernel patchen}
+In diesem Abschnitt wird die Entwicklung des Framebuffer-Treibers beschrieben. Der Framebuffer-System bietet eine Abstraktionsebene für die Grafikhardware. Es enthält einen Bildspeicher der Grafikhardware und bietet Applikationen Zugriff auf diesen, ohne jedoch Informationen über die letztendlich verwendete Hardware selbst auf Low-Level-Ebene haben zu müssen. Ein Framebuffer-Device erzeugt die Node \lstinline|/dev/fbX| mit der fortlaufenden Nummer X, beginnend bei Null, für jede Instanz eines Framebuffers. Jede grafische Anwendung in einem Linux-System benötigt eine Funktionalität, die den aktuellen Bildschirminhalt speichert und  Applikationen zugriff darauf gewährt. Dabei ist es im wesentlichen unwichtig, ob die Anzeige selbst durch Hardware beschleunigt oder sogar nur rein virtuell realisiert wird, da die Applikation auf die Schnittstelle in \lstinline|/dev/fbX| zugreift (siehe  \cite{LinuxKernelFB}).
+Programme wie zum Beispiel der X11-Server, Video-Player, QT\footnote{QT: C++-Klassenbibliothek zur 2D-Darstellung}, SDL\footnote{SDL: Simple Direct Media Layer, Grafikbibliothek zur 2D-Darstellung} usw. können dieses System nutzen. Gerade für leistungsschwächere Systeme bietet es dahingehend dieselben Möglichkeiten Programme Anzuzeigen, wie für High-End-Systeme. Einzig die Art und Weise des Befüllens und Auslesens des Framebuffers unterscheidet die Leistungsfähigkeit einzelner Systeme. So können Systeme mit zusätzlichen Grafikeinheiten die speziell zum Berechnen von 3D-Daten mit zum Beispiel der 3D-Grafikbibliothek OpenGL\footnote{OpenGL: 3D Grafikbibliothek} den Framebuffer mit "'hochwertigeren"' Inhalten füllen, als ein System, das diese Möglichkeit nicht besitzt. Die Abstraktionsebene für die Applikation bleiben aber dieselben. 
+
+Mit der Entwicklung eines Framebuffer-Treibers, sind alle Vorteile erschlossen, welche das Framebuffer-System bietet. Diese sind eine standardisierte Schnittstelle für Applikationen, sowie die Gewissheit, dass, sofern es die Rechenleistung zulässt, prinzipiell alle bereits existenten Programme und Inhalte angezeigt werden können.
+In den folgenden Abschnitten, wird die Entwicklung des Framebuffer-Treibers für die drei verwendeten Displays dargelegt, mit Fokus auf das MD050SD. 
+\paragraph{Framebuffer-Treiber für MD050SD}
+In diesem Abschnitt wird die Funktionsweise des Framebuffer-Treibers für das MD050SD beschrieben. Auf ein Listing des kompletten Treibers wird an dieser Stelle bewusst verzichtet, sondern nur die elementaren Funktionen und Gedanken aufgezeigt.
+
+Der Treiber arbeitet konform mit dem "'Platform Device"'- und "'Platform Driver"'-System im Linux-Kernel (siehe \cite{LinuxKernelPlatformDeviceDriver}). Mit dem Platform-Device-System wird ein Pseudo-Bus erzeugt, mit dem sich verschiedene Platform-Driver verbinden können. So können beispielsweise mehrere voneinander unabhängige Instanzen eines Treibers oder vieler verschiedener Treiber im System verfügbar sein. Beinhaltet ein System ein Platform-Device, so muss es dem Linux-Kernel bekannt gemacht werden. Hierzu wird die Struktur \lstinline|struct platform_device| verwendet, die in \refl{lst:struct_platform_device} gezeigt ist.
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: struct platform\_device},
+label=lst:struct_platform_device
+]
+struct platform_device {
+	const char	*name;
+	u32		id;
+	struct device	dev;
+	u32		num_resources;
+	struct resource	*resource;
+};
+\end{lstlisting}
+
+In der Struktur in \refl{lst:struct_platform_device} sind Datentypen enthalten, die einen eindeutigen Namen des Devices \lstinline|const char *name|, sowie eine ID \lstinline|u32 id|  bestimmen, einen Parameter zur Struktur \lstinline|struct device|, sowie einen Zeiger zur Struktur \lstinline|strut resource|, die letztendlich die Hardware-Ressourcen darstellen. Für den Platform-Driver ist die Struktur \lstinline|struct platform_driver| in \refl{lst:struct_platform_driver} gegeben, die Funktionszeiger für den Betrieb des Treibers und eine Struktur \lstinline|struct device_driver| enthält, welche zur Zuordnung mit dem entsprechenden Platform-Device dient.
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: struct platform\_driver},
+label=lst:struct_platform_driver
+]
+struct platform_driver {
+	int (*probe)(struct platform_device *);
+	int (*remove)(struct platform_device *);
+	void (*shutdown)(struct platform_device *);
+	int (*suspend)(struct platform_device *, pm_message_t state);
+	int (*suspend_late)(struct platform_device *, pm_message_t state);
+	int (*resume_early)(struct platform_device *);
+	int (*resume)(struct platform_device *);
+	struct device_driver driver;
+};
+\end{lstlisting}
+
+Wie ein Platform-Device definiert wird, ist \refl{lst:register_platform_devices} zu entnehmen. Die Modifikationen sind im Quellcode der Start-Datei der Architektur \lstinline|linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c| eingepflegt. In den Zeilen 2 bis 13 wird die Ressource \lstinline|struct resource mdsd_resource[]| definiert, die zwei Einträge enthält. Hier werden die physikalischen Adressen für Kommandos und Daten  für das Display auf SRAM-Interface eingestellt, die der Platform-Driver verwenden wird. Die Struktur \lstinline|struct platform_device md050sd_device| wird ab Zeile 15 definiert, und enthaelt einen eindeutigen Namen "'m050sd"'. Dieser Name wird im Folgenden vom Platform-Driver ebenfalls verwendet, um eine Zuordnung zwischen Device und Driver zu ermöglichen.
+In Zeile 22 ist die Funktion definiert, die letzendlich dem Linux-Kernel die Stuktur \lstinline|struct platform_device md050sd_device| übergibt, und das Platform-Device im System registriert. 
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Plattform Device definieren},
+label=lst:register_platform_devices
+]
+#if defined (CONFIG_FB_MD050SD)
+static struct resource md050sd_resource[] = {
+  [0] = {
+     .start = EXT_SRAM0_PHYS + 0x00000 + 0x0000,
+     .end   = EXT_SRAM0_PHYS + 0x00000 + 0xffff,
+     .flags = IORESOURCE_MEM,
+  },
+  [1] = {
+     .start = EXT_SRAM0_PHYS + 0x10000 + 0x0000,
+     .end   = EXT_SRAM0_PHYS + 0x10000 + 0xffff,
+     .flags = IORESOURCE_MEM,
+  },
+};
+
+static struct platform_device md050sd_device = {
+  .name          = "md050sd",
+  .id            = 0,
+  .num_resources = ARRAY_SIZE(md050sd_resource),
+  .resource      = md050sd_resource,
+};
+
+static void __init ea_add_device_md050sd(void)
+{
+  // ...
+  platform_device_register(&md050sd_device);
+  // ...
+}
+#else
+static void __init ea_add_device_md050sd(void) {}
+#endif /* CONFIG_FB_MD050SD */
+\end{lstlisting}
+Der Aufruf, der die Registrierung anstößt ist in \refl{lst:add_platform_devices} zu sehen. In der Funktion \lstinline|void __init ea313x_init(void)| werden alle Hardwareeinheiten, die vom Bootloader noch nicht konfiguriert wurden initialisiert und die verwendeten Devices im System registriert. Ohne eine vorhergehende Registrierung ist ein Verwenden eines Treibers nicht möglich.
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Platform Devices im System registrieren},
+label=lst:add_platform_devices
+]
+static void __init ea313x_init(void)
+{
+	lpc313x_init();
+	platform_add_devices(devices, ARRAY_SIZE(devices));
+    // ...
+	ea_add_device_ssd1963();
+	ea_add_device_ssd1289();
+	ea_add_device_md050sd();
+	// ...
+}
+\end{lstlisting}
+
+In der Datei \lstinline|linux-2.6.33-lpc313x/drivers/video/md050sd.c| befindet sich der Displaytreiber selbst. Analog zu \refl{lst:struct_platform_driver} wird in \refl{lst:set_platform_driver} die Struktur instanziiert und die nötigen Funktionszeiger und der Name des Treibers eingesetzt. Hier wird derselbe Name genutzt, der bereits für das Platform-Device verwendet wurde. Nachdem der Treiber initialisiert wurde, wird dieser mit dem Pseudo-Bus verbunden. Der Linux-Kernel ist nun in der Lage dem Treiber die vorher definierten Ressourcen zu übergeben.
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Platform Driver},
+label=lst:set_platform_driver
+]
+static struct platform_driver md050sd_driver = {
+      .probe = md050sd_probe,
+      .remove = md050sd_remove,
+      .driver = {
+            .name = "md050sd",
+      },
+};
+\end{lstlisting}
+
+Wird der Treiber geladen, ob als Modul oder fest in den Kernel kompiliert, wird die Funktion aufgerufen, die im Makro \lstinline|module_init()| definiert ist. So wird die Funktion \lstinline|static int __init md050sd_init(struct patform_deice *dev)| aufgerufen, die den Platform-Driver mit der zuvor definierten Struktur \lstinline|md050sd_driver| aus \refl{lst:set_platform_driver} im Linux-Kernel mittels 
+\lstinline|platform_driver_register(&md050sd_driver)|  \todo{line break fixen!} registriert. Die Funktion \lstinline|md050sd_probe()| ist in \refl{lst:probe_funktion} zu sehen. 
+Nach der Registrierung wird der Treiber geladen. Hier wird die Probe-Funktion \lstinline|md050sd_probe()| aufgerufen, die zuerst den benötigten Speicher für den Treiber selbst alloziert, die Zeiger für Kommandos und Daten aus der IO-Ressource des platform\_device holt, den Speicher für den Framebuffer alloziert und diesen mit entsprechenden Werten füllt. Im Anschluss wird ein initiales Update des Bildschirms vollzogen, dass das aktuelle Bild auf dem Display löscht. Zur besseren Lesbarkeit, wurde die komplette Fehlerbehandlung aus dem Listing entfernt. 
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Probe-Funktion},
+label=lst:probe_funktion
+]
+static int __init md050sd_probe(struct platform_device *dev)
+{
+   int ret = 0;
+   struct md050sd *item;
+   struct resource *ctrl_res;
+   struct resource *data_res;
+   unsigned int ctrl_res_size;
+   unsigned int data_res_size;
+   struct resource *ctrl_req;
+   struct resource *data_req;
+   struct fb_info *info;
+	// ... Allocate memory for driver
+   item = kzalloc(sizeof(struct md050sd), GFP_KERNEL);
+   item->dev = &dev->dev;
+   dev_set_drvdata(&dev->dev, item);
+   item->backlight = 1;
+   // ... Get ctrl addresses from platform_device IORESOURCE
+   ctrl_res = platform_get_resource(dev, IORESOURCE_MEM, 0);
+   ctrl_res_size = ctrl_res->end - ctrl_res->start + 1;
+   ctrl_req = request_mem_region(ctrl_res->start, ctrl_res_size,
+         dev->name);
+   item->ctrl_io = ioremap(ctrl_res->start, ctrl_res_size);
+   // ... Get data addresses from platform_device IORESOURCE
+   data_res = platform_get_resource(dev, IORESOURCE_MEM, 1);
+   data_res_size = data_res->end - data_res->start + 1;
+   data_req = request_mem_region(data_res->start,
+         data_res_size, dev->name);
+   item->data_io = ioremap(data_res->start, data_res_size);
+   // ... Allocate Framebuffer Memory and fill it with logic
+   info = framebuffer_alloc(sizeof(struct md050sd), &dev->dev);
+   // ... Set framebuffer specific stuff
+   info->pseudo_palette = &item->pseudo_palette;
+   item->info = info;
+   info->par = item;
+   info->dev = &dev->dev;
+   info->fbops = &md050sd_fbops;
+   info->flags = FBINFO_FLAG_DEFAULT | FBINFO_VIRTFB;
+   info->fix = md050sd_fix;
+   info->var = md050sd_var;
+   ret = md050sd_video_alloc(item);
+   info->screen_base = (char __iomem *) item->info->fix.smem_start;
+   ret = md050sd_pages_alloc(item);
+   // ... Set Deferred IO settings to framebuffer
+   info->fbdefio = &md050sd_defio;
+   fb_deferred_io_init(info);
+   ret = register_framebuffer(info);
+   // ... initial screen update
+   md050sd_setup(item);
+   md050sd_update_all(item);
+   // ...
+   return ret;
+}
+\end{lstlisting}
 
 \paragraph{Anpassungen für SSD1963 Controller}
 \paragraph{Anpassungen für SSD1289 Controller}
-\paragraph{Anpassungen für MD050SD}
+
 \subsubsection{Entwicklung eines User-Space-Treibers}
 \paragraph{Anpassungen für SSD1963 Controller}
 \paragraph{Anpassungen für SSD1289 Controller}
