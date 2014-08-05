@@ -37,48 +37,48 @@
 \contentsline {paragraph}{\numberline {3.2.5.1.2}Konfiguration des APEX-Bootloaders}{26}{paragraph.198}
 \contentsline {subsubsection}{\numberline {3.2.5.2}Entwicklung eines Linux-Framebuffer-Treibers}{28}{subsubsection.208}
 \contentsline {paragraph}{\numberline {3.2.5.2.1}Framebuffer-Treiber f\IeC {\"u}r MD050SD}{29}{paragraph.213}
-\contentsline {paragraph}{\numberline {3.2.5.2.2}Anpassungen f\IeC {\"u}r SSD1963 Controller}{32}{paragraph.337}
-\contentsline {paragraph}{\numberline {3.2.5.2.3}Anpassungen f\IeC {\"u}r SSD1289 Controller}{32}{paragraph.338}
-\contentsline {subsubsection}{\numberline {3.2.5.3}Entwicklung eines User-Space-Treibers}{33}{subsubsection.339}
-\contentsline {paragraph}{\numberline {3.2.5.3.1}Anpassungen f\IeC {\"u}r SSD1963 Controller}{33}{paragraph.340}
-\contentsline {paragraph}{\numberline {3.2.5.3.2}Anpassungen f\IeC {\"u}r SSD1289 Controller}{33}{paragraph.341}
-\contentsline {paragraph}{\numberline {3.2.5.3.3}Anpassungen f\IeC {\"u}r MD050SD}{33}{paragraph.342}
-\contentsline {subsubsection}{\numberline {3.2.5.4}Probleme bei der Entwicklung und Fehlersuche}{33}{subsubsection.343}
-\contentsline {paragraph}{\numberline {3.2.5.4.1}Probleme mit SSD1963}{33}{paragraph.344}
-\contentsline {subparagraph}{\numberline {3.2.5.4.1.1}Rolle des User-Space-Treibers}{33}{subparagraph.345}
-\contentsline {subparagraph}{\numberline {3.2.5.4.1.2}Debuggen mit Logik-Analyzer}{33}{subparagraph.346}
-\contentsline {section}{\numberline {3.3}Known Bugs}{33}{section.347}
-\contentsline {subsection}{\numberline {3.3.1}Known Bugs SSD1963}{33}{subsection.348}
-\contentsline {subsection}{\numberline {3.3.2}Known Bugs SSD1289}{33}{subsection.349}
-\contentsline {subsection}{\numberline {3.3.3}Known Bugs CPLD Display}{33}{subsection.350}
-\contentsline {chapter}{\numberline {4}Teil B}{34}{chapter.351}
-\contentsline {section}{\numberline {4.1}Konzept}{34}{section.352}
-\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{34}{section.353}
-\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{34}{subsection.354}
-\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{34}{subsection.355}
-\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{34}{subsection.356}
-\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{34}{subsection.357}
-\contentsline {section}{\numberline {4.3}Software}{34}{section.358}
-\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{34}{subsection.359}
-\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{34}{subsubsection.360}
-\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{34}{subsubsection.361}
-\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{34}{paragraph.362}
-\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{34}{paragraph.363}
-\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{35}{subsubsection.364}
-\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{35}{subsection.365}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{35}{subsubsection.366}
-\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{35}{subsubsection.367}
-\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{35}{subsubsection.368}
-\contentsline {section}{\numberline {4.4}Known Bugs}{35}{section.369}
-\contentsline {subsection}{\numberline {4.4.1}Hardware}{35}{subsection.370}
-\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{35}{subsubsection.371}
-\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{35}{subsubsection.372}
-\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{35}{subsubsection.373}
-\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{35}{subsubsection.374}
-\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{35}{subsubsection.375}
-\contentsline {subsection}{\numberline {4.4.2}Software}{35}{subsection.376}
-\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{35}{subsubsection.377}
-\contentsline {chapter}{\numberline {5}Zusammenfassung}{36}{chapter.378}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{37}{chapter*.379}
-\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{40}{chapter*.380}
-\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.381}
+\contentsline {paragraph}{\numberline {3.2.5.2.2}Anpassungen f\IeC {\"u}r SSD1963 Controller}{38}{paragraph.508}
+\contentsline {paragraph}{\numberline {3.2.5.2.3}Anpassungen f\IeC {\"u}r SSD1289 Controller}{38}{paragraph.509}
+\contentsline {subsubsection}{\numberline {3.2.5.3}Entwicklung eines User-Space-Treibers}{38}{subsubsection.510}
+\contentsline {paragraph}{\numberline {3.2.5.3.1}Anpassungen f\IeC {\"u}r SSD1963 Controller}{38}{paragraph.511}
+\contentsline {paragraph}{\numberline {3.2.5.3.2}Anpassungen f\IeC {\"u}r SSD1289 Controller}{38}{paragraph.512}
+\contentsline {paragraph}{\numberline {3.2.5.3.3}Anpassungen f\IeC {\"u}r MD050SD}{38}{paragraph.513}
+\contentsline {subsubsection}{\numberline {3.2.5.4}Probleme bei der Entwicklung und Fehlersuche}{38}{subsubsection.514}
+\contentsline {paragraph}{\numberline {3.2.5.4.1}Probleme mit SSD1963}{38}{paragraph.515}
+\contentsline {subparagraph}{\numberline {3.2.5.4.1.1}Rolle des User-Space-Treibers}{38}{subparagraph.516}
+\contentsline {subparagraph}{\numberline {3.2.5.4.1.2}Debuggen mit Logik-Analyzer}{38}{subparagraph.517}
+\contentsline {section}{\numberline {3.3}Known Bugs}{38}{section.518}
+\contentsline {subsection}{\numberline {3.3.1}Known Bugs SSD1963}{38}{subsection.519}
+\contentsline {subsection}{\numberline {3.3.2}Known Bugs SSD1289}{38}{subsection.520}
+\contentsline {subsection}{\numberline {3.3.3}Known Bugs CPLD Display}{38}{subsection.521}
+\contentsline {chapter}{\numberline {4}Teil B}{39}{chapter.522}
+\contentsline {section}{\numberline {4.1}Konzept}{39}{section.523}
+\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{39}{section.524}
+\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{39}{subsection.525}
+\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{39}{subsection.526}
+\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{39}{subsection.527}
+\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{39}{subsection.528}
+\contentsline {section}{\numberline {4.3}Software}{39}{section.529}
+\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{39}{subsection.530}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{39}{subsubsection.531}
+\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{39}{subsubsection.532}
+\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{39}{paragraph.533}
+\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{39}{paragraph.534}
+\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{40}{subsubsection.535}
+\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{40}{subsection.536}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{40}{subsubsection.537}
+\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{40}{subsubsection.538}
+\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{40}{subsubsection.539}
+\contentsline {section}{\numberline {4.4}Known Bugs}{40}{section.540}
+\contentsline {subsection}{\numberline {4.4.1}Hardware}{40}{subsection.541}
+\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{40}{subsubsection.542}
+\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{40}{subsubsection.543}
+\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{40}{subsubsection.544}
+\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{40}{subsubsection.545}
+\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{40}{subsubsection.546}
+\contentsline {subsection}{\numberline {4.4.2}Software}{40}{subsection.547}
+\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{40}{subsubsection.548}
+\contentsline {chapter}{\numberline {5}Zusammenfassung}{41}{chapter.549}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{42}{chapter*.550}
+\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{45}{chapter*.551}
+\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.552}

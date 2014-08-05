@@ -96,6 +96,7 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Bootloader: Grundlegende Datentypen und Funktionen}{24}{lstlisting.116}}
 \newlabel{lst:apex_zweiter_teil}{{3.3}{25}{Bootloader: Display-Initialisierung und Bootlogo}{lstlisting.144}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}Bootloader: Display-Initialisierung und Bootlogo}{25}{lstlisting.144}}
+\newlabel{cha:config_apex}{{3.2.5.1.2}{26}{Konfiguration des APEX-Bootloaders}{paragraph.198}{}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.1.2}Konfiguration des APEX-Bootloaders}{26}{paragraph.198}}
 \citation{LinuxKernelFBCON}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces APEX-Bootloader KConfig\relax }}{27}{figure.caption.199}}
@@ -104,6 +105,7 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}Bootloader: Herunterladen und Patchen}{27}{lstlisting.200}}
 \citation{GnublinWiki2013}
 \citation{LinuxKernelFB}
+\citation{Schlegel2013c}
 \@writefile{brf}{\backcite{LinuxKernelFBCON}{{28}{3.2.5.1.2}{lstnumber.205}}}
 \@writefile{brf}{\backcite{GnublinWiki2013}{{28}{3.2.5.1.2}{lstnumber.205}}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5.2}Entwicklung eines Linux-Framebuffer-Treibers}{28}{subsubsection.208}}
@@ -111,6 +113,7 @@
 \@writefile{brf}{\backcite{LinuxKernelFB}{{28}{3.2.5.2}{section*.209}}}
 \citation{LinuxKernelPlatformDeviceDriver}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.2.1}Framebuffer-Treiber f\IeC {\"u}r MD050SD}{29}{paragraph.213}}
+\@writefile{brf}{\backcite{Schlegel2013c}{{29}{3.2.5.2.1}{paragraph.213}}}
 \@writefile{brf}{\backcite{LinuxKernelPlatformDeviceDriver}{{29}{3.2.5.2.1}{paragraph.213}}}
 \newlabel{lst:struct_platform_device}{{3.5}{29}{Framebuffer: struct platform\_device}{lstlisting.214}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}Framebuffer: struct platform\_device}{29}{lstlisting.214}}
@@ -118,39 +121,53 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}Framebuffer: struct platform\_driver}{29}{lstlisting.222}}
 \newlabel{lst:register_platform_devices}{{3.7}{30}{Framebuffer: Plattform Device definieren}{lstlisting.233}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}Framebuffer: Plattform Device definieren}{30}{lstlisting.233}}
-\newlabel{lst:add_platform_devices}{{3.8}{30}{Framebuffer: Platform Devices im System registrieren}{lstlisting.264}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}Framebuffer: Platform Devices im System registrieren}{30}{lstlisting.264}}
+\newlabel{lst:add_platform_devices}{{3.8}{31}{Framebuffer: Platform Devices im System registrieren}{lstlisting.264}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}Framebuffer: Platform Devices im System registrieren}{31}{lstlisting.264}}
 \newlabel{lst:set_platform_driver}{{3.9}{31}{Framebuffer: Platform Driver}{lstlisting.275}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}Framebuffer: Platform Driver}{31}{lstlisting.275}}
 \@writefile{tdo}{\contentsline {todo}{line break fixen!}{31}{section*.283}}
-\newlabel{lst:probe_funktion}{{3.10}{31}{Framebuffer: Probe-Funktion}{lstlisting.284}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.10}Framebuffer: Probe-Funktion}{31}{lstlisting.284}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.2.2}Anpassungen f\IeC {\"u}r SSD1963 Controller}{32}{paragraph.337}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.2.3}Anpassungen f\IeC {\"u}r SSD1289 Controller}{32}{paragraph.338}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5.3}Entwicklung eines User-Space-Treibers}{33}{subsubsection.339}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.3.1}Anpassungen f\IeC {\"u}r SSD1963 Controller}{33}{paragraph.340}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.3.2}Anpassungen f\IeC {\"u}r SSD1289 Controller}{33}{paragraph.341}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.3.3}Anpassungen f\IeC {\"u}r MD050SD}{33}{paragraph.342}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5.4}Probleme bei der Entwicklung und Fehlersuche}{33}{subsubsection.343}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.4.1}Probleme mit SSD1963}{33}{paragraph.344}}
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {3.2.5.4.1.1}Rolle des User-Space-Treibers}{33}{subparagraph.345}}
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {3.2.5.4.1.2}Debuggen mit Logik-Analyzer}{33}{subparagraph.346}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Known Bugs}{33}{section.347}}
-\newlabel{cha:TeilAKnownBugs}{{3.3}{33}{Known Bugs}{section.347}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Known Bugs SSD1963}{33}{subsection.348}}
-\newlabel{cha:TeilAKnownBugs_SSD1963}{{3.3.1}{33}{Known Bugs SSD1963}{subsection.348}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Known Bugs SSD1289}{33}{subsection.349}}
-\newlabel{cha:TeilAKnownBugs_SSD1289}{{3.3.2}{33}{Known Bugs SSD1289}{subsection.349}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Known Bugs CPLD Display}{33}{subsection.350}}
-\newlabel{cha:TeilAKnownBugs_CPLD}{{3.3.3}{33}{Known Bugs CPLD Display}{subsection.350}{}}
+\newlabel{lst:probe_funktion}{{3.10}{32}{Framebuffer: Probe-Funktion}{lstlisting.284}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.10}Framebuffer: Probe-Funktion}{32}{lstlisting.284}}
+\newlabel{lst:framebuffer_misc}{{3.11}{33}{Framebuffer: Einstellungen}{lstlisting.338}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.11}Framebuffer: Einstellungen}{33}{lstlisting.338}}
+\newlabel{lst:setup_funktion}{{3.12}{34}{Framebuffer: Setup Funktion}{lstlisting.377}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.12}Framebuffer: Setup Funktion}{34}{lstlisting.377}}
+\newlabel{lst:touch_funktion}{{3.13}{35}{Framebuffer: Touch Funktion}{lstlisting.394}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.13}Framebuffer: Touch Funktion}{35}{lstlisting.394}}
+\newlabel{lst:update_funktion}{{3.14}{35}{Framebuffer: Update Funktion}{lstlisting.415}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.14}Framebuffer: Update Funktion}{35}{lstlisting.415}}
+\citation{Nadeau2012}
+\@writefile{brf}{\backcite{Nadeau2012}{{36}{3.2.5.2.1}{lstnumber.436}}}
+\newlabel{lst:copy_funktion}{{3.15}{36}{Framebuffer: Copy Funktion}{lstlisting.437}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.15}Framebuffer: Copy Funktion}{36}{lstlisting.437}}
+\newlabel{lst:send_funktion}{{3.16}{37}{Framebuffer: Display-Funktionen}{lstlisting.481}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.16}Framebuffer: Display-Funktionen}{37}{lstlisting.481}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.2.2}Anpassungen f\IeC {\"u}r SSD1963 Controller}{38}{paragraph.508}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.2.3}Anpassungen f\IeC {\"u}r SSD1289 Controller}{38}{paragraph.509}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5.3}Entwicklung eines User-Space-Treibers}{38}{subsubsection.510}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.3.1}Anpassungen f\IeC {\"u}r SSD1963 Controller}{38}{paragraph.511}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.3.2}Anpassungen f\IeC {\"u}r SSD1289 Controller}{38}{paragraph.512}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.3.3}Anpassungen f\IeC {\"u}r MD050SD}{38}{paragraph.513}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5.4}Probleme bei der Entwicklung und Fehlersuche}{38}{subsubsection.514}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {3.2.5.4.1}Probleme mit SSD1963}{38}{paragraph.515}}
+\@writefile{toc}{\contentsline {subparagraph}{\numberline {3.2.5.4.1.1}Rolle des User-Space-Treibers}{38}{subparagraph.516}}
+\@writefile{toc}{\contentsline {subparagraph}{\numberline {3.2.5.4.1.2}Debuggen mit Logik-Analyzer}{38}{subparagraph.517}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Known Bugs}{38}{section.518}}
+\newlabel{cha:TeilAKnownBugs}{{3.3}{38}{Known Bugs}{section.518}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Known Bugs SSD1963}{38}{subsection.519}}
+\newlabel{cha:TeilAKnownBugs_SSD1963}{{3.3.1}{38}{Known Bugs SSD1963}{subsection.519}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Known Bugs SSD1289}{38}{subsection.520}}
+\newlabel{cha:TeilAKnownBugs_SSD1289}{{3.3.2}{38}{Known Bugs SSD1289}{subsection.520}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Known Bugs CPLD Display}{38}{subsection.521}}
+\newlabel{cha:TeilAKnownBugs_CPLD}{{3.3.3}{38}{Known Bugs CPLD Display}{subsection.521}{}}
 \@setckpt{Inhalt/TeilA/TeilA}{
-\setcounter{page}{34}
+\setcounter{page}{39}
 \setcounter{equation}{0}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{44}
+\setcounter{footnote}{45}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{3}
@@ -163,10 +180,10 @@
 \setcounter{table}{6}
 \setcounter{parentequation}{0}
 \setcounter{OptionTest}{0}
-\setcounter{lstnumber}{53}
+\setcounter{lstnumber}{27}
 \setcounter{NAT@ctr}{0}
 \setcounter{Item}{0}
-\setcounter{Hfootnote}{44}
+\setcounter{Hfootnote}{45}
 \setcounter{bookmark@seq@number}{52}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
@@ -174,6 +191,6 @@
 \setcounter{ContinuedFloat}{0}
 \setcounter{subfigure}{0}
 \setcounter{subtable}{0}
-\setcounter{lstlisting}{10}
+\setcounter{lstlisting}{16}
 \setcounter{section@level}{2}
 }

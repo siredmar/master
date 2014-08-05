@@ -1,6 +1,6 @@
 \section{8080-Interface mittels SRAM-Interface}
 \label{sec:TeilA_8080SRAM}
-Wie bereits in \refc{cha:gnublin_extended} erwaehnt, besitzt der Prozessor des Gnublin bereits ein externes 8080-Interface, auf welches zugegriffen wird. Im Folgenden wird auf das Konzept, die Idee und die Realisierung auf Hardware- und Softwareseite eingegangen.
+Wie bereits in \refc{cha:gnublin_extended} erwähnt, besitzt der Prozessor des Gnublin bereits ein externes 8080-Interface, auf welches zugegriffen wird. Im Folgenden wird auf das Konzept, die Idee und die Realisierung auf Hardware- und Softwareseite eingegangen.
 \newpage
 \subsection{Konzept}
 \label{cha:teila_konzept}
@@ -292,6 +292,7 @@ Der Eigentliche Treiber und der Code für das Anzeigen des Bootlogos ist in \ref
 
 
 \paragraph{Konfiguration des APEX-Bootloaders}
+\label{cha:config_apex}
 Der APEX-Bootloader besitzt zur Konfiguration dasselbe System wie der Linux-Kernel. Dieses System heißt KConfig und wird durch den Befehl \lstinline|make menuconfig| aufgerufen, welches ein Konfigurationsmenü im aufrufenden Terminal erscheinen lässt. Hier sind neben Grundlegenden Konfiguration zum Beispiel für die Prozessorarchitektur oder Taktraten auch der Displaytreiber und das Bootlogo eingepflegt. \refa{fig:apex_config} zeigt exemplarisch den Unterpunkt \lstinline|Platform Setup| bei dem das Display MD050SD und das Bootlogo ausgewählt sind. 
 
 \begin{figure}[tbph]
@@ -332,7 +333,7 @@ Programme wie zum Beispiel der X11-Server, Video-Player, QT\footnote{QT: C++-Kla
 Mit der Entwicklung eines Framebuffer-Treibers, sind alle Vorteile erschlossen, welche das Framebuffer-System bietet. Diese sind eine standardisierte Schnittstelle für Applikationen, sowie die Gewissheit, dass, sofern es die Rechenleistung zulässt, prinzipiell alle bereits existenten Programme und Inhalte angezeigt werden können.
 In den folgenden Abschnitten, wird die Entwicklung des Framebuffer-Treibers für die drei verwendeten Displays dargelegt, mit Fokus auf das MD050SD. 
 \paragraph{Framebuffer-Treiber für MD050SD}
-In diesem Abschnitt wird die Funktionsweise des Framebuffer-Treibers für das MD050SD beschrieben. Auf ein Listing des kompletten Treibers wird an dieser Stelle bewusst verzichtet, sondern nur die elementaren Funktionen und Gedanken aufgezeigt.
+In diesem Abschnitt wird die Funktionsweise des Framebuffer-Treibers für das MD050SD beschrieben. Auf ein Listing des kompletten Treibers wird an dieser Stelle bewusst verzichtet, da sonst der Treiber durch seine Komplexität und die ins System verflochtene Struktur schwer zu durchdringen wäre. Stattdessen werden einzelne Teilaspekte, die zum Verständnis nötig sind, einzeln behandelt. Als Basis wurde ein bereits existierender Treiber verwendet (siehe \cite{Schlegel2013c}).
 
 Der Treiber arbeitet konform mit dem "'Platform Device"'- und "'Platform Driver"'-System im Linux-Kernel (siehe \cite{LinuxKernelPlatformDeviceDriver}). Mit dem Platform-Device-System wird ein Pseudo-Bus erzeugt, mit dem sich verschiedene Platform-Driver verbinden können. So können beispielsweise mehrere voneinander unabhängige Instanzen eines Treibers oder vieler verschiedener Treiber im System verfügbar sein. Beinhaltet ein System ein Platform-Device, so muss es dem Linux-Kernel bekannt gemacht werden. Hierzu wird die Struktur \lstinline|struct platform_device| verwendet, die in \refl{lst:struct_platform_device} gezeigt ist.
 
@@ -350,7 +351,7 @@ struct platform_device {
 };
 \end{lstlisting}
 
-In der Struktur in \refl{lst:struct_platform_device} sind Datentypen enthalten, die einen eindeutigen Namen des Devices \lstinline|const char *name|, sowie eine ID \lstinline|u32 id|  bestimmen, einen Parameter zur Struktur \lstinline|struct device|, sowie einen Zeiger zur Struktur \lstinline|strut resource|, die letztendlich die Hardware-Ressourcen darstellen. Für den Platform-Driver ist die Struktur \lstinline|struct platform_driver| in \refl{lst:struct_platform_driver} gegeben, die Funktionszeiger für den Betrieb des Treibers und eine Struktur \lstinline|struct device_driver| enthält, welche zur Zuordnung mit dem entsprechenden Platform-Device dient.
+In der Struktur in \refl{lst:struct_platform_device} sind Datentypen enthalten, die einen eindeutigen Namen des Devices \lstinline|const char *name|, sowie eine ID \lstinline|u32 id|  bestimmen, einen Parameter zur Struktur \lstinline|struct device|, sowie einen Zeiger zur Struktur \lstinline|struct resource|, die letztendlich die Hardware-Ressourcen darstellen. Für den Platform-Driver ist die Struktur \lstinline|struct platform_driver| in \refl{lst:struct_platform_driver} gegeben, die Funktionszeiger für den Betrieb des Treibers und eine Struktur \lstinline|struct device_driver| enthält, welche zur Zuordnung mit dem entsprechenden Platform-Device dient.
 \begin{lstlisting}[%
 language=MyC,
 caption={Framebuffer: struct platform\_driver},
@@ -443,7 +444,7 @@ static struct platform_driver md050sd_driver = {
 
 Wird der Treiber geladen, ob als Modul oder fest in den Kernel kompiliert, wird die Funktion aufgerufen, die im Makro \lstinline|module_init()| definiert ist. So wird die Funktion \lstinline|static int __init md050sd_init(struct patform_deice *dev)| aufgerufen, die den Platform-Driver mit der zuvor definierten Struktur \lstinline|md050sd_driver| aus \refl{lst:set_platform_driver} im Linux-Kernel mittels 
 \lstinline|platform_driver_register(&md050sd_driver)|  \todo{line break fixen!} registriert. Die Funktion \lstinline|md050sd_probe()| ist in \refl{lst:probe_funktion} zu sehen. 
-Nach der Registrierung wird der Treiber geladen. Hier wird die Probe-Funktion \lstinline|md050sd_probe()| aufgerufen, die zuerst den benötigten Speicher für den Treiber selbst alloziert, die Zeiger für Kommandos und Daten aus der IO-Ressource des platform\_device holt, den Speicher für den Framebuffer alloziert und diesen mit entsprechenden Werten füllt. Im Anschluss wird ein initiales Update des Bildschirms vollzogen, dass das aktuelle Bild auf dem Display löscht. Zur besseren Lesbarkeit, wurde die komplette Fehlerbehandlung aus dem Listing entfernt. 
+Nach der Registrierung wird der Treiber geladen. Hier wird die Probe-Funktion \lstinline|md050sd_probe()| aufgerufen, die zuerst den benötigten Speicher für den Treiber selbst alloziert, die Zeiger für Kommandos und Daten aus der IO-Ressource des platform\_device holt, den Speicher für den Framebuffer alloziert und diesen mit entsprechenden Werten füllt. Im Anschluss wird das Display mit \lstinline| md050sd_setup(item)| initialisiert und mit \lstinline| md050sd_update_all(item)| ein initiales Update des Bildschirms vollzogen, dass das aktuelle Bild auf dem Display löscht. Zur besseren Lesbarkeit, wurde die komplette Fehlerbehandlung aus dem Listing entfernt. 
 
 \begin{lstlisting}[%
 language=MyC,
@@ -496,14 +497,240 @@ static int __init md050sd_probe(struct platform_device *dev)
    info->fbdefio = &md050sd_defio;
    fb_deferred_io_init(info);
    ret = register_framebuffer(info);
-   // ... initial screen update
+   // ... display initialization and initial screen update
    md050sd_setup(item);
    md050sd_update_all(item);
    // ...
    return ret;
 }
 \end{lstlisting}
+Die Einstellungen für Auflösung, Farbtiefe sowie diverser anderer Dinge sind in \refl{lst:framebuffer_misc} zu sehen. 
 
+In der Struktur \lstinline|struct fb_ops  md050sd_fbops| werden für die Framebuffer-Schnittstelle entsprechende Funktionszeiger gesetzt, da es im Treibermodell vorgesehen ist, eigene ggf. durch Hardware unterstützte oder anderweitig optimierte Funktionen verwenden zu können. Diverse Framebuffer-spezifische Einstellungen werden in den Strukturen \lstinline|struct fb_fix_screeninfo| und \lstinline|struct fb_var_screeninfo|. Hier kann die Auflösung und das Pixelformat eingestellt werden. 
+In der Struktur \lstinline|struct fb_deferred_io md050sd_defio| wird das Deferred IO konfiguriert. Dieser Zeitversetzte IO-Zugriff ermöglicht es dem Treiber den tatsächlichen Zugriff auf die Hardware über die Funktion \lstinline|md050sd_update()|. Diese wird konfigurierbar alle \lstinline|HZ/20| Sekunden aufgerufen, was einer gewünschten Framerate von 20 FPS\footnote{FPS: Frames per Second, Bildwiederholrate} entspricht. 
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Einstellungen},
+label=lst:framebuffer_misc
+]
+static struct fb_ops md050sd_fbops = {
+      .owner         = THIS_MODULE,
+      .fb_read       = fb_sys_read,
+      .fb_write      = md050sd_write,
+      .fb_fillrect   = md050sd_fillrect,
+      .fb_copyarea   = md050sd_copyarea,
+      .fb_imageblit  = md050sd_imageblit,
+      .fb_setcolreg  = md050sd_setcolreg,
+      .fb_blank      = md050sd_blank,
+};
+
+static struct fb_fix_screeninfo md050sd_fix __initdata = {
+      .id            = "MD050SD",
+      .type          = FB_TYPE_PACKED_PIXELS,
+      .visual        = FB_VISUAL_TRUECOLOR,
+      .accel         = FB_ACCEL_NONE,
+      .line_length   = 800 * 2,
+};
+
+static struct fb_var_screeninfo md050sd_var __initdata = {
+      .xres = 800,
+      .yres = 480,
+      .xres_virtual = 800,
+      .yres_virtual = 480,
+      .width = 800,
+      .height = 480,
+      .bits_per_pixel = 16,
+      .red = {11, 5, 0},
+      .green = {5, 6, 0},
+      .blue = {0, 5, 0},
+      .activate = FB_ACTIVATE_NOW,
+      .vmode = FB_VMODE_NONINTERLACED,
+};
+
+static struct fb_deferred_io md050sd_defio = {
+      .delay = HZ / 20,
+      .deferred_io = &md050sd_update,
+};
+\end{lstlisting}
+
+In \refl{lst:setup_funktion} ist die Initialisierung des Displays, welche mit \lstinline|md050sd_setup(item)| in der Probe-Funktion in \refl{lst:probe_funktion} aufgerufen wird, zu sehen. Prinzipiell ist der Code analog zum bereits behandelten im APEX-Bootloader in \refl{lst:apex_zweiter_teil}, bei dem das Display in den Reset Zustand gebracht wird und im Anschluss das Display mit der Farbe Schwarz beschrieben wird.
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Setup Funktion},
+label=lst:setup_funktion
+]
+static void __init md050sd_setup(struct md050sd *item)
+{
+   int x;
+   gpio_direction_output(LED_BACKLIGHT_PIN, 0);
+   gpio_direction_output(LED_RESET_PIN, 0);
+   msleep(200);
+   gpio_direction_output(LED_RESET_PIN, 1);
+   msleep(200);
+
+   md050sd_setWindow(item, 0, 0, MD050SD_WIDTH-1, MD050SD_HEIGHT-1);
+   for (x = 0; x < MD050SD_WIDTH * MD050SD_HEIGHT; x++)
+      md050sd_send_data(item, 0x0000);
+
+   gpio_direction_output(LED_BACKLIGHT_PIN, 1);
+   msleep(10);
+}
+\end{lstlisting}
+
+An dieser Stelle ist der Treiber initialisiert und bereit seine eigentliche Aufgabe zu übernehmen. Es steht ein Framebuffer-Device als \lstinline|/dev/fbX| zur Verfügung und Programme sind in der Lage auf dieses zu zuzugreifen.
+Die Pixeldaten sind im entwickelten Treiber in sogenannte Pages unterteilt. Eine Page ist definiert durch eine festgelegte Anzahl an Zeilen der Breite 800 Pixel. So sind zum Beispiel bei einer Auflösung von 800x480 Bildpunkten und 20 Zeilen pro Page 24 Pages nötig, um das gesamte Bild zu abzulegen. Die Vorgehensweise mit Pages ist dahingehend sinnvoll, da das Bild in Teilbereiche aufgeteilt wird, welche unabhängig voneinander überprüft und neu gezeichnet werden können. Am Beispiel des Kernel-Treibers fbcon, welcher es ermöglicht ein Terminal auf dem Framebufferdevice anzuzeigen (siehe \refc{cha:config_apex}), wird die Funktionsweise des Bildupdates klar. Der Treiber fbcon beschreibt beispielsweise den Inhalt des angezeigten Terminals in der ersten Zeile in den Framebuffer. Die entsprechenden Pages werden vom Treiber in der Funktion \lstinline|md050sd_touch()| als "'must\_update"' markiert und im nächsten Update-Zyklus mittels der Funktion \lstinline|md050sd_update()| auf Änderungen überprüft. Sind Änderungen vorhanden, werden diese neu auf das Display mittels der Funktion \lstinline|md050sd_copy| gezeichnet und das "'must\_update"'-Flag wird wieder gelöscht. Diese Funktion ist in
+\refl{lst:touch_funktion} zu sehen. 
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Touch Funktion},
+label=lst:touch_funktion
+]
+static void md050sd_touch(struct fb_info *info, int x, int y, int w, int h)
+{
+   struct fb_deferred_io *fbdefio = info->fbdefio;
+   struct md050sd *item = (struct md050sd *) info->par;
+   int i, ystart, yend;
+   if (fbdefio) {
+      //Touch the pages the y-range hits, so the deferred io will update them.
+      for (i = 0; i < item->pages_count; i++) {
+         ystart = item->pages[i].y;
+         yend   = item->pages[i].y +
+               (item->pages[i].len / info->fix.line_length) + 1;
+         if (!((y + h) < ystart || y > yend)) {
+            item->pages[i].must_update = 1;
+         }
+      }
+      //Schedule the deferred IO to kick in after a delay.
+      schedule_delayed_work(&info->deferred_work,
+            fbdefio->delay);
+   }
+}
+\end{lstlisting}
+Tritt der geplante Deferred-IO-Handler ein, werden in der Funktion \lstinline|md050sd_update()| alle Pages durchlaufen und diejenigen mit dem "'must\_update"'-Flag werden mit der Funktion \lstinline|md050sd_copy| auf Änderungen überprüft.
+\refl{lst:update_funktion} zeigt die Update-Funktion.
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Update Funktion},
+label=lst:update_funktion
+]
+static void md050sd_update(struct fb_info *info,
+      struct list_head *pagelist)
+{
+   struct md050sd *item = (struct md050sd *) info->par;
+   struct page *page;
+   int i;
+
+   //We can be called because of pagefaults (mmap'ed framebuffer, pages
+   //returned in *pagelist) or because of kernel activity
+   //(pages[i]/must_update!=0). Add the former to the list of the latter.
+   list_for_each_entry(page, pagelist, lru) {
+      item->pages[page->index].must_update = 1;
+   }
+   //Copy changed pages.
+   for (i = 0; i < item->pages_count; i++) {
+      if (item->pages[i].must_update) {
+         item->pages[i].must_update = 0;
+         md050sd_copy(item, i);
+      }
+   }
+}
+\end{lstlisting}
+In der Copy-Funktion wird die aktuelle, mit dem Parameter \lstinline|unsigned int index| gekennzeichnete, Page auf Aenderungen unüberprüft. Über den Codeswitch \lstinline|USE_MEMCPY| lässt sich während dem Kompilieren zwischen zwei Modi wählen:
+\begin{itemize}
+	\item Zum Kopieren wird Memcopy verwendet
+	\item Zum Kopieren wird eine Logik auf Blockbasis verwendet
+\end{itemize}
+
+Bei der Variante mit Memcopy wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da Memcpy generelle effizienter und schneller arbeitet als eine For-Schleife zum Daten kopieren, ist diese Methode implementiert (siehe \cite{Nadeau2012})
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Copy Funktion},
+label=lst:copy_funktion
+]
+void md050sd_copy(struct md050sd *item, unsigned int index)
+{
+#define PIXELGROUPLEN 40
+   unsigned short x;
+   unsigned short y;
+   unsigned short y_local;
+
+   unsigned short *buffer;
+   unsigned short *oldbuffer;
+   unsigned int len;
+   unsigned short j;
+   unsigned short tmpy;
+   unsigned short xend;
+   x = item->pages[index].x;
+   y = item->pages[index].y;
+   buffer = item->pages[index].buffer;
+   oldbuffer = item->pages[index].oldbuffer;
+   len = item->pages[index].len;
+#if USE_MEMCPY == 0
+   tmpy = 0;
+   xend = 0;
+   for (y_local = y; y_local < y + MD050SD_LINES_PER_PAGE; y_local++) {
+      for (x = 0; x < MD050SD_WIDTH; x++) {
+         if (buffer[x + tmpy * MD050SD_WIDTH] != oldbuffer[x + tmpy * MD050SD_WIDTH]) {
+            if ((x + PIXELGROUPLEN) > MD050SD_WIDTH) {
+               xend = MD050SD_WIDTH - 1;
+            } else
+               xend = x + PIXELGROUPLEN;
+            md050sd_setWindow(item, x, y_local, xend, y_local);
+            for (j = x; j <= xend; j++) {
+               md050sd_send_data(item, buffer[j + tmpy * MD050SD_WIDTH]);
+               oldbuffer[j + tmpy * MD050SD_WIDTH] = buffer[j + tmpy * MD050SD_WIDTH];
+            }
+            x = xend;
+         }
+      }
+      tmpy++;
+   }
+#else
+   md050sd_setWindow(item, x, MD050SD_WIDTH, y, y + MD050SD_LINES_PER_PAGE);
+   memcpy(item->data_io, buffer, len * 2);
+#endif
+}
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[%
+language=MyC,
+caption={Framebuffer: Display-Funktionen},
+label=lst:send_funktion
+]
+inline void md050sd_send_cmd(struct md050sd *item, unsigned short cmd)
+{
+   writew(cmd & 0xFF, item->ctrl_io );
+}
+
+
+inline void md050sd_send_data(struct md050sd *item, unsigned short data)
+{
+   writew(data, item->data_io);
+}
+
+void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short ys,
+      unsigned short xe, unsigned short ye)
+{
+   md050sd_send_cmd(item, MD050SD_SET_LINE_ADDRESS_START);
+   md050sd_send_data(item, ys);
+   md050sd_send_cmd(item, MD050SD_SET_COLUMN_ADDRESS_START);
+   md050sd_send_data(item, xs);
+
+   md050sd_send_cmd(item, MD050SD_SET_LINE_ADDRESS_END);
+   md050sd_send_data(item, ye);
+   md050sd_send_cmd(item, MD050SD_SET_COLUMN_ADDRESS_END);
+   md050sd_send_data(item, xe);
+
+   md050sd_send_cmd(item, MD050SD_WRITE_MEMORY_START);
+}
+\end{lstlisting}
+
+
+\newpage
 \paragraph{Anpassungen für SSD1963 Controller}
 \paragraph{Anpassungen für SSD1289 Controller}
 
