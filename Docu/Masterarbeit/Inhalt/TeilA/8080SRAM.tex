@@ -636,13 +636,16 @@ static void md050sd_update(struct fb_info *info,
    }
 }
 \end{lstlisting}
-In der Copy-Funktion wird die aktuelle, mit dem Parameter \lstinline|unsigned int index| gekennzeichnete, Page auf Aenderungen unüberprüft. Über den Codeswitch \lstinline|USE_MEMCPY| lässt sich während dem Kompilieren zwischen zwei Modi wählen:
+In der Copy-Funktion wird die aktuelle, mit dem Parameter \lstinline|unsigned int index| gekennzeichnete, Page auf Aenderungen unüberprüft. Diese Funktion ist in \refl{lst:copy_funktion} zu sehen. Über den Codeswitch \lstinline|USE_MEMCPY| lässt sich während dem Kompilieren zwischen zwei Modi wählen:
 \begin{itemize}
-	\item Zum Kopieren wird Memcopy verwendet
-	\item Zum Kopieren wird eine Logik auf Blockbasis verwendet
+	\item Zum Kopieren wird memcopy verwendet
+	\item Zum Kopieren wird eine optimierte Senderoutine verwendet
 \end{itemize}
 
-Bei der Variante mit Memcopy wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da Memcpy generelle effizienter und schneller arbeitet als eine For-Schleife zum Daten kopieren, ist diese Methode implementiert (siehe \cite{Nadeau2012})
+Bei der Variante mit memcopy wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da memcopy generell effizienter und schneller arbeitet als eine For-Schleife zum Daten kopieren, ist diese Methode implementiert (vgl. \cite{Nadeau2012}). Bei einer Anwendung, bei der sich permanent sehr viele Pixel verändern, zum Beispiel bei Videos, ist diese Methode günstiger, da sich der Adressierungsaufwand für ein RAM-Fenster auf ein Minimum reduziert. 
+
+Neben der memcopy-Methode wird auch eine optimierte Senderoutine unterstützt. Das bedeutet, dass eine Schleife die Page Pixel für Pixel durchläuft und mit den Pixelwerten der Page vor dem aktuellen Durchlauf vergleicht. Erkennt die Routine eine Abweichung, werden die nachfolgenden Pixel der Anzahl \lstinline|PIXELGROUPLEN| auf Verdacht an das Display gesendet. Verändern sich bei einer Anwendung nicht permanent alle Pixel, zum Beispiel in einem Terminal, so ist diese Variante günstiger, da nicht auf Verdacht alle Pixel der Page gesendet werden.
+Da sich oft nicht nur ein, aber auch nicht ständig alle Pixel  verändern, stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und überflüssigem Datentransfer dar (siehe \cite{Schlegel2013a}). 
 
 \begin{lstlisting}[%
 language=MyC,
@@ -693,8 +696,9 @@ void md050sd_copy(struct md050sd *item, unsigned int index)
 #endif
 }
 \end{lstlisting}
+In \refl{lst:send_funktion} sind die Low-Level-Funktionen zur Kommunikation mit dem Display gezeigt. So stehen je eine Funktion zum Senden von Daten und Kommandos zur Verfügung sowie eine um ein RAM-Fenster zu reservieren. 
 
-
+Wird die memcopy-Variante verwendet, so können die Daten direkt auf den Datenbus des Displays geschrieben werden. Einzig zuvor muss das Fenster reserviert werden. Wenn allerdings die optimierte Sendroutine verwendet, muss jede schreibende Kommunikation zum Display mit den Funktionen \lstinline|md050sd_send_cmd| und \lstinline|md050sd_send_data| erfolgen. 
 
 \begin{lstlisting}[%
 language=MyC,
@@ -728,11 +732,9 @@ void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short y
    md050sd_send_cmd(item, MD050SD_WRITE_MEMORY_START);
 }
 \end{lstlisting}
-
-
 \newpage
-\paragraph{Anpassungen für SSD1963 Controller}
-\paragraph{Anpassungen für SSD1289 Controller}
+\paragraph{Anpassungen für SSD1963/SSD1289 Controller}
+Um den Treiber auf den SSD1963 oder den SSD1289 zu portieren, sind nicht viele Änderungen notwendig. In der Setup-Funktion muss die Initialisierung des Displaycontrollers hinzugefügt werden und die Set-Window-Funktion auf die jeweiligen Kommandos angepasst werden.
 
 \subsubsection{Entwicklung eines User-Space-Treibers}
 \paragraph{Anpassungen für SSD1963 Controller}
