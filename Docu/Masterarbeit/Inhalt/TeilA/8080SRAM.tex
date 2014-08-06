@@ -757,10 +757,11 @@ void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short y
 \paragraph{Anpassungen für SSD1963/SSD1289 Controller}
 Um den Treiber auf den SSD1963 oder den SSD1289 zu portieren, sind nicht viele Änderungen notwendig. Auf Low-Level-Ebene muss in der Setup-Funktion die Initialisierung des Displaycontrollers hinzugefügt werden und die setWindow-Funktion auf die jeweiligen Kommandos angepasst werden. 
 Die Strukturen \lstinline|fb_fix_screeninfo| und \lstinline|fb_var_screeninfo| müssen auf die jeweilige Displayauflösung angepasst werden. Die beiden Framebuffer-Treiber für die Controller SSD1963 und SSD1289 finden sich in den Dateien \lstinline|linux-2.6.33-lpc313x/drivers/video/ssd1963.c| und \lstinline|linux-2.6.33-lpc313x/drivers/video/ssd1289.c|
-
- 
+\paragraph{Kernel für Framebuffer konfigurieren}
+\todo{Kernel fuer Framebuffer konfigurieren!}
 
 \subsubsection{Entwicklung eines User-Space-Treibers}
+
 \paragraph{Anpassungen für SSD1963 Controller}
 \paragraph{Anpassungen für SSD1289 Controller}
 \paragraph{Anpassungen für MD050SD}

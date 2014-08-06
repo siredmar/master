@@ -6,7 +6,7 @@
  */
 #include "tft_lcfg.h"
 
-const tft_initSequenceType tft_initialConfig4d3_s[] =
+const tft_initSequenceType tft_initialConfig5_s[] =
 {
 //      {0x0001, 0x0000,                 200, NOPARAM},   // software reset
 //      // {0x0001, 0x0000,                 500, NOPARAM},   // software reset
@@ -70,7 +70,7 @@ const tft_initSequenceType tft_initialConfig4d3_s[] =
 
 const tft_configType tft_initialConfigTft_s =
 {
-   tft_initialConfig4d3_s,		/* config struct for tft */
+   tft_initialConfig5_s,		/* config struct for tft */
   0// 45 							/* number of config entries is 44 */
 };
 

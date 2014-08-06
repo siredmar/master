@@ -26,8 +26,6 @@
 /* ***************************** modul global functions ********************* */
 
 #define WITH_MPMC 0
-
-
 static int  mem_fd;
 
 void *sram0_ctrl_map;
@@ -51,7 +49,6 @@ static Std_ReturnType tft_openSRAM0Memory()
       printf("can't open /dev/mem \n");
       exit(-1);
    }
-
    /* mmap SRAM0 */
    sram0_ctrl_map = mmap(
          NULL,             //Any adddress in our space will do
@@ -61,17 +58,12 @@ static Std_ReturnType tft_openSRAM0Memory()
          mem_fd,           //File to map
          SRAM0_BASE + SRAM0_CTRL        //Offset to SRAM0_CTRL peripheral
    );
-
-
    if (sram0_ctrl_map == MAP_FAILED) {
       printf("mmap error %d\n", (int)sram0_ctrl_map);//errno also set!
       exit(-1);
    }
-
-   // Always use volatile pointer!
+   /* Always use volatile pointer! */
    sram0_ctrl = (volatile unsigned short *)sram0_ctrl_map;
-
-
    /* mmap SRAM0 */
    sram0_data_map = mmap(
          NULL,             //Any adddress in our space will do
@@ -82,13 +74,11 @@ static Std_ReturnType tft_openSRAM0Memory()
          SRAM0_BASE + SRAM0_DATA         //Offset to SRAM0_DATA peripheral
    );
 
-
    if (sram0_data_map == MAP_FAILED) {
       printf("mmap error %d\n", (int)sram0_data_map);//errno also set!
       exit(-1);
    }
-
-   // Always use volatile pointer!
+   /* Always use volatile pointer! */
    sram0_data = (volatile unsigned short *)sram0_data_map;
 
 #if WITH_MPMC == 1
@@ -106,8 +96,7 @@ static Std_ReturnType tft_openSRAM0Memory()
       printf("mmap error %d\n", (int)mpmc_memory_map);//errno also set!
       exit(-1);
    }
-
-   // Always use volatile pointer!
+   /* Always use volatile pointer! */
    mpmc_memory = (volatile unsigned int *)mpmc_memory_map;
    printf("mpmc_memory = 0x%x\n", (volatile unsigned int)mpmc_memory);
 #endif
@@ -119,12 +108,10 @@ static Std_ReturnType tft_openSRAM0Memory()
 
 void tft_cleanupSRAM0()
 {
-
    free(sram0_ctrl);
    free(sram0_data);
    free(sram0_ctrl_map);
    free(sram0_data_map);
-
 #if WITH_MPMC == 1
    free(mpmc_memory);
    free(mpmc_memory_map);
@@ -137,28 +124,20 @@ void tft_cleanupSRAM0()
 static void tft_readSRAM0Timings()
 {
    unsigned int val;
-
    val = *(unsigned int*)(mpmc_memory + MPMC_STCONFIG0);
    printf("MPMC_STCONFIG0:\t 0x%.2X\n", val);
-
    val = *(unsigned int*)(mpmc_memory + MPMC_STWTWEN0);
    printf("MPMC_STWTWEN0:\t %d\n", val);
-
    val = *(unsigned int*)(mpmc_memory + MPMC_STWTOEN0);
    printf("MPMC_STWTOEN0:\t %d\n", val);
-
    val = *(unsigned int*)(mpmc_memory + MPMC_STWTRD0);
    printf("MPMC_STWTRD0:\t %d\n",  val);
-
    val = *(unsigned int*)(mpmc_memory + MPMC_STWTPG0);
    printf("MPMC_STWTPG0:\t %d\n",  val);
-
    val = *(unsigned int*)(mpmc_memory + MPMC_STWTWR0);
    printf("MPMC_STWTWR0:\t %d\n",  val);
-
    val = *(unsigned int*)(mpmc_memory + MPMC_STWTTURN0);
    printf("MPMC_STWTTURN0:\t %d\n",val);
-
 }
 
 static void tft_initSRAM0Timings()
@@ -170,7 +149,6 @@ static void tft_initSRAM0Timings()
       if(!(val & (1 << 0)))
       {
          *(mpmc_memory + MPMC_CONTROL) = 0x05;
-         // usleep(10);
          break;
       }
 
@@ -190,7 +168,6 @@ static void tft_initSRAM0Timings()
       if(!(val & (1 << 0)))
       {
          *(mpmc_memory + MPMC_CONTROL) = 0x01;
-         //usleep(10);
          break;
       }
    }
@@ -222,25 +199,7 @@ void tft_sendData
       uint16 data_ui16
 )
 {
-   //   if(debug_output == 0)
-   //   {
    *(sram0_data) = data_ui16;
-   //   }
-   //   if(debug_output == 1)
-   //   {
-   //      printf("%d\ttft_sendData:\t\t 0x%.2X", send_counter++, data_ui16);
-   //      waitForUserInput();
-   //      *(sram0_data) = data_ui16;
-   //   }
-   //   if(debug_output == 2)
-   //   {
-   //      printf("%d\ttft_sendData:\t\t 0x%.2X\n", send_counter++, data_ui16);
-   //      *(sram0_data) = data_ui16;
-   //      tft_waitXms(1000);
-   //   }
-
-
-
 }
 
 void tft_sendPixelData
@@ -248,38 +207,8 @@ void tft_sendPixelData
       uint16 data_ui16
 )
 {
-   //   if(debug_output == 0)
-   //   {
-   *(sram0_data) = data_ui16 * 6000;
-
-   //*(sram0_data) = (data_ui16 >> 8) & 0xFF;
-   //   *(sram0_data) = data_ui16 & 0xFF;
-   //   }
-   //   if(debug_output == 1)
-   //   {
-   //      printf("%d\ttft_sendPixelData:\t 0x%.2X",  send_counter++, data_ui16);
-   //      waitForUserInput();
-   //      *(sram0_data) = data_ui16;
-   //   }
-   //   if(debug_output == 2)
-   //   {
-   //      printf("%d\ttft_sendPixelData:\t 0x%.2X\n",  send_counter++, data_ui16);
-   //      *(sram0_data) = data_ui16;
-   //      tft_waitXms(1000);
-   //   }
+   *(sram0_data) = data_ui16;
 }
-
-//void tft_sendPixelData_8Bit
-//(
-//      uint16 data_ui16
-//)
-//{
-//   *(sram0_data) = ((uint16)((data_ui16 >> 9) & 0xF8));
-//
-//   *(sram0_data) = ((uint16)((data_ui16 >> 3) & 0xFC));
-//
-//   *(sram0_data) = ((uint16)((data_ui16 << 3) & 0xF8));
-//}
 
 /**  \brief Sends data
  *
@@ -292,24 +221,7 @@ void tft_sendCommand
       uint16 data_ui16
 )
 {
-   // data_ui16 = data_ui16 & 0xFF;
-   //   if(debug_output == 0)
-   //   {
    *(sram0_ctrl) = (data_ui16 & 0xFF);
-   //   }
-   //   if(debug_output == 1)
-   //   {
-   //      printf("%d\ttft_sendCommand:\t 0x%.2X", send_counter++, data_ui16);
-   //      waitForUserInput();
-   //      *(sram0_ctrl) = (data_ui16 & 0xFF);
-   //   }
-   //   if(debug_output == 2)
-   //   {
-   //      printf("%d\ttft_sendCommand:\t 0x%.2X\n", send_counter++, data_ui16);
-   //      *(sram0_ctrl) = (data_ui16 & 0xFF);
-   //      tft_waitXms(1000);
-   //   }
-
 }
 
 void tft_sendCommand_slow
@@ -327,7 +239,6 @@ void tft_sendCommand_slowPLL
 )
 {
    *(sram0_ctrl) = (ctrl_ui16 & 0xFF);
-   //usleep(1000);
 }
 
 void tft_sendData_slowPLL
@@ -336,12 +247,10 @@ void tft_sendData_slowPLL
 )
 {
    *(sram0_data) = (ctrl_ui16 & 0xFF);
-   //usleep(1000);
 }
 
 uint16 tft_readData_slowPLL(void)
 {
-   //usleep(1000);
    return *(sram0_data);
 }
 
@@ -383,7 +292,6 @@ void tft_setWindow
    tft_sendData(ys);
    tft_sendCommand(MD050SD_SET_COLUMN_ADDRESS_START);
    tft_sendData(xs);
-
    tft_sendCommand(MD050SD_SET_LINE_ADDRESS_END);
    tft_sendData(ye);
    tft_sendCommand(MD050SD_SET_COLUMN_ADDRESS_END);
@@ -403,7 +311,6 @@ void tft_init(void)
    printf("tft_openSRAM0Memory() called\n");
    tft_openSRAM0Memory();
    printf("tft_openSRAM0Memory() returned\n\n");
-
 #if WITH_MPMC == 1
    printf("tft_readSRAM0Timings() called\n");
    tft_readSRAM0Timings();
@@ -417,14 +324,10 @@ void tft_init(void)
    tft_readSRAM0Timings();
    printf("tft_readSRAM0Timings() returned\n\n");
 #endif
-
    tft_deSelectReset();
    tft_waitXms(200);   /* Wait 100ms */
    tft_selectReset(); /* Reset Display done */
    tft_waitXms(200);
-
-   //      tft_sendCommand(MD050SD_SET_BACKLIGHT_PWM);
-   //      tft_sendData(2);
 }
 
 
@@ -441,10 +344,8 @@ void tft_clearScreen
       tft_ColorType color_ui16
 )
 {
-
    tft_drawRectangle(0, 0, TFT_WIDTH_UI16, TFT_HEIGHT_UI16, color_ui16);
 }
-
 
 /*
  *  \brief Function draw a filled Rectangle at x/y position
@@ -467,19 +368,12 @@ Std_ReturnType tft_drawPixel
 )
 {
    Std_ReturnType returnValue;
-
    returnValue = E_NOT_OK;
-
    /* Set window size and position - modified for portrait view */
    tft_setWindow(xPosition_ui16, yPosition_ui16, xPosition_ui16+1, yPosition_ui16);
-
    tft_sendCommand(MD050SD_WRITE_MEMORY_START);
-
    tft_sendPixelData(rectangleColor_ui16);
-
-
    returnValue = E_OK;
-
    return returnValue;
 }
 
@@ -542,18 +436,13 @@ Std_ReturnType tft_drawRectangle
    pixelSizeOfRectangle_ui32 = rectangleWidth_ui16 * rectangleHeight_ui16;
 
    tft_setWindow(xPosition_ui16, yPosition_ui16, endPositionX_ui16, endPositionY_ui16);
-
-
    tft_sendCommand(MD050SD_WRITE_MEMORY_START);
-
 
    for(forCounter_ui32 = 0; forCounter_ui32 < pixelSizeOfRectangle_ui32; forCounter_ui32++)
    {
       tft_sendPixelData(rectangleColor_ui16);
    }
 
-
    returnValue = E_OK;
-
    return returnValue;
 }
