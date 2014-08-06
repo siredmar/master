@@ -9,9 +9,3 @@ Software:
 PC:
 * EDID Datenformat: http://www.extron.com/download/files/extronews/understandingedid.pdf
 * RS232 Treiber: http://www.teuniz.net/RS-232/
-
-
-TEIL_A: 
-=======
-Software:
-* Copy: memcopy vs. for-loop: http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly

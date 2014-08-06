@@ -16,86 +16,44 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Bibliographie.bib
-Warning--entry type for "Brandt2013" isn't style-file defined
---line 4 of file Bibliographie.bib
-Warning--entry type for "Intel2010" isn't style-file defined
---line 13 of file Bibliographie.bib
-Warning--entry type for "Leunig2002" isn't style-file defined
---line 22 of file Bibliographie.bib
-Warning--entry type for "Extron2014" isn't style-file defined
---line 31 of file Bibliographie.bib
-Warning--entry type for "TI2011" isn't style-file defined
---line 40 of file Bibliographie.bib
-Warning--entry type for "Valcarce2011" isn't style-file defined
---line 49 of file Bibliographie.bib
-Warning--entry type for "SSD2007" isn't style-file defined
---line 58 of file Bibliographie.bib
-Warning--entry type for "SSD2008" isn't style-file defined
---line 67 of file Bibliographie.bib
-Warning--entry type for "ITEAD2013" isn't style-file defined
---line 76 of file Bibliographie.bib
-Warning--entry type for "Schlegel2013a" isn't style-file defined
---line 85 of file Bibliographie.bib
-Warning--entry type for "Schlegel2013b" isn't style-file defined
---line 94 of file Bibliographie.bib
-Warning--entry type for "NXP2010" isn't style-file defined
---line 103 of file Bibliographie.bib
-Warning--entry type for "Coldtears2014" isn't style-file defined
---line 112 of file Bibliographie.bib
-Warning--entry type for "EmbeddedProjects2013" isn't style-file defined
---line 119 of file Bibliographie.bib
-Warning--entry type for "GnublinWiki2013" isn't style-file defined
---line 128 of file Bibliographie.bib
-Warning--entry type for "LinuxKernelFBCON" isn't style-file defined
---line 137 of file Bibliographie.bib
-Warning--entry type for "LinuxKernelFB" isn't style-file defined
---line 146 of file Bibliographie.bib
-Warning--entry type for "LinuxKernelPlatformDeviceDriver" isn't style-file defined
---line 164 of file Bibliographie.bib
-Warning--entry type for "Schlegel2013c" isn't style-file defined
---line 173 of file Bibliographie.bib
-Warning--entry type for "Nadeau2012" isn't style-file defined
---line 182 of file Bibliographie.bib
-Warning--I didn't find a database entry for "Schlegel2013"
-You've used 20 entries,
+You've used 22 entries,
             4728 wiz_defined-function locations,
-            1004 strings with 9923 characters,
-and the built_in function-call counts, 9585 in all, are:
-= -- 993
-> -- 200
-< -- 193
-+ -- 239
-- -- 61
-* -- 574
-:= -- 1665
-add.period$ -- 39
-call.type$ -- 20
-change.case$ -- 80
-chr.to.int$ -- 17
-cite$ -- 20
-duplicate$ -- 319
-empty$ -- 737
-format.name$ -- 120
-if$ -- 2009
-int.to.chr$ -- 4
+            1012 strings with 10231 characters,
+and the built_in function-call counts, 10691 in all, are:
+= -- 1113
+> -- 220
+< -- 230
++ -- 281
+- -- 70
+* -- 641
+:= -- 1850
+add.period$ -- 43
+call.type$ -- 22
+change.case$ -- 88
+chr.to.int$ -- 18
+cite$ -- 22
+duplicate$ -- 351
+empty$ -- 811
+format.name$ -- 132
+if$ -- 2231
+int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 120
-newline$ -- 134
-num.names$ -- 80
-pop$ -- 123
+missing$ -- 132
+newline$ -- 146
+num.names$ -- 88
+pop$ -- 135
 preamble$ -- 1
-purify$ -- 120
+purify$ -- 132
 quote$ -- 0
-skip$ -- 563
+skip$ -- 637
 stack$ -- 0
-substring$ -- 418
-swap$ -- 65
-text.length$ -- 20
+substring$ -- 483
+swap$ -- 72
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 260
+type$ -- 286
 warning$ -- 0
-while$ -- 80
+while$ -- 88
 width$ -- 0
-write$ -- 310
-(There were 21 warnings)
+write$ -- 340

@@ -35,7 +35,14 @@ Der MPMC stellt die Möglichkeit zur Verfügung Bausteine wie dynamisches und st
 \end{figure}
 \newpage
 Die Register des MPMC werden so konfiguriert, dass die Schnittstelle kompatibel zum Display und dessen Timings wird. Entsprechend dem verwendeten Chip-Select-Signal werden die Register \begin{itemize}
-\item MPMCStaticConfig0\item  MPMCStaticWaitWen0\item  MPMCStaticWaitOen0\item  MPMCStaticRd0\item  MPMCStaticPage0\item  MPMCStaticWr0 \item MPMCStaticWaitTurn0 \end{itemize} konfiguriert. Die Basisadresse des MPMC ist 0x1700 8000. Wie die Register zu beschreiben sind, geht aus \cite{NXP2010} auf Seite 56 hervor und ist in \reft{tab:mpmc_config} gezeigt. Die Timings wurden so gewählt, dass die Timinganforderungen der Displaycontroller eingehalten werden.
+\item MPMCStaticConfig0
+\item  MPMCStaticWaitWen0
+\item  MPMCStaticWaitOen0
+\item  MPMCStaticRd0
+\item  MPMCStaticPage0
+\item  MPMCStaticWr0
+\item MPMCStaticWaitTurn0 
+\end{itemize} konfiguriert. Die Basisadresse des MPMC ist 0x1700 8000. Wie die Register zu beschreiben sind, geht aus \cite{NXP2010} auf Seite 56 hervor und ist in \reft{tab:mpmc_config} gezeigt. Die Timings wurden so gewählt, dass die Timinganforderungen der Displaycontroller eingehalten werden.
 
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{1cm}|p{6.6cm}|}\hline
@@ -306,10 +313,9 @@ Der APEX-Bootloader besitzt zur Konfiguration dasselbe System wie der Linux-Kern
 
 Bevor der Bootloader konfiguriert werden kann, muss der Vanilla-Quellcode noch gepatcht werden. \refl{lst:apex_patchen} zeigt die einzelnen Schritte, um den Bootloader herunterzuladen und zu Patchen. Der Patch enthält alle nötigen Dinge zum Betrieb des MD050SD-Display und des Boot-Logos.
 
-
 \begin{lstlisting}[%
 language=bash,
-caption={Bootloader: Herunterladen und Patchen},
+caption={Bootloader: Bootloader herunterladen und patchen},
 label=lst:apex_patchen
 ]
 $ wget https://github.com/embeddedprojects/gnublin-distribution/raw/master/lpc3131/bootloader/apex/1.6.8/apex-1.6.8.tar.gz
@@ -323,12 +329,27 @@ Im Folgenden wird die Konfiguration des Bootloaders und die damit möglichen Ein
 Um den Kernel mit spezifischen Parametern starten zu können, werden für den Betrieb der unterschiedlichen Treiber (Framebuffer, User-Space) andere Bootparameter benötigt. So ist der originalen Parameterliste 
 \lstinline{console=ttyS0,115200n8 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait} im Untermenü \lstinline|Environment| für den Betrieb mit dem Framebuffer-Treiber ein \lstinline|fbcon=rotate:0 fbcon=font:VGA8x16| hinzuzufügen um dem Kernel beim Start Informationen über den Kernel-Treiber \lstinline|fbcon| mitzuteilen. Wird der User-Space-Treiber verwendet, so übernimmt das Kernel-Modul \lstinline|vfb|\footnote{vfb: Virtual Frame Buffer} die Aufgabe des Framebuffers. Die Parameterliste ist mit \lstinline|console=tty0 video=vfb: vfb_enable=1| zu ergänzen (siehe \cite{LinuxKernelFBCON}).
 
-Der Bootloader wird per \lstinline|make apex.bin| kompiliert und mit \lstinline|dd if=src/arch-arm/rom/apex.bin of=/dev/sdXY| \footnote{/dev/sdXY: bezieht sich auf die Bootpartition auf der korrekten SD-Karte, z.b. /dev/sdb2} auf die SD-Karte des Gnublin geschrieben (siehe \cite{GnublinWiki2013}).
+Der Bootloader wird per \lstinline|make apex.bin| kompiliert und mit \lstinline|dd if=src/arch-arm/rom/apex.bin of=/dev/sdXY| \footnote{/dev/sdXY: bezieht sich auf die Bootpartition auf der korrekten SD-Karte, z.b. /dev/sdb2} auf die SD-Karte des Gnublin geschrieben (siehe \cite{GnublinWiki2013a}).
 
 \subsubsection{Entwicklung eines Linux-Framebuffer-Treibers}
-\todo{Kernel patchen}
+Für den Betrieb des Gnublin Extended wird die offizielle Version des Kernels aus dem Git-Repository von Embedded Projects für die Architektur NXP LPC313x in der Kernelversion 2.6.33 verwendet (siehe \cite{GnublinWiki2013b}). Um mit den Displays zusammenzuarbeiten, muss dieser mit dem entwickelten Treiber gepatcht werden. \refl{lst:kernel_patchen} zeigt die einzelnen Schritte, die dafür notwendig sind.
+
+\begin{lstlisting}[%
+language=bash,
+caption={Framebuffer: Kernel herunterladen und patchen},
+label=lst:kernel_patchen
+]
+$ git clone https://github.com/embeddedprojects/gnublin-lpc3131-2.6.33.git
+$ cd gnublin-lpc3131-2.6.33
+$ wget https://github.com/siredmar/master/raw/master/Teil_A/software/linux/display_drivers.patch
+$ cd linux-2.6.33-lpc313x
+$ make gnublin_defconfig
+$ patch -p1 < ../display_drivers.patch
+\end{lstlisting}
+Wie der Cross-Compiler für die Verwendung der LPC3131x-Architektur installiert wird ist \cite{GnublinWiki2013c} zu entnehmen.
+
 In diesem Abschnitt wird die Entwicklung des Framebuffer-Treibers beschrieben. Der Framebuffer-System bietet eine Abstraktionsebene für die Grafikhardware. Es enthält einen Bildspeicher der Grafikhardware und bietet Applikationen Zugriff auf diesen, ohne jedoch Informationen über die letztendlich verwendete Hardware selbst auf Low-Level-Ebene haben zu müssen. Ein Framebuffer-Device erzeugt die Node \lstinline|/dev/fbX| mit der fortlaufenden Nummer X, beginnend bei Null, für jede Instanz eines Framebuffers. Jede grafische Anwendung in einem Linux-System benötigt eine Funktionalität, die den aktuellen Bildschirminhalt speichert und  Applikationen zugriff darauf gewährt. Dabei ist es im wesentlichen unwichtig, ob die Anzeige selbst durch Hardware beschleunigt oder sogar nur rein virtuell realisiert wird, da die Applikation auf die Schnittstelle in \lstinline|/dev/fbX| zugreift (siehe  \cite{LinuxKernelFB}).
-Programme wie zum Beispiel der X11-Server, Video-Player, QT\footnote{QT: C++-Klassenbibliothek zur 2D-Darstellung}, SDL\footnote{SDL: Simple Direct Media Layer, Grafikbibliothek zur 2D-Darstellung} usw. können dieses System nutzen. Gerade für leistungsschwächere Systeme bietet es dahingehend dieselben Möglichkeiten Programme Anzuzeigen, wie für High-End-Systeme. Einzig die Art und Weise des Befüllens und Auslesens des Framebuffers unterscheidet die Leistungsfähigkeit einzelner Systeme. So können Systeme mit zusätzlichen Grafikeinheiten die speziell zum Berechnen von 3D-Daten mit zum Beispiel der 3D-Grafikbibliothek OpenGL\footnote{OpenGL: 3D Grafikbibliothek} den Framebuffer mit "'hochwertigeren"' Inhalten füllen, als ein System, das diese Möglichkeit nicht besitzt. Die Abstraktionsebene für die Applikation bleiben aber dieselben. 
+Programme wie zum Beispiel der X11-Server, Video-Player, QT\footnote{QT: C++-Klassenbibliothek zur 2D-Darstellung, \url{http://qt-project.org/}}, SDL\footnote{SDL: Simple Direct Media Layer, Grafikbibliothek zur 2D-Darstellung, \url{http://www.libsdl.org}} usw. können dieses System nutzen. Gerade für leistungsschwächere Systeme bietet es dahingehend dieselben Möglichkeiten Programme Anzuzeigen, wie für High-End-Systeme. Einzig die Art und Weise des Befüllens und Auslesens des Framebuffers unterscheidet die Leistungsfähigkeit einzelner Systeme. So können Systeme mit zusätzlichen Grafikeinheiten die speziell zum Berechnen von 3D-Daten mit zum Beispiel der 3D-Grafikbibliothek OpenGL\footnote{OpenGL: 3D Grafikbibliothek} den Framebuffer mit "'hochwertigeren"' Inhalten füllen, als ein System, das diese Möglichkeit nicht besitzt. Die Abstraktionsebene für die Applikation bleiben aber dieselben. 
 
 Mit der Entwicklung eines Framebuffer-Treibers, sind alle Vorteile erschlossen, welche das Framebuffer-System bietet. Diese sind eine standardisierte Schnittstelle für Applikationen, sowie die Gewissheit, dass, sofern es die Rechenleistung zulässt, prinzipiell alle bereits existenten Programme und Inhalte angezeigt werden können.
 In den folgenden Abschnitten, wird die Entwicklung des Framebuffer-Treibers für die drei verwendeten Displays dargelegt, mit Fokus auf das MD050SD. 
@@ -734,7 +755,10 @@ void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short y
 \end{lstlisting}
 \newpage
 \paragraph{Anpassungen für SSD1963/SSD1289 Controller}
-Um den Treiber auf den SSD1963 oder den SSD1289 zu portieren, sind nicht viele Änderungen notwendig. In der Setup-Funktion muss die Initialisierung des Displaycontrollers hinzugefügt werden und die Set-Window-Funktion auf die jeweiligen Kommandos angepasst werden.
+Um den Treiber auf den SSD1963 oder den SSD1289 zu portieren, sind nicht viele Änderungen notwendig. Auf Low-Level-Ebene muss in der Setup-Funktion die Initialisierung des Displaycontrollers hinzugefügt werden und die setWindow-Funktion auf die jeweiligen Kommandos angepasst werden. 
+Die Strukturen \lstinline|fb_fix_screeninfo| und \lstinline|fb_var_screeninfo| müssen auf die jeweilige Displayauflösung angepasst werden. Die beiden Framebuffer-Treiber für die Controller SSD1963 und SSD1289 finden sich in den Dateien \lstinline|linux-2.6.33-lpc313x/drivers/video/ssd1963.c| und \lstinline|linux-2.6.33-lpc313x/drivers/video/ssd1289.c|
+
+ 
 
 \subsubsection{Entwicklung eines User-Space-Treibers}
 \paragraph{Anpassungen für SSD1963 Controller}
