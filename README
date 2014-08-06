@@ -7,6 +7,9 @@ GIT instructions:
 * adding new files
 git add *
 
+* deleting files from repo
+git rm *
+
 * commit changed files:
 git commit -am 'message'
 

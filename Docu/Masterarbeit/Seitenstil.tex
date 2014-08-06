@@ -75,6 +75,14 @@
 	captionpos=b,                     % Caption: (b)ottom, (t)op
 }
 
+\lstdefinestyle{mystyle}{
+  basicstyle=%
+    \ttfamily
+    %\color{blue}%
+    \lst@ifdisplaystyle\scriptsize\fi
+}
+\lstset{style=mystyle}
+
 \lstdefinelanguage{MyC}{
 language=C,
 morekeywords={

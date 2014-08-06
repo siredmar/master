@@ -17,14 +17,6 @@
 #include "../../inc/platform_types.h"
 #include <stdlib.h>
 
-#define TFT_COLOR_WORKAROUND  6000
-#define  waitForUserInput() getchar()
-/* ***************************** # defines ********************************** */
-
-/* ***************************** modul global data ************************** */
-
-/* ***************************** modul global functions ********************* */
-
 #define WITH_MPMC 0
 static int  mem_fd;
 
@@ -37,9 +29,6 @@ volatile unsigned short *sram0_data;
 volatile unsigned int *mpmc_memory;
 void *mpmc_memory_map;
 #endif
-
-static int send_counter = 1;
-extern uint8 debug_output;
 
 static Std_ReturnType tft_openSRAM0Memory()
 {
@@ -202,14 +191,6 @@ void tft_sendData
    *(sram0_data) = data_ui16;
 }
 
-void tft_sendPixelData
-(
-      uint16 data_ui16
-)
-{
-   *(sram0_data) = data_ui16;
-}
-
 /**  \brief Sends data
  *
  *  \param [in]  data_ui16 = Data to send
@@ -222,52 +203,6 @@ void tft_sendCommand
 )
 {
    *(sram0_ctrl) = (data_ui16 & 0xFF);
-}
-
-void tft_sendCommand_slow
-(
-      uint16 ctrl_ui16
-)
-{
-   *(sram0_ctrl) = (uint8)(ctrl_ui16 & 0xFF);
-   tft_waitXms(10);
-}
-
-void tft_sendCommand_slowPLL
-(
-      uint16 ctrl_ui16
-)
-{
-   *(sram0_ctrl) = (ctrl_ui16 & 0xFF);
-}
-
-void tft_sendData_slowPLL
-(
-      uint16 ctrl_ui16
-)
-{
-   *(sram0_data) = (ctrl_ui16 & 0xFF);
-}
-
-uint16 tft_readData_slowPLL(void)
-{
-   return *(sram0_data);
-}
-
-
-void tft_sendData_slow
-(
-      uint16 data_ui16
-)
-{
-   *(sram0_data) = data_ui16;
-   tft_waitXms(10);
-}
-
-uint16 tft_readData_slow(void)
-{
-   usleep(1000);
-   return *(sram0_data);
 }
 
 /*  \brief Set window with defined height and width window
@@ -372,7 +307,7 @@ Std_ReturnType tft_drawPixel
    /* Set window size and position - modified for portrait view */
    tft_setWindow(xPosition_ui16, yPosition_ui16, xPosition_ui16+1, yPosition_ui16);
    tft_sendCommand(MD050SD_WRITE_MEMORY_START);
-   tft_sendPixelData(rectangleColor_ui16);
+   tft_sendData(rectangleColor_ui16);
    returnValue = E_OK;
    return returnValue;
 }
@@ -440,7 +375,7 @@ Std_ReturnType tft_drawRectangle
 
    for(forCounter_ui32 = 0; forCounter_ui32 < pixelSizeOfRectangle_ui32; forCounter_ui32++)
    {
-      tft_sendPixelData(rectangleColor_ui16);
+      tft_sendData(rectangleColor_ui16);
    }
 
    returnValue = E_OK;

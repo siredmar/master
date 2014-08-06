@@ -19,32 +19,6 @@ unsigned char fileExists(char *fname)
    }
 }
 
-////#ifdef DEBUG
-//#define debugOutput(fmt, ...) printf("DBG::%s(): "fmt, __FUNCTION__, ...)
-////#else
-////#define debugOutput(const char* fmt, va_list args...)
-////#endif
-
-
-
-
-//#ifdef DEBUG
-//void debugOutput(const char *format, ...)
-//{
-//
-//   va_list arglist;
-//
-//   va_start( arglist, format );
-//   //printf("DBG::%s ", __FUNCTION__);
-//   vprintf(format, arglist);
-//   va_end( arglist );
-//
-//}
-//#else
-//void debugOutput(const char *format, ...){};
-//#endif
-
-
 void GtkTextviewAppendHexfile(const char *format, ...)
 {
    GtkTextBuffer *tbuffer;

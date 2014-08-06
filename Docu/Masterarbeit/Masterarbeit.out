@@ -34,50 +34,50 @@
 \BOOKMARK [3][]{subsubsection.93}{Anpassung des APEX-Bootloaders zur Verwendung des Displays}{subsection.92}% 34
 \BOOKMARK [4][]{paragraph.115}{Boot-Logo im APEX-Bootloader}{subsubsection.93}% 35
 \BOOKMARK [4][]{paragraph.198}{Konfiguration des APEX-Bootloaders}{subsubsection.93}% 36
-\BOOKMARK [3][]{subsubsection.208}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.92}% 37
-\BOOKMARK [4][]{paragraph.219}{Framebuffer-Treiber f\374r MD050SD}{subsubsection.208}% 38
-\BOOKMARK [4][]{paragraph.514}{Anpassungen f\374r SSD1963/SSD1289 Controller}{subsubsection.208}% 39
-\BOOKMARK [4][]{section*.516}{Kernel f\374r Framebuffer konfigurieren}{subsubsection.208}% 40
-\BOOKMARK [3][]{subsubsection.517}{Entwicklung eines User-Space-Treibers}{subsection.92}% 41
-\BOOKMARK [4][]{paragraph.518}{Anpassungen f\374r SSD1963 Controller}{subsubsection.517}% 42
-\BOOKMARK [4][]{paragraph.519}{Anpassungen f\374r SSD1289 Controller}{subsubsection.517}% 43
-\BOOKMARK [4][]{paragraph.520}{Anpassungen f\374r MD050SD}{subsubsection.517}% 44
-\BOOKMARK [3][]{subsubsection.521}{Probleme bei der Entwicklung und Fehlersuche}{subsection.92}% 45
-\BOOKMARK [4][]{paragraph.522}{Probleme mit SSD1963}{subsubsection.521}% 46
-\BOOKMARK [5][]{subparagraph.523}{Rolle des User-Space-Treibers}{paragraph.522}% 47
-\BOOKMARK [5][]{subparagraph.524}{Debuggen mit Logik-Analyzer}{paragraph.522}% 48
-\BOOKMARK [1][]{section.525}{Known Bugs}{chapter.56}% 49
-\BOOKMARK [2][]{subsection.526}{Known Bugs SSD1963}{section.525}% 50
-\BOOKMARK [2][]{subsection.527}{Known Bugs SSD1289}{section.525}% 51
-\BOOKMARK [2][]{subsection.528}{Known Bugs CPLD Display}{section.525}% 52
-\BOOKMARK [0][]{chapter.529}{Teil B}{}% 53
-\BOOKMARK [1][]{section.530}{Konzept}{chapter.529}% 54
-\BOOKMARK [1][]{section.531}{Hardwareentwicklung}{chapter.529}% 55
-\BOOKMARK [2][]{subsection.532}{Spannungsversorgung}{section.531}% 56
-\BOOKMARK [2][]{subsection.533}{HDMI-RGB-Bridge}{section.531}% 57
-\BOOKMARK [2][]{subsection.534}{RGB-LVDS-Bridge}{section.531}% 58
-\BOOKMARK [2][]{subsection.535}{EDID-Daten}{section.531}% 59
-\BOOKMARK [1][]{section.536}{Software}{chapter.529}% 60
-\BOOKMARK [2][]{subsection.537}{EDID-Daten auf embedded Seite}{section.536}% 61
-\BOOKMARK [3][]{subsubsection.538}{Konzept}{subsection.537}% 62
-\BOOKMARK [3][]{subsubsection.539}{Low-Level-Treiber}{subsection.537}% 63
-\BOOKMARK [4][]{paragraph.540}{UART-Treiber}{subsubsection.539}% 64
-\BOOKMARK [4][]{paragraph.541}{I2C-Treiber}{subsubsection.539}% 65
-\BOOKMARK [3][]{subsubsection.542}{Programmablauf}{subsection.537}% 66
-\BOOKMARK [2][]{subsection.543}{EDID-Daten auf PC Seite}{section.536}% 67
-\BOOKMARK [3][]{subsubsection.544}{Konzept}{subsection.543}% 68
-\BOOKMARK [3][]{subsubsection.545}{GTK GUI mit Glade}{subsection.543}% 69
-\BOOKMARK [3][]{subsubsection.546}{Programmablauf}{subsection.543}% 70
-\BOOKMARK [1][]{section.547}{Known Bugs}{chapter.529}% 71
-\BOOKMARK [2][]{subsection.548}{Hardware}{section.547}% 72
-\BOOKMARK [3][]{subsubsection.549}{HDMI-Stecker gekreuzt, CON2}{subsection.548}% 73
-\BOOKMARK [3][]{subsubsection.550}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.548}% 74
-\BOOKMARK [3][]{subsubsection.551}{+12V PWM Hintergrundbeleuchtung}{subsection.548}% 75
-\BOOKMARK [3][]{subsubsection.552}{+5V Kreis / Widerstand R13}{subsection.548}% 76
-\BOOKMARK [3][]{subsubsection.553}{USB D+/D- vertauscht R22, R23}{subsection.548}% 77
-\BOOKMARK [2][]{subsection.554}{Software}{section.547}% 78
-\BOOKMARK [3][]{subsubsection.555}{EDID Programmer}{subsection.554}% 79
-\BOOKMARK [0][]{chapter.556}{Zusammenfassung}{}% 80
-\BOOKMARK [0][]{chapter*.557}{Literaturverzeichnis}{}% 81
-\BOOKMARK [0][]{chapter*.558}{Eidesstattliche Erkl\344rung}{}% 82
-\BOOKMARK [0][]{appendix.559}{Anhang}{}% 83
+\BOOKMARK [3][]{subsubsection.209}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.92}% 37
+\BOOKMARK [4][]{paragraph.220}{Framebuffer-Treiber f\374r MD050SD}{subsubsection.209}% 38
+\BOOKMARK [4][]{paragraph.515}{Anpassungen f\374r SSD1963/SSD1289 Controller}{subsubsection.209}% 39
+\BOOKMARK [4][]{section*.517}{Kernel f\374r Framebuffer konfigurieren}{subsubsection.209}% 40
+\BOOKMARK [3][]{subsubsection.518}{Entwicklung eines User-Space-Treibers}{subsection.92}% 41
+\BOOKMARK [4][]{paragraph.519}{Anpassungen f\374r SSD1963 Controller}{subsubsection.518}% 42
+\BOOKMARK [4][]{paragraph.520}{Anpassungen f\374r SSD1289 Controller}{subsubsection.518}% 43
+\BOOKMARK [4][]{paragraph.521}{Anpassungen f\374r MD050SD}{subsubsection.518}% 44
+\BOOKMARK [3][]{subsubsection.522}{Probleme bei der Entwicklung und Fehlersuche}{subsection.92}% 45
+\BOOKMARK [4][]{paragraph.523}{Probleme mit SSD1963}{subsubsection.522}% 46
+\BOOKMARK [5][]{subparagraph.524}{Rolle des User-Space-Treibers}{paragraph.523}% 47
+\BOOKMARK [5][]{subparagraph.525}{Debuggen mit Logik-Analyzer}{paragraph.523}% 48
+\BOOKMARK [1][]{section.526}{Known Bugs}{chapter.56}% 49
+\BOOKMARK [2][]{subsection.527}{Known Bugs SSD1963}{section.526}% 50
+\BOOKMARK [2][]{subsection.528}{Known Bugs SSD1289}{section.526}% 51
+\BOOKMARK [2][]{subsection.529}{Known Bugs CPLD Display}{section.526}% 52
+\BOOKMARK [0][]{chapter.530}{Teil B}{}% 53
+\BOOKMARK [1][]{section.531}{Konzept}{chapter.530}% 54
+\BOOKMARK [1][]{section.532}{Hardwareentwicklung}{chapter.530}% 55
+\BOOKMARK [2][]{subsection.533}{Spannungsversorgung}{section.532}% 56
+\BOOKMARK [2][]{subsection.534}{HDMI-RGB-Bridge}{section.532}% 57
+\BOOKMARK [2][]{subsection.535}{RGB-LVDS-Bridge}{section.532}% 58
+\BOOKMARK [2][]{subsection.536}{EDID-Daten}{section.532}% 59
+\BOOKMARK [1][]{section.537}{Software}{chapter.530}% 60
+\BOOKMARK [2][]{subsection.538}{EDID-Daten auf embedded Seite}{section.537}% 61
+\BOOKMARK [3][]{subsubsection.539}{Konzept}{subsection.538}% 62
+\BOOKMARK [3][]{subsubsection.540}{Low-Level-Treiber}{subsection.538}% 63
+\BOOKMARK [4][]{paragraph.541}{UART-Treiber}{subsubsection.540}% 64
+\BOOKMARK [4][]{paragraph.542}{I2C-Treiber}{subsubsection.540}% 65
+\BOOKMARK [3][]{subsubsection.543}{Programmablauf}{subsection.538}% 66
+\BOOKMARK [2][]{subsection.544}{EDID-Daten auf PC Seite}{section.537}% 67
+\BOOKMARK [3][]{subsubsection.545}{Konzept}{subsection.544}% 68
+\BOOKMARK [3][]{subsubsection.546}{GTK GUI mit Glade}{subsection.544}% 69
+\BOOKMARK [3][]{subsubsection.547}{Programmablauf}{subsection.544}% 70
+\BOOKMARK [1][]{section.548}{Known Bugs}{chapter.530}% 71
+\BOOKMARK [2][]{subsection.549}{Hardware}{section.548}% 72
+\BOOKMARK [3][]{subsubsection.550}{HDMI-Stecker gekreuzt, CON2}{subsection.549}% 73
+\BOOKMARK [3][]{subsubsection.551}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.549}% 74
+\BOOKMARK [3][]{subsubsection.552}{+12V PWM Hintergrundbeleuchtung}{subsection.549}% 75
+\BOOKMARK [3][]{subsubsection.553}{+5V Kreis / Widerstand R13}{subsection.549}% 76
+\BOOKMARK [3][]{subsubsection.554}{USB D+/D- vertauscht R22, R23}{subsection.549}% 77
+\BOOKMARK [2][]{subsection.555}{Software}{section.548}% 78
+\BOOKMARK [3][]{subsubsection.556}{EDID Programmer}{subsection.555}% 79
+\BOOKMARK [0][]{chapter.557}{Zusammenfassung}{}% 80
+\BOOKMARK [0][]{chapter*.558}{Literaturverzeichnis}{}% 81
+\BOOKMARK [0][]{chapter*.559}{Eidesstattliche Erkl\344rung}{}% 82
+\BOOKMARK [0][]{appendix.560}{Anhang}{}% 83

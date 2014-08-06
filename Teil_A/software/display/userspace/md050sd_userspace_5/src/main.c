@@ -158,7 +158,7 @@ sint32 main (sint32 * argc, uint8 * argv[])
       // re-transmit the unchanged pixels of current row up to here
       for (j = 0; j < TFT_WIDTH_UI16 * TFT_HEIGHT_UI16; j++)
       {
-         tft_sendPixelData (buf_source[j]);
+         tft_sendData (buf_source[j]);
       }
 
 
@@ -218,7 +218,7 @@ sint32 main (sint32 * argc, uint8 * argv[])
                   tft_drawStart ();
                   // re-transmit the unchanged pixels of current row up to here
                   for (j = 0; j < x; j++)
-                     tft_sendPixelData (buf_display
+                     tft_sendData (buf_display
                            [y * TFT_WIDTH_UI16 + j]);
                   drawing = TRUE;
                }
@@ -227,7 +227,7 @@ sint32 main (sint32 * argc, uint8 * argv[])
             if (drawing)
             {
                // where in a transmission run.
-               tft_sendPixelData (color); // send pixel
+               tft_sendData (color); // send pixel
                buf_display[i] = color; // store change
                drawed++;
                // end transmission, if the was no change for some time
@@ -362,7 +362,7 @@ sint32 main (sint32 * argc, uint8 * argv[])
 
                for (j = x; j <= xend; j++)
                {
-                  tft_sendPixelData (buf_source[y][j]);
+                  tft_sendData (buf_source[y][j]);
                   buf_display[y][j] = buf_source[y][j];
                   drawed++;
                }
@@ -514,7 +514,7 @@ sint32 main (sint32 * argc, uint8 * argv[])
                   //for(j = tmpx; j < tmpx+xend; j++)
                   for (j = x; j <= xend; j++)
                   {
-                     tft_sendPixelData (buf_source[y][j]);
+                     tft_sendData (buf_source[y][j]);
                      buf_display[y][j] = buf_source[y][j];
                      drawed++;
                      //   x++;
