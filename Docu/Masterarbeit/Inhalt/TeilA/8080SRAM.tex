@@ -389,8 +389,8 @@ struct platform_driver {
 };
 \end{lstlisting}
 
-Wie ein Platform-Device definiert wird, ist \refl{lst:register_platform_devices} zu entnehmen. Die Modifikationen sind im Quellcode der Start-Datei der Architektur \code{linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c} eingepflegt. In den Zeilen 2 bis 13 wird die Ressource \code{struct resource md050sd\_resource[]} definiert, die zwei Einträge enthält. Hier werden die physikalischen Adressen für Kommandos und Daten  für das Display auf SRAM-Interface eingestellt, die der Platform-Driver verwenden wird. Die Struktur \code{struct platform\_device md050sd\_device} wird ab Zeile 15 definiert, und enthaelt einen eindeutigen Namen "'m050sd"'. Dieser Name wird im Folgenden vom Platform-Driver ebenfalls verwendet, um eine Zuordnung zwischen Device und Driver zu ermöglichen.
-In Zeile 22 ist die Funktion definiert, die letzendlich dem Linux-Kernel die Stuktur \code{struct platform\_device md050sd\_device} übergibt, und das Platform-Device im System registriert. 
+Wie ein Platform-Device definiert wird, ist \refl{lst:register_platform_devices} zu entnehmen. Die Modifikationen sind im Quellcode der Start-Datei der Architektur \code{linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c} eingepflegt. In den Zeilen 2 bis 13 wird die Ressource \code{struct resource md050sd\_resource[]} definiert, die zwei Einträge enthält. Hier werden die physikalischen Adressen für Kommandos und Daten  für das Display auf SRAM-Interface eingestellt, die der Platform-Driver verwenden wird. Die Struktur \code{struct platform\_device md050sd\_device} wird ab Zeile 15 definiert, und enthält einen eindeutigen Namen "'m050sd"'. Dieser Name wird im Folgenden vom Platform-Driver ebenfalls verwendet, um eine Zuordnung zwischen Device und Driver zu ermöglichen.
+In Zeile 22 ist die Funktion definiert, die letztendlich dem Linux-Kernel die Struktur \code{struct platform\_device md050sd\_device} übergibt, und das Platform-Device im System registriert. 
 \begin{lstlisting}[%
 language=MyC,
 caption={Framebuffer: Plattform Device definieren},
@@ -526,7 +526,8 @@ static int __init md050sd_probe(struct platform_device *dev)
 \end{lstlisting}
 Die Einstellungen für Auflösung, Farbtiefe sowie diverser anderer Dinge sind in \refl{lst:framebuffer_misc} zu sehen. 
 
-In der Struktur \code{struct fb\_ops  md050sd\_fbops} werden für die Framebuffer-Schnittstelle entsprechende Funktionszeiger gesetzt, da es im Treibermodell vorgesehen ist, eigene ggf. durch Hardware unterstützte oder anderweitig optimierte Funktionen verwenden zu können. Diverse Framebuffer-spezifische Einstellungen werden in den Strukturen \code{struct fb\_fix\_screeninfo} und \code{struct fb\_var\_screeninfo}. Hier kann die Auflösung und das Pixelformat eingestellt werden. 
+In der Struktur \code{struct fb\_ops  md050sd\_fbops} werden für die Schnittstelle des Framebuffers entsprechende Funktionszeiger gesetzt, da es im Treibermodell vorgesehen ist, eigene ggf. durch Hardware unterstützte oder anderweitig optimierte Funktionen verwenden zu können. Diverse Framebuffer-spezifische Einstellungen werden in den Strukturen \code{struct fb\_fix\_screeninfo} und \code{struct fb\_var\_screeninfo}. Hier kann die Auflösung und das Pixelformat eingestellt werden. 
+
 In der Struktur \code{struct fb\_deferred\_io md050sd\_defio} wird das Deferred IO konfiguriert. Dieser Zeitversetzte IO-Zugriff ermöglicht es dem Treiber den tatsächlichen Zugriff auf die Hardware über die Funktion \code{md050sd\_update()}. Diese wird konfigurierbar alle \code{HZ/20} Sekunden aufgerufen, was einer gewünschten Framerate von 20 FPS\footnote{FPS: Frames per Second, Bildwiederholrate} entspricht. 
 \begin{lstlisting}[%
 language=MyC,
@@ -718,7 +719,7 @@ void md050sd_copy(struct md050sd *item, unsigned int index)
 \end{lstlisting}
 In \refl{lst:send_funktion} sind die Low-Level-Funktionen zur Kommunikation mit dem Display gezeigt. So stehen je eine Funktion zum Senden von Daten und Kommandos zur Verfügung sowie eine um ein RAM-Fenster zu reservieren. 
 
-Wird die memcopy-Variante verwendet, so können die Daten direkt auf den Datenbus des Displays geschrieben werden. Einzig zuvor muss das Fenster reserviert werden. Wenn allerdings die optimierte Sendroutine verwendet, muss jede schreibende Kommunikation zum Display mit den Funktionen \code{md050sd\_send\_cmd} und \code{md050sd\_send\_data} erfolgen. 
+Wird die memcopy-Variante verwendet, so können die Daten direkt auf den Datenbus des Displays geschrieben werden. Einzig zuvor muss das Fenster reserviert werden. Wenn allerdings die optimierte Sendroutine verwendet, muss jede schreibende Kommunikation zum Display mit den Funktionen \code{md050sd\_send\_cmd()} und \code{md050sd\_send\_data()} erfolgen. 
 
 \begin{lstlisting}[%
 language=MyC,
@@ -754,7 +755,7 @@ void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short y
 \end{lstlisting}
 \newpage
 \paragraph{Anpassungen für SSD1963/SSD1289 Controller}
-Um den Treiber auf den SSD1963 oder den SSD1289 zu portieren, sind nicht viele Änderungen notwendig. Auf Low-Level-Ebene muss in der Setup-Funktion die Initialisierung des Displaycontrollers hinzugefügt werden und die setWindow-Funktion auf die jeweiligen Kommandos angepasst werden. 
+Um den Treiber auf den SSD1963 oder den SSD1289 zu portieren, sind nicht viele Änderungen notwendig. Auf Low-Level-Ebene muss in der Setup-Funktion die Initialisierung des Displaycontrollers hinzugefügt werden und die setWindow-Funktion auf die jeweiligen Kommandos angepasst werden. \\
 Die Strukturen \code{fb\_fix\_screeninfo} und \code{fb\_var\_screeninfo} müssen auf die jeweilige Displayauflösung angepasst werden. Die beiden Framebuffer-Treiber für die Controller SSD1963 und SSD1289 finden sich in den Dateien \code{linux-2.6.33-lpc313x/drivers/video/ssd1963.c} und \code{linux-2.6.33-lpc313x/drivers/video/ssd1289.c}
 \paragraph{Kernel für Framebuffer konfigurieren}
 \todo{Kernel für Framebuffer konfigurieren!}
@@ -763,7 +764,8 @@ Die Strukturen \code{fb\_fix\_screeninfo} und \code{fb\_var\_screeninfo} müssen
 \subsubsection{Entwicklung eines User-Space-Treibers}
 Anders als beim Framebuffer-Treiber, welcher direkt im Linux-Kernel arbeitet, besteht noch die Möglichkeit eines im User-Space laufenden Treibers. Dieser verhält sich wie ein normaler Prozess, der vom Benutzer aufgerufen wird und greift durch Memory-Mapping direkt auf die Register des Prozessors und damit auf das Display zu.
 In diesem Abschnitt wird die Entwicklung des User-Space-Treibers behandelt. 
-Der User-Space-Treiber ist für den Betrieb mit einem virtuellen Framebuffer ausgelegt. Das Kernel-Modul \code{vfb} loest
+Dieser ist für den Betrieb mit einem virtuellen Framebuffer ausgelegt, welcher durch Kernel-Modul \code{vfb} realisiert wird. Der \code{vfb}-Treiber erzeugt ein Framebuffer-Device als \code{/dev/fbX} zur Verfügung und verhält sich wie ein echter Framebuffer, da dieselben Schnittstellen zur existieren. Programme können auf das Device schreiben und von ihm lesen. Alternativ besteht die Möglichkeit den Treiber über den virtuellen X-Server Xvfb \footnote{Xvfb: virtual framebuffer X server, \url{http://unixhelp.ed.ac.uk/CGI/man-cgi?Xvfb}} arbeiten zu lassen. Das Programm Xvfb emuliert einen X-Server und erzeugt eine Datei, auf die Programme Lese- und Schreibzugriff erhalten. Der entwickelte Treiber benötigt einzig und alleine eine Bildquelle im Format des Framebuffers mit der korrekten Auflösung und Pixelformat. 
+
 
 \paragraph{Anpassungen für SSD1963 Controller}
 \paragraph{Anpassungen für SSD1289 Controller}
