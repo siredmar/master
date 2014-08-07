@@ -19,6 +19,12 @@
 \contentsline {lstlisting}{\numberline {3.15}Framebuffer: Update Funktion}{36}{lstlisting.422}
 \contentsline {lstlisting}{\numberline {3.16}Framebuffer: Copy Funktion}{37}{lstlisting.444}
 \contentsline {lstlisting}{\numberline {3.17}Framebuffer: Display-Funktionen}{38}{lstlisting.488}
+\contentsline {lstlisting}{\numberline {3.18}User-Space: memmap-Zugriff}{40}{lstlisting.520}
+\contentsline {lstlisting}{\numberline {3.19}User-Space: Init-Funktionen}{42}{lstlisting.575}
+\contentsline {lstlisting}{\numberline {3.20}User-Space: Init-Funktionen}{42}{lstlisting.590}
+\contentsline {lstlisting}{\numberline {3.21}User-Space: Display-Sende-Funktionen}{43}{lstlisting.605}
+\contentsline {lstlisting}{\numberline {3.22}User-Space: Main-Funktion Init}{44}{lstlisting.633}
+\contentsline {lstlisting}{\numberline {3.23}User-Space: Main-Funktion Schleife}{45}{lstlisting.655}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

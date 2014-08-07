@@ -163,8 +163,6 @@ static void tft_initSRAM0Timings()
 }
 #endif
 
-
-
 /*  \brief Waits x ms
  *
  *  \param [in]  waitTime_ui16 = Wait time in ms
@@ -314,7 +312,6 @@ Std_ReturnType tft_drawPixel
 
 void tft_drawStart()
 {
-
    tft_sendCommand(MD050SD_WRITE_MEMORY_START);
 }
 

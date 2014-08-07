@@ -196,6 +196,7 @@ label=lst:apex_mpmc_config
 
 
 \paragraph{Boot-Logo im APEX-Bootloader}
+\label{cha:bootloader}
 Um dem Display beim Systemstart einen initialisierten Zustand zu geben und dem Benutzer bereits während dem Laden des Linux-Kernels ein Bild anzuzeigen, ist ein Bootlogo konfigurierbar. Hierfür bedarf es eines rudimentären Displaytreibers im Bootloader. Im Folgenden wird die Darstellung des Boot-Logos unter Verwendung des MD050SD dargestellt. \refl{lst:apex_erster_teil} zeigt den ersten Teil des Treibers, bei dem grundlegende Datentypen sowie Sendefunktionen für Daten und Kommandos gelistet sind. 
 
 \begin{lstlisting}[%
@@ -353,6 +354,7 @@ Programme wie zum Beispiel der X11-Server, Video-Player, QT\footnote{QT: C++-Kla
 Mit der Entwicklung eines Framebuffer-Treibers, sind alle Vorteile erschlossen, welche das Framebuffer-System bietet. Diese sind eine standardisierte Schnittstelle für Applikationen, sowie die Gewissheit, dass, sofern es die Rechenleistung zulässt, prinzipiell alle bereits existenten Programme und Inhalte angezeigt werden können.
 In den folgenden Abschnitten, wird die Entwicklung des Framebuffer-Treibers für die drei verwendeten Displays dargelegt, mit Fokus auf das MD050SD. 
 \paragraph{Framebuffer-Treiber für MD050SD}
+\label{cha:framebuffer}
 In diesem Abschnitt wird die Funktionsweise des Framebuffer-Treibers für das MD050SD beschrieben. Auf ein Listing des kompletten Treibers wird an dieser Stelle bewusst verzichtet, da sonst der Treiber durch seine Komplexität und die ins System verflochtene Struktur schwer zu durchdringen wäre. Stattdessen werden einzelne Teilaspekte, die zum Verständnis nötig sind, einzeln behandelt. Als Basis wurde ein bereits existierender Treiber verwendet (siehe \cite{Schlegel2013c}).
 
 Der Treiber arbeitet konform mit dem "'Platform Device"'- und "'Platform Driver"'-System im Linux-Kernel (siehe \cite{LinuxKernelPlatformDeviceDriver}). Mit dem Platform-Device-System wird ein Pseudo-Bus erzeugt, mit dem sich verschiedene Platform-Driver verbinden können. So können beispielsweise mehrere voneinander unabhängige Instanzen eines Treibers oder vieler verschiedener Treiber im System verfügbar sein. Beinhaltet ein System ein Platform-Device, so muss es dem Linux-Kernel bekannt gemacht werden. Hierzu wird die Struktur \code{struct platform\_device} verwendet, die in \refl{lst:struct_platform_device} gezeigt ist.
@@ -665,8 +667,7 @@ In der Copy-Funktion wird die aktuelle, mit dem Parameter \code{unsigned int ind
 
 Bei der Variante mit memcopy wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da memcopy generell effizienter und schneller arbeitet als eine For-Schleife zum Daten kopieren, ist diese Methode implementiert (vgl. \cite{Nadeau2012}). Bei einer Anwendung, bei der sich permanent sehr viele Pixel verändern, zum Beispiel bei Videos, ist diese Methode günstiger, da sich der Adressierungsaufwand für ein RAM-Fenster auf ein Minimum reduziert. 
 
-Neben der memcopy-Methode wird auch eine optimierte Senderoutine unterstützt. Das bedeutet, dass eine Schleife die Page Pixel für Pixel durchläuft und mit den Pixelwerten der Page vor dem aktuellen Durchlauf vergleicht. Erkennt die Routine eine Abweichung, werden die nachfolgenden Pixel der Anzahl \code{PIXELGROUPLEN} auf Verdacht an das Display gesendet. Verändern sich bei einer Anwendung nicht permanent alle Pixel, zum Beispiel in einem Terminal, so ist diese Variante günstiger, da nicht auf Verdacht alle Pixel der Page gesendet werden.
-Da sich oft nicht nur ein, aber auch nicht ständig alle Pixel  verändern, stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und überflüssigem Datentransfer dar (siehe \cite{Schlegel2013a}). 
+Neben der memcopy-Methode wird auch eine optimierte Senderoutine unterstützt. Das bedeutet, dass eine Schleife die Page Pixel für Pixel durchläuft und mit den Pixelwerten der Page vor dem aktuellen Durchlauf vergleicht. Erkennt die Routine eine Abweichung, werden die nachfolgenden Pixel der Anzahl \code{PIXELGROUPLEN} auf Verdacht an das Display gesendet. Verändern sich bei einer Anwendung nicht permanent alle Pixel, zum Beispiel in einem Terminal, so ist diese Variante günstiger, da nicht auf Verdacht alle Pixel der Page gesendet werden. Da sich oft nicht nur ein, aber auch nicht ständig alle Pixel  verändern, stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und überflüssigem Datentransfer dar (siehe \cite{Schlegel2013a}). Diese Methode findet im User-Space-Treiber ebenfalls Verwendung und wird in \refc{cha:userspace} näher erläutert.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -762,14 +763,271 @@ Die Strukturen \code{fb\_fix\_screeninfo} und \code{fb\_var\_screeninfo} müssen
 
 \newpage
 \subsubsection{Entwicklung eines User-Space-Treibers}
+\label{cha:userspace}
 Anders als beim Framebuffer-Treiber, welcher direkt im Linux-Kernel arbeitet, besteht noch die Möglichkeit eines im User-Space laufenden Treibers. Dieser verhält sich wie ein normaler Prozess, der vom Benutzer aufgerufen wird und greift durch Memory-Mapping direkt auf die Register des Prozessors und damit auf das Display zu.
 In diesem Abschnitt wird die Entwicklung des User-Space-Treibers behandelt. 
 Dieser ist für den Betrieb mit einem virtuellen Framebuffer ausgelegt, welcher durch Kernel-Modul \code{vfb} realisiert wird. Der \code{vfb}-Treiber erzeugt ein Framebuffer-Device als \code{/dev/fbX} zur Verfügung und verhält sich wie ein echter Framebuffer, da dieselben Schnittstellen zur existieren. Programme können auf das Device schreiben und von ihm lesen. Alternativ besteht die Möglichkeit den Treiber über den virtuellen X-Server Xvfb \footnote{Xvfb: virtual framebuffer X server, \url{http://unixhelp.ed.ac.uk/CGI/man-cgi?Xvfb}} arbeiten zu lassen. Das Programm Xvfb emuliert einen X-Server und erzeugt eine Datei, auf die Programme Lese- und Schreibzugriff erhalten. Der entwickelte Treiber benötigt einzig und alleine eine Bildquelle im Format des Framebuffers mit der korrekten Auflösung und Pixelformat. 
 
+Für den Low-Level-Zugriff auf die Hardware-Register, sind zwei Module \code{dio} und \code{tft} vorhanden. Über die Funktion \code{void dio_writeChannel(dio_channelType dio_pin_ui8, dio_pinLevelType dio_output_ui8)} lassen sich GPIO-Pins auf \linebreak High- beziehungsweise Low-Pegel zu schalten. Der Treiber wird benötigt um die Pins für Reset und Hintergrundbeleuchtung schalten zu können. So wird zum Beispiel mit der Anweisung \code{dio_writeChannel(DIO_CHANNEL_19, DIO_HIGH)} Pin 19 auf Logisch-High geschaltet.
+Im DIO-Treiber sind noch weitere Schnittstellen implementiert, wie zum Beispiel \code{dio_pinLevelType dio_readChannel(dio_channelType dio_pin_ui8)} um Pins einzulesen, doch diese finden im User-Space-Treiber keine Verwendung. Um den Zugriff auf die Hardware-Register zu gewähren, werden die Register mithilfe der C-Funktion \code{mmap()} in den Speicher des User-Space gemappt. Der Treiber hat besitzt infolge dessen direkten Hardwarezugriff.
+Das \code{tft}-Modul erhält ebenfalls Zugriff auf die benötigten Adressen für Kommando und Daten auf dem SRAM-Interface (siehe \reft{tab:sram_adressen}) über einen gemappten Speicherzugriff über \code{mmap()}. In \refl{lst:userspace_memmap_funktion} ist die Funktion \code{Std_ReturnType tft_openSRAM0Memory()} gezeigt, welche die Zeiger \code{*sram0_ctrl} und \code{*sram0_data} für den Zugriff auf das Display initialisiert. Die Funktion wird im Treiber in dessen Initialisierungsroutine aufgerufen und beendet sich mit einem Fehlercode, beim eventuell fehlgeschlagenen Versuch den Speicher zu mappen.
 
-\paragraph{Anpassungen für SSD1963 Controller}
-\paragraph{Anpassungen für SSD1289 Controller}
-\paragraph{Anpassungen für MD050SD}
+\begin{lstlisting}[%
+language=MyC,
+caption={User-Space: memmap-Zugriff},
+label=lst:userspace_memmap_funktion
+]
+#define SRAM0_BASE       (0x20000000U)
+#define SRAM0_CTRL       (0x00000U)
+#define SRAM0_DATA       (0x10000U)
+// ...
+static int  mem_fd;
+void *sram0_ctrl_map;
+void *sram0_data_map;
+volatile unsigned short *sram0_ctrl;
+volatile unsigned short *sram0_data;
+
+static Std_ReturnType tft_openSRAM0Memory()
+{
+   Std_ReturnType returnValue = E_NOT_OK;
+   /* open /dev/mem */
+   if ((mem_fd = open("/dev/mem", O_RDWR|O_SYNC) ) < 0) {
+      printf("can't open /dev/mem \n");
+      exit(-1);
+   }
+   /* mmap SRAM0 Control */
+   sram0_ctrl_map = mmap(
+         NULL,                			// Any adddress in our space will do
+         getpagesize(),       			// Map length
+         PROT_READ|PROT_WRITE,			// Enable reading & writting to mapped memory
+         MAP_SHARED,          			// Shared with other processes
+         mem_fd,             			// File to map
+         SRAM0_BASE + SRAM0_CTRL        // Offset to SRAM0_CTRL peripheral
+   );
+   if (sram0_ctrl_map == MAP_FAILED) {
+      printf("mmap error %d\n", (int)sram0_ctrl_map);
+      exit(-1);
+   }
+   sram0_ctrl = (volatile unsigned short *)sram0_ctrl_map;
+   
+   /* mmap SRAM0 Data */
+   sram0_data_map = mmap(
+         NULL,             				// Any adddress in our space will do
+         getpagesize(),     			// Map length
+         PROT_READ|PROT_WRITE,			// Enable reading & writting to mapped memory
+         MAP_SHARED,       				// Shared with other processes
+         mem_fd,           				// File to map
+         SRAM0_BASE + SRAM0_DATA        // Offset to SRAM0_DATA peripheral
+   );
+   if (sram0_data_map == MAP_FAILED) {
+      printf("mmap error %d\n", (int)sram0_data_map);
+      exit(-1);
+   }
+   sram0_data = (volatile unsigned short *)sram0_data_map;
+   
+   // ...
+   close(mem_fd); //No need to keep mem_fd open after mmap
+
+   returnValue = E_OK;
+   return returnValue;
+}
+\end{lstlisting}
+
+In \refl{lst:userspace_init_funktion} ist die Initialisierungsroutine des Displays gezeigt. Wird ein SSD1963 oder SSD1289 verwendet, so sind die Kommandos zur Initialisierung nach dem Reset des Displays einzufügen. Zum Beispiel könnten an dieser Stelle Kommandos, wie in \refl{lst:ssd1963_init} beispielhaft gezeigt wird, stehen.
+\begin{lstlisting}[%
+language=MyC,
+caption={User-Space: Init-Funktionen},
+label=lst:ssd1963_init
+]
+   // ..      
+   tft_sendCommand(SSD1963_SET_PLL_MN); // PLL config
+   tft_sendData(0x1D);
+   tft_sendData(0x02);
+   tft_sendData(0x04);
+   tft_waitXms(100);
+     
+   tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
+   tft_sendData(0x01);
+   tft_waitXms(1000);
+
+   tft_sendCommand(SSD1963_SET_PLL); // PLL config - continued
+   tft_sendData(0x0003);
+   // ...
+\end{lstlisting}
+Die Funktion \code{tft_openSRAM0Memory()} stellt dem Treiber die nötigen Funktionen zur Kommunikation mit dem Display zur Verfügung.
+
+\begin{lstlisting}[%
+language=MyC,
+caption={User-Space: Init-Funktionen},
+label=lst:userspace_init_funktion
+]
+#define tft_selectReset()    dio_writeChannel(TFT_RESET_PIN_UI8, STD_HIGH)
+#define tft_deSelectReset()  dio_writeChannel(TFT_RESET_PIN_UI8, STD_LOW)
+// ...
+void tft_init(void)
+{
+   tft_openSRAM0Memory();
+   // ...
+   tft_deSelectReset();
+   tft_waitXms(200);   /* Wait 200ms */
+   tft_selectReset();  /* Reset Display done */
+   tft_waitXms(200);
+   /* initialization stuff for SSD1963 or SSD1289 below this line */
+   // ...
+}
+\end{lstlisting}
+Neben den Routinen zur Initialisierung wird, wie bereits in \refl{lst:apex_erster_teil} auf Seite \pageref{lst:apex_erster_teil} und \refl{lst:send_funktion} auf Seite \pageref{lst:send_funktion} behandelt wurde, je eine Funktion für Daten und Kommandos, sowie eine zum Reservieren des RAM-Fensters im Display. Diese sind in \refl{lst:userspace_send_funktion} zu sehen.
+
+\begin{lstlisting}[%
+language=MyC,
+caption={User-Space: Display-Sende-Funktionen},
+label=lst:userspace_send_funktion
+]
+void tft_sendData(uint16 data_ui16)
+{
+   *(sram0_data) = data_ui16;
+}
+
+void tft_sendCommand(uint16 data_ui16)
+{
+   *(sram0_ctrl) = (data_ui16 & 0xFF);
+}
+
+void tft_drawStart()
+{
+   tft_sendCommand(MD050SD_WRITE_MEMORY_START);
+}
+
+void tft_setWindow(uint16 xs, uint16 ys, uint16 xe, uint16 ye)
+{
+   tft_sendCommand(MD050SD_SET_LINE_ADDRESS_START);
+   tft_sendData(ys);
+   tft_sendCommand(MD050SD_SET_COLUMN_ADDRESS_START);
+   tft_sendData(xs);
+   tft_sendCommand(MD050SD_SET_LINE_ADDRESS_END);
+   tft_sendData(ye);
+   tft_sendCommand(MD050SD_SET_COLUMN_ADDRESS_END);
+   tft_sendData(xe);
+}
+\end{lstlisting}
+\newpage
+Die eigentliche Logik des Treibers stellt die Main-Routine des Programms dar. In \refl{lst:userspace_main_funktion_init} ist der Teil zu sehen, indem die Low-Level-Treiber \code{dio} und \code{tft} initialisiert werden und die Speicher für das aktuelle und letzte Bild angelegt werden. Als Parameter erwartet das Programm den Pfad zum verwendeten Framebuffer-Device. Im Treiber findet keine Überprüfung auf das korrekte Format des Framebuffer-Device statt. Hier ist zuvor mit dem Programm \code{fbset}\footnote{fbset: Programm um Parameter des Framebuffers zu ändern, \url{http://linux.die.net/man/8/fbset}} die korrekte Auflösung und Farbtiete einzustellen. Als Bildquelle kann eingangs das erzeugte Device \code{/dev/fb0} von \code{vfb}, der virtuelle X-Server \code{xvfb} oder ein echtes, durch einen Grafiktreiber erzeugtes, Framebuffer-Device. 
+
+\begin{lstlisting}[%
+language=MyC,
+caption={User-Space: Main-Funktion Init},
+label=lst:userspace_main_funktion_init
+]
+sint32 main (sint32 * argc, uint8 * argv[])
+{
+   int y, x, j, i, xend;
+   dio_init ();
+   tft_init ();
+   tft_clearScreen (BLACK);	   
+   FILE *fb = fopen (argv[1], "rb");
+   // the current display content
+   uint16 buf_display[TFT_HEIGHT_UI16][TFT_WIDTH_UI16];
+   // the source framebuffer content   
+   uint16 buf_source[TFT_HEIGHT_UI16][TFT_WIDTH_UI16];
+
+   for (i = 0; i < TFT_HEIGHT_UI16; i++)
+   {
+      for (j = 0; j < TFT_WIDTH_UI16; j++)
+      {
+         buf_display[i][j] = 0;
+      }
+   }
+   // ... while(TRUE)-loop ...
+}
+\end{lstlisting}
+Die eigentliche Funktion des Displaytreibers findet in der \code{while}-Schleife statt. Mit einer definierten Gruppen-Pixel-Länge \code{PIXELGROUPLEN} von 40 Bildpunkten, werden nach einer Pixelaenderung die nachfolgenden 39 ebenfalls gezeichnet. Die Schleife läuft im Rythmus von 30 Millisekunden ab (Zeile 37), was bei einer  beliebig kurzen Durchlaufzeit der Schleife auf eine Bildwiederholungsrate von 33 Bildern pro Sekunde hinauslaufen würde. Da die Durchlaufzeit der Schleife in der Praxis allerdings nicht gegen Null geht, reduziert sich die Bildwiederholungsrate entsprechend. Pro Schleifendurchlauf wird der aktuelle Framebuffer ausgelesen (Zeile 10) und jedes Pixel an der entsprechenden XY-Koordinate mit dem gespeicherten Framebuffer der letzten Iteration verglichen (Zeile 13). Ist eine Änderung eines Pixels aufgetreten, wird ein entsprechendes RAM-Fenster reserviert. Dieses reicht in er aktuellen Zeile vom geänderten Bildpunkt bis zur Anzahl von \code{PIXELGROUPLEN} weiteren Bildpunkten. Können aufgrund des Zeilenendes nicht die volle Anzahl an Pixeln reserviert werden, so wird bis zum Zeilenende auf das Display geschrieben.
+
+\begin{lstlisting}[%
+language=MyC,
+caption={User-Space: Main-Funktion Schleife},
+label=lst:userspace_main_funktion_loop
+]
+#define PIXELGROUPLEN 40
+   while (TRUE)      // run forever...
+   {
+      fseek (fb, 0, SEEK_SET);   // rewind source framebuffer
+      for (y = 0; y < TFT_HEIGHT_UI16; y++)
+      {
+         uint32 changed = 0;  // how many pixels have changed since last refresh
+         uint32 drawed = 0;   // how many pixel actualy where transmitted since last refresh
+         xend = 0;
+         fread (buf_source[y], TFT_WIDTH_UI16 * 2, 1, fb); // read complete source framebuffer
+         for (x = 0; x < TFT_WIDTH_UI16; x++)
+         {
+            if (buf_source[y][x] != buf_display[y][x])
+            {
+               changed++;
+               if ((x + PIXELGROUPLEN) > TFT_WIDTH_UI16)
+               {
+                  xend = TFT_WIDTH_UI16 - 1;
+               }
+               else
+               {
+                  xend = x + PIXELGROUPLEN;
+               }
+               tft_setWindow (x, y, xend, y);
+               tft_drawStart ();
+
+               for (j = x; j <= xend; j++)
+               {
+                  tft_sendData (buf_source[y][j]);
+                  buf_display[y][j] = buf_source[y][j];
+                  drawn++;
+               }
+               x = xend;
+            }
+         }
+      }
+      usleep (30000L);     // sleep for 30ms
+   }
+   fclose (fb);
+
+
+
+\end{lstlisting}
+\newpage
+Der Sachverhalt der optimierten Senderoutine wird in den folgenden Bildern klar, bei der eine Pixel-Gruppen-Länge von zehn Bildpunkten angenommen wird. 
+
+\begin{figure}[htp]
+        \begin{center}
+        \begin{subfigure}[htp]{0.8\textwidth}
+			%\begin{figure}[h!]
+			\centering
+			\fbox{	\includegraphics[width=0.8\textwidth]{TeilA/optimierte_routine_original.png}}
+			\caption{Optimierte-Sende-Routine: Originalbild}
+			\label{fig:optimierte_routine_original}
+		\end{subfigure}
+
+
+        \begin{subfigure}[htp]{0.8\textwidth}
+%\begin{figure}[h!]
+	\centering
+\fbox{	\includegraphics[width=0.8\textwidth]{TeilA/optimierte_routine_mod.png}}
+	\caption{Optimierte-Sende-Routine: Modifizierte Pixel}
+	\label{fig:optimierte_routine_mod}
+\end{subfigure}
+
+
+        \begin{subfigure}[htp]{0.8\textwidth}
+%\begin{figure}[h!]
+	\centering
+\fbox{	\includegraphics[width=0.8\textwidth]{TeilA/optimierte_routine_desc.png}}
+	\caption{Optimierte-Sende-Routine: Beschreibung}
+	\label{fig:optimierte_routine_desc}
+\end{subfigure}
+		\end{center}
+\caption{User-Space: Optimierte Senderoutine}
+\end{figure}
+In \refa{fig:optimierte_routine_original} ist ein Testbild abgebildet, bei dem sich einige Pixel verändern. Die Veraenderungen sind in \refa{fig:optimierte_routine_mod} zu sehen und sind mit grüner Farbe markiert. Die Routine erkennt eine Veränderung und sendet die jeweils zehn Folgenden Pixel an das Display. Diese Pixel sind in \refa{fig:optimierte_routine_desc} gelb markiert. 
+Betrachtet man das beispielsweise das MD050SD oder den SSD1963 Controller, so benötigen diese um ein RAM-Fenster zu reservieren fünf Schreibzyklen. Hierbei werden die vier Eckpunkte, sowie das Kommando gesendet, welches die Berichtschaft für Pixeldaten einleitet. Alle danach gesendeten Schreibvorgänge sind für Bilddaten vorgesehen, bei dem jedes Pixel einen Zyklus benötigt. Werden die veränderten, grünen Pixel in \refa{fig:optimierte_routine_mod} gezählt, so erhält man 24 Bildpunkte.\\
+Im Fall der Adressierung jedes einzelnen Pixels, wären so $24 * 5 + 24 = 144$ Schreibzyklen nötig. \\
+Würden auf Verdacht alle Pixel geschrieben, so wären bei einem Bildausschnitt von 24x10 Pixeln, der alle geänderten Pixel beinhaltet,  $5 + 24 * 10 = 245$ Schreibzyklen notwendig. \\
+Unter Verwendung der optimierten Senderoutine, bei der Gruppenweise Pixel auf Verdacht geschrieben werden, werden hierfür nur $5 * 5 + 5 * 10 = 75$ Zyklen aufgebracht werden (siehe \citep{Schlegel2013a}).\\ Deshalb stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und unnötig gesendeten Pixeln dar. 
 \subsubsection{Probleme bei der Entwicklung und Fehlersuche}
 \paragraph{Probleme mit SSD1963}
 \subparagraph{Rolle des User-Space-Treibers}
