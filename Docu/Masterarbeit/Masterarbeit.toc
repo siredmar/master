@@ -41,34 +41,34 @@
 \contentsline {paragraph}{\numberline {3.2.5.2.3}Kernel f\IeC {\"u}r Framebuffer konfigurieren}{39}{section*.517}
 \contentsline {subsubsection}{\numberline {3.2.5.3}Entwicklung eines User-Space-Treibers}{40}{subsubsection.518}
 \contentsline {section}{\numberline {3.3}Known Bugs}{47}{section.702}
-\contentsline {chapter}{\numberline {4}Teil B}{51}{chapter.709}
-\contentsline {section}{\numberline {4.1}Konzept}{51}{section.710}
-\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{51}{section.711}
-\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{51}{subsection.712}
-\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{51}{subsection.713}
-\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{51}{subsection.714}
-\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{51}{subsection.715}
-\contentsline {section}{\numberline {4.3}Software}{51}{section.716}
-\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{51}{subsection.717}
-\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{51}{subsubsection.718}
-\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{51}{subsubsection.719}
-\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{51}{paragraph.720}
-\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{51}{paragraph.721}
-\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{52}{subsubsection.722}
-\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{52}{subsection.723}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{52}{subsubsection.724}
-\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{52}{subsubsection.725}
-\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{52}{subsubsection.726}
-\contentsline {section}{\numberline {4.4}Known Bugs}{52}{section.727}
-\contentsline {subsection}{\numberline {4.4.1}Hardware}{52}{subsection.728}
-\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{52}{subsubsection.729}
-\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{52}{subsubsection.730}
-\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{52}{subsubsection.731}
-\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{52}{subsubsection.732}
-\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{52}{subsubsection.733}
-\contentsline {subsection}{\numberline {4.4.2}Software}{52}{subsection.734}
-\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{52}{subsubsection.735}
-\contentsline {chapter}{\numberline {5}Zusammenfassung}{53}{chapter.736}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{54}{chapter*.737}
-\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{57}{chapter*.738}
-\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.739}
+\contentsline {chapter}{\numberline {4}Teil B}{51}{chapter.707}
+\contentsline {section}{\numberline {4.1}Konzept}{51}{section.708}
+\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{51}{section.709}
+\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{51}{subsection.710}
+\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{51}{subsection.711}
+\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{51}{subsection.712}
+\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{51}{subsection.713}
+\contentsline {section}{\numberline {4.3}Software}{51}{section.714}
+\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{51}{subsection.715}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{51}{subsubsection.716}
+\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{51}{subsubsection.717}
+\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{51}{paragraph.718}
+\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{51}{paragraph.719}
+\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{52}{subsubsection.720}
+\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{52}{subsection.721}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{52}{subsubsection.722}
+\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{52}{subsubsection.723}
+\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{52}{subsubsection.724}
+\contentsline {section}{\numberline {4.4}Known Bugs}{52}{section.725}
+\contentsline {subsection}{\numberline {4.4.1}Hardware}{52}{subsection.726}
+\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{52}{subsubsection.727}
+\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{52}{subsubsection.728}
+\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{52}{subsubsection.729}
+\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{52}{subsubsection.730}
+\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{52}{subsubsection.731}
+\contentsline {subsection}{\numberline {4.4.2}Software}{52}{subsection.732}
+\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{52}{subsubsection.733}
+\contentsline {chapter}{\numberline {5}Zusammenfassung}{53}{chapter.734}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{54}{chapter*.735}
+\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{57}{chapter*.736}
+\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.737}
