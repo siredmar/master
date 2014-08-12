@@ -13,6 +13,8 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Adapterplatine zwischen Gnublin Extended und Display\relax }}{22}{figure.caption.91}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces APEX-Bootloader KConfig\relax }}{27}{figure.caption.199}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces User-Space: Optimierte Senderoutine\relax }}{46}{figure.caption.698}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces SSD1963: Vergleich GPIO- und SRAM-Ansteuerung\relax }}{49}{figure.caption.705}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces 8080-Timingbedingung f\IeC {\"u}r SSD1963\relax }}{50}{figure.caption.706}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

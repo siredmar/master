@@ -1025,13 +1025,9 @@ Der Sachverhalt der optimierten Senderoutine wird in den folgenden Bildern klar,
 \end{figure}
 In \refa{fig:optimierte_routine_original} ist ein Testbild abgebildet, bei dem sich einige Pixel verändern. Die Veraenderungen sind in \refa{fig:optimierte_routine_mod} zu sehen und sind mit grüner Farbe markiert. Die Routine erkennt eine Veränderung und sendet die jeweils zehn Folgenden Pixel an das Display. Diese Pixel sind in \refa{fig:optimierte_routine_desc} gelb markiert. 
 Betrachtet man das beispielsweise das MD050SD oder den SSD1963 Controller, so benötigen diese um ein RAM-Fenster zu reservieren fünf Schreibzyklen. Hierbei werden die vier Eckpunkte, sowie das Kommando gesendet, welches die Berichtschaft für Pixeldaten einleitet. Alle danach gesendeten Schreibvorgänge sind für Bilddaten vorgesehen, bei dem jedes Pixel einen Zyklus benötigt. Werden die veränderten, grünen Pixel in \refa{fig:optimierte_routine_mod} gezählt, so erhält man 24 Bildpunkte.\\
-Im Fall der Adressierung jedes einzelnen Pixels, wären so $24 * 5 + 24 = 144$ Schreibzyklen nötig. \\
-Würden auf Verdacht alle Pixel geschrieben, so wären bei einem Bildausschnitt von 24x10 Pixeln, der alle geänderten Pixel beinhaltet,  $5 + 24 * 10 = 245$ Schreibzyklen notwendig. \\
-Unter Verwendung der optimierten Senderoutine, bei der Gruppenweise Pixel auf Verdacht geschrieben werden, werden hierfür nur $5 * 5 + 5 * 10 = 75$ Zyklen aufgebracht werden (siehe \citep{Schlegel2013a}).\\ Deshalb stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und unnötig gesendeten Pixeln dar. 
-\subsubsection{Probleme bei der Entwicklung und Fehlersuche}
-\paragraph{Probleme mit SSD1963}
-\subparagraph{Rolle des User-Space-Treibers}
-\subparagraph{Debuggen mit Logik-Analyzer}
+Im Fall der Adressierung jedes einzelnen Pixels, wären so $24 * 5 + 24 = 144$ \footnote{24 Datenzyklen, 24 Adressierungen mit je 5 Schreibzyklen = 144 Zyklen} Schreibzyklen nötig. \\
+Würden auf Verdacht alle Pixel geschrieben, so wären bei einem Bildausschnitt von 24x10 Pixeln, der alle geänderten Pixel beinhaltet,  $5 + 24 * 10 = 245$ \footnote{24 * 10 Datenzyklen, 1 Adressierung mit 5 Schreibzyklen = 245 Zyklen} Schreibzyklen notwendig. \\
+Unter Verwendung der optimierten Senderoutine, bei der Gruppenweise Pixel auf Verdacht geschrieben werden, werden hierfür nur $5 * 5 + 5 * 10 = 75$ \footnote{5 * 10 Datenzyklen, 5 Adressierungen mit je 5 Schreibzyklen = 75 Zyklen} Zyklen aufgebracht werden (siehe \citep{Schlegel2013a}).\\ Deshalb stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und unnötig gesendeten Pixeln dar. 
 
 
-
+	
