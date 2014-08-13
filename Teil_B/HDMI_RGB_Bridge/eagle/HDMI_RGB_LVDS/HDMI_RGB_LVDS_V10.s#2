@@ -5006,7 +5006,7 @@ JP 2-3: LVDS Display</text>
 <instance part="IC6" gate="G$1" x="218.44" y="190.5"/>
 <instance part="U$52" gate="G$1" x="160.02" y="165.1"/>
 <instance part="IC7" gate="G$1" x="111.76" y="200.66"/>
-<instance part="GND7" gate="1" x="81.28" y="195.58" rot="R270"/>
+<instance part="GND7" gate="1" x="78.74" y="195.58" rot="R270"/>
 <instance part="GND8" gate="1" x="129.54" y="170.18"/>
 <instance part="C11" gate="G$1" x="91.44" y="195.58" rot="R180"/>
 <instance part="GND1" gate="1" x="96.52" y="170.18"/>
@@ -5020,8 +5020,8 @@ JP 2-3: LVDS Display</text>
 <instance part="U$47" gate="G$1" x="167.64" y="149.86"/>
 <instance part="C24" gate="G$1" x="175.26" y="157.48" rot="R270"/>
 <instance part="U$83" gate="G$1" x="175.26" y="149.86"/>
-<instance part="R22" gate="G$1" x="76.2" y="190.5"/>
-<instance part="R23" gate="G$1" x="86.36" y="187.96"/>
+<instance part="R22" gate="G$1" x="78.74" y="185.42"/>
+<instance part="R23" gate="G$1" x="83.82" y="190.5"/>
 <instance part="R28" gate="G$1" x="167.64" y="228.6" rot="R90"/>
 <instance part="R29" gate="G$1" x="175.26" y="228.6" rot="R90"/>
 <instance part="U$82" gate="G$1" x="175.26" y="246.38"/>
@@ -5141,7 +5141,7 @@ JP 2-3: LVDS Display</text>
 <junction x="294.64" y="205.74"/>
 </segment>
 <segment>
-<wire x1="83.82" y1="195.58" x2="86.36" y2="195.58" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="195.58" x2="86.36" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="GND7" gate="1" pin="GND"/>
 <pinref part="C11" gate="G$1" pin="P$2"/>
 </segment>
@@ -5257,25 +5257,25 @@ JP 2-3: LVDS Display</text>
 </net>
 <net name="USB_D-" class="0">
 <segment>
-<label x="25.4" y="218.44" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="33.02" y1="218.44" x2="25.4" y2="218.44" width="0.1524" layer="91"/>
-<pinref part="CON4" gate="G$1" pin="D+"/>
-</segment>
-<segment>
-<label x="68.58" y="190.5" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="71.12" y1="190.5" x2="68.58" y2="190.5" width="0.1524" layer="91"/>
-<pinref part="R22" gate="G$1" pin="P$1"/>
-</segment>
-</net>
-<net name="USB_D+" class="0">
-<segment>
 <label x="25.4" y="220.98" size="1.27" layer="95" rot="R180" xref="yes"/>
 <wire x1="33.02" y1="220.98" x2="25.4" y2="220.98" width="0.1524" layer="91"/>
 <pinref part="CON4" gate="G$1" pin="D-"/>
 </segment>
 <segment>
-<label x="68.58" y="187.96" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="81.28" y1="187.96" x2="68.58" y2="187.96" width="0.1524" layer="91"/>
+<label x="71.12" y="185.42" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="73.66" y1="185.42" x2="71.12" y2="185.42" width="0.1524" layer="91"/>
+<pinref part="R22" gate="G$1" pin="P$1"/>
+</segment>
+</net>
+<net name="USB_D+" class="0">
+<segment>
+<label x="25.4" y="218.44" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="33.02" y1="218.44" x2="25.4" y2="218.44" width="0.1524" layer="91"/>
+<pinref part="CON4" gate="G$1" pin="D+"/>
+</segment>
+<segment>
+<label x="71.12" y="190.5" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="78.74" y1="190.5" x2="71.12" y2="190.5" width="0.1524" layer="91"/>
 <pinref part="R23" gate="G$1" pin="P$1"/>
 </segment>
 </net>
@@ -5550,15 +5550,15 @@ JP 2-3: LVDS Display</text>
 <net name="N$5" class="0">
 <segment>
 <pinref part="R22" gate="G$1" pin="P$2"/>
-<pinref part="IC7" gate="G$1" pin="USBDP"/>
-<wire x1="81.28" y1="190.5" x2="99.06" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="185.42" x2="91.44" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="185.42" x2="91.44" y2="187.96" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="187.96" x2="99.06" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="IC7" gate="G$1" pin="USBDM"/>
 <pinref part="R23" gate="G$1" pin="P$2"/>
-<wire x1="99.06" y1="187.96" x2="91.44" y2="187.96" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="190.5" x2="88.9" y2="190.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+5V_USB" class="0">

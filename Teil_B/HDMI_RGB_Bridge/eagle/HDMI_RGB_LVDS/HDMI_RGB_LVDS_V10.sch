@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.3">
+<eagle version="6.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -3496,8 +3496,9 @@ backlight</text>
 <sheet>
 <plain>
 <text x="10.16" y="246.38" size="3.81" layer="94">Power Supply</text>
-<text x="104.14" y="218.44" size="1.778" layer="91">NOTE: WPMDL1300331BD has internal pullup on EN-pin.</text>
-<text x="10.16" y="236.22" size="1.778" layer="91">NOTE: Max. Input 12V</text>
+<text x="109.22" y="198.12" size="1.778" layer="91" rot="R90">NOTE: WPMDL1300331BD
+has internal pullup on EN-pin.</text>
+<text x="10.16" y="236.22" size="1.778" layer="91">NOTE: Input 12V</text>
 </plain>
 <instances>
 <instance part="U$2" gate="G$1" x="0" y="0"/>
@@ -3517,14 +3518,14 @@ backlight</text>
 <instance part="T1" gate="G$1" x="33.02" y="220.98" rot="MR90"/>
 <instance part="R1" gate="G$1" x="35.56" y="208.28" rot="R90"/>
 <instance part="U$8" gate="G$1" x="35.56" y="200.66"/>
-<instance part="LED1" gate="G$1" x="25.4" y="180.34" rot="R180"/>
-<instance part="LED2" gate="G$1" x="35.56" y="180.34" rot="R180"/>
-<instance part="U$71" gate="G$1" x="25.4" y="185.42"/>
-<instance part="U$73" gate="G$1" x="35.56" y="185.42"/>
-<instance part="R25" gate="G$1" x="25.4" y="167.64" rot="R90"/>
-<instance part="R27" gate="G$1" x="35.56" y="167.64" rot="R90"/>
-<instance part="U$79" gate="G$1" x="25.4" y="157.48"/>
-<instance part="U$81" gate="G$1" x="35.56" y="157.48"/>
+<instance part="LED1" gate="G$1" x="121.92" y="223.52" rot="R180"/>
+<instance part="LED2" gate="G$1" x="132.08" y="223.52" rot="R180"/>
+<instance part="U$71" gate="G$1" x="121.92" y="233.68"/>
+<instance part="U$73" gate="G$1" x="132.08" y="233.68"/>
+<instance part="R25" gate="G$1" x="121.92" y="210.82" rot="R90"/>
+<instance part="R27" gate="G$1" x="132.08" y="210.82" rot="R90"/>
+<instance part="U$79" gate="G$1" x="121.92" y="200.66"/>
+<instance part="U$81" gate="G$1" x="132.08" y="200.66"/>
 </instances>
 <busses>
 </busses>
@@ -3568,12 +3569,12 @@ backlight</text>
 <segment>
 <pinref part="U$79" gate="G$1" pin="GND"/>
 <pinref part="R25" gate="G$1" pin="P$1"/>
-<wire x1="25.4" y1="162.56" x2="25.4" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="205.74" x2="121.92" y2="200.66" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$81" gate="G$1" pin="GND"/>
 <pinref part="R27" gate="G$1" pin="P$1"/>
-<wire x1="35.56" y1="162.56" x2="35.56" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="205.74" x2="132.08" y2="200.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+3V3" class="0">
@@ -3589,7 +3590,7 @@ backlight</text>
 <segment>
 <pinref part="U$71" gate="G$1" pin="+3V3"/>
 <pinref part="LED1" gate="G$1" pin="C"/>
-<wire x1="25.4" y1="182.88" x2="25.4" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="226.06" x2="121.92" y2="233.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -3622,21 +3623,21 @@ backlight</text>
 <segment>
 <pinref part="U$73" gate="G$1" pin="+12V"/>
 <pinref part="LED2" gate="G$1" pin="C"/>
-<wire x1="35.56" y1="182.88" x2="35.56" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="226.06" x2="132.08" y2="233.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="LED1" gate="G$1" pin="A"/>
 <pinref part="R25" gate="G$1" pin="P$2"/>
-<wire x1="25.4" y1="172.72" x2="25.4" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="215.9" x2="121.92" y2="218.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
 <pinref part="LED2" gate="G$1" pin="A"/>
 <pinref part="R27" gate="G$1" pin="P$2"/>
-<wire x1="35.56" y1="172.72" x2="35.56" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="215.9" x2="132.08" y2="218.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
@@ -3646,40 +3647,38 @@ backlight</text>
 <text x="12.7" y="248.92" size="3.81" layer="94">HDMI connector</text>
 <text x="254" y="228.6" size="1.27" layer="91">NOTE: LCD Backlight 9.6V@180mA
 R20 = (12V-9.6V)/180mA = 15 Ohm</text>
-<text x="165.1" y="83.82" size="1.778" layer="91">JP1</text>
-<text x="165.1" y="71.12" size="1.778" layer="91">JP2</text>
+<text x="165.1" y="78.74" size="1.778" layer="91">JP1</text>
+<text x="165.1" y="66.04" size="1.778" layer="91">JP2</text>
 <text x="165.1" y="45.72" size="1.778" layer="91">JP3</text>
-<text x="165.1" y="88.9" size="1.778" layer="91">Jumper</text>
-<text x="203.2" y="88.9" size="1.778" layer="91">Description</text>
+<text x="165.1" y="83.82" size="1.778" layer="91">Jumper</text>
+<text x="203.2" y="83.82" size="1.778" layer="91">Description</text>
 <text x="203.2" y="40.64" size="1.778" layer="91">Enables the RGB Display
 Jumper present: Display disabled
 No jumper:     Display enabled</text>
-<text x="180.34" y="88.9" size="1.778" layer="91">Signal</text>
+<text x="180.34" y="83.82" size="1.778" layer="91">Signal</text>
 <text x="180.34" y="45.72" size="1.778" layer="91">RGB_DISP</text>
-<text x="180.34" y="71.12" size="1.778" layer="91">HDMI_PIXS</text>
-<text x="180.34" y="83.82" size="1.778" layer="91">HDMI_OCK_INV</text>
-<text x="203.2" y="76.2" size="1.778" layer="91">ODCK Polarity
+<text x="180.34" y="66.04" size="1.778" layer="91">HDMI_PIXS</text>
+<text x="180.34" y="78.74" size="1.778" layer="91">HDMI_OCK_INV</text>
+<text x="203.2" y="71.12" size="1.778" layer="91">ODCK Polarity
 Selects ODCK edge on which pixel data and control signals are latched. 
 Jumper present: Latches output data on falling ODCK edge 
 No Jumper:      Latches output data on rising ODCK edge</text>
-<text x="203.2" y="53.34" size="1.778" layer="91">Pixelselect: Selects between one or two pixels per clock output modes. 
-During the 2-pixel/clck mode, both even pixels and odd pixels, are output in 
-tandem on a given clock cycle.
-During the 1-pixel/clock mode, even and odd pixels are output sequentially, on the same time,
-with the even pixel first, on the even pixel bus.
-Jumper present: 1-pixel/clock
-No Jumper:      2-pixel/clock</text>
+<text x="203.2" y="53.34" size="1.778" layer="91">Pixelselect: The DVI RX output is
+configurable with pin "PIXS".  When PIXS is Low, RGB data is output on 24 bits
+ (QE[23:0]).  When PIXS is High, RGB data is split odd/even on 48-bits.
+Jumper present: 24 BIT
+No Jumper:      48 Bit</text>
 <text x="165.1" y="33.02" size="1.778" layer="91">JP3</text>
 <text x="180.34" y="33.02" size="1.778" layer="91">RGB_PWM_EN</text>
 <text x="203.2" y="25.4" size="1.778" layer="91">Selects the backlight mode for the RGB display:
 JP 1-2: Backlight turned on permanentely
 JP 2-3: Backlight controlled via PWM
 </text>
-<text x="347.98" y="88.9" size="1.778" layer="91">Default</text>
+<text x="347.98" y="83.82" size="1.778" layer="91">Default</text>
 <text x="347.98" y="45.72" size="1.778" layer="91">No Jumper</text>
 <text x="347.98" y="33.02" size="1.778" layer="91">JP 2-3</text>
-<text x="347.98" y="68.58" size="1.778" layer="91">Jumper present</text>
-<text x="347.98" y="81.28" size="1.778" layer="91">Jumper present</text>
+<text x="347.98" y="63.5" size="1.778" layer="91">Jumper present</text>
+<text x="347.98" y="76.2" size="1.778" layer="91">Jumper present</text>
 <text x="106.68" y="248.92" size="3.81" layer="94">HDMI to RGB bridge</text>
 <text x="208.28" y="248.92" size="3.81" layer="94">RGB Display connector</text>
 </plain>
@@ -4790,28 +4789,28 @@ JP 2-3: Backlight controlled via PWM
 </net>
 <net name="N$60" class="0">
 <segment>
-<wire x1="177.8" y1="86.36" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="81.28" x2="345.44" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="38.1" x2="200.66" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="200.66" y1="38.1" x2="177.8" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="38.1" x2="162.56" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="38.1" x2="162.56" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="50.8" x2="162.56" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="73.66" x2="162.56" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="73.66" x2="345.44" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="50.8" x2="162.56" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="68.58" x2="162.56" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="68.58" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="50.8" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="86.36" x2="177.8" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="91.44" x2="162.56" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="91.44" x2="162.56" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="86.36" x2="177.8" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="86.36" x2="177.8" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="91.44" x2="200.66" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="91.44" x2="345.44" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="91.44" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="91.44" x2="200.66" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="91.44" x2="378.46" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="91.44" x2="378.46" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="86.36" x2="378.46" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="73.66" x2="378.46" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="81.28" x2="177.8" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="86.36" x2="162.56" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="86.36" x2="162.56" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="81.28" x2="177.8" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="81.28" x2="177.8" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="86.36" x2="200.66" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="86.36" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="86.36" x2="345.44" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="86.36" x2="200.66" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="86.36" x2="378.46" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="86.36" x2="378.46" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="81.28" x2="378.46" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="68.58" x2="378.46" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="50.8" x2="378.46" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="38.1" x2="378.46" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="38.1" x2="345.44" y2="25.4" width="0.1524" layer="91"/>
@@ -4819,13 +4818,13 @@ JP 2-3: Backlight controlled via PWM
 <wire x1="200.66" y1="25.4" x2="177.8" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="25.4" x2="162.56" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="25.4" x2="162.56" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="73.66" x2="177.8" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="78.74" x2="200.66" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="68.58" x2="177.8" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="73.66" x2="200.66" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="25.4" x2="345.44" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="86.36" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="86.36" x2="345.44" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="73.66" x2="345.44" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="73.66" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="81.28" x2="345.44" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="81.28" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="68.58" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="68.58" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="50.8" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="50.8" x2="345.44" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="38.1" x2="378.46" y2="38.1" width="0.1524" layer="91"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.6.0">
+<eagle version="6.3">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -3122,7 +3122,7 @@ Symbol fuer +5V_USB
 <part name="U$18" library="SchlegelAr_Master" deviceset="+12V" device=""/>
 <part name="U$20" library="SchlegelAr_Master" deviceset="+5V_USB" device=""/>
 <part name="U$21" library="SchlegelAr_Master" deviceset="+5V" device=""/>
-<part name="R13" library="SchlegelAr_Master" deviceset="R" device="0402" value="0R"/>
+<part name="R13" library="SchlegelAr_Master" deviceset="R" device="0402" value="10k"/>
 <part name="C3" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>
 <part name="C25" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>
 <part name="C26" library="SchlegelAr_Master" deviceset="C_SMD" device="0402" value="100n"/>
@@ -3646,38 +3646,40 @@ backlight</text>
 <text x="12.7" y="248.92" size="3.81" layer="94">HDMI connector</text>
 <text x="254" y="228.6" size="1.27" layer="91">NOTE: LCD Backlight 9.6V@180mA
 R20 = (12V-9.6V)/180mA = 15 Ohm</text>
-<text x="165.1" y="78.74" size="1.778" layer="91">JP1</text>
-<text x="165.1" y="66.04" size="1.778" layer="91">JP2</text>
+<text x="165.1" y="83.82" size="1.778" layer="91">JP1</text>
+<text x="165.1" y="71.12" size="1.778" layer="91">JP2</text>
 <text x="165.1" y="45.72" size="1.778" layer="91">JP3</text>
-<text x="165.1" y="83.82" size="1.778" layer="91">Jumper</text>
-<text x="203.2" y="83.82" size="1.778" layer="91">Description</text>
+<text x="165.1" y="88.9" size="1.778" layer="91">Jumper</text>
+<text x="203.2" y="88.9" size="1.778" layer="91">Description</text>
 <text x="203.2" y="40.64" size="1.778" layer="91">Enables the RGB Display
 Jumper present: Display disabled
 No jumper:     Display enabled</text>
-<text x="180.34" y="83.82" size="1.778" layer="91">Signal</text>
+<text x="180.34" y="88.9" size="1.778" layer="91">Signal</text>
 <text x="180.34" y="45.72" size="1.778" layer="91">RGB_DISP</text>
-<text x="180.34" y="66.04" size="1.778" layer="91">HDMI_PIXS</text>
-<text x="180.34" y="78.74" size="1.778" layer="91">HDMI_OCK_INV</text>
-<text x="203.2" y="71.12" size="1.778" layer="91">ODCK Polarity
+<text x="180.34" y="71.12" size="1.778" layer="91">HDMI_PIXS</text>
+<text x="180.34" y="83.82" size="1.778" layer="91">HDMI_OCK_INV</text>
+<text x="203.2" y="76.2" size="1.778" layer="91">ODCK Polarity
 Selects ODCK edge on which pixel data and control signals are latched. 
 Jumper present: Latches output data on falling ODCK edge 
 No Jumper:      Latches output data on rising ODCK edge</text>
-<text x="203.2" y="53.34" size="1.778" layer="91">Pixelselect: The DVI RX output is
-configurable with pin "PIXS".  When PIXS is Low, RGB data is output on 24 bits
- (QE[23:0]).  When PIXS is High, RGB data is split odd/even on 48-bits.
-Jumper present: 24 BIT
-No Jumper:      48 Bit</text>
+<text x="203.2" y="53.34" size="1.778" layer="91">Pixelselect: Selects between one or two pixels per clock output modes. 
+During the 2-pixel/clck mode, both even pixels and odd pixels, are output in 
+tandem on a given clock cycle.
+During the 1-pixel/clock mode, even and odd pixels are output sequentially, on the same time,
+with the even pixel first, on the even pixel bus.
+Jumper present: 1-pixel/clock
+No Jumper:      2-pixel/clock</text>
 <text x="165.1" y="33.02" size="1.778" layer="91">JP3</text>
 <text x="180.34" y="33.02" size="1.778" layer="91">RGB_PWM_EN</text>
 <text x="203.2" y="25.4" size="1.778" layer="91">Selects the backlight mode for the RGB display:
 JP 1-2: Backlight turned on permanentely
 JP 2-3: Backlight controlled via PWM
 </text>
-<text x="347.98" y="83.82" size="1.778" layer="91">Default</text>
+<text x="347.98" y="88.9" size="1.778" layer="91">Default</text>
 <text x="347.98" y="45.72" size="1.778" layer="91">No Jumper</text>
 <text x="347.98" y="33.02" size="1.778" layer="91">JP 2-3</text>
-<text x="347.98" y="63.5" size="1.778" layer="91">Jumper present</text>
-<text x="347.98" y="76.2" size="1.778" layer="91">Jumper present</text>
+<text x="347.98" y="68.58" size="1.778" layer="91">Jumper present</text>
+<text x="347.98" y="81.28" size="1.778" layer="91">Jumper present</text>
 <text x="106.68" y="248.92" size="3.81" layer="94">HDMI to RGB bridge</text>
 <text x="208.28" y="248.92" size="3.81" layer="94">RGB Display connector</text>
 </plain>
@@ -4788,28 +4790,28 @@ JP 2-3: Backlight controlled via PWM
 </net>
 <net name="N$60" class="0">
 <segment>
-<wire x1="177.8" y1="81.28" x2="345.44" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="86.36" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="38.1" x2="200.66" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="200.66" y1="38.1" x2="177.8" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="38.1" x2="162.56" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="38.1" x2="162.56" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="50.8" x2="162.56" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="68.58" x2="162.56" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="68.58" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="50.8" x2="162.56" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="73.66" x2="162.56" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="73.66" x2="345.44" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="50.8" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="81.28" x2="177.8" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="86.36" x2="162.56" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="86.36" x2="162.56" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="162.56" y1="81.28" x2="177.8" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="81.28" x2="177.8" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="86.36" x2="200.66" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="86.36" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="86.36" x2="345.44" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="86.36" x2="200.66" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="86.36" x2="378.46" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="86.36" x2="378.46" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="81.28" x2="378.46" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="68.58" x2="378.46" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="86.36" x2="177.8" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="91.44" x2="162.56" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="91.44" x2="162.56" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="86.36" x2="177.8" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="86.36" x2="177.8" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="91.44" x2="200.66" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="91.44" x2="345.44" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="91.44" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="91.44" x2="200.66" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="91.44" x2="378.46" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="91.44" x2="378.46" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="86.36" x2="378.46" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="73.66" x2="378.46" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="50.8" x2="378.46" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="38.1" x2="378.46" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="38.1" x2="345.44" y2="25.4" width="0.1524" layer="91"/>
@@ -4817,13 +4819,13 @@ JP 2-3: Backlight controlled via PWM
 <wire x1="200.66" y1="25.4" x2="177.8" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="25.4" x2="162.56" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="25.4" x2="162.56" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="68.58" x2="177.8" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="73.66" x2="200.66" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="73.66" x2="177.8" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="78.74" x2="200.66" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="25.4" x2="345.44" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="81.28" x2="345.44" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="81.28" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="68.58" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="68.58" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="86.36" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="86.36" x2="345.44" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="73.66" x2="345.44" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="73.66" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="50.8" x2="345.44" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="50.8" x2="345.44" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="38.1" x2="378.46" y2="38.1" width="0.1524" layer="91"/>
@@ -4980,7 +4982,7 @@ JP 2-3: LVDS Display</text>
 <instances>
 <instance part="U$4" gate="G$1" x="0" y="0"/>
 <instance part="IC4" gate="G$1" x="307.34" y="213.36"/>
-<instance part="CON4" gate="G$1" x="43.18" y="210.82"/>
+<instance part="CON4" gate="G$1" x="40.64" y="210.82"/>
 <instance part="CON5" gate="G$1" x="43.18" y="134.62"/>
 <instance part="Q1" gate="G$1" x="160.02" y="205.74" rot="R270"/>
 <instance part="C7" gate="G$1" x="149.86" y="200.66"/>
@@ -5004,7 +5006,7 @@ JP 2-3: LVDS Display</text>
 <instance part="IC6" gate="G$1" x="218.44" y="190.5"/>
 <instance part="U$52" gate="G$1" x="160.02" y="165.1"/>
 <instance part="IC7" gate="G$1" x="111.76" y="200.66"/>
-<instance part="GND7" gate="1" x="78.74" y="195.58" rot="R270"/>
+<instance part="GND7" gate="1" x="81.28" y="195.58" rot="R270"/>
 <instance part="GND8" gate="1" x="129.54" y="170.18"/>
 <instance part="C11" gate="G$1" x="91.44" y="195.58" rot="R180"/>
 <instance part="GND1" gate="1" x="96.52" y="170.18"/>
@@ -5018,8 +5020,8 @@ JP 2-3: LVDS Display</text>
 <instance part="U$47" gate="G$1" x="167.64" y="149.86"/>
 <instance part="C24" gate="G$1" x="175.26" y="157.48" rot="R270"/>
 <instance part="U$83" gate="G$1" x="175.26" y="149.86"/>
-<instance part="R22" gate="G$1" x="78.74" y="185.42"/>
-<instance part="R23" gate="G$1" x="83.82" y="190.5"/>
+<instance part="R22" gate="G$1" x="76.2" y="190.5"/>
+<instance part="R23" gate="G$1" x="86.36" y="187.96"/>
 <instance part="R28" gate="G$1" x="167.64" y="228.6" rot="R90"/>
 <instance part="R29" gate="G$1" x="175.26" y="228.6" rot="R90"/>
 <instance part="U$82" gate="G$1" x="175.26" y="246.38"/>
@@ -5044,22 +5046,22 @@ JP 2-3: LVDS Display</text>
 <segment>
 <pinref part="CON4" gate="G$1" pin="GND@4"/>
 <pinref part="U$28" gate="G$1" pin="GND"/>
-<wire x1="33.02" y1="200.66" x2="27.94" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="200.66" x2="27.94" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="200.66" x2="27.94" y2="198.12" width="0.1524" layer="91"/>
 <pinref part="CON4" gate="G$1" pin="GND@3"/>
-<wire x1="33.02" y1="203.2" x2="27.94" y2="203.2" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="203.2" x2="27.94" y2="203.2" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="203.2" x2="27.94" y2="200.66" width="0.1524" layer="91"/>
 <junction x="27.94" y="200.66"/>
 <pinref part="CON4" gate="G$1" pin="GND@2"/>
-<wire x1="33.02" y1="205.74" x2="27.94" y2="205.74" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="205.74" x2="27.94" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="205.74" x2="27.94" y2="203.2" width="0.1524" layer="91"/>
 <junction x="27.94" y="203.2"/>
 <pinref part="CON4" gate="G$1" pin="GND@1"/>
-<wire x1="33.02" y1="208.28" x2="27.94" y2="208.28" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="208.28" x2="27.94" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="208.28" x2="27.94" y2="205.74" width="0.1524" layer="91"/>
 <junction x="27.94" y="205.74"/>
 <pinref part="CON4" gate="G$1" pin="GND@5"/>
-<wire x1="33.02" y1="213.36" x2="27.94" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="213.36" x2="27.94" y2="213.36" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="213.36" x2="27.94" y2="208.28" width="0.1524" layer="91"/>
 <junction x="27.94" y="208.28"/>
 </segment>
@@ -5139,7 +5141,7 @@ JP 2-3: LVDS Display</text>
 <junction x="294.64" y="205.74"/>
 </segment>
 <segment>
-<wire x1="81.28" y1="195.58" x2="86.36" y2="195.58" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="195.58" x2="86.36" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="GND7" gate="1" pin="GND"/>
 <pinref part="C11" gate="G$1" pin="P$2"/>
 </segment>
@@ -5255,25 +5257,25 @@ JP 2-3: LVDS Display</text>
 </net>
 <net name="USB_D-" class="0">
 <segment>
-<label x="25.4" y="220.98" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="33.02" y1="220.98" x2="25.4" y2="220.98" width="0.1524" layer="91"/>
 <pinref part="CON4" gate="G$1" pin="D-"/>
+<wire x1="30.48" y1="220.98" x2="27.94" y2="220.98" width="0.1524" layer="91"/>
+<label x="27.94" y="220.98" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="71.12" y="185.42" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="73.66" y1="185.42" x2="71.12" y2="185.42" width="0.1524" layer="91"/>
+<label x="68.58" y="190.5" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="71.12" y1="190.5" x2="68.58" y2="190.5" width="0.1524" layer="91"/>
 <pinref part="R22" gate="G$1" pin="P$1"/>
 </segment>
 </net>
 <net name="USB_D+" class="0">
 <segment>
-<label x="25.4" y="218.44" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="33.02" y1="218.44" x2="25.4" y2="218.44" width="0.1524" layer="91"/>
 <pinref part="CON4" gate="G$1" pin="D+"/>
+<wire x1="30.48" y1="218.44" x2="27.94" y2="218.44" width="0.1524" layer="91"/>
+<label x="27.94" y="218.44" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="71.12" y="190.5" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="78.74" y1="190.5" x2="71.12" y2="190.5" width="0.1524" layer="91"/>
+<label x="68.58" y="187.96" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="81.28" y1="187.96" x2="68.58" y2="187.96" width="0.1524" layer="91"/>
 <pinref part="R23" gate="G$1" pin="P$1"/>
 </segment>
 </net>
@@ -5548,15 +5550,15 @@ JP 2-3: LVDS Display</text>
 <net name="N$5" class="0">
 <segment>
 <pinref part="R22" gate="G$1" pin="P$2"/>
-<wire x1="83.82" y1="185.42" x2="91.44" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="185.42" x2="91.44" y2="187.96" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="187.96" x2="99.06" y2="187.96" width="0.1524" layer="91"/>
+<pinref part="IC7" gate="G$1" pin="USBDP"/>
+<wire x1="81.28" y1="190.5" x2="99.06" y2="190.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
+<pinref part="IC7" gate="G$1" pin="USBDM"/>
 <pinref part="R23" gate="G$1" pin="P$2"/>
-<wire x1="99.06" y1="190.5" x2="88.9" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="187.96" x2="91.44" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+5V_USB" class="0">
@@ -5580,7 +5582,7 @@ JP 2-3: LVDS Display</text>
 </segment>
 <segment>
 <pinref part="CON4" gate="G$1" pin="VBUS"/>
-<wire x1="33.02" y1="223.52" x2="27.94" y2="223.52" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="223.52" x2="27.94" y2="223.52" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="223.52" x2="27.94" y2="233.68" width="0.1524" layer="91"/>
 <pinref part="U$11" gate="G$1" pin="+5V_USB"/>
 </segment>
