@@ -19,6 +19,12 @@
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Teil B: Hardware-Architektur\relax }}{52}{figure.caption.709}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces HDMI RGB/LVDS Board\relax }}{54}{figure.caption.717}
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Teil B: HDMI Leitungen\relax }}{55}{figure.caption.722}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces RGB Bridge: Schaltplan\relax }}{56}{figure.caption.727}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces RGB Bridge: Messergebnis des Leitungstiefpass\relax }}{58}{figure.caption.730}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces RGB Bridge: Layout, gedreht um 90$^{\circ }$\relax }}{58}{figure.caption.731}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Teil B: LVDS Paketformate\relax }}{59}{figure.caption.733}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces LVDS Bridge: Schaltplan\relax }}{59}{figure.caption.734}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces LVDS Bridge: Layout\relax }}{60}{figure.caption.736}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

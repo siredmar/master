@@ -16,47 +16,44 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Bibliographie.bib
-Warning--I didn't find a database entry for "TI2013"
-Warning--I didn't find a database entry for ""
-You've used 23 entries,
+You've used 26 entries,
             4728 wiz_defined-function locations,
-            1020 strings with 10448 characters,
-and the built_in function-call counts, 11135 in all, are:
-= -- 1158
-> -- 230
-< -- 235
-+ -- 288
-- -- 73
-* -- 669
-:= -- 1928
-add.period$ -- 45
-call.type$ -- 23
-change.case$ -- 92
-chr.to.int$ -- 19
-cite$ -- 23
-duplicate$ -- 367
-empty$ -- 848
-format.name$ -- 138
-if$ -- 2327
+            1035 strings with 10875 characters,
+and the built_in function-call counts, 12495 in all, are:
+= -- 1297
+> -- 260
+< -- 254
++ -- 313
+- -- 82
+* -- 753
+:= -- 2166
+add.period$ -- 51
+call.type$ -- 26
+change.case$ -- 104
+chr.to.int$ -- 22
+cite$ -- 26
+duplicate$ -- 415
+empty$ -- 959
+format.name$ -- 156
+if$ -- 2619
 int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 138
-newline$ -- 152
-num.names$ -- 92
-pop$ -- 141
+missing$ -- 156
+newline$ -- 170
+num.names$ -- 104
+pop$ -- 159
 preamble$ -- 1
-purify$ -- 138
+purify$ -- 156
 quote$ -- 0
-skip$ -- 661
+skip$ -- 737
 stack$ -- 0
-substring$ -- 499
-swap$ -- 75
-text.length$ -- 23
+substring$ -- 551
+swap$ -- 84
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 299
+type$ -- 338
 warning$ -- 0
-while$ -- 92
+while$ -- 104
 width$ -- 0
-write$ -- 355
-(There were 2 warnings)
+write$ -- 400
