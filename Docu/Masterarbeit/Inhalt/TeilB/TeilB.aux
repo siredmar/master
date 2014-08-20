@@ -9,40 +9,57 @@
 \citation{}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Konzept}{52}{section.708}}
 \newlabel{sec:TeilB_Konzept}{{4.1}{52}{Konzept}{section.708}{}}
-\@writefile{brf}{\backcite{TI2013}{{52}{4.1}{section.708}}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Teil B: Hardware-Architektur\relax }}{52}{figure.caption.709}}
 \newlabel{fig:teilb_architektur}{{4.1}{52}{Teil B: Hardware-Architektur\relax }{figure.caption.709}{}}
 \@writefile{tdo}{\contentsline {todo}{gute EDID quelle suchen!}{53}{section*.712}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{53}{section.714}}
-\newlabel{sec:TeilB_Hardware}{{4.2}{53}{Hardwareentwicklung}{section.714}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Spannungsversorgung}{53}{subsection.715}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}HDMI-RGB-Bridge}{53}{subsection.716}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}RGB-LVDS-Bridge}{53}{subsection.717}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{53}{subsection.718}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Software}{53}{section.719}}
-\newlabel{sec:TeilB_Software}{{4.3}{53}{Software}{section.719}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{53}{subsection.720}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{53}{subsubsection.721}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{53}{subsubsection.722}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{53}{paragraph.723}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{54}{paragraph.724}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{54}{subsubsection.725}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{54}{subsection.726}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{54}{subsubsection.727}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{54}{subsubsection.728}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{54}{subsubsection.729}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Known Bugs}{54}{section.730}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Hardware}{54}{subsection.731}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{54}{subsubsection.732}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{54}{subsubsection.733}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{54}{subsubsection.734}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{54}{subsubsection.735}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{54}{subsubsection.736}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Software}{54}{subsection.737}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{54}{subsubsection.738}}
+\@writefile{tdo}{\contentsline {todo}{Referenz auf PC Software}{53}{section*.714}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{54}{section.715}}
+\newlabel{sec:TeilB_Hardware}{{4.2}{54}{Hardwareentwicklung}{section.715}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Teil B: Farblich gekennzeichnete Bereiche auf der Platine\relax }}{54}{table.caption.716}}
+\newlabel{tab:pcb_areas}{{4.1}{54}{Teil B: Farblich gekennzeichnete Bereiche auf der Platine\relax }{table.caption.716}{}}
+\newlabel{fig:teilb_pcb_top}{{4.2a}{54}{Top Layer\relax }{figure.caption.717}{}}
+\newlabel{sub@fig:teilb_pcb_top}{{a}{54}{Top Layer\relax }{figure.caption.717}{}}
+\newlabel{fig:teilb_pcb_bot}{{4.2b}{54}{Bottom Layer\relax }{figure.caption.717}{}}
+\newlabel{sub@fig:teilb_pcb_bot}{{b}{54}{Bottom Layer\relax }{figure.caption.717}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces HDMI RGB/LVDS Board\relax }}{54}{figure.caption.717}}
+\newlabel{fig:teilb_pcb}{{4.2}{54}{HDMI RGB/LVDS Board\relax }{figure.caption.717}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}HDMI-Eingang}{54}{subsection.718}}
+\newlabel{equ:z_0}{{4.1}{54}{HDMI-Eingang}{equation.719}{}}
+\citation{TI2007}
+\newlabel{equ:z_diff}{{4.2}{55}{HDMI-Eingang}{equation.720}{}}
+\@writefile{brf}{\backcite{TI2007}{{55}{4.2.1}{equation.720}}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Teil B: Parameter bez\IeC {\"u}glich Impedanz der HDMI-Leitungen\relax }}{55}{table.caption.721}}
+\newlabel{tab:z_parameter}{{4.2}{55}{Teil B: Parameter bezüglich Impedanz der HDMI-Leitungen\relax }{table.caption.721}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Teil B: HDMI Leitungen\relax }}{55}{figure.caption.722}}
+\newlabel{fig:hdmi_leitungen}{{4.3}{55}{Teil B: HDMI Leitungen\relax }{figure.caption.722}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}RGB-Bridge}{56}{subsection.723}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}LVDS-Bridge}{56}{subsection.724}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{56}{subsection.725}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.5}Spannungsversorgung}{56}{subsection.726}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Software}{56}{section.727}}
+\newlabel{sec:TeilB_Software}{{4.3}{56}{Software}{section.727}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}EDID-Daten auf embedded Seite}{56}{subsection.728}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.1}Konzept}{56}{subsubsection.729}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.2}Low-Level-Treiber}{56}{subsubsection.730}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.3.1.2.1}UART-Treiber}{56}{paragraph.731}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.3.1.2.2}I2C-Treiber}{56}{paragraph.732}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1.3}Programmablauf}{57}{subsubsection.733}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf PC Seite}{57}{subsection.734}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.1}Konzept}{57}{subsubsection.735}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.2}GTK GUI mit Glade}{57}{subsubsection.736}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.3}Programmablauf}{57}{subsubsection.737}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Known Bugs}{57}{section.738}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Hardware}{57}{subsection.739}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{57}{subsubsection.740}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{57}{subsubsection.741}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{57}{subsubsection.742}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{57}{subsubsection.743}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{57}{subsubsection.744}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Software}{57}{subsection.745}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{57}{subsubsection.746}}
 \@setckpt{Inhalt/TeilB/TeilB}{
-\setcounter{page}{55}
-\setcounter{equation}{0}
+\setcounter{page}{58}
+\setcounter{equation}{2}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -56,18 +73,18 @@
 \setcounter{subsubsection}{1}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{1}
-\setcounter{table}{0}
+\setcounter{figure}{3}
+\setcounter{table}{2}
 \setcounter{parentequation}{0}
 \setcounter{OptionTest}{0}
 \setcounter{lstnumber}{1}
 \setcounter{NAT@ctr}{0}
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{56}
-\setcounter{bookmark@seq@number}{69}
+\setcounter{bookmark@seq@number}{70}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
-\setcounter{@todonotes@numberoftodonotes}{6}
+\setcounter{@todonotes@numberoftodonotes}{7}
 \setcounter{ContinuedFloat}{0}
 \setcounter{subfigure}{0}
 \setcounter{subtable}{0}
