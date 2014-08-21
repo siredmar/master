@@ -18,17 +18,22 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Teil B: Hardware-Architektur\relax }}{52}{figure.caption.709}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces HDMI RGB/LVDS Board\relax }}{54}{figure.caption.717}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Teil B: HDMI Leitungen\relax }}{55}{figure.caption.722}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces RGB Bridge: Schaltplan\relax }}{56}{figure.caption.727}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces RGB Bridge: Messergebnis des Leitungstiefpass\relax }}{58}{figure.caption.730}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces RGB Bridge: Layout, gedreht um 90$^{\circ }$\relax }}{58}{figure.caption.731}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Teil B: LVDS Paketformate\relax }}{59}{figure.caption.733}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces LVDS Bridge: Schaltplan\relax }}{59}{figure.caption.734}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces LVDS Bridge: Layout\relax }}{60}{figure.caption.736}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces EDID: Blockschaltbild\relax }}{61}{figure.caption.738}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces EDID: USB-Bridge Schaltplan\relax }}{62}{figure.caption.740}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces EDID: AVR Schaltplan\relax }}{63}{figure.caption.741}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces EDID Baugruppe\relax }}{64}{figure.caption.742}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Teil B: Lagenaufbau\relax }}{54}{figure.caption.718}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Teil B: HDMI Leitungen\relax }}{56}{figure.caption.723}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces RGB Bridge: Schaltplan\relax }}{57}{figure.caption.728}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces RGB Bridge: Simulationsergebnis des Leitungstiefpass\relax }}{58}{figure.caption.731}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces RGB Bridge: Layout, gedreht um 90$^{\circ }$\relax }}{59}{figure.caption.732}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Teil B: LVDS Paketformate\relax }}{59}{figure.caption.734}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces LVDS Bridge: Schaltplan\relax }}{60}{figure.caption.735}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces LVDS Bridge: Layout\relax }}{61}{figure.caption.737}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces EDID: Blockschaltbild\relax }}{62}{figure.caption.739}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces EDID: USB-Bridge Schaltplan\relax }}{63}{figure.caption.741}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces EDID: AVR Schaltplan\relax }}{64}{figure.caption.742}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces EDID Baugruppe\relax }}{65}{figure.caption.743}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Teil B: Spannungsversorgung\relax }}{65}{figure.caption.745}
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Verpolschutz und Versorgungsspannung +3.3\tmspace +\thinmuskip {.1667em}V\relax }}{66}{figure.caption.747}
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Simulation des Verpolschutz\relax }}{66}{figure.caption.748}
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Teil B: Innenlagen\relax }}{68}{figure.caption.751}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

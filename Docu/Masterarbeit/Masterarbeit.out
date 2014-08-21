@@ -43,32 +43,32 @@
 \BOOKMARK [0][]{chapter.707}{Teil B}{}% 43
 \BOOKMARK [1][]{section.708}{Konzept}{chapter.707}% 44
 \BOOKMARK [1][]{section.715}{Hardwareentwicklung}{chapter.707}% 45
-\BOOKMARK [2][]{subsection.718}{HDMI-Eingang}{section.715}% 46
-\BOOKMARK [2][]{subsection.726}{RGB-Bridge}{section.715}% 47
-\BOOKMARK [2][]{subsection.732}{LVDS-Bridge}{section.715}% 48
-\BOOKMARK [2][]{subsection.737}{EDID-Daten}{section.715}% 49
-\BOOKMARK [2][]{subsection.743}{Spannungsversorgung}{section.715}% 50
-\BOOKMARK [1][]{section.744}{Software}{chapter.707}% 51
-\BOOKMARK [2][]{subsection.745}{EDID-Daten auf embedded Seite}{section.744}% 52
-\BOOKMARK [3][]{subsubsection.746}{Konzept}{subsection.745}% 53
-\BOOKMARK [3][]{subsubsection.747}{Low-Level-Treiber}{subsection.745}% 54
-\BOOKMARK [4][]{paragraph.748}{UART-Treiber}{subsubsection.747}% 55
-\BOOKMARK [4][]{paragraph.749}{I2C-Treiber}{subsubsection.747}% 56
-\BOOKMARK [3][]{subsubsection.750}{Programmablauf}{subsection.745}% 57
-\BOOKMARK [2][]{subsection.751}{EDID-Daten auf PC Seite}{section.744}% 58
-\BOOKMARK [3][]{subsubsection.752}{Konzept}{subsection.751}% 59
-\BOOKMARK [3][]{subsubsection.753}{GTK GUI mit Glade}{subsection.751}% 60
-\BOOKMARK [3][]{subsubsection.754}{Programmablauf}{subsection.751}% 61
-\BOOKMARK [1][]{section.755}{Known Bugs}{chapter.707}% 62
-\BOOKMARK [2][]{subsection.756}{Hardware}{section.755}% 63
-\BOOKMARK [3][]{subsubsection.757}{HDMI-Stecker gekreuzt, CON2}{subsection.756}% 64
-\BOOKMARK [3][]{subsubsection.758}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.756}% 65
-\BOOKMARK [3][]{subsubsection.759}{+12V PWM Hintergrundbeleuchtung}{subsection.756}% 66
-\BOOKMARK [3][]{subsubsection.760}{+5V Kreis / Widerstand R13}{subsection.756}% 67
-\BOOKMARK [3][]{subsubsection.761}{USB D+/D- vertauscht R22, R23}{subsection.756}% 68
-\BOOKMARK [2][]{subsection.762}{Software}{section.755}% 69
-\BOOKMARK [3][]{subsubsection.763}{EDID Programmer}{subsection.762}% 70
-\BOOKMARK [0][]{chapter.764}{Zusammenfassung}{}% 71
-\BOOKMARK [0][]{chapter*.765}{Literaturverzeichnis}{}% 72
-\BOOKMARK [0][]{chapter*.766}{Eidesstattliche Erkl\344rung}{}% 73
-\BOOKMARK [0][]{appendix.767}{Anhang}{}% 74
+\BOOKMARK [2][]{subsection.719}{HDMI-Eingang}{section.715}% 46
+\BOOKMARK [2][]{subsection.727}{RGB-Bridge}{section.715}% 47
+\BOOKMARK [2][]{subsection.733}{LVDS-Bridge}{section.715}% 48
+\BOOKMARK [2][]{subsection.738}{EDID-Daten}{section.715}% 49
+\BOOKMARK [2][]{subsection.744}{Spannungsversorgung}{section.715}% 50
+\BOOKMARK [1][]{section.752}{Software}{chapter.707}% 51
+\BOOKMARK [2][]{subsection.753}{EDID-Daten auf embedded Seite}{section.752}% 52
+\BOOKMARK [3][]{subsubsection.754}{Konzept}{subsection.753}% 53
+\BOOKMARK [3][]{subsubsection.755}{Low-Level-Treiber}{subsection.753}% 54
+\BOOKMARK [4][]{paragraph.756}{UART-Treiber}{subsubsection.755}% 55
+\BOOKMARK [4][]{paragraph.757}{I2C-Treiber}{subsubsection.755}% 56
+\BOOKMARK [3][]{subsubsection.758}{Programmablauf}{subsection.753}% 57
+\BOOKMARK [2][]{subsection.759}{EDID-Daten auf PC Seite}{section.752}% 58
+\BOOKMARK [3][]{subsubsection.760}{Konzept}{subsection.759}% 59
+\BOOKMARK [3][]{subsubsection.761}{GTK GUI mit Glade}{subsection.759}% 60
+\BOOKMARK [3][]{subsubsection.762}{Programmablauf}{subsection.759}% 61
+\BOOKMARK [1][]{section.763}{Known Bugs}{chapter.707}% 62
+\BOOKMARK [2][]{subsection.764}{Hardware}{section.763}% 63
+\BOOKMARK [3][]{subsubsection.765}{HDMI-Stecker gekreuzt, CON2}{subsection.764}% 64
+\BOOKMARK [3][]{subsubsection.766}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.764}% 65
+\BOOKMARK [3][]{subsubsection.767}{+12V PWM Hintergrundbeleuchtung}{subsection.764}% 66
+\BOOKMARK [3][]{subsubsection.768}{+5V Kreis / Widerstand R13}{subsection.764}% 67
+\BOOKMARK [3][]{subsubsection.769}{USB D+/D- vertauscht R22, R23}{subsection.764}% 68
+\BOOKMARK [2][]{subsection.770}{Software}{section.763}% 69
+\BOOKMARK [3][]{subsubsection.771}{EDID Programmer}{subsection.770}% 70
+\BOOKMARK [0][]{chapter.772}{Zusammenfassung}{}% 71
+\BOOKMARK [0][]{chapter*.773}{Literaturverzeichnis}{}% 72
+\BOOKMARK [0][]{chapter*.774}{Eidesstattliche Erkl\344rung}{}% 73
+\BOOKMARK [0][]{appendix.775}{Anhang}{}% 74
