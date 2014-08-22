@@ -49,26 +49,22 @@
 \BOOKMARK [2][]{subsection.738}{EDID-Daten}{section.715}% 49
 \BOOKMARK [2][]{subsection.744}{Spannungsversorgung}{section.715}% 50
 \BOOKMARK [1][]{section.752}{Software}{chapter.707}% 51
-\BOOKMARK [2][]{subsection.753}{EDID-Daten auf embedded Seite}{section.752}% 52
-\BOOKMARK [3][]{subsubsection.754}{Konzept}{subsection.753}% 53
-\BOOKMARK [3][]{subsubsection.755}{Low-Level-Treiber}{subsection.753}% 54
-\BOOKMARK [4][]{paragraph.756}{UART-Treiber}{subsubsection.755}% 55
-\BOOKMARK [4][]{paragraph.757}{I2C-Treiber}{subsubsection.755}% 56
-\BOOKMARK [3][]{subsubsection.758}{Programmablauf}{subsection.753}% 57
-\BOOKMARK [2][]{subsection.759}{EDID-Daten auf PC Seite}{section.752}% 58
-\BOOKMARK [3][]{subsubsection.760}{Konzept}{subsection.759}% 59
-\BOOKMARK [3][]{subsubsection.761}{GTK GUI mit Glade}{subsection.759}% 60
-\BOOKMARK [3][]{subsubsection.762}{Programmablauf}{subsection.759}% 61
-\BOOKMARK [1][]{section.763}{Known Bugs}{chapter.707}% 62
-\BOOKMARK [2][]{subsection.764}{Hardware}{section.763}% 63
-\BOOKMARK [3][]{subsubsection.765}{HDMI-Stecker gekreuzt, CON2}{subsection.764}% 64
-\BOOKMARK [3][]{subsubsection.766}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.764}% 65
-\BOOKMARK [3][]{subsubsection.767}{+12V PWM Hintergrundbeleuchtung}{subsection.764}% 66
-\BOOKMARK [3][]{subsubsection.768}{+5V Kreis / Widerstand R13}{subsection.764}% 67
-\BOOKMARK [3][]{subsubsection.769}{USB D+/D- vertauscht R22, R23}{subsection.764}% 68
-\BOOKMARK [2][]{subsection.770}{Software}{section.763}% 69
-\BOOKMARK [3][]{subsubsection.771}{EDID Programmer}{subsection.770}% 70
-\BOOKMARK [0][]{chapter.772}{Zusammenfassung}{}% 71
-\BOOKMARK [0][]{chapter*.773}{Literaturverzeichnis}{}% 72
-\BOOKMARK [0][]{chapter*.774}{Eidesstattliche Erkl\344rung}{}% 73
-\BOOKMARK [0][]{appendix.775}{Anhang}{}% 74
+\BOOKMARK [2][]{subsection.753}{Softwarekonzept}{section.752}% 52
+\BOOKMARK [2][]{subsection.756}{EDID-Daten auf Embedded-Seite}{section.752}% 53
+\BOOKMARK [3][]{subsubsection.757}{Low-Level-Treiber UART}{subsection.756}% 54
+\BOOKMARK [3][]{subsubsection.804}{Low-Level-Treiber EEPROM}{subsection.756}% 55
+\BOOKMARK [2][]{subsection.867}{EDID-Daten auf PC Seite}{section.752}% 56
+\BOOKMARK [3][]{subsubsection.868}{GTK GUI mit Glade}{subsection.867}% 57
+\BOOKMARK [1][]{section.869}{Known Bugs}{chapter.707}% 58
+\BOOKMARK [2][]{subsection.870}{Hardware}{section.869}% 59
+\BOOKMARK [3][]{subsubsection.871}{HDMI-Stecker gekreuzt, CON2}{subsection.870}% 60
+\BOOKMARK [3][]{subsubsection.872}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.870}% 61
+\BOOKMARK [3][]{subsubsection.873}{+12V PWM Hintergrundbeleuchtung}{subsection.870}% 62
+\BOOKMARK [3][]{subsubsection.874}{+5V Kreis / Widerstand R13}{subsection.870}% 63
+\BOOKMARK [3][]{subsubsection.875}{USB D+/D- vertauscht R22, R23}{subsection.870}% 64
+\BOOKMARK [2][]{subsection.876}{Software}{section.869}% 65
+\BOOKMARK [3][]{subsubsection.877}{EDID Programmer}{subsection.876}% 66
+\BOOKMARK [0][]{chapter.878}{Zusammenfassung}{}% 67
+\BOOKMARK [0][]{chapter*.879}{Literaturverzeichnis}{}% 68
+\BOOKMARK [0][]{chapter*.880}{Eidesstattliche Erkl\344rung}{}% 69
+\BOOKMARK [0][]{appendix.881}{Anhang}{}% 70

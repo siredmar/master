@@ -35,13 +35,13 @@ Der MPMC stellt die Möglichkeit zur Verfügung Bausteine wie dynamisches und st
 \end{figure}
 \newpage
 Die Register des MPMC werden so konfiguriert, dass die Schnittstelle kompatibel zum Display und dessen Timings wird. Entsprechend dem verwendeten Chip-Select-Signal werden die Register \begin{itemize}
-\item MPMCStaticConfig0
-\item  MPMCStaticWaitWen0
-\item  MPMCStaticWaitOen0
-\item  MPMCStaticRd0
-\item  MPMCStaticPage0
-\item  MPMCStaticWr0
-\item MPMCStaticWaitTurn0 
+\item \code{MPMCStaticConfig0}
+\item \code{MPMCStaticWaitWen0}
+\item  \code{MPMCStaticWaitOen0}
+\item  \code{MPMCStaticRd0}
+\item  \code{MPMCStaticPage0}
+\item  \code{MPMCStaticWr0}
+\item \code{MPMCStaticWaitTurn0}
 \end{itemize} konfiguriert. Die Basisadresse des MPMC ist 0x1700 8000. Wie die Register zu beschreiben sind, geht aus \cite{NXP2010} auf Seite 56 hervor und ist in \reft{tab:mpmc_config} gezeigt. Die Timings wurden so gewählt, dass die Timinganforderungen der Displaycontroller eingehalten werden.
 
 \begin{table}[h]

@@ -12,57 +12,57 @@
 \backcite {EmbeddedProjects2013}{{V}{(document)}{Doc-Start}}
 \backcite {NXP2010}{{V}{(document)}{Doc-Start}}
 \backcite {Brandt2013}{{1}{1.1}{section.8}}
-\backcite {Intel2010}{{3}{2.1.1}{subsection.21}}
-\backcite {Valcarce2011}{{4}{2.1.1}{subsection.21}}
-\backcite {Valcarce2011}{{4}{2.1}{figure.caption.24}}
-\backcite {Leunig2002}{{5}{2.1.2}{subsection.25}}
-\backcite {Extron2014}{{5}{2.1.3}{subsection.33}}
-\backcite {TI2011}{{5}{2.2}{figure.caption.36}}
-\backcite {SSD2007}{{7}{2.1.6}{subsection.40}}
-\backcite {SSD2007}{{7}{2.3}{figure.caption.41}}
-\backcite {Schlegel2013a}{{10}{3.1.1}{subsection.59}}
-\backcite {Coldtears2014}{{11}{3.1}{figure.caption.60}}
-\backcite {SSD2008}{{11}{3.1}{table.caption.61}}
-\backcite {SSD2007}{{12}{3.2}{table.caption.63}}
-\backcite {ITEAD2013}{{13}{3.3}{table.caption.66}}
-\backcite {NXP2010}{{14}{3.2}{figure.caption.70}}
-\backcite {NXP2010}{{15}{3.2.2}{subsection.74}}
-\backcite {NXP2010}{{16}{3.3}{figure.caption.75}}
-\backcite {NXP2010}{{17}{3.2.2}{figure.caption.75}}
-\backcite {NXP2010}{{18}{3.4}{table.caption.76}}
-\backcite {NXP2010}{{18}{3.2.2}{table.caption.76}}
-\backcite {EmbeddedProjects2013}{{19}{3.2.3}{subsection.78}}
-\backcite {Coldtears2014}{{19}{3.5}{table.caption.80}}
-\backcite {EmbeddedProjects2013}{{19}{3.5}{table.caption.80}}
-\backcite {NXP2010}{{20}{3.6}{table.caption.88}}
-\backcite {Schlegel2013a}{{23}{3.2.5}{subsection.92}}
-\backcite {Schlegel2013b}{{23}{3.2.5}{subsection.92}}
-\backcite {LinuxKernelFBCON}{{28}{3.2.5.1.2}{lstnumber.206}}
-\backcite {GnublinWiki2013a}{{28}{3.2.5.1.2}{lstnumber.206}}
-\backcite {GnublinWiki2013b}{{28}{3.2.5.2}{subsubsection.209}}
-\backcite {GnublinWiki2013c}{{28}{3.2.5.2}{lstnumber.216}}
-\backcite {LinuxKernelFB}{{28}{3.2.5.2}{lstnumber.216}}
-\backcite {Schlegel2013c}{{29}{3.2.5.2.1}{paragraph.220}}
-\backcite {LinuxKernelPlatformDeviceDriver}{{29}{3.2.5.2.1}{paragraph.220}}
-\backcite {Nadeau2012}{{36}{3.2.5.2.1}{lstnumber.443}}
-\backcite {Schlegel2013a}{{37}{3.2.5.2.1}{lstnumber.443}}
-\backcite {Schlegel2013a}{{47}{3.2.5.3}{figure.caption.698}}
-\backcite {SSD2008}{{48}{3.3}{section.702}}
-\backcite {TI2011}{{52}{4.1}{section.708}}
-\backcite {TI2007}{{55}{4.2.1}{equation.721}}
-\backcite {Gensicke2014}{{58}{4.2.2}{equation.730}}
-\backcite {LG2012}{{59}{4.2.2}{figure.caption.731}}
-\backcite {TI2011b}{{59}{4.8a}{figure.caption.734}}
-\backcite {LG2012}{{59}{4.8b}{figure.caption.734}}
-\backcite {Miller2010}{{66}{4.2.5}{figure.caption.747}}
-\backcite {Wuerth2013}{{66}{4.2.5}{figure.caption.748}}
-\backcite {TI2011}{{67}{\caption@xref {??}{ on input line 269}}{table.caption.749}}
-\backcite {TI2011b}{{67}{\caption@xref {??}{ on input line 270}}{table.caption.749}}
-\backcite {LG2012}{{67}{\caption@xref {??}{ on input line 271}}{table.caption.749}}
-\backcite {Techtoys2012}{{67}{\caption@xref {??}{ on input line 272}}{table.caption.749}}
-\backcite {HDMI11}{{67}{4.2.5}{table.caption.749}}
-\backcite {Atmel2011}{{67}{\caption@xref {??}{ on input line 285}}{table.caption.750}}
-\backcite {Atmel2003}{{67}{\caption@xref {??}{ on input line 286}}{table.caption.750}}
-\backcite {USB2005}{{67}{4.2.5}{table.caption.750}}
-\backcite {FTDI2010}{{68}{4.2.5}{table.caption.750}}
-\backcite {TI2007}{{68}{4.2.5}{figure.caption.751}}
+\backcite {Intel2010}{{4}{2.1.1}{subsection.21}}
+\backcite {Valcarce2011}{{5}{2.1.1}{subsection.21}}
+\backcite {Valcarce2011}{{5}{2.1}{figure.caption.24}}
+\backcite {Leunig2002}{{6}{2.1.2}{subsection.25}}
+\backcite {Extron2014}{{6}{2.1.3}{subsection.33}}
+\backcite {TI2011}{{6}{2.2}{figure.caption.36}}
+\backcite {SSD2007}{{8}{2.1.6}{subsection.40}}
+\backcite {SSD2007}{{8}{2.3}{figure.caption.41}}
+\backcite {Schlegel2013a}{{11}{3.1.1}{subsection.59}}
+\backcite {Coldtears2014}{{12}{3.1}{figure.caption.60}}
+\backcite {SSD2008}{{12}{3.1}{table.caption.61}}
+\backcite {SSD2007}{{13}{3.2}{table.caption.63}}
+\backcite {ITEAD2013}{{14}{3.3}{table.caption.66}}
+\backcite {NXP2010}{{15}{3.2}{figure.caption.70}}
+\backcite {NXP2010}{{16}{3.2.2}{subsection.74}}
+\backcite {NXP2010}{{17}{3.3}{figure.caption.75}}
+\backcite {NXP2010}{{18}{3.2.2}{figure.caption.75}}
+\backcite {NXP2010}{{19}{3.4}{table.caption.76}}
+\backcite {NXP2010}{{19}{3.2.2}{table.caption.76}}
+\backcite {EmbeddedProjects2013}{{20}{3.2.3}{subsection.78}}
+\backcite {Coldtears2014}{{20}{3.5}{table.caption.80}}
+\backcite {EmbeddedProjects2013}{{20}{3.5}{table.caption.80}}
+\backcite {NXP2010}{{21}{3.6}{table.caption.88}}
+\backcite {Schlegel2013a}{{24}{3.2.5}{subsection.92}}
+\backcite {Schlegel2013b}{{24}{3.2.5}{subsection.92}}
+\backcite {LinuxKernelFBCON}{{29}{3.2.5.1.2}{lstnumber.206}}
+\backcite {GnublinWiki2013a}{{29}{3.2.5.1.2}{lstnumber.206}}
+\backcite {GnublinWiki2013b}{{29}{3.2.5.2}{subsubsection.209}}
+\backcite {GnublinWiki2013c}{{29}{3.2.5.2}{lstnumber.216}}
+\backcite {LinuxKernelFB}{{29}{3.2.5.2}{lstnumber.216}}
+\backcite {Schlegel2013c}{{30}{3.2.5.2.1}{paragraph.220}}
+\backcite {LinuxKernelPlatformDeviceDriver}{{30}{3.2.5.2.1}{paragraph.220}}
+\backcite {Nadeau2012}{{37}{3.2.5.2.1}{lstnumber.443}}
+\backcite {Schlegel2013a}{{38}{3.2.5.2.1}{lstnumber.443}}
+\backcite {Schlegel2013a}{{48}{3.2.5.3}{figure.caption.698}}
+\backcite {SSD2008}{{49}{3.3}{section.702}}
+\backcite {TI2011}{{53}{4.1}{section.708}}
+\backcite {TI2007}{{56}{4.2.1}{equation.721}}
+\backcite {Gensicke2014}{{59}{4.2.2}{equation.730}}
+\backcite {LG2012}{{60}{4.2.2}{figure.caption.731}}
+\backcite {TI2011b}{{60}{4.8a}{figure.caption.734}}
+\backcite {LG2012}{{60}{4.8b}{figure.caption.734}}
+\backcite {Miller2010}{{67}{4.2.5}{figure.caption.747}}
+\backcite {Wuerth2013}{{67}{4.2.5}{figure.caption.748}}
+\backcite {TI2011}{{68}{\caption@xref {??}{ on input line 269}}{table.caption.749}}
+\backcite {TI2011b}{{68}{\caption@xref {??}{ on input line 270}}{table.caption.749}}
+\backcite {LG2012}{{68}{\caption@xref {??}{ on input line 271}}{table.caption.749}}
+\backcite {Techtoys2012}{{68}{\caption@xref {??}{ on input line 272}}{table.caption.749}}
+\backcite {HDMI11}{{68}{4.2.5}{table.caption.749}}
+\backcite {Atmel2011}{{68}{\caption@xref {??}{ on input line 285}}{table.caption.750}}
+\backcite {Atmel2003}{{68}{\caption@xref {??}{ on input line 286}}{table.caption.750}}
+\backcite {USB2005}{{68}{4.2.5}{table.caption.750}}
+\backcite {FTDI2010}{{69}{4.2.5}{table.caption.750}}
+\backcite {TI2007}{{69}{4.2.5}{figure.caption.751}}
