@@ -1,7 +1,9 @@
 /*
 ***************************************************************************
+* This is a platform independend RS232 library and was modified by Armin Schlegel
+* to fit for the project of his master thesis.
 *
-* Author: Teunis van Beelen
+* Original Author: Teunis van Beelen
 *
 * Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 Teunis van Beelen
 *

@@ -51,21 +51,18 @@
 \contentsline {subsection}{\numberline {4.2.5}Spannungsversorgung}{66}{subsection.744}
 \contentsline {section}{\numberline {4.3}Software}{69}{section.752}
 \contentsline {subsection}{\numberline {4.3.1}Softwarekonzept}{69}{subsection.753}
-\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf Embedded-Seite}{71}{subsection.756}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Low-Level-Treiber UART}{72}{subsubsection.757}
-\contentsline {subsubsection}{\numberline {4.3.2.2}Low-Level-Treiber EEPROM}{73}{subsubsection.804}
-\contentsline {subsection}{\numberline {4.3.3}EDID-Daten auf PC Seite}{75}{subsection.867}
-\contentsline {subsubsection}{\numberline {4.3.3.1}GTK GUI mit Glade}{75}{subsubsection.868}
-\contentsline {section}{\numberline {4.4}Known Bugs}{75}{section.869}
-\contentsline {subsection}{\numberline {4.4.1}Hardware}{75}{subsection.870}
-\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{75}{subsubsection.871}
-\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{75}{subsubsection.872}
-\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{75}{subsubsection.873}
-\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{75}{subsubsection.874}
-\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{75}{subsubsection.875}
-\contentsline {subsection}{\numberline {4.4.2}Software}{75}{subsection.876}
-\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{75}{subsubsection.877}
-\contentsline {chapter}{\numberline {5}Zusammenfassung}{76}{chapter.878}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{77}{chapter*.879}
-\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{82}{chapter*.880}
-\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.881}
+\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf Embedded-Seite}{71}{subsection.757}
+\contentsline {subsection}{\numberline {4.3.3}EDID-Daten auf PC Seite}{74}{subsection.854}
+\contentsline {section}{\numberline {4.4}Known Bugs}{79}{section.947}
+\contentsline {subsection}{\numberline {4.4.1}Hardware}{79}{subsection.948}
+\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt, CON2}{79}{subsubsection.949}
+\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt, CON6}{79}{subsubsection.950}
+\contentsline {subsubsection}{\numberline {4.4.1.3}+12V PWM Hintergrundbeleuchtung}{79}{subsubsection.951}
+\contentsline {subsubsection}{\numberline {4.4.1.4}+5V Kreis / Widerstand R13}{79}{subsubsection.952}
+\contentsline {subsubsection}{\numberline {4.4.1.5}USB D+/D- vertauscht R22, R23}{79}{subsubsection.953}
+\contentsline {subsection}{\numberline {4.4.2}Software}{79}{subsection.954}
+\contentsline {subsubsection}{\numberline {4.4.2.1}EDID Programmer}{79}{subsubsection.955}
+\contentsline {chapter}{\numberline {5}Zusammenfassung}{80}{chapter.956}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{81}{chapter*.957}
+\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{86}{chapter*.958}
+\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.959}

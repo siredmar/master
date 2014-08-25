@@ -1,204 +1,100 @@
+/*
+ * This EEPROM library is a modified version of the one
+ * provided by Avinash Gupta from www.eXtremeElectronics.co.in
+ *
+ * It is modified to fit the 24C01 128 Byte EEPROM from Atmel.
+ * (c) 2014 Armin Schlegel
+ */
 #include <avr/io.h>
 #include <util/delay.h>
-
 #include "eeprom.h"
+
+#define INITIATE_TRANSFER()   TWCR = (1 << TWINT) | (1 << TWEN)
+#define POLL_TILL_DONE()      while(!(TWCR & (1 << TWINT)))
+#define CHECK_STATUS()        if((TWSR & 0xF8) != 0x28)\ return FALSE;
+#define START_CONDITION()     TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN)
+#define STOP_CONDITION()      TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO)
+#define WAIT_FOR_STOP()       while(TWCR & (1 << TWSTO))
+#define WRITE_TWDR(x)         TWDR = x
+#define READ_TWDR(x)          x = TWDR
 
 void eeprom_init()
 {
-	//Set up TWI Module
-	TWBR = 5;
-	TWSR &= (~((1<<TWPS1)|(1<<TWPS0)));
-
+   //Set up TWI Module
+   TWBR = 5;
+   TWSR &= (~((1 << TWPS1) | (1 << TWPS0)));
 }
 
-uint8_t write_eeprom_byte(uint16_t address,uint8_t data)
+uint8 write_eeprom_byte(uint16 address,uint8 data)
 {
-	do
-	{
-		//Put Start Condition on TWI Bus
-		TWCR=(1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+   do
+   {
+      START_CONDITION();
+      POLL_TILL_DONE();
+      if((TWSR & 0xF8) != 0x08)
+         return FALSE;
+      //Now write SLA+W
+      //EEPROM @ 00h
+      WRITE_TWDR(0b10100000);
+      INITIATE_TRANSFER();
+      POLL_TILL_DONE();
+   }while((TWSR & 0xF8) != 0x18);
 
-		//Poll Till Done
-		while(!(TWCR & (1<<TWINT)));
-
-		//Check status
-		if((TWSR & 0xF8) != 0x08)
-			return FALSE;
-
-		//Now write SLA+W
-		//EEPROM @ 00h
-		TWDR=0b10100000;	
-
-		//Initiate Transfer
-		TWCR=(1<<TWINT)|(1<<TWEN);
-
-		//Poll Till Done
-		while(!(TWCR & (1<<TWINT)));
-	
-	}while((TWSR & 0xF8) != 0x18);
-		
-
-//	//Now write ADDRH
-//	TWDR=(address>>8);
-//
-//	//Initiate Transfer
-//	TWCR=(1<<TWINT)|(1<<TWEN);
-//
-//	//Poll Till Done
-//	while(!(TWCR & (1<<TWINT)));
-//
-//	//Check status
-//	if((TWSR & 0xF8) != 0x28)
-//		return FALSE;
-
-	//Now write ADDRL
-	TWDR=(address);
-
-	//Initiate Transfer
-	TWCR=(1<<TWINT)|(1<<TWEN);
-
-	//Poll Till Done
-	while(!(TWCR & (1<<TWINT)));
-
-	//Check status
-	if((TWSR & 0xF8) != 0x28)
-		return FALSE;
-
-	//Now write DATA
-	TWDR=(data);
-
-	//Initiate Transfer
-	TWCR=(1<<TWINT)|(1<<TWEN);
-
-	//Poll Till Done
-	while(!(TWCR & (1<<TWINT)));
-
-	//Check status
-	if((TWSR & 0xF8) != 0x28)
-		return FALSE;
-
-	//Put Stop Condition on bus
-	TWCR=(1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
-	
-	//Wait for STOP to finish
-	while(TWCR & (1<<TWSTO));
-
-	//Wait untill Writing is complete
-	_delay_ms(12);
-
-	//Return TRUE
-	return TRUE;
-
+   WRITE_TWDR(address);
+   INITIATE_TRANSFER();
+   POLL_TILL_DONE();
+   CHECK_STATUS();
+   WRITE_TWDR(data);
+   INITIATE_TRANSFER();
+   POLL_TILL_DONE();
+   CHECK_STATUS();
+   STOP_CONDITION();
+   WAIT_FOR_STOP();
+   _delay_ms(12);
+   return TRUE;
 }
 
-uint8_t read_eeprom_byte(uint16_t address)
+uint8 read_eeprom_byte(uint16 address)
 {
-	uint8_t data;
+   uint8 data;
+   //Initiate a Dummy Write Sequence to start Random Read
+   do
+   {
+      START_CONDITION();
+      POLL_TILL_DONE();
+      //Check status
+      if((TWSR & 0xF8) != 0x08)
+         return FALSE;
+      //Now write SLA+W
+      //EEPROM @ 00h
+      WRITE_TWDR(0b10100000);
+      INITIATE_TRANSFER();
+      POLL_TILL_DONE();
+   }while((TWSR & 0xF8) != 0x18);
 
-	//Initiate a Dummy Write Sequence to start Random Read
-	do
-	{
-		//Put Start Condition on TWI Bus
-		TWCR=(1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
-
-		//Poll Till Done
-		while(!(TWCR & (1<<TWINT)));
-
-		//Check status
-		if((TWSR & 0xF8) != 0x08)
-			return FALSE;
-
-		//Now write SLA+W
-		//EEPROM @ 00h
-		TWDR=0b10100000;	
-
-		//Initiate Transfer
-		TWCR=(1<<TWINT)|(1<<TWEN);
-
-		//Poll Till Done
-		while(!(TWCR & (1<<TWINT)));
-	
-	}while((TWSR & 0xF8) != 0x18);
-		
-
-//	//Now write ADDRH
-//	TWDR=(address>>8);
-//
-//	//Initiate Transfer
-//	TWCR=(1<<TWINT)|(1<<TWEN);
-//
-//	//Poll Till Done
-//	while(!(TWCR & (1<<TWINT)));
-//
-//	//Check status
-//	if((TWSR & 0xF8) != 0x28)
-//		return FALSE;
-
-	//Now write ADDRL
-	TWDR=(address);
-
-	//Initiate Transfer
-	TWCR=(1<<TWINT)|(1<<TWEN);
-
-	//Poll Till Done
-	while(!(TWCR & (1<<TWINT)));
-
-	//Check status
-	if((TWSR & 0xF8) != 0x28)
-		return FALSE;
-
-	//*************************DUMMY WRITE SEQUENCE END **********************
-
-
-	
-	//Put Start Condition on TWI Bus
-	TWCR=(1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
-
-	//Poll Till Done
-	while(!(TWCR & (1<<TWINT)));
-
-	//Check status
-	if((TWSR & 0xF8) != 0x10)
-		return FALSE;
-
-	//Now write SLA+R
-	//EEPROM @ 00h
-	TWDR=0b10100001;	
-
-	//Initiate Transfer
-	TWCR=(1<<TWINT)|(1<<TWEN);
-
-	//Poll Till Done
-	while(!(TWCR & (1<<TWINT)));
-
-	//Check status
-	if((TWSR & 0xF8) != 0x40)
-		return FALSE;
-
-	//Now enable Reception of data by clearing TWINT
-	TWCR=(1<<TWINT)|(1<<TWEN);
-
-	//Wait till done
-	while(!(TWCR & (1<<TWINT)));
-
-	//Check status
-	if((TWSR & 0xF8) != 0x58)
-		return FALSE;
-
-	//Read the data
-	data=TWDR;
-
-	//Put Stop Condition on bus
-	TWCR=(1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
-	
-	//Wait for STOP to finish
-	while(TWCR & (1<<TWSTO));
-
-	//Return TRUE
-	return data;
+   TWDR = (address);
+   INITIATE_TRANSFER();
+   POLL_TILL_DONE();
+   CHECK_STATUS();
+   //*************************DUMMY WRITE SEQUENCE END **********************
+   START_CONDITION();
+   POLL_TILL_DONE();
+   if((TWSR & 0xF8) != 0x10)
+      return FALSE;
+   //Now write SLA+R
+   //EEPROM @ 00h
+   WRITE_TWDR(0b10100001);
+   INITIATE_TRANSFER();
+   POLL_TILL_DONE();
+   if((TWSR & 0xF8) != 0x40)
+      return FALSE;
+   INITIATE_TRANSFER();
+   POLL_TILL_DONE();
+   if((TWSR & 0xF8) != 0x58)
+      return FALSE;
+   READ_TWDR(data);
+   STOP_CONDITION();
+   WAIT_FOR_STOP();
+   return data;
 }
-
-
-		
-
 

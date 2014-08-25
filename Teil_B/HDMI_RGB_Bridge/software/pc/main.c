@@ -265,7 +265,10 @@ int program_edid(GtkWidget * widget, gpointer user_data)
             handshake = rs232_handshake_received();
          }
          if(handshake == 1)
+         {
+//            rs232_puts(comport_fd, "#h*", 3);
             break;
+         }
          debugOutput("handshake counter: %i\n", timeoutCounter);
          timeoutCounter++;
          usleep(TIMEOUT_50MS);
@@ -315,7 +318,7 @@ int program_edid(GtkWidget * widget, gpointer user_data)
                   rs232_data_received();
                }
             }
-            if(command_sent == 1 && CMD_ACK == ACK)
+            if(command_sent && CMD_ACK == ACK)
             {
                new_data = 0;
                CMD_ACK = NO_ACK;

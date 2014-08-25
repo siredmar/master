@@ -56,13 +56,15 @@
 \backcite {LG2012}{{60}{4.8b}{figure.caption.734}}
 \backcite {Miller2010}{{67}{4.2.5}{figure.caption.747}}
 \backcite {Wuerth2013}{{67}{4.2.5}{figure.caption.748}}
-\backcite {TI2011}{{68}{\caption@xref {??}{ on input line 269}}{table.caption.749}}
-\backcite {TI2011b}{{68}{\caption@xref {??}{ on input line 270}}{table.caption.749}}
-\backcite {LG2012}{{68}{\caption@xref {??}{ on input line 271}}{table.caption.749}}
-\backcite {Techtoys2012}{{68}{\caption@xref {??}{ on input line 272}}{table.caption.749}}
+\backcite {TI2011}{{68}{\caption@xref {??}{ on input line 270}}{table.caption.749}}
+\backcite {TI2011b}{{68}{\caption@xref {??}{ on input line 271}}{table.caption.749}}
+\backcite {LG2012}{{68}{\caption@xref {??}{ on input line 272}}{table.caption.749}}
+\backcite {Techtoys2012}{{68}{\caption@xref {??}{ on input line 273}}{table.caption.749}}
 \backcite {HDMI11}{{68}{4.2.5}{table.caption.749}}
-\backcite {Atmel2011}{{68}{\caption@xref {??}{ on input line 285}}{table.caption.750}}
-\backcite {Atmel2003}{{68}{\caption@xref {??}{ on input line 286}}{table.caption.750}}
+\backcite {Atmel2011}{{68}{\caption@xref {??}{ on input line 286}}{table.caption.750}}
+\backcite {Atmel2003}{{68}{\caption@xref {??}{ on input line 287}}{table.caption.750}}
 \backcite {USB2005}{{68}{4.2.5}{table.caption.750}}
 \backcite {FTDI2010}{{69}{4.2.5}{table.caption.750}}
 \backcite {TI2007}{{69}{4.2.5}{figure.caption.751}}
+\backcite {eeprom_lib}{{74}{4.3.2}{lstnumber.853}}
+\backcite {rs232_lib}{{75}{4.3.3}{subsection.854}}

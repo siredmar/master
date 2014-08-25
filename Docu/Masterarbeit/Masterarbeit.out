@@ -50,21 +50,18 @@
 \BOOKMARK [2][]{subsection.744}{Spannungsversorgung}{section.715}% 50
 \BOOKMARK [1][]{section.752}{Software}{chapter.707}% 51
 \BOOKMARK [2][]{subsection.753}{Softwarekonzept}{section.752}% 52
-\BOOKMARK [2][]{subsection.756}{EDID-Daten auf Embedded-Seite}{section.752}% 53
-\BOOKMARK [3][]{subsubsection.757}{Low-Level-Treiber UART}{subsection.756}% 54
-\BOOKMARK [3][]{subsubsection.804}{Low-Level-Treiber EEPROM}{subsection.756}% 55
-\BOOKMARK [2][]{subsection.867}{EDID-Daten auf PC Seite}{section.752}% 56
-\BOOKMARK [3][]{subsubsection.868}{GTK GUI mit Glade}{subsection.867}% 57
-\BOOKMARK [1][]{section.869}{Known Bugs}{chapter.707}% 58
-\BOOKMARK [2][]{subsection.870}{Hardware}{section.869}% 59
-\BOOKMARK [3][]{subsubsection.871}{HDMI-Stecker gekreuzt, CON2}{subsection.870}% 60
-\BOOKMARK [3][]{subsubsection.872}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.870}% 61
-\BOOKMARK [3][]{subsubsection.873}{+12V PWM Hintergrundbeleuchtung}{subsection.870}% 62
-\BOOKMARK [3][]{subsubsection.874}{+5V Kreis / Widerstand R13}{subsection.870}% 63
-\BOOKMARK [3][]{subsubsection.875}{USB D+/D- vertauscht R22, R23}{subsection.870}% 64
-\BOOKMARK [2][]{subsection.876}{Software}{section.869}% 65
-\BOOKMARK [3][]{subsubsection.877}{EDID Programmer}{subsection.876}% 66
-\BOOKMARK [0][]{chapter.878}{Zusammenfassung}{}% 67
-\BOOKMARK [0][]{chapter*.879}{Literaturverzeichnis}{}% 68
-\BOOKMARK [0][]{chapter*.880}{Eidesstattliche Erkl\344rung}{}% 69
-\BOOKMARK [0][]{appendix.881}{Anhang}{}% 70
+\BOOKMARK [2][]{subsection.757}{EDID-Daten auf Embedded-Seite}{section.752}% 53
+\BOOKMARK [2][]{subsection.854}{EDID-Daten auf PC Seite}{section.752}% 54
+\BOOKMARK [1][]{section.947}{Known Bugs}{chapter.707}% 55
+\BOOKMARK [2][]{subsection.948}{Hardware}{section.947}% 56
+\BOOKMARK [3][]{subsubsection.949}{HDMI-Stecker gekreuzt, CON2}{subsection.948}% 57
+\BOOKMARK [3][]{subsubsection.950}{LVDS-Steckerfootprint gespiegelt, CON6}{subsection.948}% 58
+\BOOKMARK [3][]{subsubsection.951}{+12V PWM Hintergrundbeleuchtung}{subsection.948}% 59
+\BOOKMARK [3][]{subsubsection.952}{+5V Kreis / Widerstand R13}{subsection.948}% 60
+\BOOKMARK [3][]{subsubsection.953}{USB D+/D- vertauscht R22, R23}{subsection.948}% 61
+\BOOKMARK [2][]{subsection.954}{Software}{section.947}% 62
+\BOOKMARK [3][]{subsubsection.955}{EDID Programmer}{subsection.954}% 63
+\BOOKMARK [0][]{chapter.956}{Zusammenfassung}{}% 64
+\BOOKMARK [0][]{chapter*.957}{Literaturverzeichnis}{}% 65
+\BOOKMARK [0][]{chapter*.958}{Eidesstattliche Erkl\344rung}{}% 66
+\BOOKMARK [0][]{appendix.959}{Anhang}{}% 67

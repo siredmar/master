@@ -27,7 +27,11 @@
 \contentsline {lstlisting}{\numberline {3.23}User-Space: Main-Funktion Schleife}{46}{lstlisting.655}
 \addvspace {10\p@ }
 \contentsline {lstlisting}{\numberline {4.1}Embedded-Software: UART-ISR}{72}{lstlisting.759}
-\contentsline {lstlisting}{\numberline {4.2}Embedded-Software: Funktionen zum Beschreiben des EEPROMs}{73}{lstlisting.805}
+\contentsline {lstlisting}{\numberline {4.2}Embedded-Software: Funktionen zum Beschreiben des EEPROMs}{73}{lstlisting.804}
+\contentsline {lstlisting}{\numberline {4.3}PC-Software: Datentyp hexfileType}{76}{lstlisting.860}
+\contentsline {lstlisting}{\numberline {4.4}PC-Software: Hexfile Laden}{76}{lstlisting.868}
+\contentsline {lstlisting}{\numberline {4.5}PC-Software: returnSerialCommand()}{77}{lstlisting.899}
+\contentsline {lstlisting}{\numberline {4.6}PC-Software: Hexfile schreiben}{77}{lstlisting.914}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
