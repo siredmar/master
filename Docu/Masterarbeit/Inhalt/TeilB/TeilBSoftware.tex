@@ -15,14 +15,14 @@ Um mit dem Prozessor zu kommunizieren, stehen dem PC vier Kommandos zur Verfügu
 	Prüfsumme angefordert & \#c* & gibt aktuelle Prüfsumme zurück\\ \hline    
     Debug-Ausgabe & \#d* & gibt aktuellen EEPROM-Inhalt zurück\\ \hline
 \end{tabular}
-\caption{Teil B: Kommandos zum Schreiben des EEPROMs}
+\caption{Kommandos zum Schreiben des EEPROMs}
 \label{tab:avr_commands}
 \end{table} \\
 Ein Ablaufdiagramm der Funktionalität zum Beschreiben des EEPROMs ist in \refa{fig:ablaufdiagramm_avr} zu sehen. Nach dem Start des Prozessors sendet der ein Handshake \code{h}. Verbindet sich das PC-Prorammm mit der seriellen Schnittstelle und korrekter Baudrate, werden diese Aufforderungen zum Handshake empfangen. Die PC-Software antwortet ebenfalls mit \code{h}, was beiden Teilnehmern die Anwesenheit des anderen bestätigt. Der AVR\footnote{AVR: Atmel ATMEGA Prozessor, Akronym für: \textbf{A}lf (Egil Bogen) and \textbf{V}egard (Wollan)'s \textbf{R}ISC processor} ist somit Bereit zum Empfangen von Kommandos (siehe \reft{tab:avr_commands}). Um das EEPROM zu beschreiben, wird vom PC das Kommando \code{\#s\*} gesendet, was dem AVR mitteilt, dass im Folgenden Daten zum Beschreiben des EEPROMs gesendet werden. Der PC sendet nun 128 mal das Kommando \code{\#wX\*}, um die 128 Bytes der EDID-Informationen zu senden. Das \code{X} steht für einen Platzhalter und entspricht der Hexadezimalen Schreibweise für binäre Werte von 0 bis 255. Um dem AVR mitzuteilen, dass das Beschreiben des EEPROMs beendet werden und damit keine Daten mehr gesendet werden, wird das Kommando \code{\#x\*} gesendet. Nach jedem empfangenen Kommando sendet der AVR jeweils den Rückgabewert aus \reft{tab:avr_commands} für das entsprechende Kommando. Die PC-Software wartet auf den Empfang des Rückgabewerts und fährt erst nach Erhalt dessen mit dem Schreiben weiterer Kommandos fort. Nachdem alle Bytes in das EEPROM geschrieben sind, fordert das Programm mit \code{\#c\*} die Prüfsumme der EEPROM-Daten an. Dieser Schritt ist notwendig um die Integrität der Daten zu prüfen. Ist bei der Kommunikation ein Fehler unterlaufen, so unterscheiden sich die beiden Prüfsummen von EEPROM und PC-Programm.\\
 \begin{figure}[htp]
 	\center
 	\fbox{	\includegraphics[width=1\textwidth]{TeilB/avr_arch.pdf}}
-    \caption{Teil B: Ablaufdiagramme Embedded-Software}
+    \caption{Ablaufdiagramme Embedded-Software}
     \label{fig:ablaufdiagramm_avr} 
 \end{figure}\\
 
@@ -154,7 +154,7 @@ Prinzipiell ist es möglich das EEPROM mittels einer seriellen Verbindung und ei
 \begin{figure}[htp]
 	\center
 	\fbox{	\includegraphics[width=0.6\textwidth]{TeilB/edid_writer1.png}}
-    \caption{Teil B: PC-Programm EDID-Writer}
+    \caption{PC-Programm EDID-Writer}
     \label{fig:edid_writer1} 
 \end{figure}\\
 Um die Lesbarkeit der Codestücke zu verbessern, sind die Funktionsaufrufe der Grafikbibliothek \code{GTK+} entfernt, da diese nur der Visualisierung des Programms selbst dienen.\\
@@ -269,3 +269,4 @@ label=lst:hexfile_schreiben
     timeoutCounter++;
 }
 \end{lstlisting}%
+\newpage

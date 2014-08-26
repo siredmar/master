@@ -6,12 +6,12 @@ In diesem Kapitel werden Theoretische Grundlagen geschaffen, die zum weiteren Ve
 Unter Video-Schnittstellen kann man die Schnittstellen verstehen, die direkt zur Anzeige von Bilddaten dienen und physikalisch mit einer Anzeigeeinheit verbunden sind. Hier können sowohl Hardware- als auch Softwarekomponenten enthalten sein.
 \subsection{VGA}
 Unter VGA versteht man Video Graphics Array und wurde 1987 von IBM entwickelt. Der Stecker hat 15 Pins und liefert neben analogen Farbinformationen Horizontale und Vertikale Synchronisationssignale. Aufgrund der limitierten Spezifikationen ist die Schnittstelle eher antik und selbst Intel als Chiphersteller will ab 2015 auf die Schnittstelle verzichten  und digitalen Schnittstellen den Vorzug lassen (\cite{Intel2010}). Zwar ist die VGA-Schnittstelle noch nicht komplett obsolet, so wird sie den digitalen Schnittstellen trotzdem weichen müssen. Der Trend bei embedded Linuxsystemen ist zumindest der, dass handelsübliche Systeme direkt mit HDMI oder anderen digitalen Schnittstellen entwickelt werden.
-Die Funktionsweise der VGA-Schnittstelle ist in \refa{fig:vga_timing} zu sehen. Es werden fünf analoge Leitungen benötigt: R, G, B, HSYNC\footnote{HSYNC: Horizontale Synchronisation} und VSYNC\footnote{VSYNC: Vertikale Synchronisation}. Die ersten drei stellen die Farbwerte Rot, Grün und Blau dar. Je nach Intensität der Farbkanäle lassen sich aus einer Mischung jede Farbe darstellen. Zur Steuerung der Intensität können Pegel zwischen 0V (absolut dunkel) und +0.7V (absolut hell) pro Farbkanal angenommen werden. Die Signale HSYNC und VSYNC werden zur Steuerung der Zeilen und Spalten verwendet. Das Signal HSYNC zeigt an, wann eine Zeile vollständig ist. Während der HSYNC-Periode werden für jeden Pixel der Zeile zeitlich exakte Pulse auf den Farbleitungen angelegt. Sind alle Zeilen eines Bildes komplett, wird das VSYNC-Signal angestoßen, welches ein neues Bild von vorne beginnt (\cite{Valcarce2011}).
+Die Funktionsweise der VGA-Schnittstelle ist in \refa{fig:vga_timing} zu sehen (Quelle: \cite{Valcarce2011}). Es werden fünf analoge Leitungen benötigt: R, G, B, HSYNC\footnote{HSYNC: Horizontale Synchronisation} und VSYNC\footnote{VSYNC: Vertikale Synchronisation}. Die ersten drei stellen die Farbwerte Rot, Grün und Blau dar. Je nach Intensität der Farbkanäle lassen sich aus einer Mischung jede Farbe darstellen. Zur Steuerung der Intensität können Pegel zwischen 0V (absolut dunkel) und +0.7V (absolut hell) pro Farbkanal angenommen werden. Die Signale HSYNC und VSYNC werden zur Steuerung der Zeilen und Spalten verwendet. Das Signal HSYNC zeigt an, wann eine Zeile vollständig ist. Während der HSYNC-Periode werden für jeden Pixel der Zeile zeitlich exakte Pulse auf den Farbleitungen angelegt. Sind alle Zeilen eines Bildes komplett, wird das VSYNC-Signal angestoßen, welches ein neues Bild von vorne beginnt (\cite{Valcarce2011}).
 
 \begin{figure}[htp]
 	\centering
 \fbox{	\includegraphics[width=0.7\textwidth]{Grundlagen/vga_timing.png}}
-	\caption{VGA-Timing, Quelle: \cite{Valcarce2011}}
+	\caption{VGA-Timing}
 	\label{fig:vga_timing}
 \end{figure}
 
@@ -27,23 +27,23 @@ So werden die Signale für Rot, Grün und Blau nicht mehr analog im Bereich von 
 \begin{figure}[htp]
 	\centering
 \fbox{	\includegraphics[width=0.8\textwidth]{Grundlagen/rgb_timing.png}}
-	\caption{RGB-Timing, Quelle: \cite{TI2011}}
+	\caption{RGB-Timing}
 	\label{fig:rgb_timing}
 \end{figure}
 Dieser Farbmodus wird auch RGB888 genannt, da acht Bit für jede Farbe zur Kodierung, insgesamt also 24 Bit, zur Verfügung stehen. Neben dem 24 Bit Modus ist RGB565 noch weit verbreitet, der je fünf Bit für Rot und Blau und sechs Bit für Grün verwendet. Hier ergibt sich ein Farbspektrum von 65.536\footnote{65.536 = $2^{16}$}Farben. Da digital übertragen wird, ist eine Taktleitung notwendig um die Synchronizität zu ermöglichen. 
 Aufgrund der Verbreitung und Mächtigkeit der Schnittstelle besitzen einige Prozessor, wie z.B. der Linuxfähige OMAP3530 von Texas Instruments, eine RGB-Schnittstelle. 
-\refa{fig:rgb_timing} zeigt exemplarisch ein Timing-Diagramm der RGB-Schnittstelle des Bausteins TFP-401A von Texas Instruments.
+\refa{fig:rgb_timing} zeigt exemplarisch ein Timing-Diagramm der RGB-Schnittstelle des Bausteins TFP-401A von Texas Instruments (Quelle: \cite{TI2011}).
 \subsection{LVDS}
 Um lange Strecken und große Bildformate übertragen zu können ist der parallele Datentransfer ungeeignet, da bei schnellem Takt z.B. das Übersprechen zu groß wird und das Signal schneller gestört wird. Deshalb ist die Praktik beliebt, große Datenmengen über eine differentielle Verbindung wie z.B. LVDS\footnote{LVDS: Low Voltage Differential Signaling} zu übertragen. Die physikalische Funktionsweise der LVDS Leitung liegt darin, dass zweimal dasselbe Signal übertragen wird - mit positiver Spannung und mit negativer Spannung. Wirkt nun von außen eine Störung auf die LVDS Leitung, werden beide Leitungen - positive wie auch die negative - gleichermaßen gestört. Durch das Zusammenführen beider Signale am Ende, kompensieren sich diese Störungen im Idealfall zu Null. Wie auch LVDS arbeitet das zuvor genannte TMDS ähnlich, da es sich hierbei auch um eine differentielle Übertragungsart handelt. Der Unterschied liegt in der Verwendung. TMDS wird oft eingesetzt, sobald das Signal das Gerät verlässt - z.B. Desktop-Bildschirm mit Anschlusskabel. Befindet sich das Anzeigegerät allerdings im selben Gehäuse, so wird oft LVDS eingesetzt. Neben Bilddaten ist es natürlich auch möglich andere Nutzdaten wie z.B. Sensordaten zu übertragen. 
 Aufgrund der hohen Geschwindigkeit und geringen Fehlerrate werden differentiellen Übertragungen werden gerne für Displays angewendet.
 \subsection{8080-Interface}
 Das 8080-Interface ist eine antike Schnittstelle ursprünglich von Intel 8080 Prozessor. Sie wird bis heute verwendet, um Speicher, kleine TFT-Displays oder andere Bausteine mit einem Mikrocontroller zu betreiben. Eckdaten des 8080-Interface sind sowohl der Datenbus selbst als auch der Adressbus mit z.B. acht, 16 oder 32 Bit, je eine eine Leitung für Read-Enable, Write-Enable und Chip-Select. Durch die Verwendung der Chip-Select Leitungen ist es möglich mehrere Teilnehmer am selben Bus zu betreiben. Alle Teilnehmer, deren Chip-Leitung nicht aktiv ist, verhalten sich für andere Busteilnehmer unsichtbar. Erst mit Zuweisung der Chip-Selects werden diese sichtbar und übernehmen den Bus. Ein Hostsystem steuert als sog. Master die am Bus hängenden Slaves. Moechte das Hostsystem von einem Slave Daten lesen, wird ein Lesezyklus initiiert, der die Chip-Select Leitung aktiviert, die gewünschte Adresse an den Bus anlegt, die Read-Enable Leitung aktiviert und nach einer festgelegten Zeit diese wieder deaktiviert. Der Slave legt die gewünschten Daten auf den Datenbus und der Host kann diese Daten korrekt lesen. Analog dazu funktioniert der Schreibzyklus ähnlich. 
-\refa{fig:8080_timing} zeigt das Timing Diagramm eines Schreib- und Lesezyklus des Displaycontrollers SSD1289. Das Signal D/C wird verwendet um zu unterscheiden, ob ein Daten oder ein Kommando auf dem Bus anliegen. Dazu kann beispielsweise eine Adressleitung des 8080-Bus verwendet werden. CS stellt das Chip-Select dar. WR und RD beziehen sich auf Write- bzw. Read-Enable. D0-D17 sind 18 Datenbits des Bus (\cite{SSD2007}). 
+\refa{fig:8080_timing} zeigt das Timing Diagramm eines Schreib- und Lesezyklus des Displaycontrollers SSD1289 (Quelle: \cite{SSD2007}). Das Signal D/C wird verwendet um zu unterscheiden, ob ein Daten oder ein Kommando auf dem Bus anliegen. Dazu kann beispielsweise eine Adressleitung des 8080-Bus verwendet werden. CS stellt das Chip-Select dar. WR und RD beziehen sich auf Write- bzw. Read-Enable. D0-D17 sind 18 Datenbits des Bus (\cite{SSD2007}). 
 
 \begin{figure}[htp]
 	\centering
 \fbox{	\includegraphics[width=1.0\textwidth]{Grundlagen/8080_timing.png}}
-	\caption{8080-Timing des SSD1289, Quelle: \cite{SSD2007}}
+	\caption{8080-Timing des SSD1289}
 	\label{fig:8080_timing}
 \end{figure}
 
@@ -60,7 +60,7 @@ Ebenso spielen die RGB-Schnittstelle und LVDS eine große Rolle\todo{große Roll
 Neben den reinen Video-Schnittstellen weist das beschriebene 8080-Interface, das ursprünglich nicht zur Bildübertragung gedacht war, ein hohes Potential auf und besitzt für den ersten Teil der Masterarbeit hohen Stellenwert. Gerade im embedded Bereich besitzt diese Schnittstelle nach wie vor einen hohen Stellenwert, da vor allem kleine Displays damit hinreichend schnell und effizient betrieben werden können. \reft{tab:interface_vergleich} zeigt nochmals eine kurze Übersicht der Relevanz der einzelnen Schnittstellen für die Masterarbeit.
 
 \begin{table}[h]
-\begin{tabular}{|c|c|c|}\hline
+\begin{tabular}{|p{3cm}|p{5cm}|p{4.5cm}|}\hline
 \rowcolor{TableBackgroundColor}
    \textbf{Schnittstelle} 	& \textbf{Relevanz für Masterarbeit} 	& \textbf{Verwendung in der Masterarbeit}	\\ \hline
    VGA 						& keine  								& - 	 									\\ \hline

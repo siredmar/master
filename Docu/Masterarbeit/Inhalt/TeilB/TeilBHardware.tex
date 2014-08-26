@@ -12,7 +12,7 @@ In diesem Kapitel wird auf die entwickelte Hardware eingegangen und detailliert 
   EDID-Daten &  \textcolor{orange}{Orange} \\ \hline
   Spannungsversorgung &  \textcolor{green}{Grün} \\ \hline 
 \end{tabular}
-\caption{Teil B: Farblich gekennzeichnete Bereiche auf der Platine}
+\caption{Farblich gekennzeichnete Bereiche auf der Platine}
 \label{tab:pcb_areas}
 \end{table}
 
@@ -39,7 +39,7 @@ In den folgenden Abschnitten wird auf die Teilbereiche der Platine im Einzelnen 
         	\center
 			\fbox{	\includegraphics[width=0.3\textwidth]{TeilB/teilb_lagenaufbau.png}}
 %			\fbox{	\includegraphics[width=8.5cm,keepaspectratio]{TeilB/rgb_bridge_sch.png}}
-            \caption{Teil B: Lagenaufbau}
+            \caption{Lagenaufbau Teil B}
             \label{fig:teilb_lagenaufbau}
         \end{figure}
 
@@ -70,7 +70,7 @@ mit den Parametern entsprechend \reft{tab:z_parameter} (siehe \cite{TI2007}). Hi
 	Dicke des Dielektrikums 		& h 			& 0.35 mm 	\\ \hline 
 	Dicke der Leiterbahn 			& t 			& 35 µm		\\ \hline 
 \end{tabular}
-\caption{Teil B: Parameter bezüglich Impedanz der HDMI-Leitungen}
+\caption{Parameter bezüglich Impedanz der HDMI-Leitungen}
 \label{tab:z_parameter}
 \end{table} \\
 \refa{fig:teilb_hdmi} zeigt den Schaltplan und das Layout des HDMI-Steckeres. In \refa{fig:teilb_hdmi_pcb} sind die TDMS-Leitungspaare zu sehen, bei der der gleichmäßige Abstand zwischen den Leitungen einzelner Paare, sowie die gleiche Länge der Paare selbst eingehalten wird. 
@@ -92,7 +92,7 @@ mit den Parametern entsprechend \reft{tab:z_parameter} (siehe \cite{TI2007}). Hi
             \label{fig:teilb_hdmi_pcb}
         \end{subfigure}
 		%\end{center}
-        \caption{Teil B: HDMI Leitungen}
+        \caption{HDMI Leitungen}
         \label{fig:teilb_hdmi}
 \end{figure}
 Neben den eigentlichen Video-Signalen befinden sich noch die $I^2C$-Signale\footnote{$I^2C$: serieller Zweidraht-Bus} \code{SCL}\footnote{SCL: Taktleitung des $I^2C$-Bus} und \code{SDA}\footnote{SCL: Datenleitung des $I^2C$-Bus} des EDID-EEPROMs sowie eine Hot-Plug-Detection auf der HDMI-Buchse.
@@ -170,7 +170,7 @@ Die LVDS-Bridge teilt die am Eingang liegenden parllelen RGB-Signale in Pakete z
             \label{fig:teilb_lvds_display_format}
         \end{subfigure}
 		\end{center}
-        \caption{Teil B: LVDS Paketformate}
+        \caption{LVDS Paketformate}
         \label{fig:teilb_lvds_format}
 \end{figure} \\
 So liegt zum Beispiel das RGB Bit G4 auf dem Dateneingang D13 der LVDS-Bridge. Der Schaltplan in \refa{fig:teilb_lvds_bridge_sch} zeigt die Beschaltung der LVDS-Bridge und des Steckverbinders für das Display.\\
@@ -244,7 +244,7 @@ Im Projekt werden drei verschiedene Spannungen verwendet. \refa{fig:teilb_supply
 \begin{figure}[htp]
 	\center
 	\fbox{	\includegraphics[width=1\textwidth]{TeilB/Supply.pdf}}
-    \caption{Teil B: Spannungsversorgung}
+    \caption{Spannungsversorgung Teil B}
     \label{fig:teilb_supply}
 \end{figure}\\
 Extern werden über einen Hohlstecker +12\,V eingespeist, die ihrerseits die Hintergrundbeleuchtungen der Displays sowie den Schaltregler für die +3.3\,V Erzeugung versorgt. Um der Hardware beim verpolten Einstecken des Versorgungssteckers keinen Schaden zuzufügen, ist ein Verpolschutz eingebaut. Dieser ist mittels eines P-Kanal MOSFET\footnote{MOSFET: Feldeffekt-Transistor} \code{T1} realisiert. Der Schaltplan des Verpolschutzes und der +3.3\,V-Versorgung ist int \refa{fig:3_3_supply} zu sehen.
@@ -272,7 +272,7 @@ Die Logik der Displays, die RGB-Bridge \code{TFP401A} sowie die LVDS-Bridge \cod
 	LB070WV8-SL01 LVDS-Display & 403\,mA + 280\,mA = 683\,mA & \cite{LG2012}, S. 6f\\  \hline
 	TY700TFT800480 RGB-Display & 125\,mA + 180\,mA = 305\,mA & \cite{Techtoys2012}, S. 3\\ \hline
 \end{tabular}
-\caption{Teil B: Stromaufnahme der +3.3\,V-Versorgung}
+\caption{Stromaufnahme der +3.3\,V-Versorgung}
 \label{tab:3_3v_strom}
 \end{table} \\
 Wird unter Verwendung des RGB-Displays die LVDS-Bridge nicht auf der Platine bestückt, so errechnet sich die Stromaufnahme aus dem Verbraucht der RGB-Bridge und dem RGB-Display und beläuft sich auf  $370\,mA + 305\,mA = 675\,mA$. Wird die LVDS-Bridge bei gleichen Bedingungen bestückt, so ergibt sich eine maximale Stromaufnahme von $728\,mA$.\\
@@ -286,7 +286,7 @@ Der ATMEGA sowie das EEPROM werden durch die HDMI-Buchse versorgt, da diese funk
     ATMEGA88 Prozessor & 12\,mA @ 5\,V, 8\,MHz	& \cite{Atmel2011}, S. 3\\ \hline
 	AT24C01 EEPROM & 1\,mA lesend, 3\,mA schreibend & \cite{Atmel2003}, S. 303\\ \hline
 \end{tabular}
-\caption{Teil B: Stromaufnahme der +5\,V-Versorgung}
+\caption{Stromaufnahme der +5\,V-Versorgung}
 \label{tab:5v_strom}
 \end{table} \\
 Die USB-Bridge \code{FT232RL} wird nur im Falle der erneuten Programmierung des EEPROMs benötigt und deshalb über den USB-Port versorgt. Im Low-Power Modus kann ein USB-Port 100\,mA liefern (siehe \cite{USB2005}, S. 1), was für die Verwendung des FTDI-Chips vollkommen ausreichend ist. Dieser benötigt im Normalbetrieb 15\,mA (siehe \cite{FTDI2010}, S. 18).
@@ -306,7 +306,7 @@ In \refc{sec:TeilB_Hardware} ist der Lagenaufbau bereits angesprochen worden. Di
                 \label{fig:teilb_gnd_layer}
         \end{subfigure}
 		%\end{center}
-        \caption{Teil B: Innenlagen}
+        \caption{Innenlagen}
         \label{fig:teilb_vcc_gnd_layer}
 \end{figure}
 Die obere Fläche in \refa{fig:teilb_vcc_layer} stellt die +3.3\,V-Versorgung dar. Die Bauteile sind durch kurze Wege mit Vias mit der Lage verbunden. Entsprechend ist die untere Fläche die +5\,V-Versorgung, vom HDMI-Stecker. Die Ground-Fläche ist in \refa{fig:teilb_gnd_layer} zu sehen. Sie umfasst fast die komplette Platine mit Ausnahme unter den Anschlüssen des HDMI-Steckers, da somit die Impedanz der HDMI-Leitungen besser angepasst werden (siehe \cite{TI2007}, S. 7). 

@@ -5,18 +5,18 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {2.1}{\ignorespaces Relevanz der Display-Schnittstellen f\IeC {\"u}r die Masterarbeit\relax }}{9}{table.caption.45}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Relevante Kommandos des SSD1963, \cite {SSD2008}\relax }}{12}{table.caption.61}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Relevante Kommandos des SSD1289, \cite {SSD2007}\relax }}{13}{table.caption.63}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Relevante Kommandos des MD050SD, \cite {ITEAD2013}\relax }}{14}{table.caption.66}
-\contentsline {table}{\numberline {3.4}{\ignorespaces MPMC Register, \cite {NXP2010}\relax }}{19}{table.caption.76}
-\contentsline {table}{\numberline {3.5}{\ignorespaces Displayverbindung mit dem Gnublin, \cite {Coldtears2014}, \cite {EmbeddedProjects2013}\relax }}{20}{table.caption.80}
-\contentsline {table}{\numberline {3.6}{\ignorespaces Adressen f\IeC {\"u}r SRAM-Zugriff, \cite {NXP2010}\relax }}{21}{table.caption.88}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Relevante Kommandos des SSD1963\relax }}{12}{table.caption.61}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Relevante Kommandos des SSD1289\relax }}{13}{table.caption.63}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Relevante Kommandos des MD050SD\relax }}{14}{table.caption.66}
+\contentsline {table}{\numberline {3.4}{\ignorespaces MPMC Register\relax }}{19}{table.caption.76}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Displayverbindung mit dem Gnublin\relax }}{20}{table.caption.80}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Adressen f\IeC {\"u}r SRAM-Zugriff\relax }}{21}{table.caption.88}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Teil B: Farblich gekennzeichnete Bereiche auf der Platine\relax }}{55}{table.caption.716}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Teil B: Parameter bez\IeC {\"u}glich Impedanz der HDMI-Leitungen\relax }}{56}{table.caption.722}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Teil B: Stromaufnahme der +3.3\tmspace +\thinmuskip {.1667em}V-Versorgung\relax }}{68}{table.caption.749}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Teil B: Stromaufnahme der +5\tmspace +\thinmuskip {.1667em}V-Versorgung\relax }}{68}{table.caption.750}
-\contentsline {table}{\numberline {4.5}{\ignorespaces Teil B: Kommandos zum Schreiben des EEPROMs\relax }}{70}{table.caption.754}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Farblich gekennzeichnete Bereiche auf der Platine\relax }}{55}{table.caption.716}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Parameter bez\IeC {\"u}glich Impedanz der HDMI-Leitungen\relax }}{56}{table.caption.722}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Stromaufnahme der +3.3\tmspace +\thinmuskip {.1667em}V-Versorgung\relax }}{68}{table.caption.749}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Stromaufnahme der +5\tmspace +\thinmuskip {.1667em}V-Versorgung\relax }}{68}{table.caption.750}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Kommandos zum Schreiben des EEPROMs\relax }}{70}{table.caption.754}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
