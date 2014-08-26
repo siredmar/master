@@ -6,17 +6,18 @@
 \section{Motivation}
 In der heutigen Zeit treten eingebettete Systeme (engl. embedded systems) immer stärker in den Vordergrund. Gerade in den Bereichen der Industrie, Telekommunikation oder Multimedia wächst der Bedarf an Lösungen die durch Zuverlässigkeit, Energiesparsamkeit und kompakter Bauform bestechen.\\
 Obwohl eingebettete Systeme meist für den Anwender unsichtbar ihren Dienst verrichten, sind sie doch inzwischen allgegenwärtig. Im Bereich der Telekommunikation und Unterhaltungselektronik kommt ein solches System im Prinzip nicht mehr ohne ein Display aus. Die Möglichkeit zur Anzeige multimedialer Daten wird zur Kaufentscheidung. Auch hier gilt die Maxime: besser, schneller, größer.\\
-Im Sektor der eingebetten Systeme spielen Betriebssystem wie Linux neben diversen anderen Systemen wie beispielsweise RTOS, OSEK, QNX oder auch Windows eine sehr große Rolle. In Verbindung zeigen eingebettete Linuxsysteme mit Displays ein großes Potential. Mit der beliebten ARM-Architektur lassen sich so kostengünstige, leistungsstarke Systeme aufbauen, die die gestellten Aufgaben gut erfüllen kann. Sieht man sich allein den Marktanteil von Smartphones welche auf Android-Basis arbeiten an, wird der Trend klar, dass Hersteller eine offene Basis bevorzugen. \cite{Brandt2013}\\
-Es ist ersichtlich, dass auch in Zukunft Linux auf eingebetteten Systemen eine immer größere Rollen spielen wird. 
+Im Sektor der eingebetten Systeme spielen Betriebssystem wie Linux neben diversen anderen Systemen wie beispielsweise RTOS, OSEK, QNX oder auch Windows eine sehr große Rolle. In Verbindung mit Displays zeigen eingebettete Linuxsysteme ein großes Potential. Mit der beliebten ARM-Architektur lassen sich so kostengünstige, leistungsstarke Systeme aufbauen, welche die gestellten Aufgaben gut erfüllen kann. Sieht man sich allein den Marktanteil von Smartphones welche auf Android-Basis arbeiten an, wird der Trend klar, dass Hersteller eine offene Basis bevorzugen. (siehe \cite{android2014} und \cite{Brandt2013}).\\
+Es scheint ersichtlich, dass auch in Zukunft Linux auf eingebetteten Systemen eine immer größere Rollen spielen wird. 
 
 \section{Ziel der Arbeit}
-Das Ziel dieser Arbeit ist zu zeigen, dass die Verwendung von Displays mit eingebetten Linux Systemen je nach Anforderung einfach oder über Umwege realisierbar ist.\\ 
-
+Das Ziel dieser Arbeit ist zu zeigen, dass der Umgang mit embedded Linux Systemen und Anzeigemöglichkeiten mit vertretbarem Aufwand realisierbar ist.\\
+Hierzu soll exemplarisch ein ausgewähltes, relativ leistungsarmes Linux Board ohne explizite Displayschnittstelle effizient Bilddaten anzeigen.\\
+Anhand eines anderen, wesentlich stärkeren, Linux Board soll die volle Grafikleistung ausgenutzt werden und die HDMI-Schnittstelle zur Anzeige genutzt werden. 
 
 \section{Aufbau der Arbeit}
-Im ersten Teil der Arbeit werden theoretische Grundlagen gebildet, die für das Verständnis nötig sind. Hier werden Standards wie z.B. HDMI bzw. DVI, LVDS und RGB behandelt. Es wird ein Überblick über ausgewählte embedded Linux Boards gegeben und diese Klassifiziert mit welchen Displayschnittstellen diese ausgestattet sind bzw.. ausgestattet werden können.
-Der Zweite Teil behandelt das embedded Linux Board 'Gnublin', welches von Haus aus keine Displayschnittstelle vorgesehen hat. Hier werden zwei Varianten zur Ansteuerung von Displays erarbeitet. Die Ansteuerung wird hierbei vom Prozessor erledigt, da das 'Gnublin' keine dedizierten Grafikcontroller besitzt.
-Im dritten Teil wird für leistungsstärkere embedded Linux-Systeme mit HDMI-Schnittstelle eine Hardware entwickelt, RGB- oder LVDS-Panels anzuschließen. Um die Displays über die entwickelte Hardware anzusteuern, wird der dedizierte Grafikcontroller der Boards verwendet.
+Im ersten Teil der Arbeit werden theoretische Grundlagen gebildet, die für das Verständnis nötig sind. Hier werden diverse standardisierte Videoformate behandelt. Es wird ein Überblick und klassifizierung über ausgewählte embedded Linux Boards geschaffen.
+Der Zweite Teil behandelt das embedded Linux Board \code{Gnublin Extended}. Hier werden zwei Varianten zur Ansteuerung von Displays erarbeitet. Die Ansteuerung wird hierbei vom Prozessor erledigt, da das \code{Gnublin} keine dedizierten Grafikcontroller besitzt.
+Im dritten Teil wird für leistungsstärkere embedded Linux-Systeme mit HDMI-Schnittstelle eine Hardware entwickelt, RGB- oder LVDS-Panels anzuschließen. Um die Displays über die entwickelte Hardware anzusteuern, wird der dedizierte Grafikcontroller der Boards verwendet. Am Ende der beiden großen Kapiteln findet sich eine Sektion mit bekannten Fehlern und Problemen bei der Entwicklung. Die zum Schluss kommende Zusammenfassung rundet die Arbeit ab und wirft einen Blick auf die Arbeit im Rück- und Ausblick. 
 
 \section{Typographische Konventionen}
 Werden in diese Arbeit Teile des Textkörpers im diesem Stil z. B. \code{Textbaustein} geschrieben, so handelt es sich hierbei um:
@@ -28,13 +29,14 @@ Werden in diese Arbeit Teile des Textkörpers im diesem Stil z. B. \code{Textbau
 \item Registerbezeichnungen
 \item Bauteilbezeichnungen
 \item Modulbezeichnungen von Bauteilen
+\item ...
 \end{itemize}
 Werden Abkürzungen genannt, so sind diese in einer Fußnote auf derselben Seite beschrieben. Wegen der Übersicht finden sich alle Abkürzungen nochmals in einem Abkürzungsverzeichnis.
 Sofern nicht anders gekennzeichnet, sind alle Quellcodes in der Programmiersprache C geschrieben.
 \section{Verwendete Programme}
 Um Schaltpläne und Layouts zu erstellen, wurde das Programm Eagle von Cadsoft\footnote{\url{http://www.cadsoft.com/}} verwendet. Im Rahmen von Teil B dieser Arbeit ist eine Bauteilbibliothek entstanden, um alle benötigten Bauteile im Schaltplan und Layout verwenden zu können. Diese Bibliothek befindet sich im Anhang auf der CD.
 Um 3D Bilder von Platinenlayouts zu erzeugen, wurde das Eagle Plugin Eagle3D\footnote{\url{http://sourceforge.net/projects/eagle3d.berlios/}}.\\
-Für elektrische Simulationen wurde das Programm LTSpice von Linear Technology\footnote{\url{http://www.linear.com/designtools/software/}} verwendet. Die für den Teil B durchgeführte Simulation befindet sich im Anhang auf der CD.\\
+Für elektrische Simulationen wurde das Programm LTSpice von Linear Technology\footnote{\url{http://www.linear.com/designtools/software/}} verwendet. Die für den Teil B durchgeführten Simulationen befinden sich im Anhang auf der CD.\\
 Zur Entwicklung der Programme für die Plattformen PC, ARM und AVR wurde Eclipse\footnote{\url{https://www.eclipse.org/}} verwendet. Die verwendeten Compiler sind allesamt Plattformabhaengige gcc-Versionen\footnote{\url{https://gcc.gnu.org/}}. \reft{tab:verwendete_compiler} zeigt eine Übersicht der verwendeten Compiler für diese Arbeit.
 
 \begin{table}[h]
@@ -48,6 +50,3 @@ Zur Entwicklung der Programme für die Plattformen PC, ARM und AVR wurde Eclipse
 \caption{Verwendete Compiler}
 \label{tab:verwendete_compiler}
 \end{table}
-
-
-

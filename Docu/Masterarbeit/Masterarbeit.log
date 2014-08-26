@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  26 AUG 2014 11:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  26 AUG 2014 15:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1695,26 +1695,28 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 6.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 6.
+
+Package natbib Warning: Citation `android2014' on page 1 undefined on input lin
+e 9.
+
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 12.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 12.
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--14
-
- []
-
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 16.
+(babel)             in language  on input line 17.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 16.
-
+(babel)             in language  on input line 17.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 19.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 Overfull \vbox (15.17412pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 20.
+(babel)             in language  on input line 21.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 20.
+(babel)             in language  on input line 21.
 
 [1
 
@@ -1722,28 +1724,24 @@ Package babel Info: Redefining ngerman shorthand "~
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 21.
+(babel)             in language  on input line 22.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 21.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 22.
- (/usr/local/texlive/2013/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
+(babel)             in language  on input line 22.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 34.
+(babel)             in language  on input line 36.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 34.
+(babel)             in language  on input line 36.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 35.
+(Font)              <9> on input line 37.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 35.
+(Font)              <5> on input line 37.
 
 Overfull \vbox (15.17412pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 39.
+(babel)             in language  on input line 41.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 39.
+(babel)             in language  on input line 41.
 
 [2])
 Overfull \vbox (15.17412pt too high) has occurred while \output is active []
@@ -1788,7 +1786,7 @@ Package babel Info: Redefining ngerman shorthand "~
 
 
 
-] <Bilder/Grundlagen/vga_timing.png, id=599, 564.8471pt x 418.40526pt>
+] <Bilder/Grundlagen/vga_timing.png, id=598, 564.8471pt x 418.40526pt>
 File: Bilder/Grundlagen/vga_timing.png Graphic file (type png)
 
 <use Bilder/Grundlagen/vga_timing.png>
@@ -1817,7 +1815,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 24.
 
-<Bilder/Grundlagen/rgb_timing.png, id=624, 600.74437pt x 179.92218pt>
+<Bilder/Grundlagen/rgb_timing.png, id=623, 600.74437pt x 179.92218pt>
 File: Bilder/Grundlagen/rgb_timing.png Graphic file (type png)
 
 <use Bilder/Grundlagen/rgb_timing.png>
@@ -1849,7 +1847,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 42.
 
-[7] <Bilder/Grundlagen/8080_timing.png, id=654, 752.8125pt x 599.99156pt>
+[7] <Bilder/Grundlagen/8080_timing.png, id=653, 752.8125pt x 599.99156pt>
 File: Bilder/Grundlagen/8080_timing.png Graphic file (type png)
 
 <use Bilder/Grundlagen/8080_timing.png>
@@ -1874,8 +1872,6 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 54.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 54.
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 59.
 
 Underfull \hbox (badness 3942) in paragraph at lines 65--65
 []|\T1/lmr/bx/n/10.95 Relevanz für Mas-ter-ar-
@@ -1894,25 +1890,27 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 80.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 80.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 83.
 
 Overfull \vbox (15.17412pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 84.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 90.
+(babel)             in language  on input line 84.
 
 [9
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 92.
+(babel)             in language  on input line 85.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 92.
+(babel)             in language  on input line 85.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 97.
+(babel)             in language  on input line 92.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 97.
+(babel)             in language  on input line 92.
 )
 Overfull \vbox (15.17412pt too high) has occurred while \output is active []
 
@@ -1942,7 +1940,7 @@ Package babel Info: Redefining ngerman shorthand "~
 LaTeX Warning: Reference `cha:TeilAKnownBugs_SSD1963' on page 11 undefined on i
 nput line 10.
 
-<Bilder/TeilA/display_pinout.png, id=691, 479.7925pt x 655.44875pt>
+<Bilder/TeilA/display_pinout.png, id=694, 479.7925pt x 655.44875pt>
 File: Bilder/TeilA/display_pinout.png Graphic file (type png)
 
 <use Bilder/TeilA/display_pinout.png>
@@ -2063,7 +2061,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 5.
- <Bilder/TeilA/lpc_ebi.png, id=730, 1088.065pt x 843.15pt>
+ <Bilder/TeilA/lpc_ebi.png, id=743, 1088.065pt x 843.15pt>
 File: Bilder/TeilA/lpc_ebi.png Graphic file (type png)
 
 <use Bilder/TeilA/lpc_ebi.png>
@@ -2088,7 +2086,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 23.
 
-<Bilder/TeilA/lpc_mpmc.png, id=754, 868.24374pt x 961.5925pt>
+<Bilder/TeilA/lpc_mpmc.png, id=768, 868.24374pt x 961.5925pt>
 File: Bilder/TeilA/lpc_mpmc.png Graphic file (type png)
 
 <use Bilder/TeilA/lpc_mpmc.png>
@@ -2195,7 +2193,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 125.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 125.
- <Bilder/TeilA/schematic.png, id=824, 526.8483pt x 382.3083pt>
+ <Bilder/TeilA/schematic.png, id=845, 526.8483pt x 382.3083pt>
 File: Bilder/TeilA/schematic.png Graphic file (type png)
 
 <use Bilder/TeilA/schematic.png>
@@ -2215,7 +2213,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 137.
 
 [22 <./Bilder/TeilA/schematic.png>]
-<Bilder/TeilA/gnublin_ext_ssd1963_top.png, id=832, 1349.04pt x 745.78625pt>
+<Bilder/TeilA/gnublin_ext_ssd1963_top.png, id=855, 1349.04pt x 745.78625pt>
 File: Bilder/TeilA/gnublin_ext_ssd1963_top.png Graphic file (type png)
 
 <use Bilder/TeilA/gnublin_ext_ssd1963_top.png>
@@ -2227,7 +2225,7 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 144--145
 [][] 
  []
 
-<Bilder/TeilA/gnublin_ext_ssd1963_bot.png, id=833, 1353.055pt x 746.79pt>
+<Bilder/TeilA/gnublin_ext_ssd1963_bot.png, id=856, 1353.055pt x 746.79pt>
 File: Bilder/TeilA/gnublin_ext_ssd1963_bot.png Graphic file (type png)
 
 <use Bilder/TeilA/gnublin_ext_ssd1963_bot.png>
@@ -2297,7 +2295,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 304.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 304.
- <Bilder/TeilA/apex_config.png, id=970, 481.8pt x 313.17pt>
+ <Bilder/TeilA/apex_config.png, id=999, 481.8pt x 313.17pt>
 File: Bilder/TeilA/apex_config.png Graphic file (type png)
 
 <use Bilder/TeilA/apex_config.png>
@@ -2505,14 +2503,14 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 993.
 
 [46]
-<Bilder/TeilA/optimierte_routine_original.png, id=1602, 1955.305pt x 782.925pt>
+<Bilder/TeilA/optimierte_routine_original.png, id=1657, 1955.305pt x 782.925pt>
 File: Bilder/TeilA/optimierte_routine_original.png Graphic file (type png)
 <use Bilder/TeilA/optimierte_routine_original.png>
 Package pdftex.def Info: Bilder/TeilA/optimierte_routine_original.png used on i
 nput line 1001.
 (pdftex.def)             Requested size: 254.93863pt x 102.07053pt.
 
-<Bilder/TeilA/optimierte_routine_mod.png, id=1603, 1955.305pt x 782.925pt>
+<Bilder/TeilA/optimierte_routine_mod.png, id=1658, 1955.305pt x 782.925pt>
 File: Bilder/TeilA/optimierte_routine_mod.png Graphic file (type png)
 
 <use Bilder/TeilA/optimierte_routine_mod.png>
@@ -2520,7 +2518,7 @@ Package pdftex.def Info: Bilder/TeilA/optimierte_routine_mod.png used on input
 line 1010.
 (pdftex.def)             Requested size: 254.93863pt x 102.07053pt.
 
-<Bilder/TeilA/optimierte_routine_desc.png, id=1604, 1955.305pt x 782.925pt>
+<Bilder/TeilA/optimierte_routine_desc.png, id=1659, 1955.305pt x 782.925pt>
 File: Bilder/TeilA/optimierte_routine_desc.png Graphic file (type png)
 
 <use Bilder/TeilA/optimierte_routine_desc.png>
@@ -2560,7 +2558,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 8.
 
-[48] <Bilder/TeilA/print_34_dip.png, id=1637, 1027.84pt x 770.88pt>
+[48] <Bilder/TeilA/print_34_dip.png, id=1694, 1027.84pt x 770.88pt>
 File: Bilder/TeilA/print_34_dip.png Graphic file (type png)
 
 <use Bilder/TeilA/print_34_dip.png>
@@ -2571,7 +2569,7 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 21--22
  [][] 
  []
 
-<Bilder/TeilA/print_34_ext.png, id=1638, 1027.84pt x 770.88pt>
+<Bilder/TeilA/print_34_ext.png, id=1695, 1027.84pt x 770.88pt>
 File: Bilder/TeilA/print_34_ext.png Graphic file (type png)
 
 <use Bilder/TeilA/print_34_ext.png>
@@ -2602,7 +2600,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 40.
 
 [50 <./Bilder/TeilA/print_34_dip.png> <./Bilder/TeilA/print_34_ext.png>]
-<Bilder/TeilA/ssd1963_writeCycleConstraings.png, id=1652, 828.84656pt x 365.866
+<Bilder/TeilA/ssd1963_writeCycleConstraings.png, id=1710, 828.84656pt x 365.866
 88pt>
 File: Bilder/TeilA/ssd1963_writeCycleConstraings.png Graphic file (type png)
  <use Bilder/TeilA/ssd1963_writeCycleConstraings.png>
@@ -2650,7 +2648,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
 
-<Bilder/TeilB/Architektur.pdf, id=1666, 964.60374pt x 780.9175pt>
+<Bilder/TeilB/Architektur.pdf, id=1725, 964.60374pt x 780.9175pt>
 File: Bilder/TeilB/Architektur.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/Architektur.pdf>
@@ -2687,7 +2685,7 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 6--15
 [][] 
  []
 
-<Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png, id=1688, 1144.275pt x 834.11626pt>
+<Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png, id=1749, 1144.275pt x 834.11626pt>
 File: Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png Graphic file (type png)
 
 <use Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png>
@@ -2695,7 +2693,7 @@ Package pdftex.def Info: Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png used on input li
 ne 23.
 (pdftex.def)             Requested size: 183.4544pt x 133.72786pt.
 
-<Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png, id=1689, 1150.2975pt x 836.12375pt>
+<Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png, id=1750, 1150.2975pt x 836.12375pt>
 File: Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png Graphic file (type png)
 
 <use Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png>
@@ -2707,7 +2705,7 @@ Overfull \hbox (6.86275pt too wide) in paragraph at lines 29--29
 [][] 
  []
 
-<Bilder/TeilB/teilb_lagenaufbau.png, id=1691, 1606.0pt x 1304.875pt>
+<Bilder/TeilB/teilb_lagenaufbau.png, id=1752, 1606.0pt x 1304.875pt>
 File: Bilder/TeilB/teilb_lagenaufbau.png Graphic file (type png)
 
 <use Bilder/TeilB/teilb_lagenaufbau.png>
@@ -2732,14 +2730,14 @@ Overfull \hbox (9.14719pt too wide) in paragraph at lines 64--73
 [][] 
  []
 
-<Bilder/TeilB/hdmi_sch.png, id=1705, 168.26865pt x 238.491pt>
+<Bilder/TeilB/hdmi_sch.png, id=1769, 168.26865pt x 238.491pt>
 File: Bilder/TeilB/hdmi_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/hdmi_sch.png>
 Package pdftex.def Info: Bilder/TeilB/hdmi_sch.png used on input line 84.
 (pdftex.def)             Requested size: 130.48901pt x 184.94505pt.
 
-<Bilder/TeilB/hdmi_stecker.png, id=1706, 60.56226pt x 60.9477pt>
+<Bilder/TeilB/hdmi_stecker.png, id=1770, 60.56226pt x 60.9477pt>
 File: Bilder/TeilB/hdmi_stecker.png Graphic file (type png)
 
 <use Bilder/TeilB/hdmi_stecker.png>
@@ -2754,7 +2752,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 99.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 99.
-<Bilder/TeilB/rgb_bridge_sch.png, id=1710, 470.35725pt x 516.9714pt>
+<Bilder/TeilB/rgb_bridge_sch.png, id=1774, 470.35725pt x 516.9714pt>
 File: Bilder/TeilB/rgb_bridge_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/rgb_bridge_sch.png>
@@ -2770,7 +2768,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 113.
 
 [56]
-<Bilder/TeilB/sim_serienwiderstand_messung.png, id=1730, 1821.80624pt x 584.182
+<Bilder/TeilB/sim_serienwiderstand_messung.png, id=1796, 1821.80624pt x 584.182
 5pt>
 File: Bilder/TeilB/sim_serienwiderstand_messung.png Graphic file (type png)
  <use Bilder/TeilB/sim_serienwiderstand_messung.png>
@@ -2808,7 +2806,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 147.
 
 [59 <./Bilder/TeilB/sim_serienwiderstand_messung.png>]
-<Bilder/TeilB/rgb_bridge_pcb.png, id=1753, 71.18594pt x 123.46124pt>
+<Bilder/TeilB/rgb_bridge_pcb.png, id=1823, 71.18594pt x 123.46124pt>
 File: Bilder/TeilB/rgb_bridge_pcb.png Graphic file (type png)
 
 <use Bilder/TeilB/rgb_bridge_pcb.png>
@@ -2820,7 +2818,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 156.
 
-<Bilder/TeilB/lvds_bridge_paket.png, id=1756, 674.52pt x 339.2675pt>
+<Bilder/TeilB/lvds_bridge_paket.png, id=1826, 674.52pt x 339.2675pt>
 File: Bilder/TeilB/lvds_bridge_paket.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_bridge_paket.png>
@@ -2837,7 +2835,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--163
 [][][]|\T1/lmr/m/n/10 Pa-ket-for-mat LVDS-Bridge, [][][]Texas-
  []
 
-<Bilder/TeilB/lvds_display_paket.png, id=1761, 888.31876pt x 428.60126pt>
+<Bilder/TeilB/lvds_display_paket.png, id=1831, 888.31876pt x 428.60126pt>
 File: Bilder/TeilB/lvds_display_paket.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_display_paket.png>
@@ -2849,7 +2847,7 @@ Overfull \hbox (13.85306pt too wide) in paragraph at lines 168--169
 [][] 
  []
 
-<Bilder/TeilB/lvds_bridge_sch.png, id=1767, 472.164pt x 394.47375pt>
+<Bilder/TeilB/lvds_bridge_sch.png, id=1837, 472.164pt x 394.47375pt>
 File: Bilder/TeilB/lvds_bridge_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_bridge_sch.png>
@@ -2857,7 +2855,7 @@ Package pdftex.def Info: Bilder/TeilB/lvds_bridge_sch.png used on input line 17
 9.
 (pdftex.def)             Requested size: 318.67209pt x 266.24022pt.
 
-<Bilder/TeilB/lvds_bridge_pcb.png, id=1771, 91.48178pt x 115.27065pt>
+<Bilder/TeilB/lvds_bridge_pcb.png, id=1841, 91.48178pt x 115.27065pt>
 File: Bilder/TeilB/lvds_bridge_pcb.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_bridge_pcb.png>
@@ -2895,21 +2893,21 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 193.
 
-<Bilder/TeilB/EDID.pdf, id=1796, 587.19376pt x 864.22874pt>
+<Bilder/TeilB/EDID.pdf, id=1869, 587.19376pt x 864.22874pt>
 File: Bilder/TeilB/EDID.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/EDID.pdf>
 Package pdftex.def Info: Bilder/TeilB/EDID.pdf used on input line 198.
 (pdftex.def)             Requested size: 239.00558pt x 351.7646pt.
 
-<Bilder/TeilB/usb_sch.png, id=1799, 358.2183pt x 228.6141pt>
+<Bilder/TeilB/usb_sch.png, id=1872, 358.2183pt x 228.6141pt>
 File: Bilder/TeilB/usb_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/usb_sch.png>
 Package pdftex.def Info: Bilder/TeilB/usb_sch.png used on input line 206.
 (pdftex.def)             Requested size: 318.67209pt x 203.39265pt.
 
-<Bilder/TeilB/avr_sch.png, id=1801, 507.0945pt x 402.66435pt>
+<Bilder/TeilB/avr_sch.png, id=1874, 507.0945pt x 402.66435pt>
 File: Bilder/TeilB/avr_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/avr_sch.png>
@@ -2937,7 +2935,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 219.
 
 [64 <./Bilder/TeilB/usb_sch.png>]
-<Bilder/TeilB/edid_pcb_top.png, id=1816, 100.31076pt x 76.89528pt>
+<Bilder/TeilB/edid_pcb_top.png, id=1892, 100.31076pt x 76.89528pt>
 File: Bilder/TeilB/edid_pcb_top.png Graphic file (type png)
 
 <use Bilder/TeilB/edid_pcb_top.png>
@@ -2948,7 +2946,7 @@ Overfull \hbox (1.19409pt too wide) in paragraph at lines 225--226
 [][] 
  []
 
-<Bilder/TeilB/edid_pcb_bot.png, id=1817, 99.87714pt x 75.06444pt>
+<Bilder/TeilB/edid_pcb_bot.png, id=1893, 99.87714pt x 75.06444pt>
 File: Bilder/TeilB/edid_pcb_bot.png Graphic file (type png)
 
 <use Bilder/TeilB/edid_pcb_bot.png>
@@ -2963,7 +2961,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 242.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 242.
-<Bilder/TeilB/Supply.pdf, id=1819, 1572.87625pt x 539.01375pt>
+<Bilder/TeilB/Supply.pdf, id=1895, 1572.87625pt x 539.01375pt>
 File: Bilder/TeilB/Supply.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/Supply.pdf>
@@ -2974,7 +2972,7 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 246--247
  [] 
  []
 
-<Bilder/TeilB/power_sup_sch.png, id=1822, 358.4592pt x 155.3805pt>
+<Bilder/TeilB/power_sup_sch.png, id=1898, 358.4592pt x 155.3805pt>
 File: Bilder/TeilB/power_sup_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/power_sup_sch.png>
@@ -2986,7 +2984,7 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 253--254
  [] 
  []
 
-<Bilder/TeilB/verpolschutz_messung.png, id=1826, 1376.14125pt x 418.56375pt>
+<Bilder/TeilB/verpolschutz_messung.png, id=1902, 1376.14125pt x 418.56375pt>
 File: Bilder/TeilB/verpolschutz_messung.png Graphic file (type png)
 
 <use Bilder/TeilB/verpolschutz_messung.png>
@@ -3066,7 +3064,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 294.
 
-[68] <Bilder/TeilB/vcc_layer.png, id=1882, 199.2243pt x 177.83238pt>
+[68] <Bilder/TeilB/vcc_layer.png, id=1962, 199.2243pt x 177.83238pt>
 File: Bilder/TeilB/vcc_layer.png Graphic file (type png)
 
 <use Bilder/TeilB/vcc_layer.png>
@@ -3077,7 +3075,7 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 299--300
 [][] 
  []
 
-<Bilder/TeilB/gnd_layer.png, id=1883, 199.2243pt x 177.83238pt>
+<Bilder/TeilB/gnd_layer.png, id=1963, 199.2243pt x 177.83238pt>
 File: Bilder/TeilB/gnd_layer.png Graphic file (type png)
 
 <use Bilder/TeilB/gnd_layer.png>
@@ -3112,7 +3110,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--16
 \T1/lmr/m/n/10.95 EEPROM-Inhalt
  []
 
-<Bilder/TeilB/avr_arch.pdf, id=1893, 970.62625pt x 570.13pt>
+<Bilder/TeilB/avr_arch.pdf, id=1973, 970.62625pt x 570.13pt>
 File: Bilder/TeilB/avr_arch.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/avr_arch.pdf>
@@ -3186,7 +3184,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 152.
 
-[74] <Bilder/TeilB/edid_writer1.png, id=2037, 420.06938pt x 344.78813pt>
+[74] <Bilder/TeilB/edid_writer1.png, id=2126, 420.06938pt x 344.78813pt>
 File: Bilder/TeilB/edid_writer1.png Graphic file (type png)
 
 <use Bilder/TeilB/edid_writer1.png>
@@ -3261,7 +3259,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--7
 mmons / thumb / 4 / 48 /
  []
 
-<Bilder/TeilB/hdmi_stecker_problem.png, id=2152, 1284.8pt x 1133.23375pt>
+<Bilder/TeilB/hdmi_stecker_problem.png, id=2246, 1284.8pt x 1133.23375pt>
 File: Bilder/TeilB/hdmi_stecker_problem.png Graphic file (type png)
 
 <use Bilder/TeilB/hdmi_stecker_problem.png>
@@ -3286,7 +3284,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 20.
 
-<Bilder/TeilB/r13.png, id=2161, 59.7432pt x 46.9755pt>
+<Bilder/TeilB/r13.png, id=2259, 59.7432pt x 46.9755pt>
 File: Bilder/TeilB/r13.png Graphic file (type png)
 
 <use Bilder/TeilB/r13.png>
@@ -3297,7 +3295,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 29.
 
-<Bilder/TeilB/usb_dp_dm.png, id=2162, 157.7895pt x 97.5645pt>
+<Bilder/TeilB/usb_dp_dm.png, id=2260, 157.7895pt x 97.5645pt>
 File: Bilder/TeilB/usb_dp_dm.png Graphic file (type png)
 
 <use Bilder/TeilB/usb_dp_dm.png>
@@ -3845,6 +3843,10 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 111.
 (./Anhang.tex)
+
+Package natbib Warning: There were undefined citations.
+
+
 Overfull \vbox (15.17412pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
@@ -3865,11 +3867,22 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 123.
 (./Inhalt/Zusammenfassung/Zusammenfassung.aux) (./Erklaerung.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 123.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 123.
-Package rerunfilecheck Info: File `Masterarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: DC5A29E95698B5C0FB69BFD5AB543BC8;4470.
-Package rerunfilecheck Info: File `Masterarbeit.brf' has not changed.
-(rerunfilecheck)             Checksum: 75474DF2A235736ACD8B8EBF6717ECA8;3224.
 
+
+Package rerunfilecheck Warning: File `Masterarbeit.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Masterarbeit.out':
+(rerunfilecheck)             Before: D6F1F51EFB43FFCC88244424B3AA0A59;4469
+(rerunfilecheck)             After:  A6E2A243847C3F37661DF914000497B1;4469.
+
+Package rerunfilecheck Warning: File `Masterarbeit.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `Masterarbeit.brf':
+(rerunfilecheck)             Before: 6F914957DD40F0585DF30D5B06316735;3224
+(rerunfilecheck)             After:  65DCB5AF13CDA36B01FC20AF7C26A850;3224.
 
 LaTeX Warning: There were undefined references.
 
@@ -3879,43 +3892,385 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 123.
  ) 
 Here is how much of TeX's memory you used:
- 27434 strings out of 494220
- 480839 string characters out of 6156460
- 700882 words of memory out of 5000000
- 28932 multiletter control sequences out of 15000+600000
+ 27544 strings out of 494220
+ 482415 string characters out of 6156460
+ 699602 words of memory out of 5000000
+ 28930 multiletter control sequences out of 15000+600000
  101549 words of font info for 73 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  76i,13n,106p,1923b,2066s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local
-/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2013/
-texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2013/texmf-dist
-/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2013/texmf-dist/fonts/enc
-/dvips/lm/lm-rm.enc}{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-m
-athsy.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx10.pfb>
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/loca
-l/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2
-013/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2013/texmf
--dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2013/texmf-dist/font
-s/type1/public/lm/lmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pu
-blic/lm/lmmi6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmm
-i8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2013/t
-exmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2013/texmf-dist/fo
-nts/type1/public/lm/lmr8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pu
-blic/lm/lmr9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri
-10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri9.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/20
-13/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2013/texmf-di
-st/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2013/texmf-dist/fonts/ty
-pe1/public/lm/lmtt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
-/lm/lmtt8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt9.p
-fb>
-Output written on Masterarbeit.pdf (99 pages, 10607490 bytes).
+pdfTeX warning (dest): name{equation.720} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstnumber.852} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.729} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstnumber.215} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstnumber.442} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstnumber.205} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.913} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.898} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.867} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.859} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.803} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.758} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.654} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.632} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.604} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.589} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.574} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.519} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.487} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.443} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.421} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.400} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.383} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.344} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.290} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.281} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.270} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.239} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.228} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.220} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.209} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.200} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.143} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.115} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{lstlisting.95} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.753} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.749} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.721} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.715} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.87} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.79} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.75} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.65} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.62} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.60} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.44} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.955} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.953} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.950} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.858} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.755} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.750} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.747} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.744} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.742} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.738} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.736} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.734} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.731} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.727} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.722} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.717} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.708} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.705} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.697} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.198} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.90} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.74} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.69} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.59} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.960} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter*.959} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter.957} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.956} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.954} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.952} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.948} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.947} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.946} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.853} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.756} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.752} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.751} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.743} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.737} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.732} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.726} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.718} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.714} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.707} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter.706} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.701} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.517} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section*.516} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{paragraph.219} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.208} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{paragraph.197} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{paragraph.114} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.92} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.91} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.88} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.77} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.73} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.67} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.66} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.63} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.61} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.58} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.56} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter.55} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.54} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.52} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.46} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.45} has been referenced but does not exist,
+ replaced by a fixed one
+
+{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/t
+exlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2013/te
+xmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2013/texmf-dist/f
+onts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2013/texmf-dist/fonts/enc/d
+vips/lm/lm-rm.enc}{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-mat
+hsy.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/201
+3/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2013/texmf-d
+ist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2013/texmf-dist/fonts/
+type1/public/lm/lmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
+ic/lm/lmmi6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmmi8
+.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2013/tex
+mf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2013/texmf-dist/font
+s/type1/public/lm/lmr8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
+ic/lm/lmr9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri10
+.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2013
+/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2013/texmf-dist
+/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
+1/public/lm/lmtt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/l
+m/lmtt8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt9.pfb
+>
+Output written on Masterarbeit.pdf (99 pages, 10608961 bytes).
 PDF statistics:
- 2654 PDF objects out of 2984 (max. 8388607)
- 2422 compressed objects within 25 object streams
- 1094 named destinations out of 1200 (max. 500000)
+ 2788 PDF objects out of 2984 (max. 8388607)
+ 2555 compressed objects within 26 object streams
+ 1206 named destinations out of 1440 (max. 500000)
  758 words of extra memory for PDF output out of 10000 (max. 10000000)
 

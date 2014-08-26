@@ -56,7 +56,7 @@ Viele Mikrocontroller besitzen bereits ein 8080-Interface dediziert in Hardware 
 Nachdem nun die wichtigsten Schnittstellen dargestellt wurden, werden diese im Folgenden mit dem Fokus auf die Masterareit hinsichtlich der Relevanz bewertet.
 Da die VGA-Schnittstelle antik und obsolet ist, spielt sie heutzutage nur noch eine geringe Rolle. Insbesondere im Bereich der embedded Systeme wird sie kaum verwendet. Für die Masterarbeit ist die VGA-Schnittstelle uninteressant, da diese von keiner, in der Masterarbeit behandelten, Hardware verwendet wird. Jedoch wurde diese eingangs behandelt, da diese den Übergang zum digitalen RGB-Bus schafft.\\
 Die DVI- und HDMI-Schnittstellen, welche für den Bereich der Videoanzeige praktisch identisch sind, nehmen jedoch einen hohen Stellenwert in der Masterarbeit ein. Im zweiten Teil der Arbeit wird eine Hardware entwickelt, welche als Eingangssignale die TMDS der DVI-/HDMI-Schnittstelle nutzt. 
-Ebenso spielen die RGB-Schnittstelle und LVDS eine große Rolle\todo{große Rolle: umschreiben}, da an diesen Schnittstellen der entwickelten Hardware TFT-Panels angeschlossen werden. \\
+Ebenso spielen die RGB-Schnittstelle und LVDS eine große Rolle, da an diesen Schnittstellen der entwickelten Hardware TFT-Panels angeschlossen werden. \\
 Neben den reinen Video-Schnittstellen weist das beschriebene 8080-Interface, das ursprünglich nicht zur Bildübertragung gedacht war, ein hohes Potential auf und besitzt für den ersten Teil der Masterarbeit hohen Stellenwert. Gerade im embedded Bereich besitzt diese Schnittstelle nach wie vor einen hohen Stellenwert, da vor allem kleine Displays damit hinreichend schnell und effizient betrieben werden können. \reft{tab:interface_vergleich} zeigt nochmals eine kurze Übersicht der Relevanz der einzelnen Schnittstellen für die Masterarbeit.
 
 \begin{table}[h]
@@ -76,22 +76,17 @@ Neben den reinen Video-Schnittstellen weist das beschriebene 8080-Interface, das
 
 \section{Betrachtete Embedded Linux Boards}
 \label{cha:betrachtete_linux_boards}
-In diesem Abschnitt werden die verwendeten Linux-Boards dargestellt, verglichen und hinsichtlich der Verwendbarkeit in der Masterarbeit bewertet. Da sich die Masterarbeit in zwei Teile gliedert, wird für beide Anwendungsfaelle ein typisches Linux-Board hergezogen, welches den Anforderungen gerecht werden muss, eine billige und effiziente Anzeige zu gestatten.
-\subsection{Raspberry Pi}
-\label{cha:raspberry}
-Am wohl bekanntesten und mit einer riesigen Community hinter dem Projekt ist der Raspberry Pi von der Raspberry Pi Foundation \footnote{\url{http://www.raspberrypi.org}}. Um die wichtigsten Eckdaten des Einplatinenrechners im Checkkartenformat zu nennen, besitzt er in der Ausfuehrung Model B einen ARM11-Core (Broadcom BCM2835), 512 Megabyte SDRAM, eine Broadcom VideoCore IV GPU sowie diverse Schnittstellen wie HDMI, USB 2.0, UART\footnote{UART: Universal Asynchronous Receiver Transmitter - RS2332}, SPI\footnote{SPI: Serial Peripheral Interface - 4 Draht Bus}, I2C\footnote{I2C: Inter Integrated Circuit - 2 Draht Bus} sowie GPIO-Pins\footnote{GPIO: General Purpose Input Output}.\\
-Der erschwingliche Preis macht den Raspberry Pi attraktiv und zieht die Community an, da man für rund 40 Euro einen kompletten Rechner bekommt. \\
-\begin{tabular}{|c|c|}\hline
-   Lehrstuhl & Professor \\ \hline
-   BWL & Maier \\ \hline
-   MB & M"uller \\ \hline
-   Jura & Schmidt \\ \hline
- \end{tabular}
-
-
+In diesem Abschnitt werden die verwendeten Linux-Boards dargestellt, verglichen und hinsichtlich der Verwendbarkeit in der Masterarbeit bewertet. Da sich diese Arbeit in zwei Teile gliedert, wird für beide Anwendungsfälle ein typisches Linux-Board hergezogen, welches den Anforderungen gerecht werden muss eine billige und effiziente Anzeige zu gestatten.
 \subsection{Gnublin Extended}
 \label{cha:gnublin_extended}
+Ein relativ unbekanntes embedded Linux Board von einer deutschen Firma namens \code{Gnublin} 
 \todo{8080-Interface in SRAM erwaehnen!}
+
+\subsection{Raspberry Pi}
+\label{cha:raspberry}
+Am wohl bekanntesten und mit einer sehr großen Community hinter dem Projekt ist der \code{Raspberry Pi} von der Raspberry Pi Foundation \footnote{\url{http://www.raspberrypi.org}}. Um die wichtigsten Eckdaten des Einplatinenrechners im Checkkartenformat zu nennen, besitzt er in der Ausführung Model B einen ARM11-Core (Broadcom BCM2835), 512 Megabyte SDRAM, eine Broadcom VideoCore IV GPU sowie diverse Schnittstellen wie HDMI, USB 2.0, UART\footnote{UART: Universal Asynchronous Receiver Transmitter - RS2332}, SPI\footnote{SPI: Serial Peripheral Interface - 4 Draht Bus}, I2C\footnote{I2C: Inter Integrated Circuit - 2 Draht Bus} sowie GPIO-Pins\footnote{GPIO: General Purpose Input Output}.\\
+Der erschwingliche Preis macht den Raspberry Pi attraktiv und zieht die Community an, da man für rund 40 Euro einen kompletten Rechner bekommt. \\
+Aufgrund des günstigen Preises und des verbauten Grafikchips einschließlich HDMI-Ausgang ist der \code{Raspberry Pi} ideal fuer Teil B dieser Arbeit.
 
 
 \subsection{Bewertung der Linux-Boards}
