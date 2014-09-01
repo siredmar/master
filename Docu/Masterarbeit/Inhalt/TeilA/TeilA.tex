@@ -1,13 +1,18 @@
 \chapter{Teil A}
 \label{cha:TeilA}
-Im Folgenden Kapitel wird Teil A dieser Arbeit behandelt. Es wird die Ansteuerung von TFT Displays über den 8080-Bus auf Basis des Gnublin Linuxboards realisiert. Hierzu wurden verschieden große LCD Displays mit unterschiedlichen Controllern unter Verwendung des 8080-Interface und untersucht. 
+Im folgenden Kapitel wird Teil A dieser Arbeit behandelt. Es wird die Ansteuerung von TFT-Displays über den 8080-Bus auf Basis des \code{Gnublin Linuxboards} realisiert. Hierzu werden verschieden große LCD-Displays mit unterschiedlichen Controllern unter Verwendung des 8080-Interface untersucht. 
 
 \section{Untersuchte Displays mit 8080-Interface}
-Dieser Abschnitt behandelt die untersuchten Displays. Es wurden drei Displays aus China untersucht. Der Fokus bei der Bestellung lag vor allem darauf, dass die Pinbelegung der jeweiligen Displays übereinstimmen. So ist die Entwicklung von nur einer Adapterplatine zwischen Gnublin und Display nötig. Alle verwendeten Displays werden im 16 Bit Farbmodus betrieben. Die hieraus resultierende Farbtiefe beträgt 65.535 Farben.\newline % \footnote{2^16 = 65.536}
-Alle verwendeten Displays arbeiten dahingehend gleich, dass sie Kommandos und Daten auf dem Datenbus anliegen, diese jedoch durch eine gesonderte Leitung unterschieden werden. Soll dem Display also etwas mitgeteilt werden, so muss zuerst ein entsprechendes Kommando und im Anschluss die Nutzdaten gesendet werden. Um Pixeldaten an das Display zu senden, hat sich die Vorgehensweise etabliert, eine Rechteckige Region im RAM des Displays zu reservieren, das durch die 4 Eckpunkte des Rechtecks definiert sind. Werden im Anschluss Pixeldaten gesendet, inkrementiert der Controller die Adresse automatisch und springt bei einem Zeilenumbruch automatisch an die richtige Stelle im RAM. Der maximale Speicher im Controller beschränkt die maximale Auflösung der ansteuerbaren TFT-Panel. Trotz der Tatsache, dass sich die Displays auf elektrischer Seite nicht unterscheiden, so müssen diese allerdings alle speziell softwareseitig behandelt werden. \todo{bild von Ramfenster hinzufuegen}
-
-\subsection{4.3"'/5"' mit SSD1963}
-Die Wahl des Controllers SSD1963 von Solomon Systech liegt nahe, da dieser bereits mit einem 4.3"'  Panel in einer vorausgehende Arbeit verwendet wird. Dort ist das Display mittels GPIO-Pins am Raspberry Pi angeschlossen. Die Software bezüglich der reinen Displayansteuerung ist somit bereits vorhanden (siehe \cite{Schlegel2013a}). Aufgrund eines Problems, das in Abschnitt \ref{cha:TeilAKnownBugs_SSD1963} näher beschrieben ist, wird für diese Arbeit zusätzlich ein anderes Display mit 5"' Panel aber selbem Controller untersucht. 
+Dieser Abschnitt behandelt die drei untersuchten Displays. Der Fokus bei der Bestellung lag vor allem darauf, dass die Pinbelegung der jeweiligen Displays übereinstimmen. So ist die Entwicklung von nur einer Adapterplatine zwischen \code{Gnublin Extended} und Display nötig. Alle verwendeten Displays werden im 16 Bit Farbmodus mit einer resultierende Farbtiefe beträgt 65.535 Farbe betrieben.\newline % \footnote{2^16 = 65.536}
+Alle verwendeten Displays arbeiten dahingehend gleich, dass sie Kommandos und Daten auf dem Datenbus anlegen, diese jedoch durch eine gesonderte Leitung unterschieden werden. Soll dem Display also etwas mitgeteilt werden, so muss zuerst ein entsprechendes Kommando und im Anschluss die Nutzdaten gesendet werden. Um Pixeldaten an das Display zu senden, hat sich die Vorgehensweise etabliert, eine Rechteckige Region im RAM des Displays zu reservieren, das durch die 4 Eckpunkte des Rechtecks definiert sind (siehe \refa{fig:ram_window}). Werden im Anschluss Pixeldaten gesendet, inkrementiert der Controller die Adresse automatisch und springt bei einem Zeilenumbruch automatisch an die richtige Stelle im RAM. Der verfügbare Speicher im Controller beschränkt die maximale Auflösung der ansteuerbaren TFT-Panel. Trotz der Tatsache, dass sich die Displays auf elektrischer Seite nicht unterscheiden, so müssen diese allerdings alle softwareseitig speziell behandelt werden.
+\begin{figure}[h]
+	\centering
+\fbox{	\includegraphics[width=0.5\textwidth]{TeilA/ram_window.png}}
+	\caption{Fensterreservierung im Display-RAM}
+	\label{fig:ram_window}
+\end{figure}
+\subsection{4.3 / 5 Zoll mit SSD1963}
+Die Wahl des Controllers \code{SSD1963} von Solomon Systech liegt nahe, da dieser bereits mit einem 4.3 Zoll  Panel in einer vorausgehende Arbeit verwendet wird. Dort ist das Display mittels GPIO-Pins am Raspberry Pi angeschlossen. Die Software bezüglich der reinen Displayansteuerung ist somit bereits vorhanden (siehe \cite{Schlegel2013a}). Aufgrund eines Problems, das in Abschnitt \ref{teila_knownbugs} näher beschrieben ist, wird für diese Arbeit zusätzlich ein anderes Display mit 5 Zoll Panel aber selbem Controller untersucht. 
 \refa{fig:8080_pinout} zeigt das Pinout der verwendeten Displays (Quelle: \cite{Coldtears2014}).
 \begin{figure}[h]
 	\centering
@@ -15,7 +20,7 @@ Die Wahl des Controllers SSD1963 von Solomon Systech liegt nahe, da dieser berei
 	\caption{8080-Display Pinout}
 	\label{fig:8080_pinout}
 \end{figure}
-Die Displays besitzen bei 4.3"' eine Auflösung von 480x272 beziehungsweise bei 5"' 800x480 Pixeln. Neben den für die Initialisierung nötigen Kommandos besitzt der Controller folgende wichtigen Kommandos. Diese sind in \reft{tab:Kommandos_SSD1963} beschrieben (Quelle:  \cite{SSD2008}). Die zur Initialisierung notwendigen Kommandos werden hier nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
+Die Displays haben bei 4.3 Zoll eine Auflösung von 480x272 beziehungsweise bei 5 Zoll 800x480 Pixeln. Neben den für die Initialisierung nötigen Kommandos besitzt der Controller folgende wichtigen Kommandos. Diese sind in \reft{tab:Kommandos_SSD1963} beschrieben (siehe \cite{SSD2008}). Die zur Initialisierung notwendigen Kommandos sind nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{8cm}|}\hline
 \rowcolor{TableBackgroundColor} 
@@ -27,10 +32,8 @@ Die Displays besitzen bei 4.3"' eine Auflösung von 480x272 beziehungsweise bei 
 \caption{Relevante Kommandos des SSD1963}
 \label{tab:Kommandos_SSD1963}
 \end{table}
-
-
-\subsection{3.2"' mit SSD1289}
-Das 3.2"' Display von Sainsmart wird mit einen SSD1289 von Solomon Systech betrieben. Dieses Display hat eine Aufloesung ovn 320x240 Farbpunkten. Das Pinout ist dasselbe, das in \refa{fig:8080_pinout}MPMCStatic zu sehen ist. Analog zu \reft{tab:Kommandos_SSD1963} besitzt der SSD1289 seine eigenen wichtigen Kommandos. Diese sind in  \reft{tab:Kommandos_SSD1289} erläutert (siehe \cite{SSD2007}). Die zur Initialisierung notwendigen Kommandos werden hier nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
+\subsection{3.2 Zoll mit SSD1289}
+Das 3.2 Zoll Display von Sainsmart wird mit einen \code{SSD1289} von Solomon Systech betrieben. Dieses Display hat eine Auflösung von 320x240 Farbpunkten. Das Pinout ist dasselbe, das in \refa{fig:8080_pinout} zu sehen ist. Ähnlich zu den Kommandos des \code{SSD1963} in \reft{tab:Kommandos_SSD1963} besitzt der \code{SSD1289} analoge Befehle. Diese sind in  \reft{tab:Kommandos_SSD1289} erläutert (siehe \cite{SSD2007}). Die zur Initialisierung notwendigen Kommandos sind hier nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{8cm}|}\hline
 \rowcolor{TableBackgroundColor}
@@ -47,8 +50,8 @@ Das 3.2"' Display von Sainsmart wird mit einen SSD1289 von Solomon Systech betri
 \end{table}
 
 
-\subsection{5"' mit CPLD}
-Als drittes Display mit 8080-Interface kommt eine 5"' Display mit einer Auflösung von 800x480 Bildpunkten zum Einsatz, dass keinen univerell einsetzbaren Controller für variable Displaypanels im klassischen Sinn besitzt, sondern ein CPLD \footnote{CPLD: Complex Programmable Logic Device} als Controller mit zugeschnittenen Timings für das verwendete TFT-Panel. Der Vorteil eines solchen Displays ist, dass keine Initialisierungsroutine benötigt wird, um die Timings für das Panel einzustellen. Ein Reset setzt das Display betriebsbereit. Nachteilig stellt sich der Umstand ein, dass nur TFT-Panels exakter Größe und mit exakten Timings verwendet werden können. Für diese Arbeit ist allerdings die Verwendung von anderen Panels belanglos. Auch hier ist das Pinout des Displays analog zu dem Gezeigten in \refa{fig:8080_pinout}.\newline
+\subsection{5 Zoll mit CPLD}
+Als drittes Display mit 8080-Interface kommt eine 5 Zoll Display mit einer Auflösung von 800x480 Bildpunkten zum Einsatz, dass keinen univerell einsetzbaren Controller für variable Displaypanels im klassischen Sinn besitzt, sondern ein CPLD \footnote{CPLD: Complex Programmable Logic Device} als Controller mit zugeschnittenen Timings für das verwendete TFT-Panel. Der Vorteil eines solchen Displays ist, dass keine Initialisierungsroutine benötigt wird, um die Timings für das Panel einzustellen. Ein Reset setzt das Display betriebsbereit. Nachteilig stellt sich der Umstand ein, dass nur TFT-Panels exakter Größe und mit exakten Timings verwendet werden können. Für diese Arbeit ist allerdings die Verwendung von anderen Panels belanglos. Auch hier ist das Pinout des Displays analog zu dem Gezeigten in \refa{fig:8080_pinout}.\newline
 Wichtige Kommandos zum Betrieb des Displays sind in \reft{tab:Kommandos_MD050SD} einsehbar (siehe \cite{ITEAD2013}). Dieses Display trägt die Bezeichnung MD050SD.
 
 \begin{table}[h]
