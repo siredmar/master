@@ -266,10 +266,11 @@
   \url{http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications}.
 \newblock \,Version:\,2011, Abruf: 22.05.2014
 
-\bibitem[Wuerth-Elektronik(2013)]{Wuerth2013}
-\dinatlabel{Wuerth-Elektronik 2013} \textsc{Wuerth-Elektronik}:
-\newblock \emph{15WPMDL1300331BD – 3.3V}.
-\newblock \url{http://katalog.we-online.de/pm/datasheet/171030301.pdf}.
-\newblock \,Version:\,2013, Abruf: 21.08.2014
+\bibitem[VESA(Rele)]{edid2000}
+\dinatlabel{VESA Rele} \textsc{VESA}:
+\newblock \emph{VESA Enhanced EDID Standard}.
+\newblock \url{http://read.pudn.com/downloads110/ebook/456020/E-EDID
+  Standard.pdf}.
+\newblock \,Version:\,Release A, Rev. 1, Abruf: 29.08.2014
 
 \end{thebibliography}

@@ -1,2 +1,17 @@
 \chapter{Zusammenfassung}
 \label{cha:Zusammenfassung}
+Die Ziele der beiden Teile dieser Masterarbeit waren
+\begin{itemize}
+\item Optimierte Portierung des vorausgehenden Projekts zur Ansteuerung von TFT-Displays
+\item Ausnutzung der vollen Grafikleistung von Linux-Boards mit Grafikhardware über die HDMI-Schnittstelle über eine selbst entwickelte Hardware zur Ansteuerung von Displays
+\end{itemize}
+Im Teil A dieser Arbeit ist auf die Low-Level Programmierung des verwendeten Prozessors \code{LPC 3131} eingegangen worden. Es wurde ein Verfahren entwickelt, Displays mit 8080-Interface an einem Speicherbus des Prozessors zu betreiben. Diese Methode findet in einem entwickelten Framebuffer-Treiber im Linux-Kernel, einem User-Space-Treiber sowie im Bootloader Verwendung.\newline
+
+Hierbei ergaben sich Erschwernisse in der Entwicklung, die teilweise gelöst wurden aber noch Fragen bzgl. der Fehlerursachen offen lassen. 
+So scheint die Verwendung der Grafikcontroller \code{SSD1963} im Vergleich zum \code{SSD1289} und dem Display \code{MD050SD} in der entwickelten Anwendung nicht nutzbar zu sein. Die Fehlerursache konnte trotz ausgedehnter Suche nach wie vor nicht ermittelt werden.\newline
+Mit dem \code{MD050SD} lässt sich das Ziel der optimierten Ansteuerung unter Verwendung des Speicherinterface gut zeigen. Dabei wird gezeigt, dass es auch für leistungsschwache Systeme gute Möglichkeiten zur Anzeige gibt.\newline
+
+Mit der vollen Ausnutzung der Grafikhardware ist das Linux-Board als Einheit zu sehen, welche über die HDMI-Schnittstelle verlassen wird. Die berechneten Video-Signale werden von einer Onboard-Grafikeinheit zur Verfügung gestellt die mit der entwickelten Hardware aus Teil B aufgegriffen und ausgewählte TFT-Displays angeschlossen werden können. Die Schnittstellen zum Anschluss dieser Displays sind der \code{RGB}-Bus sowie ein \code{LVDS}-Interface.\newline
+Um einen Plug-And-Play-Betrieb an einer HDMI-Quelle zu ermöglichen, wurden EDID-Daten auf der Platine hinterlegt und die Möglichkeit gegeben, diese mittels USB neu zu beschreiben.\newline
+Während der Entwicklung sind ebenfalls Fehler aufgetreten, die teilweise behoben wurden. In der gefertigten Hardware sind diese als Fehler im Schaltplan zu finden.\newline
+Dennoch wurde das Ziel der Ausnutzung der vollen Grafikleistung dahingehend erfüllt, dass eine funktionierende Methode entwickelt wurde die HDMI-Signale anzuzeigen wie geplant anzuzeigen.

@@ -10,14 +10,11 @@ Im Sektor der eingebetten Systeme spielen Betriebssystem wie Linux neben diverse
 Es scheint ersichtlich, dass auch in Zukunft Linux auf eingebetteten Systemen eine immer größere Rollen spielen wird. 
 
 \section{Ziel der Arbeit}
-Das Ziel dieser Arbeit ist zu zeigen, dass der Umgang mit embedded Linux Systemen und Anzeigemöglichkeiten mit vertretbarem Aufwand realisierbar ist.\\
-Hierzu soll exemplarisch ein ausgewähltes, relativ leistungsarmes Linux Board ohne explizite Displayschnittstelle für die effiziente Anzeige Bilddaten konfiguriert werden.\\
-Anhand eines anderen, wesentlich stärkeren Linux Boards soll die volle vorhandene Grafikleistung ausgenutzt werden und die HDMI-Schnittstelle zur Anzeige genutzt werden. 
-
+Dieser Arbeit vorausgehend stand eine Projektarbeit, bei der ein TFT-Display mittels GPIO-Pins mit dem Einplatinenrechner \code{Raspberry PI} angesteuert wurde. Das Ziel diese Arbeit ist an der Idee anzuknüpfen und diese Methode auf eine leistungsschwächere Plattform zu portieren sowie das Ausschöpfen der vollen Grafikleistung von Linux-Boards mit Grafikhardware und HDMI-Schnittstelle bezüglich einer selbst entwickelten Anzeigemöglichkeit.
 \section{Aufbau der Arbeit}
 Im ersten Teil der Arbeit werden theoretische Grundlagen gebildet, die für das Verständnis nötig sind. Hier werden diverse standardisierte Video-Schnittstellen behandelt. Es wird ein Überblick und Klassifizierung über ausgewählte embedded Linux Boards geschaffen.
 Der Zweite Teil behandelt das embedded Linux Board \code{Gnublin Extended}. Hier werden zwei Varianten zur Ansteuerung von Displays erarbeitet. Die Ansteuerung wird hierbei vom Prozessor erledigt, da das \code{Gnublin} keine dedizierten Grafikcontroller besitzt.
-Im dritten Teil wird für leistungsstärkere embedded Linux-Systeme mit HDMI-Schnittstelle eine Hardware entwickelt, die es ermöglicht RGB- oder LVDS-Panels anzuschließen. Um die Displays über die entwickelte Hardware anzusteuern, wird der dedizierte Grafikcontroller der Boards verwendet. Jeweils am Ende der beiden großen Kapiteln findet sich eine Sektion mit bekannten Fehlern und Problemen bei der Entwicklung. Die zum Schluss kommende Zusammenfassung rundet die Arbeit ab und wirft einen Blick auf die Arbeit im Rück- und Ausblick. 
+Im dritten Teil wird für leistungsstärkere embedded Linux-Systeme mit HDMI-Schnittstelle eine Hardware entwickelt, die es ermöglicht RGB- oder LVDS-Panels anzuschließen. Um die Displays über die entwickelte Hardware anzusteuern, wird der dedizierte Grafikcontroller der Boards verwendet. Jeweils am Ende der beiden großen Kapiteln findet sich eine Sektion mit bekannten Fehlern und Problemen bei der Entwicklung. Die zum Schluss kommende Zusammenfassung rundet die Arbeit ab und wirft einen Blick auf die Arbeit im Rück- und Ausblick.  
 
 \section{Typographische Konventionen}
 Werden in dieser Arbeit Teile des Textkörpers im diesem Stil z. B. \code{Textbaustein} geschrieben, so handelt es sich hierbei um:
