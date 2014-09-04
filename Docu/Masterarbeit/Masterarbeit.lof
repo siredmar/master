@@ -13,34 +13,34 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Schaltplan Adapterplatine\relax }}{22}{figure.caption.88}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Adapterplatine zwischen Gnublin Extended und Display\relax }}{23}{figure.caption.89}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces APEX-Bootloader KConfig\relax }}{27}{figure.caption.186}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Kernel KConfig\relax }}{41}{figure.caption.500}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces User-Space: Optimierte Senderoutine\relax }}{47}{figure.caption.675}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces SSD1963: Vergleich GPIO- und SRAM-Ansteuerung\relax }}{50}{figure.caption.682}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces 8080-Timingbedingung f\IeC {\"u}r SSD1963\relax }}{51}{figure.caption.683}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Kernel KConfig\relax }}{41}{figure.caption.501}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces User-Space: Optimierte Senderoutine\relax }}{47}{figure.caption.676}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces SSD1963: Vergleich GPIO- und SRAM-Ansteuerung\relax }}{50}{figure.caption.683}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces 8080-Timingbedingung f\IeC {\"u}r SSD1963\relax }}{51}{figure.caption.684}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Hardware-Architektur\relax }}{53}{figure.caption.686}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces HDMI RGB/LVDS Board\relax }}{55}{figure.caption.692}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Lagenaufbau Teil B\relax }}{55}{figure.caption.693}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces HDMI Leitungen\relax }}{57}{figure.caption.698}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces RGB Bridge: Schaltplan\relax }}{58}{figure.caption.702}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces RGB Bridge: Simulationsergebnis des Leitungstiefpass\relax }}{59}{figure.caption.705}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces RGB Bridge: Layout, gedreht um 90$^{\circ }$\relax }}{59}{figure.caption.706}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces LVDS Paketformate\relax }}{60}{figure.caption.708}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces LVDS Bridge: Schaltplan\relax }}{60}{figure.caption.709}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces LVDS Bridge: Layout, gedreht um 90$^{\circ }$\relax }}{61}{figure.caption.711}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces EDID: Blockschaltbild\relax }}{62}{figure.caption.713}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces EDID: USB-Bridge Schaltplan\relax }}{63}{figure.caption.715}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces EDID: AVR Schaltplan\relax }}{64}{figure.caption.716}
-\contentsline {figure}{\numberline {4.14}{\ignorespaces EDID Baugruppe\relax }}{65}{figure.caption.717}
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Spannungsversorgung Teil B\relax }}{65}{figure.caption.719}
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Verpolschutz und Versorgungsspannung +3.3\tmspace +\thinmuskip {.1667em}V\relax }}{66}{figure.caption.721}
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Simulation des Verpolschutz\relax }}{66}{figure.caption.722}
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Innenlagen\relax }}{68}{figure.caption.725}
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Ablaufdiagramme Embedded-Software\relax }}{70}{figure.caption.729}
-\contentsline {figure}{\numberline {4.20}{\ignorespaces PC-Programm EDID-Writer\relax }}{74}{figure.caption.831}
-\contentsline {figure}{\numberline {4.21}{\ignorespaces Known Bugs: HDMI-Stecker, \relax }}{78}{figure.caption.923}
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Known Bugs: +5V-Kreis\relax }}{79}{figure.caption.926}
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Known Bugs: USB Signale vertauscht\relax }}{80}{figure.caption.928}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Hardware-Architektur\relax }}{53}{figure.caption.687}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces HDMI RGB/LVDS Board\relax }}{55}{figure.caption.693}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Lagenaufbau Teil B\relax }}{55}{figure.caption.694}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces HDMI Leitungen\relax }}{57}{figure.caption.699}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces RGB Bridge: Schaltplan\relax }}{58}{figure.caption.703}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces RGB Bridge: Simulationsergebnis des Leitungstiefpass\relax }}{59}{figure.caption.706}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces RGB Bridge: Layout, gedreht um 90$^{\circ }$\relax }}{59}{figure.caption.707}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces LVDS Paketformate\relax }}{60}{figure.caption.709}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces LVDS Bridge: Schaltplan\relax }}{60}{figure.caption.710}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces LVDS Bridge: Layout, gedreht um 90$^{\circ }$\relax }}{61}{figure.caption.712}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces EDID: Blockschaltbild\relax }}{62}{figure.caption.714}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces EDID: USB-Bridge Schaltplan\relax }}{63}{figure.caption.716}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces EDID: AVR Schaltplan\relax }}{64}{figure.caption.717}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces EDID Baugruppe\relax }}{65}{figure.caption.718}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Spannungsversorgung Teil B\relax }}{65}{figure.caption.720}
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Verpolschutz und Versorgungsspannung +3.3\tmspace +\thinmuskip {.1667em}V\relax }}{66}{figure.caption.722}
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Simulation des Verpolschutz\relax }}{66}{figure.caption.723}
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Innenlagen\relax }}{68}{figure.caption.726}
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Ablaufdiagramme Embedded-Software\relax }}{70}{figure.caption.730}
+\contentsline {figure}{\numberline {4.20}{\ignorespaces PC-Programm EDID-Writer\relax }}{74}{figure.caption.832}
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Known Bugs: HDMI-Stecker, \relax }}{78}{figure.caption.924}
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Known Bugs: +5V-Kreis\relax }}{79}{figure.caption.927}
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Known Bugs: USB Signale vertauscht\relax }}{80}{figure.caption.929}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

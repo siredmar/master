@@ -24,34 +24,35 @@
 \backcite {NXP2010}{{21}{3.2.3}{table.caption.78}}
 \backcite {Schlegel2013a}{{24}{3.2.5}{subsection.90}}
 \backcite {Schlegel2013b}{{24}{3.2.5}{subsection.90}}
-\backcite {LinuxKernelFBCON}{{28}{3.2.5.1.2}{lstnumber.193}}
-\backcite {GnublinWiki2013a}{{28}{3.2.5.1.2}{lstnumber.193}}
-\backcite {GnublinWiki2013b}{{28}{3.2.5.2}{subsubsection.196}}
-\backcite {GnublinWiki2013c}{{29}{3.2.5.2}{lstnumber.203}}
-\backcite {LinuxKernelFB}{{29}{3.2.5.2}{lstnumber.203}}
-\backcite {Schlegel2013c}{{30}{3.2.5.2.1}{paragraph.207}}
-\backcite {LinuxKernelPlatformDeviceDriver}{{30}{3.2.5.2.1}{paragraph.207}}
-\backcite {Nadeau2012}{{37}{3.2.5.2.1}{lstnumber.426}}
-\backcite {Schlegel2013a}{{37}{3.2.5.2.1}{lstnumber.426}}
-\backcite {Schlegel2013a}{{48}{3.2.5.3}{figure.caption.675}}
-\backcite {SSD2008}{{49}{3.3}{section.679}}
-\backcite {TI2011}{{53}{4.1}{section.685}}
-\backcite {edid2000}{{54}{4.1}{figure.caption.686}}
-\backcite {TI2007}{{56}{4.2.1}{equation.696}}
-\backcite {Gensicke2014}{{59}{4.2.2}{equation.704}}
-\backcite {LG2012}{{59}{4.2.2}{figure.caption.705}}
-\backcite {TI2011b}{{60}{4.8a}{figure.caption.708}}
-\backcite {LG2012}{{60}{4.8b}{figure.caption.708}}
-\backcite {Miller2010}{{66}{4.2.5}{figure.caption.721}}
-\backcite {TI2011}{{67}{\caption@xref {??}{ on input line 252}}{table.caption.723}}
-\backcite {TI2011b}{{67}{\caption@xref {??}{ on input line 253}}{table.caption.723}}
-\backcite {LG2012}{{67}{\caption@xref {??}{ on input line 254}}{table.caption.723}}
-\backcite {Techtoys2012}{{67}{\caption@xref {??}{ on input line 255}}{table.caption.723}}
-\backcite {HDMI11}{{67}{4.2.5}{table.caption.723}}
-\backcite {Atmel2011}{{67}{\caption@xref {??}{ on input line 268}}{table.caption.724}}
-\backcite {Atmel2003}{{67}{\caption@xref {??}{ on input line 269}}{table.caption.724}}
-\backcite {USB2005}{{67}{4.2.5}{table.caption.724}}
-\backcite {FTDI2010}{{68}{4.2.5}{table.caption.724}}
-\backcite {TI2007}{{68}{4.2.5}{figure.caption.725}}
-\backcite {eeprom_lib}{{73}{4.3.2}{lstnumber.825}}
-\backcite {rs232_lib}{{74}{4.3.3}{subsection.826}}
+\backcite {LinuxKernelFBCON}{{28}{3.2.5.1.2}{lstnumber.194}}
+\backcite {GnublinWiki2013a}{{28}{3.2.5.1.2}{lstnumber.194}}
+\backcite {GnublinWiki2013b}{{28}{3.2.5.2}{subsubsection.197}}
+\backcite {GnublinWiki2013c}{{29}{3.2.5.2}{lstnumber.204}}
+\backcite {LinuxKernelFB}{{29}{3.2.5.2}{lstnumber.204}}
+\backcite {Schlegel2013c}{{30}{3.2.5.2.1}{paragraph.208}}
+\backcite {LinuxKernelPlatformDeviceDriver}{{30}{3.2.5.2.1}{paragraph.208}}
+\backcite {Nadeau2012}{{37}{3.2.5.2.1}{lstnumber.427}}
+\backcite {Schlegel2013a}{{37}{3.2.5.2.1}{lstnumber.427}}
+\backcite {Schlegel2013a}{{48}{3.2.5.3}{figure.caption.676}}
+\backcite {SSD2008}{{49}{3.3}{section.680}}
+\backcite {TI2011}{{53}{4.1}{section.686}}
+\backcite {edid2000}{{54}{4.1}{figure.caption.687}}
+\backcite {TI2007}{{56}{4.2.1}{equation.697}}
+\backcite {Gensicke2014}{{59}{4.2.2}{equation.705}}
+\backcite {LG2012}{{59}{4.2.2}{figure.caption.706}}
+\backcite {TI2011b}{{60}{4.8a}{figure.caption.709}}
+\backcite {LG2012}{{60}{4.8b}{figure.caption.709}}
+\backcite {Miller2010}{{66}{4.2.5}{figure.caption.722}}
+\backcite {Wuerth2013}{{66}{4.2.5}{figure.caption.723}}
+\backcite {TI2011}{{67}{\caption@xref {??}{ on input line 252}}{table.caption.724}}
+\backcite {TI2011b}{{67}{\caption@xref {??}{ on input line 253}}{table.caption.724}}
+\backcite {LG2012}{{67}{\caption@xref {??}{ on input line 254}}{table.caption.724}}
+\backcite {Techtoys2012}{{67}{\caption@xref {??}{ on input line 255}}{table.caption.724}}
+\backcite {HDMI11}{{67}{4.2.5}{table.caption.724}}
+\backcite {Atmel2011}{{67}{\caption@xref {??}{ on input line 268}}{table.caption.725}}
+\backcite {Atmel2003}{{67}{\caption@xref {??}{ on input line 269}}{table.caption.725}}
+\backcite {USB2005}{{67}{4.2.5}{table.caption.725}}
+\backcite {FTDI2010}{{68}{4.2.5}{table.caption.725}}
+\backcite {TI2007}{{68}{4.2.5}{figure.caption.726}}
+\backcite {eeprom_lib}{{73}{4.3.2}{lstnumber.826}}
+\backcite {rs232_lib}{{74}{4.3.3}{subsection.827}}

@@ -33,31 +33,31 @@
 \BOOKMARK [3][]{subsubsection.91}{Anpassung des APEX-Bootloaders zur Verwendung des Displays}{subsection.90}% 33
 \BOOKMARK [4][]{paragraph.108}{Boot-Logo im APEX-Bootloader}{subsubsection.91}% 34
 \BOOKMARK [4][]{paragraph.185}{Konfiguration des APEX-Bootloaders}{subsubsection.91}% 35
-\BOOKMARK [3][]{subsubsection.196}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.90}% 36
-\BOOKMARK [4][]{paragraph.207}{Framebuffer-Treiber f\374r MD050SD}{subsubsection.196}% 37
-\BOOKMARK [4][]{paragraph.498}{Anpassungen f\374r SSD1963/SSD1289 Controller}{subsubsection.196}% 38
-\BOOKMARK [4][]{paragraph.499}{Kernel f\374r Framebuffer konfigurieren}{subsubsection.196}% 39
-\BOOKMARK [3][]{subsubsection.501}{Entwicklung eines User-Space-Treibers}{subsection.90}% 40
-\BOOKMARK [1][]{section.679}{Known Bugs}{chapter.54}% 41
-\BOOKMARK [0][]{chapter.684}{Teil B}{}% 42
-\BOOKMARK [1][]{section.685}{Konzept}{chapter.684}% 43
-\BOOKMARK [1][]{section.690}{Hardwareentwicklung}{chapter.684}% 44
-\BOOKMARK [2][]{subsection.694}{HDMI-Eingang}{section.690}% 45
-\BOOKMARK [2][]{subsection.701}{RGB-Bridge}{section.690}% 46
-\BOOKMARK [2][]{subsection.707}{LVDS-Bridge}{section.690}% 47
-\BOOKMARK [2][]{subsection.712}{EDID-Daten}{section.690}% 48
-\BOOKMARK [2][]{subsection.718}{Spannungsversorgung}{section.690}% 49
-\BOOKMARK [1][]{section.726}{Software}{chapter.684}% 50
-\BOOKMARK [2][]{subsection.727}{Softwarekonzept}{section.726}% 51
-\BOOKMARK [2][]{subsection.730}{EDID-Daten auf Embedded-Seite}{section.726}% 52
-\BOOKMARK [2][]{subsection.826}{EDID-Daten auf PC Seite}{section.726}% 53
-\BOOKMARK [1][]{section.919}{Known Bugs}{chapter.684}% 54
-\BOOKMARK [2][]{subsection.920}{Hardware}{section.919}% 55
-\BOOKMARK [3][]{subsubsection.921}{HDMI-Stecker gekreuzt}{subsection.920}% 56
-\BOOKMARK [3][]{subsubsection.924}{LVDS-Steckerfootprint gespiegelt}{subsection.920}% 57
-\BOOKMARK [3][]{subsubsection.925}{+5V-Kreis / Widerstand}{subsection.920}% 58
-\BOOKMARK [3][]{subsubsection.927}{USB D+/D- vertauscht}{subsection.920}% 59
-\BOOKMARK [2][]{subsection.929}{Software}{section.919}% 60
-\BOOKMARK [0][]{chapter.930}{Zusammenfassung}{}% 61
-\BOOKMARK [0][]{chapter*.931}{Literaturverzeichnis}{}% 62
-\BOOKMARK [0][]{chapter*.932}{Eidesstattliche Erkl\344rung}{}% 63
+\BOOKMARK [3][]{subsubsection.197}{Entwicklung eines Linux-Framebuffer-Treibers}{subsection.90}% 36
+\BOOKMARK [4][]{paragraph.208}{Framebuffer-Treiber f\374r MD050SD}{subsubsection.197}% 37
+\BOOKMARK [4][]{paragraph.499}{Anpassungen f\374r SSD1963/SSD1289 Controller}{subsubsection.197}% 38
+\BOOKMARK [4][]{paragraph.500}{Kernel f\374r Framebuffer konfigurieren}{subsubsection.197}% 39
+\BOOKMARK [3][]{subsubsection.502}{Entwicklung eines User-Space-Treibers}{subsection.90}% 40
+\BOOKMARK [1][]{section.680}{Known Bugs}{chapter.54}% 41
+\BOOKMARK [0][]{chapter.685}{Teil B}{}% 42
+\BOOKMARK [1][]{section.686}{Konzept}{chapter.685}% 43
+\BOOKMARK [1][]{section.691}{Hardwareentwicklung}{chapter.685}% 44
+\BOOKMARK [2][]{subsection.695}{HDMI-Eingang}{section.691}% 45
+\BOOKMARK [2][]{subsection.702}{RGB-Bridge}{section.691}% 46
+\BOOKMARK [2][]{subsection.708}{LVDS-Bridge}{section.691}% 47
+\BOOKMARK [2][]{subsection.713}{EDID-Daten}{section.691}% 48
+\BOOKMARK [2][]{subsection.719}{Spannungsversorgung}{section.691}% 49
+\BOOKMARK [1][]{section.727}{Software}{chapter.685}% 50
+\BOOKMARK [2][]{subsection.728}{Softwarekonzept}{section.727}% 51
+\BOOKMARK [2][]{subsection.731}{EDID-Daten auf Embedded-Seite}{section.727}% 52
+\BOOKMARK [2][]{subsection.827}{EDID-Daten auf PC Seite}{section.727}% 53
+\BOOKMARK [1][]{section.920}{Known Bugs}{chapter.685}% 54
+\BOOKMARK [2][]{subsection.921}{Hardware}{section.920}% 55
+\BOOKMARK [3][]{subsubsection.922}{HDMI-Stecker gekreuzt}{subsection.921}% 56
+\BOOKMARK [3][]{subsubsection.925}{LVDS-Steckerfootprint gespiegelt}{subsection.921}% 57
+\BOOKMARK [3][]{subsubsection.926}{+5V-Kreis / Widerstand}{subsection.921}% 58
+\BOOKMARK [3][]{subsubsection.928}{USB D+/D- vertauscht}{subsection.921}% 59
+\BOOKMARK [2][]{subsection.930}{Software}{section.920}% 60
+\BOOKMARK [0][]{chapter.931}{Zusammenfassung}{}% 61
+\BOOKMARK [0][]{chapter*.932}{Literaturverzeichnis}{}% 62
+\BOOKMARK [0][]{chapter*.933}{Eidesstattliche Erkl\344rung}{}% 63

@@ -1,10 +1,10 @@
 \section{Known Bugs}
-Im Rahmen der Entwicklung und mit Fortschreiten des Projekts sind, trotz Reviews der einzelnen Elementen des Projekts, Fehler bekannt geworden, die komplett oder teilweise gelöst oder umgangen wurden. Auf diese Fehler wird in den folgenden Abschnitten eingegangen.
+Im Rahmen der Entwicklung und mit Fortschreiten des Projekts sind, trotz Reviews der einzelnen Elemente des Projekts, Fehler bekannt geworden, die komplett oder teilweise gelöst oder umgangen wurden. Auf diese Fehler wird in den folgenden Abschnitten eingegangen.
 \subsection{Hardware}
-Bei der Hardwareentwicklung sind Schaltungstechnisch und bzgl. der erstellten Bauteilbibliothek Fehler aufgetreten. 
+Bei der Hardwareentwicklung sind schaltungstechnisch und bzgl. der erstellten Bauteilbibliothek Fehler aufgetreten. 
 \subsubsection{HDMI-Stecker gekreuzt}
 \textbf{Problem:} Durch einen Fehler beim Erstellen der HDMI-Buchse CON2 im Schaltplanprogramm \code{Eagle} wurde fälschlicherweise die Belegung des Steckers verwendet. Die Verwendung von normalen HDMI-Kabeln ist daher nicht möglich!\\
-\textbf{Workaround:} Alle Signale müssen gekreuzt werden. Hierzu wird ein HDMI-Stecker an ein abgetrenntes Ende eines HDMI-Kabels verbunden. Dazu wird die Belegung entsprechend \refa{fig:hdmi_stecker_problem}\footnote{Quelle: \url{http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/HDMI_Connector_Pinout.svg/1280px-HDMI_Connector_Pinout.svg.png}} gekreuzt.
+\textbf{Workaround:} Alle Signale müssen gekreuzt werden. Hierzu wird ein HDMI-Stecker an ein abgetrenntes Ende eines HDMI-Kabels angelötet. Dazu wird die Belegung entsprechend \refa{fig:hdmi_stecker_problem}\footnote{Quelle: \url{http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/HDMI_Connector_Pinout.svg/1280px-HDMI_Connector_Pinout.svg.png}} gekreuzt.
 \begin{figure}[htp]
 	\center
 	\fbox{\includegraphics[width=0.6\textwidth]{TeilB/hdmi_stecker_problem.png}}
