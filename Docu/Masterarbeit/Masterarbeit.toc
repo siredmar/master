@@ -36,29 +36,29 @@
 \contentsline {paragraph}{\numberline {3.2.5.1.2}Konfiguration des APEX-Bootloaders}{27}{paragraph.185}
 \contentsline {subsubsection}{\numberline {3.2.5.2}Entwicklung eines Linux-Framebuffer-Treibers}{28}{subsubsection.197}
 \contentsline {paragraph}{\numberline {3.2.5.2.1}Framebuffer-Treiber f\IeC {\"u}r MD050SD}{30}{paragraph.208}
-\contentsline {paragraph}{\numberline {3.2.5.2.2}Anpassungen f\IeC {\"u}r SSD1963/SSD1289 Controller}{40}{paragraph.499}
-\contentsline {paragraph}{\numberline {3.2.5.2.3}Kernel f\IeC {\"u}r Framebuffer konfigurieren}{40}{paragraph.500}
-\contentsline {subsubsection}{\numberline {3.2.5.3}Entwicklung eines User-Space-Treibers}{41}{subsubsection.502}
-\contentsline {section}{\numberline {3.3}Known Bugs}{48}{section.680}
-\contentsline {chapter}{\numberline {4}Teil B}{52}{chapter.685}
-\contentsline {section}{\numberline {4.1}Konzept}{53}{section.686}
-\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{55}{section.691}
-\contentsline {subsection}{\numberline {4.2.1}HDMI-Eingang}{56}{subsection.695}
-\contentsline {subsection}{\numberline {4.2.2}RGB-Bridge}{57}{subsection.702}
-\contentsline {subsection}{\numberline {4.2.3}LVDS-Bridge}{60}{subsection.708}
-\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{62}{subsection.713}
-\contentsline {subsection}{\numberline {4.2.5}Spannungsversorgung}{65}{subsection.719}
-\contentsline {section}{\numberline {4.3}Software}{68}{section.727}
-\contentsline {subsection}{\numberline {4.3.1}Softwarekonzept}{68}{subsection.728}
-\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf Embedded-Seite}{70}{subsection.731}
-\contentsline {subsection}{\numberline {4.3.3}EDID-Daten auf PC Seite}{73}{subsection.827}
-\contentsline {section}{\numberline {4.4}Known Bugs}{78}{section.920}
-\contentsline {subsection}{\numberline {4.4.1}Hardware}{78}{subsection.921}
-\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt}{78}{subsubsection.922}
-\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt}{79}{subsubsection.925}
-\contentsline {subsubsection}{\numberline {4.4.1.3}+5V-Kreis / Widerstand}{79}{subsubsection.926}
-\contentsline {subsubsection}{\numberline {4.4.1.4}USB D+/D- vertauscht}{79}{subsubsection.928}
-\contentsline {subsection}{\numberline {4.4.2}Software}{80}{subsection.930}
-\contentsline {chapter}{\numberline {5}Zusammenfassung}{81}{chapter.931}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{83}{chapter*.932}
-\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{88}{chapter*.933}
+\contentsline {paragraph}{\numberline {3.2.5.2.2}Anpassungen f\IeC {\"u}r SSD1963/SSD1289 Controller}{39}{paragraph.490}
+\contentsline {paragraph}{\numberline {3.2.5.2.3}Kernel f\IeC {\"u}r Framebuffer konfigurieren}{40}{paragraph.491}
+\contentsline {subsubsection}{\numberline {3.2.5.3}Entwicklung eines User-Space-Treibers}{41}{subsubsection.493}
+\contentsline {section}{\numberline {3.3}Known Bugs}{48}{section.671}
+\contentsline {chapter}{\numberline {4}Teil B}{52}{chapter.676}
+\contentsline {section}{\numberline {4.1}Konzept}{53}{section.677}
+\contentsline {section}{\numberline {4.2}Hardwareentwicklung}{55}{section.682}
+\contentsline {subsection}{\numberline {4.2.1}HDMI-Eingang}{56}{subsection.686}
+\contentsline {subsection}{\numberline {4.2.2}RGB-Bridge}{57}{subsection.693}
+\contentsline {subsection}{\numberline {4.2.3}LVDS-Bridge}{60}{subsection.699}
+\contentsline {subsection}{\numberline {4.2.4}EDID-Daten}{62}{subsection.704}
+\contentsline {subsection}{\numberline {4.2.5}Spannungsversorgung}{65}{subsection.710}
+\contentsline {section}{\numberline {4.3}Software}{68}{section.718}
+\contentsline {subsection}{\numberline {4.3.1}Softwarekonzept}{68}{subsection.719}
+\contentsline {subsection}{\numberline {4.3.2}EDID-Daten auf Embedded-Seite}{70}{subsection.722}
+\contentsline {subsection}{\numberline {4.3.3}EDID-Daten auf PC Seite}{73}{subsection.818}
+\contentsline {section}{\numberline {4.4}Known Bugs}{78}{section.911}
+\contentsline {subsection}{\numberline {4.4.1}Hardware}{78}{subsection.912}
+\contentsline {subsubsection}{\numberline {4.4.1.1}HDMI-Stecker gekreuzt}{78}{subsubsection.913}
+\contentsline {subsubsection}{\numberline {4.4.1.2}LVDS-Steckerfootprint gespiegelt}{79}{subsubsection.916}
+\contentsline {subsubsection}{\numberline {4.4.1.3}+5V-Kreis / Widerstand}{79}{subsubsection.917}
+\contentsline {subsubsection}{\numberline {4.4.1.4}USB D+/D- vertauscht}{79}{subsubsection.919}
+\contentsline {subsection}{\numberline {4.4.2}Software}{80}{subsection.921}
+\contentsline {chapter}{\numberline {5}Zusammenfassung}{81}{chapter.922}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{83}{chapter*.923}
+\contentsline {chapter}{\nonumberline Eidesstattliche Erkl\IeC {\"a}rung}{88}{chapter*.924}
