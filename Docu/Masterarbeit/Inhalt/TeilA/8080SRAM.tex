@@ -17,13 +17,13 @@ Im \code{Gnublin} stellt ein NXP \code{LPC3131} die zentrale Recheneinheit dar. 
 %\end{minipage}
 
 In \refa{fig:lpc_ebi} ist ein Blockschaltbild des \code{EBI} zu sehen, bei welchem neben \code{CGU}\footnote{CGU: Clock Generation Unit, Takterzeugung} und \code{SYSCREG}\footnote{SYSCREG: System Control Register, Steuerregister}, \code{MPMC}\footnote{MPMC: Multiport Memory Controller} sowie das \code{NAND Flash} an den Eingängen des \code{EBI} angeschlossen sind (siehe \cite{NXP2010}). Abgesehen von \code{NAND Flash} sind die Eingänge zum \code{EBI} für diese Arbeit relevant und grün markiert. An den Ausgängen des \code{EBI} sind Adress- und Datenbus zum Anschluss an externe Bausteine herausgeführt. Damit verschiedenartige Bausteine an denselben Adress- und Datenpins angeschlossen werden können, ist eine Priorisierung notwendig. Die höchste Priorität besitzt der \code{MPMC}, gefolgt vom \code{NAND Flash}. 
-Die Grundidee ist, das Display über den \code{MPMC} anzuschließen, da er so konfiguriert werden kann, dass er sich 8080-konform verhält. Die für diese Arbeit interessanten Leitungen am Ausgang des \code{EBI} sind rot markiert. Hier wird der Datenbus selbst, sowie die oberen 13 Bit des Adressbusses gezeigt.
+Die Grundidee ist, das Display über den \code{MPMC} anzuschließen, da dieser so konfiguriert werden kann, dass er sich 8080-konform verhält. Die für diese Arbeit interessanten Leitungen am Ausgang des \code{EBI} sind rot markiert. Hier wird der Datenbus selbst, sowie die oberen 13 Bit des Adressbusses gezeigt.
 
 
 \subsection{MPMC - Multiport Memory Controller des NXP LPC313x}
 \label{cha:mpmc}
 
-Der \code{MPMC} stellt die Möglichkeit zur Verfügung, Bausteine, wie dynamisches und statisches RAM anzubinden. Die Refresh-Zyklen werden bei Verwendung von dynamischen RAMs automatisch vollzogen. Das SDRAM-Interface bietet von Haus aus ein 8080-Interface für Displays an. Dies schließt allerdings die Verwendung von dynamischen RAMs aus. Soll ein Betriebssystem wie Linux auf dem System betrieben werden, ist allerdings die Verwendung von dynamischem RAM unerlässlich. Im Folgenden wird die Schnittstelle für das statische RAM SRAM-Interface benannt. Es besteht die Möglichkeit dieses so zu verwenden, um ein Display zu betreiben, da es sich so konfigurieren lässt, dass es sich wie ein 8080-Interface verhält. Damit sich die verschiedenen Slaves an Adress- und Datenbus nicht überschneiden, regelt das \code{EBI} den Zugriff auf die Busse über Chip-Select Leitungen. Am Gnublin ist eine dieser Chip-Select-Leitungen für das SRAM-Interface nach außen gelegt. Die restlichen Anschlüsse wie Write-Enable, Read-Enable, Reset sind ebenfalls herausgeführt (siehe \cite{NXP2010}). Ein Blockschaltbild des \code{MPMC} ist in \refa{fig:lpc_mpmc} zu sehen (siehe \cite{NXP2010}).
+Der \code{MPMC} stellt die Möglichkeit zur Verfügung, Bausteine, wie dynamisches und statisches RAM anzubinden. Die Refresh-Zyklen werden bei Verwendung von dynamischen RAMs automatisch vollzogen. Das SDRAM-Interface bietet von Haus aus ein 8080-Interface für Displays an. Dies schließt allerdings die Verwendung von dynamischen RAMs aus. Soll ein Betriebssystem wie Linux auf dem System betrieben werden, ist allerdings die Verwendung von dynamischem RAM unerlässlich. Im Folgenden wird die Schnittstelle für das statische RAM SRAM-Interface benannt. Es besteht die Möglichkeit damit ein Display zu betreiben, da es sich entsprechend wie ein 8080-Interface konfigurieren lässt. Damit sich die verschiedenen Slaves an Adress- und Datenbus nicht überschneiden, regelt das \code{EBI} den Zugriff auf die Busse über Chip-Select Leitungen. Am Gnublin ist eine dieser Chip-Select-Leitungen für das SRAM-Interface nach außen gelegt. Die restlichen Anschlüsse wie Write-Enable, Read-Enable, Reset sind ebenfalls herausgeführt (siehe \cite{NXP2010}). Ein Blockschaltbild des \code{MPMC} ist in \refa{fig:lpc_mpmc} zu sehen (siehe \cite{NXP2010}).
 
 
 \begin{figure}[tbph]
@@ -66,7 +66,7 @@ Neben den MPMC-Registern muss das Register \code{SYSCREG\_AHB\_MPMC\_MISC} konfi
 
 \newpage
 \subsection{Hardwareverbindung zwischen SRAM-Interface und Display}
-In diesem Abschnitt wird die Verbindung zwischen dem Prozessor und dem Display behandelt. Eingangs wurde bereits erwähnt, dass beim Kauf der Displays Augenmerk auf Pinkompatibilität gelegt wurde. Das schlägt sich beim Entwurf der Adapterplatine positiv zu Buche, da nun lediglich eine benötigt wird. \newline
+In diesem Abschnitt wird die Verbindung zwischen dem Prozessor und dem Display behandelt. Eingangs wurde bereits erwähnt, dass beim Kauf der Displays Augenmerk auf Pinkompatibilität gelegt wurde. Das hat beim Entwurf der Adapterplatine den Vorteil, dass lediglich eine Platine benötigt wird. \newline
 Bereits dargestellt zeigt \refa{fig:8080_pinout} auf Seite \pageref{fig:8080_pinout} das Pinout der verwendeten Displays. Der Anschluss an den Prozessor stellt sich wie in \reft{tab:display_gnublin_verbindung} dar (siehe \cite{Coldtears2014}, \cite{EmbeddedProjects2013}). Anhand der gewonnenen Erkenntnisse aus \refc{cha:teila_konzept} und \refc{cha:mpmc}, sowie des Schaltplans des verwendeten Gnublin Extended (siehe \cite{EmbeddedProjects2013}) kann eine Zuordnung getroffen werden. Nicht verbundene Pins sind mit 'nc'\footnote{nc: not connected} vermerkt.
 
 \begin{table}[h]
@@ -103,7 +103,7 @@ Die Datenleitungen des Displays sind über die Pins \code{DB[0:15]} mit dem Date
 
 Das \code{RS} Signal am Display, welches zwischen Kommando und Daten unterscheidet, liegt auf dem Adresssignal \code{A15}. Die folgenden Angaben gehen von einer Registerkonfiguration nach \refc{cha:mpmc} aus. Werden Daten gesendet, so ist der Pin logisch 1, was einem Wert auf dem Adressbus von \code{0x10000}\footnote{0x10000 = 0b0001 0000 0000 0000 0000} entspricht. Bei Kommandos ist der Pin logisch 0 mit einem Adresswert von \code{0x00000}\footnote{0x00000 = 0b0000 0000 0000 0000 0000}. Die unteren 16 Bits des Adressraums lassen sich also willkürlich verändern, da nur das MSB\footnote{MSB: Most Sigificant Bit, das höchstwertige Bit} vom Display verwendet wird. 
 
-Als \code{RS}-Pin ist die Adressleitung \code{A15} (logisch verschoben auf \code{A16}) gewählt, da so möglicherweise DMA-Transfers\footnote{DMA: Direct Memory Access, Speichertransfer effizient und schnell direkt in Hardware} von bis zu 65.536 Bytes\footnote{65.536 = $2^{16}$} möglich sind. Der DMA-Transfer könnte die Adressleitungen bei Daten von 0x10000 bis 0x1FFFF\footnote{0x1FFFF = 0b0001 1111 1111 1111 1111} bzw. bei Kommandos von 0x0000 bis 0x0FFFF\footnote{0x0FFFF = 0b0000 1111 1111 1111 1111} inkrementieren ohne die Gültigkeit der Wahl zwischen Kommando und Daten des Displays zu beeinträchtigen.
+Als \code{RS}-Pin ist die Adressleitung \code{A15} (logisch verschoben auf \code{A16}) gewählt, da so möglicherweise DMA-Transfers\footnote{DMA: Direct Memory Access, Speichertransfer effizient und schnell direkt in Hardware} von bis zu 65.536 Bytes\footnote{65.536 = $2^{16}$} möglich sind. Der DMA-Transfer könnte die Adressleitungen bei Daten von 0x10000 bis 0x1FFFF\footnote{0x1FFFF = 0b0001 1111 1111 1111 1111} bzw. bei Kommandos von 0x0000 bis 0x0FFFF\footnote{0x0FFFF = 0b0000 1111 1111 1111 1111} inkrementieren, ohne die Gültigkeit der Wahl zwischen Kommando und Daten des Displays zu beeinträchtigen.
 
 Das Display lässt sich zusammenfassend also über zwei Pseudoregister für Kommando und Daten auf den Adressoffsets 0x00000 und 0x10000 mit der Basisadresse 0x20000000 ansprechen. Dies ist in \reft{tab:sram_adressen} nochmals übersichtlich dargestellt (siehe \cite{NXP2010}).
 
@@ -125,7 +125,7 @@ Die Untersuchung inwieweit DMA-Transfer praktisch mit der verwendeten Hardware m
 \subsection{Adapterplatine zwischen Gnublin Extended und Display}
 Der Adapter wird als Platine realisiert, die auf den Gnublin Extended aufgesteckt wird. Das Display wiederum wird ebenfalls steckbar mit der Adapterplatine verbunden. Der Schaltplan ist in \refa{fig:adapterplatine_sch} gezeigt und stellt entsprechend \reft{tab:display_gnublin_verbindung} die Verbindungen her.
 
-Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnublin Extended und im blauen Rechteck sind weitere kleine Bauteile untergebracht. Hier sind Pullup-Wiederstande mit 10~k$\Omega$ an den Leitungen STCS0, Reset und LED-A, um definierte Pegel vorzugeben, zu sehen, sowie einen Blockkondensator mit 100~nF, der für eine rauscharme Spannungsversorgung des Displays sorgt.
+Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnublin Extended und im blauen Rechteck sind weitere kleine Bauteile untergebracht. Es sind Pullup-Wiederstande mit 10~k$\Omega$ an den Leitungen STCS0, Reset und LED-A platziert, um definierte Pegel vorzugeben. Zusätzlich ist ein Blockkondensator mit 100~nF an der \code{+5\,V}-Leitung angebracht, der für eine rauscharme Spannungsversorgung des Displays sorgt.
 
 \begin{figure}[tbph]
 %\begin{figure}[h!]
@@ -157,7 +157,7 @@ Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnubl
 Der Schaltplan und das Layout befinden sich in der CD im Anhang dieser Arbeit.
 \newpage
 \subsection{Software}
-Im folgenden Abschnitt wird die Software behandelt die nötig ist, um das Display zu betreiben. 
+Im folgenden Abschnitt wird die Software behandelt die nötig ist, die für den Betrieb des Displays nötig ist.
 Die Softwareentwicklung ist in drei Teile gegliedert:
 \begin{itemize}
 \item Modifikationen im Bootloader APEX
@@ -166,8 +166,8 @@ Die Softwareentwicklung ist in drei Teile gegliedert:
 \end{itemize}
 
 \subsubsection{Anpassung des APEX-Bootloaders zur Verwendung des Displays}
-Der APEX-Bootloader\footnote{\url{https://gitorious.org/apex/}} wurde ursprünglich für Prozessoren de Sharp LH Familie entwickelt,  inzwischen allerdings auf eine Vielzahl von weiteren ARM basierten Prozessoren portiert - so auch für die verwendete NXP LPC313x CPU\footnote{CPU: Central Processing Unit, Prozessor}.
-Die Aufgabe des Bootloaders ist es, grundlegende prozessorinterne Hardwareeinheiten wie z. B. \code{CGU} oder \code{SD-RAM} zu initialisieren, um für den Linux-Kernel die notwendige Umgebung zu schaffen. Im Anschluss wird der Linux-Kernel geladen und gestartet. Zusätzlich werden dem Linux-Kernel Bootparameter übergeben, die zum Start benötigt werden. Am Anfang des Bootloader-Codes werden die verwendeten \code{MPMC}-Register konfiguriert. Wie in \refc{cha:mpmc} muss das \code{SYSCREG}-Register \code{SYSCREG\_AHB\_MPMC\_MISC} nicht explizit beschrieben werden, da es im Resetzustand bereits richtig konfiguriert ist. \refl{lst:apex_mpmc_config} zeigt die entsprechende Initialisierung der \code{MPMC}-Register für das \code{MD050SD}. Die Adressen von z. B. \code{MPMC\_STCONFIG0} sind in der \code{lpc313x.h} definiert. Die Modifikationen im Bootloader finden in der Datei \code{initialize.c} der Plattform statt.
+Der APEX-Bootloader\footnote{\url{https://gitorious.org/apex/}} wurde ursprünglich für Prozessoren de Sharp LH Familie entwickelt, inzwischen jedoch auf eine Vielzahl von weiteren ARM basierten Prozessoren portiert - so auch für die verwendete NXP LPC313x CPU\footnote{CPU: Central Processing Unit, Prozessor}.
+Die Aufgabe des Bootloaders ist es, grundlegende prozessorinterne Hardwareeinheiten wie z. B. \code{CGU} oder \code{SD-RAM} zu initialisieren, um für den Linux-Kernel die notwendige Umgebung zu schaffen. Im Anschluss wird der Linux-Kernel geladen und gestartet. Zusätzlich werden dem Linux-Kernel Bootparameter übergeben, die zum Start benötigt werden. Am Anfang des Bootloader-Codes werden die verwendeten \code{MPMC}-Register konfiguriert. Wie in \refc{cha:mpmc} muss das \code{SYSCREG}-Register \code{SYSCREG\_AHB\_MPMC\_MISC} nicht explizit beschrieben werden, da es im Resetzustand bereits richtig konfiguriert ist. \refl{lst:apex_mpmc_config} zeigt die entsprechende Initialisierung der \code{MPMC}-Register für das \code{MD050SD}. Die Adressen beispielsweise von \code{MPMC\_STCONFIG0} sind in der \code{lpc313x.h} definiert. Die Modifikationen im Bootloader finden in der Datei \code{initialize.c} der Plattform statt.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -285,12 +285,12 @@ label=lst:apex_zweiter_teil
 #endif
 \end{lstlisting}
 
-Der eigentliche Treiber und der Code für das Anzeigen des Bootlogos ist in \refl{lst:apex_zweiter_teil} zu sehen. In Zeile 2 und 3 wird den Adresszeigern die pysikalischen Adressen zum Schreiben von Kommandos und Daten zugewiesen. Von Zeile 5 bis 9 wird die Hintergrundbeleuchtung explizit abgschaltet und ein Reset auf das Display gegeben. Da das \code{MD050SD} einen CPLD-Controller besitzt, welcher eine auf genau dieses TFT-Panel zugeschnittene Programmierung enthält, fällt eine Initialisierungsroutine weg. Dies wäre bei Controllern wie dem \code{SSD1963} nicht der Fall, da diese mit einer Vielzahl von Panels arbeiten können und demzufolge eine spezielle Initialisierung brauchen. Das \code{MD050SD} ist nach dem Reset initialisiert und erwartet Kommandos. Von Zeile 11 bis 20 in \refl{lst:apex_zweiter_teil} wird ein Bereich im Display-RAM der vollen Bildschirmgröße reserviert und die Bereitschaft zum Datenempfang gesendet (siehe \reft{tab:Kommandos_MD050SD}). Alle Daten, die im Anschluss gesendet werden, kommen automatisch an die richtige Stelle im Display. In einer Schleife werden ab Zeile 22 alle reservierten Pixel mit der Farbe Schwarz beschrieben, um das automatisch angezeigte Testbild des Displays beim Start zu überschreiben. Im Anschluss wird die Hintergrundbeleuchtung wieder eingeschaltet. Über den Codeswitch \code{CONFIG\_LOGO\_TUX} lässt sich das Bootlogo aktivieren. Die Größe des Logos wird in den Zeilen 29 und 30 ausgelesen und in den folgenden Zeilen angezeigt. Die Pixeldaten des Logos sind im Array \code{u16 boot\_logo\_tux[]} in den Dateien \code{boot\_logo\_tux.c} und \code{boot\_logo\_tux.h} hinterlegt.
+Der eigentliche Treiber und der Code für das Anzeigen des Bootlogos ist in \refl{lst:apex_zweiter_teil} zu sehen. In Zeile 2 und 3 wird den Adresszeigern die pysikalischen Adressen zum Schreiben von Kommandos und Daten zugewiesen. Von Zeile 5 bis 9 wird die Hintergrundbeleuchtung explizit abgschaltet und ein Reset auf das Display gegeben. Da das \code{MD050SD} einen CPLD-Controller besitzt, welcher eine auf ein passendes TFT-Panel zugeschnittene Programmierung enthält, fällt eine Initialisierungsroutine weg. Dies wäre bei Controllern wie dem \code{SSD1963} nicht der Fall, da diese mit einer Vielzahl von Panels arbeiten können und demzufolge eine spezielle Initialisierung brauchen. Das \code{MD050SD} ist nach dem Reset initialisiert und erwartet Kommandos. Von Zeile 11 bis 20 in \refl{lst:apex_zweiter_teil} wird ein Bereich im Display-RAM der vollen Bildschirmgröße reserviert und die Bereitschaft zum Datenempfang gesendet (siehe \reft{tab:Kommandos_MD050SD}). Alle Daten, die im Anschluss gesendet werden, kommen automatisch an die richtige Stelle im Display. In einer Schleife werden ab Zeile 22 alle reservierten Pixel mit der Farbe Schwarz beschrieben, um das automatisch angezeigte Testbild des Displays beim Start zu überschreiben. Im Anschluss wird die Hintergrundbeleuchtung wieder eingeschaltet. Über den Codeswitch \code{CONFIG\_LOGO\_TUX} lässt sich das Bootlogo aktivieren. Die Größe des Logos wird in den Zeilen 29 und 30 ausgelesen und in den folgenden Zeilen angezeigt. Die Pixeldaten des Logos sind im Array \code{u16 boot\_logo\_tux[]} in den Dateien \code{boot\_logo\_tux.c} und \code{boot\_logo\_tux.h} hinterlegt.
 
 
 \paragraph{Konfiguration des APEX-Bootloaders}
 \label{cha:config_apex}
-Der \code{APEX}-Bootloader besitzt zur Konfiguration dasselbe System wie der Linux-Kernel. Dieses System heißt \code{KConfig} und wird durch den Befehl \code{make menuconfig} aufgerufen, welches ein Konfigurationsmenü im Terminal startet. Hier sind neben grundlegenden Konfigurationen zum Beispiel für die Prozessorarchitektur oder Taktraten auch der Displaytreiber und das Bootlogo eingepflegt. \refa{fig:apex_config} zeigt exemplarisch den Unterpunkt \code{Platform Setup} bei dem das Display \code{MD050SD} und das Bootlogo ausgewählt sind. 
+Der \code{APEX}-Bootloader besitzt zur Konfiguration dasselbe System wie der Linux-Kernel. Dieses System heißt \code{KConfig} und wird durch den Befehl \code{make menuconfig} aufgerufen, welches ein Konfigurationsmenü im Terminal startet. Hier sind neben grundlegenden Konfigurationen z. B. für die Prozessorarchitektur oder Taktraten auch der Displaytreiber und das Bootlogo eingepflegt. \refa{fig:apex_config} zeigt exemplarisch den Unterpunkt \code{Platform Setup} bei dem das Display \code{MD050SD} und das Bootlogo ausgewählt sind. 
 
 \begin{figure}[tbph]
 %\begin{figure}[h!]
@@ -301,7 +301,7 @@ Der \code{APEX}-Bootloader besitzt zur Konfiguration dasselbe System wie der Lin
 \end{figure}
 \newpage
 
-Bevor der Bootloader konfiguriert werden kann, muss der Vanilla-Quellcode\footnote{Vanilla-Quellcode: unmodifizierter, originaler Quellcode} noch gepatcht\footnote{Patch: Erweiterung/Update des Quellcodes} werden. \refl{lst:apex_patchen} zeigt die einzelnen Schritte, um den Bootloader herunterzuladen und zu Patchen. Der Patch enthält alle nötigen Dinge zum Betrieb des \code{MD050SD}-Display und des Boot-Logos.
+Bevor der Bootloader konfiguriert werden kann, muss der Vanilla-Quellcode\footnote{Vanilla-Quellcode: unmodifizierter, originaler Quellcode} noch gepatcht\footnote{Patch: Erweiterung/Update des Quellcodes} werden. \refl{lst:apex_patchen} zeigt die einzelnen Schritte, um den Bootloader herunterzuladen und zu patchen. Der Patch enthält alle nötigen Dinge zum Betrieb des \code{MD050SD}-Display und des Boot-Logos.
 
 \begin{lstlisting}[%
 language=bash,
@@ -335,18 +335,18 @@ $ cd linux-2.6.33-lpc313x
 $ make gnublin_defconfig
 $ patch -p1 < ../display_drivers.patch
 \end{lstlisting}
-Wie der Cross-Compiler für die Verwendung der LPC3131x-Architektur installiert wird ist dem Gnublin-Wiki zu entnehmen (siehe \cite{GnublinWiki2013c}).
+Wie der Cross-Compiler für die Verwendung der LPC3131x-Architektur installiert wird, ist dem Gnublin-Wiki zu entnehmen (siehe \cite{GnublinWiki2013c}).
 
 In diesem Abschnitt wird die Entwicklung des Framebuffer-Treibers beschrieben. Das Framebuffer-System bietet eine Abstraktionsebene für die Grafikhardware. Es enthält einen Bildspeicher der Grafikhardware und bietet Applikationen Zugriff auf diesen, ohne jedoch Informationen über die letztendlich verwendete Hardware selbst auf Low-Level-Ebene haben zu müssen. Ein Framebuffer-Device erzeugt die Node \code{/dev/fbX} mit der fortlaufenden Nummer X, beginnend bei Null, für jede Instanz eines Framebuffers. Jede grafische Anwendung in einem Linux-System benötigt eine Funktionalität, die den aktuellen Bildschirminhalt speichert und Applikationen Zugriff darauf gewährt. Dabei ist es im wesentlichen unwichtig, ob die Anzeige selbst durch Hardware beschleunigt oder sogar nur rein virtuell realisiert wird, da die Applikation lediglich auf die Schnittstelle in \code{/dev/fbX} zugreift (siehe  \cite{LinuxKernelFB}).
-Programme wie zum Beispiel der X11-Server, Video-Player, QT\footnote{QT: C++-Klassenbibliothek zur 2D-Darstellung, \url{http://qt-project.org/}}, SDL\footnote{SDL: Simple Direct Media Layer, Grafikbibliothek zur 2D-Darstellung, \url{http://www.libsdl.org}} usw. können dieses System nutzen. Gerade für leistungsschwächere Systeme bietet es dahingehend dieselben Möglichkeiten Inhalte anzuzeigen, wie für High-End-Systeme. Einzig die Art und Weise des Befüllens und Auslesens des Framebuffers unterscheidet die Leistungsfähigkeit einzelner Systeme. So können Systeme mit speziellen 3D-Grafikeinheiten unter Verwendung der Bibliothek OpenGL\footnote{OpenGL: 3D-Grafikbibliothek}, den Framebuffer mit anspruchsvolleren Inhalten füllen, als Systeme die diese Möglichkeit nicht besitzen. Die Abstraktionsebenen für die Applikation bleiben aber dieselben. 
+Programme wie zum Beispiel der X11-Server, Video-Player, QT\footnote{QT: C++-Klassenbibliothek zur 2D-Darstellung, \url{http://qt-project.org/}}, SDL\footnote{SDL: Simple Direct Media Layer, Grafikbibliothek zur 2D-Darstellung, \url{http://www.libsdl.org}} usw. können dieses System nutzen. Gerade für leistungsschwächere Systeme bietet es dahingehend dieselben Möglichkeiten Inhalte anzuzeigen, wie für High-End-Systeme. Einzig die Art und Weise des Befüllens und Auslesens des Framebuffers unterscheidet die Leistungsfähigkeit einzelner Systeme. So können Systeme mit speziellen 3D-Grafikeinheiten unter Verwendung der Bibliothek OpenGL\footnote{OpenGL: 3D-Grafikbibliothek} den Framebuffer mit anspruchsvolleren Inhalten füllen, als Systeme die diese Möglichkeit nicht besitzen. Die Abstraktionsebenen für die Applikation bleiben aber dieselben. 
 
 Mit der Entwicklung eines Framebuffer-Treibers, sind alle Vorteile erschlossen, welche es bietet. Diese sind eine standardisierte Schnittstelle für Applikationen, sowie die Gewissheit, dass, sofern es die Rechenleistung zulässt, prinzipiell alle bereits existenten Programme und Inhalte angezeigt werden können.
 In den folgenden Abschnitten, wird die Entwicklung des Framebuffer-Treibers für die drei verwendeten Displays dargelegt, mit Fokus auf das \code{MD050SD}. 
 \paragraph{Framebuffer-Treiber für MD050SD}
 \label{cha:framebuffer}
-In diesem Abschnitt wird die Funktionsweise des Framebuffer-Treibers für das MD050SD beschrieben. Auf ein Listing des kompletten Treibers wird an dieser Stelle bewusst verzichtet, da sonst der Treiber durch seine Komplexität und die ins System verflochtene Struktur schwer zu durchdringen wäre. Stattdessen werden einzelne Teilaspekte, die zum Verständnis nötig sind, einzeln behandelt. Als Basis wurde ein bereits existierender Treiber verwendet (siehe \cite{Schlegel2013c}).
+In diesem Abschnitt wird die Funktionsweise des Framebuffer-Treibers für das MD050SD beschrieben. Auf ein Listing des kompletten Treibers wird an dieser Stelle bewusst verzichtet, da ansonsten der Treiber durch seine Komplexität und die ins System verflochtene Struktur schwer zu durchdringen wäre. Stattdessen werden einzelne Teilaspekte, die zum Verständnis nötig sind, individuell behandelt. Als Basis wurde ein bereits existierender Treiber verwendet (siehe \cite{Schlegel2013c}).
 
-Der Treiber arbeitet konform mit dem \code{Platform Device}- und \code{Platform Driver}-System im Linux-Kernel (siehe \cite{LinuxKernelPlatformDeviceDriver}). Mit dem \code{Platform-Devic}e-System wird ein Pseudo-Bus erzeugt, mit dem sich verschiedene \code{Platform-Driver} verbinden können. So können beispielsweise mehrere voneinander unabhängige Instanzen eines Treibers oder vieler verschiedener Treiber im System verfügbar sein. Beinhaltet ein System ein \code{Platform-Device}, so muss es dem Linux-Kernel bekannt gemacht werden. Hierzu wird die Struktur \code{struct platform\_device} verwendet, die in \refl{lst:struct_platform_device} gezeigt ist.
+Der Treiber arbeitet konform mit dem \code{Platform Device}- und \code{Platform Driver}-System im Linux-Kernel (siehe \cite{LinuxKernelPlatformDeviceDriver}). Mit dem \code{Platform-Device}-System wird ein Pseudo-Bus erzeugt, mit dem sich verschiedene \code{Platform-Driver} verbinden können. So können beispielsweise mehrere voneinander unabhängige Instanzen eines Treibers oder vieler verschiedener Treiber im System verfügbar sein. Beinhaltet ein System ein \code{Platform-Device}, so muss es dem Linux-Kernel bekannt gemacht werden. Hierzu wird die Struktur \code{struct platform\_device} verwendet, die in \refl{lst:struct_platform_device} gezeigt ist.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -380,7 +380,7 @@ struct platform_driver {
 };
 \end{lstlisting}
 
-Wie ein Platform-Device definiert wird, ist \refl{lst:register_platform_devices} zu entnehmen. Die Modifikationen sind im Quellcode der Start-Datei der Architektur \code{linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c} eingepflegt. In den Zeilen 2 bis 13 wird die Ressource \code{struct resource md050sd\_resource[]} definiert, die zwei Einträge enthält. Hier werden die physikalischen Adressen für Kommandos und Daten des Displays im SRAM-Interface eingestellt, die der Platform-Driver verwenden wird. Die Struktur \code{struct platform\_device md050sd\_device} wird ab Zeile 15 definiert und enthält einen eindeutigen Namen \code{m050sd}. Dieser Name wird im Folgenden vom \code{Platform-Driver} ebenfalls verwendet, um eine Zuordnung zwischen Device und Driver zu ermöglichen.
+Wie ein Platform-Device erzeugt wird, ist \refl{lst:register_platform_devices} zu entnehmen. Die Modifikationen sind im Quellcode der Start-Datei der Architektur \code{linux-2.6.33-lpc313x/arch/arm/mach-lpc313x/ea313x.c} eingepflegt. In den Zeilen 2 bis 13 wird die Ressource \code{struct resource md050sd\_resource[]} definiert, die zwei Einträge enthält. Hier werden die physikalischen Adressen für Kommandos und Daten des Displays im SRAM-Interface eingestellt, die der Platform-Driver verwenden wird. Die Struktur \code{struct platform\_device md050sd\_device} wird ab Zeile 15 beschrieben, und enthält einen eindeutigen Namen \code{m050sd}. Dieser Name wird im Folgenden vom \code{Platform-Driver} ebenfalls verwendet, um eine Zuordnung zwischen Device und Driver zu ermöglichen.
 In Zeile 22 ist die Funktion definiert, die letztendlich dem Linux-Kernel die Struktur \code{struct platform\_device md050sd\_device} übergibt, und das Platform-Device im System registriert. 
 \begin{lstlisting}[%
 language=MyC,
@@ -416,7 +416,7 @@ static void __init ea_add_device_md050sd(void)
 static void __init ea_add_device_md050sd(void) {}
 #endif /* CONFIG_FB_MD050SD */
 \end{lstlisting}
-Der Aufruf, der die Registrierung anstößt ist in \refl{lst:add_platform_devices} zu sehen. In der Funktion \code{void \_\_init ea313x\_init(void)} werden alle Hardwareeinheiten, die vom Bootloader noch nicht konfiguriert wurden, initialisiert und die verwendeten Devices im System registriert. Ohne eine vorhergehende Registrierung ist ein Verwenden eines Treibers nicht möglich.
+Der Aufruf, der die Registrierung anstößt, ist in \refl{lst:add_platform_devices} zu sehen. In der Funktion \code{ea313x\_init(void)} werden alle Hardwareeinheiten, die vom Bootloader noch nicht konfiguriert wurden, initialisiert und die verwendeten Devices im System registriert. Ohne eine vorhergehende Registrierung ist ein Verwenden eines Treibers nicht möglich.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -452,7 +452,7 @@ static struct platform_driver md050sd_driver = {
 
 Soll der Treiber geladen werden, ob als Modul oder fest in den Kernel kompiliert, wird die Funktion die im Makro \code{module\_init()} definiert ist aufgerufen. So folgt der Aufruf der Funktion \code{md050sd\_init(struct patform\_deice *dev)} die den \code{Platform-Driver} mit der zuvor definierten Struktur \code{md050sd\_driver} aus \refl{lst:set_platform_driver} im Linux-Kernel mittels 
 \code{platform\_driver\_register(\&md050sd\_driver)} registriert. Die Funktion \code{md050sd\_probe()} ist in \refl{lst:probe_funktion} zu sehen. 
-Nach der Registrierung wird der Treiber geladen. Hier wird die Probe-Funktion \code{md050sd\_probe()} aufgerufen, die zuerst den benötigten Speicher für den Treiber selbst alloziert, die Zeiger für Kommandos und Daten aus der IO-Ressource des \code{Platform-Device} holt, den Speicher für den Framebuffer alloziert und diesen mit entsprechenden Werten füllt. Im Anschluss wird das Display mit \code{md050sd\_setup(item)} initialisiert und mit \code{md050sd\_update\_all(item)} ein initiales Update des Bildschirms vollzogen, welches das aktuelle Bild auf dem Display löscht. Zur besseren Lesbarkeit wurde die komplette Fehlerbehandlung aus dem Listing entfernt. 
+Nach der Registrierung wird der Treiber geladen. Hier wird die Probe-Funktion \code{md050sd\_probe()} aufgerufen, die zuerst den benötigten Speicher für den Treiber selbst reserviert, die Zeiger für Kommandos und Daten aus der IO-Ressource des \code{Platform-Device} holt, den Speicher für den Framebuffer alloziert und diesen mit entsprechenden Werten füllt. Im Anschluss wird das Display mit \code{md050sd\_setup(item)} initialisiert und mit \code{md050sd\_update\_all(item)} ein Update des Bildschirms vollzogen, welches das aktuelle Bild auf dem Display löscht. Zur besseren Lesbarkeit wurde die komplette Fehlerbehandlung aus dem Listing entfernt. 
 
 \begin{lstlisting}[%
 language=MyC,
@@ -461,7 +461,6 @@ label=lst:probe_funktion
 ]
 static int __init md050sd_probe(struct platform_device *dev)
 {
-   int ret = 0;
    struct md050sd *item;
    struct resource *ctrl_res;
    struct resource *data_res;
@@ -508,15 +507,11 @@ static int __init md050sd_probe(struct platform_device *dev)
    // ... display initialization and initial screen update
    md050sd_setup(item);
    md050sd_update_all(item);
-   // ...
-   return ret;
 }
 \end{lstlisting}
-Die Einstellungen für Auflösung, Farbtiefe sowie diverser anderer Dinge sind in \refl{lst:framebuffer_misc} zu sehen. 
+Die Einstellungen für Auflösung, Farbtiefe sowie treiberspezifische Dinge sind in \refl{lst:framebuffer_misc} zu sehen.  In der Struktur \code{struct fb\_ops  md050sd\_fbops} werden für die Schnittstelle des Framebuffers entsprechende Funktionszeiger gesetzt. Diese sind im Treibermodell vorgesehen und können durch ggf. hardwareunterstützte oder anderweitig optimierte Funktionen ersetzt werden. Diverse framebuffer-spezifische Einstellungen werden in den Strukturen \code{fb\_fix\_screeninfo} und \code{fb\_var\_screeninfo} vorgenommen. Hier kann die Auflösung und das Pixelformat eingestellt werden. 
 
-In der Struktur \code{struct fb\_ops  md050sd\_fbops} werden für die Schnittstelle des Framebuffers entsprechende Funktionszeiger gesetzt. Diese sind im Treibermodell vorgesehen und können durch ggf. hardwareunterstützte oder anderweitig optimierte Funktionen ersetzt werden. Diverse framebuffer-spezifische Einstellungen werden in den Strukturen \code{fb\_fix\_screeninfo} und \code{fb\_var\_screeninfo} vorgenommen. Hier kann die Auflösung und das Pixelformat eingestellt werden. 
-
-In der Struktur \code{struct fb\_deferred\_io md050sd\_defio} wird das \code{Deferred-IO}-System konfiguriert. Damit wird es möglich IO-Zugriffe auf die Hardware über die Funktion \code{md050sd\_update()} zeitversetzt auszuführen. Diese wird konfigurierbar alle \code{HZ/20} Sekunden aufgerufen, was einer gewünschten Framerate von 20 FPS\footnote{FPS: Frames per Second, Bildwiederholrate} entspricht. 
+In der Struktur \code{struct fb\_deferred\_io md050sd\_defio} wird das \code{Deferred-IO}-System konfiguriert. Damit wird es möglich IO-Zugriffe auf die Hardware über die Funktion \code{md050sd\_update()} zeitversetzt auszuführen. Diese wird konfigurierbar alle \code{HZ/20} Sekunden aufgerufen. Dies entspricht einer gewünschten Framerate von 20 FPS\footnote{FPS: Frames per Second, Bildwiederholrate}. 
 \begin{lstlisting}[%
 language=MyC,
 caption={Framebuffer: Einstellungen},
@@ -532,7 +527,6 @@ static struct fb_ops md050sd_fbops = {
       .fb_setcolreg  = md050sd_setcolreg,
       .fb_blank      = md050sd_blank,
 };
-
 static struct fb_fix_screeninfo md050sd_fix __initdata = {
       .id            = "MD050SD",
       .type          = FB_TYPE_PACKED_PIXELS,
@@ -540,7 +534,6 @@ static struct fb_fix_screeninfo md050sd_fix __initdata = {
       .accel         = FB_ACCEL_NONE,
       .line_length   = 800 * 2,
 };
-
 static struct fb_var_screeninfo md050sd_var __initdata = {
       .xres = 800,
       .yres = 480,
@@ -555,14 +548,13 @@ static struct fb_var_screeninfo md050sd_var __initdata = {
       .activate = FB_ACTIVATE_NOW,
       .vmode = FB_VMODE_NONINTERLACED,
 };
-
 static struct fb_deferred_io md050sd_defio = {
       .delay = HZ / 20,
       .deferred_io = &md050sd_update,
 };
 \end{lstlisting}
 
-In \refl{lst:setup_funktion} ist die Initialisierung des Displays, welche mit \code{md050sd\_setup(item)} in der Probe-Funktion in \refl{lst:probe_funktion} aufgerufen wird, zu sehen. Prinzipiell ist der Code analog zum bereits behandelten im APEX-Bootloader in \refl{lst:apex_zweiter_teil}, bei dem das Display in den Reset Zustand gebracht wird und im Anschluss das Display mit der Farbe Schwarz beschrieben wird.
+In \refl{lst:setup_funktion} ist die Initialisierung des Displays zu sehen, welche mit \code{md050sd\_setup(item)} in der Probe-Funktion in \refl{lst:probe_funktion} aufgerufen wird. Prinzipiell ist der Code analog zum bereits behandelten im APEX-Bootloader in \refl{lst:apex_zweiter_teil}. Dort wird das Display in den Reset Zustand gebracht und im Anschluss mit der Farbe Schwarz beschrieben.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -588,7 +580,7 @@ static void __init md050sd_setup(struct md050sd *item)
 \end{lstlisting}
 
 An dieser Stelle ist der Treiber initialisiert und bereit seine eigentliche Aufgabe zu übernehmen. Es steht ein Framebuffer-Device als \code{/dev/fbX} zur Verfügung und Programme sind in der Lage auf dieses zuzugreifen.
-Die Pixeldaten sind im entwickelten Treiber in sogenannte Pages unterteilt. Eine solche Page ist durch eine festgelegte Anzahl an Zeilen der Breite 800 Pixel definiert. So sind zum Beispiel bei einer Auflösung von 800x480 Bildpunkten und 20 Zeilen pro Page 24 Pages nötig, um das gesamte Bild abzulegen. Die Vorgehensweise mit Pages ist deshalb sinnvoll, da das Bild in Teilbereiche aufgeteilt wird, welche unabhängig voneinander überprüft und neu gezeichnet werden können. Am Beispiel des Kernel-Treibers \code{fbcon}, der es ermöglicht ein Terminal auf dem Framebufferdevice anzuzeigen, wird die Funktionsweise des Bildupdates klar. Der Treiber \code{fbcon} schreibt beispielsweise den Inhalt des angezeigten Terminals in der ersten Zeile in den Framebuffer. Die entsprechenden Pages werden vom Treiber in der Funktion \code{md050sd\_touch()} als \code{must\_update} markiert und im nächsten Update-Zyklus mittels der Funktion \code{md050sd\_update()} auf Änderungen überprüft. Sind Änderungen vorhanden, werden diese neu auf das Display mittels der Funktion \code{md050sd\_copy} gezeichnet und das \code{must\_update}-Flag wird wieder gelöscht. Diese Funktion ist in
+Die Pixeldaten sind im entwickelten Treiber in sogenannte Pages unterteilt. Eine solche Page ist durch eine festgelegte Anzahl an Zeilen der Breite 800 Pixel definiert. So sind z. B.bei einer Auflösung von 800x480 Bildpunkten und 20 Zeilen pro Page 24 Pages nötig, um das gesamte Bild abzulegen. Die Vorgehensweise mit Pages ist deshalb sinnvoll, da das Bild in Teilbereiche aufgeteilt wird. Diese werden unabhängig voneinander überprüft und neu gezeichnet. Am Beispiel des Kernel-Treibers \code{fbcon}, der es ermöglicht ein Terminal auf dem Framebufferdevice anzuzeigen, wird die Funktionsweise des Bildupdates klar. Der Treiber \code{fbcon} schreibt beispielsweise den Inhalt des angezeigten Terminals in der ersten Zeile des Framebuffers. Die entsprechenden Pages werden vom Treiber in der Funktion \code{md050sd\_touch()} mit setzen des Flags \code{must\_update} markiert und im nächsten Update-Zyklus mittels der Funktion \code{md050sd\_update()} auf Änderungen überprüft. Sind Änderungen vorhanden, werden diese neu auf das Display mittels der Funktion \code{md050sd\_copy} gezeichnet und das \code{must\_update}-Flag wird wieder gelöscht. Diese Funktion ist in
 \refl{lst:touch_funktion} zu sehen. 
 \begin{lstlisting}[%
 language=MyC,
@@ -616,7 +608,7 @@ static void md050sd_touch(struct fb_info *info, int x, int y, int w, int h)
    }
 }
 \end{lstlisting}
-Tritt der geplante Deferred-IO-Handler ein, wird diese Funktion \code{md050sd\_update()} aufgerufen und alle Pages durchlaufen. Diejenigen Pages mit gesetztem \code{must\_update}-Flag werden mit der Funktion \code{md050sd\_copy} an das Display gesendet.
+Tritt der geplante Deferred-IO-Handler ein, wird die Funktion \code{md050sd\_update()} aufgerufen und alle Pages durchlaufen. Pages mit gesetztem \code{must\_update}-Flag werden mit der Funktion \code{md050sd\_copy()} an das Display gesendet.
 \refl{lst:update_funktion} zeigt die Update-Funktion.
 \begin{lstlisting}[%
 language=MyC,
@@ -629,10 +621,7 @@ static void md050sd_update(struct fb_info *info,
    struct md050sd *item = (struct md050sd *) info->par;
    struct page *page;
    int i;
-
-   //We can be called because of pagefaults (mmap'ed framebuffer, pages
-   //returned in *pagelist) or because of kernel activity
-   //(pages[i]/must_update!=0). Add the former to the list of the latter.
+   //We can be called because of pagefaults (mmap'ed framebuffer, pages returned in *pagelist) or because of kernel activity (pages[i]/must_update!=0). Add the former to the list of the latter.
    list_for_each_entry(page, pagelist, lru) {
       item->pages[page->index].must_update = 1;
    }
@@ -645,13 +634,14 @@ static void md050sd_update(struct fb_info *info,
    }
 }
 \end{lstlisting}
-In der Copy-Funktion wird die aktuelle, mit dem Parameter \code{unsigned int index} gekennzeichnete Page auf Änderungen überprüft. Diese Funktion ist in \refl{lst:copy_funktion} zu sehen. Über den Codeswitch \code{USE\_MEMCPY} lässt sich während dem Kompilieren zwischen zwei Modi wählen:
+In der Copy-Funktion wird die aktuelle Page durch den Parameter \code{unsigned int index} auf Änderungen überprüft. Diese Funktion ist in \refl{lst:copy_funktion} zu sehen. Über den Codeswitch \code{USE\_MEMCPY} lässt sich während dem Kompilieren zwischen zwei Modi wählen:
 \begin{itemize}
 	\item zum Kopieren wird \code{memcopy} verwendet
 	\item zum Kopieren wird eine optimierte Senderoutine verwendet
 \end{itemize}
 
-Bei der Variante mit \code{memcopy} wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da zum Daten kopieren \code{memcopy} generell effizienter und schneller arbeitet als eine For-Schleife, ist diese Methode implementiert (vgl. \cite{Nadeau2012}). Bei einer Anwendung, bei der sich sehr häufig sehr viele Pixel verändern, zum Beispiel bei Videos, ist diese Methode günstiger, da sich der Adressierungsaufwand für ein RAM-Fenster auf ein Minimum reduziert. \\
+Bei der Variante mit \code{memcopy} wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da zum Daten kopieren \code{memcopy} generell effizienter und schneller arbeitet als eine For-Schleife, ist diese Methode implementiert (vgl. \cite{Nadeau2012}). 
+Bei einer Anwendung mit häufigen und vielen Pixelveränderungen (z. B. Videos), ist diese Methode günstiger, da sich der Adressierungsaufwand für ein RAM-Fenster auf ein Minimum reduziert.\\
 Neben der \code{memcopy}-Methode wird auch eine optimierte Senderoutine unterstützt. Das bedeutet, dass eine Schleife die Page Pixel für Pixel durchläuft und mit der Page vor dem aktuellen Durchlauf vergleicht. Erkennt die Routine eine Abweichung, werden die nachfolgenden Pixel der Anzahl \code{PIXELGROUPLEN} grundlos an das Display gesendet. Verändern sich bei einer Anwendung nicht permanent alle Pixel, zum Beispiel in einem Terminal, so ist diese Variante günstiger, da nicht auf Verdacht alle Pixel der Page gesendet werden. Da sich oft nicht nur ein, aber auch nicht ständig alle Pixel  verändern, stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und überflüssigem Datentransfer dar (siehe \cite{Schlegel2013a}). Diese Methode findet im User-Space-Treiber ebenfalls Verwendung und wird in \refc{cha:userspace} näher erläutert.
 
 \begin{lstlisting}[%
@@ -739,16 +729,15 @@ void md050sd_setWindow(struct md050sd *item, unsigned short xs, unsigned short y
    md050sd_send_cmd(item, MD050SD_WRITE_MEMORY_START);
 }
 \end{lstlisting}
-\newpage
 \paragraph{Anpassungen für SSD1963/SSD1289 Controller}
 Um den Treiber auf den SSD1963 oder den SSD1289 zu portieren, sind nur wenige Änderungen notwendig. Auf Low-Level-Ebene muss in der Setup-Funktion die Initialisierung des Displaycontrollers hinzugefügt und die \code{setWindow}-Funktion auf die jeweiligen Kommandos angepasst werden. \\
 Die Strukturen \code{fb\_fix\_screeninfo} und \code{fb\_var\_screeninfo} müssen auf die jeweilige Displayauflösung angepasst werden. Die beiden Framebuffer-Treiber für die Controller SSD1963 und SSD1289 finden sich in den Dateien \code{linux-2.6.33-lpc313x/drivers/video/ssd1963.c} und \code{linux-2.6.33-lpc313x/drivers/video/ssd1289.c}
-
+\newpage
 \paragraph{Kernel für Framebuffer konfigurieren}
 Um den gepatchten Kernel für den Displaytreiber zu konfigurieren, muss der Kernel mittels dem Konfigurationstool \code{KConfig} eingestellt werden. 
 Hierzu wird mit dem Befehl \code{make menuconfig} die Konfiguration aufgerufen und im Unterpunkt \code{Device Drivers} das Menü \code{Graphics support} geöffnet (siehe \refa{fig:kernel_config}). Hier befinden sich Optionen für Framebuffer-Treiber. So wird der Punkt \code{Support for frame buffer devices} markiert und im selben Unterpunkt die Unterstützung eines Displays ausgewählt - z. B. \code{MD050SD display support}. 
-Um auch eine Konsole mit dem Framebuffer betreiben zu können, wird in \code{Graphics support} 
-ebenfalls der Punkt \code{Console display driver support} und dort \code{Framebuffer Console Support} ausgewählt. Es besteht die Möglichkeit nach eincompilierten Schriftarten. Um bei der Displayauflösung von 800x480 Pixeln genügend Informationen anzeigen zu können empfiehlt es sich einen kleineren Font als den Standard zu verwenden z. B. \code{console 7x14 font (Mac console 6x11 font)}.
+Um eine Konsole mit dem Framebuffer betreiben zu können, wird in \code{Graphics support} 
+ebenfalls der Punkt \code{Console display driver support} und der Unterpunkt \code{Framebuffer Console Support} ausgewählt. Es besteht die Möglichkeit von eincompilierten Schriftarten im Linux-Kernel. Um bei der Displayauflösung von 800x480 Pixeln genügend Informationen anzeigen zu können, kann ein kleinerer Font als Standard verwendet werden z. B. \code{console 7x14 font}.
 \begin{figure}[tbph]
 %\begin{figure}[h!]
 	\centering
@@ -763,9 +752,9 @@ Anders als beim Framebuffer-Treiber, welcher direkt im Linux-Kernel arbeitet, be
 In diesem Abschnitt wird die Entwicklung des User-Space-Treibers behandelt. 
 Dieser ist für den Betrieb mit einem virtuellen Framebuffer ausgelegt, welcher durch das Kernel-Modul \code{vfb} realisiert wird. Der \code{vfb}-Treiber stellt ein Framebuffer-Device als \code{/dev/fbX} zur Verfügung und verhält sich wie ein echter Framebuffer, da dieselben Schnittstellen existieren. Programme können auf das Device schreiben und von ihm lesen. Alternativ besteht die Möglichkeit den Treiber über den virtuellen X-Server Xvfb \footnote{Xvfb: virtual framebuffer X server, \url{http://unixhelp.ed.ac.uk/CGI/man-cgi?Xvfb}} arbeiten zu lassen. Das Programm Xvfb emuliert einen X-Server und erzeugt eine Datei, auf die Programme Lese- und Schreibzugriff erhalten. Der entwickelte Treiber benötigt einzig eine Bildquelle im Format des Framebuffers mit korrekter Auflösung und Pixelformat. 
 
-Für den Low-Level-Zugriff auf die Hardware-Register sind zwei Module \code{dio} und \code{tft} vorhanden. Über die Funktion \code{void dio_writeChannel(dio_channelType dio_pin_ui8, dio_pinLevelType dio_output_ui8)} lassen sich GPIO-Pins auf \linebreak High- beziehungsweise Low-Pegel zu schalten. Der Treiber wird benötigt um die Pins für Reset und Hintergrundbeleuchtung schalten zu können. So wird zum Beispiel mit der Anweisung \code{dio_writeChannel(DIO_CHANNEL_19, DIO_HIGH)} Pin 19 auf Logisch-High geschaltet.
+Für den Low-Level-Zugriff auf die Hardware-Register sind zwei Module \code{dio} und \code{tft} vorhanden. Über die Funktion \code{void dio_writeChannel(dio_channelType dio_pin_ui8, dio_pinLevelType dio_output_ui8)} lassen sich GPIO-Pins auf \linebreak High- beziehungsweise Low-Pegel zu schalten. Der Treiber wird benötigt um die Pins für Reset und Hintergrundbeleuchtung schalten zu können. So wird zum Beispiel mit der Anweisung \code{dio_writeChannel(DIO_CHANNEL_19, DIO_HIGH)} Pin 19 auf Logisch-High-Pegel gehoben.
 Im DIO-Treiber sind noch weitere Schnittstellen implementiert, wie zum Beispiel \code{dio_pinLevelType dio_readChannel(dio_channelType dio_pin_ui8)} um Pins einzulesen. Diese finden jedoch im User-Space-Treiber keine Verwendung. Um den Zugriff auf die Hardware-Register zu gewähren, werden die Register mithilfe der C-Funktion \code{mmap()} in den Speicher des User-Space gemappt. Der Treiber besitzt infolge dessen direkten Hardwarezugriff.
-Das \code{tft}-Modul erhält ebenfalls Zugriff auf die benötigten Adressen für Kommando und Daten auf dem SRAM-Interface (siehe \reft{tab:sram_adressen}) über einen gemappten Speicherzugriff über \code{mmap()}. In \refl{lst:userspace_memmap_funktion} ist die Funktion \code{tft_openSRAM0Memory()} gezeigt, welche die Zeiger \code{*sram0_ctrl} und \code{*sram0_data} für den Zugriff auf das Display initialisiert. Die Funktion wird im Treiber in dessen Initialisierungsroutine aufgerufen und beendet sich mit einem Fehlercode, beim eventuell fehlgeschlagenen Versuch den Speicher zu mappen.
+Das \code{tft}-Modul erhält ebenfalls Zugriff auf die benötigten Adressen für Kommandos und Daten auf dem SRAM-Interface (siehe \reft{tab:sram_adressen}) über einen gemappten Speicherzugriff über \code{mmap()}. In \refl{lst:userspace_memmap_funktion} ist die Funktion \code{tft_openSRAM0Memory()} gezeigt, welche die Zeiger \code{*sram0_ctrl} und \code{*sram0_data} für den Zugriff auf das Display initialisiert. Die Funktion wird im Treiber in dessen Initialisierungsroutine aufgerufen. Bei einem eventuell fehlgeschlagenen Versuch den Speicher zu mappen, beendet sich der Treiber mit einem Fehlercode.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -865,7 +854,7 @@ void tft_init(void)
    // ...
 }
 \end{lstlisting}
-Neben den Routinen zur Initialisierung wird, wie bereits in \refl{lst:apex_erster_teil} auf Seite \pageref{lst:apex_erster_teil} und \refl{lst:send_funktion} auf Seite \pageref{lst:send_funktion} behandelt, je eine Funktion für Daten und Kommandos, sowie eine zum Reservieren des RAM-Fensters im Display verwendet. Diese sind in \refl{lst:userspace_send_funktion} zu sehen.
+Neben den Routinen zur Initialisierung wird, wie bereits in \refl{lst:apex_erster_teil} auf Seite \pageref{lst:apex_erster_teil} und \refl{lst:send_funktion} auf Seite \pageref{lst:send_funktion} behandelt, je eine Funktion für Daten und Kommandos, sowie eine zum Reservieren des RAM-Fensters im Display verwendet (siehe \refl{lst:userspace_send_funktion}).
 
 \begin{lstlisting}[%
 language=MyC,
@@ -900,7 +889,7 @@ void tft_setWindow(uint16 xs, uint16 ys, uint16 xe, uint16 ye)
 }
 \end{lstlisting}
 \newpage
-Die eigentliche Logik des Treibers stellt die Main-Routine des Programms dar. In \refl{lst:userspace_main_funktion_init} ist der Teil zu sehen, bei dem die Low-Level-Treiber \code{dio} und \code{tft} initialisiert und die Speicher für das aktuelle und letzte Bild angelegt werden. Als Parameter erwartet das Programm den Pfad zum verwendeten Framebuffer-Device. Im Treiber findet keine Überprüfung auf das korrekte Format des Framebuffer-Device statt. Hier ist zuvor mit dem Programm \code{fbset}\footnote{fbset: Programm um Parameter des Framebuffers zu ändern, \url{http://linux.die.net/man/8/fbset}} die korrekte Auflösung und Farbtiete einzustellen. Als Bildquelle kann das erzeugte Device \code{/dev/fb0} von \code{vfb}, der virtuelle X-Server \code{xvfb} oder ein echtes, durch einen Grafiktreiber erzeugtes, Framebuffer-Device genutzt werden. 
+Die eigentliche Logik des Treibers stellt die Main-Routine des Programms dar. In \refl{lst:userspace_main_funktion_init} ist der Teil zu sehen, bei dem die Low-Level-Treiber \code{dio} und \code{tft} initialisiert und die Speicher für das aktuelle und letzte Bild angelegt werden. Als Parameter erwartet das Programm den Pfad zum verwendeten Framebuffer-Device. Im Treiber findet keine Überprüfung auf das korrekte Format des Framebuffer-Device statt. Hier ist zuvor mit dem Programm \code{fbset}\footnote{fbset: Programm um Parameter des Framebuffers zu ändern, \url{http://linux.die.net/man/8/fbset}} die korrekte Auflösung und Farbtiefe einzustellen. Als Bildquelle kann das erzeugte Device \code{/dev/fb0} von \code{vfb}, der virtuelle X-Server \code{xvfb} oder ein echtes, durch einen Grafiktreiber erzeugtes, Framebuffer-Device genutzt werden. 
 
 \begin{lstlisting}[%
 language=MyC,
@@ -929,7 +918,7 @@ sint32 main (sint32 * argc, uint8 * argv[])
    // ... while(TRUE)-loop ...
 }
 \end{lstlisting}
-Die wesentliche Funktion des Displaytreibers findet in der \code{while}-Schleife statt (siehe \refl{lst:userspace_main_funktion_loop}). Mit einer definierten Gruppen-Pixel-Länge \code{PIXELGROUPLEN} von 40 Bildpunkten, werden nach einer Pixeländerung die nachfolgenden 39 Pixel ebenfalls gezeichnet. Die Schleife läuft mit einer Periodendauer von 30 Millisekunden ab (Zeile 37), was bei einer  beliebig kurzen Durchlaufzeit der Schleife auf eine Bildwiederholungsrate von 33 Bildern pro Sekunde hinauslaufen würde. Da die Durchlaufzeit der Schleife in der Praxis allerdings nicht gegen Null geht, reduziert sich die Bildwiederholungsrate entsprechend. Pro Schleifendurchlauf wird der aktuelle Framebuffer ausgelesen (Zeile 10) und jedes Pixel an der entsprechenden XY-Koordinate mit dem gespeicherten Framebuffer der letzten Iteration verglichen (Zeile 13). Ist eine Änderung eines Pixels aufgetreten, wird ein entsprechendes RAM-Fenster reserviert. Dieses reicht in der aktuellen Zeile vom geänderten Bildpunkt bis zur Anzahl von \code{PIXELGROUPLEN} weiteren Bildpunkten. Können aufgrund des Zeilenendes nicht die volle Anzahl an Pixeln reserviert werden, so wird bis zum Zeilenende auf das Display geschrieben.
+Die wesentliche Funktion des Displaytreibers findet in der \code{while}-Schleife statt (siehe \refl{lst:userspace_main_funktion_loop}). Mit einer definierten Gruppen-Pixel-Länge \code{PIXELGROUPLEN} von 40 Bildpunkten, werden nach einer Pixeländerung die nachfolgenden 39 Pixel ebenfalls gezeichnet. Die Schleife läuft mit einer Periodendauer von 30 Millisekunden ab (Zeile 37), was bei einer  beliebig kurzen Durchlaufzeit der Schleife auf eine Bildwiederholungsrate von 33 Bildern pro Sekunde resultieren würde. Da die Durchlaufzeit der Schleife in der Praxis allerdings nicht gegen Null geht, reduziert sich die Bildwiederholungsrate entsprechend. Pro Schleifendurchlauf wird der aktuelle Framebuffer ausgelesen (Zeile 10) und jedes Pixel an der entsprechenden XY-Koordinate mit dem gespeicherten Framebuffer der letzten Iteration verglichen (Zeile 13). Ist eine Änderung eines Pixels aufgetreten, wird ein entsprechendes RAM-Fenster reserviert. Dieses reicht in der aktuellen Zeile vom geänderten Bildpunkt bis zur Anzahl von \code{PIXELGROUPLEN} weiteren Bildpunkten. Können aufgrund des Zeilenendes nicht die volle Anzahl an Pixeln reserviert werden, so wird bis zum Zeilenende auf das Display geschrieben.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -980,7 +969,7 @@ label=lst:userspace_main_funktion_loop
 
 \end{lstlisting}
 \newpage
-Der Sachverhalt der optimierten Senderoutine wird in den folgenden Bildern klar, bei der eine Pixel-Gruppen-Länge von zehn Bildpunkten angenommen wird. 
+Der Sachverhalt der optimierten Senderoutine wird in den folgenden Bildern, bei der eine Pixel-Gruppen-Länge von zehn Bildpunkten angenommen wird, deutlich. 
 
 \begin{figure}[htp]
         \begin{center}
@@ -1012,8 +1001,8 @@ Der Sachverhalt der optimierten Senderoutine wird in den folgenden Bildern klar,
 		\end{center}
 \caption{User-Space: Optimierte Senderoutine}
 \end{figure}
-In \refa{fig:optimierte_routine_original} ist ein Testbild abgebildet, bei dem sich einige Pixel verändern. Diese Veränderungen sind in \refa{fig:optimierte_routine_mod} zu sehen und sind mit grüner Farbe markiert. Die Routine erkennt eine Veränderung und sendet die jeweils zehn folgenden Pixel an das Display. Diese Pixel sind in \refa{fig:optimierte_routine_desc} gelb markiert. 
-Betrachtet man das beispielsweise das MD050SD oder den SSD1963 Controller, so benötigen diese um ein RAM-Fenster zu reservieren fünf Schreibzyklen. Hierbei werden die vier Eckpunkte, sowie das Kommando gesendet, welches die Bereitschaft für Pixeldaten einleitet. Alle danach gesendeten Schreibvorgänge sind für Bilddaten vorgesehen, bei dem jedes Pixel einen Zyklus benötigt. Werden die veränderten, grünen Pixel gezählt, so erhält man 24 modifizierte Bildpunkte.\\
+In \refa{fig:optimierte_routine_original} ist ein Testbild abgebildet, bei dem sich einige Pixel verändern. Diese Veränderungen sind in \refa{fig:optimierte_routine_mod} mit grüner Farbe hervorgehoben. Die Routine erkennt eine Veränderung und sendet die jeweils zehn folgenden Pixel an das Display. Diese Pixel sind in \refa{fig:optimierte_routine_desc} gelb markiert. 
+Wird beispielsweise das MD050SD oder der SSD1963 Controller betrachtet, so benötigen diese um ein RAM-Fenster zu reservieren fünf Schreibzyklen. Hierbei werden die vier Eckpunkte, sowie das Kommando gesendet, welches die Bereitschaft für Pixeldaten einleitet. Alle danach gesendeten Schreibvorgänge sind für Bilddaten vorgesehen, bei dem jedes Pixel einen Zyklus benötigt. Werden die veränderten, grünen Pixel gezählt, so erhält man 24 modifizierte Bildpunkte.\\
 Im Fall der Adressierung jedes einzelnen Pixels, wären so $24 \cdot 5 + 24 = 144$ \footnote{24 Datenzyklen, 24 Adressierungen mit je 5 Schreibzyklen = 144 Zyklen} Schreibzyklen nötig. \\
-Würden auf Verdacht alle Pixel geschrieben, so wären bei einem Bildausschnitt von 24x10 Pixeln, der alle geänderten Pixel beinhaltet,  $5 + 24 \cdot 10 = 245$ \footnote{24 * 10 Datenzyklen, 1 Adressierung mit 5 Schreibzyklen = 245 Zyklen} Schreibzyklen notwendig. \\
+Würden auf Verdacht alle Pixel geschrieben, so wären bei einem vollen Bildausschnitt von 24x10 Pixeln $5 + 24 \cdot 10 = 245$ \footnote{24 * 10 Datenzyklen, 1 Adressierung mit 5 Schreibzyklen = 245 Zyklen} Schreibzyklen notwendig. \\
 Unter Verwendung der optimierten Senderoutine, bei der gruppenweise Pixel auf Verdacht geschrieben werden, müssen hierfür nur $5 \cdot 5 + 5 \cdot 10 = 75$ \footnote{5 * 10 Datenzyklen, 5 Adressierungen mit je 5 Schreibzyklen = 75 Zyklen} Zyklen aufgebracht werden (siehe \citep{Schlegel2013a}).\\ Deshalb stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und unnötigem Datentransfer dar. 

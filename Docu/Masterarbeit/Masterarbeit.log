@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  4 SEP 2014 13:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  9 SEP 2014 15:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1761,7 +1761,7 @@ Package babel Info: Redefining ngerman shorthand "~
 
 
 
-] <Bilder/Grundlagen/vga_timing.png, id=589, 564.8471pt x 418.40526pt>
+] <Bilder/Grundlagen/vga_timing.png, id=590, 564.8471pt x 418.40526pt>
 File: Bilder/Grundlagen/vga_timing.png Graphic file (type png)
 
 <use Bilder/Grundlagen/vga_timing.png>
@@ -1790,7 +1790,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 24.
 
-<Bilder/Grundlagen/rgb_timing.png, id=615, 600.74437pt x 179.92218pt>
+<Bilder/Grundlagen/rgb_timing.png, id=616, 600.74437pt x 179.92218pt>
 File: Bilder/Grundlagen/rgb_timing.png Graphic file (type png)
 
 <use Bilder/Grundlagen/rgb_timing.png>
@@ -1822,7 +1822,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 41.
 
-[7] <Bilder/Grundlagen/8080_timing.png, id=643, 752.8125pt x 599.99156pt>
+[7] <Bilder/Grundlagen/8080_timing.png, id=644, 752.8125pt x 599.99156pt>
 File: Bilder/Grundlagen/8080_timing.png Graphic file (type png)
 
 <use Bilder/Grundlagen/8080_timing.png>
@@ -1838,48 +1838,48 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 44--45
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 49.
+(babel)             in language  on input line 50.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 49.
+(babel)             in language  on input line 50.
 
 [8 <./Bilder/Grundlagen/8080_timing.png>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 51.
+(babel)             in language  on input line 52.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 51.
+(babel)             in language  on input line 52.
 
-Underfull \hbox (badness 3942) in paragraph at lines 62--62
+Underfull \hbox (badness 3942) in paragraph at lines 63--63
 []|\T1/lmr/bx/n/10.95 Relevanz für Mas-ter-ar-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
+Underfull \hbox (badness 10000) in paragraph at lines 63--63
 []|\T1/lmr/bx/n/10.95 Verwendung in der
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 74.
+(babel)             in language  on input line 75.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 74.
+(babel)             in language  on input line 75.
 
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 78.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 78.
 
 [9
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 78.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 78.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 81.
+(babel)             in language  on input line 82.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 81.
+(babel)             in language  on input line 82.
 )
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
@@ -1901,7 +1901,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 5.
-<Bilder/TeilA/ram_window.png, id=679, 1036.87375pt x 617.30624pt>
+<Bilder/TeilA/ram_window.png, id=680, 1036.87375pt x 617.30624pt>
 File: Bilder/TeilA/ram_window.png Graphic file (type png)
 
 <use Bilder/TeilA/ram_window.png>
@@ -1915,7 +1915,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 14.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 14.
-<Bilder/TeilA/display_pinout.png, id=685, 479.7925pt x 655.44875pt>
+<Bilder/TeilA/display_pinout.png, id=686, 479.7925pt x 655.44875pt>
 File: Bilder/TeilA/display_pinout.png Graphic file (type png)
 
 <use Bilder/TeilA/display_pinout.png>
@@ -1996,6 +1996,11 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 53.
 
+
+Package natbib Warning: Citation `ITEAD2013' on page 13 undefined on input line
+ 55.
+
+
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
@@ -2036,7 +2041,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 5.
- <Bilder/TeilA/lpc_ebi.png, id=725, 1088.065pt x 843.15pt>
+ <Bilder/TeilA/lpc_ebi.png, id=724, 1088.065pt x 843.15pt>
 File: Bilder/TeilA/lpc_ebi.png Graphic file (type png)
 
 <use Bilder/TeilA/lpc_ebi.png>
@@ -2061,7 +2066,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 23.
 
-<Bilder/TeilA/lpc_mpmc.png, id=747, 868.24374pt x 961.5925pt>
+<Bilder/TeilA/lpc_mpmc.png, id=746, 868.24374pt x 961.5925pt>
 File: Bilder/TeilA/lpc_mpmc.png Graphic file (type png)
 
 <use Bilder/TeilA/lpc_mpmc.png>
@@ -2346,49 +2351,55 @@ Package babel Info: Redefining ngerman shorthand "~
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 464.
+(babel)             in language  on input line 461.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 464.
+(babel)             in language  on input line 461.
 
 [32]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 517.
+(babel)             in language  on input line 513.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 517.
+(babel)             in language  on input line 513.
 
 [33]
+Overfull \hbox (2.91841pt too wide) in paragraph at lines 557--558
+[]\T1/lmr/m/n/10.95 In Lis-ting [][]3.13[][] ist die In-itia-li-sie-rung des Di
+s-plays zu se-hen, wel-che mit [][]
+ []
+
+
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 561.
+(babel)             in language  on input line 558.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 561.
+(babel)             in language  on input line 558.
 
 [34]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 597.
+(babel)             in language  on input line 598.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 597.
+(babel)             in language  on input line 598.
 
 [35]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 647.
+(babel)             in language  on input line 646.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 647.
+(babel)             in language  on input line 646.
 
 [36]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 683.
+(babel)             in language  on input line 682.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 683.
+(babel)             in language  on input line 682.
 
 [37]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
@@ -2399,31 +2410,32 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 727.
 
 [38]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 733.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 733.
+
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 742.
+(babel)             in language  on input line 735.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 742.
+(babel)             in language  on input line 735.
 
 [39]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 744.
+(babel)             in language  on input line 737.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 744.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 748.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 748.
- <Bilder/TeilA/kernel_config.png, id=1366, 481.8pt x 313.17pt>
+(babel)             in language  on input line 737.
+ <Bilder/TeilA/kernel_config.png, id=1356, 481.8pt x 313.17pt>
 File: Bilder/TeilA/kernel_config.png Graphic file (type png)
 
 <use Bilder/TeilA/kernel_config.png>
-Package pdftex.def Info: Bilder/TeilA/kernel_config.png used on input line 755.
+Package pdftex.def Info: Bilder/TeilA/kernel_config.png used on input line 744.
 
 (pdftex.def)             Requested size: 318.67209pt x 207.14201pt.
 
-Overfull \hbox (0.91635pt too wide) in paragraph at lines 748--759
+Overfull \hbox (0.91635pt too wide) in paragraph at lines 737--748
 [][][][][][][] \T1/lmr/m/n/10.95 ge-öff-net (sie-he Ab-bil-dung [][]3.8[][]). H
 ier be-fin-den sich Op-tio-nen für Framebuffer-
  []
@@ -2432,85 +2444,90 @@ ier be-fin-den sich Op-tio-nen für Framebuffer-
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 759.
+(babel)             in language  on input line 748.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 759.
+(babel)             in language  on input line 748.
 
-[40]
+[40 <./Bilder/TeilA/kernel_config.png>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 760.
+(babel)             in language  on input line 749.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 760.
+(babel)             in language  on input line 749.
+
+Overfull \hbox (3.76903pt too wide) in paragraph at lines 755--758
+\T1/lmr/m/n/10.95 men-tiert, wie zum Bei-spiel [][][][][][][][][][][][][][]
+ []
+
 
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 769.
+(babel)             in language  on input line 770.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 769.
+(babel)             in language  on input line 770.
 
-[41 <./Bilder/TeilA/kernel_config.png>]
+[41]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 812.
+(babel)             in language  on input line 820.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 812.
+(babel)             in language  on input line 820.
 
 [42]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 865.
+(babel)             in language  on input line 874.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 865.
+(babel)             in language  on input line 874.
 
 [43]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 902.
+(babel)             in language  on input line 891.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 902.
+(babel)             in language  on input line 891.
 
 [44]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 933.
+(babel)             in language  on input line 922.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 933.
+(babel)             in language  on input line 922.
 
 [45]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 982.
+(babel)             in language  on input line 971.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 982.
+(babel)             in language  on input line 971.
 
 [46]
-<Bilder/TeilA/optimierte_routine_original.png, id=1580, 1955.305pt x 782.925pt>
+<Bilder/TeilA/optimierte_routine_original.png, id=1569, 1955.305pt x 782.925pt>
 File: Bilder/TeilA/optimierte_routine_original.png Graphic file (type png)
 <use Bilder/TeilA/optimierte_routine_original.png>
 Package pdftex.def Info: Bilder/TeilA/optimierte_routine_original.png used on i
-nput line 990.
+nput line 979.
 (pdftex.def)             Requested size: 254.93863pt x 102.07053pt.
 
-<Bilder/TeilA/optimierte_routine_mod.png, id=1581, 1955.305pt x 782.925pt>
+<Bilder/TeilA/optimierte_routine_mod.png, id=1570, 1955.305pt x 782.925pt>
 File: Bilder/TeilA/optimierte_routine_mod.png Graphic file (type png)
 
 <use Bilder/TeilA/optimierte_routine_mod.png>
 Package pdftex.def Info: Bilder/TeilA/optimierte_routine_mod.png used on input 
-line 999.
+line 988.
 (pdftex.def)             Requested size: 254.93863pt x 102.07053pt.
 
-<Bilder/TeilA/optimierte_routine_desc.png, id=1582, 1955.305pt x 782.925pt>
+<Bilder/TeilA/optimierte_routine_desc.png, id=1571, 1955.305pt x 782.925pt>
 File: Bilder/TeilA/optimierte_routine_desc.png Graphic file (type png)
 
 <use Bilder/TeilA/optimierte_routine_desc.png>
 Package pdftex.def Info: Bilder/TeilA/optimierte_routine_desc.png used on input
- line 1008.
+ line 997.
 (pdftex.def)             Requested size: 254.93863pt x 102.07053pt.
 )
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
@@ -2545,7 +2562,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 9.
 
-[48] <Bilder/TeilA/print_34_dip.png, id=1615, 1027.84pt x 770.88pt>
+[48] <Bilder/TeilA/print_34_dip.png, id=1605, 1027.84pt x 770.88pt>
 File: Bilder/TeilA/print_34_dip.png Graphic file (type png)
 
 <use Bilder/TeilA/print_34_dip.png>
@@ -2556,7 +2573,7 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 22--23
  [][] 
  []
 
-<Bilder/TeilA/print_34_ext.png, id=1616, 1027.84pt x 770.88pt>
+<Bilder/TeilA/print_34_ext.png, id=1606, 1027.84pt x 770.88pt>
 File: Bilder/TeilA/print_34_ext.png Graphic file (type png)
 
 <use Bilder/TeilA/print_34_ext.png>
@@ -2587,7 +2604,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 41.
 
 [50 <./Bilder/TeilA/print_34_dip.png> <./Bilder/TeilA/print_34_ext.png>]
-<Bilder/TeilA/ssd1963_writeCycleConstraings.png, id=1630, 828.84656pt x 365.866
+<Bilder/TeilA/ssd1963_writeCycleConstraings.png, id=1620, 828.84656pt x 365.866
 88pt>
 File: Bilder/TeilA/ssd1963_writeCycleConstraings.png Graphic file (type png)
  <use Bilder/TeilA/ssd1963_writeCycleConstraings.png>
@@ -2635,7 +2652,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
 
-<Bilder/TeilB/Architektur.pdf, id=1643, 964.60374pt x 780.9175pt>
+<Bilder/TeilB/Architektur.pdf, id=1633, 964.60374pt x 780.9175pt>
 File: Bilder/TeilB/Architektur.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/Architektur.pdf>
@@ -2672,7 +2689,7 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 6--15
 [][] 
  []
 
-<Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png, id=1669, 1144.275pt x 834.11626pt>
+<Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png, id=1658, 1144.275pt x 834.11626pt>
 File: Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png Graphic file (type png)
 
 <use Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png>
@@ -2680,7 +2697,7 @@ Package pdftex.def Info: Bilder/TeilB/HDMI_RGB_LVDS_V9_top.png used on input li
 ne 23.
 (pdftex.def)             Requested size: 183.4544pt x 133.72786pt.
 
-<Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png, id=1670, 1150.2975pt x 836.12375pt>
+<Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png, id=1659, 1150.2975pt x 836.12375pt>
 File: Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png Graphic file (type png)
 
 <use Bilder/TeilB/HDMI_RGB_LVDS_V9_bot.png>
@@ -2692,7 +2709,7 @@ Overfull \hbox (6.86275pt too wide) in paragraph at lines 29--29
 [][] 
  []
 
-<Bilder/TeilB/teilb_lagenaufbau.png, id=1672, 1606.0pt x 1304.875pt>
+<Bilder/TeilB/teilb_lagenaufbau.png, id=1661, 1606.0pt x 1304.875pt>
 File: Bilder/TeilB/teilb_lagenaufbau.png Graphic file (type png)
 
 <use Bilder/TeilB/teilb_lagenaufbau.png>
@@ -2717,14 +2734,14 @@ Overfull \hbox (9.14719pt too wide) in paragraph at lines 64--73
 [][] 
  []
 
-<Bilder/TeilB/hdmi_sch.png, id=1685, 168.26865pt x 238.491pt>
+<Bilder/TeilB/hdmi_sch.png, id=1674, 168.26865pt x 238.491pt>
 File: Bilder/TeilB/hdmi_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/hdmi_sch.png>
 Package pdftex.def Info: Bilder/TeilB/hdmi_sch.png used on input line 84.
 (pdftex.def)             Requested size: 130.48901pt x 184.94505pt.
 
-<Bilder/TeilB/hdmi_stecker.png, id=1686, 60.56226pt x 60.9477pt>
+<Bilder/TeilB/hdmi_stecker.png, id=1675, 60.56226pt x 60.9477pt>
 File: Bilder/TeilB/hdmi_stecker.png Graphic file (type png)
 
 <use Bilder/TeilB/hdmi_stecker.png>
@@ -2739,7 +2756,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 99.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 99.
-<Bilder/TeilB/rgb_bridge_sch.png, id=1689, 470.35725pt x 516.9714pt>
+<Bilder/TeilB/rgb_bridge_sch.png, id=1678, 470.35725pt x 516.9714pt>
 File: Bilder/TeilB/rgb_bridge_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/rgb_bridge_sch.png>
@@ -2755,7 +2772,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 112.
 
 [56]
-<Bilder/TeilB/sim_serienwiderstand_messung.png, id=1707, 1821.80624pt x 584.182
+<Bilder/TeilB/sim_serienwiderstand_messung.png, id=1695, 1821.80624pt x 584.182
 5pt>
 File: Bilder/TeilB/sim_serienwiderstand_messung.png Graphic file (type png)
  <use Bilder/TeilB/sim_serienwiderstand_messung.png>
@@ -2767,7 +2784,7 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 126--127
 [][] 
  []
 
-<Bilder/TeilB/rgb_bridge_pcb.png, id=1711, 71.18594pt x 123.46124pt>
+<Bilder/TeilB/rgb_bridge_pcb.png, id=1699, 71.18594pt x 123.46124pt>
 File: Bilder/TeilB/rgb_bridge_pcb.png Graphic file (type png)
 
 <use Bilder/TeilB/rgb_bridge_pcb.png>
@@ -2806,7 +2823,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 138.
 
-<Bilder/TeilB/lvds_bridge_paket.png, id=1735, 674.52pt x 339.2675pt>
+<Bilder/TeilB/lvds_bridge_paket.png, id=1724, 674.52pt x 339.2675pt>
 File: Bilder/TeilB/lvds_bridge_paket.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_bridge_paket.png>
@@ -2823,7 +2840,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--145
 [][][]|\T1/lmr/m/n/10 Pa-ket-for-mat LVDS-Bridge, [][][]Texas-
  []
 
-<Bilder/TeilB/lvds_display_paket.png, id=1740, 888.31876pt x 428.60126pt>
+<Bilder/TeilB/lvds_display_paket.png, id=1729, 888.31876pt x 428.60126pt>
 File: Bilder/TeilB/lvds_display_paket.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_display_paket.png>
@@ -2835,7 +2852,7 @@ Overfull \hbox (13.85306pt too wide) in paragraph at lines 150--151
 [][] 
  []
 
-<Bilder/TeilB/lvds_bridge_sch.png, id=1746, 472.164pt x 394.47375pt>
+<Bilder/TeilB/lvds_bridge_sch.png, id=1735, 472.164pt x 394.47375pt>
 File: Bilder/TeilB/lvds_bridge_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_bridge_sch.png>
@@ -2843,7 +2860,7 @@ Package pdftex.def Info: Bilder/TeilB/lvds_bridge_sch.png used on input line 16
 1.
 (pdftex.def)             Requested size: 318.67209pt x 266.24022pt.
 
-<Bilder/TeilB/lvds_bridge_pcb.png, id=1750, 91.48178pt x 115.27065pt>
+<Bilder/TeilB/lvds_bridge_pcb.png, id=1739, 91.48178pt x 115.27065pt>
 File: Bilder/TeilB/lvds_bridge_pcb.png Graphic file (type png)
 
 <use Bilder/TeilB/lvds_bridge_pcb.png>
@@ -2873,21 +2890,21 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 175.
 
-<Bilder/TeilB/EDID.pdf, id=1769, 587.19376pt x 864.22874pt>
+<Bilder/TeilB/EDID.pdf, id=1758, 587.19376pt x 864.22874pt>
 File: Bilder/TeilB/EDID.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/EDID.pdf>
 Package pdftex.def Info: Bilder/TeilB/EDID.pdf used on input line 180.
 (pdftex.def)             Requested size: 239.00558pt x 351.7646pt.
 
-<Bilder/TeilB/usb_sch.png, id=1772, 358.2183pt x 228.6141pt>
+<Bilder/TeilB/usb_sch.png, id=1761, 358.2183pt x 228.6141pt>
 File: Bilder/TeilB/usb_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/usb_sch.png>
 Package pdftex.def Info: Bilder/TeilB/usb_sch.png used on input line 188.
 (pdftex.def)             Requested size: 318.67209pt x 203.39265pt.
 
-<Bilder/TeilB/avr_sch.png, id=1774, 507.0945pt x 402.66435pt>
+<Bilder/TeilB/avr_sch.png, id=1763, 507.0945pt x 402.66435pt>
 File: Bilder/TeilB/avr_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/avr_sch.png>
@@ -2915,7 +2932,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 201.
 
 [63 <./Bilder/TeilB/usb_sch.png>]
-<Bilder/TeilB/edid_pcb_top.png, id=1788, 100.31076pt x 76.89528pt>
+<Bilder/TeilB/edid_pcb_top.png, id=1777, 100.31076pt x 76.89528pt>
 File: Bilder/TeilB/edid_pcb_top.png Graphic file (type png)
 
 <use Bilder/TeilB/edid_pcb_top.png>
@@ -2926,7 +2943,7 @@ Overfull \hbox (1.19409pt too wide) in paragraph at lines 207--208
 [][] 
  []
 
-<Bilder/TeilB/edid_pcb_bot.png, id=1789, 99.87714pt x 75.06444pt>
+<Bilder/TeilB/edid_pcb_bot.png, id=1778, 99.87714pt x 75.06444pt>
 File: Bilder/TeilB/edid_pcb_bot.png Graphic file (type png)
 
 <use Bilder/TeilB/edid_pcb_bot.png>
@@ -2941,7 +2958,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 224.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 224.
-<Bilder/TeilB/Supply.pdf, id=1791, 1572.87625pt x 539.01375pt>
+<Bilder/TeilB/Supply.pdf, id=1780, 1572.87625pt x 539.01375pt>
 File: Bilder/TeilB/Supply.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/Supply.pdf>
@@ -2952,7 +2969,7 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 228--229
  [] 
  []
 
-<Bilder/TeilB/power_sup_sch.png, id=1794, 358.4592pt x 155.3805pt>
+<Bilder/TeilB/power_sup_sch.png, id=1783, 358.4592pt x 155.3805pt>
 File: Bilder/TeilB/power_sup_sch.png Graphic file (type png)
 
 <use Bilder/TeilB/power_sup_sch.png>
@@ -2964,7 +2981,7 @@ Overfull \hbox (10.44998pt too wide) in paragraph at lines 235--236
  [] 
  []
 
-<Bilder/TeilB/verpolschutz_messung.png, id=1798, 1376.14125pt x 418.56375pt>
+<Bilder/TeilB/verpolschutz_messung.png, id=1787, 1376.14125pt x 418.56375pt>
 File: Bilder/TeilB/verpolschutz_messung.png Graphic file (type png)
 
 <use Bilder/TeilB/verpolschutz_messung.png>
@@ -2999,18 +3016,8 @@ Package babel Info: Redefining ngerman shorthand "~
 
 [65 <./Bilder/TeilB/edid_pcb_top.png> <./Bilder/TeilB/edid_pcb_bot.png> <./Bild
 er/TeilB/Supply.pdf>]
-Underfull \hbox (badness 1983) in paragraph at lines 253--253
-[]|[][]\T1/lmr/m/n/10.95 Texas-Instruments[][] [[][]2011[][]],
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 254--254
-[]|\T1/lmr/m/n/10.95 LB070WV8-SL01
- []
-
-
-Overfull \hbox (3.00154pt too wide) in paragraph at lines 255--255
-[]|\T1/lmr/m/n/10.95 TY700TFT800480
+Overfull \hbox (10.97359pt too wide) in paragraph at lines 249--257
+[][] 
  []
 
 
@@ -3025,9 +3032,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 247--262
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
@@ -3037,14 +3041,11 @@ Package babel Info: Redefining ngerman shorthand "~
 
 [66 <./Bilder/TeilB/power_sup_sch.png> <./Bilder/TeilB/verpolschutz_messung.png
 >]
-Overfull \vbox (6.35548pt too high) has occurred while \output is active []
+Overfull \hbox (10.97359pt too wide) in paragraph at lines 265--271
+[][] 
+ []
 
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 276.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 276.
-
-[67] <Bilder/TeilB/vcc_layer.png, id=1854, 199.2243pt x 177.83238pt>
+<Bilder/TeilB/vcc_layer.png, id=1832, 199.2243pt x 177.83238pt>
 File: Bilder/TeilB/vcc_layer.png Graphic file (type png)
 
 <use Bilder/TeilB/vcc_layer.png>
@@ -3055,7 +3056,7 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 281--282
 [][] 
  []
 
-<Bilder/TeilB/gnd_layer.png, id=1855, 199.2243pt x 177.83238pt>
+<Bilder/TeilB/gnd_layer.png, id=1833, 199.2243pt x 177.83238pt>
 File: Bilder/TeilB/gnd_layer.png Graphic file (type png)
 
 <use Bilder/TeilB/gnd_layer.png>
@@ -3067,6 +3068,14 @@ Overfull \hbox (14.09998pt too wide) in paragraph at lines 287--287
  []
 
 ) (./Inhalt/TeilB/TeilBSoftware.tex
+Overfull \vbox (6.35548pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1.
+
+[67]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1.
 Package babel Info: Redefining ngerman shorthand "~
@@ -3090,7 +3099,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--16
 \T1/lmr/m/n/10.95 EEPROM-Inhalt
  []
 
-<Bilder/TeilB/avr_arch.pdf, id=1864, 970.62625pt x 570.13pt>
+<Bilder/TeilB/avr_arch.pdf, id=1854, 970.62625pt x 570.13pt>
 File: Bilder/TeilB/avr_arch.pdf Graphic file (type pdf)
 
 <use Bilder/TeilB/avr_arch.pdf>
@@ -3118,9 +3127,9 @@ Package babel Info: Redefining ngerman shorthand "~
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 28.
+(babel)             in language  on input line 29.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 28.
+(babel)             in language  on input line 29.
 
 [69]
 Package babel Info: Redefining ngerman shorthand "|
@@ -3147,24 +3156,16 @@ Package babel Info: Redefining ngerman shorthand "~
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 120.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 120.
+(babel)             in language  on input line 128.
 
 [72]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 149.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 149.
-
-Overfull \vbox (6.35548pt too high) has occurred while \output is active []
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 152.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 152.
-
-[73] <Bilder/TeilB/edid_writer1.png, id=2007, 420.06938pt x 344.78813pt>
+ <Bilder/TeilB/edid_writer1.png, id=1970, 420.06938pt x 344.78813pt>
 File: Bilder/TeilB/edid_writer1.png Graphic file (type png)
 
 <use Bilder/TeilB/edid_writer1.png>
@@ -3178,21 +3179,29 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 166.
 
+[73]
+Overfull \vbox (6.35548pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 170.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 170.
+
 [74 <./Bilder/TeilB/edid_writer1.png>]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 209.
+(babel)             in language  on input line 217.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 209.
+(babel)             in language  on input line 217.
 
 [75]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 245.
+(babel)             in language  on input line 256.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 245.
+(babel)             in language  on input line 256.
 
 [76]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
@@ -3222,7 +3231,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--7
 mmons / thumb / 4 / 48 /
  []
 
-<Bilder/TeilB/hdmi_stecker_problem.png, id=2120, 1284.8pt x 1133.23375pt>
+<Bilder/TeilB/hdmi_stecker_problem.png, id=2109, 1284.8pt x 1133.23375pt>
 File: Bilder/TeilB/hdmi_stecker_problem.png Graphic file (type png)
 
 <use Bilder/TeilB/hdmi_stecker_problem.png>
@@ -3247,7 +3256,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 20.
 
-<Bilder/TeilB/r13.png, id=2129, 59.7432pt x 46.9755pt>
+<Bilder/TeilB/r13.png, id=2118, 59.7432pt x 46.9755pt>
 File: Bilder/TeilB/r13.png Graphic file (type png)
 
 <use Bilder/TeilB/r13.png>
@@ -3258,7 +3267,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 29.
 
-<Bilder/TeilB/usb_dp_dm.png, id=2131, 157.7895pt x 97.5645pt>
+<Bilder/TeilB/usb_dp_dm.png, id=2120, 157.7895pt x 97.5645pt>
 File: Bilder/TeilB/usb_dp_dm.png Graphic file (type png)
 
 <use Bilder/TeilB/usb_dp_dm.png>
@@ -3339,470 +3348,318 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1.
 
-Underfull \hbox (badness 1248) in paragraph at lines 21--21
-\T1/lmr/m/sc/10.95 An-to-ni-no Da-plas\T1/lmr/m/n/10.95 , Linux-Kernel:  \T1/lm
-r/m/it/10.95 The Fra-me-buf-fer Con-so-le\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n
-/10.95 https :
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+\T1/lmtt/m/n/10.95 analytics -[] android -[] steigert -[] marktanteil -[] auf -
+[] fast -[] 85 -[] prozent/$[][]\T1/lmr/m/n/10.95 , Ab-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\T1/lmtt/m/n/10.95 / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / torv
-alds / linux / blob / master / Documentation / fb / fbcon\OML/lmm/m/it/10.95 :\
-T1/lmtt/m/n/10.95 txt$[][]\T1/lmr/m/n/10.95 .
- []
-
-
-Package caption Warning: \label without proper \caption on input line 269.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `??' on page 83 undefined on input line 27.
-
-
-Package caption Warning: \label without proper \caption on input line 268.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `??' on page 83 undefined on input line 33.
-
-
-Underfull \hbox (badness 1939) in paragraph at lines 33--33
-\T1/lmr/m/sc/10.95 At-mel\T1/lmr/m/n/10.95 :  \T1/lmr/m/it/10.95 AT-me-ga48/88/
-168 Da-tas-heet\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http : / / www\OML/
-lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 atmel\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95
- com / Images /
- []
-
-
-Underfull \hbox (badness 2486) in paragraph at lines 47--47
-\T1/lmr/m/sc/10.95 Bei-ers-mann\T1/lmr/m/n/10.95 , Ste-fan:  \T1/lmr/m/it/10.95
- Stra-t-egy Ana-ly-tics: An-dro-id stei-gert Markt-an-teil
- []
-
-
-Underfull \hbox (badness 5077) in paragraph at lines 54--54
-\T1/lmr/m/sc/10.95 Be-ne-dikt Sau-ter\T1/lmr/m/n/10.95 , Embedded-Projects:  \T
-1/lmr/m/it/10.95 LPC3130/31 User Ma-nu-al\T1/lmr/m/n/10.95 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--54
-[][]$\T1/lmtt/m/n/10.95 https : / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
-95 com / siredmar / master / raw / master / Recherche / Gnublin /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--61
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
 \T1/lmr/m/sc/10.95 Brandt\T1/lmr/m/n/10.95 , Ma-th-ti-as:  \T1/lmr/m/it/10.95 F
 ast 80 Pro-zent Markt-an-teil für An-dro-id\T1/lmr/m/n/10.95 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--61
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
 [][]$\T1/lmtt/m/n/10.95 http : / / de\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 st
 atista\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / themen / 581 / smartphones 
 / infografik / 1326 /
  []
 
 
-Underfull \hbox (badness 4467) in paragraph at lines 68--68
-\T1/lmr/m/sc/10.95 Cold-tears Elec-tro-nics\T1/lmr/m/n/10.95 , CE:  \T1/lmr/m/i
-t/10.95 Schalt-plan Gnub-lin Ex-ten-ded V1.7\T1/lmr/m/n/10.95 .
+Underfull \hbox (badness 4582) in paragraph at lines 56--56
+\T1/lmr/m/sc/10.95 Brow-nell\T1/lmr/m/n/10.95 , Da-vid:  \T1/lmr/m/it/10.95 Pla
+t-form De-vi-ces and Dri-vers\T1/lmr/m/n/10.95 .  Version:2006.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--68
-[][]$\T1/lmtt/m/n/10.95 https : / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
-95 com / siredmar / master / raw / master / Recherche / Displays /
- []
-
-
-Overfull \vbox (6.35548pt too high) has occurred while \output is active []
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 75.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 75.
-
-[83
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
-\T1/lmr/m/sc/10.95 Da-vid Brow-nell\T1/lmr/m/n/10.95 , Linux-Kernel:  \T1/lmr/m
-/it/10.95 Plat-form De-vi-ces and Dri-vers\T1/lmr/m/n/10.95 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
 [][]$\T1/lmtt/m/n/10.95 https : / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
 95 com / torvalds / linux / blob / master / Documentation /
  []
 
 
-Underfull \hbox (badness 4927) in paragraph at lines 82--82
-\T1/lmr/m/sc/10.95 Da-vid Ro-bert Na-deau\T1/lmr/m/n/10.95 , Ph.D.:  \T1/lmr/m/
-it/10.95 C/C++ tip: How to co-py me-
+Underfull \hbox (badness 4467) in paragraph at lines 63--63
+\T1/lmr/m/sc/10.95 Cold-tears Elec-tro-nics\T1/lmr/m/n/10.95 , CE:  \T1/lmr/m/i
+t/10.95 Schalt-plan Gnub-lin Ex-ten-ded V1.7\T1/lmr/m/n/10.95 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
-\T1/lmr/m/it/10.95 mo-ry quick-ly\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 h
-ttp : / / nadeausoftware\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / articles 
-/ 2012 / 05 /
- []
-
-
-Underfull \hbox (badness 6758) in paragraph at lines 82--82
-\T1/lmtt/m/n/10.95 c[]c[]tip[]how[]copy[]memory[]quickly$[][]\T1/lmr/m/n/10.95 
-.  Version:2012, Ab-ruf: 05.08.2014
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 88--88
-\T1/lmr/m/sc/10.95 Ex-tron\T1/lmr/m/n/10.95 :  \T1/lmr/m/it/10.95 DVI and HD-MI
-: The Short and the Long of It\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http
- : / /
- []
-
-
-Underfull \hbox (badness 6775) in paragraph at lines 103--103
-\T1/lmr/m/sc/10.95 Ge-ert Uyt-ter-hoe-ven\T1/lmr/m/n/10.95 , Linux-Kernel:  \T1
-/lmr/m/it/10.95 The Fra-me Buf-fer De-vi-ce\T1/lmr/m/n/10.95 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
+Underfull \hbox (badness 10000) in paragraph at lines 63--63
 [][]$\T1/lmtt/m/n/10.95 https : / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
-95 com / torvalds / linux / blob / master / Documentation / fb /
+95 com / siredmar / master / raw / master / Recherche / Displays /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--110
-\T1/lmr/m/sc/10.95 Gen-si-cke\T1/lmr/m/n/10.95 , F.Jürgen:  \T1/lmr/m/it/10.95 
-Be-rech-nung der Ka-pa-zi-tät von Lei-ter-bah-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--110
-\T1/lmr/m/it/10.95 nen\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http : / / w
-ww\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 elektronikentwickler -[] aachen\OML/l
-mm/m/it/10.95 :\T1/lmtt/m/n/10.95 de / allgemeines /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--118
-\T1/lmr/m/sc/10.95 Gnublin-Wiki\T1/lmr/m/n/10.95 , Em-bed-ded P.:  \T1/lmr/m/it
-/10.95 Boot-loa-der ue-ber-set-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--118
-\T1/lmr/m/it/10.95 zen und in-stal-lie-ren\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/
-n/10.95 http : / / wiki\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 gnublin\OML/lmm/
-m/it/10.95 :\T1/lmtt/m/n/10.95 org / index\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
-95 php /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 126--126
-\T1/lmr/m/sc/10.95 Gnublin-Wiki\T1/lmr/m/n/10.95 , Em-bed-ded P.:  \T1/lmr/m/it
-/10.95 C/C++ Ent-wick-lungs-um-ge-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 126--126
-\T1/lmr/m/it/10.95 bung in-stal-lie-ren\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/1
-0.95 http : / / wiki\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 gnublin\OML/lmm/m/i
-t/10.95 :\T1/lmtt/m/n/10.95 org / index\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 
-php / C / C +
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\T1/lmtt/m/n/10.95 / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / torv
+alds / linux / blob / master / Documentation / fb / fbcon\OML/lmm/m/it/10.95 :\
+T1/lmtt/m/n/10.95 txt$[][]\T1/lmr/m/n/10.95 ,
  []
 
 
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 134.
+(babel)             in language  on input line 77.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 134.
+(babel)             in language  on input line 77.
+
+[83
+
+
+]
+Underfull \hbox (badness 7685) in paragraph at lines 94--94
+\T1/lmr/m/sc/10.95 Gen-si-cke\T1/lmr/m/n/10.95 , F.Jürgen:  \T1/lmr/m/it/10.95 
+Be-rech-nung der Ka-pa-zi-tät von Lei-ter-bah-nen\T1/lmr/m/n/10.95 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+\T1/lmr/m/sc/10.95 Gnublin-Wiki\T1/lmr/m/n/10.95 , Em-bed-ded P.:  \T1/lmr/m/it
+/10.95 Boot-loa-der ue-ber-set-zen und in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+\T1/lmr/m/it/10.95 stal-lie-ren\T1/lmr/m/n/10.95 .  Version:2013.  [][]$\T1/lmt
+t/m/n/10.95 http : / / wiki\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 gnublin\OML/
+lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 org / index\OML/lmm/m/it/10.95 :\T1/lmtt/m/n
+/10.95 php /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--112
+\T1/lmr/m/sc/10.95 Gnublin-Wiki\T1/lmr/m/n/10.95 , Em-bed-ded P.:  \T1/lmr/m/it
+/10.95 C/C++ Ent-wick-lungs-um-ge-bung in-
+ []
+
+
+Underfull \hbox (badness 6859) in paragraph at lines 112--112
+\T1/lmr/m/it/10.95 stal-lie-ren\T1/lmr/m/n/10.95 .  Version:2013.  [][]$\T1/lmt
+t/m/n/10.95 http : / / wiki\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 gnublin\OML/
+lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 org / index\OML/lmm/m/it/10.95 :\T1/lmtt/m/n
+/10.95 php / C / C +
+ []
+
+
+Underfull \hbox (badness 6047) in paragraph at lines 130--130
+\T1/lmr/m/it/10.95 Mi-cro-con-trol-lers\T1/lmr/m/n/10.95 .  Version:2009.  [][]
+$\T1/lmtt/m/n/10.95 http : / / extremeelectronics\OML/lmm/m/it/10.95 :\T1/lmtt/
+m/n/10.95 co\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 in /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
+\T1/lmtt/m/n/10.95 avr -[] tutorials / easy -[] 24c -[] i2c -[] serial -[] eepr
+om -[] interfacing -[] with -[] avr -[]
+ []
+
+
+Underfull \hbox (badness 5832) in paragraph at lines 137--137
+\T1/lmr/m/sc/10.95 HD-MI Li-cen-sing\T1/lmr/m/n/10.95 , HD-MI:  \T1/lmr/m/it/10
+.95 HD-MI Know-led-ge Ba-se, www.hdmi.org\T1/lmr/m/n/10.95 .
+ []
+
+
+Underfull \hbox (badness 7308) in paragraph at lines 144--144
+\T1/lmr/m/sc/10.95 ITEAD Stu-di-os\T1/lmr/m/n/10.95 , ITEAD:  \T1/lmr/m/it/10.9
+5 MD070SD Da-tas-heet\T1/lmr/m/n/10.95 .  Version:2013.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--144
+[][]$\T1/lmtt/m/n/10.95 ftp : / / imall\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 
+iteadstudio\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / TFTLCM / IM130820001 /
+ DS[]IM130820001\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 pdf$[][]\T1/lmr/m/n/10.
+95 ,
+ []
+
+
+Overfull \vbox (6.35548pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 152.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 152.
 
 [84]
-Underfull \hbox (badness 3291) in paragraph at lines 134--134
-\T1/lmr/m/sc/10.95 Gnublin-Wiki\T1/lmr/m/n/10.95 , Em-bed-ded P.:  \T1/lmr/m/it
-/10.95 Ker-nel kom-pi-lie-ren + Mo-du-le in-stal-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 134--134
-\T1/lmr/m/it/10.95 lie-ren\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http : /
- / wiki\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 gnublin\OML/lmm/m/it/10.95 :\T1/
-lmtt/m/n/10.95 org / index\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 php / Kernel[
-]kompilieren[] +
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
-\T1/lmtt/m/n/10.95 24c -[] i2c -[] serial -[] eeprom -[] interfacing -[] with -
-[] avr -[] microcontrollers/$[][]\T1/lmr/m/n/10.95 .
- []
-
-
-Underfull \hbox (badness 3590) in paragraph at lines 148--148
-\T1/lmtt/m/n/10.95 / / www\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 hdmi\OML/lmm/
-m/it/10.95 :\T1/lmtt/m/n/10.95 org / learningcenter / kb\OML/lmm/m/it/10.95 :\T
-1/lmtt/m/n/10.95 aspx?c = 6#42$[][]\T1/lmr/m/n/10.95 .  Version:2014, Ab-ruf:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 155--155
-\T1/lmtt/m/n/10.95 siredmar / master / raw / master / Recherche / Displays / 80
-80 / 5Inch[]MD050SD /
- []
-
-
-Underfull \hbox (badness 2626) in paragraph at lines 163--163
+Underfull \hbox (badness 2626) in paragraph at lines 152--152
 \T1/lmr/m/sc/10.95 Knupp-fer\T1/lmr/m/n/10.95 , Nick:  \T1/lmr/m/it/10.95 Lea-d
 ing PC Com-pa-nies Mo-ve to All Di-gi-tal Dis-
  []
 
 
-Underfull \hbox (badness 7433) in paragraph at lines 163--163
+Underfull \hbox (badness 7433) in paragraph at lines 152--152
 \T1/lmr/m/it/10.95 play Tech-no-lo-gy, Pha-sing out Ana-log\T1/lmr/m/n/10.95 . 
  [][]$\T1/lmtt/m/n/10.95 http : / / newsroom\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/1
 0.95 intel\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--163
+Underfull \hbox (badness 10000) in paragraph at lines 152--152
 \T1/lmtt/m/n/10.95 community / intel[]newsroom / blog / 2010 / 12 / 08 / leadin
 g -[] pc -[] companies -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--163
+Underfull \hbox (badness 10000) in paragraph at lines 152--152
 \T1/lmtt/m/n/10.95 move -[] to -[] all -[] digital -[] display -[] technology -
 [] phasing -[] out -[] analog?cid =
  []
 
 
-Package caption Warning: \label without proper \caption on input line 254.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `??' on page 85 undefined on input line 177.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 177--177
-\T1/lmr/m/sc/10.95 LG-Display\T1/lmr/m/n/10.95 :  \T1/lmr/m/it/10.95 TFT-Displa
-y Da-ten-blatt LB070WV8-SL01\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http :
-
+Underfull \hbox (badness 10000) in paragraph at lines 166--166
+[][]$\T1/lmtt/m/n/10.95 http : / / www\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 h
+y -[] line\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 de / fileadmin / hy -[] line 
+/ computer / csv / datasheets /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--177
-\T1/lmtt/m/n/10.95 / / www\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 hy -[] line\O
-ML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 de / fileadmin / hy -[] line / computer /
- csv / datasheets /
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
+\T1/lmr/m/sc/10.95 Na-deau\T1/lmr/m/n/10.95 , Da-vid R.:  \T1/lmr/m/it/10.95 C/
+C++ tip: How to co-py me-mo-ry quick-
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 177--177
-\T1/lmtt/m/n/10.95 FinalCASLB070WV8 -[] SL01[]20121122\OML/lmm/m/it/10.95 :\T1/
-lmtt/m/n/10.95 pdf$[][]\T1/lmr/m/n/10.95 .  Version:2012, Ab-ruf: 20.08.2014
+Underfull \hbox (badness 7576) in paragraph at lines 181--181
+\T1/lmr/m/it/10.95 ly\T1/lmr/m/n/10.95 .  Version:2012.  [][]$\T1/lmtt/m/n/10.9
+5 http : / / nadeausoftware\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / articl
+es / 2012 / 05 /
  []
 
 
-Underfull \hbox (badness 5008) in paragraph at lines 183--183
-\T1/lmr/m/sc/10.95 Mil-ler\T1/lmr/m/n/10.95 , Lo-thar:  \T1/lmr/m/it/10.95 Ver-
-pol-schutz\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http : / / www\OML/lmm/m
-/it/10.95 :\T1/lmtt/m/n/10.95 lothar -[] miller\OML/lmm/m/it/10.95 :\T1/lmtt/m/
-n/10.95 de / s9y /
+Underfull \hbox (badness 10000) in paragraph at lines 189--189
+[][]$\T1/lmtt/m/n/10.95 http : / / gnublin\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
+95 googlecode\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / files / user\OML/lmm
+/m/it/10.95 :\T1/lmtt/m/n/10.95 manual\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 l
+pc3130\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 lpc3131\OML/lmm/m/it/10.95 :\T1/l
+mtt/m/n/10.95 pdf$[][]\T1/lmr/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 2318) in paragraph at lines 190--190
-\T1/lmr/m/sc/10.95 NXP Se-mi-con-duc-tors\T1/lmr/m/n/10.95 , NXP:  \T1/lmr/m/it
-/10.95 LPC3130/31 User Ma-nu-al\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 htt
-ps :
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/lmr/m/sc/10.95 Sau-ter\T1/lmr/m/n/10.95 , Be-ne-dikt:  \T1/lmr/m/it/10.95 L
+PC3130/31 User Ma-nu-al\T1/lmr/m/n/10.95 .  Version:2013.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/lmtt/m/n/10.95 / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / sire
-dmar / master / raw / master / Recherche / Gnublin /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-\T1/lmtt/m/n/10.95 datasheets / user\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 man
-ual\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 lpc3130\OML/lmm/m/it/10.95 :\T1/lmtt
-/m/n/10.95 lpc3131\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 pdf$[][]\T1/lmr/m/n/1
-0.95 .  Version:2010, Ab-ruf:
- []
-
-
-Overfull \vbox (6.35548pt too high) has occurred while \output is active []
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 190.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 190.
-
-[85]
-Underfull \hbox (badness 10000) in paragraph at lines 198--198
-\T1/lmtt/m/n/10.95 master / embedded / RPi / RPI[]SSD1963 / doc / RPI[]SSD1963[
-]24[]11[]2013\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 pdf$[][]\T1/lmr/m/n/10.95 
-.
- []
-
-
-Underfull \hbox (badness 1237) in paragraph at lines 206--206
-\T1/lmr/m/sc/10.95 Schle-gel\T1/lmr/m/n/10.95 , Ar-min:  \T1/lmr/m/it/10.95 An-
-steue-rung ei-nes TFT-Displays mit dem Raspber-
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[][]$\T1/lmtt/m/n/10.95 https : / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
+95 com / embeddedprojects / gnublin -[] schematics / raw / master /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 206--206
+\T1/lmtt/m/n/10.95 siredmar[]projects / raw / master / embedded / RPi / RPI[]SS
+D1963 / doc /
+ []
+
+
+Underfull \hbox (badness 1983) in paragraph at lines 206--206
+\T1/lmtt/m/n/10.95 RPI[]SSD1963[]24[]11[]2013\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/
+10.95 pdf$[][]\T1/lmr/m/n/10.95 , Ab-ruf: 28.07.2014  [][]3.1.1[][], [][]3.2.5[
+][], [][]3.2.5.2.1[][],
+ []
+
+
+Underfull \hbox (badness 6236) in paragraph at lines 215--215
 \T1/lmtt/m/n/10.95 siredmar[]projects / tree / master / embedded / RPi / RPI[]S
-SD1963 / sw$[][]\T1/lmr/m/n/10.95 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/lmr/m/sc/10.95 Schle-gel\T1/lmr/m/n/10.95 , Ar-min:  \T1/lmr/m/it/10.95 SSD
-1963 Fra-me-buf-fer\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 https : / / git
-hub\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
-\T1/lmtt/m/n/10.95 siredmar / siredmar[]projects / raw / master / embedded / RP
-i / RPI[]SSD1963 /
- []
-
-
-Underfull \hbox (badness 5231) in paragraph at lines 213--213
-\T1/lmtt/m/n/10.95 sw / ssd1963[]framebuffer / ssd1963\OML/lmm/m/it/10.95 :\T1/
-lmtt/m/n/10.95 c$[][]\T1/lmr/m/n/10.95 .  Version:2013, Ab-ruf: 05.08.2014
- []
-
-
-Underfull \hbox (badness 3514) in paragraph at lines 220--220
-\T1/lmr/m/sc/10.95 So-lo-mon Sy-stech Li-mi-ted\T1/lmr/m/n/10.95 , SSD:  \T1/lm
-r/m/it/10.95 SSD1289 Da-tas-heet\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 ht
-tp : / /
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 220--220
-\T1/lmtt/m/n/10.95 www\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 kosmodrom\OML/lmm
-/m/it/10.95 :\T1/lmtt/m/n/10.95 com\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 ua /
- el / STM32 -[] TFT / SSD1289\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 pdf$[][]\T
-1/lmr/m/n/10.95 .  Version:2007, Ab-ruf:
- []
-
-
-Underfull \hbox (badness 4634) in paragraph at lines 229--229
-\T1/lmr/m/sc/10.95 So-lo-mon Sy-stech Li-mi-ted\T1/lmr/m/n/10.95 , SSD:  \T1/lm
-r/m/it/10.95 SSD1963 Da-tas-heet\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 ht
-tps :
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
-\T1/lmtt/m/n/10.95 / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / sire
-dmar / master / raw / master / Recherche / Displays / 8080 /
- []
-
-
-Underfull \hbox (badness 1515) in paragraph at lines 229--229
-\T1/lmtt/m/n/10.95 5Inch[]SSD1963 / SSD1963datasheet\OML/lmm/m/it/10.95 :\T1/lm
-tt/m/n/10.95 pdf$[][]\T1/lmr/m/n/10.95 .  Version:2008, Ab-ruf: 22.05.2014
- []
-
-
-Package caption Warning: \label without proper \caption on input line 255.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `??' on page 86 undefined on input line 236.
-
-
-Underfull \hbox (badness 6094) in paragraph at lines 236--236
-\T1/lmr/m/sc/10.95 Techtoys\T1/lmr/m/n/10.95 :  \T1/lmr/m/it/10.95 7"TFT LCD Mo
--du-le with or wi-thout re-sis-ti-ve Touch
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
-\T1/lmr/m/it/10.95 Pa-nel\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http : / 
-/ techtoys\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com\OML/lmm/m/it/10.95 :\T1/l
-mtt/m/n/10.95 hk / Displays / TY700TFT800480 -[] R3\OML/lmm/m/it/10.95 :\T1/lmt
-t/m/n/10.95 0 /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmtt/m/n/10.95 file\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 ashx / [][]key /
- telligent -[] evolution -[] components -[] attachments / 00 -[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmtt/m/n/10.95 138 -[] 01 -[] 00 -[] 00 -[] 10 -[] 65 -[] 80 / Texas -[] In
-struments -[] HDMI -[] Design -[] Guide\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 
-pdf$[][]\T1/lmr/m/n/10.95 .
+SD1963 / sw/$[][]\T1/lmr/m/n/10.95 , Ab-ruf:
  []
 
 
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 249.
+(babel)             in language  on input line 215.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 249.
+(babel)             in language  on input line 215.
+
+[85]
+Underfull \hbox (badness 3407) in paragraph at lines 223--223
+\T1/lmr/m/sc/10.95 Schle-gel\T1/lmr/m/n/10.95 , Ar-min:  \T1/lmr/m/it/10.95 SSD
+1963 Fra-me-buf-fer\T1/lmr/m/n/10.95 .  Version:2013.  [][]$\T1/lmtt/m/n/10.95 
+https :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
+\T1/lmtt/m/n/10.95 / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com / sire
+dmar / siredmar[]projects / raw / master / embedded /
+ []
+
+
+Underfull \hbox (badness 5490) in paragraph at lines 223--223
+\T1/lmtt/m/n/10.95 RPi / RPI[]SSD1963 / sw / ssd1963[]framebuffer / ssd1963\OML
+/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 c$[][]\T1/lmr/m/n/10.95 , Ab-ruf: 05.08.201
+4
+ []
+
+
+Underfull \hbox (badness 1527) in paragraph at lines 247--247
+\T1/lmr/m/sc/10.95 Techtoys\T1/lmr/m/n/10.95 :  \T1/lmr/m/it/10.95 7"TFT LCD Mo
+-du-le with or wi-thout re-sis-ti-ve Touch Pa-
+ []
+
+
+Underfull \hbox (badness 2662) in paragraph at lines 253--253
+\T1/lmr/m/sc/10.95 Te-xas In-stru-ments\T1/lmr/m/n/10.95 , TI:  \T1/lmr/m/it/10
+.95 Po-we-ring elec-tro-nics from the USB port\T1/lmr/m/n/10.95 .
+ []
+
+
+Underfull \hbox (badness 4479) in paragraph at lines 253--253
+\T1/lmr/m/n/10.95 Version:2005.  [][]$\T1/lmtt/m/n/10.95 http : / / www\OML/lmm
+/m/it/10.95 :\T1/lmtt/m/n/10.95 ti\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 com /
+ lit / an / slyt118 / slyt118\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 pdf$[][]\T
+1/lmr/m/n/10.95 , Ab-ruf:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--261
+\T1/lmtt/m/n/10.95 / / e2e\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 ti\OML/lmm/m/
+it/10.95 :\T1/lmtt/m/n/10.95 com / cfs -[] file\OML/lmm/m/it/10.95 :\T1/lmtt/m/
+n/10.95 ashx / [][]key / telligent -[] evolution -[] components -[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--261
+\T1/lmtt/m/n/10.95 attachments / 00 -[] 138 -[] 01 -[] 00 -[] 00 -[] 10 -[] 65 
+-[] 80 / Texas -[] Instruments -[] HDMI -[]
+ []
+
+
+Overfull \vbox (6.35548pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 274.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 274.
 
 [86]
-
-Package caption Warning: \label without proper \caption on input line 252.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `??' on page 87 undefined on input line 255.
+Underfull \hbox (badness 3884) in paragraph at lines 282--282
+\T1/lmr/m/sc/10.95 Uyt-ter-hoe-ven\T1/lmr/m/n/10.95 , Ge-ert:  \T1/lmr/m/it/10.
+95 The Fra-me Buf-fer De-vi-ce\T1/lmr/m/n/10.95 .  Version:2001.
+ []
 
 
-Package caption Warning: \label without proper \caption on input line 253.
-See the caption package documentation for explanation.
+Underfull \hbox (badness 10000) in paragraph at lines 282--282
+[][]$\T1/lmtt/m/n/10.95 https : / / github\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.
+95 com / torvalds / linux / blob / master / Documentation / fb /
+ []
 
 
-LaTeX Warning: Reference `??' on page 87 undefined on input line 261.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 7256) in paragraph at lines 290--290
 \T1/lmr/m/sc/10.95 Val-car-ce\T1/lmr/m/n/10.95 , Ja-vier:  \T1/lmr/m/it/10.95 V
-GA Vi-deo Si-gnal For-mat and Ti-
+GA Vi-deo Si-gnal For-mat and Ti-ming Spe-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
-\T1/lmr/m/it/10.95 ming Spe-ci-fi-ca-ti-ons\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m
-/n/10.95 http : / / www\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 javiervalcarce\O
-ML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 eu / wiki /
- []
-
-
-Underfull \hbox (badness 6461) in paragraph at lines 268--268
-\T1/lmtt/m/n/10.95 VGA[]Video[]Signal[]Format[]and[]Timing[]Specifications$[][]
-\T1/lmr/m/n/10.95 .  Version:2011,
- []
-
-
-Underfull \hbox (badness 4595) in paragraph at lines 275--275
-\T1/lmr/m/sc/10.95 VE-SA\T1/lmr/m/n/10.95 :  \T1/lmr/m/it/10.95 VE-SA En-han-ce
-d EDID Stan-dard\T1/lmr/m/n/10.95 .  [][]$\T1/lmtt/m/n/10.95 http : / / read\OM
-L/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 pudn\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.9
-5 com /
+Underfull \hbox (badness 10000) in paragraph at lines 290--290
+\T1/lmr/m/it/10.95 ci-fi-ca-ti-ons\T1/lmr/m/n/10.95 .  Version:2011.  [][]$\T1/
+lmtt/m/n/10.95 http : / / www\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 javiervalc
+arce\OML/lmm/m/it/10.95 :\T1/lmtt/m/n/10.95 eu / wiki /
  []
 
 )
@@ -3838,42 +3695,41 @@ Package babel Info: Redefining ngerman shorthand "~
 
 
 ]
+
+Package natbib Warning: There were undefined citations.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 123.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 123.
- (./Masterarbeit.aux (./Deckblatt.aux) (./Inhalt/Abstract.aux)
+(./Masterarbeit.aux (./Deckblatt.aux) (./Inhalt/Abstract.aux)
 (./Inhalt/Einleitung/Einleitung.aux) (./Inhalt/Grundlagen/Grundlagen.aux)
 (./Inhalt/TeilA/TeilA.aux) (./Inhalt/TeilB/TeilB.aux)
-(./Inhalt/Zusammenfassung/Zusammenfassung.aux) (./Erklaerung.aux))
+(./Inhalt/Zusammenfassung/Zusammenfassung.aux)
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+(./Erklaerung.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 123.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 123.
 Package rerunfilecheck Info: File `Masterarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 6C2D8E6628321D5EE953AB31D3AB6DF5;4327.
-
-
-Package rerunfilecheck Warning: File `Masterarbeit.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `Masterarbeit.brf':
-(rerunfilecheck)             Before: 45E48266081B3FFB466778354D16F29A;3218
-(rerunfilecheck)             After:  A315D79406B0CDB31D7259A2180EFDA8;3274.
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: 9FA78389D8122465B52610B2D41C96E4;4327.
+Package rerunfilecheck Info: File `Masterarbeit.brf' has not changed.
+(rerunfilecheck)             Checksum: DD4FA7473B7EDE75EF9F0E10652A568E;3030.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 123.
  ) 
 Here is how much of TeX's memory you used:
- 27391 strings out of 494220
- 479181 string characters out of 6156460
- 702553 words of memory out of 5000000
- 28918 multiletter control sequences out of 15000+600000
+ 27376 strings out of 494220
+ 479012 string characters out of 6156460
+ 701609 words of memory out of 5000000
+ 28912 multiletter control sequences out of 15000+600000
  101548 words of font info for 73 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 76i,13n,106p,1829b,1977s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,13n,106p,1804b,1975s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local
-/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2013/
-texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2013/texmf-dist
-/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2013/texmf-dist/fonts/enc
-/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/
+/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2
+013/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2013/texmf-
+dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2013/texmf-dist/fonts
+/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/
 lm-rm.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx10.pfb>
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/loca
 l/texlive/2013/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2
@@ -3895,10 +3751,10 @@ ist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2013/texmf-dist/fonts/t
 ype1/public/lm/lmsy9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt8.
 pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on Masterarbeit.pdf (96 pages, 10657007 bytes).
+Output written on Masterarbeit.pdf (96 pages, 10656011 bytes).
 PDF statistics:
- 2626 PDF objects out of 2984 (max. 8388607)
- 2393 compressed objects within 24 object streams
- 1065 named destinations out of 1200 (max. 500000)
+ 2606 PDF objects out of 2984 (max. 8388607)
+ 2373 compressed objects within 24 object streams
+ 1056 named destinations out of 1200 (max. 500000)
  752 words of extra memory for PDF output out of 10000 (max. 10000000)
 

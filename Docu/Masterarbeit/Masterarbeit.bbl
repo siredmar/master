@@ -12,52 +12,47 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Antonino~Daplas(2005)]{LinuxKernelFBCON}
-\dinatlabel{Antonino~Daplas 2005} \textsc{Antonino~Daplas}, Linux-Kernel:
-\newblock \emph{The Framebuffer Console}.
-\newblock
-  \url{https://github.com/torvalds/linux/blob/master/Documentation/fb/fbcon.txt}.
-\newblock \,Version:\,2005, Abruf: 04.08.2014
-
 \bibitem[Atmel(2003)]{Atmel2003}
 \dinatlabel{Atmel 2003} \textsc{Atmel}:
 \newblock \emph{AT24C01Rev 2-Wire Serial EEPROM}.
-\newblock \url{http://www.atmel.com/Images/doc0134.pdf}.
-\newblock \,Version:\,2003, Abruf: 21.08.2014
+\newblock \,Version:\,2003.
+\newblock \url{http://www.atmel.com/Images/doc0134.pdf}, Abruf: 21.08.2014
 
 \bibitem[Atmel(2011)]{Atmel2011}
 \dinatlabel{Atmel 2011} \textsc{Atmel}:
 \newblock \emph{ATmega48/88/168 Datasheet}.
-\newblock \url{http://www.atmel.com/Images/doc2545.pdf}.
-\newblock \,Version:\,2011, Abruf: 21.08.2014
+\newblock \,Version:\,2011.
+\newblock \url{http://www.atmel.com/Images/doc2545.pdf}, Abruf: 21.08.2014
 
-\bibitem[van Beelen(2014)]{rs232_lib}
-\dinatlabel{van Beelen 2014} \textsc{Beelen}, Teunis van:
+\bibitem[Beelen(2014)]{rs232_lib}
+\dinatlabel{Beelen 2014} \textsc{Beelen}, Teunis~v.:
 \newblock \emph{RS-232 for Linux and Windows}.
-\newblock \url{http://www.teuniz.net/RS-232/}.
-\newblock \,Version:\,2014, Abruf: 25.08.2014
+\newblock \,Version:\,2014.
+\newblock \url{http://www.teuniz.net/RS-232/}, Abruf: 25.08.2014
 
 \bibitem[Beiersmann(2014)]{android2014}
 \dinatlabel{Beiersmann 2014} \textsc{Beiersmann}, Stefan:
 \newblock \emph{Strategy Analytics: Android steigert Marktanteil auf fast 85
   Prozent}.
+\newblock \,Version:\,2014.
 \newblock
-  \url{http://www.zdnet.de/88200592/strategy-analytics-android-steigert-marktanteil-auf-fast-85-prozent/}.
-\newblock \,Version:\,2014, Abruf: 26.08.2014
-
-\bibitem[Benedikt~Sauter(2013)]{EmbeddedProjects2013}
-\dinatlabel{Benedikt~Sauter 2013} \textsc{Benedikt~Sauter}, Embedded-Projects:
-\newblock \emph{LPC3130/31 User Manual}.
-\newblock
-  \url{https://github.com/siredmar/master/raw/master/Recherche/Gnublin/datasheets/GNUBLIN_EXTENDED_V1_7.pdf}.
-\newblock \,Version:\,2013, Abruf: 28.07.2014
+  \url{http://www.zdnet.de/88200592/strategy-analytics-android-steigert-marktanteil-auf-fast-85-prozent/},
+  Abruf: 26.08.2014
 
 \bibitem[Brandt(2013)]{Brandt2013}
 \dinatlabel{Brandt 2013} \textsc{Brandt}, Mathtias:
 \newblock \emph{Fast 80 Prozent Marktanteil für Android}.
 \newblock
-  \url{http://de.statista.com/themen/581/smartphones/infografik/1326/smartphone-absatz-weltweit}.
+  \url{http://de.statista.com/themen/581/smartphones/infografik/1326/smartphone-absatz-weltweit/}.
 \newblock \,Version:\,2013, Abruf: 20.05.2014
+
+\bibitem[Brownell(2006)]{LinuxKernelPlatformDeviceDriver}
+\dinatlabel{Brownell 2006} \textsc{Brownell}, David:
+\newblock \emph{Platform Devices and Drivers}.
+\newblock \,Version:\,2006.
+\newblock
+  \url{https://github.com/torvalds/linux/blob/master/Documentation/driver-model/platform.txt},
+  Abruf: 05.08.2014
 
 \bibitem[Coldtears~Electronics()]{Coldtears2014}
 \dinatlabel{Coldtears~Electronics } \textsc{Coldtears~Electronics}, CE:
@@ -66,92 +61,86 @@
   \url{https://github.com/siredmar/master/raw/master/Recherche/Displays/8080/5Inch_SSD1963/schematic.pdf},
   Abruf: 29.07.2014
 
-\bibitem[David~Brownell(2006)]{LinuxKernelPlatformDeviceDriver}
-\dinatlabel{David~Brownell 2006} \textsc{David~Brownell}, Linux-Kernel:
-\newblock \emph{Platform Devices and Drivers}.
+\bibitem[Daplas(2005)]{LinuxKernelFBCON}
+\dinatlabel{Daplas 2005} \textsc{Daplas}, Antonino:
+\newblock \emph{The Framebuffer Console}.
+\newblock \,Version:\,2005.
 \newblock
-  \url{https://github.com/torvalds/linux/blob/master/Documentation/driver-model/platform.txt}.
-\newblock \,Version:\,2006, Abruf: 05.08.2014
-
-\bibitem[David Robert~Nadeau(2012)]{Nadeau2012}
-\dinatlabel{David Robert~Nadeau 2012} \textsc{David Robert~Nadeau}, Ph.D.:
-\newblock \emph{C/C++ tip: How to copy memory quickly}.
-\newblock
-  \url{http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly}.
-\newblock \,Version:\,2012, Abruf: 05.08.2014
+  \url{https://github.com/torvalds/linux/blob/master/Documentation/fb/fbcon.txt},
+  Abruf: 04.08.2014
 
 \bibitem[Extron(2014)]{Extron2014}
-\dinatlabel{Extron 2014} \textsc{Extron}:
+\dinatlabel{Extron 2014} \textsc{Extron}, Extron:
 \newblock \emph{DVI and HDMI: The Short and the Long of It}.
-\newblock \url{http://www.extron.com/company/article.aspx?id=dvihdmi_ts}.
+\newblock \url{http://www.extron.com/company/article.aspx?id=dvihdmi_ts/}.
 \newblock \,Version:\,2014, Abruf: 20.05.2014
 
 \bibitem[Future Technology Devices International~Ltd(2010)]{FTDI2010}
 \dinatlabel{Future Technology Devices International~Ltd 2010} \textsc{Future
   Technology Devices International~Ltd}, FTDI:
 \newblock \emph{FT232RUSB UART IC}.
+\newblock \,Version:\,2010.
 \newblock
-  \url{http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf}.
-\newblock \,Version:\,2010, Abruf: 21.08.2014
-
-\bibitem[Geert~Uytterhoeven(2001)]{LinuxKernelFB}
-\dinatlabel{Geert~Uytterhoeven 2001} \textsc{Geert~Uytterhoeven}, Linux-Kernel:
-\newblock \emph{The Frame Buffer Device}.
-\newblock
-  \url{https://github.com/torvalds/linux/blob/master/Documentation/fb/framebuffer.txt}.
-\newblock \,Version:\,2001, Abruf: 04.08.2014
+  \url{http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf},
+  Abruf: 21.08.2014
 
 \bibitem[Gensicke(2014)]{Gensicke2014}
 \dinatlabel{Gensicke 2014} \textsc{Gensicke}, F.Jürgen:
 \newblock \emph{Berechnung der Kapazität von Leiterbahnen}.
+\newblock \,Version:\,2014.
 \newblock
-  \url{http://www.elektronikentwickler-aachen.de/allgemeines/kapazitaet_leiterbahnen.htm}.
-\newblock \,Version:\,2014, Abruf: 20.08.2014
+  \url{http://www.elektronikentwickler-aachen.de/allgemeines/kapazitaet_leiterbahnen.htm/},
+  Abruf: 20.08.2014
 
 \bibitem[Gnublin-Wiki(2013{\natexlab{a}})]{GnublinWiki2013a}
 \dinatlabel{Gnublin-Wiki 2013{\natexlab{a}}} \textsc{Gnublin-Wiki},
   Embedded~P.:
 \newblock \emph{Bootloader uebersetzen und installieren}.
+\newblock \,Version:\,2013.
 \newblock
-  \url{http://wiki.gnublin.org/index.php/Bootloader_übersetzen_und_installieren}.
-\newblock \,Version:\,2013, Abruf: 04.08.2014
+  \url{http://wiki.gnublin.org/index.php/Bootloader_übersetzen_und_installieren/},
+  Abruf: 04.08.2014
 
 \bibitem[Gnublin-Wiki(2013{\natexlab{b}})]{GnublinWiki2013c}
 \dinatlabel{Gnublin-Wiki 2013{\natexlab{b}}} \textsc{Gnublin-Wiki},
   Embedded~P.:
 \newblock \emph{C/C++ Entwicklungsumgebung installieren}.
+\newblock \,Version:\,2013.
 \newblock
-  \url{http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren}.
-\newblock \,Version:\,2013, Abruf: 06.08.2014
+  \url{http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren/},
+  Abruf: 06.08.2014
 
 \bibitem[Gnublin-Wiki(2013{\natexlab{c}})]{GnublinWiki2013b}
 \dinatlabel{Gnublin-Wiki 2013{\natexlab{c}}} \textsc{Gnublin-Wiki},
   Embedded~P.:
 \newblock \emph{Kernel kompilieren + Module installieren}.
+\newblock \,Version:\,2013.
 \newblock
-  \url{http://wiki.gnublin.org/index.php/Kernel_kompilieren_+_Module_installieren}.
-\newblock \,Version:\,2013, Abruf: 06.08.2014
+  \url{http://wiki.gnublin.org/index.php/Kernel_kompilieren_+_Module_installieren/},
+  Abruf: 06.08.2014
 
 \bibitem[Gupta(2009)]{eeprom_lib}
 \dinatlabel{Gupta 2009} \textsc{Gupta}, Avinash:
 \newblock \emph{Easy 24C I2C Serial EEPROM Interfacing with AVR
   Microcontrollers}.
+\newblock \,Version:\,2009.
 \newblock
-  \url{http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/}.
-\newblock \,Version:\,2009, Abruf: 25.08.2014
+  \url{http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/},
+  Abruf: 25.08.2014
 
 \bibitem[HDMI~Licensing(2014)]{HDMI11}
 \dinatlabel{HDMI~Licensing 2014} \textsc{HDMI~Licensing}, HDMI:
 \newblock \emph{HDMI Knowledge Base, www.hdmi.org}.
-\newblock \url{http://www.hdmi.org/learningcenter/kb.aspx?c=6\#42}.
-\newblock \,Version:\,2014, Abruf: 21.08.2014
+\newblock \,Version:\,2014.
+\newblock \url{http://www.hdmi.org/learningcenter/kb.aspx?c=6\#42/}, Abruf:
+  21.08.2014
 
 \bibitem[ITEAD~Studios(2013)]{ITEAD2013}
 \dinatlabel{ITEAD~Studios 2013} \textsc{ITEAD~Studios}, ITEAD:
 \newblock \emph{MD070SD Datasheet}.
-\newblock
-  \url{https://github.com/siredmar/master/raw/master/Recherche/Displays/8080/5Inch_MD050SD/DS_IM130820001.pdf}.
-\newblock \,Version:\,2013, Abruf: 22.05.2014
+\newblock \,Version:\,2013.
+\newblock \url{ftp://imall.iteadstudio.com/TFT
+  LCM/IM130820001/DS_IM130820001.pdf}, Abruf: 22.05.2014
 
 \bibitem[Knuppfer(2010)]{Intel2010}
 \dinatlabel{Knuppfer 2010} \textsc{Knuppfer}, Nick:
@@ -170,82 +159,105 @@
 \bibitem[LG-Display(2012)]{LG2012}
 \dinatlabel{LG-Display 2012} \textsc{LG-Display}:
 \newblock \emph{TFT-Display Datenblatt LB070WV8-SL01}.
+\newblock \,Version:\,2012.
 \newblock
   \url{http://www.hy-line.de/fileadmin/hy-line/computer/csv/datasheets/Final
-  CAS LB070WV8-SL01_20121122.pdf}.
-\newblock \,Version:\,2012, Abruf: 20.08.2014
+  CAS LB070WV8-SL01_20121122.pdf}, Abruf: 20.08.2014
 
 \bibitem[Miller(2010)]{Miller2010}
 \dinatlabel{Miller 2010} \textsc{Miller}, Lothar:
 \newblock \emph{Verpolschutz}.
-\newblock \url{http://www.lothar-miller.de/s9y/categories/39-Verpolschutz}.
-\newblock \,Version:\,2010, Abruf: 21.08.2014
+\newblock \,Version:\,2010.
+\newblock \url{http://www.lothar-miller.de/s9y/categories/39-Verpolschutz/},
+  Abruf: 21.08.2014
+
+\bibitem[Nadeau(2012)]{Nadeau2012}
+\dinatlabel{Nadeau 2012} \textsc{Nadeau}, David~R.:
+\newblock \emph{C/C++ tip: How to copy memory quickly}.
+\newblock \,Version:\,2012.
+\newblock
+  \url{http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly/},
+  Abruf: 05.08.2014
 
 \bibitem[NXP~Semiconductors(2010)]{NXP2010}
 \dinatlabel{NXP~Semiconductors 2010} \textsc{NXP~Semiconductors}, NXP:
 \newblock \emph{LPC3130/31 User Manual}.
+\newblock \,Version:\,2010.
 \newblock
-  \url{https://github.com/siredmar/master/raw/master/Recherche/Gnublin/datasheets/user.manual.lpc3130.lpc3131.pdf}.
-\newblock \,Version:\,2010, Abruf: 28.07.2014
+  \url{http://gnublin.googlecode.com/files/user.manual.lpc3130.lpc3131.pdf},
+  Abruf: 28.07.2014
+
+\bibitem[Sauter(2013)]{EmbeddedProjects2013}
+\dinatlabel{Sauter 2013} \textsc{Sauter}, Benedikt:
+\newblock \emph{LPC3130/31 User Manual}.
+\newblock \,Version:\,2013.
+\newblock
+  \url{https://github.com/embeddedprojects/gnublin-schematics/raw/master/Board-EXTENDED/GNUBLIN_EXTENDED_V1_7.pdf},
+  Abruf: 28.07.2014
 
 \bibitem[Schlegel(2013{\natexlab{a}})]{Schlegel2013a}
 \dinatlabel{Schlegel 2013{\natexlab{a}}} \textsc{Schlegel}, Armin:
 \newblock \emph{Ansteuerung eines TFT-Displays mit dem Raspberry Pi über die
   GPIO-Pins}.
+\newblock \,Version:\,2013.
 \newblock
-  \url{https://github.com/siredmar/siredmar_projects/raw/master/embedded/RPi/RPI_SSD1963/doc/RPI_SSD1963_24_11_2013.pdf}.
-\newblock \,Version:\,2013, Abruf: 28.07.2014
+  \url{https://github.com/siredmar/siredmar_projects/raw/master/embedded/RPi/RPI_SSD1963/doc/RPI_SSD1963_24_11_2013.pdf},
+  Abruf: 28.07.2014
 
 \bibitem[Schlegel(2013{\natexlab{b}})]{Schlegel2013b}
 \dinatlabel{Schlegel 2013{\natexlab{b}}} \textsc{Schlegel}, Armin:
 \newblock \emph{Ansteuerung eines TFT-Displays mit dem Raspberry Pi über die
   GPIO-Pins - Quellcode}.
+\newblock \,Version:\,2013.
 \newblock
-  \url{https://github.com/siredmar/siredmar_projects/tree/master/embedded/RPi/RPI_SSD1963/sw}.
-\newblock \,Version:\,2013, Abruf: 28.07.2014
+  \url{https://github.com/siredmar/siredmar_projects/tree/master/embedded/RPi/RPI_SSD1963/sw/},
+  Abruf: 28.07.2014
 
 \bibitem[Schlegel(2013{\natexlab{c}})]{Schlegel2013c}
 \dinatlabel{Schlegel 2013{\natexlab{c}}} \textsc{Schlegel}, Armin:
 \newblock \emph{SSD1963 Framebuffer}.
+\newblock \,Version:\,2013.
 \newblock
-  \url{https://github.com/siredmar/siredmar_projects/raw/master/embedded/RPi/RPI_SSD1963/sw/ssd1963_framebuffer/ssd1963.c}.
-\newblock \,Version:\,2013, Abruf: 05.08.2014
+  \url{https://github.com/siredmar/siredmar_projects/raw/master/embedded/RPi/RPI_SSD1963/sw/ssd1963_framebuffer/ssd1963.c},
+  Abruf: 05.08.2014
 
 \bibitem[Solomon Systech~Limited(2007)]{SSD2007}
 \dinatlabel{Solomon Systech~Limited 2007} \textsc{Solomon Systech~Limited},
   SSD:
 \newblock \emph{SSD1289 Datasheet}.
-\newblock \url{http://www.kosmodrom.com.ua/el/STM32-TFT/SSD1289.pdf}.
-\newblock \,Version:\,2007, Abruf: 22.05.2014
+\newblock \,Version:\,2007.
+\newblock \url{http://www.kosmodrom.com.ua/el/STM32-TFT/SSD1289.pdf}, Abruf:
+  22.05.2014
 
 \bibitem[Solomon Systech~Limited(2008)]{SSD2008}
 \dinatlabel{Solomon Systech~Limited 2008} \textsc{Solomon Systech~Limited},
   SSD:
 \newblock \emph{SSD1963 Datasheet}.
-\newblock
-  \url{https://github.com/siredmar/master/raw/master/Recherche/Displays/8080/5Inch_SSD1963/SSD1963
-  datasheet.pdf}.
-\newblock \,Version:\,2008, Abruf: 22.05.2014
+\newblock \,Version:\,2008.
+\newblock \url{http://www.applefritter.com/files/SSD1963.pdf}, Abruf:
+  22.05.2014
 
 \bibitem[Techtoys(2012)]{Techtoys2012}
 \dinatlabel{Techtoys 2012} \textsc{Techtoys}:
 \newblock \emph{7" TFT LCD Module with or without resistive Touch Panel}.
+\newblock \,Version:\,2012.
 \newblock
-  \url{http://techtoys.com.hk/Displays/TY700TFT800480-R3.0/TY700TFT800480Rev03.pdf}.
-\newblock \,Version:\,2012, Abruf: 21.08.2014
+  \url{http://techtoys.com.hk/Displays/TY700TFT800480-R3.0/TY700TFT800480Rev03.pdf},
+  Abruf: 21.08.2014
 
 \bibitem[Texas~Instruments(2005)]{USB2005}
 \dinatlabel{Texas~Instruments 2005} \textsc{Texas~Instruments}, TI:
 \newblock \emph{Powering electronics from the USB port}.
-\newblock \url{http://www.ti.com/lit/an/slyt118/slyt118.pdf}.
-\newblock \,Version:\,2005, Abruf: 21.08.2014
+\newblock \,Version:\,2005.
+\newblock \url{http://www.ti.com/lit/an/slyt118/slyt118.pdf}, Abruf: 21.08.2014
 
 \bibitem[Texas-Instruments(2007)]{TI2007}
 \dinatlabel{Texas-Instruments 2007} \textsc{Texas-Instruments}, TI:
 \newblock \emph{HDMI Design Guide}.
+\newblock \,Version:\,2007.
 \newblock
-  \url{http://e2e.ti.com/cfs-file.ashx/__key/telligent-evolution-components-attachments/00-138-01-00-00-10-65-80/Texas-Instruments-HDMI-Design-Guide.pdf}.
-\newblock \,Version:\,2007, Abruf: 19.08.2014
+  \url{http://e2e.ti.com/cfs-file.ashx/__key/telligent-evolution-components-attachments/00-138-01-00-00-10-65-80/Texas-Instruments-HDMI-Design-Guide.pdf},
+  Abruf: 19.08.2014
 
 \bibitem[Texas~Instruments(2011)]{TI2011}
 \dinatlabel{Texas~Instruments 2011} \textsc{Texas~Instruments}, TI:
@@ -256,27 +268,38 @@
 \bibitem[Texas-Instruments(2011)]{TI2011b}
 \dinatlabel{Texas-Instruments 2011} \textsc{Texas-Instruments}, TI:
 \newblock \emph{FLATLINK™TRANSMITTER SN75LVDS83B}.
-\newblock \url{http://www.ti.com/lit/ds/symlink/sn75lvds83b.pdf}.
-\newblock \,Version:\,2011b, Abruf: 20.08.2014
+\newblock \,Version:\,2011b.
+\newblock \url{http://www.ti.com/lit/ds/symlink/sn75lvds83b.pdf}, Abruf:
+  20.08.2014
+
+\bibitem[Uytterhoeven(2001)]{LinuxKernelFB}
+\dinatlabel{Uytterhoeven 2001} \textsc{Uytterhoeven}, Geert:
+\newblock \emph{The Frame Buffer Device}.
+\newblock \,Version:\,2001.
+\newblock
+  \url{https://github.com/torvalds/linux/blob/master/Documentation/fb/framebuffer.txt},
+  Abruf: 04.08.2014
 
 \bibitem[Valcarce(2011)]{Valcarce2011}
 \dinatlabel{Valcarce 2011} \textsc{Valcarce}, Javier:
 \newblock \emph{VGA Video Signal Format and Timing Specifications}.
+\newblock \,Version:\,2011.
 \newblock
-  \url{http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications}.
-\newblock \,Version:\,2011, Abruf: 22.05.2014
+  \url{http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications/},
+  Abruf: 22.05.2014
 
 \bibitem[VESA(Rele)]{edid2000}
 \dinatlabel{VESA Rele} \textsc{VESA}:
 \newblock \emph{VESA Enhanced EDID Standard}.
+\newblock \,Version:\,Release A, Rev. 1.
 \newblock \url{http://read.pudn.com/downloads110/ebook/456020/E-EDID
-  Standard.pdf}.
-\newblock \,Version:\,Release A, Rev. 1, Abruf: 29.08.2014
+  Standard.pdf}, Abruf: 29.08.2014
 
 \bibitem[Wuerth-Elektronik(2013)]{Wuerth2013}
 \dinatlabel{Wuerth-Elektronik 2013} \textsc{Wuerth-Elektronik}:
 \newblock \emph{15WPMDL1300331BD – 3.3V}.
-\newblock \url{http://katalog.we-online.de/pm/datasheet/171030301.pdf}.
-\newblock \,Version:\,2013, Abruf: 21.08.2014
+\newblock \,Version:\,2013.
+\newblock \url{http://katalog.we-online.de/pm/datasheet/171030301.pdf}, Abruf:
+  21.08.2014
 
 \end{thebibliography}
