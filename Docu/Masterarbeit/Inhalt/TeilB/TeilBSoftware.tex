@@ -1,6 +1,6 @@
 \section{Software}
 \label{sec:TeilB_Software}
-Um die EDID-Daten in das EEPROM schreiben zu können, muss der Prozessor mit einer gewissen Software programmiert werden. Durch die Verbindung über die USB-Bridge kommuniziert der Prozessor mit dem Computer. Der Datenaustausch arbeitet nach einem definierten Protokoll, auf welches im Softwarekonzept eingegangen wird. Im Anschluss wird die Embedded- sowie die PC-Software mit ihren einzelnen Komponenten beschrieben. 
+Um die EDID-Daten in das EEPROM schreiben zu können, muss der Prozessor mit einer speziellen Software programmiert werden. Durch die Verbindung über die USB-Bridge kommuniziert der Prozessor mit dem Computer. Der Datenaustausch arbeitet nach einem definierten Protokoll, auf welches im Softwarekonzept eingegangen wird. Im Anschluss wird die Embedded- sowie die PC-Software mit ihren einzelnen Komponenten beschrieben. 
 \subsection{Softwarekonzept}
 \label{softwarekonzept}
 Um mit dem Prozessor zu kommunizieren stehen dem PC sechs Kommandos zur Verfügung. Diese werden über die serielle Schnittstelle vom Prozessor empfangen. Die Kommandos folgen dem Format \code{\#Kommando\*}, sodass ein Kommando von Anfang bis Ende definiert ist. Dazu werden die Code-Zeichen \code{\#} und \code{\*} verwendet. Mit dem Zeichen \code{\#} wird dem Prozessor mitgeteilt, dass alle nachfolgenden Zeichen ein Kommando darstellen. Um das Ende des Kommandos mitzuteilen wird das Zeichen \code{\*} gesendet. Ist ein Kommando vollständig empfangen worden, so wird es interpretiert und die entsprechende Funktion aufgerufen. Nach erfolgreicher Ausführung der Funktion wird ein Return-Wert an den PC gesendet. Die verfügbaren Kommandos, um mit dem Prozessor zu kommunizieren und deren Rückgabewerte sind in \reft{tab:avr_commands} beschrieben.
@@ -82,7 +82,7 @@ ISR(USART_RX_vect)
    }
 }
 \end{lstlisting}
-Nach dem Empfang neuer Daten im Register \code{UDR0} wird dieses in die Variable \code{next_char} gespeichert. Es wird innerhalb einer State-Machine überprüft, ob ein Kommando vollständig mit den Steuerzeichen \code{\#} und \code{\*} empfangen wurde. Solange das Flag \code{block_finished} nicht gesetzt ist, wird das aktuelle Zeichen an einen Buffer \code{uart_str[]} angehängt. Ist das Flag \code{block_finished} gesetzt und das aktuelle Zeichen entspricht \code{\*}, so steht das Kommando zur Interpretation bereit. Da das zweite Zeichen des Kommandostrings \code{uart_str[2]} jeweils den eigentlichen Kommandonamen definiert, reicht es diesen auszuwerten und die entsprechende Funktion mit \code{command_ready(uart_i2cCommandType cmd, uint8 data)} anzuspringen.
+Nach dem Empfang neuer Daten im Register \code{UDR0} wird dieses in die Variable \code{next_char} gespeichert. Es wird innerhalb einer State-Machine überprüft, ob ein Kommando vollständig mit den Steuerzeichen \code{\#} und \code{\*} empfangen wurde. Solange das Flag \code{block_finished} nicht gesetzt ist, wird das aktuelle Zeichen an einen Buffer \code{uart_str[]} angehängt. Ist das Flag \code{block_finished} gesetzt und das aktuelle Zeichen entspricht \code{\*}, so steht das Kommando zur Interpretation bereit. Da das zweite Zeichen des Kommandostrings \code{uart_str[2]} jeweils den eigentlichen Kommandonamen definiert, reicht es diesen auszuwerten und die entsprechende Funktion mit \code{command_ready(uart_i2cCommandType cmd, uint8 data)} aufzurufen.
 \refl{lst:eeprom_functions} zeigt die entsprechenden Funktionen für den Zugriff auf das EEPROM.\\
 Die Funktion \code{w_start()} setzt internen Variablen auf deren Initialwerte zurück und beschreibt das Flag \code{connection_status}  mit \code{OPEN}.\\
 Mit dem Aufruf der Methode \code{w_data(uint8 data)} werden die übergebenen Daten \code{data} an die aktuelle Stelle im EEPROM mit der Funktion \code{write_eeprom_byte(uint8 addresse, uint8 data)} an die Adresse \code{address_counter} geschrieben und der Adresszähler inkrementiert.\\
@@ -212,7 +212,7 @@ hexfile = (hexfileType*)malloc((hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_S
 Die eigentliche Hauptfunktion des Programms wird beim Betätigen des Buttons zum Programmieren aufgerufen. Hier wird zuerst die serielle Verbindung aufgebaut. Im Fehlerfall wird eine Fehlermeldung ausgegeben. Ist der Verbindungsaufbau mit der korrekten Baudrate aufgebaut, wird das Handshake vom AVR abgefragt. Wird dies nicht innerhalb einer Timeout-Zeitspanne empfangen, so ist ebenfalls eine Fehlermeldung angzeigt und abgebrochen. Die zu sendenden Kommandos aus dem Array \code{hexfile} werden mit der Funktion \code{char *returnSerialCommand(uint8 cmd, uint8 hex, uint8 nodata_flag)} aufbereitet. Diese ist in \refl{lst:returnSerialCommand} zu sehen und gibt einen String mit dem entsprechenden Kommando zurück. 
 \begin{lstlisting}[%
 language=MyC,
-caption={PC-Software: returnSerialCommand()},
+caption={PC-Software: returnSerialCommand-Funktion},
 label=lst:returnSerialCommand
 ]
 static char *returnSerialCommand(uint8 cmd, uint8 hex, uint8 nodata_flag)
@@ -230,7 +230,7 @@ static char *returnSerialCommand(uint8 cmd, uint8 hex, uint8 nodata_flag)
    return buf;
 }
 \end{lstlisting}%
-Innerhalb einer Maximaldauer, markiert mit \code{TIMEOUT_CYCLES}, findet der komplette Sendevorgang statt. Jedes Element des Arrays \code{hexfile} wird mit dem Index \code{command_index} durchlaufen und für jedes mit der Funktion \code{returnSerialCommand()} der zu sendende Kommandostring erzeugt und gesendet. Es wird auf Acknowledge vom AVR gewartet, bevor das nächste Kommando gesendet wird. Treten unerwartete Verzögerungen auf, so wird nach Ablauf der Timeout-Zeit eine Fehlermeldung ausgegeben und abgebrochen. \refl{lst:hexfile_schreiben} zeigt die Codestelle, mit der die Logik des Sendens realisiert ist. 
+Innerhalb einer Maximaldauer, markiert mit \code{TIMEOUT_CYCLES}, findet der komplette Sendevorgang statt. Jedes Element des Arrays \code{hexfile} wird mit dem Index \code{command_index} durchlaufen und für jedes Element mit der Funktion \code{returnSerialCommand-Funktion} der zu sendende Kommandostring erzeugt und gesendet. Es wird auf Acknowledge vom AVR gewartet, bevor das nächste Kommando gesendet wird. Treten unerwartete Verzögerungen auf, so wird nach Ablauf der Timeout-Zeit eine Fehlermeldung ausgegeben und abgebrochen. \refl{lst:hexfile_schreiben} zeigt die Codestelle, mit der die Logik des Sendens realisiert ist. 
 \begin{lstlisting}[%
 language=MyC,
 caption={PC-Software: Hexfile schreiben},

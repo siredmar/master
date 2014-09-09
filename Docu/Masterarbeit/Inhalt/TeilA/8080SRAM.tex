@@ -17,7 +17,7 @@ Im \code{Gnublin} stellt ein NXP \code{LPC3131} die zentrale Recheneinheit dar. 
 %\end{minipage}
 
 In \refa{fig:lpc_ebi} ist ein Blockschaltbild des \code{EBI} zu sehen, bei welchem neben \code{CGU}\footnote{CGU: Clock Generation Unit, Takterzeugung} und \code{SYSCREG}\footnote{SYSCREG: System Control Register, Steuerregister}, \code{MPMC}\footnote{MPMC: Multiport Memory Controller} sowie das \code{NAND Flash} an den Eingängen des \code{EBI} angeschlossen sind (siehe \cite{NXP2010}). Abgesehen von \code{NAND Flash} sind die Eingänge zum \code{EBI} für diese Arbeit relevant und grün markiert. An den Ausgängen des \code{EBI} sind Adress- und Datenbus zum Anschluss an externe Bausteine herausgeführt. Damit verschiedenartige Bausteine an denselben Adress- und Datenpins angeschlossen werden können, ist eine Priorisierung notwendig. Die höchste Priorität besitzt der \code{MPMC}, gefolgt vom \code{NAND Flash}. 
-Die Grundidee ist, das Display über den \code{MPMC} anzuschließen, da dieser so konfiguriert werden kann, dass er sich 8080-konform verhält. Die für diese Arbeit interessanten Leitungen am Ausgang des \code{EBI} sind rot markiert. Hier wird der Datenbus selbst, sowie die oberen 13 Bit des Adressbusses gezeigt.
+Die Grundidee ist, das Display über den \code{MPMC} anzuschließen, da dieser so konfiguriert werden kann, dass er sich 8080-konform verhält. Die für diese Arbeit interessanten Leitungen am Ausgang des \code{EBI} sind in \refa{fig:lpc_ebi} rot markiert. Hier wird der Datenbus selbst, sowie die oberen 13 Bit des Adressbusses gezeigt.
 
 
 \subsection{MPMC - Multiport Memory Controller des NXP LPC313x}
@@ -66,7 +66,7 @@ Neben den MPMC-Registern muss das Register \code{SYSCREG\_AHB\_MPMC\_MISC} konfi
 
 \newpage
 \subsection{Hardwareverbindung zwischen SRAM-Interface und Display}
-In diesem Abschnitt wird die Verbindung zwischen dem Prozessor und dem Display behandelt. Eingangs wurde bereits erwähnt, dass beim Kauf der Displays Augenmerk auf Pinkompatibilität gelegt wurde. Das hat beim Entwurf der Adapterplatine den Vorteil, dass lediglich eine Platine benötigt wird. \newline
+In diesem Abschnitt wird die Verbindung zwischen dem Prozessor und dem Display behandelt. Eingangs wurde bereits erwähnt, dass beim Kauf der Displays Augenmerk auf Pinkompatibilität gelegt wurde. Das hat den Vorteil, dass sich der Aufwand des Entwurfs auf eine Platine reduziert. \newline
 Bereits dargestellt zeigt \refa{fig:8080_pinout} auf Seite \pageref{fig:8080_pinout} das Pinout der verwendeten Displays. Der Anschluss an den Prozessor stellt sich wie in \reft{tab:display_gnublin_verbindung} dar (siehe \cite{Coldtears2014}, \cite{EmbeddedProjects2013}). Anhand der gewonnenen Erkenntnisse aus \refc{cha:teila_konzept} und \refc{cha:mpmc}, sowie des Schaltplans des verwendeten Gnublin Extended (siehe \cite{EmbeddedProjects2013}) kann eine Zuordnung getroffen werden. Nicht verbundene Pins sind mit 'nc'\footnote{nc: not connected} vermerkt.
 
 \begin{table}[h]
@@ -123,9 +123,9 @@ Die Untersuchung inwieweit DMA-Transfer praktisch mit der verwendeten Hardware m
 
 \newpage
 \subsection{Adapterplatine zwischen Gnublin Extended und Display}
-Der Adapter wird als Platine realisiert, die auf den Gnublin Extended aufgesteckt wird. Das Display wiederum wird ebenfalls steckbar mit der Adapterplatine verbunden. Der Schaltplan ist in \refa{fig:adapterplatine_sch} gezeigt und stellt entsprechend \reft{tab:display_gnublin_verbindung} die Verbindungen her.
+Der Adapter wird als Platine realisiert, die auf den \code{Gnublin Extended} aufgesteckt wird. Das Display wiederum wird ebenfalls steckbar mit der Adapterplatine verbunden. Der Schaltplan ist in \refa{fig:adapterplatine_sch} gezeigt und stellt entsprechend \reft{tab:display_gnublin_verbindung} die Verbindungen her.
 
-Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnublin Extended und im blauen Rechteck sind weitere kleine Bauteile untergebracht. Es sind Pullup-Wiederstande mit 10~k$\Omega$ an den Leitungen STCS0, Reset und LED-A platziert, um definierte Pegel vorzugeben. Zusätzlich ist ein Blockkondensator mit 100~nF an der \code{+5\,V}-Leitung angebracht, der für eine rauscharme Spannungsversorgung des Displays sorgt.
+Der grün markierte Bereich stellt die Verbindung zum Display dar, rot die Verbindungen zum \code{Gnublin Extended} und im blauen Rechteck sind weitere kleine Bauteile untergebracht. Es sind Pullup-Widerstände mit 10~k$\Omega$ an den Leitungen STCS0, Reset und LED-A platziert, um definierte Pegel vorzugeben. Zusätzlich ist ein Blockkondensator mit 100~nF an der \code{+5\,V}-Leitung angebracht, der für eine rauscharme Spannungsversorgung des Displays sorgt.
 
 \begin{figure}[tbph]
 %\begin{figure}[h!]
@@ -136,7 +136,7 @@ Der grün markierte Bereich stellt die Verbindung zum Display dar, rot zum Gnubl
 \end{figure}
 \newpage
 
-\refa{fig:adapterplatine} (a) und (b) zeigt je ein gerendertes 3D Bild der Ober- und Unterseite der Adapterplatine. Auf der Oberseite wird das Display auf der linken Seite mit der 40 poligen Stiftleiste angeschlossen. Mit der Unterseite wird die Platine auf das Gnublin Extended mit je zwei 50 poligen Buchsenleisten aufgesteckt.
+\refa{fig:adapterplatine} (a) und (b) zeigt je ein gerendertes 3D Bild der Ober- und Unterseite der Adapterplatine. Auf der Oberseite links wird das Display mit der 40 poligen Stiftleiste angeschlossen. Mit der Unterseite wird die Platine auf das Gnublin Extended mit je zwei 50 poligen Buchsenleisten aufgesteckt.
 
 \begin{figure}
         \begin{center}
@@ -416,7 +416,7 @@ static void __init ea_add_device_md050sd(void)
 static void __init ea_add_device_md050sd(void) {}
 #endif /* CONFIG_FB_MD050SD */
 \end{lstlisting}
-Der Aufruf, der die Registrierung anstößt, ist in \refl{lst:add_platform_devices} zu sehen. In der Funktion \code{ea313x\_init(void)} werden alle Hardwareeinheiten, die vom Bootloader noch nicht konfiguriert wurden, initialisiert und die verwendeten Devices im System registriert. Ohne eine vorhergehende Registrierung ist ein Verwenden eines Treibers nicht möglich.
+Der Aufruf, der die Registrierung anstößt, ist in \refl{lst:add_platform_devices} zu sehen. In der Funktion \code{ea313x\_init(void)} werden alle Hardwareeinheiten, die vom Bootloader noch nicht konfiguriert wurden, initialisiert und die verwendeten Devices im System registriert. Ohne eine vorhergehende Registrierung ist das Verwenden eines Treibers nicht möglich.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -640,9 +640,9 @@ In der Copy-Funktion wird die aktuelle Page durch den Parameter \code{unsigned i
 	\item zum Kopieren wird eine optimierte Senderoutine verwendet
 \end{itemize}
 
-Bei der Variante mit \code{memcopy} wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da zum Daten kopieren \code{memcopy} generell effizienter und schneller arbeitet als eine For-Schleife, ist diese Methode implementiert (vgl. \cite{Nadeau2012}). 
+Bei der Variante mit \code{memcopy} wird die komplette Page an das Display gesendet. Dies ist auch der Fall, wenn sich nur ein einziges Pixel in der Page geändert hat. Da zum Daten kopieren \code{memcopy} generell effizienter und schneller arbeitet als eine for-Schleife, ist diese Methode implementiert (vgl. \cite{Nadeau2012}). 
 Bei einer Anwendung mit häufigen und vielen Pixelveränderungen (z. B. Videos), ist diese Methode günstiger, da sich der Adressierungsaufwand für ein RAM-Fenster auf ein Minimum reduziert.\\
-Neben der \code{memcopy}-Methode wird auch eine optimierte Senderoutine unterstützt. Das bedeutet, dass eine Schleife die Page Pixel für Pixel durchläuft und mit der Page vor dem aktuellen Durchlauf vergleicht. Erkennt die Routine eine Abweichung, werden die nachfolgenden Pixel der Anzahl \code{PIXELGROUPLEN} grundlos an das Display gesendet. Verändern sich bei einer Anwendung nicht permanent alle Pixel, zum Beispiel in einem Terminal, so ist diese Variante günstiger, da nicht auf Verdacht alle Pixel der Page gesendet werden. Da sich oft nicht nur ein, aber auch nicht ständig alle Pixel  verändern, stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und überflüssigem Datentransfer dar (siehe \cite{Schlegel2013a}). Diese Methode findet im User-Space-Treiber ebenfalls Verwendung und wird in \refc{cha:userspace} näher erläutert.
+Neben der \code{memcopy}-Methode wird auch eine optimierte Senderoutine unterstützt. Das bedeutet, dass eine Schleife die Page Pixel für Pixel durchläuft und mit der Page vor dem aktuellen Durchlauf vergleicht. Erkennt die Routine eine Abweichung, werden die nachfolgenden Pixel der Anzahl \code{PIXELGROUPLEN} auf Verdacht an das Display gesendet. Verändern sich bei einer Anwendung nicht permanent alle Pixel, zum Beispiel in einem Terminal, so ist diese Variante günstiger, da nicht auf Verdacht alle Pixel der Page gesendet werden. Da sich oft nicht nur ein, aber auch nicht ständig alle Pixel  verändern, stellt diese Methode einen guten Mittelweg zwischen Adressierungsaufwand und überflüssigem Datentransfer dar (siehe \cite{Schlegel2013a}). Diese Methode findet im User-Space-Treiber ebenfalls Verwendung und wird in \refc{cha:userspace} näher erläutert.
 
 \begin{lstlisting}[%
 language=MyC,
@@ -695,7 +695,7 @@ void md050sd_copy(struct md050sd *item, unsigned int index)
 \end{lstlisting}
 In \refl{lst:send_funktion} sind die Low-Level-Funktionen zur Kommunikation mit dem Display gezeigt. So stehen je eine Funktion zum Senden von Daten und Kommandos zur Verfügung, sowie eine um ein RAM-Fenster zu reservieren. 
 
-Wird die memcopy-Variante verwendet, so können die Daten direkt auf den Datenbus des Displays geschrieben werden. Einzig zuvor muss das Fenster reserviert werden. Wenn allerdings die optimierte Senderoutine verwendet wird, muss jede schreibende Kommunikation zum Display mit den Funktionen \code{md050sd\_send\_cmd()} und \code{md050sd\_send\_data()} erfolgen. 
+Wird die memcopy-Variante verwendet, so können die Daten direkt auf den Datenbus des Displays geschrieben werden. Zuvor muss das RAM-Fenster reserviert werden. Wenn die optimierte Senderoutine verwendet wird, muss jede schreibende Kommunikation zum Display mit den Funktionen \code{md050sd\_send\_cmd()} und \code{md050sd\_send\_data()} erfolgen. 
 
 \begin{lstlisting}[%
 language=MyC,
@@ -737,7 +737,7 @@ Die Strukturen \code{fb\_fix\_screeninfo} und \code{fb\_var\_screeninfo} müssen
 Um den gepatchten Kernel für den Displaytreiber zu konfigurieren, muss der Kernel mittels dem Konfigurationstool \code{KConfig} eingestellt werden. 
 Hierzu wird mit dem Befehl \code{make menuconfig} die Konfiguration aufgerufen und im Unterpunkt \code{Device Drivers} das Menü \code{Graphics support} geöffnet (siehe \refa{fig:kernel_config}). Hier befinden sich Optionen für Framebuffer-Treiber. So wird der Punkt \code{Support for frame buffer devices} markiert und im selben Unterpunkt die Unterstützung eines Displays ausgewählt - z. B. \code{MD050SD display support}. 
 Um eine Konsole mit dem Framebuffer betreiben zu können, wird in \code{Graphics support} 
-ebenfalls der Punkt \code{Console display driver support} und der Unterpunkt \code{Framebuffer Console Support} ausgewählt. Es besteht die Möglichkeit von eincompilierten Schriftarten im Linux-Kernel. Um bei der Displayauflösung von 800x480 Pixeln genügend Informationen anzeigen zu können, kann ein kleinerer Font als Standard verwendet werden z. B. \code{console 7x14 font}.
+ebenfalls der Punkt \code{Console display driver support} und der Unterpunkt \code{Framebuffer Console Support} ausgewählt. Es besteht die Möglichkeit von eincompilierten Schriftarten im Linux-Kernel. Um bei der Displayauflösung von 800x480 Pixeln genügend Informationen anzeigen zu können, kann eine kleinere Schriftart als Standard verwendet werden z. B. \code{console 7x14 font}.
 \begin{figure}[tbph]
 %\begin{figure}[h!]
 	\centering
@@ -752,7 +752,7 @@ Anders als beim Framebuffer-Treiber, welcher direkt im Linux-Kernel arbeitet, be
 In diesem Abschnitt wird die Entwicklung des User-Space-Treibers behandelt. 
 Dieser ist für den Betrieb mit einem virtuellen Framebuffer ausgelegt, welcher durch das Kernel-Modul \code{vfb} realisiert wird. Der \code{vfb}-Treiber stellt ein Framebuffer-Device als \code{/dev/fbX} zur Verfügung und verhält sich wie ein echter Framebuffer, da dieselben Schnittstellen existieren. Programme können auf das Device schreiben und von ihm lesen. Alternativ besteht die Möglichkeit den Treiber über den virtuellen X-Server Xvfb \footnote{Xvfb: virtual framebuffer X server, \url{http://unixhelp.ed.ac.uk/CGI/man-cgi?Xvfb}} arbeiten zu lassen. Das Programm Xvfb emuliert einen X-Server und erzeugt eine Datei, auf die Programme Lese- und Schreibzugriff erhalten. Der entwickelte Treiber benötigt einzig eine Bildquelle im Format des Framebuffers mit korrekter Auflösung und Pixelformat. 
 
-Für den Low-Level-Zugriff auf die Hardware-Register sind zwei Module \code{dio} und \code{tft} vorhanden. Über die Funktion \code{void dio_writeChannel(dio_channelType dio_pin_ui8, dio_pinLevelType dio_output_ui8)} lassen sich GPIO-Pins auf \linebreak High- beziehungsweise Low-Pegel zu schalten. Der Treiber wird benötigt um die Pins für Reset und Hintergrundbeleuchtung schalten zu können. So wird zum Beispiel mit der Anweisung \code{dio_writeChannel(DIO_CHANNEL_19, DIO_HIGH)} Pin 19 auf Logisch-High-Pegel gehoben.
+Für den Low-Level-Zugriff auf die Hardware-Register sind zwei Module \code{dio} und \code{tft} vorhanden. Über die Funktion \code{void dio_writeChannel(dio_channelType dio_pin_ui8, dio_pinLevelType dio_output_ui8)} lassen sich GPIO-Pins auf \linebreak High- beziehungsweise Low-Pegel schalten. Der Treiber wird benötigt um die Pins für Reset und Hintergrundbeleuchtung schalten zu können. So wird zum Beispiel mit der Anweisung \code{dio_writeChannel(DIO_CHANNEL_19, DIO_HIGH)} Pin 19 auf Logisch-High-Pegel gehoben.
 Im DIO-Treiber sind noch weitere Schnittstellen implementiert, wie zum Beispiel \code{dio_pinLevelType dio_readChannel(dio_channelType dio_pin_ui8)} um Pins einzulesen. Diese finden jedoch im User-Space-Treiber keine Verwendung. Um den Zugriff auf die Hardware-Register zu gewähren, werden die Register mithilfe der C-Funktion \code{mmap()} in den Speicher des User-Space gemappt. Der Treiber besitzt infolge dessen direkten Hardwarezugriff.
 Das \code{tft}-Modul erhält ebenfalls Zugriff auf die benötigten Adressen für Kommandos und Daten auf dem SRAM-Interface (siehe \reft{tab:sram_adressen}) über einen gemappten Speicherzugriff über \code{mmap()}. In \refl{lst:userspace_memmap_funktion} ist die Funktion \code{tft_openSRAM0Memory()} gezeigt, welche die Zeiger \code{*sram0_ctrl} und \code{*sram0_data} für den Zugriff auf das Display initialisiert. Die Funktion wird im Treiber in dessen Initialisierungsroutine aufgerufen. Bei einem eventuell fehlgeschlagenen Versuch den Speicher zu mappen, beendet sich der Treiber mit einem Fehlercode.
 

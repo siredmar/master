@@ -97,7 +97,7 @@ mit den Parametern entsprechend \reft{tab:z_parameter} (siehe \cite{TI2007}) ber
 \end{figure}
 Neben den eigentlichen Video-Signalen befinden sich noch die $I^2C$-Signale \code{EDID_SCL}\footnote{EDID\_SCL: Taktleitung des $I^2C$-Bus} und \code{EDID_SDA}\footnote{EDID\_SDA: Datenleitung des $I^2C$-Bus} des EDID-EEPROMs, sowie eine Hot-Plug-Detection auf der HDMI-Buchse.
 \subsection{RGB-Bridge}
-Die Eingänge der RGB-Bridge werden vom HDMI-Stecker gespeist. Die TMDS-Signale werden so aufbereitet, dass an den Ausgängen eine RGB-Schnittstelle zum Anschluss eines RGB-Panels bereitgestellt sind.
+Die Eingänge der RGB-Bridge werden vom HDMI-Stecker gespeist. Die TMDS-Signale werden so aufbereitet, dass an den Ausgängen eine RGB-Schnittstelle zum Anschluss eines RGB-Panels bereitgestellt ist.
         \begin{figure}[htp]
         	\center
 			\fbox{	\includegraphics[width=0.9\textwidth]{TeilB/rgb_bridge_sch.png}}
@@ -106,8 +106,8 @@ Die Eingänge der RGB-Bridge werden vom HDMI-Stecker gespeist. Die TMDS-Signale 
             \label{fig:teilb_rgb_bridge_sch}
         \end{figure}
 \newline        
-\refa{fig:teilb_rgb_bridge_sch} zeigt den Schaltplan der RGB-Bridge mit dem Stecker für das RGB-Display. Als Baustein ist ein \code{TFP401A} von Texas Instruments im Einsatz. Neben den vier TMDS-Signalpaaren werden eingangsseitig noch die Signale \code{HDMI_PIXS} und \code{HDMI_OCK_INV} eingespeist. Diese sind zur Konfiguration der Ausgangssignale vorhanden. Ausgangsseitig sind die drei Farbkanäle für rot, grün und blau (\code{RGB_EVEN_R[7:0]}, \code{RGB_EVEN_G[7:0]} und \code{RGB_EVEN_B[7:0]}) sowie die Steuersignale \code{RGB_ODCK}, \code{RGB_DE}, \code{RGB_HSYNC} und \code{RGB_VSYNC} verbunden.
-Fließen Ströme mit hoher Frequenz, entstehen aufgrund des Induktionsgesetzes Störeffekte auf den Leitungen, die wiederum andere Signale beeinflussen können. Die induzierte Störspannung lässt sich mit der Gleichung
+\refa{fig:teilb_rgb_bridge_sch} zeigt den Schaltplan der RGB-Bridge mit dem Stecker für das RGB-Display. Als Baustein ist ein \code{TFP401A} von Texas Instruments im Einsatz. Neben den vier TMDS-Signalpaaren werden eingangsseitig noch die Signale \code{HDMI_PIXS} und \code{HDMI_OCK_INV} eingespeist. Diese sind zur Konfiguration der Ausgangssignale vorhanden. Ausgangsseitig sind die drei Farbkanäle für rot, grün und blau (\code{RGB_EVEN_R[7:0]}, \code{RGB_EVEN_G[7:0]} und \code{RGB_EVEN_B[7:0]}) sowie die Steuersignale \code{RGB_ODCK}, \code{RGB_DE}, \code{RGB_HSYNC} und \code{RGB_VSYNC} verbunden. \\
+Da der RGB-Bus mit hohen Frequenzen arbeitet, müssen diese bzgl. der Elektromagnetischen Störfestigkeit\footnote{EMV: Elektromagnetische Verträglichkeit} gesondert betrachtet werden. Fließen Ströme mit hoher Frequenz, entstehen aufgrund des Induktionsgesetzes Störeffekte auf den Leitungen, die wiederum andere Signale beeinflussen können. Die induzierte Störspannung lässt sich mit der Gleichung
 %
 \begin{equation}
 u \approx L \cdot \frac{di}{dt}
@@ -163,7 +163,7 @@ So liegt zum Beispiel das RGB Bit G4 auf dem Dateneingang D13 der LVDS-Bridge. D
         \caption{LVDS Bridge: Schaltplan}
        \label{fig:teilb_lvds_bridge_sch}
 \end{figure}\\
-Wie auch bei den HDMI-Leitungen muss beim Layouten ein besonderes Augenmerk auf die differentiellen LVDS-Leitungen geworfen werden. Da hier ebenfalls eine Impedanz von 100\,$\Omega$ gefordert ist, sind dieselben Parameter bzgl. Leitungsbreite und Abstand wie in Abschnitt \ref{cha:hdmi_eingang} verwendet, bei der sich eine differentielle Impedanz von 106\,$\Omega$ errechnet.  Die Terminierung findet am Ende der LVDS-Leitungen im Display statt und bedarf keiner zusätzlichen Bauteile auf der Platine. Wie zuvor ist die Länge der Leitungspaare zueinander enorm wichtig. Die Längen der Leitungspaare sind im Bereich zwischen 13.825\,mm und 14.010\,mm, was einer maximalen Abweichung von 1.34 \% entspricht. Durch die angepasste differentielle Impedanz und gleichlangen Leitungen, ist die LVDS-Strecke hinreichend gut dimensioniert. \refa{fig:teilb_lvds_bridge_pcb} zeigt das Layout der LVDS-Bridge. Um die RGB-Signale vom Top-Layer auf den Bottom-Layer zu bekommen, werden diese mit Vias\footnote{Via: Durchkontaktierung} verbunden. Um große Umwege für Rückströme zu verhindern ist zwischen den Durchkontaktierungen ausreichend Platz, sodass die Vias vollständig von einer Ground-Fläche umschlossen werden.
+Wie auch bei den HDMI-Leitungen muss beim Layouten ein besonderes Augenmerk auf die differentiellen LVDS-Leitungen geworfen werden. Da hier ebenfalls eine Impedanz von 100\,$\Omega$ gefordert ist, sind dieselben Parameter bzgl. Leitungsbreite und Abstand wie in Abschnitt \ref{cha:hdmi_eingang} verwendet, bei der sich eine differentielle Impedanz von 106\,$\Omega$ errechnet.  Die Terminierung findet am Ende der LVDS-Leitungen im Display statt und bedarf keiner zusätzlichen Bauteile auf der Platine. Wie zuvor ist die Längendifferenz der Leitungspaare zueinander enorm wichtig. Die Längen der Leitungspaare liegen im Bereich zwischen 13.825\,mm und 14.010\,mm, was einer maximalen Abweichung von 1.34 \% entspricht. Durch die angepasste differentielle Impedanz und gleichlangen Leitungen, ist die LVDS-Strecke hinreichend gut dimensioniert. \refa{fig:teilb_lvds_bridge_pcb} zeigt das Layout der LVDS-Bridge. Um die RGB-Signale vom Top-Layer auf den Bottom-Layer zu bekommen, werden diese mit Vias\footnote{Via: Durchkontaktierung} verbunden. Um große Umwege für Rückströme zu verhindern ist zwischen den Durchkontaktierungen ausreichend Platz, sodass die Vias vollständig von einer Ground-Fläche umschlossen werden.
 \begin{figure}[htp]
 		\center
 		\fbox{	\includegraphics[width=0.6\textwidth,angle=90]{TeilB/lvds_bridge_pcb.png}}
@@ -174,7 +174,7 @@ Wie auch bei den HDMI-Leitungen muss beim Layouten ein besonderes Augenmerk auf 
 \newpage
 \subsection{EDID-Daten}
 \label{cha:sw_edid_daten}
-Wie bereits in \refc{sec:TeilB_Konzept} angesprochen ist ein EEPROM vorhanden, welches die EDID-Informationen beinhaltet. Ohne diese Informationen ist ein Plug-And-Play-Betrieb der Hardware an einer HDMI-Quelle nicht möglich, da der Quelle nicht mitgeteilt wird, welche Randbedingungen an Timings und Auflösung das Anzeigegerät benötigt werden. Um den Anschluss von verschiedenen RGB- oder LVDS-Displays zu gewährleisten, können die EDID-Daten über eine integrierte USB-Buchse und dem zugehörigen Programm direkt auf der Hardware programmiert werden. \refa{fig:teilb_edid_blockschaltbild} zeigt einen Ausschnitt aus \refa{fig:teilb_architektur}, das die einzelnen Komponenten des EDID-Blocks darstellt. 
+Wie bereits in \refc{sec:TeilB_Konzept} angesprochen ist ein EEPROM vorhanden, welches die EDID-Informationen beinhaltet. Ohne diese Informationen ist ein Plug-And-Play-Betrieb der Hardware an einer HDMI-Quelle nicht möglich, da der Quelle nicht mitgeteilt wird, welche Randbedingungen an Timings und Auflösung das Anzeigegerät benötigt werden. Um den Anschluss von verschiedenen RGB- oder LVDS-Displays zu ermöglichen, können die EDID-Daten über eine integrierte USB-Buchse und dem zugehörigen Programm direkt auf der Hardware programmiert werden. \refa{fig:teilb_edid_blockschaltbild} zeigt einen Ausschnitt aus \refa{fig:teilb_architektur}, das die einzelnen Komponenten des EDID-Blocks darstellt. 
 \begin{figure}[htp]
 	\center
 	\fbox{	\includegraphics[width=0.6\textwidth]{TeilB/EDID.pdf}}
@@ -190,14 +190,14 @@ Als externe Schnittstellen stehen eine USB-Buchse und ein ISP-Stecker\footnote{I
     \label{fig:teilb_edid_usb_sch}
 \end{figure}\\
 \refa{fig:teilb_edid_avr_sch} zeigt die Beschaltung des AVRs \code{IC6} und des EEPROMs \code{IC4}. Neben der Grundbeschaltung mit Quarz und Reset-Pin am AVR gehen die $I^2C$-Signale \code{EDID_SCL} und \code{EDID_SDA} an die Pins des EEPROMs. Das EEPROM bietet die Möglichkeit einen Schreibschutz aktiv zu schalten. Dieser kann mit dem Jumper \code{JP5} ein- und ausgeschaltet werden. Zum Programmieren des Prozessors ist der ISP-Stecker mit den entsprechenden Signalen verbunden. Um die Bauform recht gering zu halten sind alle Komponenten als SMD-Varianten gewählt - so auch der ISP-Stecker \code{CON5}. Um die 128 Byte großen EDID-Daten vollständig aufnehmen zu können ist das entsprechend gleichgroße EEPROM \code{AT24C01C} in Verwendung. \\
-Neben der reinen Funktion als Programmiergerät für das EEPROM, bietet die Schaltung noch die Möglichkeit ein PWM-Signal auszugeben, welches zum Dimmen der Hintergrundbeleuchtungen der Displays verwendet werden kann. Hierzu ist ein Potentiometer mit dem Signal \code{AVR_PWM_ADC} an einem Analog-Eingang des AVRs verbunden, der es ermöglicht die Spannung im Bereich zwischen +5\,V und 0\,V zu messen. Je nach gemessener Spannung am Potentiometer kann ein PWM-Signal \code{AVR_PWM} ausgegeben werden, wobei beispielsweise +5\,V 100\%  und +2.5\,V 50\% Helligkeit bedeuten. Liegen 0V am Eingang an, so wäre die Hintergrundbeleuchtung komplett ausgeschaltet, wobei sich das PWM-Signal stufenlos im gültigen Wertebereich einstellen lässt. 
+Neben der reinen Funktion als Programmiergerät für das EEPROM, bietet die Schaltung noch die Möglichkeit ein PWM-Signal auszugeben, welches zum Dimmen der Hintergrundbeleuchtungen der Displays verwendet werden kann. Hierzu ist ein Potentiometer mit dem Signal \code{AVR_PWM_ADC} an einem Analog-Eingang des AVRs angeschlossen, der es ermöglicht die Spannung im Bereich zwischen +5\,V und 0\,V zu messen. Je nach gemessener Spannung am Potentiometer kann ein PWM-Signal \code{AVR_PWM} ausgegeben werden, wobei beispielsweise +5\,V 100\%  und +2.5\,V 50\% Helligkeit bedeuten. Liegen 0V am Eingang an, so wäre die Hintergrundbeleuchtung komplett ausgeschaltet. Das PWM-Signal lässt sich stufenlos im gültigen Wertebereich einstellen lässt. 
 \begin{figure}[htp]
 	\center
 	\fbox{	\includegraphics[width=1\textwidth]{TeilB/avr_sch.png}}
     \caption{EDID: AVR Schaltplan}
     \label{fig:teilb_edid_avr_sch}
 \end{figure}\\
-Der einzige kritische Aspekt beim Layout des Funktionsblocks ist der eingenommene Raum auf der Platine. Da hier weder mit schnellen Signalen noch mit hohen Strömen gearbeitet wird, kann die Leitungsführung platzoptimiert durchgeführt werden. Die Abbildungen \ref{fig:teilb_edid_pcb_top} und \ref{fig:teilb_edid_pcb_bot} zeigen das Layout auf dem Top- bzw. Bottom-Layer der Platine. In den Bildern sind die einzelnen Bereiche farblich und textuell markiert.
+Der einzige kritische Aspekt beim Layout des Funktionsblocks ist der benötigte Raum auf der Platine. Da hier weder mit schnellen Signalen noch mit hohen Strömen gearbeitet wird, kann die Leitungsführung platzoptimiert durchgeführt werden. Die Abbildungen \ref{fig:teilb_edid_pcb_top} und \ref{fig:teilb_edid_pcb_bot} zeigen das Layout auf dem Top- bzw. Bottom-Layer der Platine. In den Bildern sind die einzelnen Bereiche farblich markiert und beschriftet.
 
 \begin{figure}[htbp]
         %\begin{center}
@@ -258,9 +258,9 @@ Die RGB-Bridge \code{TFP401A} sowie die LVDS-Bridge \code{SN65LVDS83B} werden mi
 \label{tab:3_3v_strom}
 \end{table} \\
 Wird unter Verwendung des RGB-Displays die LVDS-Bridge nicht auf der Platine bestückt, so errechnet sich die Stromaufnahme aus dem Verbrauch der RGB-Bridge und dem RGB-Display. Dieser beläuft sich auf  $370\,mA + 305\,mA = 675\,mA$. Wird die LVDS-Bridge bei gleichen Bedingungen bestückt, so ergibt sich eine maximale Stromaufnahme von $728\,mA$.\\
-Im Falle der Verwendung des LVDS-Displays wird die RGB- sowie die LVDS-Bridge benötigt. Die errechnete maximale Stromaufnahme ergibt somit $370\,mA + 53\,mA + 683\,mA = 1106\,mA$. Die +3.3\,V-Versorgung ist daher für die Anwendung gut dimensioniert.\newline
+Im Falle der Verwendung des LVDS-Displays wird die RGB- sowie die LVDS-Bridge benötigt. Die errechnete maximale Stromaufnahme ergibt somit $370\,mA + 53\,mA + 683\,mA = 1106\,mA$. Die +3.3\,V-Versorgung ist daher für die Anwendung ausreichend dimensioniert.\newline
 
-Der ATMEGA sowie das EEPROM werden durch die HDMI-Buchse versorgt, da diese bei Ansteuerung der Platine funktionieren müssen. Laut Spezifikation liefert die HDMI-Buchse bei +5\,V mindestens einen Strom von 55\,mA (siehe \cite{HDMI11}). Der maximale Strom der einzelnen Komponenten ist in \reft{tab:5v_strom} gezeigt und macht in der Summe maximal 15\,mA aus. Die Stromaufnahme ist somit gut im Rahmen der HDMI-Spezifikation (siehe \cite{Atmel2011}, S. 3 und \cite{Atmel2003}, S. 303).
+Der ATMEGA sowie das EEPROM werden durch die HDMI-Buchse versorgt, da diese bei Ansteuerung der Platine funktionieren müssen. Laut Spezifikation liefert die HDMI-Buchse bei +5\,V mindestens einen Strom von 55\,mA (siehe \cite{HDMI11}). Der maximale Strom der einzelnen Komponenten ist in \reft{tab:5v_strom} gezeigt und macht in der Summe maximal 15\,mA aus. Die Stromaufnahme liegt somit gut im Rahmen der HDMI-Spezifikation (siehe \cite{Atmel2011}, S. 3 und \cite{Atmel2003}, S. 303).
 \begin{table}[h]
 \begin{tabular}{|p{8.5cm}|p{5cm}|}\hline
 \rowcolor{TableBackgroundColor} 
