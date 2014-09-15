@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+
+<!-- TITLE -->
+<title>VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website</title>
+
+<!-- HEADLIKS -->
+<meta name="description" content="Javier Valcarce&#39;s Personal Website">
+<meta name="keywords" content="Arduino, Electronics, AVR-GCC, VHDL, FPGA, DSP, LADSPA, Picoblaze, IP Cores, System On Chip, Software Defined Radio">
+<meta name="generator" content="MediaWiki 1.21.1">
+<link rel="shortcut icon" href="http://www.javiervalcarce.eu/wiki/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.javiervalcarce.eu/w/opensearch_desc.php" title="JavierValcarce.Eu (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://www.javiervalcarce.eu/w/api.php?action=rsd">
+<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html">
+<!-- STYLESHEETS -->
+<link rel="stylesheet" type="text/css" media="screen" title="Sans (Default Style)" href="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/base.css">
+<link rel="stylesheet" type="text/css" media="print" href="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/print.css">
+<link rel="alternate stylesheet" type="text/css" media="screen" title="Serif" href="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/serif.css">
+
+
+<style type="text/css">
+/*<![CDATA[*/ 
+@import "/w/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+/*]]>*/
+</style>
+
+
+<!-- Some elements are shown only when user is not anonymous -->
+<style type="text/css">
+ .editsection { display: none; }
+</style>
+
+<script src="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/load.php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"VGA_Video_Signal_Format_and_Timing_Specifications","wgTitle":"VGA Video Signal Format and Timing Specifications","wgCurRevisionId":23440,"wgArticleId":1682,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Hardware"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"VGA_Video_Signal_Format_and_Timing_Specifications","wgRestrictionEdit":[],"wgRestrictionMove":[]});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"superclean","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3
+,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":true,"searchNs2":true,"searchNs3":true,"searchNs4":false,"searchNs5":false,"searchNs6":true,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":true,"searchNs15":false,"searchNs100":false,"searchNs105":true,"searchNs106":true});;},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});;},{},{});
+/* cache key: javier_wikidb-mw_:resourceloader:filter:minify-js:7:e26302110707b0e3559ec636a3640632 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+}</script></head>
+
+<body class="mediawiki  ltr ns-0 ns-subject page-VGA_Video_Signal_Format_and_Timing_Specifications">
+
+<div id="column-content">
+
+<!-- HEADBOX with P-SEARCH SEARCH FORM -->
+<div id="headbox">
+<p>Javier Valcarce's Personal Website</p>
+<form action="http://www.javiervalcarce.eu/wiki/Special:Search" id="searchform">
+<div id="p-search">
+     <input id="searchInput" name="search" type="text" accesskey="f" value="">
+     <input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search">
+</div>
+</form>
+</div>
+
+
+<!-- NAVIBOX -->
+<div id="navibox">
+<p><a href="http://www.javiervalcarce.eu/wiki/Home" title="Home">Home</a> | <a href="http://www.javiervalcarce.eu/wiki/Hardware" title="Hardware">Hardware</a> | <a href="http://www.javiervalcarce.eu/wiki/Software" title="Software">Software</a> | <a href="http://www.javiervalcarce.eu/wiki/Math_Notes" title="Math Notes">Math_Notes</a> | <a href="http://www.javiervalcarce.eu/wiki/About" title="About">About</a>
+</p></div> 
+<!-- /NAVIBOX -->
+
+
+<!-- TOOLBOX, only logged users -->
+<!-- /TOOLBOX, only logged users -->
+
+
+<!-- CONTENT -->
+<div id="content">
+        <h1 class="firstHeading">VGA Video Signal Format and Timing Specifications</h1>
+    <div id="bodyContent">
+       <h3 id="siteSub">From JavierValcarce.Eu</h3>
+       <div id="contentSub"></div>
+              	   <div id="jump-to-nav">Jump to: <a href="http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications#column-one">navigation</a>, <a href="http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications#searchInput">search</a></div>
+<!-- start content -->
+<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="font-family: sans-serif; line-height: 1.3em; margin-left: 3em; padding: 5px 1em 10px 1em; background-color: #ffd; -moz-border-radius: 8px;"><b>Summary</b><br>
+This page explains VGA video signal format and its timing for the different video modes. I refer to the classic analog video signal, not the modern DVI (Digital Video Interface) signal in used today.</div>
+<table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>Table of Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications#VGA_Video_Signal_Format"><span class="tocnumber">1</span> <span class="toctext">VGA Video Signal Format</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications#Video_Modes_and_Their_Signal_Timings"><span class="tocnumber">2</span> <span class="toctext">Video Modes and Their Signal Timings</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications#VGA_Connector"><span class="tocnumber">3</span> <span class="toctext">VGA Connector</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="http://www.javiervalcarce.eu/wiki/VGA_Video_Signal_Format_and_Timing_Specifications#References"><span class="tocnumber">4</span> <span class="toctext">References</span></a></li>
+</ul>
+</td></tr></tbody></table>
+<p><br style="clear: both;">
+</p>
+<h2> <span class="mw-headline" id="VGA_Video_Signal_Format"> VGA Video Signal Format </span></h2>
+<p>A color VGA video signal is composed by 5 different signals, two synchronization signals (HSYNC and VSYNC) and three video signals (R, G, B)
+</p>
+<ul><li> <b>HSYNC</b> Horizontal sync. Make electron beam restart at next screen's scanline (starts a new line)
+</li><li> <b>VSYNC</b> Vertical sync. Make electron beam restart at first screen's scanline (starts a new frame)
+</li><li> <b>R</b> Red intensity
+</li><li> <b>G</b> Green intensity
+</li><li> <b>B</b> Blue intensity
+</li></ul>
+<p>HSYNC and VSYNC signals determines the screen resolution (for example 640x480) whereas the colour of every pixel is determined by the value of R, G and B signal. Each color is a combination of the 3 primary colours R, G and B.
+</p><p>HSYNC and VSYNC signals are a train of squared pulses of +5V (+3.3V serves too) whereas RGB signals take values in a continuous (analog) voltage range from +0V (absolutely dark) to +0.7V (maximum brightness). Each of this 3 signals controls a electron gun that makes the screen's phosphor bright a basic colour (R, G or B) in a pixel. Any colour is the visual mixture of different levels of brightness of the 3 primary colours.
+</p><p>A single dot of colour on a video monitor doesn’t impart much information. A horizontal line of pixels carries a bit more information. But a frame composed of multiple lines can present an image on the monitor screen. In a 640x480 mode, for example, a frame of VGA video has 480 lines and each line <b>usually</b> contains 640 pixels (see later). 
+</p><p>In order to paint a frame, there are deflection circuits in the monitor that move the electrons emitted from the guns both left-to-right and top-to-bottom across the screen. These deflection circuits require two synchronization signals in order to start and stop the deflection circuits at the right times so that a line of pixels is painted across the monitor and the lines stack up from the top to the bottom to form an image. The timing for the VGA synchronization signals is shown in Figure 2.
+</p>
+<div class="center"><div class="floatnone"><a href="http://www.javiervalcarce.eu/wiki/File:VGA_signal_format.png" class="image"><img alt="VGA signal format.png" src="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/VGA_signal_format.png" width="594" height="440"></a></div></div>
+<ul><li> Pulses on HSYNC signal mark the start and end of a line and ensure that the monitor displays the pixels between the left and right edges of the visible screen area. 
+</li><li> Pulses on VSYNC signal mark the start and end of a frame made up of video lines and ensure that the monitor displays the lines between the top and bottom edges of the visible monitor screen. 
+</li><li> As you may have guessed, the horizontal resolution of each line <b>is not actually determined</b> and could be anything, this resolution is determined typically by a <b>pixel clock</b>. Every rising edge of the pixel clock marks the start of a new pixel.
+</li></ul>
+<h2> <span class="mw-headline" id="Video_Modes_and_Their_Signal_Timings"> Video Modes and Their Signal Timings </span></h2>
+<p>The following table shows the time restrictions that video signal must obey in order to the monitor can synchronize and displays the image correctly (without blinks). The pixel clock frequency is only orientative, when designing a video hardware, you can use the pixel clock frequency that you want, the only important thing is that the video signal fits with the time restrictions (measures A, B, C, etc).  
+</p>
+<div class="center"><div class="floatnone"><a href="http://www.javiervalcarce.eu/wiki/File:VGA_Signal_Timing.png" class="image"><img alt="VGA Signal Timing.png" src="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/VGA_Signal_Timing.png" width="773" height="340"></a></div></div>
+<table class="table_1 ctab" style="font-size: 86%;">
+<caption> Analog Video Signal Timing Specifications
+</caption>
+<tbody><tr>
+<th> </th>
+<th> </th>
+<th colspan="2"> IBM </th>
+<th colspan="6"> VESA
+</th></tr>
+<tr>
+<th> Measure </th>
+<th> Unit </th>
+<th> 640x480<br>60Hz </th>
+<th> 720x400<br>70Hz </th>
+<th> 640x480<br>75Hz </th>
+<th> 640x480<br>85Hz </th>
+<th> 800x600<br>75Hz </th>
+<th> 800x600<br>85Hz </th>
+<th> 1024x768<br>75Hz </th>
+<th> 1024x768<br>85Hz
+</th></tr>
+<tr>
+<td> F_HSYNC </td>
+<td> kHz </td>
+<td> 31.469 </td>
+<td> 31.469 </td>
+<td> 37.500 </td>
+<td> 43.269 </td>
+<td> 46.875 </td>
+<td> 53.674 </td>
+<td> 60.023 </td>
+<td> 68.677
+</td></tr>
+<tr>
+<td> A </td>
+<td> us </td>
+<td> 31.778 </td>
+<td> 31.777 </td>
+<td> 26.667 </td>
+<td> 23.111 </td>
+<td> 21.333 </td>
+<td> 18.631 </td>
+<td> 16.660 </td>
+<td> 14.561
+</td></tr>
+<tr>
+<td> B </td>
+<td> us </td>
+<td>  3.813 </td>
+<td>  3.813 </td>
+<td>  2.032 </td>
+<td>  1.556 </td>
+<td>  1.616 </td>
+<td>  1.138 </td>
+<td>  1.219 </td>
+<td>  1.016
+</td></tr>
+<tr>
+<td> C </td>
+<td> us </td>
+<td>  1.907 </td>
+<td>  1.907 </td>
+<td>  3.810 </td>
+<td>  2.222 </td>
+<td>  3.232 </td>
+<td>  2.702 </td>
+<td>  2.235 </td>
+<td>  2.201
+</td></tr>
+<tr>
+<td> D </td>
+<td> us </td>
+<td> 25.422 </td>
+<td> 25.422 </td>
+<td> 20.317 </td>
+<td> 17.778 </td>
+<td> 16.162 </td>
+<td> 14.222 </td>
+<td> 13.003 </td>
+<td> 10.836
+</td></tr>
+<tr>
+<td> E </td>
+<td> us </td>
+<td>  0.636 </td>
+<td>  0.636 </td>
+<td>  0.508 </td>
+<td>  1.558 </td>
+<td>  0.323 </td>
+<td>  0.589 </td>
+<td>  0.203 </td>
+<td>  0.508
+</td></tr>
+<tr>
+<td> F_VSYNC </td>
+<td> Hz </td>
+<td> 59.940 </td>
+<td> 70.087 </td>
+<td> 75.000 </td>
+<td> 85.008 </td>
+<td> 75.000 </td>
+<td> 85.061 </td>
+<td> 75.029 </td>
+<td> 84.997
+</td></tr>
+<tr>
+<td> O </td>
+<td> ms </td>
+<td> 16.683 </td>
+<td> 14.268 </td>
+<td> 13.333 </td>
+<td> 11.764 </td>
+<td> 13.333 </td>
+<td> 11.758 </td>
+<td> 13.328 </td>
+<td> 11.765
+</td></tr>
+<tr>
+<td> P </td>
+<td> ms </td>
+<td>  0.064 </td>
+<td>  0.064 </td>
+<td>  0.080 </td>
+<td>  0.671 </td>
+<td>  0.064 </td>
+<td>  0.056 </td>
+<td>  0.050 </td>
+<td>  0.044
+</td></tr>
+<tr>
+<td> Q </td>
+<td> ms </td>
+<td>  1.048 </td>
+<td>  1.080 </td>
+<td>  0.427 </td>
+<td>  0.578 </td>
+<td>  0.448 </td>
+<td>  0.503 </td>
+<td>  0.466 </td>
+<td>  0.524
+</td></tr>
+<tr>
+<td> R </td>
+<td> ms </td>
+<td> 15.253 </td>
+<td> 12.711 </td>
+<td> 12.800 </td>
+<td> 11.093 </td>
+<td> 12.800 </td>
+<td> 11.179 </td>
+<td> 12.795 </td>
+<td> 11.183
+</td></tr>
+<tr>
+<td> S </td>
+<td> ms </td>
+<td>  0.318 </td>
+<td>  0.413 </td>
+<td>  0.027 </td>
+<td>  0.023 </td>
+<td>  0.021 </td>
+<td>  0.019 </td>
+<td>  0.017 </td>
+<td>  0.015
+</td></tr>
+<tr>
+<td> Pixel Clock </td>
+<td> MHz </td>
+<td> 25.175 </td>
+<td> 28.322 </td>
+<td> 31.500 </td>
+<td> 36.000 </td>
+<td> 49.500 </td>
+<td> 56.250 </td>
+<td> 78.750 </td>
+<td> 94.500
+</td></tr>
+<tr>
+<td> Polarity HSYNC </td>
+<td> </td>
+<td> Neg </td>
+<td> Neg </td>
+<td> Neg </td>
+<td> Neg </td>
+<td> Pos </td>
+<td> Pos </td>
+<td> Pos </td>
+<td> Pos
+</td></tr>
+<tr>
+<td> Polarity VSYNC </td>
+<td> </td>
+<td> Neg </td>
+<td> Pos </td>
+<td> Neg </td>
+<td> Neg </td>
+<td> Pos </td>
+<td> Pos </td>
+<td> Pos </td>
+<td> Pos
+</td></tr></tbody></table>
+<h2> <span class="mw-headline" id="VGA_Connector"> VGA Connector </span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:262px;"><a href="http://www.javiervalcarce.eu/wiki/File:VGA_connector_PC.png" class="image"><img alt="" src="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/260px-VGA_connector_PC.png" width="260" height="149" class="thumbimage" srcset="/upload/thumb/3/34/VGA_connector_PC.png/390px-VGA_connector_PC.png 1.5x, /upload/thumb/3/34/VGA_connector_PC.png/520px-VGA_connector_PC.png 2x"></a>  <div class="thumbcaption"><div class="magnify"><a href="http://www.javiervalcarce.eu/wiki/File:VGA_connector_PC.png" class="internal" title="Enlarge"><img src="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/magnify-clip.png" width="15" height="11" alt=""></a></div>PC connector (DB15)</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:262px;"><a href="http://www.javiervalcarce.eu/wiki/File:VGA_connector_Mac.png" class="image"><img alt="" src="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/260px-VGA_connector_Mac.png" width="260" height="112" class="thumbimage" srcset="/upload/thumb/c/c1/VGA_connector_Mac.png/390px-VGA_connector_Mac.png 1.5x, /upload/thumb/c/c1/VGA_connector_Mac.png/520px-VGA_connector_Mac.png 2x"></a>  <div class="thumbcaption"><div class="magnify"><a href="http://www.javiervalcarce.eu/wiki/File:VGA_connector_Mac.png" class="internal" title="Enlarge"><img src="./VGA Video Signal Format and Timing Specifications - Javier Valcarce's Personal Website_files/magnify-clip.png" width="15" height="11" alt=""></a></div>Macintosh connector</div></div></div>
+<table class="wikitable" style="font-size: 95%">
+<caption> Pinout. <i>NC</i> means "No Connect"
+</caption>
+<tbody><tr>
+<th> Pin </th>
+<th> PC (DB15 connector) </th>
+<th> Macintosh
+</th></tr>
+<tr>
+<td> 01 </td>
+<td> Red </td>
+<td> GND-R
+</td></tr>
+<tr>
+<td> 02 </td>
+<td> Green </td>
+<td> Ref
+</td></tr>
+<tr>
+<td> 03 </td>
+<td> Blue </td>
+<td>H/V-Sync (not separate sync)
+</td></tr>
+<tr>
+<td> 04 </td>
+<td> NC </td>
+<td> Sense 0
+</td></tr>
+<tr>
+<td> 05 </td>
+<td> DDC Return </td>
+<td> Green
+</td></tr>
+<tr>
+<td> 06 </td>
+<td> GND-R </td>
+<td> GND-G
+</td></tr>
+<tr>
+<td> 07 </td>
+<td> GND-G </td>
+<td> Sense 1
+</td></tr>
+<tr>
+<td> 08 </td>
+<td> GND-B </td>
+<td> Reserved
+</td></tr>
+<tr>
+<td> 09 </td>
+<td> NC </td>
+<td> Blue
+</td></tr>
+<tr>
+<td> 10 </td>
+<td> GND-Sync/Self Raster </td>
+<td>Sense 2
+</td></tr>
+<tr>
+<td> 11 </td>
+<td> NC </td>
+<td> GND
+</td></tr>
+<tr>
+<td> 12 </td>
+<td> DDC Data </td>
+<td> V-Sync
+</td></tr>
+<tr>
+<td> 13 </td>
+<td> H-Sync </td>
+<td> GND-B
+</td></tr>
+<tr>
+<td> 14 </td>
+<td> V-Sync </td>
+<td> GND
+</td></tr>
+<tr>
+<td> 15 </td>
+<td> DDC Clock </td>
+<td> H-Sync
+</td></tr></tbody></table>
+<h2> <span class="mw-headline" id="References"> References </span></h2>
+<ul><li> <a class="external text" href="http://www.xess.com/appnotes/vga.pdf">VGA Signal Generation with the XS Board</a>
+</li><li> <a class="external text" href="http://pinouts.ru/Video/VGA15_pinout.shtml">Pinouts.ru</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 31/1000000
+Preprocessor generated node count: 66/1000000
+Post‐expand include size: 378/2097152 bytes
+Template argument size: 219/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key javier_wikidb-mw_:pcache:idhash:1682-0!*!*!!en!2!* and timestamp 20140914103951 -->
+</div><div class="printfooter">
+Retrieved from "<a href="http://www.javiervalcarce.eu/w/index.php?title=VGA_Video_Signal_Format_and_Timing_Specifications&oldid=23440">http://www.javiervalcarce.eu/w/index.php?title=VGA_Video_Signal_Format_and_Timing_Specifications&amp;oldid=23440</a>"</div>
+<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://www.javiervalcarce.eu/wiki/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="http://www.javiervalcarce.eu/wiki/Category:Hardware" title="Category:Hardware">Hardware</a></li></ul></div></div><!-- end content -->
+</div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer">
+<table>
+<tbody><tr><td><p>
+ This page was last modified on 10 February 2011, at 04:36.<br>
+      Retrieved from JavierValcarce.Eu: Javier Valcarce's Personal Website.<br>
+<a id="easteregg" style="color: #fff;" href="http://www.javiervalcarce.eu/scp123.php">@</a>
+Content is available under <a class="external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.2</a>.</p>
+</td>
+<td>
+<p>
+<!-- icon w3c -->
+</p>
+</td>
+</tr>
+</tbody></table>
+</div> <!-- footer -->
+
+</div> <!-- column-content -->
+
+<!-- Served in 0.227 secs. -->
+
+</body></html>

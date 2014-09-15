@@ -1,0 +1,7 @@
+#cptr_related_posts li h4{
+	display: inline;
+}
+
+#cptr_related_posts .wp-post-image{
+	display: block;
+}

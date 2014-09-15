@@ -1,0 +1,30 @@
+.playlistplayer{background:url(http://www.intel.com/newsroom/assets/images/media-player-skin_background_sm.png) no-repeat top left;font-family:Arial, Verdana, sans-serif;height:292px;margin-left:auto;margin-right:auto;padding:0;width:465px}
+.playlistplayer_right{float:right;height:210px;width:150px}
+html*.playlistplayer_right{height:265px;width:155px}
+.playlistplayer_left{float:left;height:258px;width:307px}
+#mainvideo{height:235px;margin-top:21px;padding-left:11px;width:293px}
+html*#mainvideo{margin-top:0}
+.playlistplayer .playlistthumbs{clear:both;height:248px;margin:17px 0 3px;padding:0;width:150px}
+html*.playlistplayer .playlistthumbs{margin-top:17px;padding-left:5px;width:145px}
+.playlistplayer .playlistthumbs li{float:left;list-style:none;margin:2px 4px 1px 0;padding:0}
+.playlistplayer .playlistthumbs li span{float:left;margin:0;padding:0}
+.playlistplayer a.thumb:focus{outline:none}
+.playlistplayer .playlistthumbs img{border:none;display:block;height:50px;width:67px}
+.rssRow{height:58px;margin:0;width:67px}
+.rssRow a:link,.rssRow a:visited{color:#fff;text-decoration:none}
+.rssRow a:hover,.rssRow a:focus{color:#fff;text-decoration:underline}
+.videothumbcaption{font-size:xx-small;line-height:10px}
+.hoverME{margin-bottom:0}
+.playlistid{font-family:arial-narrow;font-size:8px;margin-left:10px;padding-top:7px;text-align:center;vertical-align:text-top;width:293px}
+.playlistid a:link,.playlistid a:visited{color:#a6a6a6;text-decoration:none}
+.playlistid a:hover,.playlistid a:focus{color:#e6e6e6;text-decoration:underline}
+.playlisttitle{color:#0860a8;float:left;font-size:13px;font-weight:600;margin-left:10px;padding-top:5px;text-align:center;vertical-align:text-bottom;width:293px}
+.playlistvideocount{border:solid 0 #FF0;color:#000;float:right;font-size:10px;margin:0;padding-right:10px}
+.playlistpager{font-size:12px;height:18px;text-align:center;width:90px}
+.leftarrowpgr{background:url(http://www.intel.com/newsroom/assets/images/media-player-skin_prevBtn.png) no-repeat top left;float:left;height:18px;width:18px}
+.rightarrowpgr{background:url(http://www.intel.com/newsroom/assets/images/media-player-skin_nextBtn.png) no-repeat top left;float:right;height:18px;width:18px}
+/*ie7 hack \ */html*.rightarrowpgr{margin-top:-19px}
+html*.leftarrowpgr{margin-right:-19px}
+/*ie7 hack */.pg-normal,.pg-selected{color:#0860a8;cursor:pointer;font-weight:700}
+.pg-normal{color:#000;font-weight:400}
+.playlistloader{display:block;margin-left:auto;margin-right:auto;margin-top:110px;width:160px}

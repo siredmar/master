@@ -1,0 +1,809 @@
+/* Icons */
+.jive-icon-sml.jive-icon-event,
+.defaultSkin .jive-icon-sml.jive-icon-event {
+    background-image: url( ../images/event-12x12.png);
+    background-position: 0 0;
+}
+
+.jive-icon-med.jive-icon-event,
+.defaultSkin .jive-icon-med.jive-icon-event {
+    background-image: url( ../images/event-16x16.png);
+    background-position: 0 0;
+}
+
+.jive-icon-big.jive-icon-event,
+.defaultSkin .jive-icon-big.jive-icon-event {
+    background-image: url( ../images/event-24x24.png);
+    background-position: 0 0;
+}
+
+.jive-icon-event-comment {
+    background-image: url( ../images/event-comment-16x16.png);
+}
+
+.jive-icon-event-bookmark {
+    background-image: url( ../images/event-bookmark-16x16.png);
+}
+
+* html .jive-icon-event-bookmark {
+    background-image: url( ../images/event-bookmark-16x16.png);
+}
+
+.j-user-link .jive-icon-event {
+    background-image: url( ../images/event-12x12.png);
+}
+
+.jive-link-event {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding: 2px 0 2px 20px;
+    margin-left: 5px;
+    background: transparent url( ../images/event-16x16.png ) no-repeat top left;
+    padding-top: 1px;
+}
+
+.tiny_mce_content a.jive_macro_event {
+	background: transparent url(../images/event-12x12.png ) no-repeat scroll 3px 3px;
+}
+
+.jive-icon-med.jive-icon-event-ics { 
+	background-image: url( ../images/event-ics-16x16.png ); 
+}
+
+
+/* Edit Event */
+ul.jive-form-choose-accesslevel li.selected {
+    background-color: #FFF;
+    border: 1px solid #DADADA;
+}
+
+ul.jive-form-choose-accesslevel li {
+    border:1px solid #F0F0F0;
+    margin-bottom:5px;
+    padding:2px 2px 2px 30px;
+}
+
+ul.jive-form-choose-accesslevel li input {
+    margin-left: -23px
+}
+
+ul.jive-form-choose-accesslevel {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.jive-form-choose-accesslevel li label {
+    background-color: transparent;
+    background-position: left 2px;
+    background-repeat: no-repeat;
+    padding: 4px 0 4px 21px;
+}
+
+ul.jive-form-choose-accesslevel li label.jive-event-access-level-open {
+    background-image: url(../../../../images/jive-icon-groups-open-16x16.gif);
+}
+
+ul.jive-form-choose-accesslevel li label.jive-event-access-level-closed {
+    background-image: url(../../../../images/jive-icon-groups-membership-16x16.gif);
+}
+
+ul.jive-form-choose-accesslevel li label.jive-event-access-level-covert {
+    background-image:url(../../../../images/jive-icon-groups-secret-16x16.gif);
+}
+
+.jive-event-cancel {
+    background:transparent url(../../../../../images/jive-icon-delete-16x16.gif) no-repeat scroll left top;
+    padding:2px 0 2px 20px;
+}
+
+.jive-event-edit {
+    background:transparent url(../../../../../images/jive-icon-edit-16x16.gif) no-repeat scroll left top;
+    padding:2px 0 2px 20px;
+}
+
+.jive-event-invite {
+    background:transparent url(../../../../../images/jive-icon-invite-16x16.gif) no-repeat scroll left top;
+    padding:2px 0 2px 20px;
+}
+
+.jive-date-picker {
+    float:left;
+    width:300px;
+}
+
+.j-form input.jive-time-picker {
+    background: #FFFFFF url(../images/icon-clock.png) no-repeat scroll 2px 2px;
+    border: 1px solid #CCCCCC;
+    padding: 3px 3px 3px 23px;
+    text-align: left;
+    width: 75px;
+}
+
+div.jive-date-picker span.jive-error-message {
+    clear: both;
+}
+
+.details-container {
+    padding:5px;
+}
+
+.events-details-links {
+    margin-left:-6px;
+}
+
+.jive-event-details {
+    background:#F5F7E3 none repeat scroll 0 0;
+    border:1px solid #DADADA;
+    font-size:0.9em;
+    margin:6px 0;
+    padding:12px 12px 0;
+}
+
+.jive-icon-plus {
+    background-position:-144px -592px;
+}
+
+#startDate,
+#endDate,
+#max-attendees {
+    width: auto;
+}
+
+/* View Event */
+body.jive-body-event #jive-body-maincol-container {
+    width: 99%;
+}
+
+.jive-event header {
+	margin-right:265px;
+}
+
+#jive-event-state {
+	text-align: center;
+}
+
+.jive-event-overview h2,
+.jive-event-attendees h2 {
+	margin: 12px 0 0;
+}
+
+.jive-event-attendees h2 {
+	font-size:1.125em;
+	margin-bottom:6px;
+}
+
+.jive-event-overview h2 {
+	font-weight: normal;
+}
+
+.jive-event-overview h4 {
+	font-size: 1em;
+	margin: 0;
+	padding: 0 4px 0 0;
+	display: inline;
+}
+
+.jive-event-overview ul.jive-event-values {
+	list-style-type: none;
+	margin: 0;
+	padding: 6px 0;
+}
+
+.jive-event-overview ul.jive-event-values li {
+	margin: 0;
+	padding: 0 0 8px;
+}
+
+.jive-event-overview ul.jive-event-values span {
+	font-weight:bold;
+}
+
+.jive-event-description-text {
+    padding: 5px 265px 5px 0;
+}
+
+.jive-event-description-text .jive-rendered-content {
+	clear: none;
+}
+
+.jive-event-contact {
+	clear: both;
+	padding-bottom: 5px;
+}
+
+.jive-event-contact-avatar {
+	float: left;
+	margin-right: 5px;
+}
+
+.jive-event-contact-name {
+	float: left;
+	margin-top: 7px;
+}
+
+.jive-event-attendees {
+	width: 240px;
+}
+
+#see-all-attending-link,
+#see-all-notattending-link,
+#see-all-tentative-link,
+#see-all-awaiting-link {
+	font-size: 0.8889em;
+	margin-left: 5px;
+}
+
+.jive-event-attendees ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 6px;
+	border: solid 1px #dadada;
+	max-height: 200px;
+	overflow:auto;
+}
+
+
+.jive-event-attendee-list li {
+	padding: 3px 0;
+}
+.jive-event-attendee-list-empty li {color:#ccc;}
+.jive-event-attendee-list li img {
+	float: left;	
+}
+
+.jive-event-attendee-list li a.jive-username-link {
+	margin: 4px;
+	display: block;
+
+}
+.jive-event-attendee-list li a {
+	display: block;
+	float: left;
+}
+
+#jive-event-attendees-modal .jive-modal-content {
+    width: 380px;
+    height: 400px;
+    overflow-y: auto;
+}
+
+#modal-attendees-everyone {
+	width: 100%;
+}
+
+table.attendees-everyone-list,
+table.attendees-friends-list {
+	margin-top: 10px;
+}
+
+.j-btn-global-disabled {
+    background-color: #EFEFEF;
+    border: 1px solid #A6A6A6;
+    display: inline-block;
+    line-height: 1;
+    *line-height: 1;
+    *vertical-align: middle;
+    color: #000000;
+    font-weight: 600;
+    font-family: inherit;
+    padding: 5px 12px;
+    font-size: 12px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    margin: 0 10px 0 0;    
+}
+
+.jive-event-widget #jive-event-norsvp {
+    font-size: 100%;
+}
+
+#jive-event-norsvp {
+    font-size: 15px;
+}
+
+#jive-event-norsvp-reason {
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.jive-event-rsvp-error {
+    color: red;
+}
+
+#event-rsvp-container {
+	float: right;
+	margin-top: -75px;
+	zoom: 1;
+	width: 240px;
+}
+
+#event-rsvp-container .j-btn-global {
+	margin-right:0;
+	font-size:1.125em;
+	cursor: pointer;
+}
+
+#event-rsvp-container .j-btn-fullwidth {
+	width:214px;
+	text-align:center;
+}
+
+#event-rsvp-choices ul {
+	padding: 0;
+}
+
+#event-rsvp-choices ul {
+	padding:8px;
+}
+
+#event-rsvp-choices li {
+	list-style: none;
+	padding: 2px 0 2px 20px;
+}
+
+#event-rsvp-choices li.jive-event-rsvp {
+	padding-left: 24px;
+}
+
+#event-rsvp-choices li.jive-event-rsvp-link .jive-icon-med {
+	display:none;
+}
+
+#event-rsvp-choices li.jive-event-rsvp-selected a {
+	color:#575757;
+	text-decoration: none !important;
+	cursor: default;
+}
+
+#event-rsvp-choices li .jive-icon-med {
+	margin-left:-18px;
+}
+
+.event-rsvp-change-link {
+	font-weight: normal;
+	font-size: .8em;
+	margin-left: 5px;
+}
+
+.jive-event-rsvp li a {
+	margin-left: 21px;
+}
+
+.jive-event-rsvp li a:hover,
+.jive-event-rsvp li a:focus {
+	text-decoration: underline;
+}
+
+.jive-event-attendees-summary {
+    margin-top: 10px;
+}
+
+html > body .jive-event-body {
+    display:block;
+}
+
+.jive-event .jive-event-moderating {
+    display: none;
+}
+
+.j-event-mod .jive-event-moderating {
+    color: #d89757;
+    font-weight: bold;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    display: block;
+}
+
+span.jive-event-access-level-open {
+    background-image: url(../../../../images/jive-icon-groups-open-16x16.gif);
+    background-repeat: no-repeat;
+    padding-left: 21px;
+}
+
+span.jive-event-access-level-closed {
+    background-image: url(../../../../images/jive-icon-groups-membership-16x16.gif);
+    background-repeat: no-repeat;
+    padding-left: 21px;
+}
+
+span.jive-event-access-level-covert {
+    background-image: url(../../../../images/jive-icon-groups-secret-16x16.gif);
+    background-repeat: no-repeat;
+    padding-left: 21px;
+}
+
+.jive-body-event .jive-content {
+    padding: 22px 26px;
+    position: relative;
+}
+
+.jive-body-formpage-event .j-form > p,
+.jive-body-formpage-event .j-form .j-form-row,
+.jive-event-details > p, 
+#jive-event-description,
+#jive-event-dates,
+#jive-event-times {
+    margin-bottom: 22px;
+}
+
+#jive-modal-event-delete p {
+    margin-bottom: 15px;
+}
+
+
+
+/* Widgets */
+.jive-event-preview-section,
+.jive-event-preview-section-last {
+    border-top: 1px solid #EFEFEF;
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+.jive-event-preview-section-last {
+    border-bottom: 1px solid #EFEFEF;
+}
+
+.jive-event-widget {
+    padding: 10px;
+}
+
+.jive-event-widget .jive-event-overview h4 {
+    font-weight: bold;
+}
+
+
+.jive-widgetsize-small .jive-widget-body .jive-event-widget .jive-event-overview ul.jive-event-values,
+.jive-widgetsize-small .jive-widget-body .jive-event-widget .jive-event-overview ul.jive-event-contacts {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jive-event-widget .jive-event-rsvp {
+    text-align: center;
+}
+
+#jive-widget-empty-events, #jive-widget-empty-events-sidebar {
+    padding: 21px 0 21px 35px;
+}
+
+#jive-widget-empty-events-sidebar {
+    padding: 0;
+}
+
+#jive-widget-empty-events-sidebar p {
+    padding-left: 30px;
+}
+
+#jive-widget-empty-events p, #jive-widget-empty-events-sidebar p {
+    color:#666666;
+    font-size:0.8889em;
+    font-weight:normal;
+}
+
+.jiveTT-event-container {
+    border-top: 1px solid #afafaf;
+    margin: 5px;
+    padding: 5px 0;
+}
+
+#jiveTT-note-event div.jive-tooltip2-mid {
+    background-repeat: repeat-y;
+}
+
+#jiveTT-note-event ul {
+    list-style: none;
+    padding: 0;
+}
+
+.jiveTT-event-start {
+    padding: 0 0 5px 0;
+}   
+
+.jiveTT-event-location {
+    padding: 5px 0 0 0;
+}
+
+.jive-event-sidebar-date {
+    font-size: 11px;
+    padding-left: 25px;
+    padding-bottom: 10px;
+}
+
+.jive-calendar-day-value {
+	background-color: #D7E8F8;
+}
+
+#small-calendar-nav {
+    padding: 0 10px;
+    line-height: 2.5em;
+    background:none repeat scroll 0 0 #F6F7F8;
+    color: #355491;
+}
+
+#small-calendar-nav .small-calendar-nav-left a,
+#small-calendar-nav .small-calendar-nav-right a {
+    color: #355491;
+    text-decoration: none;
+}
+
+#small-calendar-data ul li {
+    margin: 3px 0;
+    list-style: none;
+}
+
+.jive-note-event-container {
+    color:#777777;
+    font-size:0.8889em;
+    padding:0 0 3px;
+}
+
+.jive-note-event-container a {
+    text-decoration: none;
+    color:#777777;
+}
+
+.jive-note-event-container a:hover {
+    text-decoration: underline;
+}
+
+.month_view_main{
+    position: relative;
+    height: 100%;
+    }
+.month_view_header {
+    padding: 5px;
+    background: none repeat scroll 0 0 #F6F7F8;
+    border-bottom: 1px dotted #BBBBBB;
+    font-size: 0.93em;
+}    
+.month_view_header_link {
+    color: #355491;
+    background-color: #FAFAFA;
+    cursor: pointer;
+}
+
+.month_view_header_prev {
+    float: left;
+    padding: 1px 4px 1px 12px;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    border: solid 1px #dadada;
+    background-image: url(../../../../images/jive-icon-arrow-left-small.gif);
+    background-repeat: no-repeat;
+    background-position: 3px 5px;
+}
+
+.month_view_header_next {
+    float: right;
+    padding: 1px 12px 1px 4px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    border: solid 1px #dadada;
+    margin: 0 0 0 -1px;
+    background-image: url(../../../../images/jive-icon-arrow-right-small.gif);
+    background-repeat: no-repeat;
+    background-position: 90% 5px;
+}
+
+.month_view_headerc {
+    margin: 0 40px;
+    text-align: center;
+    display: block;
+    postion: relative;
+    top: 6px;
+    white-space: nowrap;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #355491
+}
+    
+.month_view_inner{
+    position: relative;
+    }
+.month_view_very_inner{
+    position: relative;
+    height: 100%;
+    opacity: .999;
+    }
+.month_view_holder{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    }
+/* styles for individual day cells */
+.month_table{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-spacing: 0;
+    opacity: .999;
+    }
+.month_table_th{
+    position: absolute;
+    background-color: #F6F6F6;
+    width: 15%;
+    text-align: center;
+    padding: 4px 0;
+    vertical-align: middle;
+    }
+.month_table_row{
+    position: relative;
+    overflow: hidden;
+    }
+.month_day_cell,
+.month_today_cell {
+    position: absolute;
+    overflow: hidden;
+    rules: all;
+    width: 15%;
+    vertical-align: top;
+    height: 100%;
+    cursor: pointer;
+    border-top: 1px solid #dadada;
+    border-left: 1px solid #dadada;
+    }
+.month_today_cell{
+    border-top: 3px solid #87ec76;
+    border-left: 3px solid #87ec76;
+    }
+.start_month_day_cell_number {
+    font-weight: bold;
+}
+.month_day_cell_number_link{
+    display:none;
+    }
+.month_day_cell_number {
+    padding: 2px;
+    margin: 2px;
+    display: block;
+    height: 1.142em;
+    }
+
+.month_cell .jive-cal-checkpoint{
+    position: relative;
+    white-space:nowrap;
+    }
+.month_cell .jiveTT-hover-checkpoint,
+.month_cell .jiveTT-hover-tasks {
+    float: left;
+    display: block;
+    padding: 2px 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    text-decoration: none;
+    margin: 0 0 0 3px;
+    font-size: .8em;
+}
+
+.month_cell .jiveTT-hover-checkpoint {
+    background: #cfcfcf;
+}
+
+.month_cell .jiveTT-hover-tasks {
+    background: #B8C8D9;
+}
+
+.month_cell .jiveTT-hover-checkpoint:hover,
+.month_cell .jiveTT-hover-tasks:hover {
+    background: #ddd;
+    text-decoration: none;
+}
+
+
+.jiveTT-hover-checkpoint .jive-icon-sml,
+.jiveTT-hover-tasks .jive-icon-sml {
+    display:inline-block;
+    float:none;
+    vertical-align:middle;
+    margin-right: 1px;
+}
+
+
+/* Admin console */
+.prop-edit a img {
+    border: none;
+}
+
+.hidden-value {
+    color:#999;
+}
+
+.default-value {
+    color:#999;
+}
+
+.default {
+    color: #999;
+    font-size: .8999em;
+}
+
+.jive-default-value {
+    color: #999;
+}
+
+.jive-property-value-row {
+    display: none;
+}
+
+.property-value textarea {
+    width:100%;
+    font-family:verdana,arial,helvetica,sans-serif;
+    font-size:8pt;
+}
+
+
+
+
+/* EAE */
+.j-act-event-title-start-time {
+	padding-left: 5px;
+	font-size: font-size:0.8889em;
+}
+
+ul.jive-event-contacts {
+	list-style: none;
+}
+
+#navCalendar {
+    width: 27px;
+    height: 24px;
+    display: inline-block;
+    margin-right: 5px;
+    overflow: hidden;
+    outline: none;
+    line-height: 1000px;
+    zoom: 1;
+    *display: inline; /*ie7*/
+    *vertical-align: top; /*ie7*/
+    background: transparent url(../images/j-calendar-sprite.png) no-repeat -100% -100%;
+    background-position: 0 -1px;
+}
+
+#navCalendar:hover,
+#navCalendar:focus {
+    background-position: -93px -1px;
+}
+
+#navCalendar:active {
+    background-position: -31px -1px;
+    outline: none;
+}
+
+/* Full Calendar */
+#event-calendar-instructions {
+    padding: 0 5px 5px 5px;
+}
+
+#event-calendar {
+	padding: 5px;
+}
+
+#event-calendar-confirm {
+	width: 50%;
+}
+
+#event-calendar-confirm ul {
+	margin-top: 10px;
+	list-style: none;
+}
+
+#event-calendar-confirm ul li a {
+	text-decoration: none;
+}
+
+
+
+

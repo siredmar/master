@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+.buyNowButton {
+	-moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
+	-webkit-box-shadow:inset 0px 39px 0px -24px #e67a73;
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:20px;
+	padding:10px 20px;
+	text-decoration:none;!important
+	text-shadow:0px 1px 0px #b23e35;
+}
+.buyNowButton:hover {
+	background-color:#eb675e;
+}
+.buyNowButton:active {
+	position:relative;
+	top:1px;
+}
+
+

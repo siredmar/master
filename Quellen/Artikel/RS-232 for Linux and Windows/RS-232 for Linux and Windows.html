@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0029)http://www.teuniz.net/RS-232/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+    
+    <title>RS-232 for Linux and Windows</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="description" content="RS-232 for Linux and Windows">
+    <link rel="stylesheet" type="text/css" href="./RS-232 for Linux and Windows_files/styles.css">
+
+</head><body>
+<div class="logo"><img src="./RS-232 for Linux and Windows_files/rs-232_cable.png" alt="" width="124" height="75"></div>
+<div class="bar">
+    <div><big><a class="home" href="http://www.teuniz.net/">Teunis van Beelen</a></big></div>
+    <div><small><a href="http://www.teuniz.net/">Electronics engineer</a></small></div>
+</div>
+<h1>RS-232 for Linux and Windows</h1>
+
+<p class="first"><br>
+    Here you can find code to use the serial port.<br>
+    It has been tested with GCC on Linux and <a href="http://www.mingw.org/">MinGW</a> on Windows.<br>
+    Handshaking or flowcontrol is not supported.<br>
+    It uses polling to receive characters from the serial port.<br>
+    Interrupt/event-based is not supported.<br>
+    Without modifications, this code uses 8N1 (8 databits, no parity, 1 stopbit).<br><br>
+
+    It is licensed under the <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt">GPL version 2</a>.<br><br>
+
+    No serial port available on your computer? Use a <a href="http://apple.clickandbuild.com/cnb/shop/ftdichip?productID=55&op=catalogue-product_info-null&prodCategoryID=84">USB to RS232 cable</a>.<br>
+</p>
+
+<p><br></p>
+
+<h1>Download</h1>
+
+<p class="first"><br>
+    This is free software, it is experimental and available under the GPL License version 2.<br>
+    Despite this software is intend to be usefull, there is no warranty, use this software at your own risk.
+</p>
+
+<p class="first"><br>
+    <b><big>Januari 31, 2014 new version:</big></b><br>
+    - Fixed a bug that made it impossible to read from the serial port on Linux 64-bit systems.<br>
+</p>
+
+<p class="first"><br>
+    <b><big>December 26, 2013 new version:</big></b><br>
+    - added the function RS232_IsDCDEnabled()<br>
+</p>
+
+<p class="first"><br>
+    <b><big>February 1, 2013 new version:</big></b><br>
+    - added the prefix "RS232_" to all functions in order to prevent clashes with other libraries<br>
+    - set the DTR pin and RTS pin active when opening a serial port (some RS-422/485 converters need this to enable the outputbuffers)<br>
+    - added the baudrates 500000 and 1000000 for windows, this can be usefull when using an FTDI-chip or USB-converter<br>
+    - added the devices "/dev/ttyAMA0" and "/dev/ttyAMA1" for use with the Raspberry Pi<br>
+    - added the devices "/dev/ttyACM0" and "/dev/ttyACM1" for use with the Atmel (USB-)microcontrollers<br>
+    - added the devices "/dev/rfcomm0" and "/dev/rfcomm1" for use with Bluetooth<br>
+    - added the devices "/dev/ircomm0" and "/dev/ircomm1" for Infrared communication<br>
+    - added the following functions: RS232_enableDTR(), RS232_disableDTR(), RS232_enableRTS(), RS232_disableRTS() and RS232_IsDSREnabled()<br>
+    - changed function "cprintf()" to "RS232_cputs()"<br>
+</p>
+
+<h2>The sourcecode</h2>
+<ul>
+    <li><a href="http://www.teuniz.net/RS-232/RS-232.tar.gz">RS-232.tar.gz</a></li>
+</ul>
+
+<p class="first">
+    Extract the file and copy rs232.h and rs232.c into your project directory.<br>
+    Include rs232.h in your program sourcecode (like: #include "rs232.h") and compile and link rs232.c (add rs232.c to your project).<br><br>
+</p>
+
+<h1>Functions</h1>
+
+<p class="first"><br>
+    <var><a style="color: maroon">int</a></var> RS232_OpenComport(<var><a style="color: maroon">int</a> comport_number, <a style="color: maroon">int</a> baudrate</var>)<br><br>
+        &nbsp;&nbsp;Opens the comport, comportnumber starts with 0 (see the list of numbers).<br>
+        &nbsp;&nbsp;Baudrate is expressed in baud per second i.e 115200 (see the list of possible baudrates).<br>
+        &nbsp;&nbsp;Returns 1 in case of an error.<br><br>
+
+    <var><a style="color: maroon">int</a></var> RS232_PollComport(<var><a style="color: maroon">int</a> comport_number, <a style="color: maroon">unsigned char</a> *buf, <a style="color: maroon">int</a> size</var>)<br><br>
+        &nbsp;&nbsp;Gets characters from the serial port (if any). Buf is a pointer to a buffer<br>
+        &nbsp;&nbsp;and size the size of the buffer in bytes.<br>
+        &nbsp;&nbsp;Returns the amount of received characters into the buffer.<br>
+        &nbsp;&nbsp;After succesfully opening the COM-port, connect this function to a timer.<br>
+        &nbsp;&nbsp;The timer should have an interval of approx. 100 milliSeconds.<br>
+        &nbsp;&nbsp;Do not forget to stop the timer before closing the COM-port.<br><br>
+
+    <var><a style="color: maroon">int</a></var> RS232_SendByte(<var><a style="color: maroon">int</a> comport_number, <a style="color: maroon">unsigned char</a> byte</var>)<br>
+        &nbsp;&nbsp;Sends a byte via the serial port. Returns 1 in case of an error.<br><br>
+
+    <var><a style="color: maroon">int</a></var> RS232_SendBuf(<var><a style="color: maroon">int</a> comport_number, <a style="color: maroon">unsigned char</a> *buf, <a style="color: maroon">int</a> size</var>)<br><br>
+        &nbsp;&nbsp;Sends multiple bytes via the serial port. Buf is a pointer to a buffer<br>
+        &nbsp;&nbsp;and size the size of the buffer in bytes.<br>
+        &nbsp;&nbsp;Returns -1 in case of an error, otherwise it returns the amount of bytes sent.<br>
+        &nbsp;&nbsp;This function blocks (it returns after all the bytes have been processed).<br><br>
+
+    <var><a style="color: maroon">void</a></var> RS232_CloseComport(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+        &nbsp;&nbsp;Closes the serial port.<br><br>
+
+    <var><a style="color: maroon">void</a></var> RS232_cputs(<var><a style="color: maroon">int</a> comport_number, <a style="color: maroon">const char</a> *text</var>)<br><br>
+        &nbsp;&nbsp;Sends a string via the serial port. String must be null-terminated.<br><br>
+
+    The following functions are normally not needed but can be used to set or check the status of the control-lines:<br><br>
+
+    <var><a style="color: maroon">void</a></var> RS232_enableDTR(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+        &nbsp;&nbsp;Sets the DTR line high (active state).<br><br>
+
+    <var><a style="color: maroon">void</a></var> RS232_disableDTR(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+        &nbsp;&nbsp;Sets the DTR line low (non active state).<br><br>
+
+    <var><a style="color: maroon">void</a></var> RS232_enableRTS(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+        &nbsp;&nbsp;Sets the RTS line high (active state).<br><br>
+
+    <var><a style="color: maroon">void</a></var> RS232_disableRTS(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+        &nbsp;&nbsp;Sets the RTS line low (non active stae).<br><br>
+
+    <var><a style="color: maroon">int</a></var> RS232_IsDSREnabled(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+    &nbsp;&nbsp;Checks the status of the DSR-pin. Returns 1 when the the DSR line is high (active state), otherwise 0.<br><br>
+
+    <var><a style="color: maroon">int</a></var> RS232_IsCTSEnabled(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+    &nbsp;&nbsp;Checks the status of the CTS-pin. Returns 1 when the the CTS line is high (active state), otherwise 0.<br><br>
+
+    <var><a style="color: maroon">int</a></var> RS232_IsDCDEnabled(<var><a style="color: maroon">int</a> comport_number</var>)<br><br>
+    &nbsp;&nbsp;Checks the status of the DCD-pin. Returns 1 when the the DCD line is high (active state), otherwise 0.<br><br>
+</p>
+
+<p><br></p>
+
+<h1>Notes:</h1>
+
+<p>
+    You don't need to call RS232_PollComport() when you only want to send characters.<br>
+    Sending and receiving do not influence eachother.<br>
+<br>
+    The os (kernel) has an internal buffer of 4096 bytes.<br>
+    If this buffer is full and a new character arrives on the serial port,<br>
+    the oldest character in the buffer will be overwritten and thus will be lost.<br>
+<br>
+    After a successfull call to RS232_OpenComport(), the os will start to buffer incoming characters.<br>
+<br>
+    Example code that demonstrates how to use the library to receive characters and print them to the screen:<br>
+    (compile with the command: gcc main.c rs232.c -Wall -o2 -o test)
+</p>
+
+<pre>
+/**************************************************
+
+file: main.c
+purpose: simple demo that receives characters from
+the serial port and print them on the screen,
+exit the program by pressing Ctrl-C
+
+**************************************************/
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+#ifdef _WIN32
+#include &lt;Windows.h&gt;
+#else
+#include &lt;unistd.h&gt;
+#endif
+
+#include "rs232.h"
+
+
+
+int main()
+{
+  int i, n,
+      cport_nr=0,        /* /dev/ttyS0 (COM1 on windows) */
+      bdrate=9600;       /* 9600 baud */
+
+  unsigned char buf[4096];
+
+
+  if(RS232_OpenComport(cport_nr, bdrate))
+  {
+    printf("Can not open comport\n");
+
+    return(0);
+  }
+
+  while(1)
+  {
+    n = RS232_PollComport(cport_nr, buf, 4095);
+
+    if(n &gt; 0)
+    {
+      buf[n] = 0;   /* always put a "null" at the end of a string! */
+
+      for(i=0; i &lt; n; i++)
+      {
+        if(buf[i] &lt; 32)  /* replace unreadable control-codes by dots */
+        {
+          buf[i] = '.';
+        }
+      }
+
+      printf("received %i bytes: %s\n", n, (char *)buf);
+    }
+
+#ifdef _WIN32
+    Sleep(100);
+#else
+    usleep(100000);  /* sleep for 100 milliSeconds */
+#endif
+  }
+
+  return(0);
+}
+
+</pre>
+
+<p>
+    <br><b><big>tip:</big></b> To get access to the serial port on Linux, you need to be a member of the group "dialout".<br>
+<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Look <a href="http://www.teuniz.net/Timer_code/index.html">here</a> for a <a href="http://www.teuniz.net/Timer_code/index.html">timer library</a>.
+</p>
+
+<p><br></p>
+
+<h1>List of comport numbers and possible baudrates:</h1>
+
+<p><br></p>
+
+<div style="float:left; margin: 0px 50px">
+<table style="text-align: center; width: 252px; height: 598px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td></td>
+      <td>Linux</td>
+      <td>windows</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>ttyS0</td>
+      <td>COM1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>ttyS1</td>
+      <td>COM2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ttyS2</td>
+      <td>COM3</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>ttyS3</td>
+      <td>COM4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>ttyS4</td>
+      <td>COM5</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>ttyS5</td>
+      <td>COM6</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>ttyS6</td>
+      <td>COM7</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>ttyS7</td>
+      <td>COM8</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>ttyS8</td>
+      <td>COM9</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>ttyS9</td>
+      <td>COM10</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>ttyS10</td>
+      <td>COM11</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>ttyS11</td>
+      <td>COM12</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>ttyS12</td>
+      <td>COM13</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>ttyS13</td>
+      <td>COM14</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>ttyS14</td>
+      <td>COM15</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>ttyS15</td>
+      <td>COM16</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>ttyUSB0</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>ttyUSB1</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>ttyUSB2</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>ttyUSB3</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>ttyUSB4</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>ttyUSB5</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>ttyAMA0</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>ttyAMA1</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>ttyACM0</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>ttyACM1</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>rfcomm0</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>rfcomm1</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>ircomm0</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>ircomm1</td>
+      <td>n.a.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div style="float:left; margin: 0px 50px">
+<table style="text-align: center; width: 250px; height: 63px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td>Linux</td>
+      <td>windows</td>
+    </tr>
+    <tr>
+      <td>50</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>75</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>110</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <td>134</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>150</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>300</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <td>600</td>
+      <td>600</td>
+    </tr>
+    <tr>
+      <td>1200</td>
+      <td>1200</td>
+    </tr>
+    <tr>
+      <td>1800</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>2400</td>
+      <td>2400</td>
+    </tr>
+    <tr>
+      <td>4800</td>
+      <td>4800</td>
+    </tr>
+    <tr>
+      <td>9600</td>
+      <td>9600</td>
+    </tr>
+    <tr>
+      <td>19200</td>
+      <td>19200</td>
+    </tr>
+    <tr>
+      <td>38400</td>
+      <td>38400</td>
+    </tr>
+    <tr>
+      <td>57600</td>
+      <td>57600</td>
+    </tr>
+    <tr>
+      <td>115200</td>
+      <td>115200</td>
+    </tr>
+    <tr>
+      <td>230400</td>
+      <td>128000</td>
+    </tr>
+    <tr>
+      <td>460800</td>
+      <td>256000</td>
+    </tr>
+    <tr>
+      <td>500000</td>
+      <td>500000</td>
+    </tr>
+    <tr>
+      <td>576000</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>921600</td>
+      <td>n.a.</td>
+    </tr>
+    <tr>
+      <td>1000000</td>
+      <td>1000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+
+<h1>Connector pinlayout</h1>
+
+<p><br></p>
+
+<div class="cimage">
+    <a><img class="greyborder" src="./RS-232 for Linux and Windows_files/serialport.png" alt="" width="375" height="357"></a>
+</div>
+
+<p><br></p>
+
+<div class="caption">
+    When using this code, you only need to connect pins 2, 3 and 5 of the serial port (plus the shielding) to your device.<br>
+</div>
+
+<p><br></p>
+
+<div class="navigation">
+    <a href="http://www.teuniz.net/">home</a>
+    &gt;RS-232 for Linux and WIN32
+    <span class="separator">|</span> <span class="contact">feel free to <a href="mailto:teuniz@gmail.com">contact</a> me</span>
+</div>
+
+</body></html>

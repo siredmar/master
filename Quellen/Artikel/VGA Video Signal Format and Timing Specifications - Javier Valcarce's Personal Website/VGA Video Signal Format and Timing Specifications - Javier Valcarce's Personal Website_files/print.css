@@ -1,0 +1,27 @@
+/* A4 Print Style Sheet (CSS2) 
+   javier.valcarce@gmail.com
+   $Id$   
+*/
+
+@import url("base.css");
+
+body { background: white; color: black; margin: 0; padding: 0; 
+           font-family: Helvetica, sans-serif; font-size: 9pt; background: none; border: none; }
+#column-content { margin: 0; padding: 0;}
+
+/* HIDE DIVS IRRELEVANT FOR PRINT */
+.noprint, #jump-to-nav, #colophon, .editsection, .toctoggle, .tochidden, #siteNotice, #siteSub, #contentSub, 
+#headbox, #toolbox, #p-search, #p-cactions, #p-personal, #navibox, div.printfooter, #catlinks, 
+#footer img, #easteregg { display: none; }
+
+a, a.external { border-bottom: 1px dotted #bbb; }
+
+h1, h2, h3 { margin-left: 0; margin-right: 0px; }
+pre { border: 1px dashed #ddd; }
+
+h1 { font-size: 189%; padding: 2px 0 2px 0; border-bottom: 4px solid #bbb; } 
+h2 { font-size: 145%; padding: 2px 0 2px 0; border-bottom: 1px solid #bbb; } 
+h3 { font-size: 130%; padding: 2px 0 2px 0; } 
+
+ol.references { font-size: 8pt; }
+#footer       { font-size: 6pt; }

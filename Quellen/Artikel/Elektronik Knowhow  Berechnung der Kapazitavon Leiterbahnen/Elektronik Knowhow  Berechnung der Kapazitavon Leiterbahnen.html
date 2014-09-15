@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0081)http://www.elektronikentwickler-aachen.de/allgemeines/kapazitaet_leiterbahnen.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!--INC:"head2.inc","13.02.2013 13:16:18"-->
+
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rel="stylesheet" media="screen, projection" href="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/styles_knowhow.css" type="text/css" title="Seitenlayout">
+<link rel="stylesheet" media="print" href="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/drucker.css" type="text/css" title="Druckansicht">
+<meta name="author" content="F.J.Gensicke WEBDIMA">
+<meta name="language" content="de">
+<meta name="robots" content="follow">
+<link rel="SHORTCUT ICON" href="http://www.elektronikentwickler-aachen.de/allgemeines/favicon.ico" type="image/ico">
+<!--/INC:"head2.inc"-->
+<meta name="description" content="Ingenieurbüro für Elektronikentwicklung F.Jürgen Gensicke: Berechnung der Kapazität von Leiterbahnen">
+<meta name="keywords" content="Elektronik,Entwickler,Hardware,VHDL,Gensicke,Berechnung,Kapazität,Leiterbahnen">
+<title>Elektronik Knowhow: Berechnung der Kapazität von Leiterbahnen</title>
+</head>
+<body>
+<!--INC:"kopfmenu2.inc","12.02.2014 11:17:00"-->
+<p class="woben"><a name="oben" id="oben"> </a></p>
+<div class="notvis">
+<p><strong>Sprungnavigation:</strong></p>
+<p><a href="http://www.elektronikentwickler-aachen.de/allgemeines/kapazitaet_leiterbahnen.htm#inhalt">zum Inhalt </a></p>
+</div>
+<div id="sitehead">
+<h1>Elektronik Entwickler <span class="or">Aachen</span></h1>
+<h2>Ingenieurbüro für Elektronikentwicklung</h2>
+<h3>Elektronikentwickler F.Jürgen Gensicke</h3>
+</div>
+<div id="sitemenu">
+<ul id="menulist">
+<li><a href="http://www.elektronikentwickler-aachen.de/index.htm">Startseite </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/dienstleistungen.htm">Dienstleistungen </a>
+<ul id="sm1">
+<li><a href="http://www.elektronikentwickler-aachen.de/analoges_und_digitales_schaltungsdesign.htm">Elektronikentwicklung </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/platinen-aenderung-redesign.htm">Änderungen an Platinen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/platinen-nachbau-reengineering.htm">Nachbau von Platinen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/fpga_entwicklung_mit_vhdl.htm">FPGA mit VHDL </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/mikroprozessorentwicklung_mit_pic.htm">Mikroprozessorentwicklung </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/3d-modeling-altium-designer.htm">3D-Modeling im CAD</a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/beratungs_dienstleistungen.htm">Beratungs Dienstleistungen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/freier-mitarbeiter-elektronikentwicklung.htm">Freelancing </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/betterphaser_audio_video_ausphasung.htm">Audio-Video Phasendetector</a></li>
+</ul></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/zusammenarbeit.htm">Zusammenarbeit </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/erfahrungen_kenntnisse.htm">Erfahrungen </a>
+<ul id="sm2">
+<li><a href="http://www.elektronikentwickler-aachen.de/erfahrungen_kenntnisse-analoges-schaltungsdesign.htm">Analoges Schaltungsdesign </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/erfahrungen_kenntnisse-mixed-signal-schaltungsdesign.htm">Mixed-Signal Schaltungsdesign </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/erfahrungen_kenntnisse-fpga-entwicklung-vhdl.htm">FPGA Entwicklung mit VHDL </a></li>
+</ul></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/ueber-uns.htm">Über uns </a>
+<ul id="sm3">
+<li><a href="http://www.elektronikentwickler-aachen.de/ueber-uns.htm">Über uns / Anschrift </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/qualitaetsmanagment-iso9001.htm">Qualitätsmanagement nach DIN EN ISO 9001 </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/neuigkeiten.htm">Neuigkeiten </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/referenzen.htm">Referenzen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/publikationen.htm">Publikationen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/produkt-flyer.htm">Produkt-Flyer </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/kooperationen.htm">Kooperationen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/impressum.htm">Impressum </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/nutzung.htm">Nutzungsbedingungen </a></li>
+</ul></li>
+<li><a href="https://www.elektronikentwickler-aachen.de/kontaktformular.htm">Kontakt </a></li>
+</ul>
+</div>
+<!--/INC:"kopfmenu2.inc"-->
+<div id="layout">
+<div id="content">
+<div class="headlink">Sie sind hier: <a href="http://www.elektronikentwickler-aachen.de/index.htm">Elektronikentwickler-Aachen.de</a> - <a href="http://www.elektronikentwickler-aachen.de/allgemeines/index.htm">Allgemeines</a> - Berechnung der Kapazität von Leiterbahnen</div>
+<h2>Berechnung der Kapazität von Leiterbahnen</h2>
+<p>Um einen Richtwert für die kapazitive Last der Leiterbahn zu bekommen, wird dies exemplarisch für eine 100mil lange und 35um hohe Leiterbahn über einer Ground-Plane berechnet.</p>
+<p><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/kapa1.gif" width="500" height="130" alt=""><br>
+Bild1: Aufbau einer Leiterplatte<br>
+(Prepreg=8.4mil=213um; Core=40mil=1.026mm)</p>
+<!--INC:"ad_allg.inc","17.05.2013 11:36:06"-->
+<script src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/share.js"></script><script type="text/javascript"><!--
+google_ad_client = "ca-pub-0515408896305826";
+/* elektronik */
+google_ad_slot = "3344076630";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<!--/INC:"ad_allg.inc"-->
+<p>Unter der Annahme, dass sich die Leiterbahnen zwischen zwei Bauteilen (z.B. Latch und RAM) wie ein Plattenkondensator verhalten, läßt sich diese Kapazität näherungsweise mit der folgenden Formel bestimmen:</p>
+<p><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/kapa2.gif" width="154" height="68" alt=""></p>
+<p>Dieser Näherungswert wird durch Runterklappen von jeweils der Hälfte der beiden Seiten b noch verbessert.<br>
+Zusammen mit a erhält man die Gesamtbreite und mit der Länge l ergibt sich die Kondensatorplattenfläche:</p>
+<p><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/kapa3.gif" width="176" height="96" alt=""></p>
+<p>Daraus folgt:</p>
+<p><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/kapa4.gif" width="274" height="68" alt=""></p>
+<p>Gegeben:</p>
+<p><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/kapa5.gif" width="498" height="228" alt=""></p>
+<p>Eingesetzt:</p>
+<p><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/kapa6.gif" width="500" height="49" alt=""></p>
+<p>Ergebnis:</p>
+<p><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/kapa7.gif" width="280" height="30" alt=""></p>
+<p>Der Einfluss der Leiterbahnkapazität ist etwa ein zenhtel der Größenordnung der Eingangskapazität eines angeschlossenen CMOS-Bauteils.<br>
+Die Leiterbahnkapazität muss somit beachtet werden.</p>
+</div>
+<!--INC:"nav_all.inc","19.03.2013 10:30:34"-->
+<div id="navleft">
+<div class="boxnl">
+<h3>Elektronik Knowhow für Elektronikentwickler:</h3>
+<ul>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/designflow/index.htm">Designflow im Elektronikdesign </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/schaltplanerstellung/index.htm">Hinweise für die Schaltplanerstellung </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/layouterstellung/index.htm">Hinweise für die Layouterstellung </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/berechnung_netzteil/index.htm">Berechnungshinweise für Netzteile </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/schaltregler/index.htm">Berechnungshinweise für Schaltregler </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/pld_programmierbarelogik/index.htm">Programmierbare Logik </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/fpga_vhdl/index.htm">FPGA mit VHDL </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/stromaufnahme_cmos_ic/index.htm">Berechnung der Stromaufnahme von CMOS-ICs </a></li>
+<li><a class="cf" href="http://www.elektronikentwickler-aachen.de/encoder_drehgeber_linearmassstaebe/index.htm">Informationen zu Drehgebern und Linearmassstäben </a></li>
+<li><p class="of"><strong>weitere allgemeine Informationen</strong></p>
+<ul>
+<li><a href="http://www.elektronikentwickler-aachen.de/allgemeines/index.htm">Rubrikenseite </a></li>
+<li><a href="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen.html">Berechnung von Kapazitäten von Leiterbahnen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/allgemeines/waermeleitpaste.htm">Hinweise zur Wärmeleitpaste </a></li>
+</ul>
+</li>
+<li><div style="position:relative;height:20px;width:121px;display:inline-block"><iframe style="padding:0px !important;border:none !important;margin:0px !important;overflow:hidden !important;background-color:transparent !important;width:121px !important;height:20px !important;" scrolling="no" height="20" src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/share.html" width="121" class="XING" frameborder="0" allowtransparency="true" data-reload="true"></iframe></div>
+<script>
+;(function (d, s) {
+var x = d.createElement(s),
+s = d.getElementsByTagName(s)[0];
+x.src = "https://www.xing-share.com/js/external/share.js";
+s.parentNode.insertBefore(x, s);
+})(document, "script");
+</script></li>
+</ul>
+<!--
+<p>Verschlüsselte Datenübertragung durch:<br />
+<img src="../images/rapidssl2.gif" height="50" width="90" alt="Rapid SSL Zertifikat" /></p>
+-->
+</div>
+</div>
+<!--/INC:"nav_all.inc"-->
+<div class="cleaner">&nbsp;</div>
+<!--INC:"nutzung2.inc","12.02.2014 17:51:02"-->
+<div id="sitefoot">
+<div class="textright"><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/logo-qm-yasko.gif" alt="Qualitätsmanagement-Stempel von YASKO" width="100" height="100"><br>Qualitätsmanagement nach<br>DIN EN ISO 9001:2008</div>
+<div class="textleft"><img src="./Elektronik Knowhow  Berechnung der Kapazitavon Leiterbahnen_files/logo-fed.gif" alt="Logo des FED" width="120" height="42"><br>Mitglied im Fachverband für<br>Elektronik-Design e.V. (FED)</div>
+<div class="textclearright"></div>
+</div>
+<div id="fuss">
+<ul>
+<li><a href="http://www.elektronikentwickler-aachen.de/allgemeines/kapazitaet_leiterbahnen.htm#oben">nach oben </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/index.htm">Startseite </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/inhaltsverzeichnis.htm">Inhaltsverzeichnis </a></li>
+<li><a href="https://www.elektronikentwickler-aachen.de/kontaktformular.htm">Kontakt </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/kooperationen.htm">Kooperationen </a></li>
+</ul>
+<ul>
+<li><a href="http://www.elektronikentwickler-aachen.de/impressum.htm">Impressum </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/nutzung.htm">Nutzungsbedingungen </a></li>
+<li><a href="http://www.elektronikentwickler-aachen.de/agb.htm">Allgemeine Geschäftsbedingungen (AGB) </a></li>
+</ul>
+<div id="sitefoot">
+<p>Das Urheberrecht dieser Seite liegt bei F.Jürgen Gensicke 2010-2014<br>
+Alle genannten Marken- und Warenzeichen erkennen wir an!<br>
+Elektronikentwickler-Aachen.de Büro: 0241/47580488 Mobil: 0173/2931531</p>
+</div>
+</div>
+<!--/INC:"nutzung2.inc"-->
+</div>
+
+</body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0266)https://www.xing-share.com/app/share?op=get_share_button;url=www.elektronikentwickler-aachen.de;counter=right;lang=de;type=iframe;hovercard_position=1;shape=rectangle#referer=http%3A%2F%2Fwww.elektronikentwickler-aachen.de%2Fallgemeines%2Fkapazitaet_leiterbahnen.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="share2.css">
+</head>
+<body>
+<div class="xing-box right">
+<div class="xing-button right">
+<a href="https://www.xing.com/social_plugins/share?url=http%3a%2f%2fwww.elektronikentwickler-aachen.de&wtmc=XING;&sc_p=xing-share" title="Kontakten auf XING empfehlen" target="_blank" id="share-link">
+<div class="spi-button button-20 green">
+<div></div>
+<span>XING</span>
+</div>
+</a>
+</div>
+<div class="xing-bubble-right-pointer">
+<div></div>
+</div>
+<div class="xing-bubble right" onmouseover="showHoverCard(location.href,&#39;right&#39;);">
+<span class="xing-count right">0</span>
+</div>
+</div>
+
+<div id="xing-hover-card" style="display:none !important;">
+<div style="height:62px !important;width:89px !important;">
+<div style="border-color: transparent #bcbcbc; border-style: solid; border-width: 5px 5px 5px 0; font-size: 0; height: 0px; left: 0px; line-height: 0; position: absolute; top: 5px; width: 0px;"></div>
+<div style="border-color: transparent #FFF; border-style: solid; border-width: 5px 5px 5px 0; font-size: 0; height: 0px; left: 1px; line-height: 0; position: absolute; top: 5px; width: 0px;"></div>
+<div id="xing-hover-bubble" style="background: #FFF !important; border: 1px solid #bcbcbc; -webkit-border-radius: 4px; -moz-border-radius: 4px; -ms-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; float:left !important; height: 62px; margin-left: 4px; padding: 0px 5px;">
+<div style="padding-top:2px !important;" title="Empfehlungen">
+<div style="background:url(https://www.xing-share.com/img/sections/share/icn_hovercard_v1.png) no-repeat 0px 0px !important;font:normal 10px/11px Arial !important;height: 10px !important;margin-bottom: 2px !important;">
+<div style="margin-left:20px !important;cursor:default !important;line-height:11px !important; color:#333;text-align:right !important;">
+0
+</div>
+</div>
+</div>
+<div title="Kommentare">
+<div style="background:url(https://www.xing-share.com/img/sections/share/icn_hovercard_v1.png) no-repeat 0px -10px !important;font:normal 10px/11px Arial !important;color:#333 !important;height: 8px !important;margin-bottom: 2px !important;">
+<div style="margin-left:20px !important;cursor:default !important;line-height:11px !important;text-align:right !important;">
+0
+</div>
+</div>
+</div>
+<div title="Seitenbesuche">
+<div style="margin-left:1px !important;background:url(https://www.xing-share.com/img/sections/share/icn_hovercard_v1.png) no-repeat 0px -18px !important;font:normal 10px/11px Arial !important;color:#333 !important;height: 10px !important;margin-bottom: 2px !important;">
+<div style="margin-left:19px !important;cursor:default !important;line-height:11px !important;text-align:right !important;">
+0
+</div>
+</div>
+</div>
+<div title="Ungefähre Reichweite">
+<div style="margin-left:2px !important;background:url(https://www.xing-share.com/img/sections/share/icn_hovercard_v1.png) no-repeat 0px -28px !important;font:normal 10px/11px Arial !important;color:#333 !important;height: 10px !important;margin-bottom: 2px !important;">
+<div style="margin-left:18px !important;cursor:default !important;line-height:11px !important;text-align:right !important;">
+0
+</div>
+</div>
+</div>
+<div>
+<div style="line-height:12px !important;">
+<a style="float: none !important; text-transform:none !important; display: inline !important;border:0 !important;font:normal 9px/12px Arial !important;outline:0 none !important;color:#006567 !important;padding:0 !important;margin:0 !important;background-color:white !important;text-decoration:underline !important;" title="Gesamtstatistik für den Link http://www.elektronikentwickler-aachen.de" target="_blank" href="https://www.xing.com/app/share?op=get_link_statistics;url=http%3a%2f%2fwww.elektronikentwickler-aachen.de;sc_p=xing-share-statistics;sort=share_counter;sort_direction=asc">Mehr</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+(function(window, document) {
+var referer = getReferer(),
+linkObject = document.getElementById("share-link"),
+sharePopup;
+function getReferer() {
+var referer;
+if (window.location.hash.indexOf('referer') === -1 ) {
+// If there is no referer value on the location.hash,
+// get it from document.referrer and persist it on location.hash
+referer = encodeURIComponent(document.referrer);
+window.location.hash = 'referer=' + referer;
+} else {
+// Otherwise it means that the button was reloaded
+// and the original referrer is lost. Use the one
+// stored under location.hash instead
+if (window.location.hash) {
+referer = window.location.hash.split('=')[1];
+}
+}
+return referer;
+}
+function setEvent(element, event, callback) {
+if (!element) {
+return;
+}
+if (document.addEventListener) {
+element.addEventListener(event, callback, false);
+} else {
+element.attachEvent("on" + event, callback);
+}
+}
+function openSharePopup(event, link) {
+var popupURL = link.getAttribute("href") + "&referer=" + referer,
+popupName = (link.getAttribute('title')).replace(/ /g, '_');
+if (event.preventDefault) {
+event.preventDefault();
+} else {
+event.returnValue = false;
+}
+sharePopup = window.open(popupURL, popupName, "width=600, height=450, top=20, left=20");
+checkIfPopupIsOpened();
+}
+function checkIfPopupIsOpened() {
+if(sharePopup && !sharePopup.closed) {
+setTimeout(checkIfPopupIsOpened, 500);
+} else {
+sharePopup = null;
+window.location.reload(true);
+}
+}
+function retrieveHoverCardData(){
+var xingHoverCard = document.getElementById("xing-hover-card");
+if(xingHoverCard && xingHoverCard.innerHTML){
+return xingHoverCard.innerHTML;
+} else {
+return "";
+}
+}
+function showHoverCard(iframeUrl, counterPosition){
+if(window.postMessage){
+parent.postMessage(createStringFrom(iframeUrl, counterPosition, retrieveHoverCardData()), "*");
+}
+}
+function createStringFrom(iframeUrl, counterPosition, hoverCardHtml) {
+return iframeUrl+"|"+counterPosition+"|"+hoverCardHtml;
+}
+setEvent(linkObject, "click" , function(event) {
+openSharePopup(event, linkObject);
+});
+if (window.postMessage) {
+window.parent.postMessage("valid", "*");
+}
+window.showHoverCard = showHoverCard;
+}(window, document));
+</script>
+
+
+</body></html>

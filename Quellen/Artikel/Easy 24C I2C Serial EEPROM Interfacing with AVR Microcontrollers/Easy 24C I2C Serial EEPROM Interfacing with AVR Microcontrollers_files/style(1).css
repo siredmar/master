@@ -1,0 +1,15 @@
+/*
+
+Test!
+
+*/
+
+.product_box{
+	border: 1px solid #CCC;
+	border-radius: 16px;
+	width: 440px;
+	background:#EEE;
+	padding:32px;
+	box-shadow: 2px 2px 2px #888888;
+}
+	

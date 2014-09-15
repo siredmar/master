@@ -1,0 +1,57 @@
+/* updated by jgarberx - Geo User performance on IE with fonts*/
+/* INTEL CLEAR fonts*/
+@font-face {
+    font-family: "intel-clear";
+	src:url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin.eot");
+    src: url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin.eot?#iefix") format("embedded-opentype"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin.woff") format("woff"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "intel-clear";
+    src:url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold.eot");
+    src: url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold.eot?#iefix") format("embedded-opentype"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold.woff") format("woff"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "intel-clear";
+    src:url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-italic.eot");
+    src: url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-italic.eot?#iefix") format("embedded-opentype"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-italic.woff") format("woff"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "intel-clear";
+    src:url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold-italic.eot");
+    src: url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold-italic.eot?#iefix") format("embedded-opentype"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold-italic.woff") format("woff"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-bold-italic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: "intel-clear";
+    src:url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite.eot");
+    src: url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite.eot?#iefix") format("embedded-opentype"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite.woff") format("woff"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: "intel-clear";
+    src:url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite-italic.eot");
+    src: url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite-italic.eot?#iefix") format("embedded-opentype"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite-italic.woff") format("woff"), url("http://www.intel.com/etc/designs/intel/us/en/Fonts/intel-clear-latin-lite-italic.ttf") format("truetype");
+    font-weight: 200;
+    font-style: italic;
+}
+ 
+
+.tk-intel-neo-sans,#recode50header,#recode50header a,#recode50header h1,#recode50header  h2,#recode50header  h3,#recode50header  h4,#recode50header  h5,#recode50header  h6,#recode50header  input,#recode50header  li,#recode50header  p,#recode50header  select,#recode50header  td,#recode50header  textarea,#recode50header  ul{
+	font-family:intel-clear, "tahoma","helvetica",sans-serif !important;
+}
+
+.tk-intel-neo-sans,#recode50header #tertiary-nav a,#recode50header #tertiary-nav h1,#recode50header #tertiary-nav h2,#recode50header #tertiary-nav h3,#recode50header #tertiary-nav h4,#recode50header #tertiary-nav h5,#recode50header #tertiary-nav h6,#recode50header #tertiary-nav input,#recode50header #tertiary-nav li,#recode50header #tertiary-nav p,#recode50header #tertiary-nav select,#recode50header #tertiary-nav td,#recode50header #tertiary-nav textarea,#recode50header #tertiary-nav ul{
+	font-family:Arial, Helvetica, Verdana, sans-serif !important;
+}
+
+.tk-intel-neo-sans,#recode50footer,#recode50footer a,#recode50footer h1,#recode50footer h2,#recode50footer h3,#recode50footer h4,#recode50footer h5,#recode50footer h6,#recode50footer input,#recode50footer li,#recode50footer p,#recode50footer select,#recode50footer td,#recode50footer textarea,#recode50footer ul{
+	font-family:intel-clear, "tahoma","helvetica",sans-serif !important;
+}

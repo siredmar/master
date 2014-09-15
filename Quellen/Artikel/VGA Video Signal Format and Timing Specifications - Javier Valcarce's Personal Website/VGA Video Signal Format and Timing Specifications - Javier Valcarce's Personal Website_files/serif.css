@@ -1,0 +1,13 @@
+/* SuperClean MediaWiki Skin
+   2007 Javier Valcarce García, <javier.valcarce@gmail.com>
+   Use it as you want.
+ */
+@import url("base.css");
+
+body 
+{ 
+     font-family: serif; 
+     font-size: 100%;
+     color: #222;             
+}
+

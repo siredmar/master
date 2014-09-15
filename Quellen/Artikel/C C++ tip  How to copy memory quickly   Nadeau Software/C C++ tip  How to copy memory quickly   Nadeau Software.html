@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0074)http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="copyright" content="Copyright Nadeau Software Consulting. All rights reserved.">
+<meta name="description" content="This article benchmarks five common methods and four common compilers to find the fastest method to copy an array quickly.">
+<meta name="keywords" content="Memory copy,memcpy,memmove,bcopy,array copy">
+<link rel="shortcut icon" href="http://nadeausoftware.com/favicon.gif" type="image/x-icon">
+<style type="text/css" media="all">@import "/sites/NadeauSoftware.com/files/css/d125078869b336dd69d9f5492f6739d3.css";</style>
+<title>C/C++ tip: How to copy memory quickly | Nadeau Software</title>
+</head>
+<body>
+<div id="page-body">
+	<div class="breadcrumb"><a href="http://nadeausoftware.com/">Home</a> » <a href="http://nadeausoftware.com/topics">Articles</a> » <a href="http://nadeausoftware.com/articles/2012">2012</a> » <a href="http://nadeausoftware.com/articles/2012/05">May</a></div>	<div id="page-main" class="article">
+		<h1 class="title">C/C++ tip: How to copy memory quickly</h1><div class="node">
+  <div class="submitted">May 8, 2012  </div>
+      <div class="taxonomy">Topics: <a href="http://nadeausoftware.com/articles/c_c">C/C++</a></div>
+  <div class="content"><p class="summary">Code performance always matters, and copying data   is a common operation. Simple array copy code uses a  loop to copy one value at a time. ISO C provides the <code>memcpy(&nbsp;)</code> and <code>memmove(&nbsp;)</code> functions to do this efficiently, but are they faster, by how much, and under what conditions? <strong>This article benchmarks five common methods and four common compilers to find the fastest method to copy an array quickly.</strong></p>
+
+
+
+
+
+<div class="toc">
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Howtocopyanarray">How to copy an array</a></li>
+<ol>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Method1Loopwitharrayindexes">Method 1:  Loop with array indexes</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Method2Loopwithpointers">Method 2: Loop with pointers</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Method3Loopwithgetsetfunctioncalls">Method 3: Loop with get/set function calls</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Method4Callmemcpynbsp">Method 4: Call memcpy(&nbsp;)</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Method5Callmemmovenbsp">Method 5: Call memmove(&nbsp;)</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Untestedmethods">Untested methods</a></li>
+</ol>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Testspecification">Test specification</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Benchmarkresultsndashcompiledwithoutoptimizations">Benchmark results – compiled without optimizations</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Benchmarkresultsndashcompiledwithoptimizations">Benchmark results – compiled with optimizations</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Conclusions">Conclusions</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Furtherreading">Further reading</a></li>
+<ol>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#RelatedarticlesatNadeauSoftwarecom">Related articles at NadeauSoftware.com</a></li>
+<li><a href="http://nadeausoftware.com/articles/2012/05/c_c_tip_how_copy_memory_quickly#Webarticles">Web articles</a></li>
+</ol>
+</ol>
+</div>
+
+<h2 id="Howtocopyanarray">How to copy an array</h2>
+<p>Let  source data be an array of 4-byte integers to copy into a destination array. Both arrays are on the heap.</p>
+<h3 class="method">Method 1:  Loop with array indexes</h3>
+  <p>Use a  loop with incrementing array indexes to copy from the source to the destination.</p>
+<pre>for ( size_t i = 0; i &lt; length; ++i )
+	dst[i] = src[i];</pre>
+
+<h3 class="method">Method 2: Loop with pointers</h3>
+<p>Use a loop with incrementing parallel source and destination pointers.</p>
+<pre>const int* s = src;
+int* d = dst;
+const int*const dend = dst + n;
+while ( d != dend )
+	*d++ = *s++;</pre>
+<h3 class="method">Method 3: Loop with get/set function calls</h3>
+<p>Loop through the array and call  <code>get(&nbsp;)</code> and <code>set(&nbsp;)</code> functions, such as accessor functions on a C++ data class, or from C++ array operator overloading.</p>
+<pre>for ( size_t i = 0; i &lt; n; ++i )
+	set( dst, i, get( src, i ) );</pre>
+<p class="method">The <code>get(&nbsp;)</code> and <code>set(&nbsp;)</code> functions used here are defined in the same file as:</p>
+<pre class="method">int get( const int*const src, const size_t index ) { return src[index]; }
+int set( int*const dst, const size_t index, const int value ) { dst[index] = value; }</pre>
+<h3 class="method">Method 4: Call memcpy(&nbsp;)</h3>
+<p>Call the ISO C <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/memcpy.3.html" class="externallink"><code>memcpy(&nbsp;)</code></a> function.</p>
+<pre>memcpy( (void*)dst, (void*)src, n * sizeof(int) );</pre>
+<h3 class="method">Method 5: Call memmove(&nbsp;)</h3>
+<p>Call the ISO C <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/memmove.3.html" class="externallink"><code>memmove(&nbsp;)</code></a> function (same as <code>memcpy(&nbsp;)</code> but checks for source and destination overlap).</p>
+<pre>memmove( (void*)dst, (void*)src, n * sizeof(int) );</pre>
+<h3 class="method">Untested methods</h3>
+<p>There are <em>a lot</em> of functions very similar to <code>memcpy(&nbsp;)</code> and <code>memmove(&nbsp;)</code>, and usually implemented using them. Here are few:</p>
+<ul class="bullet-block-list">
+  <li>Memory copy with void pointers:
+    <ul class="bullet-block-list">
+      <li>POSIX's deprecated <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/bcopy.3.html" class="externallink"><code>bcopy(&nbsp;)</code></a> is identical to <code>memmove(&nbsp;)</code>, but with swapped source and destination arguments.</li>
+      <li>GNU's <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/wmempcpy.3.html" class="externallink"><code>mempcpy(&nbsp;)</code></a> returns a pointer to the byte after the last byte written, but is otherwise identical to <code>memcpy( )</code>.</li>
+      <li>POSIX's <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/memccpy.3.html" class="externallink"><code>memccpy(&nbsp;)</code></a> and Microsoft's <a href="http://msdn.microsoft.com/en-us/library/2337tekx.aspx" class="externallink"><code>_memccpy(&nbsp;)</code></a> stop the copy on a selected value, but are otherwise identical to <code>memcpy(&nbsp;)</code>.</li>
+      <li>
+        <p>Gnome's <a href="http://developer.gnome.org/glib/stable/glib-Memory-Allocation.html#g-memmove" class="externallink"><code>g_memmove(&nbsp;)</code></a> is  a macro that usually maps to <code>memmove(&nbsp;</code>).</p>
+      </li>
+      <li> Microsoft's <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa366535(v=vs.85).aspx" class="externallink"><code>CopyMemory(&nbsp;)</code></a> and <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa366788(v=vs.85).aspx" class="externallink"><code>MoveMemory(&nbsp;)</code></a> are identical to <code>memcpy(&nbsp;)</code> and <code>memmove(&nbsp;)</code>. </li>
+      <li>Microsoft's <code><a href="http://msdn.microsoft.com/en-us/library/wes2t00f(v=vs.110).aspx" class="externallink">memcpy_s(&nbsp;)</a></code> and <a href="http://msdn.microsoft.com/en-us/library/e2851we8(v=vs.110).aspx" class="externallink"><code>memmove_s(&nbsp;)</code></a> add a destination array length and do array bounds checking, but are otherwise identical to <code>memcpy(&nbsp;)</code> and <code>memmove(&nbsp;)</code><code>.</code></li>
+    </ul>
+  </li>
+  <li>Memory copy with wide character pointers:
+    <ul class="bullet-block-list">
+      <li>ISO C's <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/wmemcpy.3.html" class="externallink"><code>wmemcpy(&nbsp;)</code></a> and <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/wmemmove.3.html" class="externallink"><code>wmemmove(&nbsp;)</code></a> and GNU's<code> </code><a href="http://www.kernel.org/doc/man-pages/online/pages/man3/wmempcpy.3.html" class="externallink"><code>wmempcpy(&nbsp;)</code></a> use wide character pointer arguments, but are otherwise identical to <code>memcpy(&nbsp;)</code>, <code>memmove(&nbsp;)</code>, and <code>mempcpy(&nbsp;)</code>.</li>
+      <li>Microsoft's<code> </code><a href="http://msdn.microsoft.com/en-us/library/wes2t00f%28v=vs.110%29.aspx" class="externallink"><code>wmemcpy_s(&nbsp;)</code></a>, and <a href="http://msdn.microsoft.com/en-us/library/e2851we8(v=vs.110).aspx" class="externallink"><code>wmemmove_s(&nbsp;)</code></a> add a destination array length and do array bounds checking, but are otherwise identical to<code> wmemcpy(&nbsp;)</code> and <code>wmemmove(&nbsp;)</code>.</li>
+    </ul>
+  </li>
+  <li>String copy with character pointers:
+    <ul class="bullet-block-list">
+      <li>ISO C's <code><a href="http://www.kernel.org/doc/man-pages/online/pages/man3/strcpy.3.html" class="externallink">strncpy(&nbsp;)</a></code> and GNU's <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/stpncpy.3.html" class="externallink"><code>stpncpy(&nbsp;)</code></a> use character pointer arguments and stop the copy on a '\0' character, but are otherwise identical to <code>memcpy(&nbsp;)</code> and <code>mempcpy(&nbsp;)</code>.</li>
+      <li>Microsoft's<code> </code><a href="http://msdn.microsoft.com/en-us/library/5dae5d43.aspx" class="externallink"><code>strncpy_s(&nbsp;)</code></a> adds a destination array length and does array bounds checking, but is otherwise identical to <code>strncpy(&nbsp;)</code>.</li>
+    </ul>
+</li>
+  <li>String copy with wide character pointers:
+    <ul class="bullet-block-list">
+      <li>ISO C's <code><a href="http://www.kernel.org/doc/man-pages/online/pages/man3/wcsncpy.3.html" class="externallink">wcsncpy(&nbsp;)</a></code> and GNU's <a href="http://www.kernel.org/doc/man-pages/online/pages/man3/wcpncpy.3.html" class="externallink"><code>wcpncpy(&nbsp;)</code></a> use wide character pointer arguments and stop the copy on a '\0' wide character, but are otherwise identical to <code>strncpy(&nbsp;)</code> and <code>stpncpy(&nbsp;)</code>.</li>
+      <li>Microsoft's<code> </code><a href="http://msdn.microsoft.com/en-us/library/5dae5d43.aspx" class="externallink"><code>wcsncpy_s(&nbsp;)</code></a> adds a destination array length and does array bounds checking, but is otherwise identical to <code>wcsncpy(&nbsp;)</code>.</li>
+    </ul>
+  </li>
+</ul>
+<h2 id="Testspecification">Test specification</h2>
+<p>The benchmarks reported below time the same code compiled with four common  C/C++ compilers:</p>
+<ul>
+  <li><a href="http://clang.llvm.org/" class="externallink">CLANG/LLVM 3.0</a></li>
+  <li><a href="http://gcc.gnu.org/" class="externallink">GNU GCC 4.6.1</a></li>
+  <li><a href="http://software.intel.com/en-us/intel-compilers/" class="externallink">Intel ICC 12.1</a></li>
+  <li><a href="http://www.pgroup.com/products/pgiserver.htm" class="externallink">Portland Group PGCC 11.9</a></li>
+</ul>
+<p>Compiler flags used here enable   maximum code optimizations and 64-bit code tuned to  a <a href="http://ark.intel.com/products/64595/Intel-Xeon-Processor-E5-2670-20M-Cache-2_60-GHz-8_00-GTs-Intel-QPI" class="externallink">2.6GHz Intel EMT64T Xeon E5-2670 "Sandy Bridge" processor.</a> The process has a 32 Kbyte L1 cache, a 256 Kbyte L2 cache, and a 20 Mbyte L3 cache. The  L1 cache  supports two simultaneous CPU loads per clock cycle and an 8-byte bus for each load. For a 2.6GHz clock, the theoretical maximum bandwidth from the L1 cache to the CPU is (2.6GHz * 2 * 8) = 44 Gbytes/sec.</p>
+<p>All tests were run on Linux  using one core, and all tests were run multiple times and their results averaged.</p>
+<p>The  plots below show  performance in Gbytes/sec (vertical axis) of each  method as the array size (horizontal axis) is varied from 4 bytes to 64 Gbytes in powers of 2.</p>
+<h2 id="Benchmarkresultsndashcompiledwithoutoptimizations">Benchmark results – compiled without optimizations</h2>
+<p>The plot below shows performance for code compiled with GCC <em>without optimizations.</em> CLANG/LLVM, ICC, and PGCC produce similar results. On the left the vertical axis runs from 0 to 40 Gbytes/sec. On the right, the plot has been zoomed in to the 0 to 2 Gbytes/sec range.</p>
+<blockquote>
+  <p><img src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/MemoryCopy-gcc-O0.png" alt="" width="883" height="255"></p>
+</blockquote>
+<p>Compiler observations:</p>
+<ul class="bullet-block-list">
+  <li>Unoptimized code performance for the looping methods is <em>extremely poor</em> at  1.5 Gbytes/sec or less compared to the theoretical maximum of 44 Gbytes/sec for the processor.</li>
+</ul>
+<p>Method observations:</p>
+<ul class="bullet-block-list">
+<li>The loop methods are certainly faster than the get/set functions, but they're  still slow compared to  <code>memcpy(&nbsp;)</code> and <code>memmove(&nbsp;)</code>, which use optimized LibC functions.</li>
+</ul>
+<p>However, these results are for code without any compiler optimizations. Nobody should ever release unoptimized code.</p>
+<h2 id="Benchmarkresultsndashcompiledwithoptimizations">Benchmark results – compiled with optimizations</h2>
+<p>The plots below show performance for code compiled using CLANG/LLVM, GCC, ICC, and PGCC using the <em>maximum optimizations</em> available on the test platform.</p>
+<blockquote>
+  <p><img src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/MemoryCopy-clang-O3-march.png" alt="" width="429" height="255"><img src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/MemoryCopy-gcc-Ofast-march.png" alt="" width="429" height="255"></p>
+<p><img src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/MemoryCopy-icc-fast.png" alt="" width="428" height="255"><img src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/MemoryCopy-pgcc-fastdsse-O4-sandybridge64.png" alt="" width="428" height="255"></p>
+</blockquote>
+<p>The mountain-shaped curve comes from  a combination of loop overhead and the processor's cache speeds. For very small arrays, loop overhead dominates and performance is low. For mid-sized arrays, fast copying runs near the L1 cache speed and performance is high. As arrays get larger, they spill over from the L1 to  L2 cache, L2 to L3, and L3 to memory, and performance  drops. The curves  smooth out L1/L2/L3 performance steps  because the processor's prefetcher tries to stage data in the L1 cache ahead of need.</p>
+<p>Compiler observations:</p>
+<ul class="bullet-block-list">
+<li>PGCC fails to optimize the  loop with array indexes (blue) or  get/set functions (yellow). The array index loop is a common code construct and should have been recognized and optimized, and the get/set functions should have been inlined. Additional, while the pointer loop (green) was optimized, its performance drops off suddenly at the 256 Kbyte array test, which is odd.</li>
+<li>CLANG/LLVM fails to optimize the  loop with pointers (green). This is a very common code construct and should have been optimized.</li>
+</ul>
+<p>Method observations:</p>
+<ul class="bullet-block-list">
+  <li>ICC is the undisputed star of the show with spectacular performance for everything except <code>memmove(&nbsp;)</code> (purple), and even that is about as fast as the fastest results from the other compilers. The ICC code hits an amazing 42.5 Gbytes/sec, and just short of  the 44 Gbyte/sec theoretical maximum. The get/set functions are clearly inlined and the looping methods have been optimized to as well as ICC's custom fast SSE <code>memcpy(&nbsp;)</code>.</li>
+</ul>
+<h2 id="Conclusions">Conclusions</h2>
+<ul class="bullet-block-list">
+
+  <li>Code from non-optimizing compilers  is terrible and should never be released.</li>
+  <li>PGCC and CLANG/LLVM both missed optimizing common code constructs, producing unexpectedly bad performance.</li>
+  <li><code>memcpy(&nbsp;)</code> is always the fastest method to copy data. A great compiler, like ICC, can optimize loops to do as well.</li>
+</ul>
+<h2 id="Furtherreading">Further reading</h2>
+<h3 id="RelatedarticlesatNadeauSoftwarecom">Related articles at NadeauSoftware.com</h3>
+<ul class="link-list-flush">
+<li><a href="http://nadeausoftware.com/articles/2012/03/c_c_tip_how_measure_cpu_time_benchmarking">C/C++ tip: How to measure CPU time for benchmarking</a> explains get the CPU time of the current process. The article's <code>getCPUTime(&nbsp;)</code> function was used for these benchmarks.</li>
+</ul>
+<h3 id="Webarticles">Web articles</h3>
+<ul class="link-list-flush">
+<li><a href="http://blogs.msdn.com/b/sdl/archive/2009/05/14/please-join-me-in-welcoming-memcpy-to-the-sdl-rogues-gallery.aspx" class="externallink">Please join me in welcoming <code>memcpy(&nbsp;)</code> to the SDL Rogues Gallery</a> at Microsoft.com. This 2009 article briefly describes Microsoft's work to deprecate <code>memcpy(&nbsp;)</code> and <code>CopyMemory(&nbsp;)</code> functions in favor of <code>memcpy_s(&nbsp;)</code>. The thinking is that programmers forget how big the destination array is  and accidentally copy beyond the end of it. Microsoft's <code>memcpy_s(&nbsp;)</code> brings the destination array size to programmer attention by adding it as a function argument, and letting the function check that the copy will fit. Detractors of Microsoft's stance (such as <a href="http://sigttou.com/ban-programmers-not-functions" class="externallink">this one</a>) point out that the same sloppy programming that creates a buffer overrun with <code>memcpy(&nbsp;)</code> works with <code>memcpy_s(&nbsp;)</code> if you use the wrong destination array size. So, creating a non-standard function accomplishes nothing except make it harder to port code to/from Windows. Here's Microsoft's full list of <a href="http://msdn.microsoft.com/en-us/library/bb288454.aspx" class="externallink">banned function calls.</a> To date no other OSes have followed Microsoft's approach.</li>
+</ul></div>
+</div>
+<div id="comments"><h2>Comments</h2>  <div class="box">
+    <h2 class="title">Post new comment</h2>    <div class="content"><form action="http://nadeausoftware.com/comment/reply/112" accept-charset="UTF-8" method="post" id="comment-form">
+<div><div class="form-item" id="edit-name-wrapper">
+ <label for="edit-name">Your name: </label>
+ <input type="text" maxlength="60" name="name" id="edit-name" size="30" value="Anonymous" class="form-text">
+</div>
+<div class="form-item" id="edit-mail-wrapper">
+ <label for="edit-mail">E-mail: </label>
+ <input type="text" maxlength="64" name="mail" id="edit-mail" size="30" value="" class="form-text">
+ <div class="description">The content of this field is kept private and will not be shown publicly.</div>
+</div>
+<div class="form-item" id="edit-homepage-wrapper">
+ <label for="edit-homepage">Homepage: </label>
+ <input type="text" maxlength="255" name="homepage" id="edit-homepage" size="30" value="" class="form-text">
+</div>
+<div class="form-item" id="edit-subject-wrapper">
+ <label for="edit-subject">Subject: </label>
+ <input type="text" maxlength="64" name="subject" id="edit-subject" size="60" value="" class="form-text">
+</div>
+<div class="form-item" id="edit-comment-wrapper">
+ <label for="edit-comment">Comment: <span class="form-required" title="This field is required.">*</span></label>
+ <div class="resizable-textarea"><textarea cols="60" rows="15" name="comment" id="edit-comment" class="form-textarea resizable required processed"></textarea><div class="grippie" style="margin-right: -6px;"></div></div>
+</div>
+<ul class="tips"><li>Allowed HTML tags: &lt;a&gt; &lt;em&gt; &lt;strong&gt; &lt;cite&gt; &lt;code&gt; &lt;ul&gt; &lt;ol&gt; &lt;li&gt; &lt;dl&gt; &lt;dt&gt; &lt;dd&gt;</li><li>Lines and paragraphs break automatically.</li><li>Web page addresses and e-mail addresses turn into links automatically.</li></ul><p><a href="http://nadeausoftware.com/filter/tips">More information about formatting options</a></p><input type="hidden" name="form_id" id="edit-comment-form" value="comment_form">
+<input type="submit" name="op" id="edit-preview" value="Preview comment" class="form-submit">
+
+</div></form>
+</div>
+ </div>
+
+</div>	</div>
+			<div id="footer">Copyright © Nadeau Software Consulting (Dr. David R. Nadeau).  All rights reserved.
+<div class="footer-links">
+<a href="http://nadeausoftware.com/about/privacy_policy">Privacy policy</a> |
+<a href="http://nadeausoftware.com/about/terms_use">Terms of use</a> |
+<a href="http://nadeausoftware.com/sitemap">Site map</a></div>
+</div>
+	</div>
+<div id="page-gradient"></div>
+<div id="page-upperleft"></div>
+<div id="page-upperright"></div>
+<div id="page-logo">
+	<a href="http://nadeausoftware.com/" title="Home"><img src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/logo.png" alt="Home"></a></div>
+<div id="page-id-shadow">
+	<span id="page-sitename-shadow">Nadeau</span>
+	<span id="page-sitename2-shadow">software consulting</span>
+</div>
+<div id="page-id">
+	<span id="page-sitename"><a href="http://nadeausoftware.com/" title="Home">Nadeau</a></span>
+	<span id="page-sitename2"><a href="http://nadeausoftware.com/" title="Home">software consulting</a></span>
+</div>
+<div id="page-menu">  <div class="block block-block" id="block-block-1">
+    <h2 class="title"></h2>
+    <div class="content"><ul class="menu">
+<li class="expanded"><a href="http://nadeausoftware.com/articles">Articles</a>
+<ul class="menu">
+<li class="leaf">Programming
+<ul class="menu">
+<li class="leaf"><a href="http://nadeausoftware.com/articles/c_c">C/C++</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/java">Java</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/php">PHP</a></li>
+</ul></li>
+<li class="leaf">Technique
+<ul class="menu">
+<li class="leaf"><a href="http://nadeausoftware.com/articles/text_processing">Text processing</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/user_interfaces">User interfaces</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/visualization">Visualization</a></li>
+</ul></li>
+<li class="leaf">Web
+<ul class="menu">
+<li class="leaf"><a href="http://nadeausoftware.com/articles/web_servers">Apache</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/drupal">Drupal</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/web_site_performance">Site performance</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/safe_web_use">Spam blocking</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/articles/web_authoring">Web authoring</a></li>
+</ul></li>
+</ul></li>
+<li class="leaf"><a href="http://nadeausoftware.com/books">Books</a></li>
+<li class="leaf"><a href="http://nadeausoftware.com/about">About</a></li>
+</ul></div>
+ </div>
+</div>
+<div id="page-search"><form action="./C C++ tip  How to copy memory quickly   Nadeau Software_files/C C++ tip  How to copy memory quickly   Nadeau Software.html" accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search" class="container-inline"><div class="form-item" id="edit-search-theme-form-keys-wrapper">
+ <input type="text" maxlength="128" name="search_theme_form_keys" id="edit-search-theme-form-keys" size="15" value="" title="Enter the terms you wish to search for." class="form-text">
+</div>
+<input type="submit" name="op" id="edit-submit" value="Search" class="form-submit">
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form">
+</div>
+</div></form>
+</div>
+<script type="text/javascript" async="" src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/ga.js"></script><script type="text/javascript" src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/jquery.js"></script>
+<script type="text/javascript" src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/drupal.js"></script>
+<script type="text/javascript" src="./C C++ tip  How to copy memory quickly   Nadeau Software_files/textarea.js"></script>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2204216-1']);
+  _gaq.push(['_trackPageview']);
+
+    (function() {
+	        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		      })();
+
+</script>
+
+
+
+
+</body></html>

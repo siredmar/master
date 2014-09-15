@@ -4,7 +4,7 @@ Im Rahmen der Entwicklung und mit Fortschreiten des Projekts sind, trotz Reviews
 Bei der Hardwareentwicklung sind schaltungstechnisch und bzgl. der erstellten Bauteilbibliothek Fehler aufgetreten. 
 \subsubsection{HDMI-Stecker gekreuzt}
 \textbf{Problem:} Im Schaltplanprogramm \code{Eagle} wurde durch einen Fehler beim Erstellen der HDMI-Buchse CON2 fälschlicherweise die Belegung des Steckers verwendet. Die Verwendung von normalen HDMI-Kabeln ist daher nicht möglich!\\
-\textbf{Workaround:} Alle Signale müssen gekreuzt werden. Hierzu wird ein HDMI-Stecker an ein abgetrenntes Ende eines HDMI-Kabels angelötet. Dazu wird die Belegung entsprechend \refa{fig:hdmi_stecker_problem}\footnote{Quelle: \url{http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/HDMI_Connector_Pinout.svg/1280px-HDMI_Connector_Pinout.svg.png}} gekreuzt.
+\textbf{Workaround:} Alle Signale müssen gekreuzt werden. Hierzu wird ein HDMI-Stecker an ein abgetrenntes Ende eines HDMI-Kabels angelötet. Dazu wird die Belegung entsprechend \refa{fig:hdmi_stecker_problem}\footnote{Quelle: \url{http://de.wikipedia.org/wiki/Datei:HDMI_Connector_Pinout.svg}} gekreuzt.
 \begin{figure}[htp]
 	\center
 	\fbox{\includegraphics[width=0.6\textwidth]{TeilB/hdmi_stecker_problem.png}}
@@ -12,7 +12,7 @@ Bei der Hardwareentwicklung sind schaltungstechnisch und bzgl. der erstellten Ba
     \label{fig:hdmi_stecker_problem}
 \end{figure}\\
 %    }}
-\textbf{Lösung:} Um das Problem endgültig zu lösen, muss das Schaltplansymbol in \code{Eagle} sowie das Platinenlayout bei der Beschaltung der HDMI-Buchse und der RGB-Bridge angepasst werden.
+\textbf{Lösung:} Um das Problem endgültig zu lösen, muss das Schaltplansymbol in \code{Eagle}\\sowie das Platinenlayout bei der Beschaltung der HDMI-Buchse und der RGB-Bridge angepasst werden.
 \subsubsection{LVDS-Steckerfootprint gespiegelt}
 \textbf{Problem:} Das Schaltplansymbol des LVDS-Steckers CON6 muss gespiegelt werden. Das Anstecken des LVDS-Displays mit vorgesehener Belegung kann zu Beschädigung des Displays führen.\\
 \textbf{Workaround:} Der LVDS-Stecker wird um 180 Grad gedreht auf die bereits dort vorgesehenen Pads angelötet.\\
@@ -27,7 +27,7 @@ Bei der Hardwareentwicklung sind schaltungstechnisch und bzgl. der erstellten Ba
 \end{figure}\\
 \textbf{Lösung:} Verkleinerung des Widerstands bzw. Entfernen und Überbrücken von \code{R13} mit 0\,$\Omega$.
 \subsubsection{USB D+/D- vertauscht}
-\textbf{Problem:} Bei den USB-Datensignalen \code{USB_D+} und \code{USB_D-} ist eine Vertauschung unterlaufen (siehe \refa{fig:usb_vertauscht}). Dies verhindert die Kommunikation zwischen PC und AVR.
+\textbf{Problem:} Die USB-Datensignale \code{USB_D+} und \code{USB_D-} sind vertauscht (siehe \refa{fig:usb_vertauscht}). Dies verhindert die Kommunikation zwischen PC und AVR.
 \begin{figure}[htp]
 	\center
 	\fbox{\includegraphics[width=0.45\textwidth]{TeilB/usb_dp_dm.png}}

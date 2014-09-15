@@ -1,0 +1,82 @@
+
+.prTabContainer {
+    margin: 11px auto;
+    width: 700px;
+}
+.simpleTabs {
+    border: 0 solid #E6E6E6;
+    padding: 0;
+    width: 700px;
+}
+ul.tabs {
+    border-bottom: 1px solid #004280;
+    float: left;
+    height: 33px;
+    left: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    width: 700px;
+}
+ul.tabs.simpleTabsBackground {
+    background: url("http://www.intel.com/newsroom/assets/2014/images/nr-superkit-tab-bg.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+ul.tabs li {
+    background-color: #004280;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    float: left;
+    height: 26px;
+    margin-left: 5px;
+    padding: 0;
+    text-decoration: none;
+}
+ul.tabs a:link, ul.tabs a:visited {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+    display: block;
+    font-weight: 400;
+    line-height: 2.5em;
+}
+a:link .doubleheight, a:visited .doubleheight {
+    text-align: center;
+}
+ul.tabs a span {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 30px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+ul.tabs a:hover {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #004280;
+    color: #0071C5;
+    cursor: pointer;
+    display: block;
+    height:29px;
+    text-decoration: none !important;
+    border: 1px solid #004280;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+ul.tabs a:hover span {
+    background-color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    border-bottom:1px solid #004280;
+    height:29px;
+}
+ul.tabs .tab_active a:link, ul.tabs .tab_active a:visited, ul.tabs .tab_active a:visited, ul.tabs .tab_active a:hover {
+    background-color: #FFFFFF;
+    color: #0071C5;
+    border:1px solid #004280;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height:29px;
+}
+ul.tabs .tab_active a span, ul.tabs .tab_active a:hover span {
+    cursor: pointer;
+    height:29px;
+}
+
+.tab_content{float:left;overflow:hidden;width:700px}

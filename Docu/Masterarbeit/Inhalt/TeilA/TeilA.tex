@@ -1,4 +1,5 @@
-	\chapter{Teil A}
+\chapter{Teil A}
+\label{cha:TeilA}
 Im Folgenden wird die Ansteuerung von TFT-Displays über den 8080-Bus auf Basis des \code{Gnublin Linuxboards} realisiert. Hierzu werden verschieden große LCD-Displays mit unterschiedlichen Controllern unter Verwendung des 8080-Interface untersucht. 
 
 \section{Untersuchte Displays mit 8080-Interface}
@@ -11,7 +12,7 @@ Alle verwendeten Displays arbeiten dahingehend gleich, dass sie Kommandos und Da
 	\label{fig:ram_window}
 \end{figure}
 \subsection{4.3 / 5 Zoll mit SSD1963}
-Die Wahl des Controllers \code{SSD1963} von Solomon Systech liegt nahe, da dieser bereits mit einem 4.3 Zoll  Panel in einer vorausgehende Arbeit (siehe \cite{Schlegel2013a}) verwendet wird. Dort ist das Display mittels GPIO-Pins am Raspberry Pi angeschlossen. Die Software bezüglich der reinen Displayansteuerung ist somit bereits vorhanden. Aufgrund eines Problems, das in Abschnitt \ref{teila_knownbugs} näher beschrieben ist, ist ein weiteres anderes Display mit 5 Zoll Panel aber demselben Controller untersucht. 
+Die Wahl des Controllers \code{SSD1963} von Solomon Systech liegt nahe, da dieser bereits mit einem 4.3 Zoll  Panel in einer vorausgehenden Arbeit (siehe \cite{Schlegel2013a}) verwendet wird. Dort ist das Display mittels GPIO-Pins am Raspberry Pi angeschlossen. Die Software bezüglich der reinen Displayansteuerung ist somit bereits vorhanden. Aufgrund eines Problems, das in Abschnitt \ref{teila_knownbugs} näher beschrieben ist, ist ein weiteres Display mit 5 Zoll Panel aber demselben Controller untersucht. 
 \refa{fig:8080_pinout} zeigt das Pinout der verwendeten Displays (Quelle: \cite{Coldtears2014}).
 \begin{figure}[h]
 	\centering
@@ -19,7 +20,7 @@ Die Wahl des Controllers \code{SSD1963} von Solomon Systech liegt nahe, da diese
 	\caption{8080-Display Pinout}
 	\label{fig:8080_pinout}
 \end{figure}
-Die Displays haben bei 4.3 Zoll eine Auflösung von 480x272 beziehungsweise bei 5 Zoll 800x480 Pixel. Neben den für die Initialisierung nötigen Kommandos besitzt der Controller folgende wichtigen Kommandos (siehe \reft{tab:Kommandos_SSD1963}, Quelle: siehe \cite{SSD2008}). Die zur Initialisierung notwendigen Kommandos sind nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
+Die Displays haben bei 4.3 Zoll eine Auflösung von 480x272 beziehungsweise bei 5 Zoll 800x480 Pixel. Neben den für die Initialisierung nötigen Kommandos besitzt der Controller folgende wichtige Kommandos (siehe \reft{tab:Kommandos_SSD1963}, Quelle: \cite{SSD2008}). Die Initialisierungsbefehle sind nicht erläutert, da diese aus dem Datenblatt entnehmbar sind.
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{8cm}|}\hline
 \rowcolor{TableBackgroundColor} 
@@ -32,7 +33,7 @@ Die Displays haben bei 4.3 Zoll eine Auflösung von 480x272 beziehungsweise bei 
 \label{tab:Kommandos_SSD1963}
 \end{table}
 \subsection{3.2 Zoll mit SSD1289}
-Das 3.2 Zoll Display von Sainsmart wird mit einen \code{SSD1289} von Solomon Systech betrieben. Dieses Display hat eine Auflösung von 320x240 Farbpunkten. Das Pinout ist dasselbe, das in \refa{fig:8080_pinout} zu sehen ist. Ähnlich zu den Kommandos des \code{SSD1963} in \reft{tab:Kommandos_SSD1963} besitzt der \code{SSD1289} analoge Befehle. Diese sind in  \reft{tab:Kommandos_SSD1289} erläutert (siehe \cite{SSD2007}). Die zur Initialisierung notwendigen Kommandos sind hier nicht näher beschrieben, da diese wie zuvor aus dem Datenblatt entnehmbar sind.
+Das 3.2 Zoll Display von Sainsmart wird mit einen \code{SSD1289} von Solomon Systech betrieben. Dieses Display hat eine Auflösung von 320x240 Farbpunkten. Das Pinout ist dasselbe, das in \refa{fig:8080_pinout} zu sehen ist. Analog zu den Kommandos des \code{SSD1963} in \reft{tab:Kommandos_SSD1963} besitzt der \code{SSD1289} ähnlich Befehle. Diese sind in  \reft{tab:Kommandos_SSD1289} erläutert (siehe \cite{SSD2007}). Die zur Initialisierung notwendigen Kommandos sind hier nicht näher beschrieben, da diese wie zuvor aus dem Datenblatt entnehmbar sind.
 \begin{table}[h]
 \begin{tabular}{|p{4cm}|p{1cm}|p{8cm}|}\hline
 \rowcolor{TableBackgroundColor}
@@ -50,7 +51,7 @@ Das 3.2 Zoll Display von Sainsmart wird mit einen \code{SSD1289} von Solomon Sys
 
 
 \subsection{5 Zoll mit CPLD}
-Als drittes Display mit 8080-Interface kommt eine 5 Zoll Display mit einer Auflösung von 800x480 Bildpunkten zum Einsatz. Anstelle eines universell einsetzbaren Controllers für variable Panels, verwendet dieses Display ein CPLD{CPLD: Complex Programmable Logic Device} mit zugeschnittenen Timings für das verwendete TFT-Displays. Der Vorteil eines solchen Displays ist, dass keine Initialisierungsroutine benötigt wird, um die Timings für das Panel einzustellen. Ein Reset setzt das Display betriebsbereit. Nachteilig ist dabei, dass nur TFT-Panels exakter Größe und mit exakten Timings verwendet werden können. Für diese Arbeit ist die Verwendung von anderen Panels belanglos. Auch hier ist das Pinout des Displays analog zu \refa{fig:8080_pinout}.\newline
+Als drittes Display mit 8080-Interface kommt eine 5 Zoll Display mit einer Auflösung von 800x480 Bildpunkten zum Einsatz. Anstelle eines universell einsetzbaren Controllers für variable Panels, verwendet dieses Display ein CPLD\footnote{CPLD: Complex Programmable Logic Device} mit zugeschnittenen Timings für das verwendete TFT-Displays. Der Vorteil eines solchen Displays ist, dass keine Initialisierungsroutine benötigt wird, um die Timings für das Panel einzustellen. Ein Reset setzt das Display betriebsbereit. Nachteilig ist dabei, dass nur TFT-Panels exakter Größe und mit exakten Timings verwendet werden können. Für diese Arbeit ist die Verwendung von anderen Panels belanglos. Auch hier ist das Pinout des Displays analog zu \refa{fig:8080_pinout}.\newline
 Wichtige Kommandos zum Betrieb des Displays sind in \reft{tab:Kommandos_MD050SD} einsehbar (siehe \cite{ITEAD2013}). Dieses Display trägt die Bezeichnung MD050SD.
 
 \begin{table}[h]

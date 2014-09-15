@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0073)http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="generator" content="MediaWiki 1.18.2">
+<link rel="shortcut icon" href="http://wiki.gnublin.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.gnublin.org/opensearch_desc.php" title="GNUBLIN (de)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wiki.gnublin.org/api.php?action=rsd">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „GNUBLIN“" href="http://wiki.gnublin.org/index.php?title=Spezial:Letzte_%C3%84nderungen&feed=atom">    <title>C/C++ Entwicklungsumgebung installieren – GNUBLIN</title>
+    <style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "/skins/kindofblue/main.css"; /*]]>*/</style>
+    <link rel="stylesheet" type="text/css" media="print" href="./Entwicklungsumgebung_installieren_files/commonPrint.css">
+    <!--[if lt IE 5.5000]><style type="text/css">@import "/skins/kindofblue/IE50Fixes.css";</style><![endif]-->
+    <!--[if IE 5.5000]><style type="text/css">@import "/skins/kindofblue/IE55Fixes.css";</style><![endif]-->
+    <!--[if gte IE 6]><style type="text/css">@import "/skins/kindofblue/IE60Fixes.css";</style><![endif]-->
+    <!--[if IE]><script type="text/javascript" src="/skins/common/IEFixes.js"></script>
+    <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+    
+    <script>if(window.mw){
+	mw.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "C/C++_Entwicklungsumgebung_installieren", "wgTitle": "C/C++ Entwicklungsumgebung installieren", "wgCurRevisionId": 6426, "wgArticleId": 26, "wgIsArticle": true, "wgAction": "view", "wgUserName": null, "wgUserGroups": ["*"], "wgCategories": ["Tools", "Software"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": [], "wgWikiEditorEnabledModules": {"toolbar": false, "dialogs": false, "hidesig": true, "templateEditor": false, "templates": false, "preview": false, "previewDialog": false, "publish": false, "toc": false}});
+}
+</script>
+		<script type="text/javascript" src="./Entwicklungsumgebung_installieren_files/wikibits.js"><!-- wikibits js --></script>
+		<script type="text/javascript" src="./Entwicklungsumgebung_installieren_files/index.php"><!-- site js --></script>
+    <!-- Head Scripts -->
+		<style type="text/css">/*<![CDATA[*/
+.source-c {line-height: normal;}
+.source-c li, .source-c pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.c.source-c  {font-family:monospace;}
+.c.source-c .imp {font-weight: bold; color: red;}
+.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
+.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.c.source-c .li2 {font-weight: bold; vertical-align:top;}
+.c.source-c .kw1 {color: #b1b100;}
+.c.source-c .kw2 {color: #000000; font-weight: bold;}
+.c.source-c .kw3 {color: #000066;}
+.c.source-c .kw4 {color: #993333;}
+.c.source-c .co1 {color: #666666; font-style: italic;}
+.c.source-c .co2 {color: #339933;}
+.c.source-c .coMULTI {color: #808080; font-style: italic;}
+.c.source-c .es0 {color: #000099; font-weight: bold;}
+.c.source-c .es1 {color: #000099; font-weight: bold;}
+.c.source-c .es2 {color: #660099; font-weight: bold;}
+.c.source-c .es3 {color: #660099; font-weight: bold;}
+.c.source-c .es4 {color: #660099; font-weight: bold;}
+.c.source-c .es5 {color: #006699; font-weight: bold;}
+.c.source-c .br0 {color: #009900;}
+.c.source-c .sy0 {color: #339933;}
+.c.source-c .st0 {color: #ff0000;}
+.c.source-c .nu0 {color: #0000dd;}
+.c.source-c .nu6 {color: #208080;}
+.c.source-c .nu8 {color: #208080;}
+.c.source-c .nu12 {color: #208080;}
+.c.source-c .nu16 {color:#800080;}
+.c.source-c .nu17 {color:#800080;}
+.c.source-c .nu18 {color:#800080;}
+.c.source-c .nu19 {color:#800080;}
+.c.source-c .me1 {color: #202020;}
+.c.source-c .me2 {color: #202020;}
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
+.c.source-c span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-bash {line-height: normal;}
+.source-bash li, .source-bash pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for bash
+ * CSS class: source-bash, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.bash.source-bash .de1, .bash.source-bash .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.bash.source-bash  {font-family:monospace;}
+.bash.source-bash .imp {font-weight: bold; color: red;}
+.bash.source-bash li, .bash.source-bash .li1 {font-weight: normal; vertical-align:top;}
+.bash.source-bash .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.bash.source-bash .li2 {font-weight: bold; vertical-align:top;}
+.bash.source-bash .kw1 {color: #000000; font-weight: bold;}
+.bash.source-bash .kw2 {color: #c20cb9; font-weight: bold;}
+.bash.source-bash .kw3 {color: #7a0874; font-weight: bold;}
+.bash.source-bash .co0 {color: #666666; font-style: italic;}
+.bash.source-bash .co1 {color: #800000;}
+.bash.source-bash .co2 {color: #cc0000; font-style: italic;}
+.bash.source-bash .co3 {color: #000000; font-weight: bold;}
+.bash.source-bash .co4 {color: #666666;}
+.bash.source-bash .es1 {color: #000099; font-weight: bold;}
+.bash.source-bash .es2 {color: #007800;}
+.bash.source-bash .es3 {color: #007800;}
+.bash.source-bash .es4 {color: #007800;}
+.bash.source-bash .es5 {color: #780078;}
+.bash.source-bash .es_h {color: #000099; font-weight: bold;}
+.bash.source-bash .br0 {color: #7a0874; font-weight: bold;}
+.bash.source-bash .sy0 {color: #000000; font-weight: bold;}
+.bash.source-bash .st0 {color: #ff0000;}
+.bash.source-bash .st_h {color: #ff0000;}
+.bash.source-bash .nu0 {color: #000000;}
+.bash.source-bash .re0 {color: #007800;}
+.bash.source-bash .re1 {color: #007800;}
+.bash.source-bash .re2 {color: #007800;}
+.bash.source-bash .re4 {color: #007800;}
+.bash.source-bash .re5 {color: #660033;}
+.bash.source-bash .ln-xtra, .bash.source-bash li.ln-xtra, .bash.source-bash div.ln-xtra {background-color: #ffc;}
+.bash.source-bash span.xtra { display:block; }
+
+/*]]>*/
+</style>    </head>
+    <body class="mediawiki  ltr ns-0 ns-subject page-C_C_Entwicklungsumgebung_installieren action-view">
+
+<table width="100%" border="0" height="20px" style="background-color:grey; color:white;" cellpadding="3" cellspacing="0">
+<tbody><tr>
+<td><a href="http://www.gnublin.org/" style="color:white; font-family:Arial; font-size:9pt;margin:3px;padding:3px;">Homepage</a></td>
+<td><a href="http://wiki.gnublin.org/" style="color:white;font-family:Arial; font-size:9pt;margin:3px;padding:3px;">Wiki</a></td>
+<td><a href="http://forum.gnublin.org/" style="color:white;font-family:Arial; font-size:9pt;margin:3px;padding:3px;">Forum</a></td>
+<td><a href="http://gnublin.embedded-projects.net/buy/" style="color:white;font-family:Arial; font-size:9pt;margin:3px;padding:3px;">Buy</a></td>
+<td width="90%"></td>
+</tr></tbody></table>
+
+
+   <div id="topbar" style="position:absolute; top:20px" class="noprint">
+	<div id="p-search" class="portlet noprint">
+	  <div class="pBody">
+	    <form name="searchform" action="http://wiki.gnublin.org/index.php/Spezial:Suche" id="searchform">
+	      <input id="searchInput" name="search" type="text" accesskey="f" value="">
+	      <input type="submit" name="go" class="searchButton" id="searchGoButton" value="Ausführen">&nbsp;<input type="submit" name="fulltext" class="searchButton" value="Suche">
+	    </form>
+	  </div>
+	</div>
+	<div id="p-personal" class="portlet noprint">
+	  <div class="pBody">
+	    <ul>
+	    <li id="pt-login"><a href="http://wiki.gnublin.org/index.php?title=Spezial:Anmelden&returnto=C%2FC%2B%2B+Entwicklungsumgebung+installieren">Anmelden / Benutzerkonto erstellen</a></li>	    </ul>
+	  </div>
+	</div>
+   </div>
+   <!-- end topbar -->
+   
+   <div id="globalWrapper">
+    <div id="column-content">
+     <div id="content"><br>
+
+	  <div id="p-cactions" class="portlet noprint" style="position:absolute; top:48px">
+	   <h5>Ansichten</h5>
+	   <ul>
+	     <li id="ca-nstab-main" class="selected"><a href="http://wiki.gnublin.org/index.php/C/C%2B%2B_Entwicklungsumgebung_installieren">Seite</a></li><li id="ca-talk" class="new"><a href="http://wiki.gnublin.org/index.php?title=Diskussion:C/C%2B%2B_Entwicklungsumgebung_installieren&action=edit&redlink=1">Diskussion</a></li><li id="ca-viewsource"><a href="http://wiki.gnublin.org/index.php?title=C/C%2B%2B_Entwicklungsumgebung_installieren&action=edit">Quelltext anzeigen</a></li><li id="ca-history"><a href="http://wiki.gnublin.org/index.php?title=C/C%2B%2B_Entwicklungsumgebung_installieren&action=history">Versionen/Autoren</a></li>	   </ul>
+	  </div>
+
+	  <a name="top" id="contentTop"></a>
+	  	  <h1 class="firstHeading">C/C++ Entwicklungsumgebung installieren</h1>
+	  <div id="bodyContent">
+	    <h3 id="siteSub">Aus GNUBLIN</h3>
+	    <div id="contentSub"></div>
+	    	    	    <!-- start content -->
+	    <div lang="de" dir="ltr" class="mw-content-ltr"><table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>Inhaltsverzeichnis</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#Hallo-Welt-Programm_kompilieren"><span class="tocnumber">1</span> <span class="toctext">Hallo-Welt-Programm kompilieren</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#ELDK_Toolchain_installieren"><span class="tocnumber">2</span> <span class="toctext">ELDK Toolchain installieren</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#1._Schritt:_Download"><span class="tocnumber">2.1</span> <span class="toctext">1. Schritt: Download</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#2._Schritt:_Archiv_entpacken"><span class="tocnumber">2.2</span> <span class="toctext">2. Schritt: Archiv entpacken</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#3._Schritt:_Skript_f.C3.BCr_Umgebungsvariablen_erstellen"><span class="tocnumber">2.3</span> <span class="toctext">3. Schritt: Skript für Umgebungsvariablen erstellen</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#4._Schritt:_Umgebungsvariablen_setzen"><span class="tocnumber">2.4</span> <span class="toctext">4. Schritt: Umgebungsvariablen setzen</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#5._Schritt:_Cross-Compiler_verwenden"><span class="tocnumber">2.5</span> <span class="toctext">5. Schritt: Cross-Compiler verwenden</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="http://wiki.gnublin.org/index.php/C/C++_Entwicklungsumgebung_installieren#Alternativ:_Toolchain_unter_Arch_Linux_installieren"><span class="tocnumber">3</span> <span class="toctext">Alternativ: Toolchain unter Arch Linux installieren</span></a></li>
+</ul>
+</td></tr></tbody></table>
+<p><br>
+Um C und C++ Programme für das Gnublin kompilieren zu können, benötigt man einen Cross-Compiler, weil sich die Architektur des PCs (x86) von der des Gnublins (ARM) unterscheidet. Der Cross-Compiler erzeugt aus dem Quelltext auf dem Computer ausführbaren Code für das Gnublin.
+</p><p><br>
+</p>
+<h2> <span class="mw-headline" id="Hallo-Welt-Programm_kompilieren"> Hallo-Welt-Programm kompilieren </span></h2>
+<p>Um Programme für das Linux übersetzen zu können muss man die Toolchain verwenden, die mit arm-linux-gnueabi-gcc bzw arm-linux-gnueabi-g++ startet.
+</p><p>Für ein einfaches Hallo-Welt-Programm reicht dann:
+</p>
+<pre dir="ltr" class="mw-geshi mw-content-ltr"><div class="c source-c"><pre class="de1"> <span class="co2">#include &lt;stdio.h&gt; </span>
+&nbsp;
+ <span class="kw4">int</span> main<span class="br0">(</span><span class="kw4">void</span><span class="br0">)</span>
+ <span class="br0">{</span>
+   <span class="kw3">printf</span><span class="br0">(</span><span class="st0">"Hello World!<span class="es1">\r</span><span class="es1">\n</span>"</span><span class="br0">)</span><span class="sy0">;</span>
+   <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+ <span class="br0">}</span></pre></div></pre>
+<p>Übersetzen von Hello World auf dem PC:
+</p>
+<dl><dd>user@dev-pc ~ $ arm-linux-gnueabi-gcc -o hello hello.c
+</dd></dl>
+<p>Das Programm muss anschliessend per SD-Karte oder SSH in das RootFS des GNUBLIN Boards übertragen werden.
+</p>
+<h2> <span class="mw-headline" id="ELDK_Toolchain_installieren"> ELDK Toolchain installieren</span></h2>
+<h3> <span class="mw-headline" id="1._Schritt:_Download"> 1. Schritt: Download </span></h3>
+<p>Herunterladen der Entwicklungsumgebung <a rel="nofollow" target="_blank" class="external free" href="http://gnublin.org/downloads/eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2">http://gnublin.org/downloads/eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2</a>
+</p>
+<dl><dd>cd /tmp
+</dd></dl>
+<dl><dd>wget <a rel="nofollow" target="_blank" class="external free" href="http://gnublin.org/downloads/eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2">http://gnublin.org/downloads/eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2</a>
+</dd></dl>
+<p>Die Datei wird im /tmp Verzeichnis gespeichert. 
+</p>
+<h3> <span class="mw-headline" id="2._Schritt:_Archiv_entpacken"> 2. Schritt: Archiv entpacken </span></h3>
+<dl><dd> sudo tar xjf eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2 -C /
+</dd></dl>
+<p>Dieser Befehl extrahiert den Inhalt des Archivs eldk-eglibc-i686-arm-toolchain-qte-5.2.1.tar.bz2. Der Cross-Compiler wird in das Verzeichnis /opt/eldk-5.2.1/ kopiert.
+</p><p>Der Befehl benötigt root-Rechte, weil das Archiv nach / entpackt wird. Auf Distributionen, die nicht sudo verwenden, muss man zunächst root werden (su) und dann den obigen Befehl ohne sudo ausführen.
+</p>
+<h3> <span class="mw-headline" id="3._Schritt:_Skript_f.C3.BCr_Umgebungsvariablen_erstellen"> 3. Schritt: Skript für Umgebungsvariablen erstellen </span></h3>
+<p>Um die Umgebungsvariablen so zu setzen, dass das Hostsystem den Cross-Compiler verwenden kann, muss ein Skript in /opt/eldk-5.2.1/set.sh erstellt werden.
+</p>
+<dl><dd>sudo touch set.sh
+</dd></dl>
+<p>mit folgendem Inhalt:
+</p>
+<pre dir="ltr" class="mw-geshi mw-content-ltr"><div class="bash source-bash"><pre class="de1"><span class="re2">P1</span>=<span class="sy0">/</span>opt<span class="sy0">/</span>eldk-5.2.1<span class="sy0">/</span>armv5te<span class="sy0">/</span>sysroots<span class="sy0">/</span>i686-eldk-linux<span class="sy0">/</span>usr<span class="sy0">/</span>bin<span class="sy0">/</span>armv5te-linux-gnueabi<span class="sy0">/</span>
+<span class="re2">P2</span>=<span class="sy0">/</span>opt<span class="sy0">/</span>eldk-5.2.1<span class="sy0">/</span>armv5te<span class="sy0">/</span>sysroots<span class="sy0">/</span>i686-eldk-linux<span class="sy0">/</span>bin<span class="sy0">/</span>armv5te-linux-gnueabi<span class="sy0">/</span>
+&nbsp;
+<span class="kw3">export</span> <span class="re2">ARCH</span>=arm 
+<span class="kw3">export</span> <span class="re2">CROSS_COMPILE</span>=arm-linux-gnueabi-
+<span class="kw3">export</span> <span class="re2">PATH</span>=<span class="re1">$P1</span>:<span class="re1">$P2</span>:<span class="re1">$PATH</span></pre></div></pre>
+<h3> <span class="mw-headline" id="4._Schritt:_Umgebungsvariablen_setzen"> 4. Schritt: Umgebungsvariablen setzen </span></h3>
+<p>Bevor der Cross-Compiler verwendet werden kann, müssen die Umgebungsvariablen gesetzt werden. Dies erreicht man duch "sourcen" des gerade angelegten Skriptes:
+</p>
+<dl><dd> . /opt/eldk-5.2.1/set.sh
+</dd></dl>
+<p>Man beachte, dass das Skript nicht ausgeführt, sondern gesourced wird. Das heißt, man muss den Befehl genau in dieser Form eingeben: Punkt, Leerzeichen, Pfad
+</p><p>Es empfiehlt sich die .bashrc im Verzeichnis /home/BENUTEZER/ mit dem Script zu erweitern
+</p>
+<dl><dd>cat set.sh &gt;&gt; ~/.bashrc
+</dd></dl>
+<p>und anschließend neu laden.
+</p>
+<dl><dd>. ~/.bashrc
+</dd></dl>
+<h3> <span class="mw-headline" id="5._Schritt:_Cross-Compiler_verwenden"> 5. Schritt: Cross-Compiler verwenden </span></h3>
+<p>Der Cross-Compiler kann jetzt verwendet werden:
+</p>
+<dl><dd>arm-linux-gnueabi-gcc -v
+</dd></dl>
+<h2> <span class="mw-headline" id="Alternativ:_Toolchain_unter_Arch_Linux_installieren"> Alternativ: Toolchain unter Arch Linux installieren </span></h2>
+<p>Unter Arch Linux kann die Toolchain <a rel="nofollow" target="_blank" class="external text" href="http://www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/">Sourcery CodeBench - Lite Edition</a> installiert werden.
+</p>
+<dl><dd> mkdir -p /tmp/arm_cross
+</dd><dd> cd /tmp/arm_cross
+</dd><dd> wget <a rel="nofollow" target="_blank" class="external free" href="http://aur.archlinux.org/packages/ar/arm-none-linux-gnueabi/PKGBUILD">http://aur.archlinux.org/packages/ar/arm-none-linux-gnueabi/PKGBUILD</a>
+</dd><dd> makepkg -si
+</dd></dl>
+<p>Komfortabler geht's mit den Wrapper-Tools <code>packer</code> und <code>yaourt</code>.
+</p>
+<dl><dd> # wenn yaourt verfuegbar
+</dd><dd> yaourt -S arm-none-linux-gnueabi
+</dd><dd> # wenn packer verfuegbar
+</dd><dd> packer -S arm-none-linux-gnueabi
+</dd></dl>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 53/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki_gnublin-wiki:pcache:idhash:26-0!*!*!!de!*!* and timestamp 20140914210800 -->
+</div><div class="printfooter">
+Von „<a href="http://wiki.gnublin.org/index.php?title=C/C%2B%2B_Entwicklungsumgebung_installieren&oldid=6426">http://wiki.gnublin.org/index.php?title=C/C%2B%2B_Entwicklungsumgebung_installieren&amp;oldid=6426</a>“</div>
+	    <div id="catlinks"><div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.gnublin.org/index.php/Spezial:Kategorien" title="Spezial:Kategorien">Kategorien</a>: <ul><li><a href="http://wiki.gnublin.org/index.php/Kategorie:Tools" title="Kategorie:Tools">Tools</a></li><li><a href="http://wiki.gnublin.org/index.php/Kategorie:Software" title="Kategorie:Software">Software</a></li></ul></div></div></div>	    <!-- end content -->
+	    <div class="visualClear"></div>
+	  </div>
+	 </div>
+    </div>
+    <div id="column-one">
+	 <div class="portlet" id="p-logo"><br>
+	  <a style="background-image: url(/skins/common/images/wiki.png);" href="http://wiki.gnublin.org/index.php/Hauptseite" title="Hauptseite"><img src="./Entwicklungsumgebung_installieren_files/wiki.png"></a>
+	 </div>
+
+
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+		<div class="portlet" id="p-Navigation">
+	  <h5>Navigation</h5>
+	  <div class="pBody">
+	    <ul>
+	    	      <li id="n-Startseite"><a href="http://wiki.gnublin.org/index.php/Hauptseite">Startseite</a></li>
+	     	      <li id="n-Module"><a href="http://gnublin.embedded-projects.net/all/">Module</a></li>
+	     	      <li id="n-Downloads"><a href="http://gnublin.embedded-projects.net/downloads/">Downloads</a></li>
+	     	      <li id="n-GNUBLIN-Homepage"><a href="http://www.gnublin.org/">GNUBLIN Homepage</a></li>
+	     	    </ul>
+	  </div>
+	</div>
+		<div class="portlet" id="p-Wiki">
+	  <h5>Wiki</h5>
+	  <div class="pBody">
+	    <ul>
+	    	      <li id="n-Startseite"><a href="http://wiki.gnublin.org/index.php/Hauptseite">Startseite</a></li>
+	     	      <li id="n-GNUBLIN-Homepage"><a href="http://www.gnublin.org/">GNUBLIN Homepage</a></li>
+	     	      <li id="n-currentevents"><a href="http://wiki.gnublin.org/index.php/GNUBLIN:Aktuelle_Ereignisse">Aktuelle Ereignisse</a></li>
+	     	      <li id="n-recentchanges"><a href="http://wiki.gnublin.org/index.php/Spezial:Letzte_%C3%84nderungen">Letzte Änderungen</a></li>
+	     	      <li id="n-help"><a href="http://wiki.gnublin.org/index.php/Hilfe:Inhaltsverzeichnis">Hilfe</a></li>
+	     	    </ul>
+	  </div>
+	</div>
+		<div class="portlet" id="p-tb">
+	  <h5>Werkzeuge</h5>
+	  <div class="pBody">
+	    <ul>
+		  		  <li id="t-whatlinkshere"><a href="http://wiki.gnublin.org/index.php/Spezial:Linkliste/C/C%2B%2B_Entwicklungsumgebung_installieren">Links auf diese Seite</a></li>
+		  		  <li id="t-recentchangeslinked"><a href="http://wiki.gnublin.org/index.php/Spezial:%C3%84nderungen_an_verlinkten_Seiten/C/C%2B%2B_Entwicklungsumgebung_installieren">Änderungen an verlinkten Seiten</a></li>
+		                	      	      	      	      	      	      	      	      	      <li id="t-specialpages"><a href="http://wiki.gnublin.org/index.php/Spezial:Spezialseiten">Spezialseiten</a></li>	      	      	      <li id="t-print"><a href="http://wiki.gnublin.org/index.php?title=C/C%2B%2B_Entwicklungsumgebung_installieren&printable=yes">Druckversion</a></li>
+<li><a href="http://wiki.gnublin.org/index.php?title=Spezial:PdfPrint&page=C/C++%20Entwicklungsumgebung%20installieren">PDF</a></li>
+
+	      	    </ul>
+	  </div>
+	</div>
+	<div id="p-lang" class="portlet">
+	  <h5>In anderen Sprachen</h5>
+	  <div class="pBody">
+	    <ul>
+	      	      <li class="interwiki-en">
+	      <a href="http://en.gnublin.org/index.php/C/C%2B%2B_Development_Environment_installation">English</a>
+	      </li>
+	      	    </ul>
+	  </div>
+	</div>
+	      </div><!-- end of the left (by default at least) column -->
+      <div class="visualClear"></div>
+      <div id="footer">
+		<table width="100%">
+			<tbody><tr><td width="5%" align="left" nowrap="nowrap"><div id="f-copyrightico"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img src="./Entwicklungsumgebung_installieren_files/cc-by-nc-sa.png" alt="Creative Commons „Namensnennung, nicht kommerziell, Weitergabe unter gleichen Bedingungen“" width="88" height="31"></a></div></td>
+				<td align="center">
+	    Diese Seite wurde zuletzt am 21. Juli 2013 um 15:38 Uhr geändert. - 	  Diese Seite wurde bisher 9.337-mal abgerufen. - 	  	  	  	  <a href="http://wiki.gnublin.org/index.php/GNUBLIN:Impressum" title="GNUBLIN:Impressum">Impressum</a> - 	  <a href="http://wiki.gnublin.org/index.php/GNUBLIN:%C3%9Cber" title="GNUBLIN:Über">Über GNUBLIN</a>	</td>
+			<td width="5%" align="right" nowrap="nowrap"><div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="./Entwicklungsumgebung_installieren_files/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki"></a></div></td></tr></tbody></table>
+      </div>
+	<script>if(window.mw){
+	mw.loader.load(["mediawiki.user", "mediawiki.util", "mediawiki.page.ready", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+}
+</script>
+<script src="./Entwicklungsumgebung_installieren_files/load.php"></script>
+<script>if(window.mw){
+	mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"kindofblue","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,
+	"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"de","language":"de","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mw.user.tokens.set({"editToken":"+\\","watchToken":false});;mw.loader.state({"user.options":"ready","user.tokens":"ready"});
+	
+	/* cache key: wiki_gnublin-wiki:resourceloader:filter:minify-js:4:337144a800b13bd20603930464090433 */
+}
+</script></div>
+<!-- Served in 0.099 secs. -->  
+
+</body></html>

@@ -1,0 +1,35 @@
+#j-search,.nav-browse,#jive-body > header.j-page-header h1,#j-place-header-actions {
+display: none !important;
+}
+.j-body-place #jive-body > header.j-page-header{
+  padding-top:1px;
+}
+
+.topnav {
+width: 100%;}
+
+.j-contained-tabs{
+  margin-top:0;
+  padding-top:10px;
+  background:none;
+}
+body.j-body-place #jive-body .j-contained-tabs{
+  background:none;
+  margin-top:0;
+}
+
+body.j-body-place nav.j-bigtab-nav .j-tabbar > li{
+  padding-bottom:0;
+}
+
+body.j-body-place nav.j-bigtab-nav .active{
+  background: none;
+}
+
+.jive-error-box, .jive-info-box, .jive-success-box, .jive-warn-box{
+  margin-bottom:5px;
+}
+
+#jive-place-link-places-tab{
+  display:none;
+}

@@ -1,0 +1,2321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0111)http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/style.css" rel="stylesheet" type="text/css">
+<link href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/dropmenu.css" rel="stylesheet" type="text/css">
+<link href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/comments.css" rel="stylesheet" type="text/css"> 
+ 
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://extremeelectronics.co.in/xmlrpc.php">
+<script type="text/javascript" async="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ga.js"></script><script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/dropmenu.jquery.js"></script>  
+<script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/dropmenu.js"></script>   
+ 
+ 
+<script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe id="_atssh815" title="AddThis utility frame" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/sh172.html" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;"></iframe></div><script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/core155.js"></script>
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.2.8.7 - http://yoast.com/wordpress/seo/ -->
+<title>Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers</title>
+<meta name="description" content="Easy to use i2c eeprom interfacing routines for AVR microcontrollers.">
+<link rel="canonical" href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers.html">
+<link rel="author" href="https://plus.google.com/u/0/100307363249325396529">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers">
+<meta property="og:description" content="Easy to use i2c eeprom interfacing routines for AVR microcontrollers.">
+<meta property="og:url" content="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/">
+<meta property="og:site_name" content="eXtreme Electronics">
+<meta property="og:type" content="article">
+<meta property="og:image" content="http://www.extremeelectronics.co.in/avrtutorials/images/eeprom_cell_view.gif">
+<meta property="og:image" content="http://www.extremeelectronics.co.in/avrtutorials/images/24c64_schematic_avr_thumb.gif">
+<meta property="og:image" content="http://www.extremeelectronics.co.in/avrtutorials/images/24c64_setup.jpg">
+<meta property="og:image" content="http://www.extremeelectronics.co.in/avrtutorials/images/24c64_setup_xboard.jpg">
+<meta property="og:image" content="http://www.extremeelectronics.co.in/avrtutorials/images/24c64_lcd_output.jpg">
+<meta property="og:image" content="http://www.extremeelectronics.co.in/avrtutorials/images/lcd_interface_atmega32.gif">
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="eXtreme Electronics » Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers Comments Feed" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/feed/">
+<link rel="stylesheet" id="arevico_scsfbcss-css" href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/scs.css" type="text/css" media="all">
+<link rel="stylesheet" id="pb_stylesheets-css" href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="pb_buttons-css" href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/buttons.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp_dlmp_styles-css" href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/styles.css" type="text/css" media="all">
+<script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/jquery.js"></script><link rel="stylesheet" type="text/css" href="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/widget005.old.css" media="all">
+<script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/scs.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var lb_l_ret = {"fb_id":"153826297988916","display_on_post":"1","display_on_homepage":"1","show_once":"5","delay":"10000"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/launch.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://extremeelectronics.co.in/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://extremeelectronics.co.in/wp-includes/wlwmanifest.xml"> 
+<link rel="shortlink" href="http://extremeelectronics.co.in/?p=162">
+	<style type="text/css">
+	.download-info .download-button {
+		background-image: url(http://extremeelectronics.co.in/wp-content/plugins/download-monitor/page-addon/downloadbutton.gif);
+	}
+	.download-info .more-button {
+		background-image: url(http://extremeelectronics.co.in/wp-content/plugins/download-monitor/page-addon/morebutton.gif);
+	}
+	</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3828390-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></head>
+
+<body class="single single-post postid-162 single-format-standard">
+
+<div id="wrapper">
+<div id="container">
+
+<div id="header">
+<div class="innerwrap">
+<div id="siteinfo">
+<div id="site-title">
+<a href="http://extremeelectronics.co.in/" title="eXtreme Electronics" rel="home">eXtreme Electronics</a>
+</div>
+<div id="site-description">Best free Microcontroller Tutorials and Projects</div>
+</div><!-- SITEINFO END -->
+<div id="topbanner">
+<table border="0" align="left">
+  <tbody><tr>
+    <td height="113" align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17638&bid=1&partner=avinash.elec@gmail.com" target="_blank"> <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/image.php" border="0" alt="Line Following Robot Kit"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17638&bid=1&partner=avinash.elec@gmail.com" target="_blank"> Line Following Robot Kit</a></td>
+  </tr>
+</tbody></table>
+<table border="0" align="left">
+  <tbody><tr>
+    <td height="113" align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17515&bid=1&partner=avinash.elec@gmail.com" target="_blank"> <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/image(1).php" border="0" alt="USB AVR Programmer v2.1"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17515&bid=1&partner=avinash.elec@gmail.com" target="_blank"> USB AVR Programmer v2.1</a></td>
+  </tr>
+</tbody></table>
+<table border="0" align="left">
+  <tbody><tr height="113">
+    <td align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17514&bid=1&partner=avinash.elec@gmail.com" target="_blank"> <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/image(2).php" border="0" alt="xBoard v2.0"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17514&bid=1&partner=avinash.elec@gmail.com" target="_blank"> xBoard v2.0</a></td>
+  </tr>
+</tbody></table>
+<table border="0">
+  <tbody><tr>
+    <td height="113" align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17590&bid=1&partner=PARTNER" target="_blank"> <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/image(3).php" border="0" alt="GLCD Development Board"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://store.extremeelectronics.co.in/product.php?productid=17590&bid=1&partner=PARTNER" target="_blank"> GLCD Development Board</a></td>
+  </tr>
+</tbody></table></div><!-- TOPBANNER END -->
+<div class="clearfix"></div>
+</div><!-- INNERWRAP END -->
+</div><!-- HEADER END -->
+
+<div id="navigation">
+	<ul id="dropmenu" class="menu"><li id="home"><a href="http://extremeelectronics.co.in/" title="Home">Home</a></li><li id="menu-item-643" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-643"><a href="http://store.extremeelectronics.co.in/">Store</a></li>
+<li id="menu-item-645" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-645"><a href="http://forum.extremeelectronics.co.in/">Forum</a></li>
+<li id="menu-item-644" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-644"><a href="http://extremeelectronics.co.in/privacy-policy/">Privacy Policy</a></li>
+</ul><div id="topsearch">
+<form method="get" id="searchform" action="http://extremeelectronics.co.in/">
+<input type="text" name="s" id="s" value="Search Here..." onfocus="if (this.value == &#39;Search Here...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search Here...&#39;;}">
+<input type="submit" id="searchsubmit" value="Search">
+</form>
+</div><!-- TOPSEARCH END -->
+<div class="clearfix"></div>
+</div><!-- NAVIGATION END -->
+
+
+<div id="main">
+<div class="innerwrap">
+<div id="sidebar1">
+<div id="sidebarinner1">
+<ul class="sidebar_list">
+<li id="categories-293150131" class="widget widget_categories"><h6>Categories</h6>		<ul>
+	<li class="cat-item cat-item-281"><a href="http://extremeelectronics.co.in/category/32bit-arm-projects/" title="View all posts filed under 32bit ARM Projects">32bit ARM Projects</a>
+</li>
+	<li class="cat-item cat-item-133"><a href="http://extremeelectronics.co.in/category/avr-development-board/" title="View all posts filed under AVR Development Board">AVR Development Board</a>
+</li>
+	<li class="cat-item cat-item-121"><a href="http://extremeelectronics.co.in/category/avr-projects/" title="View all posts filed under AVR Projects">AVR Projects</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://extremeelectronics.co.in/category/avr-tutorials/" title="View all posts filed under AVR Tutorials">AVR Tutorials</a>
+</li>
+	<li class="cat-item cat-item-207"><a href="http://extremeelectronics.co.in/category/chitchat/" title="View all posts filed under Chitchat">Chitchat</a>
+</li>
+	<li class="cat-item cat-item-44"><a href="http://extremeelectronics.co.in/category/code-libraries/" title="View all posts filed under Code Libraries">Code Libraries</a>
+</li>
+	<li class="cat-item cat-item-73"><a href="http://extremeelectronics.co.in/category/code-snippets/" title="View all posts filed under Code Snippets">Code Snippets</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://extremeelectronics.co.in/category/electronics/" title="View all posts filed under Electronics">Electronics</a>
+</li>
+	<li class="cat-item cat-item-375"><a href="http://extremeelectronics.co.in/category/gsm-projects/" title="View all posts filed under GSM Projects">GSM Projects</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://extremeelectronics.co.in/category/hardwares/" title="View all posts filed under Hardwares">Hardwares</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://extremeelectronics.co.in/category/microchip-pic-tutorials/" title="View all posts filed under Microchip PIC Tutorials">Microchip PIC Tutorials</a>
+</li>
+	<li class="cat-item cat-item-173"><a href="http://extremeelectronics.co.in/category/news/" title="View all posts filed under News">News</a>
+</li>
+	<li class="cat-item cat-item-119"><a href="http://extremeelectronics.co.in/category/pic-development-board/" title="View all posts filed under PIC Development Board">PIC Development Board</a>
+</li>
+	<li class="cat-item cat-item-393"><a href="http://extremeelectronics.co.in/category/pic16f877a-tutorials/" title="View all posts filed under PIC16F877A Tutorials">PIC16F877A Tutorials</a>
+</li>
+	<li class="cat-item cat-item-123"><a href="http://extremeelectronics.co.in/category/programming-in-c/" title="View all posts filed under Programming in &#39;C&#39;">Programming in 'C'</a>
+</li>
+	<li class="cat-item cat-item-122"><a href="http://extremeelectronics.co.in/category/rf/" title="View all posts filed under RF">RF</a>
+</li>
+	<li class="cat-item cat-item-140"><a href="http://extremeelectronics.co.in/category/robotics/" title="View all posts filed under Robotics">Robotics</a>
+</li>
+	<li class="cat-item cat-item-114"><a href="http://extremeelectronics.co.in/category/software/" title="View all posts filed under Software">Software</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://extremeelectronics.co.in/category/tools/" title="View all posts filed under Tools">Tools</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://extremeelectronics.co.in/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+		</ul>
+</li><li id="text-293151921" class="widget widget_text"><h6>Navigation</h6>			<div class="textwidget"><p>
+<a href="http://extremeelectronics.co.in/">Home</a><br>
+<a href="http://forum.extremeelectronics.co.in/">Forum</a><br>
+<a href="http://shop.extremeelectronics.co.in/">Shop</a><br>
+<a href="http://extremeelectronics.co.in/links/">Links</a>
+</p></div>
+		</li><li id="text-293154911" class="widget widget_text"><h6>Subscribe</h6>			<div class="textwidget"><form style="padding:3px;text-align:center;" action="http://www.feedburner.com/fb/a/emailverify" method="post" target="popupwindow" onsubmit="window.open(&#39;http://www.feedburner.com/fb/a/emailverifySubmit?feedId=1874818&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=550,height=520&#39;);return true">
+<p>
+<strong>
+Get New Articles Deliverd To Your Inbox!
+</strong>
+</p>
+<p>Email address:</p><p><input type="text" style="width:140px" name="email"></p><input type="hidden" value="http://feeds.feedburner.com/~e?ffid=1874818" name="url"><input type="hidden" value="eXtreme Electronics" name="title"><input type="hidden" name="loc" value="en_US"><input type="submit" value="Subscribe"><p>Delivered by <a href="http://www.feedburner.com/" target="_blank">FeedBurner</a></p></form>
+
+<br>
+<p align="center"><a href="http://feeds2.feedburner.com/ExtremeElectronics"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ExtremeElectronics" height="26" width="88" style="border:0" alt=""></a></p><br></div>
+		</li><li id="bns-smf-feeds-3" class="widget bns-smf-feeds"><h6><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?type=rss2;action=.xml;sa=news;board=;c=;limit=10" target="" title="Syndicate this content"><img style="background:orange;color:white;border:none;" width="14" height="14" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/rss.png" alt="RSS"></a> <a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php" target="" title="Live information from eXtreme Electronics Forum">Latest Discussions</a></h6><ul class="bns-smf-feeds"><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86563.0" target="" title="hi can u help me with the C source code of programmable thermometer with rs 232 serial output ...lam using lm35 ,,pic 16f877">pic to pc interfacing</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86562.0" target="" title="It is more late than I thought. Disney free game porn  Downloading movie porn   But pardon me, my dear sir, (here his tone of voice...">Click to toro snowblower s620</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86561.0" target="" title="Hello My problem is that i need plc adaptator circuit. i want to simutate this circuit in Matlab/Simulink.Thanks">plc5</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86560.0" target="" title="Hello My problem is that i need plc adaptator circuit. i want to simutate this circuit in Matlab/Simulink.Thanks">PLC4</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86559.0" target="" title="Hello My problem is that i need plc adaptator circuit. i want to simutate this circuit in Matlab/Simulink.Thanks">PLC3 circuit adaptator</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86558.0" target="" title="Hello My problem is that i need plc adaptator circuit. i want to simutate this circuit in Matlab/Simulink.Thanks">PLC adaptator circuit</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86557.0" target="" title="Hello My problem is that i need plc adaptator circuit. i want to simutate this circuit in Matlab/Simulink.Thanks">PLC adaptator circuit</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86556.0" target="" title="Whatever happened to dead people, there was surely one place for the warm and another for the cold. buy zestril  buy online vepesid   And from n...">All Miami dade county mug shots</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86555.0" target="" title="Bond said desperately, Shut up, Honey. tenormin 100 mg  buy actoplus medication cod   Nothing you could put your finger on, but it all added...">Last mens hairstyles for big foreheads</a></li><li><a class="bns-smf-feeds rsswidget" href="http://forum.extremeelectronics.co.in/index.php?topic=86554.0" target="" title="I shall see Miss Westenra tomorrow again. glucophage buy online  buy lamictal   The good God fashioned her for a purpose, believe me, when He mad...">Ask for How much is a casino king slot machine made by waco worth</a></li></ul></li>
+<li class="featured-category">
+<h6>Latest On AVR Tutorials</h6>
+<div class="feat-cat-entry">
+<div class="feat-cat-meta post-1012">
+<a href="http://extremeelectronics.co.in/avr-tutorials/ultrasonic-rangefinder-hc-sr04-interfacing-with-atmega8/" title="Ultrasonic Rangefinder HC-SR04 Interfacing with ATmega8"><img width="50" height="33" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/atmega8_hcsr04_demo-300x198.jpg" class="alignleft wp-post-image" alt="ATmega8 HC-SR04 Ultrasonic Sensor Interface Demo"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/ultrasonic-rangefinder-hc-sr04-interfacing-with-atmega8/" title="Ultrasonic Rangefinder HC-SR04 Interfacing with ATmega8">Ultrasonic Rangefinder HC-SR04 Interfacing with ATmega8</a></h2>
+<span class="feat-cat-date">By Avinash - August 12 2013 12:15 PM</span>
+<p>In this article I will describe how to interface a ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 1012 END -->
+<div class="feat-cat-meta post-6">
+<a href="http://extremeelectronics.co.in/avr-tutorials/getting-started-with-avr-microcontrollers/" title="Getting Started with AVR Microcontrollers"><img width="50" height="30" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/getting-started-with-avr-microcontrollers-300x182.jpg" class="alignleft wp-post-image" alt="getting-started-with-avr-microcontrollers"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/getting-started-with-avr-microcontrollers/" title="Getting Started with AVR Microcontrollers">Getting Started with AVR Microcontrollers</a></h2>
+<span class="feat-cat-date">By Avinash - May 24 2013 11:10 AM</span>
+<p>
+The first step in getting started with microcontrollers is to ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 6 END -->
+<div class="feat-cat-meta post-5">
+<a href="http://extremeelectronics.co.in/avr-tutorials/part-i-introduction/" title="Introduction to AVR Microcontrollers"><img width="50" height="30" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/part-i-introduction-300x182.jpg" class="alignleft wp-post-image" alt="part-i-introduction"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/part-i-introduction/" title="Introduction to AVR Microcontrollers">Introduction to AVR Microcontrollers</a></h2>
+<span class="feat-cat-date">By Avinash - October 31 2012 03:55 PM</span>
+<p> 
+Just what is a microcontroller?
+    To ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 5 END -->
+ 
+</div><!-- FEAT CAT ENTRY END -->
+</li><!-- FEATURED CATEGORY END -->
+
+
+<li class="featured-category">
+<h6>Latest On Microchip PIC Tutorials</h6>
+<div class="feat-cat-entry">
+<div class="feat-cat-meta post-843">
+<a href="http://extremeelectronics.co.in/avr-tutorials/door-entry-detection-for-mcu-based-designs/" title="Door Entry Detection for MCU Based Designs"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/timthumb.php" alt="Door Entry Detection for MCU Based Designs" class="alignleft"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/door-entry-detection-for-mcu-based-designs/" title="Door Entry Detection for MCU Based Designs">Door Entry Detection for MCU Based Designs</a></h2>
+<span class="feat-cat-date">By Avinash - October 12 2012 12:43 PM</span>
+<p>This article discuss how you can detect the entry of ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 843 END -->
+<div class="feat-cat-meta post-557">
+<a href="http://extremeelectronics.co.in/microchip-pic-tutorials/thermometer-with-pic-microcontroller/" title="Thermometer with PIC Microcontroller"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/timthumb(1).php" alt="Thermometer with PIC Microcontroller" class="alignleft"></a>
+<h2><a href="http://extremeelectronics.co.in/microchip-pic-tutorials/thermometer-with-pic-microcontroller/" title="Thermometer with PIC Microcontroller">Thermometer with PIC Microcontroller</a></h2>
+<span class="feat-cat-date">By Avinash - June 10 2011 07:26 PM</span>
+<p>In the last tutorial we learn about the multiplexing technique ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 557 END -->
+<div class="feat-cat-meta post-528">
+<a href="http://extremeelectronics.co.in/microchip-pic-tutorials/using-multiplexed-7-segment-displays-%e2%80%93-pic-microcontroller-tutorial/" title="Using Multiplexed 7 Segment Displays – PIC Microcontroller Tutorial"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/timthumb(2).php" alt="Using Multiplexed 7 Segment Displays – PIC Microcontroller Tutorial" class="alignleft"></a>
+<h2><a href="http://extremeelectronics.co.in/microchip-pic-tutorials/using-multiplexed-7-segment-displays-%e2%80%93-pic-microcontroller-tutorial/" title="Using Multiplexed 7 Segment Displays – PIC Microcontroller Tutorial">Using Multiplexed 7 Segment Displays – PIC Microcontroller Tutorial</a></h2>
+<span class="feat-cat-date">By Avinash - May 31 2011 12:11 PM</span>
+<p>
+  
+    
+  
+  ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 528 END -->
+ 
+</div><!-- FEAT CAT ENTRY END -->
+</li><!-- FEATURED CATEGORY END -->
+
+
+<li class="featured-category">
+<h6>Latest On AVR Projects</h6>
+<div class="feat-cat-entry">
+<div class="feat-cat-meta post-1101">
+<a href="http://extremeelectronics.co.in/avr-projects/microwave-controller-using-atmega8-avr-project/" title="Microwave Controller using ATmega8 – AVR Project"><img width="50" height="34" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/micro_timer-300x207.jpg" class="alignleft wp-post-image" alt="micro_timer"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-projects/microwave-controller-using-atmega8-avr-project/" title="Microwave Controller using ATmega8 – AVR Project">Microwave Controller using ATmega8 – AVR Project</a></h2>
+<span class="feat-cat-date">By Avinash - January 1 2014 08:20 PM</span>
+<p>Microwave Controller's User Interface
+
+  
+    
+ ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 1101 END -->
+<div class="feat-cat-meta post-907">
+<a href="http://extremeelectronics.co.in/avr-projects/remote-temperature-monitoring/" title="Remote Temperature Monitoring using GSM – AVR Project"><img width="50" height="30" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/remote-temperature-monitoring-300x182.jpg" class="alignleft wp-post-image" alt="remote-temperature-monitoring"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-projects/remote-temperature-monitoring/" title="Remote Temperature Monitoring using GSM – AVR Project">Remote Temperature Monitoring using GSM – AVR Project</a></h2>
+<span class="feat-cat-date">By Avinash - April 7 2013 01:14 PM</span>
+<p>Temperature monitoring have wide application in daily life. In modern ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 907 END -->
+ 
+</div><!-- FEAT CAT ENTRY END -->
+</li><!-- FEATURED CATEGORY END -->
+ 
+
+</ul><!-- SIDEBARLIST END -->
+</div><!-- SIDEBARINNER1 END -->
+</div><!-- SIDEBAR1 END -->
+<div id="content">
+<div id="contentinner">
+<div id="breadcrumbs"><span>You are here&nbsp;: <a href="http://extremeelectronics.co.in/" title="eXtreme Electronics">eXtreme Electronics</a> » <a href="http://extremeelectronics.co.in/category/avr-projects/" title="View all posts in AVR Projects">AVR Projects</a>  » Remote Temperature Monitoring using GSM – AVR Project</span></div>
+
+<div id="post-entry">
+
+
+
+<div class="post-meta" id="post-162">
+<h1>Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers</h1>
+<span class="post-date">
+Posted by Avinash on March 20th, 2009 01:19 PM. Under&nbsp;<a href="http://extremeelectronics.co.in/category/avr-tutorials/" title="View all posts in AVR Tutorials" rel="category tag">AVR Tutorials</a>, <a href="http://extremeelectronics.co.in/category/code-libraries/" title="View all posts in Code Libraries" rel="category tag">Code Libraries</a>, <a href="http://extremeelectronics.co.in/category/code-snippets/" title="View all posts in Code Snippets" rel="category tag">Code Snippets</a>&nbsp;&nbsp;</span><!-- POST DATE END -->
+<div class="social"><div class="addthis_toolbox addthis_default_style" addthis:url="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/" addthis:title="Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers" addthis:description="In this turorial we will see how we can easily interface a 24C series serial 
+  EEPROM with AVR ...">
+  <a class="addthis_button_facebook at300b" title="Facebook" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+  <a class="addthis_button_twitter at300b" title="Tweet" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+  <a class="addthis_button_delicious at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=delicious&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/2&frommenu=1&uid=5416c0402a2aed80&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Delicious"><span class="at16nc at300bs at15nc at15t_delicious at16t_delicious"><span class="at_a11y">Share on delicious</span></span></a>
+  <a class="addthis_button_digg at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=digg&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/3&frommenu=1&uid=5416c040b1887a03&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Digg"><span class="at16nc at300bs at15nc at15t_digg at16t_digg"><span class="at_a11y">Share on digg</span></span></a>
+  <a class="addthis_button_stumbleupon at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=stumbleupon&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/4&frommenu=1&uid=5416c04008494134&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="StumbleUpon"><span class="at16nc at300bs at15nc at15t_stumbleupon at16t_stumbleupon"><span class="at_a11y">Share on stumbleupon</span></span></a>
+  <a class="addthis_button_reddit at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx-300&lng=en-US&s=reddit&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/5&frommenu=1&uid=5416c04094294328&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Reddit"><span class="at16nc at300bs at15nc at15t_reddit at16t_reddit"><span class="at_a11y">Share on reddit</span></span></a>
+  <a class="addthis_button_email at300b" target="_blank" title="Email" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+  <a class="addthis_button_compact at300m" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class="at16nc at300bs at15nc at15t_compact at16t_compact"><span class="at_a11y">More Sharing Services</span></span></a>
+<div class="atclear"></div></div></div><!-- SOCIAL END -->
+<div class="adsense-single">
+
+
+<!-- Begin AdServe code : banner:side_top-10/12 -->
+<a target="_blank" href="http://extremeelectronics.co.in/wp-content/plugins/wp-adserve/adclick.php?id=32" style="margin:0px;border:0px;"><img src="http://extremeelectronics.co.in/images/ad/ad_ultrasonic_rangefinder_hcsr04.jpg" alt="HC-SR04" style="display: none !important;"></a>
+<!-- End AdServe code -->
+
+</div>
+
+<div class="post-content">
+<p>In this turorial we will see how we can easily interface a 24C series serial<br>
+  EEPROM with AVR microcontrollers.</p>
+<h2>What is an EEPROM?</h2>
+<p>An EEPROM is kinds of novalatile memory, that means it is used for storing<br>
+  digital data permanently without any power suply. EEPROM stands for Electrically<br>
+  Erasable Programmable Read Only Memory. The advantage of these kind of ROMs<br>
+  is that they can be erased Electrically to make them ready for storing new data.<br>
+  Compare this with a CD R disks they can be recorded only once. A small amount<br>
+  of EEPROM is also available internally on the AVR chips. So if the volume of<br>
+  data you want to store is small (say few user names and password) then you can<br>
+  use it. The internal eeprom makes design small and simple.</p>
+<p>But if the amount of data you want to store is large, say in order of few tens<br>
+  of kilobytes then you have to interface a External EEPROM chip with your AVR<br>
+  MCU. You can store pictures, sound and long texts in these eeproms. </p>
+<p>Their are many kinds of EEPROM chip available from many manufactures. One very<br>
+  common family is 24C series serial EEPROMs. They are available upto 128KB in<br>
+  size. They uses I2C interface with host controller (MCU) which is a very popular<br>
+  serial communication standard. I will write more indept tutorial on I2C in comming<br>
+  days and in this tutorial I will give you easy to use function that you can<br>
+  use without any knowledge of I2C interface.</p>
+<p>In this tutorial we will be using 24C64 EEPROM chip which has 8192 bytes =<br>
+  8 KB = 8×1024 bytes of data storage.</p>
+<p>The chip has storage location which have their unique address ranging from<br>
+  0-8191. Consider these as storage cells so while storing and retriving data<br>
+  you have to tell the chip which cell location you want to read.</p>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td>
+<div align="center"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/eeprom_cell_view.gif" alt="Storage Cells inside the 24C64 EEPROM Chip" width="484" height="189"></div>
+</td>
+</tr>
+<tr>
+<td>
+<h3 align="center">Fig. : Storage Cells inside the 24C64 EEPROM Chip.</h3>
+</td>
+</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p>For exaple if you read location 0003 you will get 99 (see image above). Note<br>
+  each cell can store 8BITs of data so range you can store is 0-255 (-128 to +127).<br>
+  So if you want to store bigget data like int you have to store them in two cells.</p>
+<h2>Hardware Setup</h2>
+<p>Connect your ATmega32 with 24C64 chip as shown in the circuit diagram. You<br>
+  can use any <a href="http://xboard.extremeelectronics.co.in/">avr development<br>
+  board</a> for the purpose or assemble the whole circuit in a Breadboard or Veroboard.</p>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td>
+<div align="center"><a title="Click To Enlarge ..." href="http://www.extremeelectronics.co.in/avrtutorials/images/24c64_schematic_avr.gif" target="_blank"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/24c64_schematic_avr_thumb.gif" alt="interfacing avr mcu with 24c serial eeprom" width="400" height="301" border="0"></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<h3 align="center">Fig. : Circuit Setup for 24C64.</h3>
+</td>
+</tr>
+</tbody></table>
+<h2>Software Setup</h2>
+<p>Download and add the following files to your AVR Studio project. Now you can<br>
+  use the following functions for EEPROM interfacing.</p>
+<ul>
+<li>24c64.h</li>
+<li>24c64.c</li>
+</ul>
+<p><a href="http://www.extremeelectronics.co.in/avrtutorials/download/24c64_atmega32.zip">Download<br>
+  Here.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td bgcolor="#000000"><strong><font color="#FFFFFF">EEOpen()</font></strong></td>
+</tr>
+<tr>
+<td>
+<p><strong>Arguments -</strong> None</p>
+<p><strong>Returns -</strong> Nothing</p>
+<p><strong>Description:</strong> This function should be called before any<br>
+        read/write operation. This functions initialize the communication channel.</p>
+</td>
+</tr>
+</tbody></table>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td bgcolor="#000000"><strong><font color="#FFFFFF">EEWriteByte(unsigned int<br>
+      address,uint8_t data)</font></strong></td>
+</tr>
+<tr>
+<td>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>address :</strong> where you want to store data. The address<br>
+          must be within the range of EEPROM chip used.</li>
+<li><strong>data :</strong> 8 bit data you want to store at the address<br>
+          given.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>1 on success</li>
+<li>0 on failure</li>
+</ul>
+<p><strong>Description:</strong> Use this function to store a 8bit value<br>
+        in any EEPROM storage cell.</p>
+</td>
+</tr>
+</tbody></table>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td bgcolor="#000000"><strong><font color="#FFFFFF">EEReadByte(unsigned int<br>
+      address)</font></strong></td>
+</tr>
+<tr>
+<td>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>address :</strong> from where you want to read data. The address<br>
+          must be within the range of EEPROM chip used.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li> The value stored in the specified EEPROM storage cell.</li>
+</ul>
+<p><strong>Description:</strong> Use this function to read a 8bit value<br>
+        from any EEPROM storage cell.</p>
+</td>
+</tr>
+</tbody></table>
+<h2>Sample Program.</h2>
+<p>The following sample program demonstrate the use of external EEPROM interfaing<br>
+  functions. The program makes use of the <a href="http://extremeelectronics.co.in/avr-tutorials/using-lcd-module-with-avrs/">LCD<br>
+  library for AVRs</a> to display information in a 16×2 LCD display. The program<br>
+  first writes 8Kbytes of data to a 24c64 eeprom to fill the whole eeprom with<br>
+  ’7′ and then it reads back to see if all the location has 7. If the condition<br>
+  is met the screen shows "Write Successfull" message.</p>
+<p>I have used my <a href="http://xboard.extremeelectronics.co.in/">xBoard – An Advance<br>
+  ATmega32 development board</a> to test the routines. You can use any devboard<br>
+  with ATmega16 or ATmega32 MCUs. The 24C64 was mounted on a Breadboard.</p>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td>
+<div align="center"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/24c64_setup.jpg" alt="using 24c eeprom with avr  atmega32 chip" width="335" height="384"></div>
+</td>
+</tr>
+<tr>
+<td>
+<h3 align="center">Fig. : 24C64 Serial EEProm Interface with ATmega32.</h3>
+</td>
+</tr>
+</tbody></table>
+<p>The 5v,GND,SDA,SCL were connected to the xBoard development board.</p>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td>
+<div align="center"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/24c64_setup_xboard.jpg" alt="xboard with serial eeprom 24c" width="500" height="375"></div>
+</td>
+</tr>
+<tr>
+<td>
+<h3 align="center">Fig. : xBoard with MCU ATmega32.</h3>
+</td>
+</tr>
+</tbody></table>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td>
+<div align="center"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/24c64_lcd_output.jpg" alt="output of 24c64 test program" width="400" height="202"></div>
+</td>
+</tr>
+<tr>
+<td>
+<h3 align="center">Fig. : Output of 24C64 test program.</h3>
+</td>
+</tr>
+</tbody></table>
+<pre><code><font color="#000000">
+<font color="#000080"><i>/*</i></font>
+
+<font color="#000080"><i>A sample program to test the Extrenal EEPROM interfacing</i></font>
+
+<font color="#000080"><i>routines. The program fills the whole EEPROM with 7 and </i></font>
+<font color="#000080"><i>then reads the whole EEPROM memory to see if all of them</i></font>
+<font color="#000080"><i>contains 7.</i></font>
+
+<font color="#000080"><i>This helps in quick testing of you hardware /software before</i></font>
+<font color="#000080"><i>using these routines in your own programs.</i></font>
+
+<font color="#000080"><i>The target for this program is ATmega8, ATmega16, or ATmega32</i></font>
+<font color="#000080"><i>running at 16MHz. If you use slower crystal the program will</i></font>
+<font color="#000080"><i>simply run slow but without any problems.</i></font>
+
+<font color="#000080"><i>This program also makes use of eXtreme Electronics 16x2 LCD</i></font>
+<font color="#000080"><i>Interfacing routines. See the related page for more info</i></font>
+
+<font color="#000080"><i>Author : Avinash Gupta</i></font>
+<font color="#000080"><i>Date : 16 March 2009</i></font>
+<font color="#000080"><i>Mail : me@avinashgupta.com</i></font>
+<font color="#000080"><i>Web : www.eXtremeElectronics.co.in</i></font>
+
+<font color="#000080"><i>NOTE: IF YOU USE THIS LIBRARY IN YOUR PROGRAMS AND FINDS </i></font>
+
+<font color="#000080"><i>IT USEFUL PLEASE MENTION US IN CREDIT AND RECOMEND OTHERS.</i></font>
+
+
+<font color="#000080"><i>*/</i></font>
+
+<font color="#008000">#include &lt;avr/io.h&gt;</font>
+<font color="#008000">#include "util/delay.h"</font>
+
+<font color="#008000">#include "24c64.h"</font>
+
+<font color="#008000">#include "lcd.h"</font>
+
+
+<font color="#000080"><i>/**********************************</i></font>
+
+<font color="#000080"><i>A simple delay routine to wait </i></font>
+<font color="#000080"><i>between messages given to user</i></font>
+<font color="#000080"><i>so that he/she gets time to read them</i></font>
+
+<font color="#000080"><i>***********************************/</i></font>
+
+<b>void</b> Wait()
+{
+   uint8_t i;
+
+   <b>for</b>(i=<font color="#ff0080">0</font>;i&lt;<font color="#ff0080">100</font>;i++)
+      _delay_loop_2(<font color="#ff0080">0</font>);
+}
+
+<b>void</b> main()
+{
+   <font color="#000080"><i>//Varriables</i></font>
+   uint8_t failed;
+   <b>unsigned int</b> address;
+
+   <font color="#000080"><i>//Initialize LCD</i></font>
+
+   LCDInit(LS_BLINK);
+
+   <font color="#000080"><i>//Init EEPROM</i></font>
+   EEOpen();
+
+   _delay_loop_2(<font color="#ff0080">0</font>);
+
+   LCDClear();
+   LCDWriteString(<font color="#0000ff">"External EEPROM"</font>);
+   LCDWriteStringXY(<font color="#ff0080">0</font>,<font color="#ff0080">1</font>,<font color="#0000ff">"Test"</font>);
+
+   Wait();
+
+   LCDClear();
+   LCDWriteString(<font color="#0000ff">"Writting..."</font>);
+
+   <font color="#000080"><i>//Fill whole eeprom 8KB (8192 bytes)</i></font>
+
+   <font color="#000080"><i>//with number 7</i></font>
+   failed=<font color="#ff0080">0</font>;
+   <b>for</b>(address=<font color="#ff0080">0</font>;address&lt;<font color="#ff0080">8192</font>;address++)
+   {
+      <b>if</b>(EEWriteByte(address,<font color="#ff0080">7</font>)==<font color="#ff0080">0</font>)
+      {
+         <font color="#000080"><i>//Write Failed</i></font>
+
+         LCDClear();
+         LCDWriteString(<font color="#0000ff">"Write Failed !"</font>);
+         LCDWriteStringXY(<font color="#ff0080">0</font>,<font color="#ff0080">1</font>,<font color="#0000ff">"Addess = "</font>);
+         LCDWriteInt(address,<font color="#ff0080">4</font>);
+         failed=<font color="#ff0080">1</font>;
+         Wait();
+         <b>break</b>;
+      }
+   }
+
+   LCDClear();
+
+   <b>if</b>(!failed)
+      LCDWriteString(<font color="#0000ff">"Written 8192bytes"</font>);
+
+   Wait();
+
+   LCDClear();
+   LCDWriteString(<font color="#0000ff">"Verifying ..."</font>);
+
+   <font color="#000080"><i>//Check if every location in EEPROM has </i></font>
+
+   <font color="#000080"><i>//number 7 stored</i></font>
+   failed=<font color="#ff0080">0</font>;
+   <b>for</b>(address=<font color="#ff0080">0</font>;address&lt;<font color="#ff0080">8192</font>;address++)
+   {
+      <b>if</b>(EEReadByte(address)!=<font color="#ff0080">7</font>)
+      {
+         <font color="#000080"><i>//Failed !</i></font>
+
+         LCDClear();
+         LCDWriteString(<font color="#0000ff">"Verify Failed"</font>);
+         LCDWriteStringXY(<font color="#ff0080">0</font>,<font color="#ff0080">1</font>,<font color="#0000ff">"Addess = "</font>);
+         LCDWriteInt(address,<font color="#ff0080">4</font>);
+         failed=<font color="#ff0080">1</font>;
+         Wait();
+         <b>break</b>;
+      }
+   }
+
+   <b>if</b>(!failed)
+   {
+      <font color="#000080"><i>//We have Done it !!!</i></font>
+
+      LCDClear();
+      LCDWriteString(<font color="#0000ff">"Write Success !"</font>);
+   }
+
+   <b>while</b>(<font color="#ff0080">1</font>);
+
+}
+</font>
+</code></pre>
+<p></p>
+<h2>Note On Installing 16×2 LCD Module.</h2>
+<p>The LCD Module can be easily installed with AVR ATmega32 as the sample program<br>
+  supports it. The connection is simple. Connect the LCD to your ATmega32 as shown<br>
+  below. For Finding out location of PINs such as PC7,PC6,PB4 etc see the ATmega32<br>
+  datasheet. The LCD must be installed to see the output of the program. After<br>
+  powering on the circuit please adjust the 10K POT until the display is clearly<br>
+  visible.</p>
+<p>I strongly recommend you to see the <a href="http://extremeelectronics.co.in/avr-tutorials/using-lcd-module-with-avrs/">LCD<br>
+  Interfacing Tutorial</a> and Setup and run some LCD demo code to be sure that<br>
+  LCD is working correctly.</p>
+<table width="90%" border="0" cellspacing="10" cellpadding="10">
+<tbody><tr>
+<td>
+<div align="center"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/lcd_interface_atmega32.gif" alt="16x2 lcd interface with atmega32" width="416" height="393"></div>
+</td>
+</tr>
+<tr>
+<td>
+<h3 align="center">Fig. : LCD Interface with ATmega32.</h3>
+</td>
+</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p><a href="http://www.extremeelectronics.co.in/avrtutorials/download/24c64_atmega32.zip">All<br>
+  the required files for 24C eeprom interfacing with AVR MCUs.</a></p>
+</div><!-- POST CONTENT END -->
+<div class="post-tags">Tags:&nbsp;<a href="http://extremeelectronics.co.in/tag/24c/" rel="tag">24c</a>, <a href="http://extremeelectronics.co.in/tag/24c1024/" rel="tag">24c1024</a>, <a href="http://extremeelectronics.co.in/tag/24c32/" rel="tag">24c32</a>, <a href="http://extremeelectronics.co.in/tag/24c64/" rel="tag">24c64</a>, <a href="http://extremeelectronics.co.in/tag/atmega16/" rel="tag">atmega16</a>, <a href="http://extremeelectronics.co.in/tag/atmega32/" rel="tag">atmega32</a>, <a href="http://extremeelectronics.co.in/tag/atmega8/" rel="tag">atmega8</a>, <a href="http://extremeelectronics.co.in/tag/avr/" rel="tag">AVR</a>, <a href="http://extremeelectronics.co.in/tag/avr-gcc/" rel="tag">avr gcc</a>, <a href="http://extremeelectronics.co.in/tag/avr-studio/" rel="tag">avr studio</a>, <a href="http://extremeelectronics.co.in/tag/i2c/" rel="tag">i2c</a>, <a href="http://extremeelectronics.co.in/tag/i2c-eeprom/" rel="tag">i2c eeprom</a>, <a href="http://extremeelectronics.co.in/tag/serial-eeprom/" rel="tag">serial eeprom</a>, <a href="http://extremeelectronics.co.in/tag/spi-eeprom/" rel="tag">spi eeprom</a>, <a href="http://extremeelectronics.co.in/tag/winavr/" rel="tag">winavr</a></div><div class="social"><div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/" addthis:title="Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers" addthis:description="In this turorial we will see how we can easily interface a 24C series serial 
+  EEPROM with AVR ...">
+  <a class="addthis_button_facebook at300b" title="Facebook" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class=" at300bs at15nc at15t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+  <a class="addthis_button_twitter at300b" title="Tweet" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class=" at300bs at15nc at15t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+  <a class="addthis_button_delicious at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx32-300&lng=en-US&s=delicious&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/6&frommenu=1&uid=5416c04084d83030&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Delicious"><span class=" at300bs at15nc at15t_delicious"><span class="at_a11y">Share on delicious</span></span></a>
+  <a class="addthis_button_digg at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx32-300&lng=en-US&s=digg&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/7&frommenu=1&uid=5416c0406727e992&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Digg"><span class=" at300bs at15nc at15t_digg"><span class="at_a11y">Share on digg</span></span></a>
+  <a class="addthis_button_stumbleupon at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx32-300&lng=en-US&s=stumbleupon&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/8&frommenu=1&uid=5416c0400bd10810&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="StumbleUpon"><span class=" at300bs at15nc at15t_stumbleupon"><span class="at_a11y">Share on stumbleupon</span></span></a>
+  <a class="addthis_button_reddit at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=unknown&source=tbx32-300&lng=en-US&s=reddit&url=http%3A%2F%2Fextremeelectronics.co.in%2Favr-tutorials%2Feasy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers%2F&title=Easy%2024C%20I2C%20Serial%20EEPROM%20Interfacing%20with%20AVR%20Microcontrollers&ate=AT-unknown/-/-/5416c040ad6ef7cf/9&frommenu=1&uid=5416c0408df4d252&description=In%20this%20turorial%20we%20will%20see%20how%20we%20can%20easily%20interface%20a%2024C%20series%20serial%20%0A%20%20EEPROM%20with%20AVR%20...&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Reddit"><span class=" at300bs at15nc at15t_reddit"><span class="at_a11y">Share on reddit</span></span></a>
+  <a class="addthis_button_email at300b" target="_blank" title="Email" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class=" at300bs at15nc at15t_email"><span class="at_a11y">Share on email</span></span></a>
+  <a class="addthis_button_compact at300m" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#"><span class=" at300bs at15nc at15t_compact"><span class="at_a11y">More Sharing Services</span></span></a>
+<div class="atclear"></div></div></div><!-- SOCIAL END -->
+<div align="center" class="adsense-single">
+
+
+</div>
+
+</div><!-- POST META 162 END -->
+
+
+
+<!-- You can start editing here. -->
+<div id="commentpost">
+
+<h4 id="comments">79 Responses to <span>“Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers”</span></h4>
+
+<div class="pnav">
+<div class="alignleft"></div>
+<div class="alignright"></div>
+<div class="clearfix"></div>
+</div>
+
+<ol class="commentlist">
+		<li class="comment even thread-even depth-1" id="comment-1328">
+				<div id="div-comment-1328" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/245e4bc5d89b26f9cef6dd5ca869e3bd" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Fortune</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1328">
+			March 20, 2009 at 5:25 pm</a>		</div>
+
+		<p>Hi Avinash,</p>
+<p>I am thinking of ATMega16 to use for sending data to a transmitter for testing purposes. Should I use EEPROM to store the data to be sent or can I just directly write the data in program and it randomly stores and sends it? And is there an easy way to do it for big data (for ex. with arrays) or should I do it byte by byte?</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1328#respond" onclick="return addComment.moveForm(&quot;div-comment-1328&quot;, &quot;1328&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1329">
+				<div id="div-comment-1329" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1329">
+			March 20, 2009 at 6:40 pm</a>		</div>
+
+		<p>Hello Fortune,<br>
+ <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<p>You can use a EEPROM such as 24C64 (8Kbytes) or 24C1024 (128Kbytes) to store that data. Read them byte by byte in loop and transmit. I think 128K byte of data would be enough.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1329#respond" onclick="return addComment.moveForm(&quot;div-comment-1329&quot;, &quot;1329&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1334">
+				<div id="div-comment-1334" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/35e874d6bb78bc206d765cbc95bc1bc4" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">mozard</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1334">
+			March 21, 2009 at 4:44 am</a>		</div>
+
+		<p>Hi Avinash,<br>
+Thank you very much.I really appreciate your effort and help!</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1334#respond" onclick="return addComment.moveForm(&quot;div-comment-1334&quot;, &quot;1334&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1343">
+				<div id="div-comment-1343" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ec48bcc52eedf9bbefd93609dc955096" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Anthony</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1343">
+			March 22, 2009 at 3:18 pm</a>		</div>
+
+		<p>Hi look your email to see my lib</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1343#respond" onclick="return addComment.moveForm(&quot;div-comment-1343&quot;, &quot;1343&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1360">
+				<div id="div-comment-1360" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/81d54d8a04b1066e2e4840d7693b3dd4" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Andy</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1360">
+			March 23, 2009 at 4:48 pm</a>		</div>
+
+		<p>Waht about if you don’t have SCL SDA Port, for example<br>
+if We need maybe PB5 and PB6 (without TWI register)?</p>
+<p>best regard and thanks for nice work</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1360#respond" onclick="return addComment.moveForm(&quot;div-comment-1360&quot;, &quot;1360&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1363">
+				<div id="div-comment-1363" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/245e4bc5d89b26f9cef6dd5ca869e3bd" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Fortune</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1363">
+			March 23, 2009 at 8:33 pm</a>		</div>
+
+		<p>I just need to output 256bytes. I need to output them serially. I have just thought to write it in the program in a loop using if the corresponding bit is 1</p>
+<p>if(data[i]&amp;(1&lt;&lt;n)) //n is the current bit # in progress<br>
+PORTA|=(1&lt;&lt;output);//output is the pin used for serial comm.</p>
+<p>is this correct and enough? do I need a delay between every bit/byte? and what will be the baud rate(ATMega16) as default if i dont do any init.? (I want Baud ca. 1Kbit/s)</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1363#respond" onclick="return addComment.moveForm(&quot;div-comment-1363&quot;, &quot;1363&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1366">
+				<div id="div-comment-1366" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/35e874d6bb78bc206d765cbc95bc1bc4" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">mozard</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1366">
+			March 24, 2009 at 4:07 am</a>		</div>
+
+		<p>Hi,<br>
+What is the value of the resistors connected to the 24c64.It<br>
+says 4k7.What does that mean?</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1366#respond" onclick="return addComment.moveForm(&quot;div-comment-1366&quot;, &quot;1366&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1368">
+				<div id="div-comment-1368" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1368">
+			March 24, 2009 at 6:57 am</a>		</div>
+
+		<p>@Fortune,</p>
+<p>You have a lots of confusion. First you are manualy sending just bit by bit to a port. In that way you cannot do RS232 communication. No device (such a PC) will be able to make anything out of that varrying voltage on a PIN.</p>
+<p>Their is a STANDARD for RS232 communication.</p>
+<p>You are talking about BAUD rate and you are NOT AT ALL USING THE USART. The baud rate is assosiated with USART.</p>
+<p>and 1Kbit/s is not a standrad baud rate.</p>
+<p>PLEASE GO THROUGH THE SUBJECT BEFORE ASKING. </p>
+<p>SEE<br>
+<a href="http://extremeelectronics.co.in/avr-tutorials/rs232-communication-the-basics/" rel="nofollow">http://extremeelectronics.co.in/avr-tutorials/rs232-communication-the-basics/</a></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1368#respond" onclick="return addComment.moveForm(&quot;div-comment-1368&quot;, &quot;1368&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-Avinash bypostauthor even thread-even depth-1" id="comment-1369">
+				<div id="div-comment-1369" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1369">
+			March 24, 2009 at 6:59 am</a>		</div>
+
+		<p>@Mozard<br>
+4k7 = 4.7k = 4.7 Kilo Ohms = 4700 Ohms</p>
+<p>Got it</p>
+<p>its just a standard way in commercial electronics!!!</p>
+<p>Remember that from now.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1369#respond" onclick="return addComment.moveForm(&quot;div-comment-1369&quot;, &quot;1369&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1373">
+				<div id="div-comment-1373" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/245e4bc5d89b26f9cef6dd5ca869e3bd" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Fortune</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1373">
+			March 24, 2009 at 3:28 pm</a>		</div>
+
+		<p>Hi Avinash again <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/icon_smile.gif" alt=":)" class="wp-smiley"> ,</p>
+<p>first of all I dont want to send the data using RS232 but via a normal port like portA. I said serial comm. technically while I will send them bit by bit using just one pin of a port.<br>
+I may have used the baud rate wrong but I wonder to know in what freq. I output the bits in the Port? As I know default freq. of ATMega16 is 1Mhz, but my output freq. will be less than 1MBit/s while one output op. takes more cycles than 1???<br>
+Sorry for putting on too much confusion..</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1373#respond" onclick="return addComment.moveForm(&quot;div-comment-1373&quot;, &quot;1373&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1375">
+				<div id="div-comment-1375" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/35e874d6bb78bc206d765cbc95bc1bc4" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">mozard</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1375">
+			March 25, 2009 at 1:11 am</a>		</div>
+
+		<p>Hi Avinash,<br>
+I am trying to read data from a file and then store the data in the 24C64.Do you have any idea how this could be implemented? I am trying to use fopen for file reading, but it is not working.Any help would be appreciated.Thank you..:)</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1375#respond" onclick="return addComment.moveForm(&quot;div-comment-1375&quot;, &quot;1375&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1381">
+				<div id="div-comment-1381" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/d12eb745b204c3574e9b53b4359f38a4" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Nikhil</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1381">
+			March 25, 2009 at 6:51 pm</a>		</div>
+
+		<p>Hi everyone,</p>
+<p>I need some help with I2C protocols. I want to store my program in an external I2C Memory AT24C512, and execute the program from there.</p>
+<p>But i am clueless on how to go about, i know about the i2c read and write cycles</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1381#respond" onclick="return addComment.moveForm(&quot;div-comment-1381&quot;, &quot;1381&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-Avinash bypostauthor even thread-even depth-1" id="comment-1387">
+				<div id="div-comment-1387" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1387">
+			March 26, 2009 at 10:24 am</a>		</div>
+
+		<p>AVR MCU does not support execution from external memory.</p>
+<p>One way you can go is to write a bootloader that first loads the program form external memory to internal flash then start execution. See datasheets</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1387#respond" onclick="return addComment.moveForm(&quot;div-comment-1387&quot;, &quot;1387&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1389">
+				<div id="div-comment-1389" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/d12eb745b204c3574e9b53b4359f38a4" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">nikhil</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1389">
+			March 26, 2009 at 2:34 pm</a>		</div>
+
+		<p>actually i am working with 8052. can you give me some suggestion for i2c interface with 8052.<br>
+thank u</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1389#respond" onclick="return addComment.moveForm(&quot;div-comment-1389&quot;, &quot;1389&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1451">
+				<div id="div-comment-1451" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/4ec43db4739c4d7d535cbf3409b2a507" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Romil Gupta</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1451">
+			April 13, 2009 at 12:29 pm</a>		</div>
+
+		<p>Hello Avinash, I saw your code you are doing interfacing LCD with Atmega32. Was wondering if you help me to get started with Interfacing EEPROM(25AA1024 I/P ) and Real Time Clock (DS1305) with ATmega32 using 3-wire SPI. I did all the wiring on breadboard let me know if you want to know which pins i am using.<br>
+      Thanks<br>
+cheers,<br>
+Romil</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1451#respond" onclick="return addComment.moveForm(&quot;div-comment-1451&quot;, &quot;1451&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1523">
+				<div id="div-comment-1523" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/f3624b4f8aaae856d61805816ac07f44" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">basma</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1523">
+			April 24, 2009 at 8:45 pm</a>		</div>
+
+		<p>hi<br>
+iusing eeprom in rfid project with 1mb (sst25f016b)interfacing to atmega32using spi and ineed ur help to start cod</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1523#respond" onclick="return addComment.moveForm(&quot;div-comment-1523&quot;, &quot;1523&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1569">
+				<div id="div-comment-1569" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/bf508e1d486c1f2f1bad51e9411a9eaf" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Kapil</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1569">
+			May 2, 2009 at 11:17 am</a>		</div>
+
+		<p>Hello Avinash,<br>
+There is very valuable notes on AVR microcontroller. I started with ATMEGA8 and I connect it with external crystal oscillator, of 8 MHz, but I think it is work on internal oscillator. I search for that then i found that thee is a fuse bit, please tell me about fuse bit ant how can i programme fuse bit. At present i use AT-PROG ( Parallel port, with two resistors directly connected to IC).<br>
+Thanks<br>
+Kapil</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1569#respond" onclick="return addComment.moveForm(&quot;div-comment-1569&quot;, &quot;1569&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1576">
+				<div id="div-comment-1576" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-1576">
+			May 2, 2009 at 4:19 pm</a>		</div>
+
+		<p>Fuse byte info here<br>
+<a href="http://forum.extremeelectronics.co.in/viewtopic.php?f=2&t=24" rel="nofollow">http://forum.extremeelectronics.co.in/viewtopic.php?f=2&amp;t=24</a></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=1576#respond" onclick="return addComment.moveForm(&quot;div-comment-1576&quot;, &quot;1576&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2013">
+				<div id="div-comment-2013" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/655a3678b3e1edb01f7a5e2befb530e6" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">sridhar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2013">
+			July 1, 2009 at 8:28 am</a>		</div>
+
+		<p>hi, i am trying to interface atmega 16 with at8052, where 8052 is the master which is connected with RTC(DS1703) ATmega16 is a slave i am not able to interface ATmega16 with AT8052, there is some problem in slave coding, please can you help me in coding of ATmega 16 as a slave mode ,</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2013#respond" onclick="return addComment.moveForm(&quot;div-comment-2013&quot;, &quot;2013&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-2292">
+				<div id="div-comment-2292" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/3c70c3447ca0dc58b304dc87a4cbd537" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.electroons.com/" rel="external nofollow" class="url">deveshsamaiya</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2292">
+			August 3, 2009 at 2:11 pm</a>		</div>
+
+		<p>hi avinash..<br>
+I am using 24C04. I modify address limit as 4096. I am using your I2C library with ATmega32. My program is running upto lcdstring(“Writting…”). But its not running or somewaht else after this. I didnt used 4K7 pullups are they very necessary. Plz Clarify</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2292#respond" onclick="return addComment.moveForm(&quot;div-comment-2292&quot;, &quot;2292&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-2" id="comment-2297">
+				<div id="div-comment-2297" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2297">
+			August 3, 2009 at 6:51 pm</a>		</div>
+
+		<p>@Devesh<br>
+Yes in I2C pullups are required. Without it it won’t work</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2297#respond" onclick="return addComment.moveForm(&quot;div-comment-2297&quot;, &quot;2297&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="comment-2293">
+				<div id="div-comment-2293" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/3c70c3447ca0dc58b304dc87a4cbd537" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.electroons.com/" rel="external nofollow" class="url">deveshsamaiya</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2293">
+			August 3, 2009 at 2:15 pm</a>		</div>
+
+		<p>hi…<br>
+What should be the DDR values for PORTC as we are using SCL &amp; SDA.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2293#respond" onclick="return addComment.moveForm(&quot;div-comment-2293&quot;, &quot;2293&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-2332">
+				<div id="div-comment-2332" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/51d0c0bffd3cf4a233a2c6fb655be2ba" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">luis</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2332">
+			August 11, 2009 at 6:05 am</a>		</div>
+
+		<p>It didn’t work with proteus <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/icon_sad.gif" alt=":(" class="wp-smiley"><br>
+anyone knows why???<br>
+It gets stuck in the command writting…</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2332#respond" onclick="return addComment.moveForm(&quot;div-comment-2332&quot;, &quot;2332&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt depth-2" id="comment-2333">
+				<div id="div-comment-2333" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2333">
+			August 11, 2009 at 8:18 am</a>		</div>
+
+		<p>In proteus u have to remove two pull up resistors (4.7K)</p>
+<p>but in real case use them</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2333#respond" onclick="return addComment.moveForm(&quot;div-comment-2333&quot;, &quot;2333&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2337">
+				<div id="div-comment-2337" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/51d0c0bffd3cf4a233a2c6fb655be2ba" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">luis</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2337">
+			August 11, 2009 at 1:54 pm</a>		</div>
+
+		<p>thanks Avinash,<br>
+I already tried that,<br>
+but even so, it didnt work <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/icon_sad.gif" alt=":(" class="wp-smiley"><br>
+can you help me on this…</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2337#respond" onclick="return addComment.moveForm(&quot;div-comment-2337&quot;, &quot;2337&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-2374">
+				<div id="div-comment-2374" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/66d86f94206804b5bf261d1c47453aa9" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">deveshsamaiya</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2374">
+			August 17, 2009 at 8:43 pm</a>		</div>
+
+		<p>hi avinash..<br>
+I am using AT24C04 what kind of modification i should do in your code to make it compatuble to 24C04.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2374#respond" onclick="return addComment.moveForm(&quot;div-comment-2374&quot;, &quot;2374&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-2" id="comment-2377">
+				<div id="div-comment-2377" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2377">
+			August 18, 2009 at 7:59 am</a>		</div>
+
+		<p>@Devesh,</p>
+<p>Use without any modification</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2377#respond" onclick="return addComment.moveForm(&quot;div-comment-2377&quot;, &quot;2377&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-2623">
+				<div id="div-comment-2623" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5f95df8b9cc77cdee4bec6dc80ba6c65" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">kushal</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2623">
+			September 8, 2009 at 1:08 pm</a>		</div>
+
+		<p>hi avinash,</p>
+<p>thats a good tutorial</p>
+<p>i want to interface atmega 16 with eeprom, but only on avr studio first, also i need to store 120K data on it, can u help me in it, as in which eeprom better, which ports of eeprom connected to scl,sda for i2c and more</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2623#respond" onclick="return addComment.moveForm(&quot;div-comment-2623&quot;, &quot;2623&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-2" id="comment-2671">
+				<div id="div-comment-2671" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2671">
+			September 12, 2009 at 8:35 am</a>		</div>
+
+		<p><strong>@Kushal<br>
+use 24C1024 EEPROM it has a capacity of 128KB</strong></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2671#respond" onclick="return addComment.moveForm(&quot;div-comment-2671&quot;, &quot;2671&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2638">
+				<div id="div-comment-2638" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/a3328b909695320bb36cac38a0a62c2f" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">qman</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2638">
+			September 9, 2009 at 5:26 pm</a>		</div>
+
+		<p>Hi Avinash,</p>
+<p>I have a couple of questions</p>
+<p>1) I want to transmit data bit by bit to flash memory and store it in an empty array. I already have used your tutorial on RS232 and I have got data transmitting. </p>
+<p>But I can’t get it to store in the appropriate array. Should I use a buffer, like in EEPROM or something or should I store it directly.</p>
+<p>The transmission rate is not a problem for the project im using it for.</p>
+<p>Thanks</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2638#respond" onclick="return addComment.moveForm(&quot;div-comment-2638&quot;, &quot;2638&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent" id="comment-2673">
+				<div id="div-comment-2673" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/154185939240bc8566c2154a2380ea5a" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://logix.cz/michal" rel="external nofollow" class="url">Michal</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2673">
+			September 12, 2009 at 6:23 pm</a>		</div>
+
+		<p>Hi Avinash,</p>
+<p>Wikipedia says in their I2C overview that each slave on the I2C bus has an address and in turn there could be multiple slaves connected to the bus. How do I set or learn the address of the 24Cxxx chip? And how to connect if I want to have more than one of these eeproms attached? How do I address them?</p>
+<p>Thanks</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2673#respond" onclick="return addComment.moveForm(&quot;div-comment-2673&quot;, &quot;2673&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt depth-2" id="comment-2679">
+				<div id="div-comment-2679" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2679">
+			September 13, 2009 at 8:18 am</a>		</div>
+
+		<p>@Michal,</p>
+<p><strong>Very good question. Yes thats the beauty of I2C bus. Each slave on it have a unique address, thus many slaves can be connected in parallel in same bus lines.  the address in I2C bus is 7 bit (the last bit is Read/Write select bit) so as many as 128 I2C slave can be connected in i2c bus.The 24C series has the address in form of [MSB]1,0,1,0,A1,A2,A3[LSB] where A1,A2,A3 can be set to proper state by using 3 pins on the chip. So as many as 8 24C eeprom can be connected in a bus. </strong></p><strong>
+</strong><p><strong>In the above example I have not connected A1,A2,A3 (this means the are 0, 0, 0) to keep it simple.<em> For more details see data sheet</em>.</strong></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2679#respond" onclick="return addComment.moveForm(&quot;div-comment-2679&quot;, &quot;2679&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-2944">
+				<div id="div-comment-2944" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/30ae58855eb38b0227b0996eb1d39f62" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">mohamed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2944">
+			October 30, 2009 at 6:00 am</a>		</div>
+
+		<p>Hi Avinash<br>
+very good effort ,i want to make one master(atmega32)read &amp; write with 3 slaves (atmega32), how can i send and recieve data from them.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2944#respond" onclick="return addComment.moveForm(&quot;div-comment-2944&quot;, &quot;2944&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="comment-2945">
+				<div id="div-comment-2945" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/655a3678b3e1edb01f7a5e2befb530e6" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">sridhar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2945">
+			October 30, 2009 at 11:41 am</a>		</div>
+
+		<p>Dear sir, if possible please provide tutorial on interfacing micro Controller, with other micro controller using I2C/ twi,</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2945#respond" onclick="return addComment.moveForm(&quot;div-comment-2945&quot;, &quot;2945&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-2950">
+				<div id="div-comment-2950" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5c6197a71320d457e44a6405dcc26e18" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://logix.net.nz/" rel="external nofollow" class="url">Michal</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2950">
+			October 31, 2009 at 4:23 am</a>		</div>
+
+		<p>@sridhar – what you probably need is a multi-master i2c setup where each MCU can asynchronously send data to any other i2c device on the bus. Google for “i2c multi-master” and you’ll get a number of useful links.</p>
+<p>@mohamed – do you mean 3 ICs writing into the eeprom and one IC reading it? In that case you’ll probably need multi-master as well. </p>
+<p>Both of you guys could get away with just one bus master but then the setup would need an interrupt line from each slave, alerting the master that there are data to be processed. The master will then issue a read command to the slave, fetch the data and process. It really depends on what you’re trying to achieve. Whether to choose single-master or multi-master depends on circumstances.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2950#respond" onclick="return addComment.moveForm(&quot;div-comment-2950&quot;, &quot;2950&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt depth-2" id="comment-2952">
+				<div id="div-comment-2952" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2952">
+			October 31, 2009 at 8:14 am</a>		</div>
+
+		<p>@Michal</p>
+<p><strong>Thanks for helping out Sridhar <img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/icon_smile.gif" alt=":)" class="wp-smiley"> </strong></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2952#respond" onclick="return addComment.moveForm(&quot;div-comment-2952&quot;, &quot;2952&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2951">
+				<div id="div-comment-2951" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/30ae58855eb38b0227b0996eb1d39f62" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">mohamed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2951">
+			October 31, 2009 at 6:28 am</a>		</div>
+
+		<p>i make wide search but i didnt find interfacing two avr ,i find avr with another devices such as eprom,could u Nominate me web site</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2951#respond" onclick="return addComment.moveForm(&quot;div-comment-2951&quot;, &quot;2951&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2953">
+				<div id="div-comment-2953" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/655a3678b3e1edb01f7a5e2befb530e6" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">sridhar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2953">
+			October 31, 2009 at 9:59 am</a>		</div>
+
+		<p>thank you 4 all for helping out,<br>
+here i am using single-master, i.e one master need to read multi slave, but all the slave is of same Atmega 8 as well as master,<br>
+ya, iam trying on google but links are not helping out much.,<br>
+if any one tried the same please help me out.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2953#respond" onclick="return addComment.moveForm(&quot;div-comment-2953&quot;, &quot;2953&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2954">
+				<div id="div-comment-2954" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/30ae58855eb38b0227b0996eb1d39f62" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">mohamed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-2954">
+			October 31, 2009 at 10:11 am</a>		</div>
+
+		<p>thank you for ur caring,<br>
+what i want to do is only one master(atmega32)read &amp; write with 3 slaves (atmega32)</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=2954#respond" onclick="return addComment.moveForm(&quot;div-comment-2954&quot;, &quot;2954&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3044">
+				<div id="div-comment-3044" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/30ae58855eb38b0227b0996eb1d39f62" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">mohamed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3044">
+			November 18, 2009 at 9:38 am</a>		</div>
+
+		<p>hey guys where r u???????</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3044#respond" onclick="return addComment.moveForm(&quot;div-comment-3044&quot;, &quot;3044&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3123">
+				<div id="div-comment-3123" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/7f531c9273c0d28b4da7f33827179af6" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">washu</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3123">
+			December 2, 2009 at 7:29 pm</a>		</div>
+
+		<p>If we says A1,A2,A3 are used to unique address makeing:</p>
+<p>1. only in 24c01,24c02 -&gt; 8 IC’s<br>
+2. 24c04 has two pages switched by  A3 -&gt; 4 IC’s<br>
+(simply you can without changing code change 1*24c04 into 2*24c02)<br>
+3. and go on….</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3123#respond" onclick="return addComment.moveForm(&quot;div-comment-3123&quot;, &quot;3123&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-3318">
+				<div id="div-comment-3318" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/22d94d9f50d2859debb53b4611f96ae8" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">ali</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3318">
+			January 3, 2010 at 3:30 am</a>		</div>
+
+		<p>thank you for your web.but i dont know how to connect thw wire to real lcd.because in real lcd we have 16 socket.but in diagram lcd we have 14.please help me.thank</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3318#respond" onclick="return addComment.moveForm(&quot;div-comment-3318&quot;, &quot;3318&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-2" id="comment-3323">
+				<div id="div-comment-3323" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3323">
+			January 3, 2010 at 9:13 am</a>		</div>
+
+		<p><strong>@Ali</strong></p><strong>
+</strong><p><strong>The PCB of the LCD has the PIN names. From that you can clearly see that the last two pins 15 and 16 are connected to the LED backlight !!!</strong></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3323#respond" onclick="return addComment.moveForm(&quot;div-comment-3323&quot;, &quot;3323&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="comment-3362">
+				<div id="div-comment-3362" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/9a28740fbbffccb7db70570cc75593e3" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">hinduja</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3362">
+			January 8, 2010 at 10:53 pm</a>		</div>
+
+		<p>hi avinash<br>
+amazing tuts !!!!!!!<br>
+i want to store a set of words in eeprom . as per your file it enables the storage of only int datatypes. can i store strings by just changing the datatype of the argument in the functions. or shld i make anyother change</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3362#respond" onclick="return addComment.moveForm(&quot;div-comment-3362&quot;, &quot;3362&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-3367">
+				<div id="div-comment-3367" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/655a3678b3e1edb01f7a5e2befb530e6" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">sridhar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3367">
+			January 9, 2010 at 11:07 am</a>		</div>
+
+		<p>Dear sir,<br>
+I am using AVR micro controller, atmega 16, in need to communicate TWi interface with other micro controller,<br>
+I am using code vision for the complier.<br>
+I tried the code which is given in atmel application 311,312, etc but it was not working may be I could not properly analyze,<br>
+So, I built the RTC interface for DS1307 it was working with the Code vision in built library , so I have taken only the read format of the RTC and I tried to implement the slave,<br>
+With<br>
+START();<br>
+Write address();<br>
+Start();<br>
+Write location();<br>
+data=read data();<br>
+Return data;<br>
+By this code I was able to get data from the RTC,<br>
+So I thought to go with reverse engineering/programming to send a data to the master as the slave microcontroller need to act as RTC for only this particular code, but still it is not working,<br>
+Please if u have any such general implication of the i2c master and slave code please help me,</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3367#respond" onclick="return addComment.moveForm(&quot;div-comment-3367&quot;, &quot;3367&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="comment-3452">
+				<div id="div-comment-3452" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/88285355c3604410cd10ce7effc9509d" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">R.Prem Sunder</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3452">
+			January 26, 2010 at 12:43 pm</a>		</div>
+
+		<p>Hi Avinash!</p>
+<p>Your EEPROM libraries are awesome! I am new to AVR’s though I have worked in PIC n 8051! But from scratch I could learn AVRs in a week!!! Thanks to all your efforts to build code libraries and projects that teaches a novice end to end in a short span of time!!! All the contents you have given are so useful, that I am working on a product with all the support libraries and schematics you have furnished in your site.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3452#respond" onclick="return addComment.moveForm(&quot;div-comment-3452&quot;, &quot;3452&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-3569">
+				<div id="div-comment-3569" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/3108d14389d8bb9911d36da4671fb51e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">nazat shaikh</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3569">
+			February 13, 2010 at 3:15 pm</a>		</div>
+
+		<p>hi,<br>
+i tried reading RTC registers after every 1sec but it fails to update time on LCD. At power on-reset only once it display the time but after it is not updating time. Please help me.<br>
+thank u</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3569#respond" onclick="return addComment.moveForm(&quot;div-comment-3569&quot;, &quot;3569&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="comment-3679">
+				<div id="div-comment-3679" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/9418ae0edac149b6a017dc0dedfef8d2" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">burhan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3679">
+			February 26, 2010 at 5:41 pm</a>		</div>
+
+		<p>hi avinash!</p>
+<p>great tutorial, now i want to interface EEPROm with LPC 2148 controller can you help me for that?</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3679#respond" onclick="return addComment.moveForm(&quot;div-comment-3679&quot;, &quot;3679&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-3866">
+				<div id="div-comment-3866" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/fd700616b5d9611dfb8ec3d22e99159f" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://gmail/" rel="external nofollow" class="url">vinod</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-3866">
+			March 16, 2010 at 6:02 am</a>		</div>
+
+		<p>hi i’m vinod a final b.e student .i’m using a 24c32serial eeprom in my project iwant to know whether the eeprom cn erased by using code if so can i get what instructiona to be used</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=3866#respond" onclick="return addComment.moveForm(&quot;div-comment-3866&quot;, &quot;3866&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-6596">
+				<div id="div-comment-6596" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/a2adeb89f82d04cd14542e1e8340085c" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">biswajit</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-6596">
+			March 24, 2010 at 2:10 pm</a>		</div>
+
+		<p>dear avinash ,<br>
+i have gone through ur code and its working fine. i have one doubt that why u have used a dummy writing sequence inside the function readbyte().<br>
+and one more doubt isi have written 0x0A address with some value but all locations including 0xA0 shows the same value. what is the reason ?<br>
+plz reply me soon.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=6596#respond" onclick="return addComment.moveForm(&quot;div-comment-6596&quot;, &quot;6596&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-2" id="comment-6599">
+				<div id="div-comment-6599" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-6599">
+			March 24, 2010 at 4:19 pm</a>		</div>
+
+		<blockquote><p>
+i have one doubt that why u have used a dummy writing sequence inside the function readbyte().
+</p></blockquote>
+<p>See 24Cxx datasheet. It is required .</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=6599#respond" onclick="return addComment.moveForm(&quot;div-comment-6599&quot;, &quot;6599&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-6971">
+				<div id="div-comment-6971" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/a2adeb89f82d04cd14542e1e8340085c" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">biswajit</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-6971">
+			March 26, 2010 at 12:58 am</a>		</div>
+
+		<p>its there in your code. if anything wrong plz send me the exact code. my id is <a href="mailto:paltu4u@gmail.com">paltu4u@gmail.com</a></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=6971#respond" onclick="return addComment.moveForm(&quot;div-comment-6971&quot;, &quot;6971&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-8791">
+				<div id="div-comment-8791" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/9f517a3322653119736c65a281978b49" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">belkacem</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-8791">
+			May 19, 2010 at 8:01 am</a>		</div>
+
+		<p>Thanks my frind</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=8791#respond" onclick="return addComment.moveForm(&quot;div-comment-8791&quot;, &quot;8791&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-10027">
+				<div id="div-comment-10027" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/f5c6ae3a0690c89af97733cbaea423dd" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.avrlab.com/" rel="external nofollow" class="url">AvrLabCom</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-10027">
+			July 1, 2010 at 12:33 pm</a>		</div>
+
+		<p>Thank for this Library, i using it on my projects.<br>
+Here is I post your library with comments on russian on my own site.<br>
+<a href="http://avrlab.com/node/84" rel="nofollow">http://avrlab.com/node/84</a></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=10027#respond" onclick="return addComment.moveForm(&quot;div-comment-10027&quot;, &quot;10027&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-2" id="comment-10109">
+				<div id="div-comment-10109" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-10109">
+			July 3, 2010 at 9:29 am</a>		</div>
+
+		<p><strong></strong><strong>@AVR Lab</strong></p><strong>
+</strong><p><strong>You have not provided any link to the original source?</strong></p>
+<p>Please provide a link to this page.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=10109#respond" onclick="return addComment.moveForm(&quot;div-comment-10109&quot;, &quot;10109&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="comment-17420">
+				<div id="div-comment-17420" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/79bd003f2f9ac31ab218119d348aa507" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Sayantan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-17420">
+			February 11, 2011 at 12:21 am</a>		</div>
+
+		<p>hey av,can i just use 24c128 eeprom with your functions.i mean are the functions built for only 24c64 eeprom or for all 24cxx series eeprom?</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=17420#respond" onclick="return addComment.moveForm(&quot;div-comment-17420&quot;, &quot;17420&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-19491">
+				<div id="div-comment-19491" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ed8bd20fe34652e4b7ddaac44f1779cb" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://itmco.net/" rel="external nofollow" class="url">Chris</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-19491">
+			March 30, 2011 at 8:57 am</a>		</div>
+
+		<p>Thanks for this wonderfull turorial , I am working on project where my IO is very limited, this is perfect as I will be storing a large structure in the memory which wont change that often so E2 is perfect for this.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=19491#respond" onclick="return addComment.moveForm(&quot;div-comment-19491&quot;, &quot;19491&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="comment-35401">
+				<div id="div-comment-35401" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/2a99023c688c4559687dd3bd6454b5ca" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.123microcontroller.com/" rel="external nofollow" class="url">Mr.P</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-35401">
+			December 14, 2011 at 3:20 pm</a>		</div>
+
+		<p>Hi Avinash,</p>
+<p>Thank you so much for nice tutorial and I subscribe your web also. </p>
+<p>Regards.<br>
+Mr.P</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=35401#respond" onclick="return addComment.moveForm(&quot;div-comment-35401&quot;, &quot;35401&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-36993">
+				<div id="div-comment-36993" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/c98e81ca071b8da02a4130aec81d7259" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Ananya</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-36993">
+			December 30, 2011 at 8:58 pm</a>		</div>
+
+		<p>How about interfacing LCD using I2C with ATMEGA32??? Can you enlighten me on that</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=36993#respond" onclick="return addComment.moveForm(&quot;div-comment-36993&quot;, &quot;36993&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-37939">
+				<div id="div-comment-37939" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/32436ba9f418d9203ffea7609e3ee552" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Ananya</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-37939">
+			January 20, 2012 at 12:12 pm</a>		</div>
+
+		<p>Thanks for your tutorial and  code ! Its wonderful and helpful and I was able to simulate in proteus successfully !!! But with CPU and crystal frequency set to 16 MHZ, I get a statement<br>
+I2C MEM TIMING: start setup time violated.Clock positive edge was at 223.29m Hold time is 4u minimum hold time is 1.25u<br>
+and similarly<br>
+I2C MEM TIMING: stop setup time violated.Clock positive edge was at 223.396m Setup time is 1.25u minimum time is 4.7u…<br>
+But if the same simulation is executed with 4MHz clock frequency set those statements are elimnated…. The final output is obtained in both the frequencies… but my questiion is how does this happen??? when u r CPU frequency changes SCL frequency also changes but the data transfer is taking place in both the cases.. please enlighten me… asap !!!</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=37939#respond" onclick="return addComment.moveForm(&quot;div-comment-37939&quot;, &quot;37939&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment even depth-2" id="comment-52458">
+				<div id="div-comment-52458" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ee63e4a36ac3b5a84b40cf50f96112b2" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Weazel</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-52458">
+			April 16, 2013 at 9:05 am</a>		</div>
+
+		<p>the cpu does cycles of code in chucks every clock cycle<br>
+much like a bus picking up people<br>
+if theres to much it will run more empty then full and drop code unless u program for it cpu has no ai to make most of its time and data<br>
+if its mostly empty then it will just keep doing its cycle anyway with air people like air gitar this is wat null data is</p>
+<p>i bet the code has been made to reflect cpu speed sos ur sending data at wrong way to wat eeprom needs<br>
+by looks ur not waiting long enuf for the eeprom to respond its minaum is 4u seconds sos it will not answer u till after 4u has passed<br>
+but ur code is only waiting 1.25u sec sos its already gone   </p>
+<p>reading the code and not being smart with all this the code runing at slower speed doesnt need wait cycles or to think about how long each comand takes to get job done<br>
+basicaly the slow speed alows for less code to be made every think runs esayly</p>
+<p>so u going to have to add delys to that code or increase the time taken to compute a instruction or make the code halt for a reply is ideas<br>
+theres no simple answer or simple problem<br>
+unless you are to forget to learn the how to aproch<br>
+and learn the coarse and affect princaples learn why and not how<br>
+im only just starting on mcu most code ive done is bat files and runing dos but im finaly starting to click<br>
+i sageust u start with hex if u wana learn it will give u more power and more deepth understanding but takes way more efort to use XD</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=52458#respond" onclick="return addComment.moveForm(&quot;div-comment-52458&quot;, &quot;52458&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-38954">
+				<div id="div-comment-38954" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/7170516406634cf3e8dacc03af3cde76" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Khan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-38954">
+			March 5, 2012 at 11:18 pm</a>		</div>
+
+		<p>program halts at “Writing”…copied the exact program and ran the simulations in proteus.</p>
+<p>Anyone knowing the reason?</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=38954#respond" onclick="return addComment.moveForm(&quot;div-comment-38954&quot;, &quot;38954&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment even depth-2" id="comment-40601">
+				<div id="div-comment-40601" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ea70753db3485c2d7430b19a737edb4e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Vince</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-40601">
+			April 28, 2012 at 5:49 am</a>		</div>
+
+		<p>I’m using an ATmega8 dev board running at 16 MHz and I thought it got stuck at “Writing…” as well but after about 2 or 3 minutes I see “Write Success!” Just took a long time to fill all data I guess or check that your uCntlr clock frequency is correct.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=40601#respond" onclick="return addComment.moveForm(&quot;div-comment-40601&quot;, &quot;40601&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-42948">
+				<div id="div-comment-42948" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5f66af9168127edff0a54b939f65433e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.nugenx.co.in/" rel="external nofollow" class="url">Bikash</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-42948">
+			August 7, 2012 at 3:05 am</a>		</div>
+
+		<p>I’m using your library . When I’m trying to write ascii value 65 at 0000 , then 67 at 1 it is writing 67 at both addresses , ie the data I’m writing later , is over written in all the addresses.Why it is happening please help me.</p>
+<p>Regards<br>
+Bikash</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=42948#respond" onclick="return addComment.moveForm(&quot;div-comment-42948&quot;, &quot;42948&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-2 parent" id="comment-42959">
+				<div id="div-comment-42959" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-42959">
+			August 7, 2012 at 11:25 am</a>		</div>
+
+		<p>Post your code in the forum</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=42959#respond" onclick="return addComment.moveForm(&quot;div-comment-42959&quot;, &quot;42959&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment odd alt depth-3" id="comment-42968">
+				<div id="div-comment-42968" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5f66af9168127edff0a54b939f65433e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.nugenx.co.in/" rel="external nofollow" class="url">Bikash</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-42968">
+			August 7, 2012 at 8:51 pm</a>		</div>
+
+		<p>/*<br>
+ * i2ctest.c<br>
+ *<br>
+ * Created: 7/24/2012 5:39:06 AM<br>
+ *  Author: Bikash<br>
+ */<br>
+#include<br>
+#define F_CPU 16000000UL<br>
+#include<br>
+#include “24c64.h”<br>
+#include “lcd.h”</p>
+<p>void delay()<br>
+{<br>
+	for(int i=0;i&lt;2;i++)<br>
+	_delay_ms(100);<br>
+}</p>
+<p>int main(void)<br>
+{</p>
+<p>	lcd_init(LCD_DISP_ON_CURSOR_BLINK);<br>
+	lcd_clrscr();<br>
+	lcd_puts("Welcome I2C");<br>
+	uint8_t valu1,valu2;<br>
+	char c;<br>
+	EEOpen();<br>
+	delay();<br>
+	lcd_clrscr();<br>
+	if (EEWriteByte(1,65)==1)<br>
+	{</p>
+<p>		lcd_clrscr();<br>
+		lcd_puts("Write at 1 Success");<br>
+		delay();</p>
+<p>	}<br>
+	else<br>
+	{<br>
+		lcd_clrscr();<br>
+		lcd_puts("Write at 1 failed");<br>
+	}<br>
+	if (EEWriteByte(0,67)==1)<br>
+	{</p>
+<p>		lcd_clrscr();<br>
+		lcd_puts("Write at 0 Success");<br>
+		delay();</p>
+<p>	}<br>
+	else<br>
+	{<br>
+		lcd_clrscr();<br>
+		lcd_puts("Write at 0 failed");<br>
+	}</p>
+<p>	valu1=EEReadByte(0);<br>
+	lcd_clrscr();<br>
+	lcd_puts("Value1=");<br>
+	lcd_puts(valu1);<br>
+	lcd_gotoxy(0,1);<br>
+	_delay_ms(100);<br>
+	valu2=EEReadByte(1);<br>
+	lcd_puts("Value2=");<br>
+	lcd_puts(valu2);</p>
+<p>	while(1);<br>
+	return 0;<br>
+}</p>
+<p>Its displaying C ,ie 67 in lcd for both the values . I've not made any changes in your 24C64 code files. </p>
+<p>Regards<br>
+Bikash</p>
+
+		<div class="reply">
+					</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even depth-3" id="comment-43038">
+				<div id="div-comment-43038" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5f66af9168127edff0a54b939f65433e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.nugenx.co.in/" rel="external nofollow" class="url">Bikash</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-43038">
+			August 11, 2012 at 7:44 pm</a>		</div>
+
+		<p>@Avinash : I’ve not got yr reply sir. Hav u solved the problem ?</p>
+<p>Regards<br>
+Bikash</p>
+
+		<div class="reply">
+					</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt depth-3" id="comment-43039">
+				<div id="div-comment-43039" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-43039">
+			August 11, 2012 at 8:12 pm</a>		</div>
+
+		<p>@Bikas</p>
+<p>Try this code</p>
+<p>/*<br>
+* i2ctest.c<br>
+*<br>
+* Created: 7/24/2012 5:39:06 AM<br>
+* Author: Bikash<br>
+*/<br>
+#include<br>
+#define F_CPU 16000000UL<br>
+#include<br>
+#include “24c64.h”<br>
+#include “lcd.h”</p>
+<p>void delay()<br>
+{<br>
+for(int i=0;i&lt;2;i++)<br>
+_delay_ms(100);<br>
+}</p>
+<p>int main(void)<br>
+{</p>
+<p>lcd_init(LCD_DISP_ON_CURSOR_BLINK);<br>
+lcd_clrscr();<br>
+lcd_puts(“Welcome I2C”);<br>
+char valu1[2];<br>
+char valu2[2];</p>
+<p>valu2[1]=valu1[1]=’\0′;</p>
+<p>char c;<br>
+EEOpen();<br>
+delay();<br>
+lcd_clrscr();<br>
+if (EEWriteByte(1,65)==1)<br>
+{</p>
+<p>lcd_clrscr();<br>
+lcd_puts(“Write at 1 Success”);<br>
+delay();</p>
+<p>}<br>
+else<br>
+{<br>
+lcd_clrscr();<br>
+lcd_puts(“Write at 1 failed”);<br>
+}<br>
+if (EEWriteByte(0,67)==1)<br>
+{</p>
+<p>lcd_clrscr();<br>
+lcd_puts(“Write at 0 Success”);<br>
+delay();</p>
+<p>}<br>
+else<br>
+{<br>
+lcd_clrscr();<br>
+lcd_puts(“Write at 0 failed”);<br>
+}</p>
+<p>valu1[0]=EEReadByte(0);<br>
+lcd_clrscr();<br>
+lcd_puts(“Value1=”);<br>
+lcd_puts(valu1);<br>
+lcd_gotoxy(0,1);<br>
+_delay_ms(100);<br>
+valu2[0]=EEReadByte(1);<br>
+lcd_puts(“Value2=”);<br>
+lcd_puts(valu2);</p>
+<p>while(1);<br>
+return 0;<br>
+}</p>
+
+		<div class="reply">
+					</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even depth-3" id="comment-43045">
+				<div id="div-comment-43045" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5f66af9168127edff0a54b939f65433e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.nugenx.co.in/" rel="external nofollow" class="url">Bikash</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-43045">
+			August 12, 2012 at 12:24 am</a>		</div>
+
+		<p>Thank You. Let me try.</p>
+
+		<div class="reply">
+					</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 parent" id="comment-43047">
+				<div id="div-comment-43047" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5f66af9168127edff0a54b939f65433e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.nugenx.co.in/" rel="external nofollow" class="url">Bikash</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-43047">
+			August 12, 2012 at 2:10 am</a>		</div>
+
+		<p>Thank you can you please tell me what was my fault ?</p>
+<p>Regards<br>
+Bikash</p>
+
+		<div class="reply">
+					</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-Avinash bypostauthor even depth-3" id="comment-43058">
+				<div id="div-comment-43058" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-43058">
+			August 12, 2012 at 9:55 am</a>		</div>
+
+		<p>@Bikash</p>
+<p>Tell me whether it worked or not?</p>
+
+		<div class="reply">
+					</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3" id="comment-43067">
+				<div id="div-comment-43067" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/5f66af9168127edff0a54b939f65433e" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://www.nugenx.co.in/" rel="external nofollow" class="url">Bikash</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-43067">
+			August 12, 2012 at 12:26 pm</a>		</div>
+
+		<p>Ya it worked.</p>
+
+		<div class="reply">
+					</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-44999">
+				<div id="div-comment-44999" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/609d7bd87a213fb2be066123ac5da685" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Raoof</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-44999">
+			October 23, 2012 at 8:19 pm</a>		</div>
+
+		<p>I tried the EEPROM write and verify code.<br>
+It whows write error at address 0000 and.<br>
+verify error at address 0000.<br>
+I checked all the connections.<br>
+Can any one guess probable error.</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=44999#respond" onclick="return addComment.moveForm(&quot;div-comment-44999&quot;, &quot;44999&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-Avinash bypostauthor odd alt depth-2" id="comment-45007">
+				<div id="div-comment-45007" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ae70ca7b94354b3545360b1a778fda84" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Avinash</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-45007">
+			October 24, 2012 at 8:01 am</a>		</div>
+
+		<p><strong>@Raoof<br>
+Please purchase ready made development board as shown in the article to do the experiment! We cannot help debug your hardware!</strong></p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=45007#respond" onclick="return addComment.moveForm(&quot;div-comment-45007&quot;, &quot;45007&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-50548">
+				<div id="div-comment-50548" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/4149934d5263b12af938a803370e6450" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Nagasudhir</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-50548">
+			February 2, 2013 at 12:21 am</a>		</div>
+
+		<p>That’s a simple and wonderful tutorial…<br>
+Thanks a lot…</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=50548#respond" onclick="return addComment.moveForm(&quot;div-comment-50548&quot;, &quot;50548&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-59624">
+				<div id="div-comment-59624" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/7473934edcc7f8906630d05ea3bc0372" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Karthik</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-59624">
+			July 12, 2013 at 2:11 pm</a>		</div>
+
+		<p>Hi,</p>
+<p>I found this article very useful in testing ATmega8 TWI interface with EEPROM 24C04.<br>
+Thanks.</p>
+<p>Regards,<br>
+Karthik</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=59624#respond" onclick="return addComment.moveForm(&quot;div-comment-59624&quot;, &quot;59624&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-62228">
+				<div id="div-comment-62228" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/c1806060d910605f942f2ef8070cb4db" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">sajith</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-62228">
+			July 28, 2013 at 8:57 pm</a>		</div>
+
+		<p>can we use proteus to simulate it?</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=62228#respond" onclick="return addComment.moveForm(&quot;div-comment-62228&quot;, &quot;62228&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-66938">
+				<div id="div-comment-66938" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/ebc60a455a33530b08690087ebee0342" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn">Serhiy</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-66938">
+			August 12, 2013 at 1:02 am</a>		</div>
+
+		<p>Hi. Could you please show how to use a SPI EEPROM, for example AT25256 ?!!!</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=66938#respond" onclick="return addComment.moveForm(&quot;div-comment-66938&quot;, &quot;66938&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-78733">
+				<div id="div-comment-78733" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/b14e17be6f052518bfffdff040682608" class="avatar avatar-32 photo" height="32" width="32">			<cite class="fn"><a href="http://none/" rel="external nofollow" class="url">arun karkare</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#comment-78733">
+			December 6, 2013 at 9:02 am</a>		</div>
+
+		<p>I am trying to use the Atmel 24C1024B EEPROM with AVR ATmega16, can anyone please tell me why is 12 ms delay required after stop command in “write byte” function, this is unnecessarily taking too long a time during write operation, can it be made faster?….thanks……arun</p>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/?replytocom=78733#respond" onclick="return addComment.moveForm(&quot;div-comment-78733&quot;, &quot;78733&quot;, &quot;respond&quot;, &quot;162&quot;)">Reply</a>		</div>
+				</div>
+		</li><!-- #comment-## -->
+</ol>
+
+<div class="pnav">
+<div class="alignleft"></div>
+<div class="alignright"></div>
+<div class="clearfix"></div>
+</div>
+
+
+<div id="pingbox">
+<h4 id="pings">Trackbacks/Pingbacks</h4>
+<ol class="pinglist">
+<li id="comment-14515"><a href="http://www.edaboard.com/thread193838.html#post811920" rel="external nofollow" class="url">Interfacing external memory with avr</a></li><!-- #comment-## -->
+<li id="comment-33362"><a href="http://extremeelectronics.co.in/avr-tutorials/software-i2c-library-for-avr-mcus/" rel="external nofollow" class="url">Software I2C Library for AVR MCUs | eXtreme Electronics</a></li><!-- #comment-## -->
+<li id="comment-54673"><a href="http://extremeelectronics.co.in/avr-tutorials/getting-started-with-microcontrollers/" rel="external nofollow" class="url">Getting Started with Microcontrollers | eXtreme ElectronicseXtreme Electronics</a></li><!-- #comment-## -->
+<li id="comment-59458"><a href="http://nagpalnaina1658.wordpress.com/2013/07/09/sixteenth-day-of-my-six-weeks-training/" rel="external nofollow" class="url">SIXTEENTH DAY OF MY SIX WEEKS TRAINING | nagpalnaina1658</a></li><!-- #comment-## -->
+<li id="comment-84192"><a href="http://mydiyelectronics.wordpress.com/2014/07/02/avr-swimwatch-0-1/" rel="external nofollow" class="url">AVR SwimWatch 0.1 | My DIY Electronics Projects</a></li><!-- #comment-## -->
+</ol>
+</div>
+
+
+
+
+<div id="respond">
+
+<h4>Leave a Reply</h4>
+
+<div class="cancel-comment-reply">
+<a rel="nofollow" id="cancel-comment-reply-link" href="http://extremeelectronics.co.in/avr-tutorials/easy-24c-i2c-serial-eeprom-interfacing-with-avr-microcontrollers/#respond" style="display:none;">Click here to cancel reply.</a></div>
+
+
+<form action="http://extremeelectronics.co.in/wp-comments-post.php" method="post" id="cf">
+
+
+<p><input type="text" class="tf" name="author" id="author" value="" size="22" tabindex="1">
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" class="tf" name="email" id="email" value="" size="22" tabindex="2">
+<label for="email"><small>E-Mail (required)</small></label></p>
+
+<p><input type="text" class="tf" name="url" id="url" value="" size="22" tabindex="3">
+<label for="url"><small>Website (Optional)</small></label></p>
+
+
+<!--<p id="allowtags"><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="50%" rows="8" class="af"></textarea></p>
+
+<p><input name="submit" type="submit" class="tinput" id="submit" value="Submit Comment">
+<input type="hidden" name="comment_post_ID" value="162" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="ac57a77155"></p>
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;">
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+
+
+</form>
+
+</div>
+
+<div class="clearfix"></div>
+</div>
+
+
+</div><!-- POST ENTRY END -->
+
+<div id="post-navigator-single">
+<div class="alignleft">«&nbsp;<a href="http://extremeelectronics.co.in/microchip-pic-tutorials/tutorial-0-getting-started-with-microchip-pic-microcontrollers/" rel="prev">Tutorial 0 – Getting Started with Microchip PIC Microcontrollers.</a></div>
+<div class="alignright"><a href="http://extremeelectronics.co.in/microchip-pic-tutorials/making-a-simple-pic-programmer/" rel="next">Making a Simple PIC Programmer.</a>&nbsp;»</div>
+<div class="clearfix"></div>
+</div>
+
+
+</div><!-- CONTENTINNER END -->
+</div><!-- CONTENT END -->
+
+<div id="sidebar2">
+<div id="sidebarinner2">
+
+<ul class="sidebar_list">
+
+<li id="widget_ads">
+<div>
+
+
+<!-- Begin AdServe code : banner:side_top-9/12 -->
+<a target="_blank" href="http://extremeelectronics.co.in/wp-content/plugins/wp-adserve/adclick.php?id=31" style="margin:0px;border:0px;"><img src="http://extremeelectronics.co.in/images/ad/sim900-ad-large-rect.jpg" alt="SIM900" style="display: none !important;"></a>
+<!-- End AdServe code -->
+
+</div>
+</li><!-- SIDEADS END -->
+
+<li class="featured-category"><h6>Related Posts</h6><div class="feat-cat-entry">			
+<div class="feat-cat-meta post-1012">
+<a href="http://extremeelectronics.co.in/avr-tutorials/ultrasonic-rangefinder-hc-sr04-interfacing-with-atmega8/" title="Ultrasonic Rangefinder HC-SR04 Interfacing with ATmega8"><img width="50" height="33" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/atmega8_hcsr04_demo-300x198.jpg" class="alignleft wp-post-image" alt="ATmega8 HC-SR04 Ultrasonic Sensor Interface Demo"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/ultrasonic-rangefinder-hc-sr04-interfacing-with-atmega8/" title="Ultrasonic Rangefinder HC-SR04 Interfacing with ATmega8">Ultrasonic Rangefinder HC-SR04 Interfacing with ATmega8</a></h2>
+<span class="feat-cat-date">By Avinash - August 12 2013 12:15 PM</span>
+<p>In this article I will describe how to interface a ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 1012 END -->
+
+			
+					
+<div class="feat-cat-meta post-6">
+<a href="http://extremeelectronics.co.in/avr-tutorials/getting-started-with-avr-microcontrollers/" title="Getting Started with AVR Microcontrollers"><img width="50" height="30" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/getting-started-with-avr-microcontrollers-300x182.jpg" class="alignleft wp-post-image" alt="getting-started-with-avr-microcontrollers"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/getting-started-with-avr-microcontrollers/" title="Getting Started with AVR Microcontrollers">Getting Started with AVR Microcontrollers</a></h2>
+<span class="feat-cat-date">By Avinash - May 24 2013 11:10 AM</span>
+<p>
+The first step in getting started with microcontrollers is to ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 6 END -->
+
+			
+					
+<div class="feat-cat-meta post-5">
+<a href="http://extremeelectronics.co.in/avr-tutorials/part-i-introduction/" title="Introduction to AVR Microcontrollers"><img width="50" height="30" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/part-i-introduction-300x182.jpg" class="alignleft wp-post-image" alt="part-i-introduction"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/part-i-introduction/" title="Introduction to AVR Microcontrollers">Introduction to AVR Microcontrollers</a></h2>
+<span class="feat-cat-date">By Avinash - October 31 2012 03:55 PM</span>
+<p> 
+Just what is a microcontroller?
+    To ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 5 END -->
+
+			
+					
+<div class="feat-cat-meta post-848">
+<a href="http://extremeelectronics.co.in/avr-tutorials/interfacing-analog-joystick-with-avr-atmega32/" title="Interfacing Analog Joystick with AVR ATmega32"><img width="50" height="30" src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/analog_joystick_interface_avr_feature-300x182.jpg" class="alignleft wp-post-image" alt="analog_joystick_interface_avr_feature"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/interfacing-analog-joystick-with-avr-atmega32/" title="Interfacing Analog Joystick with AVR ATmega32">Interfacing Analog Joystick with AVR ATmega32</a></h2>
+<span class="feat-cat-date">By Avinash - October 20 2012 12:07 PM</span>
+<p>
+If you have played games on console you must be ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 848 END -->
+
+			
+					
+<div class="feat-cat-meta post-843">
+<a href="http://extremeelectronics.co.in/avr-tutorials/door-entry-detection-for-mcu-based-designs/" title="Door Entry Detection for MCU Based Designs"><img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/timthumb.php" alt="Door Entry Detection for MCU Based Designs" class="alignleft"></a>
+<h2><a href="http://extremeelectronics.co.in/avr-tutorials/door-entry-detection-for-mcu-based-designs/" title="Door Entry Detection for MCU Based Designs">Door Entry Detection for MCU Based Designs</a></h2>
+<span class="feat-cat-date">By Avinash - October 12 2012 12:43 PM</span>
+<p>This article discuss how you can detect the entry of ...</p>
+<div class="clearfix"></div>
+</div><!-- FEATURED CATEGORY META 843 END -->
+
+			
+		</div></li> 
+<li class="widget_hottopics">
+<h6>Hot Topics</h6>
+<div class="comentry"><a href="http://extremeelectronics.co.in/avr-tutorials/gui-software-for-usbasp-based-usb-avr-programmers/">GUI Software for USBasp based USB AVR Programmers.</a><span class="total-com">429 comments received</span></div><div class="comentry"><a href="http://extremeelectronics.co.in/avr-tutorials/using-lcd-module-with-avrs/">Using LCD Module with AVRs</a><span class="total-com">333 comments received</span></div><div class="comentry"><a href="http://extremeelectronics.co.in/uncategorized/welcome/">Welcome</a><span class="total-com">270 comments received</span></div><div class="comentry"><a href="http://extremeelectronics.co.in/avr-tutorials/programming-in-c-tips-for-embedded-development/">Programming in C - Tips for Embedded Development.</a><span class="total-com">156 comments received</span></div><div class="comentry"><a href="http://extremeelectronics.co.in/avr-tutorials/rf-communication-between-microcontrollers-%e2%80%93-part-iii/">RF Communication Between Microcontrollers – Part III</a><span class="total-com">148 comments received</span></div></li>
+<li class="widget_recentcomments_gravatar">
+<h6>Recent Comments</h6>
+<div class="comentry">
+<img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/avatar.php" alt="Pratik" class="alignleft"><span class="author"><span class="aname">Pratik</span> Says:</span>
+<span class="comment"><a href="http://extremeelectronics.co.in/microchip-pic-tutorials/interfacing-lm35-temperature-sensor-with-pic-microcontroller/#comment-85385" title="on Interfacing LM35 Temperature Sensor with PIC Microcontroller.">
+Here why we divided the ADC output value with 1023...</a></span>
+<div class="clearfix"></div>
+</div>
+<div class="comentry">
+<img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/avatar(1).php" alt="Dan Frankovic" class="alignleft"><span class="author"><span class="aname">Dan Frankovic</span> Says:</span>
+<span class="comment"><a href="http://extremeelectronics.co.in/avr-tutorials/rs232-communication-the-basics/#comment-85375" title="on RS232 Communication - The Basics">
+Thanks for writing the RS232 explanation. Very wel...</a></span>
+<div class="clearfix"></div>
+</div>
+<div class="comentry">
+<img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/avatar(2).php" alt="mohamed" class="alignleft"><span class="author"><span class="aname">mohamed</span> Says:</span>
+<span class="comment"><a href="http://extremeelectronics.co.in/avr-tutorials/introduction-to-pwm-pulse-width-modulation/#comment-85374" title="on Introduction to PWM - Pulse Width Modulation. ">
+Do you Avinash, I prefer your simple powerful expl...</a></span>
+<div class="clearfix"></div>
+</div>
+<div class="comentry">
+<img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/avatar(3).php" alt="Kapil Sharma" class="alignleft"><span class="author"><span class="aname">Kapil Sharma</span> Says:</span>
+<span class="comment"><a href="http://extremeelectronics.co.in/avr-development-board/avr-development-board-assembly-instructions/#comment-85372" title="on AVR Development Board - Assembly Instructions">
+Sir thank you for atenstion me.May i get the free ...</a></span>
+<div class="clearfix"></div>
+</div>
+<div class="comentry">
+<img src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/avatar(4).php" alt="OMPRAKASH CHOUDHARY" class="alignleft"><span class="author"><span class="aname">OMPRAKASH CHOUDHARY</span> Says:</span>
+<span class="comment"><a href="http://extremeelectronics.co.in/avr-projects/remote-temperature-monitoring/#comment-85348" title="on Remote Temperature Monitoring using GSM - AVR Project">
+hii.....
+avinash
+i want to help for a program lm...</a></span>
+<div class="clearfix"></div>
+</div>
+</li>
+<li id="facebooklikebox-3" class="widget widget_FacebookLikeBox"><h6>Facebook Like Box</h6><iframe src="./Easy 24C I2C Serial EEPROM Interfacing with AVR Microcontrollers_files/likebox.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:287px;" allowtransparency="true"></iframe></li></ul><!-- SIDEBARLIST END -->
+</div><!-- SIDEBARINNER2 END -->
+</div><!-- SIDEBAR2 END -->
+
+<div class="clearfix"></div>
+</div><!-- INNERWRAP END -->
+</div><!-- MAIN END -->
+
+<div id="footer">
+<div id="footer-left"></div><!-- FOOTER LEFT END -->
+<div id="footer-right">
+Copyright © 2014. All Rights Reserved.
+</div><!-- FOOTER RIGHT END -->
+<div class="clearfix"></div>
+</div><!-- FOOTER END -->
+
+</div><!-- CONTAINER END -->
+</div><!-- WRAPPER END -->
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>

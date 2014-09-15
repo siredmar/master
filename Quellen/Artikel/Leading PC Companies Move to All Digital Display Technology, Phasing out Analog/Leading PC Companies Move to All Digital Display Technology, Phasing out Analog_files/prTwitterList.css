@@ -1,0 +1,59 @@
+
+#nav {width:100%;text-align:center;clear:both;font-family:Arial,sans-serif;}
+#nav div{float:left;margin-left:0px;padding:0;}
+
+.subnav {
+
+  list-style-image: none;
+  background-repeat: no-repeat;
+  list-style-type: none;
+  cursor: pointer;
+  background-image: url(http://www.intel.com/newsroom/assets/images/tab/tab_on.jpg);
+  width:100px;
+  height:29px;
+
+}
+
+.subnav_off {
+  list-style-image: none;
+  background-repeat: no-repeat;
+  list-style-type: none;
+  cursor: pointer;
+  background-image: url(http://www.intel.com/newsroom/assets/images/tab/tab_off.jpg);
+  width:100px;
+  height:29px;
+  color:white;
+}
+
+.subnav a {
+  font-family: Arial, Helvetica;
+  color: white;
+}
+
+.desc_on{
+  margin-top:7px;
+  width:100%;
+  text-align:center;
+  color:#0860A8;
+
+
+}
+ .desc_off{
+  margin-top:7px;
+  width:100%;
+  text-align:center;
+  color:#777777;
+}
+
+.one-line
+{
+background-color: transparent;
+background-image: url(http://www.intel.com/newsroom/assets/images/tab/tab_bottom.jpg);
+background-repeat: repeat-x;
+background-attachment: scroll;
+background-position: 0px 25px;
+height: 29px;
+}
+
+/*for GCG only*/
+.prShotsGCG{background: url(http://www.intel.com/newsroom/assets/images/latest-news-mrg-sm.jpg) #efefef repeat-x 50% bottom;height:57px;}

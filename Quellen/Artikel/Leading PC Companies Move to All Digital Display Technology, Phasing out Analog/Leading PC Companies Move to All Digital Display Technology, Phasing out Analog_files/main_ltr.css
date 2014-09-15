@@ -1,0 +1,177 @@
+﻿@import url(pagelevel.css);
+/* ---------- Menu 2.0 CSS ----------*/
+#recode50header #header ul li.newmenu {background: transparent url("../images/new-menu-background.png") repeat scroll left top; height: 23px; margin-right: 12px; min-width: 105px; padding: 22px 20px 24px; cursor: pointer; }
+#recode50header #header ul li.newmenu a {color: #FFFFFF; display: inline-block; font-size: 16px; padding-right: 16px; text-decoration: none; background: transparent url("../images/arrow_down.png") no-repeat scroll right center; }
+#recode50header #header ul li.newmenu a.open {background: transparent url("../images/arrow_up.png") no-repeat scroll right center }
+#recode50header .uheader .newmenu-container {padding-top: 65px; position: fixed; text-align: center; z-index: 9099; width: 100%; display: none; left: 0;top:0px; }
+#recode50header .uheader .newmenu-container .newmenu-contents p {font-size: 12px; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level {float: left; background: #FFFFFF; display: none; padding-top: 5px; margin-top: -5px; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.clearfix:after {height: 0px !important }
+/* Primary Level CSS */
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary {width: 145px; box-shadow: 0px 0px 5px #e1e1e1;-webkit-box-shadow: 0px 0px 5px #e1e1e1;-moz-box-shadow: 0px 0px 5px #e1e1e1; position: relative; z-index: 9105;
+	/*background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyZjJmMiIgc3RvcC1vcGFjaXR5PSIwLjUiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2U3ZTdlNyIgc3RvcC1vcGFjaXR5PSIwLjUiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+    background: -moz-linear-gradient(top, #008ad2 0%, #0071c5 100%);*/ /* FF3.6+ */
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#008ad2), color-stop(100%,#0071c5)); *//* Chrome,Safari4+ */
+    /*background: -webkit-linear-gradient(top, #008ad2 0%,#0071c5 100%);*/ /* Chrome10+,Safari5.1+ */
+    /*background: -o-linear-gradient(top, #008ad2 0%,#0071c5 100%); *//* Opera 11.10+ */
+    /*background: -ms-linear-gradient(top, #008ad2 0%,#0071c5 100%); *//* IE10+ */
+    /*background: linear-gradient(top, #008ad2 0%,#0071c5 100%);*/ /* W3C */
+	background-color:#0071c5;
+}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer p.primary-item {padding: 15px 10px; font-size: 14px !important; color: #FFFFFF!important /*added to overwrite any country specific colors*/; text-align: left; border-bottom: 1px solid #0059a2; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer {padding: 0 10px; cursor: pointer; line-height:18px;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer.selected {background: #FFFFFF; border: none; cursor: text; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer:hover {background: #00aeef }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer.selected:hover {background: #FFFFFF }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer:hover p.primary-item {border-color: #00aeef }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer.selected p.primary-item {color: #00aeef!important /*added to overwrite any country specific colors*/; border-bottom: none; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary p.primary-item.last {border-bottom: none }
+/* END Primary Level CSS */
+/* Middle Level CSS */
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle {width: 168px; background: #FFFFFF; position: relative; -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.15); -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.15); box-shadow: 0 2px 2px rgba(0,0,0,0.15); -o-box-shadow: 0 2px 2px rgba(0,0,0,0.15); /*box-shadow: 0 0 5px #e1e1e1;-webkit-box-shadow: 0 0 5px #e1e1e1;-moz-box-shadow: 0px 0px 5px #e1e1e1;*/}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle img.selectedImg {display: none }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one {z-index: 9104; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two {z-index: 9103; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle .middle-content {padding: 9px 20px 0; display: none; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content {padding: 9px 0 0 }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content p.middle-item.linkItem {padding-right: 15px }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle .middle-content p.middle-item {padding: 15px 0; border-bottom: 1px solid #e1e1e1; color: #086db6!important /*added to overwrite any country specific colors*/; cursor: pointer; text-align: left; line-height:15px;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content p.middle-item {margin: 0 15px }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle .middle-content p.middle-item.last {border-bottom: none }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle .middle-content p.middle-item.selected {color: #00aeef!important /*added to overwrite any country specific colors*/; cursor: text; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle .middle-content p.middle-item:hover {color: #00aeef!important /*added to overwrite any country specific colors*/; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content p.linkItem:hover {background: transparent url("../images/new-menu-link-arrow.png") no-repeat scroll 132px center; color: #00aeef!important /*added to overwrite any country specific colors*/; }
+/* END Middle Level CSS */
+/* Content Level CSS */
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content {width: 379px; display: none; box-shadow: 2px 2px 2px rgba(0,0,0,0.15); -moz-box-shadow: 2px 2px 2px rgba(0,0,0,0.15); -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.15); box-shadow: 2px 2px 2px rgba(0,0,0,0.15); -o-box-shadow: 2px 2px 2px rgba(0,0,0,0.15); /*box-shadow: 0 0 5px #e1e1e1;-webkit-box-shadow: 0 0 5px #e1e1e1;-moz-box-shadow: 0px 0px 5px #e1e1e1;*/ line-height:14px;}
+/** heggers 16012013 - making the close button bigger for iPads */
+/*#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.new-menu-close-button {padding: 10px 10px 0; text-align: right; margin-top: -5px; width: 359px; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.new-menu-close-button img {cursor: pointer; }*/
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.new-menu-close-button {padding: 10px 0px 0px 10px;text-align: right;margin-top: -5px;margin-right: -10px;/*margin-bottom: -5px;*/right: -5px;*right: 5px /*IE7 fix*/;position: relative;width: 359px;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.new-menu-close-button img {cursor: pointer; padding: 5px;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content {display: none; padding: 0px 15px; margin-bottom: 15px; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content h2 {font-size: 16px; color: #666666; text-align: left; margin-bottom: 5px; font-weight: 600; clear: both; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content h4 {font-size: 14px; margin-bottom: 8px; text-align: left; color: #666666; font-weight: 600; clear: both; line-height:17px;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.links-column {float: left; text-align: left; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.links-column.one {margin-right: 30px; width: 160px; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.links-column.one.no-column-two {margin-right: 0px; width: 100%; clear: both; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.links-column.two {clear: right; width: 159px; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content p.link-item {margin-bottom: 10px; line-height: 12px; text-align: left; }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content p.link-item a:hover {color: #00aeef }
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.highlight {padding: 15px;	width: 317px; border: 1px solid #e1e1e1;
+	/*-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjE4Ii8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiNGJjYzMiIHN0b3Atb3BhY2l0eT0iMC4xOCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, rgba(255,255,255,0.18) 0%, rgba(180,188,195,0.18) 100%); *//* FF3.6+ */
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.18)), color-stop(100%,rgba(180,188,195,0.18))); *//* Chrome,Safari4+ */
+    /*background: -webkit-linear-gradient(top, rgba(255,255,255,0.18) 0%,rgba(180,188,195,0.18) 100%); *//* Chrome10+,Safari5.1+ */
+    /*background: -o-linear-gradient(top, rgba(255,255,255,0.18) 0%,rgba(180,188,195,0.18) 100%); *//* Opera 11.10+ */
+    /*background: -ms-linear-gradient(top, rgba(255,255,255,0.18) 0%,rgba(180,188,195,0.18) 100%); *//* IE10+ */
+    /*background: linear-gradient(to bottom, rgba(255,255,255,0.18) 0%,rgba(180,188,195,0.18) 100%); *//* W3C */
+}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.highlight div.highlight-img {float: left;	width: 165px; height: 110px;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.highlight div.highlight-content {margin-left: 15px; width: 137px; 	text-align: left; float: left; clear: right;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.highlight div.highlight-content h4 {font-size: 14px; margin-bottom: 5px; color: #666666; font-weight: 600;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.highlight div.highlight-content p.link-item a {line-height: 16px;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.highlight div.highlight-content p.link-item a:hover {color: #00aeef;}
+/** IE STYLES **/
+body.ie8_0 #recode50header .uheader .newmenu-container .newmenu-contents {margin: 0 auto; width: 960px; display: none; position: relative; z-index: 9099; left:1px; overflow:hidden; }
+/*body.ie8_0 #recode50header .uheader .newmenu-container .newmenu-contents {margin: 0 auto; width: 960px; display: none; position: relative; z-index: 9099; left:97px; overflow:hidden; }*/
+body.ie7_0 #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle .middle-content img {margin-left: 76px !important;}
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary {background: #008ad2; border: none;	border-bottom: 1px solid #008ad2;}
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary div.primaryItemContainer.selected {border-right: 1px solid #e1e1e1; border-left: 1px solid #e1e1e1;}
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level {border-right: 1px solid #e1e1e1; border-bottom: 1px solid #e1e1e1;}
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.menu-content div.main-content div.highlight {background: #F8F8F8;}
+
+body.ie7_0 #recode50header #header ul li.home, body.ie #recode50header #header ul li.home {width: 64px;}
+
+/* END Content Level CSS */
+
+/** NAVIGATION STYLES FOR ARROWS AND POSITIONING**/
+
+/** menu positioning */
+#recode50header .uheader .newmenu-container .newmenu-contents {margin: 0 auto; width: 960px; display: none; position: relative; z-index: 9099; }
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents,body.opera #recode50header .uheader .newmenu-container .newmenu-contents {margin: 0 auto; width: 960px; display: none; position: relative; z-index: 9099; left: 1px; }
+
+/** menu left hand filler */
+#recode50header .uheader .newmenu-container .newmenu-contents .filler {width: 96px; float: left; }
+
+/** primary level arrows */
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 65px; position: fixed;}
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 138px; }
+body.opera #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 137px; }
+body.mobile #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 137px; }
+
+/** secondary & third level arrows global margins */
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle .middle-content img {margin-left: 77px; position: fixed;}
+
+/** primary level arrows */
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 161px; }
+body.opera #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 160px; }
+body.mobile #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 160px;}
+
+/** tertiary level arrows */
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 141px; }
+body.opera #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 140px; }
+body.mobile #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 140px; }
+
+/** IE styles */
+/** primary level arrows */
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 136px;}
+body.ie9 #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 136px;}
+body.ie7 #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 64px;}
+body.ie7 #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 64px;}
+body.ff11 #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 136px;}
+
+/** secondary level arrows */
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 160px;}
+body.ie7 #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 75px;}
+body.ie9 #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 160px;}
+body.ff11 #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 161px; }
+
+/** tertiary level arrows */
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 140px;}
+body.ie7 #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 75px;}
+body.ie9 #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 140px;}
+body.ff11 #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 140px;}
+
+
+/*iPad navigation fixes */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 137px; position: fixed;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 161px; position: fixed;}
+#recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 141px; position: fixed;}
+}
+/** FIREFOX FUDGE STYLES **/
+/** menu positioning 
+#recode50header .uheader .newmenu-container .newmenu-contents {margin: 0 auto; width: 960px; display: none; position: relative; z-index: 9099; left:96px; overflow:hidden; }
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents,body.opera #recode50header .uheader .newmenu-container .newmenu-contents {margin: 0 auto; width: 960px; display: none; position: relative; z-index: 9099; left:97px; overflow:hidden; }*/
+
+/** menu left hand filler 
+#recode50header .uheader .newmenu-container .newmenu-contents .filler {width: 0px; float: left; }*/
+
+/** primary level arrows 
+body.ff #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 65px;}
+body.chrome #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 233px; }
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 234px; }*/
+
+/** secondary level arrows 
+body.ff #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img, body.ff #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 77px; }
+body.chrome #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 256px; }
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 257px; }*/
+
+/** tertiary level arrows 
+body.chrome #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 236px; }
+body.safari #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 237px; }*/
+
+
+/** IE styles */
+/** primary level arrows 
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.primary img {margin-left: 233px;}*/
+/** secondary level arrows 
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.one .middle-content img {margin-left: 256px;}*/
+/** tertiary level arrows 
+body.ie #recode50header .uheader .newmenu-container .newmenu-contents div.level.middle.two .middle-content img {margin-left: 236px;}*/

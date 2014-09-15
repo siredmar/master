@@ -1,0 +1,262 @@
+/* SuperClean MediaWiki Skin
+   2007 Javier Valcarce García, <javier.valcarce@gmail.com>
+   Use it as you want.
+ */
+
+body 
+{ 
+     font-family: sans-serif; 
+     font-size: 96%;
+     color: #111;        
+     margin: 0;
+     padding: 0;
+     background-color: #ddd;
+}
+
+/* Main elements */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#column-content 
+{ 
+     margin: 0; 
+     padding: 0 30px 0 30px;      
+     border-top:    1px solid #aaa;
+     border-bottom: 1px solid #aaa;
+     border-left:  10px solid #aaa;
+     border-right: 10px solid #aaa;  
+     max-width: 1024px; 
+     margin-left: auto; 
+     margin-right: auto;
+     background: #fefefe; 
+     /*background-image: url(bg.png); background-repeat: repeat-x;*/
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#headbox    { font-family: sans-serif; margin: 0; padding: 10px 0 1em 0; }
+#headbox p  { float: left; margin: -0.1em 0 0 0; padding: 0 0 0.1em 0; color: #575; font-weight: bold; font-size: 150%; }
+#searchform { float: right; }
+
+#searchInput    { width: 20em; } 
+#mw-searchButton { background-color: white; color: #005A9C; padding: 0 1em 0 1em; margin: 0; }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#navibox       { font-family: sans-serif; clear: both; text-align: center; margin: 0; padding: 0; border-top: 2px solid #575; }
+#navibox p     { margin: 0; padding: 5px; } 
+#navibox a                { margin: 0; padding: 0 6px 0 6px; color: #797; font-weight: bold; }
+#navibox strong.selflink  { margin: 0; padding: 0 6px 0 6px; }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+#toolbox     { font-family: sans-serif; font-size: 90%; clear: both; text-align: center; margin-top: 10px; border: 3px solid #666; margin: 0; padding: 0; }
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+#content    { margin: 0;           padding: 0; }
+#content li { line-height: 1.25em; margin-bottom: 0.5em; }
+#content dd { line-height: 1.25em; margin-bottom: 0.5em; }
+#content p  { line-height: 1.25em; margin: 1em 0 0.5em 0; padding: 0; }
+
+
+/* HEADINGS - HEADERS BELOW H4 SHOULD BE FORBIDEN */
+h1, h2, h3, h4 { font-family: sans-serif; margin-left: -10px; }
+
+h1 { font-size: 180%; padding: 0px 10px 0px 10px; color: #341805; } 
+h2 { font-size: 140%; padding: 0px 10px 0px 10px; color: #2c4c0b; background-color: #e0f2ce; } 
+h3 { font-size: 125%; padding: 0px 10px 0px 10px; border-bottom: 2px dotted #8fcc7a; } 
+h4 { font-size: 115%; padding: 0px 10px 0px 10px; } 
+
+.editsection { float: right; }
+
+a              { color: #1717e6; text-decoration: none; }
+a:hover        { background-color: #ddd; text-decoration: underline; }
+a.image:hover  { background-color: transparent; }
+a.new          { color: #BA0000; }
+a:active       { color: #FAA700; }
+a.external     { color: #36b;    }
+
+/* BreadCrumbs */
+#contentSub    { font-family: sans-serif; font-style: italic; margin: -1.2em 0 1em 0; padding: 0; }
+
+
+#footer        { font-size: small; font-style: italic; clear: both; color: #555; 
+margin:  1em 0 0 0; padding: 0; border: 1px solid #bbb; border-top: 5px solid #bbb; }
+
+#footer table  { margin-left: auto; }
+#footer td     { vertical-align: top; text-align: right; padding: 0 0 0 20px; }
+#footer td p   { margin: 0; padding: 0; }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* Cite Extension, Make references to apear smaller */
+ol.references { margin-left: 20px; padding: 0; font-size: small; }
+
+/* Highlight clicked reference to help navigation */
+ol.references > li:target { background-color: #ddd; }
+sup.reference:target { background-color: #ddd; }
+#catlinks { font-size: small; }
+
+/* Keep consistent line spacing with sup and sub */
+sup, sub {
+	height: 0;
+	line-height: 1;
+	vertical-align: baseline;
+	position: relative;	
+}
+
+sup { bottom: 1ex; }
+sub { top: .5ex;   }
+
+
+img { border: none; vertical-align: middle; }
+p img { margin: 0; }
+
+
+pre {
+  overflow: auto; 
+  font-family: "Courier New", Courier, Monaco, monospace;
+  font-size: 80%;  
+  margin: 1em; 
+}
+
+code { font-family: "Courier New", Courier, Monaco, monospace; }
+
+/* hidden stuff */
+#siteSub,     
+#jump-to-nav, 
+.printfooter,
+.hiddenStructure,
+ul#filetoc { display: none; }
+
+/* Table Of Contents */
+#toc
+{
+  font-size: 90%;
+  float: right;
+  border: 2px solid #999;
+  background-color: #fbfbfa;
+  margin: 1em 0 1em 2em;
+  padding: 0;
+  width: 30em;
+}
+
+#toc h2 
+{
+  color: #111;
+  font-size: 100%;
+  background-color: #eee;
+  /*border-bottom: 1px solid #aaa;*/
+  padding: 1px 1px 1px   1em;
+  margin:  0   0   0.5em 0;
+  font-weight: bold;
+}
+
+#toc ul
+{
+  list-style-type:  none;
+  list-style-image: none;
+  margin: 0;
+  padding: 0 5px 0 5px;
+}
+
+#toc ul ul { margin: 0 0 0 2em; }
+#toc li    { margin: 0.1em 0 0.1em 0; line-height: 1.1em; }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+.center {
+	width: 100%;
+	text-align: center;
+}
+*.center * {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* table float */
+div.floatright, table.floatright 
+{
+  clear: right;
+  float: right;
+  position: relative;
+  margin: 1em 0 1.5em 2em;
+}
+
+div.floatleft, table.floatleft 
+{
+  float: left;
+  clear: left;
+  position: relative;
+  margin: 1em 1.5em 2em 0;
+}
+
+div.floatright p { font-style: italic; }
+div.floatleft  p { font-style: italic; }
+
+/* thumbnails (importante) */
+div.thumb {
+  margin-bottom: .5em;
+  border-style: solid;
+  border-color: #fdfdfd;
+  width: auto;
+}
+div.thumbinner {
+  padding: 3px !important;
+  font-size: 90%;
+  font-style: italic;
+  overflow: hidden;
+}
+html .thumbimage {
+  border: 1px solid #ccc;
+}
+html .thumbcaption {
+  border: none;
+  text-align: left;
+  line-height: 1.4em;
+  padding: 3px !important;
+  font-size: 95%;
+}
+div.magnify {
+  float: right;
+  border: none !important;
+  background: none !important;
+}
+div.magnify a, div.magnify img {
+  display: block;
+  border: none !important;
+  background: none !important;
+}
+div.tright {
+  clear: right;
+  float: right;
+  border-width: .5em 0 .8em 1.4em;
+}
+div.tleft {
+  float: left;
+  clear: left;
+  margin-right: .5em;
+  border-width: .5em 1.4em .8em 0;
+}
+
+img.tex {
+  vertical-align: middle;
+}
+span.texhtml {
+  font-family: serif;
+}
+
+/* Special:Version */
+#sv-ext, #sv-hooks, #sv-software {
+    font-size: small;
+    border-width: 2px;
+    border-collapse: separate;
+    margin:  2em;
+    width: 90%;
+}
+
+#sv-ext td, 
+#sv-ext th,
+#sv-hooks td,
+#sv-hooks th, 
+#sv-software td,
+#sv-software th {
+    text-align: left;
+    border: 1px solid #aaa;
+    padding: 6px 12px 6px 12px;
+}
