@@ -181,7 +181,6 @@ caption={PC-Software: Hexfile Laden},
 label=lst:hexfile_laden
 ]
 hexfile = (hexfileType*)malloc((hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_SIZE) * sizeof(hexfileType));
-
    /* load the actual data into the program */
    for(cnt = 0; cnt < hexfile_size; cnt++)
    {
@@ -191,7 +190,6 @@ hexfile = (hexfileType*)malloc((hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_S
    hexfile[0].hex = 0;
    hexfile[0].ack = '1';
    hexfile[0].nodata_flag = 1;
-
    for(cnt = 0; cnt < hexfile_size; cnt++)
    {
       hexfile[cnt+CMD_S_SIZE].cmd = 'w';
@@ -200,7 +198,6 @@ hexfile = (hexfileType*)malloc((hexfile_size + CMD_C_SIZE + CMD_X_SIZE + CMD_S_S
       hexfile[cnt+CMD_S_SIZE].nodata_flag = 0;
       checksum ^= edid_raw[cnt];
    }
-
    hexfile[hexfile_size +  CMD_X_SIZE].cmd = 'x';
    hexfile[hexfile_size +  CMD_X_SIZE].hex = 0;
    hexfile[hexfile_size +  CMD_X_SIZE].ack = '3';

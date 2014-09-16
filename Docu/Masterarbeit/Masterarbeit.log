@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  16 SEP 2014 11:53
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.29)  16 SEP 2014 12:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3172,25 +3172,25 @@ Package babel Info: Redefining ngerman shorthand "~
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 213.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 213.
+(babel)             in language  on input line 216.
 
 [75]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 250.
+(babel)             in language  on input line 251.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 250.
+(babel)             in language  on input line 251.
 
 [76]
 Overfull \vbox (6.35548pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 275.
+(babel)             in language  on input line 272.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 275.
+(babel)             in language  on input line 272.
 
 [77]) (./Inhalt/TeilB/TeilBKnownBugs.tex
 Package babel Info: Redefining ngerman shorthand "|
@@ -3206,7 +3206,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 5.
 
-<Bilder/TeilB/hdmi_stecker_problem.png, id=2122, 1284.8pt x 1133.23375pt>
+<Bilder/TeilB/hdmi_stecker_problem.png, id=2119, 1284.8pt x 1133.23375pt>
 File: Bilder/TeilB/hdmi_stecker_problem.png Graphic file (type png)
 
 <use Bilder/TeilB/hdmi_stecker_problem.png>
@@ -3231,7 +3231,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 20.
 
-<Bilder/TeilB/r13.png, id=2130, 59.7432pt x 46.9755pt>
+<Bilder/TeilB/r13.png, id=2127, 59.7432pt x 46.9755pt>
 File: Bilder/TeilB/r13.png Graphic file (type png)
 
 <use Bilder/TeilB/r13.png>
@@ -3242,7 +3242,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 29.
 
-<Bilder/TeilB/usb_dp_dm.png, id=2132, 157.7895pt x 97.5645pt>
+<Bilder/TeilB/usb_dp_dm.png, id=2129, 157.7895pt x 97.5645pt>
 File: Bilder/TeilB/usb_dp_dm.png Graphic file (type png)
 
 <use Bilder/TeilB/usb_dp_dm.png>
@@ -3707,15 +3707,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 123.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 123.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 123.
 Package rerunfilecheck Info: File `Masterarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 2B97098C2E692AB2B4F3EDC654631423;4318.
+(rerunfilecheck)             Checksum: 2E956B78F309F398914AE5A678577D30;4318.
 Package rerunfilecheck Info: File `Masterarbeit.brf' has not changed.
 (rerunfilecheck)             Checksum: AFB828185F8FC4803570C90A3C9BE5D3;3144.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 123.
  ) 
 Here is how much of TeX's memory you used:
- 27387 strings out of 494220
- 479289 string characters out of 6156460
- 701679 words of memory out of 5000000
+ 27384 strings out of 494220
+ 479250 string characters out of 6156460
+ 701555 words of memory out of 5000000
  28923 multiletter control sequences out of 15000+600000
  101548 words of font info for 73 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
@@ -3746,10 +3746,10 @@ ist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2013/texmf-dist/fonts/t
 ype1/public/lm/lmsy9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt8.
 pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on Masterarbeit.pdf (96 pages, 10657347 bytes).
+Output written on Masterarbeit.pdf (96 pages, 10655722 bytes).
 PDF statistics:
- 2628 PDF objects out of 2984 (max. 8388607)
- 2395 compressed objects within 24 object streams
- 1056 named destinations out of 1200 (max. 500000)
+ 2625 PDF objects out of 2984 (max. 8388607)
+ 2392 compressed objects within 24 object streams
+ 1053 named destinations out of 1200 (max. 500000)
  752 words of extra memory for PDF output out of 10000 (max. 10000000)
 
