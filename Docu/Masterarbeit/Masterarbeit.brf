@@ -7,6 +7,7 @@
 \backcite {Extron2014}{{6}{2.1.3}{subsection.33}}
 \backcite {TI2011}{{7}{2.1.4}{figure.caption.36}}
 \backcite {SSD2007}{{8}{2.1.6}{subsection.40}}
+\backcite {elektroniknet2013}{{10}{2.2.2}{subsection.51}}
 \backcite {Schlegel2013a}{{11}{3.1.1}{subsection.57}}
 \backcite {Coldtears2014}{{12}{3.1.1}{subsection.57}}
 \backcite {SSD2008}{{12}{3.1.1}{figure.caption.58}}
@@ -52,7 +53,7 @@
 \backcite {Atmel2011}{{67}{4.2.5}{table.caption.713}}
 \backcite {Atmel2003}{{67}{4.2.5}{table.caption.713}}
 \backcite {USB2005}{{67}{4.2.5}{table.caption.714}}
-\backcite {FTDI2010}{{68}{4.2.5}{table.caption.714}}
+\backcite {FTDI2010}{{67}{4.2.5}{table.caption.714}}
 \backcite {TI2007}{{68}{4.2.5}{figure.caption.715}}
 \backcite {eeprom_lib}{{73}{4.3.2}{lstnumber.815}}
 \backcite {rs232_lib}{{74}{4.3.3}{subsection.816}}

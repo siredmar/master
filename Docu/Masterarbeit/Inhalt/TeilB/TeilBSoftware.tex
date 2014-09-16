@@ -27,7 +27,7 @@ Ein Ablaufdiagramm der Funktionalität zum Beschreiben des EEPROMs ist in \refa{
 \end{figure}\\
 
 Für den Fehlerfall, dass die Datenkommunikation abbricht, obwohl bereits das Startkommando \code{\#s\*} gesendet wurde, wird der Zyklus mit jedem erneuten Senden von \code{\#s\*} zurückgesetzt und der Schreibvorgang von vorne begonnen.\\
-Wird die PC-Software gestartet und es bleibt das Handshake vom AVR aus (z. B. fehlerhafte oder falsche Software im AVR), so wird innerhalb einer Zeitspanne auf dieses Handshake gewartet und nach Ablauf dieser Zeit abgebrochen und der Fehler angezeigt.\\
+Wird die PC-Software gestartet und es bleibt das Handshake vom AVR aus (z. B. fehlerhafte oder falsche Software im AVR), so wird innerhalb einer festgelegten Zeitspanne auf dieses Handshake gewartet und nach Ablauf dieser Zeit abgebrochen und der Fehler angezeigt.\\
 Der gesamte Schreibvorgang ist innerhalb einer definierten Zeit abgeschlossen. Tritt im Fehlerfall eine Verzögerung auf, so wird ebenfalls nach Ablauf einer definierten Zeitspanne abgebrochen und der Fehler gemeldet.
 \subsection{EDID-Daten auf Embedded-Seite}
 In den folgenden Abschnitten wird auf die  internen Funktionsweisen und wichtige Code-Ausschnitte der Embedded-Software eingegangen.\\
@@ -144,7 +144,7 @@ void send_checksum()
    uart_putc(checksum);
 }
 \end{lstlisting}%
-Um den Zugriff auf das EEPROM einfach zu gestalten, sind zwei API-Funktionen definiert. Somit stehen die Methoden \code{void write_eeprom_byte(uint16 address, uint8 data)} und \code{uint8 read_eeprom_byte(uint16 address)} zur Verfügung. Der Treiber basiert auf einem bereits existenten EEPROM-Treiber für Atmel AVR Prozessoren (siehe \cite{eeprom_lib}) und nutzt das $I^2C$-Hardwareinterface des Prozessors. \\
+Um den Zugriff auf das EEPROM einfach zu gestalten, sind zwei API-Funktionen definiert. Somit stehen die Methoden \code{write_eeprom_byte(uint16 address, uint8 data)} und \code{uint8 read_eeprom_byte(uint16 address)} zur Verfügung. Der Treiber basiert auf einem bereits existenten EEPROM-Treiber für Atmel AVR Prozessoren (siehe \cite{eeprom_lib}) und nutzt das $I^2C$-Hardwareinterface des Prozessors. \\
 Die in der Hardware vorgesehene und in \refc{cha:sw_edid_daten} angesprochene Funktionalität zum Dimmen der Hintergrundbeleuchtung der Displays ist aus Zeitgründen in der Embedded-Software nicht realisiert. 
 \subsection{EDID-Daten auf PC Seite}
 \label{edid_pc}

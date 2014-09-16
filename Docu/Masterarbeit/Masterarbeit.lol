@@ -4,7 +4,7 @@
 \addvspace {10\p@ }
 \contentsline {lstlisting}{\numberline {3.1}Bootloader: MPMC-Konfiguration}{24}{lstlisting.94}
 \contentsline {lstlisting}{\numberline {3.2}Bootloader: Grundlegende Datentypen und Funktionen}{25}{lstlisting.109}
-\contentsline {lstlisting}{\numberline {3.3}Bootloader: Display-Initialisierung und Bootlogo}{25}{lstlisting.137}
+\contentsline {lstlisting}{\numberline {3.3}Bootloader: Display-Initialisierung und Boot-Logo}{25}{lstlisting.137}
 \contentsline {lstlisting}{\numberline {3.4}Bootloader: Bootloader herunterladen und patchen}{28}{lstlisting.189}
 \contentsline {lstlisting}{\numberline {3.5}Framebuffer: Kernel herunterladen und patchen}{29}{lstlisting.198}
 \contentsline {lstlisting}{\numberline {3.6}Framebuffer: struct platform\_device}{30}{lstlisting.209}
